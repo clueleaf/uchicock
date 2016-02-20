@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecipeListViewController.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/02/20.
