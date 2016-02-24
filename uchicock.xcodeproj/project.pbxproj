@@ -18,6 +18,7 @@
 		9BC9A3451C7856AA0031F631 /* RecipeListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */; };
 		9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1B1C7DC8DC00A27175 /* Realm.framework */; };
 		9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */; };
+		9BF98A201C7DC9D700A27175 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF98A1F1C7DC9D700A27175 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeListItemTableViewCell.swift; path = ../RecipeListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		9BF98A1F1C7DC9D700A27175 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */,
 				9BC9A3161C783CAA0031F631 /* RecipeListViewController.swift */,
+				9BF98A1F1C7DC9D700A27175 /* Recipe.swift */,
 			);
 			name = RecipeList;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				9BC9A3171C783CAA0031F631 /* RecipeListViewController.swift in Sources */,
 				9BC9A3451C7856AA0031F631 /* RecipeListItemTableViewCell.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
+				9BF98A201C7DC9D700A27175 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
