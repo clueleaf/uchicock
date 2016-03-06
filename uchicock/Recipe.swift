@@ -15,10 +15,10 @@ class Recipe: Object {
     dynamic var method = 0
     dynamic var procedure = ""
     dynamic var memo = ""
-    //RecipeIngredientへの関係を追加
+    let recipeIngredients = List<RecipeIngredient>()
     
-//    override class func primaryKey() -> String {
-//        return "recipeName"
-//    }
+    override class func primaryKey() -> String {
+        return "recipeName"
+    }
     
 }

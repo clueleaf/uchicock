@@ -10,8 +10,12 @@
 import RealmSwift
 
 class RecipeIngredient: Object {
-    //recipe
-    //ingredient
+    var recipe: Recipe {
+        return linkingObjects(Recipe.self, forProperty: "recipeIngredients").first!
+    }
+    var ingredient: Ingredient {
+        return linkingObjects(Ingredient.self, forProperty: "recipeIngredients").first!
+    }
     dynamic var amount = ""
     dynamic var mustFlag = false
 }

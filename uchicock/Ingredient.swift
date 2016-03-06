@@ -12,7 +12,7 @@ import RealmSwift
 class Ingredient: Object {
     dynamic var ingredientName = ""
     dynamic var stockFlac = false
-    //RecipeIngredientへの関係を追加
+    let recipeIngredients = List<RecipeIngredient>()
     
     override class func primaryKey() -> String {
         return "ingredientName"

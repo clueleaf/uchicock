@@ -17,7 +17,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.AddData()
+//        self.AddData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +28,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - RealmSettings
     
     func AddData() {
-        
+
         let recipe = Recipe()
         recipe.recipeName = "テキーラサンライズ"
         recipe.favorites = 2
