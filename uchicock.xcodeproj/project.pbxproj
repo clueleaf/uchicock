@@ -16,6 +16,8 @@
 		9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* uchicockTests.swift */; };
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
 		9BC9A3451C7856AA0031F631 /* RecipeListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */; };
+		9BD5CD451C8BFF7000D20731 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5CD441C8BFF7000D20731 /* Ingredient.swift */; };
+		9BD5CD481C8C001500D20731 /* RecipeIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */; };
 		9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1B1C7DC8DC00A27175 /* Realm.framework */; };
 		9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */; };
 		9BF98A201C7DC9D700A27175 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF98A1F1C7DC9D700A27175 /* Recipe.swift */; };
@@ -57,6 +59,8 @@
 		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeListItemTableViewCell.swift; path = ../RecipeListItemTableViewCell.swift; sourceTree = "<group>"; };
+		9BD5CD441C8BFF7000D20731 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeIngredient.swift; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BF98A1F1C7DC9D700A27175 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9BD5CD461C8BFF7600D20731 /* IngredientList */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
 				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
@@ -158,8 +163,17 @@
 				9BC9A3441C7856AA0031F631 /* RecipeListItemTableViewCell.swift */,
 				9BC9A3161C783CAA0031F631 /* RecipeListViewController.swift */,
 				9BF98A1F1C7DC9D700A27175 /* Recipe.swift */,
+				9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */,
 			);
 			name = RecipeList;
+			sourceTree = "<group>";
+		};
+		9BD5CD461C8BFF7600D20731 /* IngredientList */ = {
+			isa = PBXGroup;
+			children = (
+				9BD5CD441C8BFF7000D20731 /* Ingredient.swift */,
+			);
+			name = IngredientList;
 			sourceTree = "<group>";
 		};
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
@@ -356,6 +370,8 @@
 			files = (
 				9BC9A3171C783CAA0031F631 /* RecipeListViewController.swift in Sources */,
 				9BC9A3451C7856AA0031F631 /* RecipeListItemTableViewCell.swift in Sources */,
+				9BD5CD481C8C001500D20731 /* RecipeIngredient.swift in Sources */,
+				9BD5CD451C8BFF7000D20731 /* Ingredient.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9BF98A201C7DC9D700A27175 /* Recipe.swift in Sources */,
 			);

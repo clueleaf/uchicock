@@ -31,6 +31,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let recipe = Recipe()
         recipe.recipeName = "テキーラサンライズ"
+        recipe.favorites = 2
+        recipe.memo="きれいな色です"
+        recipe.method=1
+        recipe.procedure="なんとかして作ります"
         
         let realm = try! Realm()
         try! realm.write {
