@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientListTableViewCell: UITableViewCell {
+class RecipeIngredientListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var option: UILabel!
     @IBOutlet weak var ingredientName: UILabel!
