@@ -32,16 +32,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let recipe = Recipe()
         recipe.recipeName = "テキーラサンライズ"
         recipe.favorites = 2
-        recipe.memo="きれいな色です"
+        recipe.memo="飲みやすい"
         recipe.method=1
-        recipe.procedure="なんとかして作ります"
         
-        let realm = try! Realm()
+        var realm = try! Realm()
         try! realm.write {
             realm.add(recipe)
         }
-
-        //        self.save()
+//        self.save()
         //        self.dataUpdate()
 //        self.dataDelete()
         
@@ -99,7 +97,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 20
+        if section == 0 {
+            let realm = try! Realm()
+            let dataContent = realm.objects(Recipe)
+            return dataContent.count
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -109,9 +113,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
-            cell.recipeName.text = dataContent[0].recipeName
-            cell.shortage.text = "\(indexPath.row)"
-            cell.favorites.text = "★★☆"
+            cell.recipe = dataContent[indexPath.row]
             return cell
         }
         return UITableViewCell()
