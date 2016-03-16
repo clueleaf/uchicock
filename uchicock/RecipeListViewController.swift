@@ -73,7 +73,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 //        let realm = try! Realm()
         
 //        let user = realm.objects(Recipe).last!
-//        realm.write {
+//        try! realm.write {
 //            user.recipeName = "Yamasaki Tarou"
 //        }
 //    }

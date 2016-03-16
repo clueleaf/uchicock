@@ -107,6 +107,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9BAAFB6F1C99953400E67791 /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B5367381C95A89100B6ADA2 /* RecipeDetailViewController.swift */,
+				9B53673A1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift */,
+			);
+			name = RecipeDetail;
+			sourceTree = "<group>";
+		};
 		9BC9A3081C783CAA0031F631 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +141,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
 				9BD5CD461C8BFF7600D20731 /* IngredientList */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
@@ -168,8 +178,6 @@
 				9BC9A3161C783CAA0031F631 /* RecipeListViewController.swift */,
 				9BF98A1F1C7DC9D700A27175 /* Recipe.swift */,
 				9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */,
-				9B5367381C95A89100B6ADA2 /* RecipeDetailViewController.swift */,
-				9B53673A1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift */,
 			);
 			name = RecipeList;
 			sourceTree = "<group>";

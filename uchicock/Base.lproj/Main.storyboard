@@ -276,6 +276,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star1Tapped:" destination="bvf-aa-P4b" eventType="touchUpInside" id="dRv-Lt-eKw"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c89-Jr-zu7" userLabel="星2">
                                                         <rect key="frame" x="30" y="-3" width="30" height="30"/>
@@ -287,6 +290,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star2Tapped:" destination="bvf-aa-P4b" eventType="touchUpInside" id="mSJ-m5-dLr"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXu-2n-PlM" userLabel="星3">
                                                         <rect key="frame" x="60" y="-3" width="30" height="30"/>
@@ -298,6 +304,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star3Tapped:" destination="bvf-aa-P4b" eventType="touchUpInside" id="nyE-NQ-Ol9"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecipeDetailViewController: UIViewController {
 
@@ -68,6 +69,40 @@ class RecipeDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    // MARK: - IBAction
+    @IBAction func star1Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("☆", forState: .Normal)
+        star3.setTitle("☆", forState: .Normal)
+        
+        let realm = try! Realm()
+        try! realm.write {
+            recipe.favorites = 1
+        }
+    }
+
+    @IBAction func star2Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("★", forState: .Normal)
+        star3.setTitle("☆", forState: .Normal)
+
+        let realm = try! Realm()
+        try! realm.write {
+            recipe.favorites = 2
+        }
+    }
+    
+    @IBAction func star3Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("★", forState: .Normal)
+        star3.setTitle("★", forState: .Normal)
+
+        let realm = try! Realm()
+        try! realm.write {
+            recipe.favorites = 3
+        }
+    }
 
     /*
     // MARK: - Navigation
