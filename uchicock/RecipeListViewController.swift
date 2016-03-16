@@ -13,6 +13,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var tableView: UITableView!
     
+    var recipeList: Results<Recipe>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,7 +37,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipe.memo="飲みやすい"
         recipe.method=1
         
-        var realm = try! Realm()
+        let realm = try! Realm()
         try! realm.write {
             realm.add(recipe)
         }
@@ -94,6 +96,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+    }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -109,14 +116,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         let realm = try! Realm()
-        let dataContent = realm.objects(Recipe)
+        recipeList = realm.objects(Recipe)
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
-            cell.recipe = dataContent[indexPath.row]
+            cell.recipe = recipeList![indexPath.row]
             return cell
         }
         return UITableViewCell()
+    }
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushRecipeDetail" {
+            let vc = segue.destinationViewController as! RecipeDetailViewController
+            if let indexPath = sender as? NSIndexPath{
+                vc.recipe = recipeList![indexPath.row]
+            }
+        }
     }
 
 }

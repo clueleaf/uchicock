@@ -146,7 +146,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="pyY-5S-8s2" userLabel="技法">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="4" translatesAutoresizingMaskIntoConstraints="NO" id="pyY-5S-8s2" userLabel="技法">
                                                 <rect key="frame" x="40" y="135" width="520" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="SBK-gO-MGG"/>
@@ -157,6 +157,7 @@
                                                     <segment title="ステア" enabled="NO"/>
                                                     <segment title="シェイク" enabled="NO"/>
                                                     <segment title="ブレンド" enabled="NO"/>
+                                                    <segment title="その他" enabled="NO"/>
                                                 </segments>
                                                 <variation key="default">
                                                     <mask key="constraints">
