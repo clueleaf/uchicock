@@ -21,6 +21,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
 //        self.AddData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
