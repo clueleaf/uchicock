@@ -18,8 +18,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-//        self.AddData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -33,25 +31,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - RealmSettings
-    
-    func AddData() {
-
-        let recipe = Recipe()
-        recipe.recipeName = "テキーラサンライズ"
-        recipe.favorites = 2
-        recipe.memo="飲みやすい"
-        recipe.method=1
-        
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(recipe)
-        }
-//        self.save()
-        //        self.dataUpdate()
-//        self.dataDelete()
-        
-//        self.dataGet()
-    }
     
     //データの保存
 //    func save() {
@@ -71,16 +50,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
 //        let dataContent = realm.objects(Recipe)
 //        print(dataContent)
-//    }
-    
-    // データの更新
-//    func dataUpdate() {
-//        let realm = try! Realm()
-        
-//        let user = realm.objects(Recipe).last!
-//        try! realm.write {
-//            user.recipeName = "Yamasaki Tarou"
-//        }
 //    }
     
     // データの削除

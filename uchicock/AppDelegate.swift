@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        // first time to launch this app
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dic = ["firstLaunch": true]
+        defaults.registerDefaults(dic)
+        if defaults.boolForKey("firstLaunch") {
+            self.addDefaultRecipe()
+            defaults.setBool(false, forKey: "firstLaunch")
+        }
         return true
     }
 
@@ -40,7 +50,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func addDefaultRecipe() {
+        
+        let recipe1 = Recipe()
+        recipe1.recipeName = "テキーラサンライズ"
+        recipe1.favorites = 1
+        recipe1.memo="きれいな色です"
+        recipe1.method=1
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(recipe1)
+        }
+        
+        let recipe2 = Recipe()
+        recipe2.recipeName = "カシスオレンジ"
+        recipe2.favorites = 1
+        recipe2.memo="ソフトドリンクみたい"
+        recipe2.method=1
+        try! realm.write {
+            realm.add(recipe2)
+        }
 
+        let recipe3 = Recipe()
+        recipe3.recipeName = "ジントニック"
+        recipe3.favorites = 1
+        recipe3.memo="定番"
+        recipe3.method=1
+        try! realm.write {
+            realm.add(recipe3)
+        }
+
+        let recipe4 = Recipe()
+        recipe4.recipeName = "カルーアミルク"
+        recipe4.favorites = 1
+        recipe4.memo="飲みやすい"
+        recipe4.method=1
+        try! realm.write {
+            realm.add(recipe4)
+        }
+    
+    }
 
 }
 
