@@ -75,6 +75,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete{
+            let realm = try! Realm()            
+            let recipe = recipeList![indexPath.row]
+            try! realm.write {
+                realm.delete(recipe)
+            }
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
