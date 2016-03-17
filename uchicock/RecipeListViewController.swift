@@ -30,42 +30,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - RealmSettings
-    
-    //データの保存
-//    func save() {
-//        do {
-//            let realm = try Realm()
-//            realm.write {
-//                realm.add(self.recipe)
-//            }
-//        } catch {
-//            // Error handling...
-//        }
-//    }
-    
-    // データの取得
-//    func dataGet() {
-//        let realm = try! Realm()
-        
-//        let dataContent = realm.objects(Recipe)
-//        print(dataContent)
-//    }
-    
-    // データの削除
-//    func dataDelete() {
-//        let realm = try! Realm()
-        
-//        let user = realm.objects(Recipe).last!
-//        realm.write {
-            // 最後のデータ
-//            realm.delete(user)
-            // 全てのデータ
-            //          realm.deleteAll()
-//        }
-//    }
-    
-    
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
