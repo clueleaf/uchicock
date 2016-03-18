@@ -32,7 +32,19 @@ class IngredientDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//stock切り替え
+    @IBAction func stockSwitchTapped(sender: UISwitch) {
+        if sender.on{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredient.stockFlag = true
+            }
+        }else{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredient.stockFlag = false
+            }
+        }
+    }
     
     
     /*
