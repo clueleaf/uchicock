@@ -159,6 +159,9 @@
                                                         <constraint firstAttribute="height" constant="31" id="2qu-71-9D3"/>
                                                         <constraint firstAttribute="width" constant="49" id="7h8-9H-J5u"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="stockSwitchTapped:" destination="P9w-m9-Hhq" eventType="valueChanged" id="GBe-Cj-E3S"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
