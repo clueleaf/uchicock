@@ -153,15 +153,25 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-JI-w4W">
+                                                    <rect key="frame" x="523" y="9" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="2qu-71-9D3"/>
+                                                        <constraint firstAttribute="width" constant="49" id="7h8-9H-J5u"/>
+                                                    </constraints>
+                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="top" secondItem="h1f-kO-fpz" secondAttribute="topMargin" constant="8" id="Azf-3z-sCB"/>
+                                                <constraint firstItem="RbF-JI-w4W" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="IBD-Th-JGw"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="leading" secondItem="h1f-kO-fpz" secondAttribute="leadingMargin" constant="8" id="Qhz-XX-zHW"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="8" id="nTi-uc-5tw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RbF-JI-w4W" secondAttribute="trailing" constant="20" id="zG1-29-odi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ingredientName" destination="WQN-mV-WHi" id="pGg-OF-Isv"/>
+                                            <outlet property="stock" destination="RbF-JI-w4W" id="8HY-vE-ASU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

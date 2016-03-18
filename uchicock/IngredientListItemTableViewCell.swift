@@ -11,10 +11,12 @@ import UIKit
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var stock: UISwitch!
     
     var ingredient: Ingredient = Ingredient(){
         didSet{
             ingredientName.text = ingredient.ingredientName
+            stock.on = ingredient.stockFlag
         }
     }
 
