@@ -36,26 +36,26 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return 50
     }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
-//    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
+    }
     
-//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
-//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//       if editingStyle == .Delete{
-//            let realm = try! Realm()
- //           let recipe = recipeList![indexPath.row]
-//            try! realm.write {
-//                realm.delete(recipe)
-//            }
-//
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-//        }
-//    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+       if editingStyle == .Delete{
+            let realm = try! Realm()
+            let ingredient = ingredientList![indexPath.row]
+            try! realm.write {
+                realm.delete(ingredient)
+            }
+
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,12 +80,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - Navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "PushRecipeDetail" {
-//            let vc = segue.destinationViewController as! RecipeDetailViewController
-//            if let indexPath = sender as? NSIndexPath{
-//                vc.recipe = recipeList![indexPath.row]
-//            }
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushIngredientDetail" {
+            let vc = segue.destinationViewController as! IngredientDetailViewController
+            if let indexPath = sender as? NSIndexPath{
+                vc.ingredient = ingredientList![indexPath.row]
+            }
+        }
+    }
 }

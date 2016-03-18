@@ -19,6 +19,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
+    @IBOutlet weak var ingredientListTableView: UITableView!
     
     var recipe = Recipe()
     
@@ -60,8 +61,6 @@ class RecipeDetailViewController: UIViewController {
             star2.setTitle("☆", forState: .Normal)
             star3.setTitle("☆", forState: .Normal)
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
