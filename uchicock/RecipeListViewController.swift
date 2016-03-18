@@ -70,7 +70,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         let realm = try! Realm()
-        recipeList = realm.objects(Recipe)
+        recipeList = realm.objects(Recipe).sorted("recipeName")
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
