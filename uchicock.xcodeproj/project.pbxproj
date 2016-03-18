@@ -20,6 +20,8 @@
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
 		9BD5CD451C8BFF7000D20731 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5CD441C8BFF7000D20731 /* Ingredient.swift */; };
 		9BD5CD481C8C001500D20731 /* RecipeIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */; };
+		9BE32CEC1C9C2B9F001B98BF /* IngredientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE32CEB1C9C2B9F001B98BF /* IngredientListViewController.swift */; };
+		9BE32CEE1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE32CED1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift */; };
 		9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1B1C7DC8DC00A27175 /* Realm.framework */; };
 		9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */; };
 		9BF98A201C7DC9D700A27175 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF98A1F1C7DC9D700A27175 /* Recipe.swift */; };
@@ -65,6 +67,8 @@
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BD5CD441C8BFF7000D20731 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		9BD5CD471C8C001500D20731 /* RecipeIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeIngredient.swift; sourceTree = "<group>"; };
+		9BE32CEB1C9C2B9F001B98BF /* IngredientListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientListViewController.swift; sourceTree = "<group>"; };
+		9BE32CED1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BF98A1F1C7DC9D700A27175 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9BE32CEA1C9C2B71001B98BF /* IngredientList */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
@@ -188,6 +193,15 @@
 				9BC9A3161C783CAA0031F631 /* RecipeListViewController.swift */,
 			);
 			name = RecipeList;
+			sourceTree = "<group>";
+		};
+		9BE32CEA1C9C2B71001B98BF /* IngredientList */ = {
+			isa = PBXGroup;
+			children = (
+				9BE32CEB1C9C2B9F001B98BF /* IngredientListViewController.swift */,
+				9BE32CED1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift */,
+			);
+			name = IngredientList;
 			sourceTree = "<group>";
 		};
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
@@ -383,7 +397,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC9A3171C783CAA0031F631 /* RecipeListViewController.swift in Sources */,
+				9BE32CEC1C9C2B9F001B98BF /* IngredientListViewController.swift in Sources */,
 				9B5367391C95A89100B6ADA2 /* RecipeDetailViewController.swift in Sources */,
+				9BE32CEE1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift in Sources */,
 				9BD5CD481C8C001500D20731 /* RecipeIngredient.swift in Sources */,
 				9B2AED081C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift in Sources */,
 				9B53673B1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift in Sources */,

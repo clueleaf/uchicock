@@ -119,12 +119,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215" y="339"/>
+            <point key="canvasLocation" x="227" y="459"/>
         </scene>
         <!--Ingredient List View Controller-->
         <scene sceneID="j5i-3t-PGe">
             <objects>
-                <viewController id="IFZ-In-CDc" userLabel="Ingredient List View Controller" sceneMemberID="viewController">
+                <viewController id="IFZ-In-CDc" userLabel="Ingredient List View Controller" customClass="IngredientListViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0dN-0c-Xp3"/>
                         <viewControllerLayoutGuide type="bottom" id="0sX-OP-C4Q"/>
@@ -137,7 +137,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="P9w-m9-Hhq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientListItem" rowHeight="50" id="P9w-m9-Hhq" customClass="IngredientListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P9w-m9-Hhq" id="h1f-kO-fpz">
@@ -160,8 +160,15 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="8" id="nTi-uc-5tw"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ingredientName" destination="WQN-mV-WHi" id="pGg-OF-Isv"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="IFZ-In-CDc" id="DPJ-Qt-W7u"/>
+                                    <outlet property="delegate" destination="IFZ-In-CDc" id="ZUW-Lo-9YR"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,16 +180,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bt3-Io-nFd"/>
+                    <connections>
+                        <outlet property="tableView" destination="KNl-GC-4Ax" id="yp8-EL-s8S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="1038"/>
+            <point key="canvasLocation" x="236" y="1202"/>
         </scene>
-        <!--Item-->
+        <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
             <objects>
                 <navigationController id="KKp-Zy-7zd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="LxU-1k-8wl"/>
+                    <tabBarItem key="tabBarItem" title="レシピ" image="tabbar-recipe" id="LxU-1k-8wl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Mv-r3-hnc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,11 +223,11 @@
             </objects>
             <point key="canvasLocation" x="-1406" y="847"/>
         </scene>
-        <!--Item-->
+        <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
             <objects>
                 <navigationController id="2U6-sC-jhY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4uJ-fe-pdf"/>
+                    <tabBarItem key="tabBarItem" title="材料" image="tabbar-ingredient" id="4uJ-fe-pdf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6sM-B0-LYW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -471,7 +481,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3N-xm-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="339"/>
+            <point key="canvasLocation" x="999" y="451"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar-ingredient" width="24" height="24"/>
+        <image name="tabbar-recipe" width="24" height="24"/>
+    </resources>
 </document>
