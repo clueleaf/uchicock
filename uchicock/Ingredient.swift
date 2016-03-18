@@ -12,6 +12,7 @@ import RealmSwift
 class Ingredient: Object {
     dynamic var ingredientName = ""
     dynamic var stockFlac = false
+    dynamic var memo = ""
     let recipeIngredients = List<RecipeIngredient>()
     
     override class func primaryKey() -> String {
