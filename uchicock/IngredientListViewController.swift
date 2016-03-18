@@ -13,12 +13,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var tableView: UITableView!
     
+    var ingredientList: Results<Ingredient>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,28 +36,56 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return 50
     }
     
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+//    }
+    
+//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return true
+//    }
+    
+//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//       if editingStyle == .Delete{
+//            let realm = try! Realm()
+ //           let recipe = recipeList![indexPath.row]
+//            try! realm.write {
+//                realm.delete(recipe)
+//            }
+//
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//        }
+//    }
+    
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if section == 0 {
+            let realm = try! Realm()
+            let dataContent = realm.objects(Ingredient)
+            return dataContent.count
+        }        
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let realm = try! Realm()
+        ingredientList = realm.objects(Ingredient).sorted("ingredientName")
+        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
-            cell.ingredientName.text = "\(indexPath.row)"
+            cell.ingredient = ingredientList![indexPath.row]
             return cell
         }
         return UITableViewCell()
     }
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "PushRecipeDetail" {
+//            let vc = segue.destinationViewController as! RecipeDetailViewController
+//            if let indexPath = sender as? NSIndexPath{
+//                vc.recipe = recipeList![indexPath.row]
+//            }
+//        }
+//    }
 }

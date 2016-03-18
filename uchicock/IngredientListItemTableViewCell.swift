@@ -12,6 +12,12 @@ class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientName: UILabel!
     
+    var ingredient: Ingredient = Ingredient(){
+        didSet{
+            ingredientName.text = ingredient.ingredientName
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

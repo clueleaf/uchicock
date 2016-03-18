@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dic = ["firstLaunch": true]
         defaults.registerDefaults(dic)
         if defaults.boolForKey("firstLaunch") {
-            self.addDefaultRecipe()
+            self.addSampleIngredient()
+            self.addSampleRecipe()
             defaults.setBool(false, forKey: "firstLaunch")
         }
         return true
@@ -51,14 +52,82 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func addDefaultRecipe() {
+    func addSampleIngredient(){
+        let realm = try! Realm()
+
+        let ingredient1 = Ingredient()
+        ingredient1.ingredientName = "テキーラ"
+        ingredient1.stockFlag = false
+        ingredient1.memo = "メキシコ産"
+        try! realm.write {
+            realm.add(ingredient1)
+        }
+        
+        let ingredient2 = Ingredient()
+        ingredient2.ingredientName = "オレンジジュース"
+        ingredient2.stockFlag = false
+        ingredient2.memo = "オレンジジュースです"
+        try! realm.write {
+            realm.add(ingredient2)
+        }
+        
+        let ingredient3 = Ingredient()
+        ingredient3.ingredientName = "グレナデンシロップ"
+        ingredient3.stockFlag = false
+        ingredient3.memo = "シロップです"
+        try! realm.write {
+            realm.add(ingredient3)
+        }
+        
+        let ingredient4 = Ingredient()
+        ingredient4.ingredientName = "クリーム・ド・カシス"
+        ingredient4.stockFlag = false
+        ingredient4.memo = ""
+        try! realm.write {
+            realm.add(ingredient4)
+        }
+
+        let ingredient5 = Ingredient()
+        ingredient5.ingredientName = "ジン"
+        ingredient5.stockFlag = false
+        ingredient5.memo = ""
+        try! realm.write {
+            realm.add(ingredient5)
+        }
+
+        let ingredient6 = Ingredient()
+        ingredient6.ingredientName = "トニックウォーター"
+        ingredient6.stockFlag = false
+        ingredient6.memo = ""
+        try! realm.write {
+            realm.add(ingredient6)
+        }
+
+        let ingredient7 = Ingredient()
+        ingredient7.ingredientName = "カルーア"
+        ingredient7.stockFlag = false
+        ingredient7.memo = ""
+        try! realm.write {
+            realm.add(ingredient7)
+        }
+
+        let ingredient8 = Ingredient()
+        ingredient8.ingredientName = "牛乳"
+        ingredient8.stockFlag = false
+        ingredient8.memo = ""
+        try! realm.write {
+            realm.add(ingredient8)
+        }
+}
+    
+    func addSampleRecipe() {
+        let realm = try! Realm()
         
         let recipe1 = Recipe()
         recipe1.recipeName = "テキーラサンライズ"
         recipe1.favorites = 1
         recipe1.memo="きれいな色です"
         recipe1.method=1
-        let realm = try! Realm()
         try! realm.write {
             realm.add(recipe1)
         }

@@ -189,8 +189,8 @@
 		9BC9A3461C7856DA0031F631 /* RecipeList */ = {
 			isa = PBXGroup;
 			children = (
-				9B2AED071C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift */,
 				9BC9A3161C783CAA0031F631 /* RecipeListViewController.swift */,
+				9B2AED071C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift */,
 			);
 			name = RecipeList;
 			sourceTree = "<group>";

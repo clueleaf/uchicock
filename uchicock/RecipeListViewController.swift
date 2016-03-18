@@ -63,12 +63,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let dataContent = realm.objects(Recipe)
             return dataContent.count
         }
-        
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        
         let realm = try! Realm()
         recipeList = realm.objects(Recipe).sorted("recipeName")
         
