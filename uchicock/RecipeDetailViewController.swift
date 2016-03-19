@@ -25,7 +25,8 @@ class RecipeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = recipe.recipeName
+    
         recipeName.text = recipe.recipeName
         procedure.text = recipe.procedure
         memo.text = recipe.memo

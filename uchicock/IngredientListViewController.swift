@@ -46,16 +46,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-       if editingStyle == .Delete{
+        if editingStyle == .Delete{
             let realm = try! Realm()
             let ingredient = ingredientList![indexPath.row]
             try! realm.write {
                 realm.delete(ingredient)
             }
-
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
-    }
+    }    
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,6 +78,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return UITableViewCell()
     }
     
+    // MARK: - AddButton
+    @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("PushAddIngredient", sender: UIBarButtonItem())
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushIngredientDetail" {
@@ -86,6 +90,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if let indexPath = sender as? NSIndexPath{
                 vc.ingredient = ingredientList![indexPath.row]
             }
+        } else if segue.identifier == "PushAddIngredient" {
+            
         }
     }
 }

@@ -21,6 +21,7 @@ class IngredientDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = ingredient.ingredientName
         
         ingredientName.text = ingredient.ingredientName
         memo.text = ingredient.memo
