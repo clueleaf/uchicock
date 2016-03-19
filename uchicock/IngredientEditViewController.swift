@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientEditViewController: UIViewController {
+class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stock: UISwitch!
@@ -33,15 +33,20 @@ class IngredientEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        ingredientName.resignFirstResponder()
+        return true
+    }
+    
     //textviewがフォーカスされたら、Labelを非表示
-    func textViewShouldBeginEditing(memo: UITextView) -> Bool
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool
     {
         memoPlaceholder.hidden = true
         return true
     }
     
     //textviewからフォーカスが外れて、TextViewが空だったらLabelを再び表示
-    func textViewDidEndEditing(memo: UITextView) {
+    func textViewDidEndEditing(textView: UITextView) {
         if(memo.text.isEmpty){
             memoPlaceholder.hidden = false
         }
@@ -52,6 +57,9 @@ class IngredientEditViewController: UIViewController {
     }
 
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+    }
+    @IBAction func tapScreen(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     /*
