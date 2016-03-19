@@ -398,6 +398,10 @@
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="bvf-aa-P4b" id="BgG-qv-e6A"/>
+                                                    <outlet property="delegate" destination="bvf-aa-P4b" id="wF0-3O-onf"/>
+                                                </connections>
                                             </tableView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="slL-kr-hzi" userLabel="メモ">
                                                 <rect key="frame" x="15" y="493" width="570" height="100"/>
@@ -667,6 +671,7 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
+                                                    <outlet property="dataSource" destination="ki6-Wr-KQo" id="ZDf-i2-zAX"/>
                                                     <outlet property="delegate" destination="ki6-Wr-KQo" id="9js-Hz-U5x"/>
                                                 </connections>
                                             </tableView>
@@ -898,7 +903,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="236" y="1984"/>
+            <point key="canvasLocation" x="1016" y="2000"/>
         </scene>
     </scenes>
     <resources>

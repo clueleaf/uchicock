@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IngredientDetailViewController: UIViewController {
+class IngredientDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ingredientName: UILabel!
@@ -33,6 +33,25 @@ class IngredientDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UITableViewDelegate
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70
+    }
+    
+    // MARK: - UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeItem") as! IngredientRecipeListTableViewCell
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    // MARK: - IBAction
     @IBAction func stockSwitchTapped(sender: UISwitch) {
         if sender.on{
             let realm = try! Realm()
@@ -46,8 +65,7 @@ class IngredientDetailViewController: UIViewController {
             }
         }
     }
-    
-    
+
     /*
     // MARK: - Navigation
 
