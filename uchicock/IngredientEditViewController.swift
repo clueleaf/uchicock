@@ -17,18 +17,36 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var memo: UITextView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var memoPlaceholder: UILabel!
+    @IBOutlet weak var navigation: UINavigationItem!
     
     var ingredient = Ingredient()
+    var isAddMode = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if ingredient.ingredientName == "" {
+            //追加
+            stock.on = false
+            navigation.title = "材料登録"
+            isAddMode = true
+        } else {
+            //編集
+            ingredientName.text = ingredient.ingredientName
+            memo.text = ingredient.memo
+            stock.on = ingredient.stockFlag
+            if memo.text.isEmpty == false{
+                memoPlaceholder.hidden = true
+            }
+            navigation.title = "材料編集"
+            isAddMode = false
+        }
         
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
         
-        stock.on = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,19 +86,37 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
             presentViewController(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
-            let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
-            if sameNameIngredient.count != 0{
-                //同じ名前の材料がすでに登録されている
-                let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .Alert)
+            
+            if isAddMode || ingredient.ingredientName != ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()){
+                let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+                if sameNameIngredient.count != 0{
+                    //同じ名前の材料がすでに登録されている
+                    let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .Alert)
                 sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
-                presentViewController(sameNameAlertView, animated: true, completion: nil)
+                    presentViewController(sameNameAlertView, animated: true, completion: nil)
+                }else{
+                    if isAddMode{
+                        let newIngredient = Ingredient()
+                        newIngredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        newIngredient.stockFlag = stock.on
+                        newIngredient.memo = memo.text
+                        try! realm.write {
+                            realm.add(newIngredient)
+                        }
+                    }else{
+                        try! realm.write {
+                            ingredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            ingredient.stockFlag = stock.on
+                            ingredient.memo = memo.text
+                        }
+                    }
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }else{
-                let ingredient = Ingredient()
-                ingredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                ingredient.stockFlag = stock.on
-                ingredient.memo = memo.text
                 try! realm.write {
-                    realm.add(ingredient)
+                    ingredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    ingredient.stockFlag = stock.on
+                    ingredient.memo = memo.text
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
             }

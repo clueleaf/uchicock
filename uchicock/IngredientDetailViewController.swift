@@ -22,12 +22,22 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = ingredient.ingredientName
-        
         ingredientName.text = ingredient.ingredientName
         memo.text = ingredient.memo
         stock.on = ingredient.stockFlag
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        let realm = try! Realm()
+        ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredient.ingredientName)[0]
+        
+        self.navigationItem.title = ingredient.ingredientName
+        ingredientName.text = ingredient.ingredientName
+        memo.text = ingredient.memo
+        stock.on = ingredient.stockFlag
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,15 +75,21 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }
-    */
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushEditIngredient" {
+            let vc = segue.destinationViewController as! IngredientEditViewController
+                vc.ingredient = ingredient
+        }
+    }
+    
+//    @IBAction func backToIngredientDetail(segue: UIStoryboardSegue){
+        
+//    }
 
 }

@@ -714,7 +714,11 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Title" id="oMn-qe-c4T">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="PQv-0g-7Zt"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="PQv-0g-7Zt">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="ki6-Wr-KQo" id="xwH-77-Uih"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ingredientName" destination="gPU-6a-2Yv" id="XKW-Lz-5GE"/>
@@ -722,6 +726,7 @@
                         <outlet property="recipeListTableView" destination="Ihn-0k-YhW" id="PZD-Ic-WKX"/>
                         <outlet property="scrollView" destination="zyn-wI-wUw" id="5vT-2t-WCk"/>
                         <outlet property="stock" destination="E4f-DJ-vSF" id="aGe-98-vhm"/>
+                        <segue destination="cTU-Ky-AZh" kind="presentation" identifier="PushEditIngredient" id="122-L2-RQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKe-Su-VXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -910,4 +915,7 @@
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="122-L2-RQJ"/>
+    </inferredMetricsTieBreakers>
 </document>

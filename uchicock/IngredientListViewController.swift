@@ -78,7 +78,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return UITableViewCell()
     }
     
-    // MARK: - AddButton
+    // MARK: - IBAction
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushAddIngredient", sender: UIBarButtonItem())
     }
