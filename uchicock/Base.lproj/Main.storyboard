@@ -896,6 +896,7 @@
                         <outlet property="ingredientName" destination="8vc-z9-OPa" id="IRq-u1-pxm"/>
                         <outlet property="memo" destination="5Ti-tX-DFo" id="Pcp-uY-PxJ"/>
                         <outlet property="memoPlaceholder" destination="HA3-Mu-yEf" id="rnx-QI-YjP"/>
+                        <outlet property="navigation" destination="u0u-yn-nq6" id="cqB-Tg-7tK"/>
                         <outlet property="navigationBar" destination="5yG-cY-8DD" id="P2B-Zs-GfQ"/>
                         <outlet property="scrollView" destination="zcg-ey-Moe" id="xdD-D8-3jo"/>
                         <outlet property="stock" destination="QA0-Zz-Ifb" id="2pV-SJ-z3h"/>

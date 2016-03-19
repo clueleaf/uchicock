@@ -10,6 +10,7 @@
 import RealmSwift
 
 class Recipe: Object {
+    dynamic var id = NSUUID().UUIDString
     dynamic var recipeName = ""
     dynamic var favorites = 2
     dynamic var method = 0
@@ -18,7 +19,7 @@ class Recipe: Object {
     let recipeIngredients = List<RecipeIngredient>()
     
     override class func primaryKey() -> String {
-        return "recipeName"
+        return "id"
     }
     
 }

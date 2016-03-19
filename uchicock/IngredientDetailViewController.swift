@@ -21,16 +21,12 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = ingredient.ingredientName
-        ingredientName.text = ingredient.ingredientName
-        memo.text = ingredient.memo
-        stock.on = ingredient.stockFlag
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
         let realm = try! Realm()
-        ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredient.ingredientName)[0]
+        ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id)[0]
         
         self.navigationItem.title = ingredient.ingredientName
         ingredientName.text = ingredient.ingredientName
@@ -87,9 +83,5 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
                 vc.ingredient = ingredient
         }
     }
-    
-//    @IBAction func backToIngredientDetail(segue: UIStoryboardSegue){
-        
-//    }
 
 }
