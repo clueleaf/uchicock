@@ -53,112 +53,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addSampleIngredient(){
+        addIngredient("テキーラ", stockFlag: false, memo: "メキシコ産")
+        addIngredient("オレンジジュース", stockFlag: false, memo: "オレンジジュースです")
+        addIngredient("グレナデンシロップ", stockFlag: false, memo: "シロップです")
+        addIngredient("クリーム・ド・カシス", stockFlag: false, memo: "")
+        addIngredient("ジン", stockFlag: false, memo: "")
+        addIngredient("トニックウォーター", stockFlag: false, memo: "")
+        addIngredient("カルーア", stockFlag: false, memo: "")
+        addIngredient("牛乳", stockFlag: false, memo: "")
+    }
+    
+    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
         let realm = try! Realm()
-
-        let ingredient1 = Ingredient()
-        ingredient1.ingredientName = "テキーラ"
-        ingredient1.stockFlag = false
-        ingredient1.memo = "メキシコ産"
+        let ingredient = Ingredient()
+        ingredient.ingredientName = ingredientName
+        ingredient.stockFlag = stockFlag
+        ingredient.memo = memo
         try! realm.write {
-            realm.add(ingredient1)
+            realm.add(ingredient)
         }
-        
-        let ingredient2 = Ingredient()
-        ingredient2.ingredientName = "オレンジジュース"
-        ingredient2.stockFlag = false
-        ingredient2.memo = "オレンジジュースです"
-        try! realm.write {
-            realm.add(ingredient2)
-        }
-        
-        let ingredient3 = Ingredient()
-        ingredient3.ingredientName = "グレナデンシロップ"
-        ingredient3.stockFlag = false
-        ingredient3.memo = "シロップです"
-        try! realm.write {
-            realm.add(ingredient3)
-        }
-        
-        let ingredient4 = Ingredient()
-        ingredient4.ingredientName = "クリーム・ド・カシス"
-        ingredient4.stockFlag = false
-        ingredient4.memo = ""
-        try! realm.write {
-            realm.add(ingredient4)
-        }
-
-        let ingredient5 = Ingredient()
-        ingredient5.ingredientName = "ジン"
-        ingredient5.stockFlag = false
-        ingredient5.memo = ""
-        try! realm.write {
-            realm.add(ingredient5)
-        }
-
-        let ingredient6 = Ingredient()
-        ingredient6.ingredientName = "トニックウォーター"
-        ingredient6.stockFlag = false
-        ingredient6.memo = ""
-        try! realm.write {
-            realm.add(ingredient6)
-        }
-
-        let ingredient7 = Ingredient()
-        ingredient7.ingredientName = "カルーア"
-        ingredient7.stockFlag = false
-        ingredient7.memo = ""
-        try! realm.write {
-            realm.add(ingredient7)
-        }
-
-        let ingredient8 = Ingredient()
-        ingredient8.ingredientName = "牛乳"
-        ingredient8.stockFlag = false
-        ingredient8.memo = ""
-        try! realm.write {
-            realm.add(ingredient8)
-        }
-}
+    }
     
     func addSampleRecipe() {
-        let realm = try! Realm()
-        
-        let recipe1 = Recipe()
-        recipe1.recipeName = "テキーラサンライズ"
-        recipe1.favorites = 1
-        recipe1.memo="きれいな色です"
-        recipe1.method=1
-        try! realm.write {
-            realm.add(recipe1)
-        }
-        
-        let recipe2 = Recipe()
-        recipe2.recipeName = "カシスオレンジ"
-        recipe2.favorites = 1
-        recipe2.memo="ソフトドリンクみたい"
-        recipe2.method=1
-        try! realm.write {
-            realm.add(recipe2)
-        }
-
-        let recipe3 = Recipe()
-        recipe3.recipeName = "ジントニック"
-        recipe3.favorites = 1
-        recipe3.memo="定番"
-        recipe3.method=1
-        try! realm.write {
-            realm.add(recipe3)
-        }
-
-        let recipe4 = Recipe()
-        recipe4.recipeName = "カルーアミルク"
-        recipe4.favorites = 1
-        recipe4.memo="飲みやすい"
-        recipe4.method=1
-        try! realm.write {
-            realm.add(recipe4)
-        }
+        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 1)
+        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 1)
+        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 1)
+        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 1)
+    }
     
+    func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
+        let realm = try! Realm()
+        let recipe = Recipe()
+        recipe.recipeName = recipeName
+        recipe.favorites = favorites
+        recipe.memo = memo
+        recipe.method = method
+        try! realm.write {
+            realm.add(recipe)
+        }
     }
 
 }
