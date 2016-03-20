@@ -16,6 +16,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var stock: UISwitch!
     @IBOutlet weak var memo: UITextView!
     @IBOutlet weak var recipeListTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var ingredient = Ingredient()
     
@@ -25,6 +26,8 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
+        tableView.reloadData()
+        
         let realm = try! Realm()
         ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id).first!
         

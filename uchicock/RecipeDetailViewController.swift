@@ -20,13 +20,23 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var ingredientListTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var recipe = Recipe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = recipe.recipeName
+    }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.reloadData()
+        
+        let realm = try! Realm()
+        recipe = realm.objects(Recipe).filter("id == %@",recipe.id).first!
+        
+        self.navigationItem.title = recipe.recipeName
+        
         recipeName.text = recipe.recipeName
         procedure.text = recipe.procedure
         memo.text = recipe.memo
@@ -64,6 +74,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,17 +87,21 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return recipe.recipeIngredients.count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientItem") as! RecipeIngredientListTableViewCell
+            cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
             return cell
         }
         return UITableViewCell()
     }
-
+    
     // MARK: - IBAction
     @IBAction func star1Tapped(sender: UIButton) {
         star1.setTitle("★", forState: .Normal)

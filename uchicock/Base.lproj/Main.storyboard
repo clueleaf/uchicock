@@ -528,6 +528,7 @@
                         <outlet property="star1" destination="JNQ-V6-FbL" id="WN4-VF-SaG"/>
                         <outlet property="star2" destination="c89-Jr-zu7" id="Q9e-nE-2xg"/>
                         <outlet property="star3" destination="DXu-2n-PlM" id="eMC-Jf-KUa"/>
+                        <outlet property="tableView" destination="Euv-Lp-WBM" id="0WL-IP-I8d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3N-xm-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -726,6 +727,7 @@
                         <outlet property="recipeListTableView" destination="Ihn-0k-YhW" id="PZD-Ic-WKX"/>
                         <outlet property="scrollView" destination="zyn-wI-wUw" id="5vT-2t-WCk"/>
                         <outlet property="stock" destination="E4f-DJ-vSF" id="aGe-98-vhm"/>
+                        <outlet property="tableView" destination="Ihn-0k-YhW" id="yT5-oe-4Ya"/>
                         <segue destination="cTU-Ky-AZh" kind="presentation" identifier="PushEditIngredient" id="122-L2-RQJ"/>
                     </connections>
                 </viewController>
