@@ -46,27 +46,56 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete{
-            let realm = try! Realm()
-            let recipe = recipeList![indexPath.row]
-
-            let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-            for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
-                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
-                deletingRecipeIngredientList.append(recipeIngredient)
-            }
-            
-            for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
-                try! realm.write{
-                    realm.delete(deletingRecipeIngredientList[i])
+            if self.recipeList![indexPath.row].favorites == 3 {
+                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "お気に入り★★★のレシピです", preferredStyle: .Alert)
+                favoriteAlertView.addAction(UIAlertAction(title: "はい", style: .Default, handler: {action in
+                    let realm = try! Realm()
+                    let recipe = self.recipeList![indexPath.row]
+                    
+                    let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                    for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
+                        let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
+                        deletingRecipeIngredientList.append(recipeIngredient)
+                    }
+                    
+                    for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                        try! realm.write{
+                            realm.delete(deletingRecipeIngredientList[i])
+                        }
+                    }
+                    
+                    try! realm.write {
+                        realm.delete(recipe)
+                    }
+                    
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }))
+                favoriteAlertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in
+                    })
+                presentViewController(favoriteAlertView, animated: true, completion: nil)
+            }else{
+                let realm = try! Realm()
+                let recipe = self.recipeList![indexPath.row]
+                
+                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
+                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
+                    deletingRecipeIngredientList.append(recipeIngredient)
                 }
+                
+                for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                    try! realm.write{
+                        realm.delete(deletingRecipeIngredientList[i])
+                    }
+                }
+                
+                try! realm.write {
+                    realm.delete(recipe)
+                }
+                
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)                
             }
-
-            try! realm.write {
-                realm.delete(recipe)
-            }
-            
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
+      }
     }
 
     // MARK: - UITableViewDataSource
