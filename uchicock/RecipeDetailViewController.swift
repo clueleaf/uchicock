@@ -11,14 +11,12 @@ import RealmSwift
 
 class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var ingredientListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     
@@ -137,7 +135,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         star1.setTitle("★", forState: .Normal)
         star2.setTitle("★", forState: .Normal)
         star3.setTitle("☆", forState: .Normal)
-
+        
         let realm = try! Realm()
         try! realm.write {
             recipe.favorites = 2
@@ -148,7 +146,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         star1.setTitle("★", forState: .Normal)
         star2.setTitle("★", forState: .Normal)
         star3.setTitle("★", forState: .Normal)
-
+        
         let realm = try! Realm()
         try! realm.write {
             recipe.favorites = 3

@@ -62,6 +62,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addIngredient("トニックウォーター", stockFlag: false, memo: "")
         addIngredient("カルーア", stockFlag: false, memo: "")
         addIngredient("牛乳", stockFlag: false, memo: "")
+        addIngredient("牛乳a", stockFlag: false, memo: "")
+        addIngredient("牛乳b", stockFlag: false, memo: "")
+        addIngredient("牛乳c", stockFlag: false, memo: "")
+        addIngredient("牛乳d", stockFlag: false, memo: "")
+        addIngredient("牛乳e", stockFlag: false, memo: "")
+        addIngredient("牛乳f", stockFlag: false, memo: "")
+        addIngredient("牛乳g", stockFlag: false, memo: "")
+        addIngredient("牛乳h", stockFlag: false, memo: "")
+        addIngredient("牛乳i", stockFlag: false, memo: "")
+        addIngredient("牛乳j", stockFlag: false, memo: "")
     }
     
     func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
@@ -80,6 +90,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 0)
         addRecipe("ジントニック", favorites: 1, memo: "定番", method: 0)
         addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクa", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクb", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクc", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクd", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクe", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクf", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクg", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクh", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクi", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("カルーアミルクj", favorites: 1, memo: "飲みやすい", method: 0)
     }
     
     func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
@@ -105,6 +125,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addRecipeToIngredientLink("ジントニック", ingredientName: "トニックウォーター", amount: "up", mustFlag: true)
         addRecipeToIngredientLink("カルーアミルク", ingredientName: "カルーア", amount: "30ml", mustFlag: true)
         addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳a", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳b", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳c", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳d", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳e", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳f", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳g", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳h", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳i", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳j", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクa", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクb", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクc", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクd", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクe", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクf", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクg", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクh", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクi", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("カルーアミルクj", ingredientName: "牛乳", amount: "up", mustFlag: true)
     }
     
     func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){
