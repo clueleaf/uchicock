@@ -26,7 +26,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
         let realm = try! Realm()
-        ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id)[0]
+        ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id).first!
         
         self.navigationItem.title = ingredient.ingredientName
         ingredientName.text = ingredient.ingredientName
@@ -46,12 +46,16 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return ingredient.recipeIngredients.count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeItem") as! IngredientRecipeListTableViewCell
+            cell.recipeIngredient = ingredient.recipeIngredients[indexPath.row]
             return cell
         }
         return UITableViewCell()

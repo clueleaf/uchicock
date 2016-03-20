@@ -9,7 +9,8 @@
 //import Foundation
 import RealmSwift
 
-class RecipeIngredient: Object {
+class RecipeIngredientLink: Object {
+    dynamic var id = NSUUID().UUIDString
     var recipe: Recipe {
         return linkingObjects(Recipe.self, forProperty: "recipeIngredients").first!
     }
@@ -18,4 +19,9 @@ class RecipeIngredient: Object {
     }
     dynamic var amount = ""
     dynamic var mustFlag = false
+    
+    override class func primaryKey() -> String {
+        return "id"
+    }
+
 }

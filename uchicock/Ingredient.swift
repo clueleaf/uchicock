@@ -14,7 +14,7 @@ class Ingredient: Object {
     dynamic var ingredientName = ""
     dynamic var stockFlag = false
     dynamic var memo = ""
-    let recipeIngredients = List<RecipeIngredient>()
+    let recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
         return "id"

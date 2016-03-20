@@ -14,6 +14,20 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var amount: UILabel!
     
+    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
+        didSet{
+            recipeName.text = recipeIngredient.recipe.recipeName
+            amount.text = recipeIngredient.amount
+            if recipeIngredient.mustFlag{
+                option.text = ""
+                option.backgroundColor = UIColor.clearColor()
+            }else{
+                option.text = "オプション"
+                option.backgroundColor = UIColor.grayColor()
+            }
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
