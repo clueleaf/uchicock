@@ -76,20 +76,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addSampleRecipe() {
-        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 1, procedure: "")
-        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 1, procedure: "")
-        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 1, procedure: "")
-        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 1, procedure: "")
+        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 1)
+        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 1)
+        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 1)
+        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 1)
     }
     
-    func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int, procedure:String){
+    func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
         let realm = try! Realm()
         let recipe = Recipe()
         recipe.recipeName = recipeName
         recipe.favorites = favorites
         recipe.memo = memo
         recipe.method = method
-        recipe.procedure = procedure
 
         try! realm.write {
             realm.add(recipe)

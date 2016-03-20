@@ -19,6 +19,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var memoPlaceholder: UILabel!
     @IBOutlet weak var navigation: UINavigationItem!
     
+    var txtActiveView = UITextView()
     var ingredient = Ingredient()
     var isAddMode = true
     
@@ -47,6 +48,14 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,6 +71,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     func textViewShouldBeginEditing(textView: UITextView) -> Bool
     {
         memoPlaceholder.hidden = true
+        txtActiveView = textView
         return true
     }
     
@@ -70,6 +80,23 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         if(memo.text.isEmpty){
             memoPlaceholder.hidden = false
         }
+    }
+    
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        
+        if txtLimit >= kbdLimit {
+            scrollView.contentOffset.y = txtLimit - kbdLimit
+        }
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        scrollView.contentOffset.y = 0
     }
     
     // MARK: - IBAction

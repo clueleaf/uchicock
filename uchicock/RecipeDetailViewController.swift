@@ -14,7 +14,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var procedure: UITextView!
     @IBOutlet weak var memo: UITextView!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
@@ -44,7 +43,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             self.navigationItem.title = recipe.recipeName
             recipeName.text = recipe.recipeName
-            procedure.text = recipe.procedure
             memo.text = recipe.memo
             
             switch recipe.method{

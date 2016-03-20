@@ -303,7 +303,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgq-dW-gNr">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="599"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="484"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRJ-TQ-Fyh" userLabel="レシピ名">
                                                 <rect key="frame" x="20" y="30" width="560" height="21"/>
@@ -333,16 +333,6 @@
                                                     </mask>
                                                 </variation>
                                             </segmentedControl>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2b6-pa-hmJ" userLabel="作り方">
-                                                <rect key="frame" x="15" y="174" width="570" height="150"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="FXr-10-HjV"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euv-Lp-WBM" userLabel="材料リスト">
                                                 <rect key="frame" x="15" y="344" width="570" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -408,16 +398,6 @@
                                                     <outlet property="delegate" destination="bvf-aa-P4b" id="wF0-3O-onf"/>
                                                 </connections>
                                             </tableView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="slL-kr-hzi" userLabel="メモ">
-                                                <rect key="frame" x="15" y="484" width="570" height="100"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="kVa-No-FOC"/>
-                                                </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d13-tq-Wi2" userLabel="お気に入りコンテナ">
                                                 <rect key="frame" x="20" y="71" width="560" height="25"/>
                                                 <subviews>
@@ -476,29 +456,44 @@
                                                     <constraint firstAttribute="height" constant="25" id="r5O-RI-OsL"/>
                                                 </constraints>
                                             </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="slL-kr-hzi" userLabel="メモ">
+                                                <rect key="frame" x="15" y="174" width="570" height="150"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="kVa-No-FOC"/>
+                                                </constraints>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="pyY-5S-8s2" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="20" id="3QQ-5F-zYh"/>
                                             <constraint firstItem="HRJ-TQ-Fyh" firstAttribute="top" secondItem="Fgq-dW-gNr" secondAttribute="top" constant="30" id="49N-Z0-AAK"/>
                                             <constraint firstAttribute="trailing" secondItem="HRJ-TQ-Fyh" secondAttribute="trailing" constant="20" id="4lC-Xz-J1l"/>
-                                            <constraint firstAttribute="trailing" secondItem="2b6-pa-hmJ" secondAttribute="trailing" constant="15" id="6vc-hr-ALe"/>
+                                            <constraint firstItem="slL-kr-hzi" firstAttribute="top" secondItem="pyY-5S-8s2" secondAttribute="bottom" constant="20" id="B2Z-KF-KF2"/>
                                             <constraint firstItem="HRJ-TQ-Fyh" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="20" id="BUi-fL-qBd"/>
                                             <constraint firstItem="Euv-Lp-WBM" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="15" id="CTB-Ua-Bhh"/>
-                                            <constraint firstItem="Euv-Lp-WBM" firstAttribute="top" secondItem="2b6-pa-hmJ" secondAttribute="bottom" constant="20" id="HyR-gn-3vo"/>
+                                            <constraint firstItem="Euv-Lp-WBM" firstAttribute="top" secondItem="slL-kr-hzi" secondAttribute="bottom" constant="20" id="K0K-Rg-xuh"/>
                                             <constraint firstAttribute="trailing" secondItem="pyY-5S-8s2" secondAttribute="trailing" constant="20" id="MJ2-dT-ci7"/>
                                             <constraint firstAttribute="trailing" secondItem="d13-tq-Wi2" secondAttribute="trailing" constant="20" id="PvL-lV-sYO"/>
                                             <constraint firstItem="pyY-5S-8s2" firstAttribute="top" secondItem="d13-tq-Wi2" secondAttribute="bottom" constant="30" id="RhB-hP-gDY"/>
-                                            <constraint firstItem="2b6-pa-hmJ" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="15" id="dhU-SA-OlU"/>
                                             <constraint firstAttribute="trailing" secondItem="Euv-Lp-WBM" secondAttribute="trailing" constant="15" id="eGJ-Ct-QOE"/>
                                             <constraint firstItem="slL-kr-hzi" firstAttribute="top" secondItem="Euv-Lp-WBM" secondAttribute="bottom" constant="20" id="fTI-4C-dfB"/>
                                             <constraint firstItem="d13-tq-Wi2" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="20" id="gSE-I2-FoC"/>
+                                            <constraint firstAttribute="bottom" secondItem="Euv-Lp-WBM" secondAttribute="bottom" constant="20" id="hUz-CK-otn"/>
                                             <constraint firstItem="slL-kr-hzi" firstAttribute="leading" secondItem="Fgq-dW-gNr" secondAttribute="leading" constant="15" id="hpt-fV-fpm"/>
                                             <constraint firstAttribute="bottom" secondItem="slL-kr-hzi" secondAttribute="bottom" constant="15" id="mlR-So-PPo"/>
                                             <constraint firstAttribute="trailing" secondItem="slL-kr-hzi" secondAttribute="trailing" constant="15" id="nl8-X9-vPt"/>
-                                            <constraint firstItem="2b6-pa-hmJ" firstAttribute="top" secondItem="pyY-5S-8s2" secondAttribute="bottom" constant="20" id="wOd-s2-Gsu"/>
                                             <constraint firstItem="d13-tq-Wi2" firstAttribute="top" secondItem="HRJ-TQ-Fyh" secondAttribute="bottom" constant="20" id="ybY-Y0-5Vf"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="fTI-4C-dfB"/>
+                                                <exclude reference="mlR-So-PPo"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -531,7 +526,6 @@
                         <outlet property="ingredientListTableView" destination="Euv-Lp-WBM" id="IIW-ew-oDu"/>
                         <outlet property="memo" destination="slL-kr-hzi" id="Uw2-12-9Gh"/>
                         <outlet property="method" destination="pyY-5S-8s2" id="MWG-Yb-4hw"/>
-                        <outlet property="procedure" destination="2b6-pa-hmJ" id="hUA-GA-lMp"/>
                         <outlet property="recipeName" destination="HRJ-TQ-Fyh" id="FxG-ce-2Vh"/>
                         <outlet property="scrollView" destination="5z8-uf-jrl" id="EDQ-Q2-rzz"/>
                         <outlet property="star1" destination="JNQ-V6-FbL" id="WN4-VF-SaG"/>
@@ -940,7 +934,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vj0-f5-o1m">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="662"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="547"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aax-J4-fqR" userLabel="技法">
                                                 <rect key="frame" x="20" y="189" width="560" height="29"/>
@@ -961,28 +955,6 @@
                                                     </mask>
                                                 </variation>
                                             </segmentedControl>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ns4-8S-yS5" userLabel="作り方">
-                                                <rect key="frame" x="15" y="237" width="570" height="150"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="9L5-N0-R7R"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="Goq-Nu-Lvl"/>
-                                                </connections>
-                                            </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作り方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yu-pc-RSK" userLabel="作り方placeholder">
-                                                <rect key="frame" x="25" y="247" width="70" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="XtL-ao-enD"/>
-                                                    <constraint firstAttribute="width" constant="70" id="YoB-GG-5qZ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PZX-dd-T5E" userLabel="材料リスト">
                                                 <rect key="frame" x="15" y="407" width="570" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1044,18 +1016,6 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Qh6-Ue-ye3" userLabel="メモ">
-                                                <rect key="frame" x="15" y="547" width="570" height="100"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="E4C-l3-Yvd"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="16K-fb-t4n"/>
-                                                </connections>
-                                            </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Ur-uL6" userLabel="お気に入りコンテナ">
                                                 <rect key="frame" x="20" y="134" width="560" height="25"/>
                                                 <subviews>
@@ -1069,6 +1029,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star1Tapped:" destination="rIa-nq-cmF" eventType="touchUpInside" id="W4N-op-CuF"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCs-47-3XO" userLabel="星2">
                                                         <rect key="frame" x="30" y="-3" width="30" height="30"/>
@@ -1080,6 +1043,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star2Tapped:" destination="rIa-nq-cmF" eventType="touchUpInside" id="fZt-l9-4lw"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azL-K2-qN7" userLabel="星3">
                                                         <rect key="frame" x="60" y="-3" width="30" height="30"/>
@@ -1091,6 +1057,9 @@
                                                         <state key="normal" title="☆">
                                                             <color key="titleColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="star3Tapped:" destination="rIa-nq-cmF" eventType="touchUpInside" id="HeL-hS-t4e"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1136,8 +1105,20 @@
                                                     <outlet property="delegate" destination="rIa-nq-cmF" id="dEh-tY-XSK"/>
                                                 </connections>
                                             </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Qh6-Ue-ye3" userLabel="メモ">
+                                                <rect key="frame" x="15" y="237" width="570" height="150"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="E4C-l3-Yvd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="16K-fb-t4n"/>
+                                                </connections>
+                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSF-Vc-vdB" userLabel="メモplaceholder">
-                                                <rect key="frame" x="25" y="557" width="50" height="21"/>
+                                                <rect key="frame" x="25" y="247" width="50" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="EHM-C2-WFh"/>
                                                     <constraint firstAttribute="width" constant="50" id="dFu-TX-kO8"/>
@@ -1150,32 +1131,37 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="PZX-dd-T5E" secondAttribute="trailing" constant="15" id="4J3-Um-RFe"/>
-                                            <constraint firstItem="ns4-8S-yS5" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="15" id="5In-zB-szP"/>
                                             <constraint firstAttribute="trailing" secondItem="me1-Es-JdR" secondAttribute="trailing" constant="20" id="Agh-9v-Mau"/>
-                                            <constraint firstItem="PZX-dd-T5E" firstAttribute="top" secondItem="ns4-8S-yS5" secondAttribute="bottom" constant="20" id="DQ1-gc-rMJ"/>
                                             <constraint firstAttribute="trailing" secondItem="aax-J4-fqR" secondAttribute="trailing" constant="20" id="E4Q-fY-EOR"/>
                                             <constraint firstItem="jL3-Ur-uL6" firstAttribute="top" secondItem="me1-Es-JdR" secondAttribute="bottom" constant="20" id="HWJ-mt-Pml"/>
+                                            <constraint firstItem="uSF-Vc-vdB" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="30" id="IRi-Iu-TQZ"/>
                                             <constraint firstAttribute="trailing" secondItem="jL3-Ur-uL6" secondAttribute="trailing" constant="20" id="LL4-SI-smb"/>
                                             <constraint firstItem="Qh6-Ue-ye3" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="15" id="MJp-Qn-MIC"/>
-                                            <constraint firstAttribute="bottom" secondItem="Qh6-Ue-ye3" secondAttribute="bottom" constant="15" id="NL2-IC-PIi"/>
+                                            <constraint firstAttribute="bottom" secondItem="Qh6-Ue-ye3" secondAttribute="bottom" constant="20" symbolic="YES" id="NL2-IC-PIi"/>
                                             <constraint firstItem="Qh6-Ue-ye3" firstAttribute="top" secondItem="PZX-dd-T5E" secondAttribute="bottom" constant="20" id="PKd-is-yQG"/>
                                             <constraint firstItem="aax-J4-fqR" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="QZ5-tt-StR"/>
                                             <constraint firstAttribute="trailing" secondItem="Qh6-Ue-ye3" secondAttribute="trailing" constant="15" id="ViH-K2-W8i"/>
                                             <constraint firstItem="me1-Es-JdR" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="WpV-04-flv"/>
-                                            <constraint firstItem="ns4-8S-yS5" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="20" id="XE3-K0-44Y"/>
                                             <constraint firstItem="DOO-vh-fF6" firstAttribute="top" secondItem="vj0-f5-o1m" secondAttribute="top" id="XE7-U6-ISt"/>
-                                            <constraint firstItem="4Yu-pc-RSK" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="25" id="agN-6R-bug"/>
-                                            <constraint firstAttribute="trailing" secondItem="ns4-8S-yS5" secondAttribute="trailing" constant="15" id="bSp-pZ-qIy"/>
+                                            <constraint firstAttribute="bottom" secondItem="PZX-dd-T5E" secondAttribute="bottom" constant="20" id="Zfh-jT-hRk"/>
                                             <constraint firstItem="me1-Es-JdR" firstAttribute="top" secondItem="DOO-vh-fF6" secondAttribute="bottom" constant="30" id="deB-cS-q3R"/>
                                             <constraint firstItem="uSF-Vc-vdB" firstAttribute="top" secondItem="PZX-dd-T5E" secondAttribute="bottom" constant="30" id="f2J-6M-i8w"/>
                                             <constraint firstItem="uSF-Vc-vdB" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="25" id="f4e-Qs-FJI"/>
+                                            <constraint firstItem="PZX-dd-T5E" firstAttribute="top" secondItem="Qh6-Ue-ye3" secondAttribute="bottom" constant="20" id="o1w-c3-VVi"/>
                                             <constraint firstItem="PZX-dd-T5E" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="15" id="p5Q-8d-ZZ3"/>
+                                            <constraint firstItem="Qh6-Ue-ye3" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="20" id="pzo-J0-Pum"/>
                                             <constraint firstItem="jL3-Ur-uL6" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="t3x-zB-Q4K"/>
                                             <constraint firstItem="aax-J4-fqR" firstAttribute="top" secondItem="jL3-Ur-uL6" secondAttribute="bottom" constant="30" id="u7M-H1-561"/>
                                             <constraint firstAttribute="trailing" secondItem="DOO-vh-fF6" secondAttribute="trailing" id="xHM-nx-LgV"/>
-                                            <constraint firstItem="4Yu-pc-RSK" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="30" id="y8U-gC-CPb"/>
                                             <constraint firstItem="DOO-vh-fF6" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" id="yrR-DU-EZ3"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="NL2-IC-PIi"/>
+                                                <exclude reference="PKd-is-yQG"/>
+                                                <exclude reference="f2J-6M-i8w"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1212,8 +1198,6 @@
                         <outlet property="memoPlaceholder" destination="uSF-Vc-vdB" id="ZlA-9e-g5g"/>
                         <outlet property="method" destination="aax-J4-fqR" id="0Qu-8o-Jeh"/>
                         <outlet property="navigation" destination="chv-nD-wXT" id="ctM-PW-Akp"/>
-                        <outlet property="procedure" destination="ns4-8S-yS5" id="Xof-CE-Vvf"/>
-                        <outlet property="procedurePlaceholder" destination="4Yu-pc-RSK" id="giu-J3-OyJ"/>
                         <outlet property="recipeName" destination="me1-Es-JdR" id="u8l-cr-50g"/>
                         <outlet property="scrollView" destination="YDX-ea-DAm" id="Gsa-wW-270"/>
                         <outlet property="star1" destination="ovu-RL-j9s" id="IMv-II-qqR"/>
@@ -1239,6 +1223,6 @@
         <segue reference="122-L2-RQJ"/>
         <segue reference="9Wz-4C-0K0"/>
         <segue reference="pyL-Bh-L11"/>
-        <segue reference="v9e-uF-s3Z"/>
+        <segue reference="8qM-Rh-rBt"/>
     </inferredMetricsTieBreakers>
 </document>

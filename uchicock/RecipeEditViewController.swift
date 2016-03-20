@@ -18,19 +18,16 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var procedure: UITextView!
-    @IBOutlet weak var procedurePlaceholder: UILabel!
     @IBOutlet weak var memo: UITextView!
     @IBOutlet weak var memoPlaceholder: UILabel!
     
+    var txtActiveView = UITextView()
     var recipe = Recipe()
     var isAddMode = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("recipeNameはこちら")
-        print(recipe.recipeName)
         if recipe.recipeName == "" {
             //追加
             star1.setTitle("★", forState: .Normal)
@@ -42,7 +39,6 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
         } else {
             //編集
             recipeName.text = recipe.recipeName
-            procedure.text = recipe.procedure
             memo.text = recipe.memo
             
             switch recipe.method{
@@ -80,9 +76,6 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
             if memo.text.isEmpty == false{
                 memoPlaceholder.hidden = true
             }
-            if procedure.text.isEmpty == false{
-                procedurePlaceholder.hidden = true
-            }
             navigation.title = "レシピ編集"
             isAddMode = false
         }
@@ -91,11 +84,23 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
-
-        procedure.layer.masksToBounds = true
-        procedure.layer.cornerRadius = 5.0
-        procedure.layer.borderWidth = 1
-        procedure.layer.borderColor = UIColor.grayColor().CGColor
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // NSNotificationCenterの解除処理
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,22 +113,37 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
         return true
     }
     
-    //textviewがフォーカスされたら、Labelを非表示
     func textViewShouldBeginEditing(textView: UITextView) -> Bool
     {
-        procedurePlaceholder.hidden = true
+        //textviewがフォーカスされたら、Labelを非表示
         memoPlaceholder.hidden = true
+
+        txtActiveView = textView
         return true
     }
     
     //textviewからフォーカスが外れて、TextViewが空だったらLabelを再び表示
     func textViewDidEndEditing(textView: UITextView) {
-        if(procedure.text.isEmpty){
-            procedurePlaceholder.hidden = false
-        }
         if(memo.text.isEmpty){
             memoPlaceholder.hidden = false
         }
+    }
+    
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo!
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
+        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+        
+        if txtLimit >= kbdLimit {
+            scrollView.contentOffset.y = txtLimit - kbdLimit
+        }
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        scrollView.contentOffset.y = 0
     }
     
     // MARK: - IBAction
@@ -137,6 +157,24 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
 
     @IBAction func tapScreen(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+
+    @IBAction func star1Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("☆", forState: .Normal)
+        star3.setTitle("☆", forState: .Normal)
+    }
+
+    @IBAction func star2Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("★", forState: .Normal)
+        star3.setTitle("☆", forState: .Normal)
+    }
+
+    @IBAction func star3Tapped(sender: UIButton) {
+        star1.setTitle("★", forState: .Normal)
+        star2.setTitle("★", forState: .Normal)
+        star3.setTitle("★", forState: .Normal)
     }
 
     /*
