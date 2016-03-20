@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="166" y="-333"/>
+            <point key="canvasLocation" x="542" y="-273"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -265,7 +265,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0G-Pc-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192" y="2035"/>
+            <point key="canvasLocation" x="676" y="1952"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -936,7 +936,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1016" y="2000"/>
+            <point key="canvasLocation" x="1380" y="1952"/>
         </scene>
         <!--Recipe Edit View Controller-->
         <scene sceneID="R2A-kw-3uJ">
@@ -1094,7 +1094,7 @@
                                                     <constraint firstItem="azL-K2-qN7" firstAttribute="centerY" secondItem="jL3-Ur-uL6" secondAttribute="centerY" id="zzu-nv-sFd"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レシピ名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="me1-Es-JdR">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レシピ名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="me1-Es-JdR">
                                                 <rect key="frame" x="20" y="30" width="560" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="xLP-JJ-DDx"/>
@@ -1220,7 +1220,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="991" y="-312"/>
+            <point key="canvasLocation" x="1267" y="-268"/>
         </scene>
     </scenes>
     <resources>

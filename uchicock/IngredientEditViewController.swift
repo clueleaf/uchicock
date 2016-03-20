@@ -81,13 +81,11 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     func handleKeyboardWillShowNotification(notification: NSNotification) {
-        
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
         let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
         let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
-        
         if txtLimit >= kbdLimit {
             scrollView.contentOffset.y = txtLimit - kbdLimit
         }

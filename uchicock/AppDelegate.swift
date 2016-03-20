@@ -76,10 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addSampleRecipe() {
-        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 1)
-        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 1)
-        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 1)
-        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 1)
+        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 0)
+        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 0)
+        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 0)
+        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 0)
     }
     
     func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){

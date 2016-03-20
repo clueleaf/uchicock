@@ -46,14 +46,16 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             memo.text = recipe.memo
             
             switch recipe.method{
-            case 1:
+            case 0:
                 method.selectedSegmentIndex = 0
-            case 2:
+            case 1:
                 method.selectedSegmentIndex = 1
-            case 3:
+            case 2:
                 method.selectedSegmentIndex = 2
-            case 4:
+            case 3:
                 method.selectedSegmentIndex = 3
+            case 4:
+                method.selectedSegmentIndex = 4
             default:
                 method.selectedSegmentIndex = 4
             }

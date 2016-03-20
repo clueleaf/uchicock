@@ -41,14 +41,16 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
             memo.text = recipe.memo
             
             switch recipe.method{
-            case 1:
+            case 0:
                 method.selectedSegmentIndex = 0
-            case 2:
+            case 1:
                 method.selectedSegmentIndex = 1
-            case 3:
+            case 2:
                 method.selectedSegmentIndex = 2
-            case 4:
+            case 3:
                 method.selectedSegmentIndex = 3
+            case 4:
+                method.selectedSegmentIndex = 4
             default:
                 method.selectedSegmentIndex = 4
             }
@@ -151,7 +153,98 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
 
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if recipeName.text == nil || recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
+            //名前を入れていない
+            let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+            
+            //TODO:材料を一つも入れていない場合もアラートを出す
+
+        }else{
+            let realm = try! Realm()
+            
+            if isAddMode {
+                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+                if sameNameRecipe.count != 0{
+                    //同じ名前の材料がすでに登録されている
+                    let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .Alert)
+                    sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+                    presentViewController(sameNameAlertView, animated: true, completion: nil)
+                }else{
+                    let newRecipe = Recipe()
+                    newRecipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    if star3.currentTitle == "★" {
+                        newRecipe.favorites = 3
+                    }else if star2.currentTitle == "★" {
+                        newRecipe.favorites = 2
+                    }else{
+                        newRecipe.favorites = 1
+                    }
+                    
+                    switch method.selectedSegmentIndex{
+                    case 0:
+                        newRecipe.method = 0
+                    case 1:
+                        newRecipe.method = 1
+                    case 2:
+                        newRecipe.method = 2
+                    case 3:
+                        newRecipe.method = 3
+                    case 4:
+                        newRecipe.method = 4
+                    default:
+                        newRecipe.method = 4
+                    }
+
+                    newRecipe.memo = memo.text
+                    
+                    //TODO:一番先にリレーションシップを登録する
+                    //TODO:材料がない場合は材料も登録する
+
+                    try! realm.write {
+                        realm.add(newRecipe)
+                    }
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }else{
+                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+                if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()){
+                    //同じ名前の材料がすでに登録されている
+                    let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .Alert)
+                    sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+                    presentViewController(sameNameAlertView, animated: true, completion: nil)
+                }else{
+                    try! realm.write {
+                        recipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        if star3.currentTitle == "★" {
+                            recipe.favorites = 3
+                        }else if star2.currentTitle == "★" {
+                            recipe.favorites = 2
+                        }else{
+                            recipe.favorites = 1
+                        }
+                        switch method.selectedSegmentIndex{
+                        case 0:
+                            recipe.method = 0
+                        case 1:
+                            recipe.method = 1
+                        case 2:
+                            recipe.method = 2
+                        case 3:
+                            recipe.method = 3
+                        case 4:
+                            recipe.method = 4
+                        default:
+                            recipe.method = 4
+                        }
+                        recipe.memo = memo.text
+                    }
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+        }
+        
     }
     
     @IBAction func tapScreen(sender: UITapGestureRecognizer) {
