@@ -119,13 +119,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
-        print(ingredient.ingredientName)
         try! realm.write {
             ingredient.recipeIngredients.append(recipeIngredientLink)
         }
         
         let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
-        print(recipe.recipeName)
+
         try! realm.write {
             recipe.recipeIngredients.append(recipeIngredientLink)
         }

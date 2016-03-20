@@ -46,8 +46,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete{
-            let realm = try! Realm()            
+            let realm = try! Realm()
             let recipe = recipeList![indexPath.row]
+
+            let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+            for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
+                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
+                deletingRecipeIngredientList.append(recipeIngredient)
+            }
+            
+            for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                try! realm.write{
+                    realm.delete(deletingRecipeIngredientList[i])
+                }
+            }
+
             try! realm.write {
                 realm.delete(recipe)
             }
