@@ -31,7 +31,11 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         let realm = try! Realm()
         let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
         if ing.count < 1 {
-            self.navigationController?.popViewControllerAnimated(true)
+            let noIngredientAlertView = UIAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .Alert)
+            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                self.navigationController?.popViewControllerAnimated(true)
+            }))
+            presentViewController(noIngredientAlertView, animated: true, completion: nil)
         } else {
             ingredient = realm.objects(Ingredient).filter("id == %@",ingredientId).first!
             self.navigationItem.title = ingredient.ingredientName

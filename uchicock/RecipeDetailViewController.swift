@@ -34,7 +34,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         let realm = try! Realm()
         let rec = realm.objects(Recipe).filter("id == %@",recipeId)
         if rec.count < 1 {
-            self.navigationController?.popViewControllerAnimated(true)
+            let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .Alert)
+            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                self.navigationController?.popViewControllerAnimated(true)
+            }))
+            presentViewController(noRecipeAlertView, animated: true, completion: nil)
         }else{
             recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
             
