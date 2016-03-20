@@ -14,9 +14,10 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var stock: UISwitch!
-    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var recipeListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var memoHeight: NSLayoutConstraint!
     
     var ingredientId = String()
     var ingredient = Ingredient()
@@ -43,6 +44,9 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             memo.text = ingredient.memo
             stock.on = ingredient.stockFlag
             tableView.reloadData()
+            let rect = memo.sizeThatFits(CGSizeMake(memo.frame.width,CGFloat.max))
+            memoHeight.constant = rect.height
+
         }
     }
     

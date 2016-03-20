@@ -14,12 +14,13 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var ingredientListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var memoHeight: NSLayoutConstraint!
     
     var recipeId = String()
     var recipe = Recipe()
@@ -80,6 +81,10 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             }
             
             tableView.reloadData()
+            
+            let rect = memo.sizeThatFits(CGSizeMake(memo.frame.width,CGFloat.max))
+            memoHeight.constant = rect.height
+
         }
 
     }
