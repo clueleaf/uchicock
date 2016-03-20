@@ -97,7 +97,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 vc.ingredientId = ingredientList![indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
-            
         }
     }
 }

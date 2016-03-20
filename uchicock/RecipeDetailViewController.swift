@@ -150,14 +150,20 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
+    @IBAction func EditButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("PushEditRecipe", sender: UIBarButtonItem())
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destinationViewController as! IngredientDetailViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-                
             }
+        }else if segue.identifier == "PushEditRecipe" {
+            let vc = segue.destinationViewController as! RecipeEditViewController
+            vc.recipe = self.recipe
         }
     }
 

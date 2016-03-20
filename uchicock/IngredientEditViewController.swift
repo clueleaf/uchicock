@@ -15,7 +15,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var stock: UISwitch!
     @IBOutlet weak var ingredientName: UITextField!
     @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+//    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var memoPlaceholder: UILabel!
     @IBOutlet weak var navigation: UINavigationItem!
     
@@ -46,7 +46,6 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
-        
     }
 
     override func didReceiveMemoryWarning() {

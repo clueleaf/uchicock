@@ -120,6 +120,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    // MARK: - IBAction
+    @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("PushAddRecipe", sender: UIBarButtonItem())
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushRecipeDetail" {
@@ -127,6 +132,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if let indexPath = sender as? NSIndexPath{
                 vc.recipeId = recipeList![indexPath.row].id
             }
+        } else if segue.identifier == "PushAddRecipe" {
         }
     }
 
