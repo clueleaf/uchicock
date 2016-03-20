@@ -96,7 +96,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "PushRecipeDetail" {
             let vc = segue.destinationViewController as! RecipeDetailViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.recipe = recipeList![indexPath.row]
+                vc.recipeId = recipeList![indexPath.row].id
             }
         }
     }

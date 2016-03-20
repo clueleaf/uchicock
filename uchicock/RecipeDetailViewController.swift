@@ -22,6 +22,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var ingredientListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     
+    var recipeId = String()
     var recipe = Recipe()
     
     override func viewDidLoad() {
@@ -30,51 +31,53 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
         let realm = try! Realm()
-        recipe = realm.objects(Recipe).filter("id == %@",recipe.id).first!
-        //レシピが見つからなかったら前の画面に戻る
-        //        self.dismissViewControllerAnimated(true, completion: nil)
+        let rec = realm.objects(Recipe).filter("id == %@",recipeId)
+        if rec.count < 1 {
+            self.navigationController?.popViewControllerAnimated(true)
+        }else{
+            recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
+            
+            self.navigationItem.title = recipe.recipeName
+            recipeName.text = recipe.recipeName
+            procedure.text = recipe.procedure
+            memo.text = recipe.memo
+            
+            switch recipe.method{
+            case 1:
+                method.selectedSegmentIndex = 0
+            case 2:
+                method.selectedSegmentIndex = 1
+            case 3:
+                method.selectedSegmentIndex = 2
+            case 4:
+                method.selectedSegmentIndex = 3
+            default:
+                method.selectedSegmentIndex = 4
+            }
+            
+            switch recipe.favorites{
+            case 1:
+                star1.setTitle("★", forState: .Normal)
+                star2.setTitle("☆", forState: .Normal)
+                star3.setTitle("☆", forState: .Normal)
+            case 2:
+                star1.setTitle("★", forState: .Normal)
+                star2.setTitle("★", forState: .Normal)
+                star3.setTitle("☆", forState: .Normal)
+            case 3:
+                star1.setTitle("★", forState: .Normal)
+                star2.setTitle("★", forState: .Normal)
+                star3.setTitle("★", forState: .Normal)
+            default:
+                star1.setTitle("★", forState: .Normal)
+                star2.setTitle("☆", forState: .Normal)
+                star3.setTitle("☆", forState: .Normal)
+            }
+            
+            tableView.reloadData()
+        }
 
-        self.navigationItem.title = recipe.recipeName
-        
-        recipeName.text = recipe.recipeName
-        procedure.text = recipe.procedure
-        memo.text = recipe.memo
-        
-        switch recipe.method{
-        case 1:
-            method.selectedSegmentIndex = 0
-        case 2:
-            method.selectedSegmentIndex = 1
-        case 3:
-            method.selectedSegmentIndex = 2
-        case 4:
-            method.selectedSegmentIndex = 3
-        default:
-            method.selectedSegmentIndex = 4
-        }
-        
-        switch recipe.favorites{
-        case 1:
-            star1.setTitle("★", forState: .Normal)
-            star2.setTitle("☆", forState: .Normal)
-            star3.setTitle("☆", forState: .Normal)
-        case 2:
-            star1.setTitle("★", forState: .Normal)
-            star2.setTitle("★", forState: .Normal)
-            star3.setTitle("☆", forState: .Normal)
-        case 3:
-            star1.setTitle("★", forState: .Normal)
-            star2.setTitle("★", forState: .Normal)
-            star3.setTitle("★", forState: .Normal)
-        default:
-            star1.setTitle("★", forState: .Normal)
-            star2.setTitle("☆", forState: .Normal)
-            star3.setTitle("☆", forState: .Normal)
-        }
-        
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -148,7 +151,8 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destinationViewController as! IngredientDetailViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.ingredient = recipe.recipeIngredients[indexPath.row].ingredient
+                vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
+                
             }
         }
     }

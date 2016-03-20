@@ -18,6 +18,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var recipeListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     
+    var ingredientId = String()
     var ingredient = Ingredient()
     
     override func viewDidLoad() {
@@ -28,15 +29,17 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidDisappear(animated)
         
         let realm = try! Realm()
-        ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id).first!
-        //材料が見つからなかったら前の画面に戻る
-//        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        self.navigationItem.title = ingredient.ingredientName
-        ingredientName.text = ingredient.ingredientName
-        memo.text = ingredient.memo
-        stock.on = ingredient.stockFlag
-        tableView.reloadData()
+        let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
+        if ing.count < 1 {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            ingredient = realm.objects(Ingredient).filter("id == %@",ingredientId).first!
+            self.navigationItem.title = ingredient.ingredientName
+            ingredientName.text = ingredient.ingredientName
+            memo.text = ingredient.memo
+            stock.on = ingredient.stockFlag
+            tableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,11 +97,11 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushEditIngredient" {
             let vc = segue.destinationViewController as! IngredientEditViewController
-                vc.ingredient = ingredient
+                vc.ingredient = self.ingredient
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destinationViewController as! RecipeDetailViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.recipe = ingredient.recipeIngredients[indexPath.row].recipe
+                vc.recipeId = ingredient.recipeIngredients[indexPath.row].recipe.id
             }
         }
     }

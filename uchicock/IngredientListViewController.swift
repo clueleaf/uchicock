@@ -94,7 +94,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destinationViewController as! IngredientDetailViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.ingredient = ingredientList![indexPath.row]
+                vc.ingredientId = ingredientList![indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
             
