@@ -11,11 +11,10 @@ import RealmSwift
 
 class IngredientDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+//    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var stock: UISwitch!
     @IBOutlet weak var memo: UILabel!
-    @IBOutlet weak var recipeListTableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var memoHeight: NSLayoutConstraint!
     
@@ -82,7 +81,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         return UITableViewCell()
     }
     
-    // MARK: - IBAction
+    // MARK: - IBAction    
     @IBAction func stockSwitchTapped(sender: UISwitch) {
         if sender.on{
             let realm = try! Realm()
@@ -96,7 +95,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
     }
-    
+
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }
