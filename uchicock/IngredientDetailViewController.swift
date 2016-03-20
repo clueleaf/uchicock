@@ -47,6 +47,11 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         return 70
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+    }
+    
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -88,7 +93,12 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         if segue.identifier == "PushEditIngredient" {
             let vc = segue.destinationViewController as! IngredientEditViewController
                 vc.ingredient = ingredient
+        }else if segue.identifier == "PushRecipeDetail"{
+            let vc = segue.destinationViewController as! RecipeDetailViewController
+            if let indexPath = sender as? NSIndexPath{
+                vc.recipe = ingredient.recipeIngredients[indexPath.row].recipe
+            }
         }
     }
-
+    
 }

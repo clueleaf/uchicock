@@ -74,7 +74,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -83,6 +82,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
     }
     
     // MARK: - UITableViewDataSource
@@ -136,14 +140,14 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PushIngredientDetail" {
+            let vc = segue.destinationViewController as! IngredientDetailViewController
+            if let indexPath = sender as? NSIndexPath{
+                vc.ingredient = recipe.recipeIngredients[indexPath.row].ingredient
+            }
+        }
     }
-    */
 
 }
