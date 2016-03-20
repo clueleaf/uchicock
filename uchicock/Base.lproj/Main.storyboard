@@ -5,6 +5,22 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--レシピ編集-->
+        <scene sceneID="4kw-M6-q9V">
+            <objects>
+                <navigationController id="0eU-Qx-7IP" userLabel="レシピ編集" customClass="RecipeEditNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="tgF-78-Zlk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rIa-nq-cmF" kind="relationship" relationship="rootViewController" id="I9a-sc-4zD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="166" y="-333"/>
+        </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -121,7 +137,7 @@
                     <connections>
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="bvf-aa-P4b" kind="show" identifier="PushRecipeDetail" id="tyH-qi-X5f"/>
-                        <segue destination="rIa-nq-cmF" kind="presentation" identifier="PushAddRecipe" id="8qM-Rh-rBt"/>
+                        <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushAddRecipe" id="BF7-gd-8JQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -228,12 +244,28 @@
                     <connections>
                         <outlet property="tableView" destination="KNl-GC-4Ax" id="yp8-EL-s8S"/>
                         <segue destination="ki6-Wr-KQo" kind="show" identifier="PushIngredientDetail" id="bzu-23-lxG"/>
-                        <segue destination="cTU-Ky-AZh" kind="presentation" identifier="PushAddIngredient" id="6uu-V1-xcW"/>
+                        <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushAddIngredient" id="VoJ-51-RUH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="1202"/>
+        </scene>
+        <!--材料編集-->
+        <scene sceneID="azX-tq-QSA">
+            <objects>
+                <navigationController id="8S6-Yq-9QD" userLabel="材料編集" customClass="IngredientEditNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5GL-0k-PGh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cTU-Ky-AZh" kind="relationship" relationship="rootViewController" id="5bv-ta-xCt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A0G-Pc-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192" y="2035"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -296,11 +328,11 @@
                         <viewControllerLayoutGuide type="bottom" id="RVH-hI-oXH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pql-Hy-AhQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5z8-uf-jrl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgq-dW-gNr">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="484"/>
@@ -533,7 +565,7 @@
                         <outlet property="star3" destination="DXu-2n-PlM" id="eMC-Jf-KUa"/>
                         <outlet property="tableView" destination="Euv-Lp-WBM" id="0WL-IP-I8d"/>
                         <segue destination="ki6-Wr-KQo" kind="show" identifier="PushIngredientDetail" id="9Wz-4C-0K0"/>
-                        <segue destination="rIa-nq-cmF" kind="presentation" identifier="PushEditRecipe" id="v9e-uF-s3Z"/>
+                        <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="hrp-Pj-JYM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3N-xm-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -549,11 +581,11 @@
                         <viewControllerLayoutGuide type="bottom" id="uSJ-Bl-f7m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D2O-cT-D4w">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyn-wI-wUw">
-                                <rect key="frame" x="0.0" y="20" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H9A-gZ-PrE">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="541"/>
@@ -733,8 +765,8 @@
                         <outlet property="scrollView" destination="zyn-wI-wUw" id="5vT-2t-WCk"/>
                         <outlet property="stock" destination="E4f-DJ-vSF" id="aGe-98-vhm"/>
                         <outlet property="tableView" destination="Ihn-0k-YhW" id="yT5-oe-4Ya"/>
-                        <segue destination="cTU-Ky-AZh" kind="presentation" identifier="PushEditIngredient" id="122-L2-RQJ"/>
                         <segue destination="bvf-aa-P4b" kind="show" identifier="PushRecipeDetail" id="pyL-Bh-L11"/>
+                        <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="7SF-P9-ikG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKe-Su-VXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -750,17 +782,17 @@
                         <viewControllerLayoutGuide type="bottom" id="Ih2-fT-RvS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Av6-Ep-UE2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcg-ey-Moe">
-                                <rect key="frame" x="0.0" y="20" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-au-xfV">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="374"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="330"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3KW-qU-QyQ" userLabel="在庫コンテナ">
-                                                <rect key="frame" x="30" y="134" width="540" height="40"/>
+                                                <rect key="frame" x="30" y="90" width="540" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P47-fp-JRh">
                                                         <rect key="frame" x="5" y="9" width="42" height="21"/>
@@ -795,28 +827,8 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yG-cY-8DD">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="G55-57-ErM"/>
-                                                </constraints>
-                                                <items>
-                                                    <navigationItem title="材料登録" id="u0u-yn-nq6">
-                                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Tdt-1K-weh">
-                                                            <connections>
-                                                                <action selector="cancelButtonTapped:" destination="cTU-Ky-AZh" id="Vk4-lk-keH"/>
-                                                            </connections>
-                                                        </barButtonItem>
-                                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZMv-1y-RdL">
-                                                            <connections>
-                                                                <action selector="saveButtonTapped:" destination="cTU-Ky-AZh" id="b7N-bn-RCv"/>
-                                                            </connections>
-                                                        </barButtonItem>
-                                                    </navigationItem>
-                                                </items>
-                                            </navigationBar>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="8vc-z9-OPa">
-                                                <rect key="frame" x="20" y="74" width="560" height="40"/>
+                                                <rect key="frame" x="20" y="30" width="560" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="gJb-0g-KIN"/>
                                                 </constraints>
@@ -827,7 +839,7 @@
                                                 </connections>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ti-tX-DFo">
-                                                <rect key="frame" x="20" y="194" width="560" height="150"/>
+                                                <rect key="frame" x="20" y="150" width="560" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="a3j-t0-6m5"/>
@@ -839,7 +851,7 @@
                                                 </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-Mu-yEf" userLabel="メモplaceholder">
-                                                <rect key="frame" x="25" y="199" width="50" height="21"/>
+                                                <rect key="frame" x="25" y="155" width="50" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="6dv-II-bfv"/>
                                                     <constraint firstAttribute="height" constant="21" id="guq-WE-9tX"/>
@@ -852,17 +864,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="8vc-z9-OPa" secondAttribute="trailing" constant="20" id="0GI-fc-ab6"/>
-                                            <constraint firstItem="8vc-z9-OPa" firstAttribute="top" secondItem="5yG-cY-8DD" secondAttribute="bottom" constant="30" id="16V-dK-umK"/>
-                                            <constraint firstItem="5yG-cY-8DD" firstAttribute="top" secondItem="fbM-au-xfV" secondAttribute="top" id="2kP-i9-Ec0"/>
                                             <constraint firstItem="3KW-qU-QyQ" firstAttribute="top" secondItem="8vc-z9-OPa" secondAttribute="bottom" constant="20" id="BPt-rD-N4A"/>
                                             <constraint firstItem="HA3-Mu-yEf" firstAttribute="leading" secondItem="fbM-au-xfV" secondAttribute="leading" constant="25" id="DGc-7m-6Fg"/>
                                             <constraint firstItem="3KW-qU-QyQ" firstAttribute="top" secondItem="8vc-z9-OPa" secondAttribute="bottom" constant="20" id="EgU-jS-3Un"/>
-                                            <constraint firstItem="5yG-cY-8DD" firstAttribute="leading" secondItem="fbM-au-xfV" secondAttribute="leading" id="GKV-oz-oQq"/>
                                             <constraint firstItem="HA3-Mu-yEf" firstAttribute="top" secondItem="3KW-qU-QyQ" secondAttribute="bottom" constant="25" id="Hbx-xV-bV8"/>
                                             <constraint firstItem="8vc-z9-OPa" firstAttribute="top" secondItem="fbM-au-xfV" secondAttribute="top" constant="30" id="VAZ-Jz-Oa8"/>
                                             <constraint firstItem="5Ti-tX-DFo" firstAttribute="leading" secondItem="fbM-au-xfV" secondAttribute="leading" constant="20" id="VNs-I6-yEP"/>
                                             <constraint firstItem="3KW-qU-QyQ" firstAttribute="leading" secondItem="fbM-au-xfV" secondAttribute="leading" constant="30" id="XXe-js-dxP"/>
-                                            <constraint firstAttribute="trailing" secondItem="5yG-cY-8DD" secondAttribute="trailing" id="bCh-lo-Izh"/>
+                                            <constraint firstItem="8vc-z9-OPa" firstAttribute="top" secondItem="fbM-au-xfV" secondAttribute="top" constant="30" id="b9b-9y-sEJ"/>
                                             <constraint firstItem="8vc-z9-OPa" firstAttribute="leading" secondItem="fbM-au-xfV" secondAttribute="leading" constant="20" id="bXQ-Q6-hp6"/>
                                             <constraint firstItem="5Ti-tX-DFo" firstAttribute="top" secondItem="3KW-qU-QyQ" secondAttribute="bottom" constant="20" id="cut-Ty-amU"/>
                                             <constraint firstAttribute="trailing" secondItem="3KW-qU-QyQ" secondAttribute="trailing" constant="30" id="fJR-JQ-zT4"/>
@@ -900,11 +909,22 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="shf-cI-4Nx">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bLY-mm-ogy">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="cTU-Ky-AZh" id="29k-nV-SEq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Hrk-In-XHB">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="cTU-Ky-AZh" id="X1y-eh-IZn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ingredientName" destination="8vc-z9-OPa" id="IRq-u1-pxm"/>
                         <outlet property="memo" destination="5Ti-tX-DFo" id="Pcp-uY-PxJ"/>
                         <outlet property="memoPlaceholder" destination="HA3-Mu-yEf" id="rnx-QI-YjP"/>
-                        <outlet property="navigation" destination="u0u-yn-nq6" id="cqB-Tg-7tK"/>
                         <outlet property="scrollView" destination="zcg-ey-Moe" id="xdD-D8-3jo"/>
                         <outlet property="stock" destination="QA0-Zz-Ifb" id="2pV-SJ-z3h"/>
                     </connections>
@@ -927,17 +947,17 @@
                         <viewControllerLayoutGuide type="bottom" id="t1z-bk-Pye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="88c-cb-8Fh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDX-ea-DAm">
-                                <rect key="frame" x="0.0" y="20" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vj0-f5-o1m">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="547"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="503"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aax-J4-fqR" userLabel="技法">
-                                                <rect key="frame" x="20" y="189" width="560" height="29"/>
+                                                <rect key="frame" x="20" y="145" width="560" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="2ux-Mi-eeJ"/>
                                                     <constraint firstAttribute="width" constant="400" id="GiR-4w-XUx"/>
@@ -956,7 +976,7 @@
                                                 </variation>
                                             </segmentedControl>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PZX-dd-T5E" userLabel="材料リスト">
-                                                <rect key="frame" x="15" y="407" width="570" height="120"/>
+                                                <rect key="frame" x="15" y="363" width="570" height="120"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="BDT-iD-i5h"/>
@@ -1017,7 +1037,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Ur-uL6" userLabel="お気に入りコンテナ">
-                                                <rect key="frame" x="20" y="134" width="560" height="25"/>
+                                                <rect key="frame" x="20" y="90" width="560" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovu-RL-j9s" userLabel="星1">
                                                         <rect key="frame" x="0.0" y="-3" width="30" height="30"/>
@@ -1074,28 +1094,8 @@
                                                     <constraint firstItem="azL-K2-qN7" firstAttribute="centerY" secondItem="jL3-Ur-uL6" secondAttribute="centerY" id="zzu-nv-sFd"/>
                                                 </constraints>
                                             </view>
-                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOO-vh-fF6">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="glp-ZW-Zsi"/>
-                                                </constraints>
-                                                <items>
-                                                    <navigationItem title="レシピ登録" id="chv-nD-wXT">
-                                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Oyd-VJ-52S">
-                                                            <connections>
-                                                                <action selector="cancelButtonTapped:" destination="rIa-nq-cmF" id="7H4-xv-Ydg"/>
-                                                            </connections>
-                                                        </barButtonItem>
-                                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="W4l-k2-hzg">
-                                                            <connections>
-                                                                <action selector="saveButtonTapped:" destination="rIa-nq-cmF" id="3WF-Mp-xju"/>
-                                                            </connections>
-                                                        </barButtonItem>
-                                                    </navigationItem>
-                                                </items>
-                                            </navigationBar>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レシピ名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="me1-Es-JdR">
-                                                <rect key="frame" x="20" y="74" width="560" height="40"/>
+                                                <rect key="frame" x="20" y="30" width="560" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="xLP-JJ-DDx"/>
                                                 </constraints>
@@ -1106,7 +1106,7 @@
                                                 </connections>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Qh6-Ue-ye3" userLabel="メモ">
-                                                <rect key="frame" x="15" y="237" width="570" height="150"/>
+                                                <rect key="frame" x="15" y="193" width="570" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="E4C-l3-Yvd"/>
@@ -1118,7 +1118,7 @@
                                                 </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSF-Vc-vdB" userLabel="メモplaceholder">
-                                                <rect key="frame" x="25" y="247" width="50" height="21"/>
+                                                <rect key="frame" x="25" y="203" width="50" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="EHM-C2-WFh"/>
                                                     <constraint firstAttribute="width" constant="50" id="dFu-TX-kO8"/>
@@ -1135,6 +1135,7 @@
                                             <constraint firstAttribute="trailing" secondItem="aax-J4-fqR" secondAttribute="trailing" constant="20" id="E4Q-fY-EOR"/>
                                             <constraint firstItem="jL3-Ur-uL6" firstAttribute="top" secondItem="me1-Es-JdR" secondAttribute="bottom" constant="20" id="HWJ-mt-Pml"/>
                                             <constraint firstItem="uSF-Vc-vdB" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="30" id="IRi-Iu-TQZ"/>
+                                            <constraint firstItem="me1-Es-JdR" firstAttribute="top" secondItem="vj0-f5-o1m" secondAttribute="top" constant="30" id="L1F-Bb-bvt"/>
                                             <constraint firstAttribute="trailing" secondItem="jL3-Ur-uL6" secondAttribute="trailing" constant="20" id="LL4-SI-smb"/>
                                             <constraint firstItem="Qh6-Ue-ye3" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="15" id="MJp-Qn-MIC"/>
                                             <constraint firstAttribute="bottom" secondItem="Qh6-Ue-ye3" secondAttribute="bottom" constant="20" symbolic="YES" id="NL2-IC-PIi"/>
@@ -1142,9 +1143,7 @@
                                             <constraint firstItem="aax-J4-fqR" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="QZ5-tt-StR"/>
                                             <constraint firstAttribute="trailing" secondItem="Qh6-Ue-ye3" secondAttribute="trailing" constant="15" id="ViH-K2-W8i"/>
                                             <constraint firstItem="me1-Es-JdR" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="WpV-04-flv"/>
-                                            <constraint firstItem="DOO-vh-fF6" firstAttribute="top" secondItem="vj0-f5-o1m" secondAttribute="top" id="XE7-U6-ISt"/>
                                             <constraint firstAttribute="bottom" secondItem="PZX-dd-T5E" secondAttribute="bottom" constant="20" id="Zfh-jT-hRk"/>
-                                            <constraint firstItem="me1-Es-JdR" firstAttribute="top" secondItem="DOO-vh-fF6" secondAttribute="bottom" constant="30" id="deB-cS-q3R"/>
                                             <constraint firstItem="uSF-Vc-vdB" firstAttribute="top" secondItem="PZX-dd-T5E" secondAttribute="bottom" constant="30" id="f2J-6M-i8w"/>
                                             <constraint firstItem="uSF-Vc-vdB" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="25" id="f4e-Qs-FJI"/>
                                             <constraint firstItem="PZX-dd-T5E" firstAttribute="top" secondItem="Qh6-Ue-ye3" secondAttribute="bottom" constant="20" id="o1w-c3-VVi"/>
@@ -1152,8 +1151,6 @@
                                             <constraint firstItem="Qh6-Ue-ye3" firstAttribute="top" secondItem="aax-J4-fqR" secondAttribute="bottom" constant="20" id="pzo-J0-Pum"/>
                                             <constraint firstItem="jL3-Ur-uL6" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" constant="20" id="t3x-zB-Q4K"/>
                                             <constraint firstItem="aax-J4-fqR" firstAttribute="top" secondItem="jL3-Ur-uL6" secondAttribute="bottom" constant="30" id="u7M-H1-561"/>
-                                            <constraint firstAttribute="trailing" secondItem="DOO-vh-fF6" secondAttribute="trailing" id="xHM-nx-LgV"/>
-                                            <constraint firstItem="DOO-vh-fF6" firstAttribute="leading" secondItem="vj0-f5-o1m" secondAttribute="leading" id="yrR-DU-EZ3"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -1193,11 +1190,22 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="Lrf-oe-s16">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="G7I-Ec-aan">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="rIa-nq-cmF" id="ffA-a0-RY7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="l7a-Ln-B5D">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="rIa-nq-cmF" id="Yxz-nf-H0i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="memo" destination="Qh6-Ue-ye3" id="4Ed-zY-RF7"/>
                         <outlet property="memoPlaceholder" destination="uSF-Vc-vdB" id="ZlA-9e-g5g"/>
                         <outlet property="method" destination="aax-J4-fqR" id="0Qu-8o-Jeh"/>
-                        <outlet property="navigation" destination="chv-nD-wXT" id="ctM-PW-Akp"/>
                         <outlet property="recipeName" destination="me1-Es-JdR" id="u8l-cr-50g"/>
                         <outlet property="scrollView" destination="YDX-ea-DAm" id="Gsa-wW-270"/>
                         <outlet property="star1" destination="ovu-RL-j9s" id="IMv-II-qqR"/>
@@ -1220,9 +1228,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="122-L2-RQJ"/>
+        <segue reference="hrp-Pj-JYM"/>
+        <segue reference="tyH-qi-X5f"/>
         <segue reference="9Wz-4C-0K0"/>
-        <segue reference="pyL-Bh-L11"/>
-        <segue reference="8qM-Rh-rBt"/>
+        <segue reference="7SF-P9-ikG"/>
     </inferredMetricsTieBreakers>
 </document>

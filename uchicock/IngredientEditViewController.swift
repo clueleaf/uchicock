@@ -15,9 +15,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var stock: UISwitch!
     @IBOutlet weak var ingredientName: UITextField!
     @IBOutlet weak var memo: UITextView!
-//    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var memoPlaceholder: UILabel!
-    @IBOutlet weak var navigation: UINavigationItem!
     
     var txtActiveView = UITextView()
     var ingredient = Ingredient()
@@ -29,7 +27,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         if ingredient.ingredientName == "" {
             //追加
             stock.on = false
-            navigation.title = "材料登録"
+            self.navigationItem.title = "材料登録"
             isAddMode = true
         } else {
             //編集
@@ -39,7 +37,7 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
             if memo.text.isEmpty == false{
                 memoPlaceholder.hidden = true
             }
-            navigation.title = "材料編集"
+            self.navigationItem.title = "材料編集"
             isAddMode = false
         }
         

@@ -10,6 +10,8 @@
 		79F6FA801A25D92818552697 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB758B17002CE7E61D78F3B /* Pods.framework */; };
 		9B2AED081C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AED071C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift */; };
 		9B3FE5851C9EA1860061D21C /* RecipeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FE5841C9EA1860061D21C /* RecipeEditViewController.swift */; };
+		9B3FE5871C9EE4630061D21C /* IngredientEditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FE5861C9EE4630061D21C /* IngredientEditNavigationController.swift */; };
+		9B3FE5891C9EE9EA0061D21C /* RecipeEditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FE5881C9EE9EA0061D21C /* RecipeEditNavigationController.swift */; };
 		9B5367391C95A89100B6ADA2 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5367381C95A89100B6ADA2 /* RecipeDetailViewController.swift */; };
 		9B53673B1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B53673A1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift */; };
 		9B8772871C9D4BD50065A816 /* IngredientEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8772861C9D4BD50065A816 /* IngredientEditViewController.swift */; };
@@ -54,6 +56,8 @@
 		9AB758B17002CE7E61D78F3B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2AED071C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9B3FE5841C9EA1860061D21C /* RecipeEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditViewController.swift; sourceTree = "<group>"; };
+		9B3FE5861C9EE4630061D21C /* IngredientEditNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientEditNavigationController.swift; sourceTree = "<group>"; };
+		9B3FE5881C9EE9EA0061D21C /* RecipeEditNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditNavigationController.swift; sourceTree = "<group>"; };
 		9B5367381C95A89100B6ADA2 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		9B53673A1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeIngredientListTableViewCell.swift; sourceTree = "<group>"; };
 		9B8772861C9D4BD50065A816 /* IngredientEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientEditViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				9B3FE5841C9EA1860061D21C /* RecipeEditViewController.swift */,
+				9B3FE5881C9EE9EA0061D21C /* RecipeEditNavigationController.swift */,
 			);
 			name = RecipeEdit;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 		9B8772851C9D4BA80065A816 /* IngredientEdit */ = {
 			isa = PBXGroup;
 			children = (
+				9B3FE5861C9EE4630061D21C /* IngredientEditNavigationController.swift */,
 				9B8772861C9D4BD50065A816 /* IngredientEditViewController.swift */,
 			);
 			name = IngredientEdit;
@@ -433,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC9A3171C783CAA0031F631 /* RecipeListViewController.swift in Sources */,
+				9B3FE5891C9EE9EA0061D21C /* RecipeEditNavigationController.swift in Sources */,
 				9BE32CEC1C9C2B9F001B98BF /* IngredientListViewController.swift in Sources */,
 				9B5367391C95A89100B6ADA2 /* RecipeDetailViewController.swift in Sources */,
 				9BE32CEE1C9C2CE5001B98BF /* IngredientListItemTableViewCell.swift in Sources */,
@@ -442,6 +449,7 @@
 				9BE32CF31C9C4F34001B98BF /* IngredientRecipeListTableViewCell.swift in Sources */,
 				9B2AED081C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift in Sources */,
 				9B53673B1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift in Sources */,
+				9B3FE5871C9EE4630061D21C /* IngredientEditNavigationController.swift in Sources */,
 				9BD5CD451C8BFF7000D20731 /* Ingredient.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B3FE5851C9EA1860061D21C /* RecipeEditViewController.swift in Sources */,

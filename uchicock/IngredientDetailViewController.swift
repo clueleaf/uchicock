@@ -100,8 +100,9 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushEditIngredient" {
-            let vc = segue.destinationViewController as! IngredientEditViewController
-                vc.ingredient = self.ingredient
+            let enc = segue.destinationViewController as! IngredientEditNavigationController
+            let evc = enc.visibleViewController as! IngredientEditViewController
+            evc.ingredient = self.ingredient
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destinationViewController as! RecipeDetailViewController
             if let indexPath = sender as? NSIndexPath{

@@ -11,7 +11,6 @@ import RealmSwift
 
 class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate  {
 
-    @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var recipeName: UITextField!
     @IBOutlet weak var star1: UIButton!
@@ -34,7 +33,7 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
             star2.setTitle("☆", forState: .Normal)
             star3.setTitle("☆", forState: .Normal)
             method.selectedSegmentIndex = 0
-            navigation.title = "レシピ登録"
+            self.navigationItem.title = "レシピ登録"
             isAddMode = true
         } else {
             //編集
@@ -76,7 +75,7 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
             if memo.text.isEmpty == false{
                 memoPlaceholder.hidden = true
             }
-            navigation.title = "レシピ編集"
+            self.navigationItem.title = "レシピ編集"
             isAddMode = false
         }
         
@@ -150,11 +149,11 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func tapScreen(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
