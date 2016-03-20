@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeEditViewController: UIViewController {
+class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate  {
 
     @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -103,6 +103,29 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        recipeName.resignFirstResponder()
+        return true
+    }
+    
+    //textviewがフォーカスされたら、Labelを非表示
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool
+    {
+        procedurePlaceholder.hidden = true
+        memoPlaceholder.hidden = true
+        return true
+    }
+    
+    //textviewからフォーカスが外れて、TextViewが空だったらLabelを再び表示
+    func textViewDidEndEditing(textView: UITextView) {
+        if(procedure.text.isEmpty){
+            procedurePlaceholder.hidden = false
+        }
+        if(memo.text.isEmpty){
+            memoPlaceholder.hidden = false
+        }
+    }
+    
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -110,6 +133,10 @@ class RecipeEditViewController: UIViewController {
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func tapScreen(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     /*

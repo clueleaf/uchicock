@@ -969,6 +969,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="Goq-Nu-Lvl"/>
+                                                </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作り方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yu-pc-RSK" userLabel="作り方placeholder">
                                                 <rect key="frame" x="25" y="247" width="70" height="21"/>
@@ -1049,6 +1052,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="16K-fb-t4n"/>
+                                                </connections>
                                             </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-Ur-uL6" userLabel="お気に入りコンテナ">
                                                 <rect key="frame" x="20" y="134" width="560" height="25"/>
@@ -1125,7 +1131,10 @@
                                                     <constraint firstAttribute="height" constant="40" id="xLP-JJ-DDx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rIa-nq-cmF" id="dEh-tY-XSK"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSF-Vc-vdB" userLabel="メモplaceholder">
                                                 <rect key="frame" x="25" y="557" width="50" height="21"/>
@@ -1179,6 +1188,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="YDX-ea-DAm" firstAttribute="height" secondItem="88c-cb-8Fh" secondAttribute="height" id="6MT-d1-vAo"/>
                             <constraint firstItem="YDX-ea-DAm" firstAttribute="top" secondItem="LhA-ob-3ob" secondAttribute="bottom" id="Rzt-fY-fUW"/>
@@ -1192,6 +1202,9 @@
                                 <exclude reference="vnv-Qw-2je"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="K9H-cj-nc6" appends="YES" id="lWP-GI-I69"/>
+                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
@@ -1209,6 +1222,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M86-DZ-q2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="K9H-cj-nc6">
+                    <connections>
+                        <action selector="tapScreen:" destination="rIa-nq-cmF" id="6w1-I6-M1K"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="991" y="-312"/>
         </scene>
