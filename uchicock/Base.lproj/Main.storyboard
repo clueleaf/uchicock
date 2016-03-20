@@ -345,11 +345,11 @@
                                                     <constraint firstAttribute="height" constant="120" id="0WD-7n-SlU"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientItem" rowHeight="25" id="vix-gz-Aza" userLabel="材料" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeIngredientItem" rowHeight="25" id="vix-gz-Aza" userLabel="材料" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="570" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vix-gz-Aza" id="1dS-Be-9LT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="24.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="537" height="24.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucE-Ju-KaW">
@@ -373,7 +373,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-H5-DuP" userLabel="分量">
-                                                                    <rect key="frame" x="515" y="2" width="42" height="21"/>
+                                                                    <rect key="frame" x="482" y="2" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="jgk-Eg-a1p"/>
                                                                     </constraints>
@@ -619,11 +619,11 @@
                                                     <constraint firstAttribute="height" constant="200" id="Zee-OZ-QyX"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientRecipeItem" rowHeight="25" id="Ba1-mC-at7" userLabel="レシピ" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientRecipeItem" rowHeight="25" id="Ba1-mC-at7" userLabel="レシピ" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="570" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ba1-mC-at7" id="YlT-Ku-jai">
-                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="24.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="537" height="24.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pn5-SO-JFB">
@@ -647,7 +647,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45U-4y-8VS" userLabel="分量">
-                                                                    <rect key="frame" x="515" y="2" width="42" height="21"/>
+                                                                    <rect key="frame" x="482" y="2" width="42" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="lcV-gN-exL"/>
                                                                     </constraints>
@@ -921,8 +921,8 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="122-L2-RQJ"/>
         <segue reference="9Wz-4C-0K0"/>
         <segue reference="pyL-Bh-L11"/>
+        <segue reference="122-L2-RQJ"/>
     </inferredMetricsTieBreakers>
 </document>

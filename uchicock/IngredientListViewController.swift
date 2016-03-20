@@ -47,12 +47,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete{
-            let realm = try! Realm()
-            let ingredient = ingredientList![indexPath.row]
-            try! realm.write {
-                realm.delete(ingredient)
+            if ingredientList![indexPath.row].recipeIngredients.count > 0 {
+                let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+                presentViewController(alertView, animated: true, completion: nil)
+            } else{
+                let realm = try! Realm()
+                let ingredient = ingredientList![indexPath.row]
+                try! realm.write {
+                    realm.delete(ingredient)
+                }
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }    
     

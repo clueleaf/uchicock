@@ -30,11 +30,12 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
-        tableView.reloadData()
         
         let realm = try! Realm()
         recipe = realm.objects(Recipe).filter("id == %@",recipe.id).first!
-        
+        //レシピが見つからなかったら前の画面に戻る
+        //        self.dismissViewControllerAnimated(true, completion: nil)
+
         self.navigationItem.title = recipe.recipeName
         
         recipeName.text = recipe.recipeName
@@ -72,6 +73,8 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             star2.setTitle("☆", forState: .Normal)
             star3.setTitle("☆", forState: .Normal)
         }
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

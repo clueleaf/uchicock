@@ -26,15 +26,17 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
-        tableView.reloadData()
         
         let realm = try! Realm()
         ingredient = realm.objects(Ingredient).filter("id == %@",ingredient.id).first!
+        //材料が見つからなかったら前の画面に戻る
+//        self.dismissViewControllerAnimated(true, completion: nil)
         
         self.navigationItem.title = ingredient.ingredientName
         ingredientName.text = ingredient.ingredientName
         memo.text = ingredient.memo
         stock.on = ingredient.stockFlag
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
