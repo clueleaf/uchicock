@@ -9,15 +9,11 @@
 import UIKit
 import RealmSwift
 
-class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class IngredientEditViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stock: UISwitch!
-    @IBOutlet weak var ingredientName: UITextField!
-    @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var memoPlaceholder: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
-    var txtActiveView = UITextView()
+//    var txtActiveView = UITextView()
     var ingredient = Ingredient()
     var isAddMode = true
     
@@ -25,34 +21,23 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         super.viewDidLoad()
         
         if ingredient.ingredientName == "" {
-            //追加
-            stock.on = false
             self.navigationItem.title = "材料登録"
             isAddMode = true
         } else {
-            //編集
-            ingredientName.text = ingredient.ingredientName
-            memo.text = ingredient.memo
-            stock.on = ingredient.stockFlag
-            if memo.text.isEmpty == false{
-                memoPlaceholder.hidden = true
-            }
             self.navigationItem.title = "材料編集"
             isAddMode = false
         }
-        
-        memo.layer.masksToBounds = true
-        memo.layer.cornerRadius = 5.0
-        memo.layer.borderWidth = 1
-        memo.layer.borderColor = UIColor.grayColor().CGColor
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        self.tableView.estimatedRowHeight = 70
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+//        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,40 +45,52 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
-        ingredientName.resignFirstResponder()
-        return true
+    // MARK: - UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
-    //textviewがフォーカスされたら、Labelを非表示
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool
-    {
-        memoPlaceholder.hidden = true
-        txtActiveView = textView
-        return true
-    }
-    
-    //textviewからフォーカスが外れて、TextViewが空だったらLabelを再び表示
-    func textViewDidEndEditing(textView: UITextView) {
-        if(memo.text.isEmpty){
-            memoPlaceholder.hidden = false
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 3
         }
+        return 0
     }
-    
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
-        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
-        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
-        if txtLimit >= kbdLimit {
-            scrollView.contentOffset.y = txtLimit - kbdLimit
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditName") as! IngredientEditNameTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditStock") as! IngredientEditStockTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }else if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditMemo") as! IngredientEditMemoTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }
         }
+        return UITableViewCell()
     }
+
     
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
-        scrollView.contentOffset.y = 0
-    }
+//    func handleKeyboardWillShowNotification(notification: NSNotification) {
+//        let userInfo = notification.userInfo!
+//        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+//        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
+//        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+//        if txtLimit >= kbdLimit {
+//            tableView.contentOffset.y = txtLimit - kbdLimit
+//        }
+//    }
+//    
+//    func handleKeyboardWillHideNotification(notification: NSNotification) {
+//        tableView.contentOffset.y = 0
+//    }
     
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
@@ -101,6 +98,16 @@ class IngredientEditViewController: UIViewController, UITextFieldDelegate, UITex
     }
 
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+        var path = NSIndexPath(forRow: 0, inSection: 0)
+        let nameCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditNameTableViewCell
+        let ingredientName = nameCell.ingredientName
+        path = NSIndexPath(forRow: 1, inSection: 0)
+        let stockCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditStockTableViewCell
+        let stock = stockCell.stock
+        path = NSIndexPath(forRow: 2, inSection: 0)
+        let memoCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditMemoTableViewCell
+        let memo = memoCell.memo
+        
         if ingredientName.text == nil || ingredientName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
             //名前を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)

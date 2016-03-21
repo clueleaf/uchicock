@@ -105,7 +105,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             if ingredient.recipeIngredients.count > 0 {
                 return "この材料を使うレシピ"
             }else {
-                return "この材料を使うレシピは登録されていません"
+                return "この材料を使うレシピはありません"
             }
         }else{
             return nil
