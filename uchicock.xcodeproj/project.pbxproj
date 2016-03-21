@@ -20,6 +20,11 @@
 		9B8C596A1CA0339F00A64D52 /* IngredientEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C59691CA0339F00A64D52 /* IngredientEditNameTableViewCell.swift */; };
 		9B8C596C1CA0368700A64D52 /* IngredientEditStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C596B1CA0368700A64D52 /* IngredientEditStockTableViewCell.swift */; };
 		9B8C596E1CA0369600A64D52 /* IngredientEditMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C596D1CA0369600A64D52 /* IngredientEditMemoTableViewCell.swift */; };
+		9B8C59701CA0430900A64D52 /* RecipeEditNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C596F1CA0430900A64D52 /* RecipeEditNameTableViewCell.swift */; };
+		9B8C59721CA0432300A64D52 /* RecipeEditFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C59711CA0432300A64D52 /* RecipeEditFavoriteTableViewCell.swift */; };
+		9B8C59741CA0433100A64D52 /* RecipeEditMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C59731CA0433100A64D52 /* RecipeEditMethodTableViewCell.swift */; };
+		9B8C59761CA0434300A64D52 /* RecipeEditMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C59751CA0434300A64D52 /* RecipeEditMemoTableViewCell.swift */; };
+		9B8C59781CA0436000A64D52 /* RecipeEditIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C59771CA0436000A64D52 /* RecipeEditIngredientTableViewCell.swift */; };
 		9BA93B181C9FA1BF005F6B9C /* IngredientDetailNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA93B171C9FA1BF005F6B9C /* IngredientDetailNameTableViewCell.swift */; };
 		9BA93B1A1C9FA355005F6B9C /* IngredientDetailStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA93B191C9FA355005F6B9C /* IngredientDetailStockTableViewCell.swift */; };
 		9BA93B1C1C9FA602005F6B9C /* IngredientDetailMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA93B1B1C9FA602005F6B9C /* IngredientDetailMemoTableViewCell.swift */; };
@@ -78,6 +83,11 @@
 		9B8C59691CA0339F00A64D52 /* IngredientEditNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientEditNameTableViewCell.swift; sourceTree = "<group>"; };
 		9B8C596B1CA0368700A64D52 /* IngredientEditStockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientEditStockTableViewCell.swift; sourceTree = "<group>"; };
 		9B8C596D1CA0369600A64D52 /* IngredientEditMemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientEditMemoTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C596F1CA0430900A64D52 /* RecipeEditNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditNameTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C59711CA0432300A64D52 /* RecipeEditFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditFavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C59731CA0433100A64D52 /* RecipeEditMethodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditMethodTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C59751CA0434300A64D52 /* RecipeEditMemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditMemoTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C59771CA0436000A64D52 /* RecipeEditIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeEditIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9BA93B171C9FA1BF005F6B9C /* IngredientDetailNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientDetailNameTableViewCell.swift; sourceTree = "<group>"; };
 		9BA93B191C9FA355005F6B9C /* IngredientDetailStockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientDetailStockTableViewCell.swift; sourceTree = "<group>"; };
 		9BA93B1B1C9FA602005F6B9C /* IngredientDetailMemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientDetailMemoTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +172,11 @@
 			children = (
 				9B3FE5841C9EA1860061D21C /* RecipeEditViewController.swift */,
 				9B3FE5881C9EE9EA0061D21C /* RecipeEditNavigationController.swift */,
+				9B8C596F1CA0430900A64D52 /* RecipeEditNameTableViewCell.swift */,
+				9B8C59711CA0432300A64D52 /* RecipeEditFavoriteTableViewCell.swift */,
+				9B8C59731CA0433100A64D52 /* RecipeEditMethodTableViewCell.swift */,
+				9B8C59751CA0434300A64D52 /* RecipeEditMemoTableViewCell.swift */,
+				9B8C59771CA0436000A64D52 /* RecipeEditIngredientTableViewCell.swift */,
 			);
 			name = RecipeEdit;
 			sourceTree = "<group>";
@@ -475,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BC9A3171C783CAA0031F631 /* RecipeListViewController.swift in Sources */,
+				9B8C59761CA0434300A64D52 /* RecipeEditMemoTableViewCell.swift in Sources */,
 				9B3FE5891C9EE9EA0061D21C /* RecipeEditNavigationController.swift in Sources */,
 				9BE32CEC1C9C2B9F001B98BF /* IngredientListViewController.swift in Sources */,
 				9B5367391C95A89100B6ADA2 /* RecipeDetailViewController.swift in Sources */,
@@ -487,12 +503,16 @@
 				9BD5CD481C8C001500D20731 /* RecipeIngredientLink.swift in Sources */,
 				9BA93B1E1C9FB38C005F6B9C /* RecipeDetailNameTableViewCell.swift in Sources */,
 				9B8C596A1CA0339F00A64D52 /* IngredientEditNameTableViewCell.swift in Sources */,
+				9B8C59741CA0433100A64D52 /* RecipeEditMethodTableViewCell.swift in Sources */,
+				9B8C59721CA0432300A64D52 /* RecipeEditFavoriteTableViewCell.swift in Sources */,
 				9B8772871C9D4BD50065A816 /* IngredientEditViewController.swift in Sources */,
 				9BE32CF01C9C4E2C001B98BF /* IngredientDetailViewController.swift in Sources */,
 				9BE32CF31C9C4F34001B98BF /* IngredientRecipeListTableViewCell.swift in Sources */,
 				9B8C596E1CA0369600A64D52 /* IngredientEditMemoTableViewCell.swift in Sources */,
 				9BA93B241C9FB3B4005F6B9C /* RecipeDetailMemoTableViewCell.swift in Sources */,
 				9B2AED081C9B5D6300B255C9 /* RecipeListItemTableViewCell.swift in Sources */,
+				9B8C59781CA0436000A64D52 /* RecipeEditIngredientTableViewCell.swift in Sources */,
+				9B8C59701CA0430900A64D52 /* RecipeEditNameTableViewCell.swift in Sources */,
 				9B53673B1C95AD8600B6ADA2 /* RecipeIngredientListTableViewCell.swift in Sources */,
 				9B3FE5871C9EE4630061D21C /* IngredientEditNavigationController.swift in Sources */,
 				9BD5CD451C8BFF7000D20731 /* Ingredient.swift in Sources */,

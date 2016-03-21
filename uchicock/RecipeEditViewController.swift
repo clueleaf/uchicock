@@ -9,18 +9,11 @@
 import UIKit
 import RealmSwift
 
-class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate  {
+class RecipeEditViewController: UIViewController {
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var recipeName: UITextField!
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var memoPlaceholder: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
-    var txtActiveView = UITextView()
+//    var txtActiveView = UITextView()
     var recipe = Recipe()
     var isAddMode = true
     
@@ -28,124 +21,93 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
         super.viewDidLoad()
 
         if recipe.recipeName == "" {
-            //追加
-            star1.setTitle("★", forState: .Normal)
-            star2.setTitle("☆", forState: .Normal)
-            star3.setTitle("☆", forState: .Normal)
-            method.selectedSegmentIndex = 0
             self.navigationItem.title = "レシピ登録"
             isAddMode = true
         } else {
-            //編集
-            recipeName.text = recipe.recipeName
-            memo.text = recipe.memo
-            
-            switch recipe.method{
-            case 0:
-                method.selectedSegmentIndex = 0
-            case 1:
-                method.selectedSegmentIndex = 1
-            case 2:
-                method.selectedSegmentIndex = 2
-            case 3:
-                method.selectedSegmentIndex = 3
-            case 4:
-                method.selectedSegmentIndex = 4
-            default:
-                method.selectedSegmentIndex = 4
-            }
-            
-            switch recipe.favorites{
-            case 1:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("☆", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
-            case 2:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("★", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
-            case 3:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("★", forState: .Normal)
-                star3.setTitle("★", forState: .Normal)
-            default:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("☆", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
-            }
-
-            if memo.text.isEmpty == false{
-                memoPlaceholder.hidden = true
-            }
             self.navigationItem.title = "レシピ編集"
             isAddMode = false
         }
         
-        memo.layer.masksToBounds = true
-        memo.layer.cornerRadius = 5.0
-        memo.layer.borderWidth = 1
-        memo.layer.borderColor = UIColor.grayColor().CGColor
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        self.tableView.estimatedRowHeight = 70
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        //        let notificationCenter = NSNotificationCenter.defaultCenter()
+        //        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        //        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        // NSNotificationCenterの解除処理
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-    }
+//    override func viewDidDisappear(animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        
+//        // NSNotificationCenterの解除処理
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+//        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
-        recipeName.resignFirstResponder()
-        return true
+    // MARK: - UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool
-    {
-        //textviewがフォーカスされたら、Labelを非表示
-        memoPlaceholder.hidden = true
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 4
+        }
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditName") as! RecipeEditNameTableViewCell
+                cell.recipe = recipe
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditFavorite") as! RecipeEditFavoriteTableViewCell
+                cell.recipe = recipe
+                return cell
+            }else if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditMethod") as! RecipeEditMethodTableViewCell
+                cell.recipe = recipe
+                return cell
+            }else if indexPath.row == 3 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditMemo") as! RecipeEditMemoTableViewCell
+                cell.recipe = recipe
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+    
 
-        txtActiveView = textView
-        return true
-    }
     
-    //textviewからフォーカスが外れて、TextViewが空だったらLabelを再び表示
-    func textViewDidEndEditing(textView: UITextView) {
-        if(memo.text.isEmpty){
-            memoPlaceholder.hidden = false
-        }
-    }
-    
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-        
-        let userInfo = notification.userInfo!
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
-        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
-        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
-        
-        if txtLimit >= kbdLimit {
-            scrollView.contentOffset.y = txtLimit - kbdLimit
-        }
-    }
-    
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
-        scrollView.contentOffset.y = 0
-    }
+//    func handleKeyboardWillShowNotification(notification: NSNotification) {
+//        
+//        let userInfo = notification.userInfo!
+//        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
+//        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
+//        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
+//        
+//        if txtLimit >= kbdLimit {
+//            scrollView.contentOffset.y = txtLimit - kbdLimit
+//        }
+//    }
+//    
+//    func handleKeyboardWillHideNotification(notification: NSNotification) {
+//        scrollView.contentOffset.y = 0
+//    }
     
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
@@ -153,6 +115,20 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
 
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+        var path = NSIndexPath(forRow: 0, inSection: 0)
+        let nameCell = tableView.cellForRowAtIndexPath(path) as! RecipeEditNameTableViewCell
+        let recipeName = nameCell.recipeName
+        path = NSIndexPath(forRow: 1, inSection: 0)
+        let favoriteCell = tableView.cellForRowAtIndexPath(path) as! RecipeEditFavoriteTableViewCell
+        let star2 = favoriteCell.star2
+        let star3 = favoriteCell.star3
+        path = NSIndexPath(forRow: 2, inSection: 0)
+        let methodCell = tableView.cellForRowAtIndexPath(path) as! RecipeEditMethodTableViewCell
+        let method = methodCell.method
+        path = NSIndexPath(forRow: 3, inSection: 0)
+        let memoCell = tableView.cellForRowAtIndexPath(path) as! RecipeEditMemoTableViewCell
+        let memo = memoCell.memo
+
         if recipeName.text == nil || recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
             //名前を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .Alert)
@@ -249,24 +225,6 @@ class RecipeEditViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     @IBAction func tapScreen(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
-    }
-
-    @IBAction func star1Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("☆", forState: .Normal)
-        star3.setTitle("☆", forState: .Normal)
-    }
-
-    @IBAction func star2Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("★", forState: .Normal)
-        star3.setTitle("☆", forState: .Normal)
-    }
-
-    @IBAction func star3Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("★", forState: .Normal)
-        star3.setTitle("★", forState: .Normal)
     }
 
     /*
