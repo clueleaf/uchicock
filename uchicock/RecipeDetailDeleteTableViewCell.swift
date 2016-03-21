@@ -1,5 +1,5 @@
 //
-//  RecipeNameTableViewCell.swift
+//  RecipeDeleteTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -8,15 +8,7 @@
 
 import UIKit
 
-class RecipeNameTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var recipeName: UILabel!
-    
-    var recipe: Recipe = Recipe(){
-        didSet{
-            recipeName.text = recipe.recipeName
-        }
-    }
+class RecipeDetailDeleteTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

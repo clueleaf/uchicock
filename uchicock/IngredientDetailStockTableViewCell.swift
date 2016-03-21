@@ -1,5 +1,5 @@
 //
-//  RecipeDeleteTableViewCell.swift
+//  IngredientStockTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
-class RecipeDeleteTableViewCell: UITableViewCell {
+class IngredientDetailStockTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var stock: UISwitch!
+    
+    var ingredient: Ingredient = Ingredient(){
+        didSet{
+            stock.on = ingredient.stockFlag
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +29,4 @@ class RecipeDeleteTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

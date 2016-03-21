@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeFavoriteTableViewCell: UITableViewCell {
+class RecipeDetailFavoriteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!

@@ -1,5 +1,5 @@
 //
-//  IngredientNameTableViewCell.swift
+//  RecipeNameTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -8,17 +8,16 @@
 
 import UIKit
 
-class IngredientNameTableViewCell: UITableViewCell {
+class RecipeDetailNameTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var recipeName: UILabel!
     
-    @IBOutlet weak var ingredientName: UILabel!
-    
-    var ingredient: Ingredient = Ingredient(){
+    var recipe: Recipe = Recipe(){
         didSet{
-            ingredientName.text = ingredient.ingredientName
+            recipeName.text = recipe.recipeName
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

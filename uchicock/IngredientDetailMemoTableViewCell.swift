@@ -1,5 +1,5 @@
 //
-//  IngredientDeleteTableViewCell.swift
+//  IngredientMemoTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -8,7 +8,15 @@
 
 import UIKit
 
-class IngredientDeleteTableViewCell: UITableViewCell {
+class IngredientDetailMemoTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var memo: UILabel!
+    
+    var ingredient: Ingredient = Ingredient(){
+        didSet{
+            memo.text = ingredient.memo
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

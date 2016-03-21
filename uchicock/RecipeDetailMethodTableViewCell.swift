@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeMethodTableViewCell: UITableViewCell {
+class RecipeDetailMethodTableViewCell: UITableViewCell {
 
     @IBOutlet weak var method: UISegmentedControl!
     

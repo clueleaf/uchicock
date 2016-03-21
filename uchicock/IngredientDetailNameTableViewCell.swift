@@ -1,5 +1,5 @@
 //
-//  RecipeMemoTableViewCell.swift
+//  IngredientNameTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class RecipeMemoTableViewCell: UITableViewCell {
+class IngredientDetailNameTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var memo: UILabel!
     
-    var recipe: Recipe = Recipe(){
+    @IBOutlet weak var ingredientName: UILabel!
+    
+    var ingredient: Ingredient = Ingredient(){
         didSet{
-            memo.text = recipe.memo
+            ingredientName.text = ingredient.ingredientName
         }
     }
     

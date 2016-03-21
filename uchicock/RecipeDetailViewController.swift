@@ -112,19 +112,19 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeName") as! RecipeNameTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailName") as! RecipeDetailNameTableViewCell
                 cell.recipe = recipe
                 return cell
             }else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeFavorite") as! RecipeFavoriteTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailFavorite") as! RecipeDetailFavoriteTableViewCell
                 cell.recipe = recipe
                 return cell
             }else if indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeMethod") as! RecipeMethodTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMethod") as! RecipeDetailMethodTableViewCell
                 cell.recipe = recipe
                 return cell
             }else if indexPath.row == 3 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeMemo") as! RecipeMemoTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMemo") as! RecipeDetailMemoTableViewCell
                 cell.recipe = recipe
                 return cell
             }
@@ -133,7 +133,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
             return cell
         }else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDelete") as! RecipeDeleteTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailDelete") as! RecipeDetailDeleteTableViewCell
             return cell
         }
         return UITableViewCell()

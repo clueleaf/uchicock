@@ -115,15 +115,15 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientName") as! IngredientNameTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailName") as! IngredientDetailNameTableViewCell
                 cell.ingredient = ingredient
                 return cell
             }else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientStock") as! IngredientStockTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailStock") as! IngredientDetailStockTableViewCell
                 cell.ingredient = ingredient
                 return cell
             }else if indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientMemo") as! IngredientMemoTableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailMemo") as! IngredientDetailMemoTableViewCell
                 cell.ingredient = ingredient
                 return cell
             }
@@ -132,7 +132,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             cell.recipeIngredient = ingredient.recipeIngredients[indexPath.row]
             return cell
         }else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDelete") as! IngredientDeleteTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailDelete") as! IngredientDetailDeleteTableViewCell
             return cell
         }
         return UITableViewCell()
