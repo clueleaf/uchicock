@@ -10,21 +10,27 @@ import UIKit
 
 class IngredientRecipeListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var option: UILabel!
     @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var amount: UILabel!
-    
+    @IBOutlet weak var favorites: UILabel!
+    @IBOutlet weak var shortage: UILabel!
+
     var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
         didSet{
             recipeName.text = recipeIngredient.recipe.recipeName
-            amount.text = recipeIngredient.amount
-            if recipeIngredient.mustFlag{
-                option.text = ""
-                option.backgroundColor = UIColor.clearColor()
-            }else{
-                option.text = "オプション"
-                option.backgroundColor = UIColor.grayColor()
+            
+            switch recipeIngredient.recipe.favorites{
+            case 1:
+                favorites.text = "★☆☆"
+            case 2:
+                favorites.text = "★★☆"
+            case 3:
+                favorites.text = "★★★"
+            default:
+                favorites.text = "★★☆"
             }
+            
+            shortage.text = "今すぐ作れます！"
+            shortage.textColor = UIColor.blueColor()
         }
     }
 

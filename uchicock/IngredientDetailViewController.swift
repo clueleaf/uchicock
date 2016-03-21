@@ -90,7 +90,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         return UITableViewCell()
     }
     
-    // MARK: - IBAction    
+    // MARK: - IBAction
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }

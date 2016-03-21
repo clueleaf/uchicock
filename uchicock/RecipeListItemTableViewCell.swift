@@ -11,7 +11,6 @@ import UIKit
 class RecipeListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var favoritesContainer: UIView!
     @IBOutlet weak var favorites: UILabel!
     @IBOutlet weak var shortage: UILabel!
     
