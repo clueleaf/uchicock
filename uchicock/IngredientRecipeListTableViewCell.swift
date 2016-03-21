@@ -29,8 +29,28 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
                 favorites.text = "★★☆"
             }
             
-            shortage.text = "今すぐ作れます！"
-            shortage.textColor = UIColor.blueColor()
+            var shortageNum = 0
+            var shortageName = ""
+            for (var i = 0; i<recipeIngredient.recipe.recipeIngredients.count; ++i){
+                if recipeIngredient.recipe.recipeIngredients[i].mustFlag && recipeIngredient.recipe.recipeIngredients[i].ingredient.stockFlag == false {
+                    shortageNum++
+                    shortageName = recipeIngredient.recipe.recipeIngredients[i].ingredient.ingredientName
+                }
+            }
+            if shortageNum == 0 {
+                shortage.text = "すぐつくれる！"
+                shortage.textColor = UIColor.blueColor()
+            }else if shortageNum == 1{
+                if shortageName.characters.count > 10{
+                    shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
+                }else{
+                    shortage.text = shortageName + "が足りません"
+                }
+                shortage.textColor = UIColor.grayColor()
+            }else{
+                shortage.text = "材料が" + String(shortageNum) + "個足りません"
+                shortage.textColor = UIColor.grayColor()
+            }
         }
     }
 

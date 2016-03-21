@@ -13,6 +13,7 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
     @IBOutlet weak var option: UILabel!
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var stock: UILabel!
     
     var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
         didSet{
@@ -25,6 +26,19 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
                 option.text = "オプション"
                 option.backgroundColor = UIColor.grayColor()
             }
+            
+            if recipeIngredient.ingredient.stockFlag {
+                stock.text = "在庫あり"
+                stock.backgroundColor = UIColor.blueColor()
+                ingredientName.textColor = UIColor.blackColor()
+                amount.textColor = UIColor.blackColor()
+            }else{
+                stock.text = "在庫なし"
+                stock.backgroundColor = UIColor.grayColor()
+                ingredientName.textColor = UIColor.grayColor()
+                amount.textColor = UIColor.grayColor()
+            }
+            
         }
     }
     
