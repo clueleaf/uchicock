@@ -143,6 +143,21 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }
     
+    @IBAction func stockButtonTapped(sender: UISwitch) {
+        if sender.on{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredient.stockFlag = true
+            }
+        }else{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredient.stockFlag = false
+            }
+        }
+        tableView.reloadData()
+    }
+
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushEditIngredient" {

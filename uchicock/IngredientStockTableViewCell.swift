@@ -29,18 +29,4 @@ class IngredientStockTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-    @IBAction func stockSwitchTapped(sender: UISwitch) {
-        if sender.on{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }else{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = false
-            }
-        }
-    }
 }
