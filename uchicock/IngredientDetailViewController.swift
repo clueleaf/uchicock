@@ -22,8 +22,6 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        
         let realm = try! Realm()
         let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
         if ing.count < 1 {
