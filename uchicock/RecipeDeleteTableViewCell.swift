@@ -1,5 +1,5 @@
 //
-//  IngredientDeleteTableViewCell.swift
+//  RecipeDeleteTableViewCell.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/03/21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientDeleteTableViewCell: UITableViewCell {
+class RecipeDeleteTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

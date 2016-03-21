@@ -51,12 +51,43 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
+        }else if indexPath.section == 2{
+            let alertView = UIAlertController(title: "本当に削除しますか？", message: "", preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
+                action in
+                let realm = try! Realm()
+                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                for (var i = 0; i < self.recipe.recipeIngredients.count ; ++i){
+                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
+                    deletingRecipeIngredientList.append(recipeIngredient)
+                }
+                for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                    try! realm.write{
+                        realm.delete(deletingRecipeIngredientList[i])
+                    }
+                }
+                try! realm.write {
+                    realm.delete(self.recipe)
+                }
+                self.navigationController?.popViewControllerAnimated(true)
+                })
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            presentViewController(alertView, animated: true, completion: nil)
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0
+        } else {
+            return 30
         }
     }
     
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,8 +95,18 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             return 4
         }else if section == 1 {
             return recipe.recipeIngredients.count
+        }else if section == 2{
+            return 1
         }
         return 0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "材料"
+        }else{
+            return nil
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -90,6 +131,9 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientItem") as! RecipeIngredientListTableViewCell
             cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
+            return cell
+        }else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDelete") as! RecipeDeleteTableViewCell
             return cell
         }
         return UITableViewCell()

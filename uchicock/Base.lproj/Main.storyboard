@@ -544,6 +544,26 @@
                                             <outlet property="option" destination="ybK-xv-EOf" id="N5r-5I-YXA"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeDelete" rowHeight="50" id="4BR-ta-2mC" customClass="RecipeDeleteTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="408" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4BR-ta-2mC" id="W6M-6U-vbo">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このレシピを削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv6-eW-Saw">
+                                                    <rect key="frame" x="200" y="9.5" width="200" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uv6-eW-Saw" firstAttribute="centerX" secondItem="W6M-6U-vbo" secondAttribute="centerX" id="FOm-2p-Pnr"/>
+                                                <constraint firstItem="uv6-eW-Saw" firstAttribute="centerY" secondItem="W6M-6U-vbo" secondAttribute="centerY" id="YdR-j1-3bn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="bvf-aa-P4b" id="d3C-Bs-tpS"/>
@@ -1265,6 +1285,6 @@
         <segue reference="pyL-Bh-L11"/>
         <segue reference="9Wz-4C-0K0"/>
         <segue reference="7SF-P9-ikG"/>
-        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="hrp-Pj-JYM"/>
     </inferredMetricsTieBreakers>
 </document>
