@@ -11,12 +11,7 @@ import RealmSwift
 
 class IngredientDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-//    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var ingredientName: UILabel!
-    @IBOutlet weak var stock: UISwitch!
-    @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var memoHeight: NSLayoutConstraint!
     
     var ingredientId = String()
     var ingredient = Ingredient()
@@ -27,6 +22,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
         
         let realm = try! Realm()
         let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
@@ -39,13 +35,10 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         } else {
             ingredient = realm.objects(Ingredient).filter("id == %@",ingredientId).first!
             self.navigationItem.title = ingredient.ingredientName
-            ingredientName.text = ingredient.ingredientName
-            memo.text = ingredient.memo
-            stock.on = ingredient.stockFlag
             tableView.reloadData()
-            let rect = memo.sizeThatFits(CGSizeMake(memo.frame.width,CGFloat.max))
-            memoHeight.constant = rect.height
-
+            
+            self.tableView.estimatedRowHeight = 70
+            self.tableView.rowHeight = UITableViewAutomaticDimension
         }
     }
     
@@ -55,18 +48,22 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+        if indexPath.section == 1 {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+        }
     }
     
     // MARK: - UITableViewDataSource
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            return 3
+        }else if section == 1 {
             return ingredient.recipeIngredients.count
         }
         return 0
@@ -74,6 +71,20 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientName") as! IngredientNameTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientStock") as! IngredientStockTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }else if indexPath.row == 2 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientMemo") as! IngredientMemoTableViewCell
+                cell.ingredient = ingredient
+                return cell
+            }
+        }else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeItem") as! IngredientRecipeListTableViewCell
             cell.recipeIngredient = ingredient.recipeIngredients[indexPath.row]
             return cell
@@ -82,20 +93,6 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: - IBAction    
-    @IBAction func stockSwitchTapped(sender: UISwitch) {
-        if sender.on{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }else{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = false
-            }
-        }
-    }
-
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }
