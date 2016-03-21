@@ -50,12 +50,43 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+        }else if indexPath.section == 2{
+            if ingredient.recipeIngredients.count > 0 {
+                let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+                presentViewController(alertView, animated: true, completion: nil)
+            } else{
+                let alertView = UIAlertController(title: "本当に削除しますか？", message: "", preferredStyle: .ActionSheet)
+                alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
+                    action in
+                    let realm = try! Realm()
+                    try! realm.write {
+                        realm.delete(self.ingredient)
+                    }
+                    self.navigationController?.popViewControllerAnimated(true)
+                    })
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                presentViewController(alertView, animated: true, completion: nil)
+            }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1{
+            return 30
+        } else {
+            return 0
         }
     }
     
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if ingredient.recipeIngredients.count > 0 {
+            return 2
+        }else{
+            return 3
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,8 +94,22 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
             return 3
         }else if section == 1 {
             return ingredient.recipeIngredients.count
+        }else if section == 2 {
+            return 1
         }
         return 0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            if ingredient.recipeIngredients.count > 0 {
+                return "この材料を使うレシピ"
+            }else {
+                return "この材料を使うレシピは登録されていません"
+            }
+        }else{
+            return nil
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -85,6 +130,9 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         }else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeItem") as! IngredientRecipeListTableViewCell
             cell.recipeIngredient = ingredient.recipeIngredients[indexPath.row]
+            return cell
+        }else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDelete") as! IngredientDeleteTableViewCell
             return cell
         }
         return UITableViewCell()

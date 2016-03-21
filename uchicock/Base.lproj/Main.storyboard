@@ -717,7 +717,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cx-pP-UZw">
-                                                    <rect key="frame" x="16" y="43.5" width="543" height="14.5"/>
+                                                    <rect key="frame" x="16" y="43.5" width="543" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="dNt-Sc-TOD"/>
                                                     </constraints>
@@ -759,6 +759,26 @@
                                             <outlet property="recipeName" destination="ved-xO-x24" id="fa8-2Z-LCM"/>
                                             <outlet property="shortage" destination="9Cx-pP-UZw" id="v2V-Uc-R4m"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientDelete" rowHeight="50" id="xOg-0f-VtA" customClass="IngredientDeleteTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="335" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xOg-0f-VtA" id="l9q-RU-CFC">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="この材料を削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-cW-pyo">
+                                                    <rect key="frame" x="212.5" y="10" width="175" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="v0p-cW-pyo" firstAttribute="centerY" secondItem="l9q-RU-CFC" secondAttribute="centerY" id="6of-Ak-NOB"/>
+                                                <constraint firstItem="v0p-cW-pyo" firstAttribute="centerX" secondItem="l9q-RU-CFC" secondAttribute="centerX" id="aoQ-hw-uGH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
