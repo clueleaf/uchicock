@@ -55,16 +55,39 @@ class RecipeEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UITableViewDelegate
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0
+        } else {
+            return 30
+        }
+    }
+    
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if isAddMode {
+            return 1
+        }else{
+            return 2
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 4
+        }else if section == 1 {
+            return recipe.recipeIngredients.count
         }
         return 0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "材料"
+        }else{
+            return nil
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,6 +109,10 @@ class RecipeEditViewController: UIViewController {
                 cell.recipe = recipe
                 return cell
             }
+        }else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient") as! RecipeEditIngredientTableViewCell
+            cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
+            return cell
         }
         return UITableViewCell()
     }

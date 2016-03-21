@@ -1234,6 +1234,85 @@
                                             <outlet property="memo" destination="sb6-lF-kAE" id="APF-SG-HHx"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="Ozd-44-I28" userLabel="材料一覧セル" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="458" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozd-44-I28" id="5oV-sH-oNK">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBd-bB-Zmb">
+                                                    <rect key="frame" x="5" y="45" width="50" height="21"/>
+                                                    <color key="backgroundColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="SFS-6P-cbZ"/>
+                                                        <constraint firstAttribute="height" constant="21" id="hkY-XW-0id"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKh-SJ-2KJ" userLabel="ingredientName">
+                                                    <rect key="frame" x="20" y="15" width="110" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="syI-MA-YTd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eu5-XU-uTU" userLabel="amount">
+                                                    <rect key="frame" x="70" y="45" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="URB-Ab-F2Q"/>
+                                                        <constraint firstAttribute="width" constant="60" id="c6b-RQ-w0m"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="centerY" secondItem="5oV-sH-oNK" secondAttribute="centerY" id="45T-LT-bJv"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="top" secondItem="WKh-SJ-2KJ" secondAttribute="bottom" constant="10" id="5FV-C0-gKk"/>
+                                                <constraint firstItem="QBd-bB-Zmb" firstAttribute="leading" secondItem="5oV-sH-oNK" secondAttribute="leading" constant="5" id="Kkj-1d-xdE"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="leading" secondItem="QBd-bB-Zmb" secondAttribute="trailing" constant="5" id="KmW-yG-uf0"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="leading" secondItem="5oV-sH-oNK" secondAttribute="leadingMargin" constant="60" id="LT1-2T-uwr"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="top" secondItem="5oV-sH-oNK" secondAttribute="top" constant="45" id="Mc0-wa-ZSt"/>
+                                                <constraint firstAttribute="trailing" secondItem="WKh-SJ-2KJ" secondAttribute="trailing" constant="15" id="Tix-GB-Fgn"/>
+                                                <constraint firstAttribute="trailing" secondItem="Eu5-XU-uTU" secondAttribute="trailing" constant="15" id="Wtr-fp-Eao"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="leading" secondItem="WKh-SJ-2KJ" secondAttribute="trailing" constant="15" id="ZnN-jJ-ouz"/>
+                                                <constraint firstItem="WKh-SJ-2KJ" firstAttribute="top" secondItem="5oV-sH-oNK" secondAttribute="top" constant="15" id="bBW-T4-TFC"/>
+                                                <constraint firstItem="WKh-SJ-2KJ" firstAttribute="leading" secondItem="QBd-bB-Zmb" secondAttribute="trailing" constant="5" id="dt7-Sq-7Zv"/>
+                                                <constraint firstItem="WKh-SJ-2KJ" firstAttribute="centerY" secondItem="5oV-sH-oNK" secondAttribute="centerY" id="ePT-VY-C5p"/>
+                                                <constraint firstItem="QBd-bB-Zmb" firstAttribute="centerY" secondItem="5oV-sH-oNK" secondAttribute="centerY" id="g1M-tM-aqM"/>
+                                                <constraint firstAttribute="bottom" secondItem="Eu5-XU-uTU" secondAttribute="bottom" constant="2.5" id="jAz-84-V4m"/>
+                                                <constraint firstItem="WKh-SJ-2KJ" firstAttribute="leading" secondItem="5oV-sH-oNK" secondAttribute="leading" constant="20" id="kgA-Jf-Eeh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Eu5-XU-uTU" secondAttribute="trailing" constant="15" id="oI6-Go-Gvn"/>
+                                                <constraint firstItem="Eu5-XU-uTU" firstAttribute="leading" secondItem="QBd-bB-Zmb" secondAttribute="trailing" constant="15" id="pFQ-mD-EL5"/>
+                                                <constraint firstItem="QBd-bB-Zmb" firstAttribute="top" secondItem="5oV-sH-oNK" secondAttribute="top" constant="45" id="uzJ-Qf-LDp"/>
+                                                <constraint firstAttribute="bottom" secondItem="QBd-bB-Zmb" secondAttribute="bottom" constant="2.5" id="ynH-A8-XqT"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dt7-Sq-7Zv"/>
+                                                    <exclude reference="ePT-VY-C5p"/>
+                                                    <exclude reference="g1M-tM-aqM"/>
+                                                    <exclude reference="45T-LT-bJv"/>
+                                                    <exclude reference="5FV-C0-gKk"/>
+                                                    <exclude reference="KmW-yG-uf0"/>
+                                                    <exclude reference="LT1-2T-uwr"/>
+                                                    <exclude reference="ZnN-jJ-ouz"/>
+                                                    <exclude reference="oI6-Go-Gvn"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amount" destination="Eu5-XU-uTU" id="mRA-Mc-ueI"/>
+                                            <outlet property="ingredientName" destination="WKh-SJ-2KJ" id="kMZ-N5-Cza"/>
+                                            <outlet property="option" destination="QBd-bB-Zmb" id="70r-pt-MQ2"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="rIa-nq-cmF" id="zwK-FX-7sp"/>

@@ -10,6 +10,24 @@ import UIKit
 
 class RecipeEditIngredientTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var option: UILabel!
+    @IBOutlet weak var amount: UILabel!
+    
+    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
+        didSet{
+            ingredientName.text = recipeIngredient.ingredient.ingredientName
+            amount.text = recipeIngredient.amount
+            if recipeIngredient.mustFlag{
+                option.text = ""
+                option.backgroundColor = UIColor.clearColor()
+            }else{
+                option.text = "オプション"
+                option.backgroundColor = UIColor.grayColor()
+            }
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
