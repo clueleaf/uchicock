@@ -1,19 +1,20 @@
 //
-//  IngredientEditViewController.swift
+//  IngredientEditTableViewController.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2016/03/19.
+//  Created by Kou Kinyo on 2016/03/23.
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class IngredientEditViewController: UIViewController {
+class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var stock: UISwitch!
+    @IBOutlet weak var memo: UITextView!
     
-//    var txtActiveView = UITextView()
     var ingredient = Ingredient()
     var isAddMode = true
     
@@ -27,17 +28,16 @@ class IngredientEditViewController: UIViewController {
             self.navigationItem.title = "材料編集"
             isAddMode = false
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableViewAutomaticDimension
 
-//        let notificationCenter = NSNotificationCenter.defaultCenter()
-//        notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
-//        notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        ingredientName.text = ingredient.ingredientName
+        ingredientName.delegate = self
+        stock.on = ingredient.stockFlag
+        memo.text = ingredient.memo
+        memo.layer.masksToBounds = true
+        memo.layer.cornerRadius = 5.0
+        memo.layer.borderWidth = 1
+        memo.layer.borderColor = UIColor.grayColor().CGColor
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,69 +45,74 @@ class IngredientEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        ingredientName.resignFirstResponder()
+        return true
+    }
+
+    // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 3
         }
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditName") as! IngredientEditNameTableViewCell
-                cell.ingredient = ingredient
-                return cell
-            }else if indexPath.row == 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditStock") as! IngredientEditStockTableViewCell
-                cell.ingredient = ingredient
-                return cell
-            }else if indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientEditMemo") as! IngredientEditMemoTableViewCell
-                cell.ingredient = ingredient
-                return cell
-            }
-        }
-        return UITableViewCell()
-    }
+    /*
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-    
-//    func handleKeyboardWillShowNotification(notification: NSNotification) {
-//        let userInfo = notification.userInfo!
-//        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-//        let myBoundSize: CGSize = UIScreen.mainScreen().bounds.size
-//        let txtLimit = txtActiveView.frame.origin.y + txtActiveView.frame.height + 8.0
-//        let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
-//        if txtLimit >= kbdLimit {
-//            tableView.contentOffset.y = txtLimit - kbdLimit
-//        }
-//    }
-//    
-//    func handleKeyboardWillHideNotification(notification: NSNotification) {
-//        tableView.contentOffset.y = 0
-//    }
-    
+        // Configure the cell...
+
+        return cell
+    }
+    */
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
-        var path = NSIndexPath(forRow: 0, inSection: 0)
-        let nameCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditNameTableViewCell
-        let ingredientName = nameCell.ingredientName
-        path = NSIndexPath(forRow: 1, inSection: 0)
-        let stockCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditStockTableViewCell
-        let stock = stockCell.stock
-        path = NSIndexPath(forRow: 2, inSection: 0)
-        let memoCell = tableView.cellForRowAtIndexPath(path) as! IngredientEditMemoTableViewCell
-        let memo = memoCell.memo
-        
         if ingredientName.text == nil || ingredientName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
             //名前を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)
@@ -150,12 +155,12 @@ class IngredientEditViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
-    @IBAction func tapScreen(sender: UITapGestureRecognizer) {
+
+    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
+
     
     /*
     // MARK: - Navigation
