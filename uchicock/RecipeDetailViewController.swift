@@ -153,7 +153,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             }
         }else if segue.identifier == "PushEditRecipe" {
             let enc = segue.destinationViewController as! RecipeEditNavigationController
-            let evc = enc.visibleViewController as! RecipeEditViewController
+            let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
         }
     }
