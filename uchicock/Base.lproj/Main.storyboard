@@ -1174,6 +1174,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="80" id="Hj5-F0-hHq" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="430" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hj5-F0-hHq" id="Pnw-ta-qTZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>

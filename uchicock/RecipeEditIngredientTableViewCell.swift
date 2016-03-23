@@ -10,22 +10,47 @@ import UIKit
 
 class RecipeEditIngredientTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var ingredientName: UILabel!
-    @IBOutlet weak var option: UILabel!
-    @IBOutlet weak var amount: UILabel!
+    var ingredientName = UILabel()
+    var option = UILabel()
+    var amount = UILabel()
     
-    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
-        didSet{
-            ingredientName.text = recipeIngredient.ingredient.ingredientName
-            amount.text = recipeIngredient.amount
-            if recipeIngredient.mustFlag{
-                option.text = ""
-                option.backgroundColor = UIColor.clearColor()
-            }else{
-                option.text = "オプション"
-                option.backgroundColor = UIColor.grayColor()
-            }
-        }
+//    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
+//        didSet{
+//            ingredientName.text = recipeIngredient.ingredient.ingredientName
+//            amount.text = recipeIngredient.amount
+//            if recipeIngredient.mustFlag{
+//                option.text = ""
+//            }else{
+//                option.text = "オプション"
+//            }
+//        }
+//    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String!)
+    {
+        //First Call Super
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        ingredientName = UILabel(frame: CGRectMake(10, 2, 300, 15))
+        ingredientName.text = ""
+        ingredientName.font = UIFont.systemFontOfSize(14)
+        self.addSubview(ingredientName)
+        
+        option = UILabel(frame: CGRectMake(10, 20, 300, 15))
+        option.text = ""
+        option.font = UIFont.systemFontOfSize(12)
+        option.textColor = UIColor.grayColor()
+        self.addSubview(option)
+
+        amount = UILabel(frame: CGRectMake(10, 30, 300, 15))
+        amount.text = ""
+        amount.font = UIFont.systemFontOfSize(12)
+        self.addSubview(amount)
+    }
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)!
     }
 
     override func awakeFromNib() {

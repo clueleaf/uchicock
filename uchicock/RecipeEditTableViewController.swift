@@ -23,6 +23,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerClass(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
@@ -76,85 +77,95 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     }
     
     // MARK: - UITableViewDelegate
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 0
-        } else {
-            return 30
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }else if indexPath.section == 1{
+            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }
+        return 0
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
+    }
+    
+    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+        if indexPath.section == 0 {
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+        }else if indexPath.section == 1{
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+        }
+        return 0
     }
     
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        if isAddMode {
-            return 1
+//            return 1
 //        }else{
 //            return 2
 //        }
-    }
-
+//    }
+    
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return nil
+//        }else if section == 1{
+//            return "材料"
+//        }
+//        return nil
+//    }
+//    
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 0
+//        }else if section == 1{
+//            return 30
+//        }
+//        return 0
+//    }
+//    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return super.tableView(tableView, viewForHeaderInSection: section)
+//    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 4
+            return super.tableView(tableView, numberOfRowsInSection: 0)
         }else if section == 1 {
             return recipe.recipeIngredients.count
         }
         return 0
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "材料"
-        }else{
-            return nil
-        }
-    }
     
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if indexPath.section == 0 {
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        }else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
+            cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
+            if recipe.recipeIngredients[indexPath.row].mustFlag {
+                cell.option.text = ""
+            }else{
+                cell.option.text = "オプション"
+            }
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            return cell
+        }
+        return UITableViewCell()
     }
-    */
-
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            if indexPath.row == 0 {
-//                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditName") as! RecipeEditNameTableViewCell
-//                cell.recipe = recipe
-//                return cell
-//            }else if indexPath.row == 1 {
-//                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditFavorite") as! RecipeEditFavoriteTableViewCell
-//                cell.recipe = recipe
-//                return cell
-//            }else if indexPath.row == 2 {
-//                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditMethod") as! RecipeEditMethodTableViewCell
-//                cell.recipe = recipe
-//                return cell
-//            }else if indexPath.row == 3 {
-//                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditMemo") as! RecipeEditMemoTableViewCell
-//                cell.recipe = recipe
-//                return cell
-//            }
-//        }else if indexPath.section == 1 {
-//            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient") as! RecipeEditIngredientTableViewCell
-//            cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
-//            return cell
-//        }
-//        return UITableViewCell()
-//    }
     
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
-    */
-
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
     /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -174,14 +185,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     }
     */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-    
     // MARK: - IBAction
     @IBAction func star1Tapped(sender: UIButton) {
         star1.setTitle("★", forState: .Normal)
