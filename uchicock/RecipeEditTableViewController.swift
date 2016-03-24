@@ -130,15 +130,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return 2
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return nil
-        }else if section == 1{
-            return "材料"
-        }
-        return nil
-    }
-
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
@@ -156,10 +147,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         return 0
     }
-
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return super.tableView(tableView, viewForHeaderInSection: section)
-//    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -169,7 +156,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         return 0
     }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -220,13 +206,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
     // MARK: - IBAction
     @IBAction func star1Tapped(sender: UIButton) {
         star1.setTitle("★", forState: .Normal)
@@ -256,9 +235,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
-            
-            //TODO:材料を一つも入れていない場合もアラートを出す
-            
+        }else if editingRecipeIngredientList.count == 0{
+            //材料が一つもない
+            let noNameAlertView = UIAlertController(title: "", message: "材料を一つ以上入力してください", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
             
@@ -270,24 +251,33 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                     presentViewController(sameNameAlertView, animated: true, completion: nil)
                 }else{
-                    let newRecipe = Recipe()
-                    newRecipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                    if star3.currentTitle == "★" {
-                        newRecipe.favorites = 3
-                    }else if star2.currentTitle == "★" {
-                        newRecipe.favorites = 2
-                    }else{
-                        newRecipe.favorites = 1
-                    }
-                    
-                    newRecipe.method = method.selectedSegmentIndex
-                    newRecipe.memo = memo.text
-                    
-                    //TODO:一番先にリレーションシップを登録する
-                    //TODO:材料がない場合は材料も登録する
-                    
-                    try! realm.write {
+                    try! realm.write{
+                        let newRecipe = Recipe()
+                        newRecipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        if star3.currentTitle == "★" {
+                            newRecipe.favorites = 3
+                        }else if star2.currentTitle == "★" {
+                            newRecipe.favorites = 2
+                        }else{
+                            newRecipe.favorites = 1
+                        }
+                        
+                        newRecipe.method = method.selectedSegmentIndex
+                        newRecipe.memo = memo.text
                         realm.add(newRecipe)
+                        
+                        for editingRecipeIngredient in editingRecipeIngredientList{
+                            let recipeIngredientLink = RecipeIngredientLink()
+                            recipeIngredientLink.amount = editingRecipeIngredient.amount
+                            recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag
+                            realm.add(recipeIngredientLink)
+
+                            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",editingRecipeIngredient.ingredientName).first!
+                            ingredient.recipeIngredients.append(recipeIngredientLink)
+
+                            let recipe = realm.objects(Recipe).filter("recipeName == %@",newRecipe.recipeName).first!
+                            recipe.recipeIngredients.append(recipeIngredientLink)
+                        }
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
@@ -300,6 +290,26 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     presentViewController(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     try! realm.write {
+                        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                        for ri in recipe.recipeIngredients{
+                            let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
+                            deletingRecipeIngredientList.append(recipeIngredient)
+                        }
+                        
+                        for ri in deletingRecipeIngredientList{
+                            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                            for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                                if ingredient.recipeIngredients[i].id == ri.id{
+                                    ingredient.recipeIngredients.removeAtIndex(i)
+                                }
+                            }
+                        }
+                        let editingRecipe = realm.objects(Recipe).filter("id == %@",recipe.id).first!
+                        editingRecipe.recipeIngredients.removeAll()
+                        for ri in deletingRecipeIngredientList{
+                            realm.delete(ri)
+                        }
+
                         recipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         if star3.currentTitle == "★" {
                             recipe.favorites = 3
@@ -310,6 +320,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text
+                        
+                        for editingRecipeIngredient in editingRecipeIngredientList{
+                            let recipeIngredientLink = RecipeIngredientLink()
+                            recipeIngredientLink.amount = editingRecipeIngredient.amount
+                            recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag
+                            realm.add(recipeIngredientLink)
+                            
+                            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",editingRecipeIngredient.ingredientName).first!
+                            ingredient.recipeIngredients.append(recipeIngredientLink)
+                            
+                            let recipe = realm.objects(Recipe).filter("recipeName == %@",self.recipe.recipeName).first!
+                            recipe.recipeIngredients.append(recipeIngredientLink)
+                        }
+                        
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
@@ -333,8 +357,29 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         let riec = fromViewController as! RecipeIngredientEditViewController
-
-        
+        if riec.isAddMode{
+            let editingRecipeIngredient = EditingRecipeIngredient()
+            editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            editingRecipeIngredient.amount = riec.amount.text!
+            editingRecipeIngredient.mustFlag = !riec.option.on
+            editingRecipeIngredientList.append(editingRecipeIngredient)
+        }else{
+            if riec.deleteFlag{
+                for var i = 0; i < editingRecipeIngredientList.count; ++i{
+                    if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
+                        editingRecipeIngredientList.removeAtIndex(i)
+                    }
+                }
+            }else{
+                for editingRecipeIngredient in editingRecipeIngredientList{
+                    if editingRecipeIngredient.id == riec.recipeIngredient.id{
+                        editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        editingRecipeIngredient.amount = riec.amount.text!
+                        editingRecipeIngredient.mustFlag = !riec.option.on
+                    }
+                }
+            }
+        }
         return true
     }
     
@@ -352,6 +397,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let evc = enc.visibleViewController as! RecipeIngredientEditViewController
             if let indexPath = sender as? NSIndexPath{
                 if indexPath.row < editingRecipeIngredientList.count{
+                    if self.editingRecipeIngredientList[indexPath.row].id == ""{
+                        self.editingRecipeIngredientList[indexPath.row].id = NSUUID().UUIDString
+                    }
                     evc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
                     evc.isAddMode = false
                 }else if indexPath.row == editingRecipeIngredientList.count{

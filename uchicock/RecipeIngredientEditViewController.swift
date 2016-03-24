@@ -13,6 +13,7 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
 
     var recipeIngredient = EditingRecipeIngredient()
     var isAddMode = false
+    var deleteFlag = false
     
     @IBOutlet weak var ingredientName: UITextField!
     @IBOutlet weak var amount: UITextField!
@@ -30,6 +31,7 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             option.on = !recipeIngredient.mustFlag
             self.navigationItem.title = "材料の変更"
         }else{
+            option.on = false
             self.navigationItem.title = "材料の追加"
         }
     }
@@ -62,34 +64,6 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
     {
         return true
     }
-    
-//    func verifyIngredientName() -> Bool{
-//        if ingredientName.text == "" {
-//            let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)
-//            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
-//            presentViewController(noNameAlertView, animated: true, completion: nil)
-//            return false
-//        }
-//        
-//        var result = true
-//        let realm = try! Realm()
-//        let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
-//        if sameNameIngredient.count == 0{
-//            //同じ名前の材料が存在しないので新規に登録する
-//            let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .Alert)
-//            registAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-//                print("true")
-//                result = true}))
-//            registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in
-//                print("false")
-//                result = false})
-//            presentViewController(registAlertView, animated: true, completion: nil)
-//            return result
-//        }else{
-//            return true
-//        }
-//    }
-    
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
@@ -109,9 +83,9 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
         if sameNameIngredient.count == 0{
             //同じ名前の材料が存在しないので新規に登録する
             let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .Alert)
-            registAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            registAlertView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: {action in
                 let ingredient = Ingredient()
-                ingredient.ingredientName = self.ingredientName.text!
+                ingredient.ingredientName = self.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                 ingredient.stockFlag = false
                 ingredient.memo = ""
                 try! realm.write {
@@ -119,10 +93,25 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
                 }
                 self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)}))
             
-            registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Default){action in})
             presentViewController(registAlertView, animated: true, completion: nil)
         }else{
             self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
+        }
+    }
+    
+    @IBAction func notUseButtonTapped(sender: UIButton) {
+        if isAddMode{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            let alertView = UIAlertController(title: "このレシピの材料から外しますか？", message: "", preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "外す",style: .Destructive){
+                action in
+                self.deleteFlag = true
+                self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
+                })
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            presentViewController(alertView, animated: true, completion: nil)
         }
     }
     

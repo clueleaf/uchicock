@@ -61,12 +61,18 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
                     let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
-                for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
-                    try! realm.write{
-                        realm.delete(deletingRecipeIngredientList[i])
+                try! realm.write{
+                    for ri in deletingRecipeIngredientList{
+                        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                        for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                            if ingredient.recipeIngredients[i].id == ri.id{
+                                ingredient.recipeIngredients.removeAtIndex(i)
+                            }
+                        }
                     }
-                }
-                try! realm.write {
+                    for ri in deletingRecipeIngredientList{
+                        realm.delete(ri)
+                    }
                     realm.delete(self.recipe)
                 }
                 self.navigationController?.popViewControllerAnimated(true)

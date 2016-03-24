@@ -23,9 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dic = ["firstLaunch": true]
         defaults.registerDefaults(dic)
         if defaults.boolForKey("firstLaunch") {
-            self.addSampleIngredient()
-            self.addSampleRecipe()
-            self.addSampleRecipeToIngredientLink()
+            let realm = try! Realm()
+            try! realm.write {
+                self.addSampleIngredient()
+                self.addSampleRecipe()
+                self.addSampleRecipeToIngredientLink()
+            }
             defaults.setBool(false, forKey: "firstLaunch")
         }
         return true
@@ -80,9 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ingredient.ingredientName = ingredientName
         ingredient.stockFlag = stockFlag
         ingredient.memo = memo
-        try! realm.write {
-            realm.add(ingredient)
-        }
+        realm.add(ingredient)
     }
     
     func addSampleRecipe() {
@@ -110,9 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         recipe.memo = memo
         recipe.method = method
 
-        try! realm.write {
-            realm.add(recipe)
-        }
+        realm.add(recipe)
     }
     
     func addSampleRecipeToIngredientLink(){
@@ -153,21 +152,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         recipeIngredientLink.amount = amount
         recipeIngredientLink.mustFlag = mustFlag
 
-        try! realm.write{
-            realm.add(recipeIngredientLink)
-        }
+        realm.add(recipeIngredientLink)
 
         let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
-        try! realm.write {
-            ingredient.recipeIngredients.append(recipeIngredientLink)
-        }
+        ingredient.recipeIngredients.append(recipeIngredientLink)
         
         let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
-
-        try! realm.write {
-            recipe.recipeIngredients.append(recipeIngredientLink)
-        }
-        
+        recipe.recipeIngredients.append(recipeIngredientLink)
     }
 
 }
