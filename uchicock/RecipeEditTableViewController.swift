@@ -26,8 +26,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         super.viewDidLoad()
         tableView.registerClass(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
         
-        for var i = 0; i < recipe.recipeIngredients.count; ++i {
-            recipeIngredientList.append(recipe.recipeIngredients[i])
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(ri)
         }
         
         if recipe.recipeName == "" {
@@ -90,31 +90,35 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         if indexPath.section == 0 {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
-            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            if indexPath.row < recipeIngredientList.count{
+                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            } else if indexPath.row == recipeIngredientList.count{
+                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+            }
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.None
+        return UITableViewCellEditingStyle.Delete
     }
     
     override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
+            if indexPath.row < recipeIngredientList.count{
                 return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            }else if indexPath.row == recipeIngredientList.count{
+                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+            }
         }
         return 0
     }
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if isAddMode {
-            return 1
-        }else{
-            return 2
-        }
+        return 2
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -134,7 +138,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         }
         return 0
     }
-    
+
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }else if section == 1{
+            return 30
+        }
+        return 0
+    }
+
 //    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        return super.tableView(tableView, viewForHeaderInSection: section)
 //    }
@@ -143,7 +156,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         if section == 0 {
             return super.tableView(tableView, numberOfRowsInSection: 0)
         } else if section == 1{
-            return recipeIngredientList.count
+            return recipeIngredientList.count + 1
         }
         return 0
     }
@@ -153,40 +166,43 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         if indexPath.section == 0 {
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == 1{
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
-            cell.ingredientName.text = recipeIngredientList[indexPath.row].ingredient.ingredientName
-            cell.amount.text = recipeIngredientList[indexPath.row].amount
-            if recipeIngredientList[indexPath.row].mustFlag{
-                cell.option.text = ""
-            }else{
-                cell.option.text = "オプション"
+            if indexPath.row < recipeIngredientList.count{
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
+                cell.ingredientName.text = recipeIngredientList[indexPath.row].ingredient.ingredientName
+                cell.amount.text = recipeIngredientList[indexPath.row].amount
+                if recipeIngredientList[indexPath.row].mustFlag{
+                    cell.option.text = ""
+                }else{
+                    cell.option.text = "オプション"
+                }
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                cell.selectionStyle = .Default
+                return cell
+            }else if indexPath.row == recipeIngredientList.count{
+                return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
             }
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.selectionStyle = .Default
-            return cell
         }
         return UITableViewCell()
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
+        if indexPath.section == 1 && indexPath.row < recipeIngredientList.count{
+            return true
+        }else{
+            return false
+        }
     }
     
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
     
-    /*
-    // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            recipeIngredientList.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.

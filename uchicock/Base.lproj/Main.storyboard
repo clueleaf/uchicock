@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="542" y="-273"/>
+            <point key="canvasLocation" x="-1570" y="-417"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -129,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="179" y="465"/>
+            <point key="canvasLocation" x="-1933" y="321"/>
         </scene>
         <!--Ingredient List View Controller-->
         <scene sceneID="j5i-3t-PGe">
@@ -238,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="1202"/>
+            <point key="canvasLocation" x="-1876" y="1058"/>
         </scene>
         <!--材料編集-->
         <scene sceneID="azX-tq-QSA">
@@ -254,7 +254,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0G-Pc-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="676" y="1952"/>
+            <point key="canvasLocation" x="-1436" y="1808"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -271,7 +271,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXI-rk-5ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-612" y="465"/>
+            <point key="canvasLocation" x="-2724" y="321"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="W8I-U9-Q9L">
@@ -289,7 +289,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leN-k5-xmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1406" y="847"/>
+            <point key="canvasLocation" x="-3518" y="703"/>
         </scene>
         <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
@@ -306,7 +306,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWC-9n-fy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-620" y="1209"/>
+            <point key="canvasLocation" x="-2732" y="1065"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="v2R-6V-GB5">
@@ -596,8 +596,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このレシピを削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv6-eW-Saw">
-                                                    <rect key="frame" x="200" y="9.5" width="200" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <rect key="frame" x="220" y="12.5" width="160" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -639,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3N-xm-Sv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="459"/>
+            <point key="canvasLocation" x="-1113" y="315"/>
         </scene>
         <!--Ingredient Detail View Controller-->
         <scene sceneID="fGi-HQ-s5g">
@@ -832,8 +832,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="この材料を削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-cW-pyo">
-                                                    <rect key="frame" x="212.5" y="10" width="175" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <rect key="frame" x="230" y="13" width="140" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -875,7 +875,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKe-Su-VXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1022" y="1202"/>
+            <point key="canvasLocation" x="-1090" y="1058"/>
         </scene>
         <!--Ingredient Edit Table View Controller-->
         <scene sceneID="iId-y0-NWp">
@@ -1013,7 +1013,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1415" y="1967"/>
+            <point key="canvasLocation" x="-697" y="1823"/>
         </scene>
         <!--Recipe Edit Table View Controller-->
         <scene sceneID="fvV-gX-y9T">
@@ -1186,6 +1186,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PGi-oT-z0F">
+                                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PGi-oT-z0F" id="doJ-OO-f0F">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRM-Da-IIn">
+                                                    <rect key="frame" x="250" y="4" width="100" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="材料を追加"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HRM-Da-IIn" firstAttribute="centerY" secondItem="doJ-OO-f0F" secondAttribute="centerY" id="cmb-L2-kV3"/>
+                                                <constraint firstItem="HRM-Da-IIn" firstAttribute="centerX" secondItem="doJ-OO-f0F" secondAttribute="centerX" id="dlX-XP-giL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1223,7 +1242,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1288" y="-264"/>
+            <point key="canvasLocation" x="-824" y="-408"/>
         </scene>
     </scenes>
     <resources>
@@ -1231,9 +1250,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="hrp-Pj-JYM"/>
         <segue reference="pyL-Bh-L11"/>
         <segue reference="9Wz-4C-0K0"/>
         <segue reference="7SF-P9-ikG"/>
-        <segue reference="hrp-Pj-JYM"/>
     </inferredMetricsTieBreakers>
 </document>

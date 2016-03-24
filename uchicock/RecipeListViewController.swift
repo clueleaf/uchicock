@@ -53,14 +53,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     let recipe = self.recipeList![indexPath.row]
                     
                     let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                    for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
-                        let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
+                    for ri in recipe.recipeIngredients{
+                        let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
                         deletingRecipeIngredientList.append(recipeIngredient)
                     }
                     
-                    for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                    for ri in deletingRecipeIngredientList{
                         try! realm.write{
-                            realm.delete(deletingRecipeIngredientList[i])
+                            realm.delete(ri)
                         }
                     }
                     
@@ -78,14 +78,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let recipe = self.recipeList![indexPath.row]
                 
                 let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for (var i = 0; i < recipe.recipeIngredients.count ; ++i){
-                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",recipe.recipeIngredients[i].id).first!
+                for ri in recipe.recipeIngredients{
+                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
                 
-                for (var i = 0; i < deletingRecipeIngredientList.count; ++i){
+                for ri in deletingRecipeIngredientList{
                     try! realm.write{
-                        realm.delete(deletingRecipeIngredientList[i])
+                        realm.delete(ri)
                     }
                 }
                 
