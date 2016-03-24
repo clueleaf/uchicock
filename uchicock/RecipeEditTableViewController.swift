@@ -24,14 +24,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     var recipe = Recipe()
     var isAddMode = true
-    var recipeIngredientList = List<RecipeIngredientLink>()
+    var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
         
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(ri)
+            let editingRecipeIngredient = EditingRecipeIngredient()
+            editingRecipeIngredient.id = ri.id
+            editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
+            editingRecipeIngredient.amount = ri.amount
+            editingRecipeIngredient.mustFlag = ri.mustFlag
+            editingRecipeIngredientList.append(editingRecipeIngredient)
         }
         
         if recipe.recipeName == "" {
@@ -94,9 +99,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if indexPath.section == 0 {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
-            if indexPath.row < recipeIngredientList.count{
+            if indexPath.row < editingRecipeIngredientList.count{
                 return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
-            } else if indexPath.row == recipeIngredientList.count{
+            } else if indexPath.row == editingRecipeIngredientList.count{
                 return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
             }
         }
@@ -111,9 +116,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
-            if indexPath.row < recipeIngredientList.count{
+            if indexPath.row < editingRecipeIngredientList.count{
                 return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
-            }else if indexPath.row == recipeIngredientList.count{
+            }else if indexPath.row == editingRecipeIngredientList.count{
                 return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
             }
         }
@@ -160,7 +165,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if section == 0 {
             return super.tableView(tableView, numberOfRowsInSection: 0)
         } else if section == 1{
-            return recipeIngredientList.count + 1
+            return editingRecipeIngredientList.count + 1
         }
         return 0
     }
@@ -170,11 +175,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if indexPath.section == 0 {
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == 1{
-            if indexPath.row < recipeIngredientList.count{
+            if indexPath.row < editingRecipeIngredientList.count{
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
-                cell.ingredientName.text = recipeIngredientList[indexPath.row].ingredient.ingredientName
-                cell.amount.text = recipeIngredientList[indexPath.row].amount
-                if recipeIngredientList[indexPath.row].mustFlag{
+                cell.ingredientName.text = editingRecipeIngredientList[indexPath.row].ingredientName
+                cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
+                if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
                 }else{
                     cell.option.text = "オプション"
@@ -182,7 +187,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = .Default
                 return cell
-            }else if indexPath.row == recipeIngredientList.count{
+            }else if indexPath.row == editingRecipeIngredientList.count{
                 return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
             }
         }
@@ -197,7 +202,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == 1 && indexPath.row < recipeIngredientList.count{
+        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
             return true
         }else{
             return false
@@ -210,7 +215,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            recipeIngredientList.removeAtIndex(indexPath.row)
+            editingRecipeIngredientList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }
@@ -326,8 +331,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
+    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+        let riec = fromViewController as! RecipeIngredientEditViewController
+
+        
+        return true
+    }
+    
     @IBAction func screenTapped(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func unwindToRecipeEdit(segue: UIStoryboardSegue) {
     }
 
     // MARK: - Navigation
@@ -336,10 +351,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeIngredientEditViewController
             if let indexPath = sender as? NSIndexPath{
-                if indexPath.row < recipeIngredientList.count{
-                    evc.recipeIngredient = self.recipeIngredientList[indexPath.row]
+                if indexPath.row < editingRecipeIngredientList.count{
+                    evc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
                     evc.isAddMode = false
-                }else if indexPath.row == recipeIngredientList.count{
+                }else if indexPath.row == editingRecipeIngredientList.count{
                     evc.isAddMode = true
                 }
             }
