@@ -1313,6 +1313,31 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="JuK-4G-AiT"/>
                                                 </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestIngredient" id="1wl-9c-7Pu" customClass="SuggestIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1wl-9c-7Pu" id="PmW-H9-fir">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="me2-1V-jq5">
+                                                                    <rect key="frame" x="10" y="11.5" width="42" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="me2-1V-jq5" firstAttribute="centerY" secondItem="PmW-H9-fir" secondAttribute="centerY" id="1la-Yd-kQd"/>
+                                                                <constraint firstItem="me2-1V-jq5" firstAttribute="leading" secondItem="PmW-H9-fir" secondAttribute="leading" constant="10" id="l8Y-Hi-Ydo"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="ingredientName" destination="me2-1V-jq5" id="PC0-Wf-ugg"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="Ryf-Fg-KA2" id="EsZ-pG-Omt"/>
                                                     <outlet property="delegate" destination="Ryf-Fg-KA2" id="mQb-5Q-bmp"/>
@@ -1354,7 +1379,7 @@
                                             </switch>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3u-U3-uA4">
                                                 <rect key="frame" x="0.0" y="322" width="600" height="34"/>
-                                                <state key="normal" title="このレシピでは使わない">
+                                                <state key="normal" title="このレシピの材料から削除する">
                                                     <color key="titleColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
