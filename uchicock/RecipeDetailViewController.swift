@@ -161,7 +161,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             }
         }else if segue.identifier == "PushEditRecipe" {
-            let enc = segue.destinationViewController as! RecipeEditNavigationController
+            let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
         }

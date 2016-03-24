@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate {
+class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var recipeName: UITextField!
     @IBOutlet weak var star1: UIButton!
@@ -17,6 +17,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
+    @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
+    @IBOutlet weak var methodTableViewCell: UITableViewCell!
+    @IBOutlet weak var memoTableViewCell: UITableViewCell!
     
     var recipe = Recipe()
     var isAddMode = true
@@ -185,6 +189,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         return UITableViewCell()
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
+        }
+    }
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.section == 1 && indexPath.row < recipeIngredientList.count{
             return true
@@ -301,18 +312,39 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         }
     }
     
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
+    {
+        if touch.view!.isDescendantOfView(recipeNameTableViewCell) {
+            return true
+        }else if touch.view!.isDescendantOfView(favoriteTableViewCell){
+            return true
+        }else if touch.view!.isDescendantOfView(methodTableViewCell){
+            return true
+        }else if touch.view!.isDescendantOfView(memoTableViewCell){
+            return true
+        }
+        return false
+    }
+    
     @IBAction func screenTapped(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PushEditIngredient" {
+            let enc = segue.destinationViewController as! UINavigationController
+            let evc = enc.visibleViewController as! RecipeIngredientEditViewController
+            if let indexPath = sender as? NSIndexPath{
+                if indexPath.row < recipeIngredientList.count{
+                    evc.recipeIngredient = self.recipeIngredientList[indexPath.row]
+                    evc.isAddMode = false
+                }else if indexPath.row == recipeIngredientList.count{
+                    evc.isAddMode = true
+                }
+            }
+        }
     }
-    */
+    
 
 }
