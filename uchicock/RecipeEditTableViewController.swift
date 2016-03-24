@@ -20,10 +20,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     
     var recipe = Recipe()
     var isAddMode = true
+    var recipeIngredientList = List<RecipeIngredientLink>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
+        
+        for var i = 0; i < recipe.recipeIngredients.count; ++i {
+            recipeIngredientList.append(recipe.recipeIngredients[i])
+        }
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
@@ -63,7 +68,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -136,7 +145,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return super.tableView(tableView, numberOfRowsInSection: 0) - 1 + recipe.recipeIngredients.count
+            return super.tableView(tableView, numberOfRowsInSection: 0) - 1 + recipeIngredientList.count
         }
         return 0
     }
@@ -148,9 +157,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
                 return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
-                cell.ingredientName.text = recipe.recipeIngredients[indexPath.row - 4].ingredient.ingredientName
-                cell.amount.text = recipe.recipeIngredients[indexPath.row - 4].amount
-                if recipe.recipeIngredients[indexPath.row - 4].mustFlag {
+                cell.ingredientName.text = recipeIngredientList[indexPath.row - 4].ingredient.ingredientName
+                cell.amount.text = recipeIngredientList[indexPath.row - 4].amount
+                if recipeIngredientList[indexPath.row - 4].mustFlag{
                     cell.option.text = ""
                 }else{
                     cell.option.text = "オプション"

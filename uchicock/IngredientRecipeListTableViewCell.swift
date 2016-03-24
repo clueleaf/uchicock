@@ -40,6 +40,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
             if shortageNum == 0 {
                 shortage.text = "すぐつくれる！"
                 shortage.textColor = UIColor.blueColor()
+                recipeName.textColor = UIColor.blackColor()
             }else if shortageNum == 1{
                 if shortageName.characters.count > 10{
                     shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
@@ -47,9 +48,11 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
                     shortage.text = shortageName + "が足りません"
                 }
                 shortage.textColor = UIColor.grayColor()
+                recipeName.textColor = UIColor.grayColor()
             }else{
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
                 shortage.textColor = UIColor.grayColor()
+                recipeName.textColor = UIColor.grayColor()
             }
         }
     }

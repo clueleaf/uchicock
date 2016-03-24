@@ -14,37 +14,24 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
     var option = UILabel()
     var amount = UILabel()
     
-//    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
-//        didSet{
-//            ingredientName.text = recipeIngredient.ingredient.ingredientName
-//            amount.text = recipeIngredient.amount
-//            if recipeIngredient.mustFlag{
-//                option.text = ""
-//            }else{
-//                option.text = "オプション"
-//            }
-//        }
-//    }
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String!)
     {
         //First Call Super
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        ingredientName = UILabel(frame: CGRectMake(10, 2, 300, 15))
+        ingredientName = UILabel(frame: CGRectMake(10, 10, 300, 21))
         ingredientName.text = ""
-        ingredientName.font = UIFont.systemFontOfSize(14)
+        ingredientName.font = UIFont.systemFontOfSize(17)
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRectMake(10, 20, 300, 15))
+        option = UILabel(frame: CGRectMake(10, 40, 70, 20))
         option.text = ""
-        option.font = UIFont.systemFontOfSize(12)
+        option.font = UIFont.systemFontOfSize(14)
         option.textColor = UIColor.grayColor()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(10, 30, 300, 15))
+        amount = UILabel(frame: CGRectMake(100, 40, 200, 21))
         amount.text = ""
-        amount.font = UIFont.systemFontOfSize(12)
+        amount.font = UIFont.systemFontOfSize(17)
         self.addSubview(amount)
     }
     

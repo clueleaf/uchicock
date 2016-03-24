@@ -85,6 +85,15 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2{
+            return 30
+        } else {
+            return 0
+        }
+    }
+
+    
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
