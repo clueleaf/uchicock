@@ -13,9 +13,9 @@ class IngredientDetailNameTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ingredientName: UILabel!
     
-    var ingredient: Ingredient = Ingredient(){
+    var name: String = String(){
         didSet{
-            ingredientName.text = ingredient.ingredientName
+            ingredientName.text = name
         }
     }
     

@@ -12,9 +12,9 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeName: UILabel!
     
-    var recipe: Recipe = Recipe(){
+    var name: String = String(){
         didSet{
-            recipeName.text = recipe.recipeName
+            recipeName.text = name
         }
     }
 

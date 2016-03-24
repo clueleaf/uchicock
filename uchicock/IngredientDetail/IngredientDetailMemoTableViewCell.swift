@@ -12,9 +12,9 @@ class IngredientDetailMemoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var memo: UILabel!
     
-    var ingredient: Ingredient = Ingredient(){
+    var ingredientMemo: String = String(){
         didSet{
-            memo.text = ingredient.memo
+            memo.text = ingredientMemo
         }
     }
 

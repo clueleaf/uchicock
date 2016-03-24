@@ -13,9 +13,9 @@ class IngredientDetailStockTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stock: UISwitch!
     
-    var ingredient: Ingredient = Ingredient(){
+    var ingredientStock: Bool = Bool(){
         didSet{
-            stock.on = ingredient.stockFlag
+            stock.on = ingredientStock
         }
     }
     

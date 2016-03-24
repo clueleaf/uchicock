@@ -12,9 +12,9 @@ class RecipeDetailMethodTableViewCell: UITableViewCell {
 
     @IBOutlet weak var method: UISegmentedControl!
     
-    var recipe: Recipe = Recipe(){
+    var recipeMethod: Int = Int(){
         didSet{
-            switch recipe.method{
+            switch recipeMethod{
             case 0:
                 method.selectedSegmentIndex = 0
             case 1:

@@ -126,15 +126,15 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailName") as! IngredientDetailNameTableViewCell
-                cell.ingredient = ingredient
+                cell.name = ingredient.ingredientName
                 return cell
             }else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailStock") as! IngredientDetailStockTableViewCell
-                cell.ingredient = ingredient
+                cell.ingredientStock = ingredient.stockFlag
                 return cell
             }else if indexPath.row == 2 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailMemo") as! IngredientDetailMemoTableViewCell
-                cell.ingredient = ingredient
+                cell.ingredientMemo = ingredient.memo
                 return cell
             }
         }else if indexPath.section == 1 {

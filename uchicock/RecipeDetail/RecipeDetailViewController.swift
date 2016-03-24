@@ -128,7 +128,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailName") as! RecipeDetailNameTableViewCell
-                cell.recipe = recipe
+                cell.name = recipe.recipeName
                 return cell
             }else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailFavorite") as! RecipeDetailFavoriteTableViewCell
@@ -136,11 +136,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
                 return cell
             }else if indexPath.row == 2 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMethod") as! RecipeDetailMethodTableViewCell
-                cell.recipe = recipe
+                cell.recipeMethod = recipe.method
                 return cell
             }else if indexPath.row == 3 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMemo") as! RecipeDetailMemoTableViewCell
-                cell.recipe = recipe
+                cell.recipeMemo = recipe.memo
                 return cell
             }
         }else if indexPath.section == 1 {
