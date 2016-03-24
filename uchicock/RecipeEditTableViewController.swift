@@ -88,11 +88,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row < 4 {
-                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-            } else {
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 4, inSection: 0))
-            }
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }else if indexPath.section == 1{
+            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }
         return 0
     }
@@ -103,49 +101,49 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     
     override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
         if indexPath.section == 0 {
-            if indexPath.row < 4 {
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
-            } else {
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 4, inSection: 0))
-            }
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+        }else if indexPath.section == 1{
+                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }
         return 0
     }
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        if isAddMode {
+        if isAddMode {
             return 1
-//        }else{
-//            return 2
-//        }
+        }else{
+            return 2
+        }
     }
     
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return nil
-//        }else if section == 1{
-//            return "材料"
-//        }
-//        return nil
-//    }
-//    
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if section == 0 {
-//            return 0
-//        }else if section == 1{
-//            return 30
-//        }
-//        return 0
-//    }
-//    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return nil
+        }else if section == 1{
+            return "材料"
+        }
+        return nil
+    }
+
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }else if section == 1{
+            return 30
+        }
+        return 0
+    }
+    
 //    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        return super.tableView(tableView, viewForHeaderInSection: section)
 //    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return super.tableView(tableView, numberOfRowsInSection: 0) - 1 + recipeIngredientList.count
+            return super.tableView(tableView, numberOfRowsInSection: 0)
+        } else if section == 1{
+            return recipeIngredientList.count
         }
         return 0
     }
@@ -153,21 +151,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if indexPath.row < 4 {
-                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-            } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
-                cell.ingredientName.text = recipeIngredientList[indexPath.row - 4].ingredient.ingredientName
-                cell.amount.text = recipeIngredientList[indexPath.row - 4].amount
-                if recipeIngredientList[indexPath.row - 4].mustFlag{
-                    cell.option.text = ""
-                }else{
-                    cell.option.text = "オプション"
-                }
-                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell.selectionStyle = .Default
-                return cell
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        } else if indexPath.section == 1{
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
+            cell.ingredientName.text = recipeIngredientList[indexPath.row].ingredient.ingredientName
+            cell.amount.text = recipeIngredientList[indexPath.row].amount
+            if recipeIngredientList[indexPath.row].mustFlag{
+                cell.option.text = ""
+            }else{
+                cell.option.text = "オプション"
             }
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = .Default
+            return cell
         }
         return UITableViewCell()
     }
