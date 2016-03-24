@@ -1287,19 +1287,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yL8-la-IUi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yL8-la-IUi">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZMx-Go-tNi">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="541"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMx-Go-tNi">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="312"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-Za-as5">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-Za-as5">
                                                 <rect key="frame" x="30" y="20" width="540" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="WKF-Qh-Swu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="WKF-Qh-Swu"/>
@@ -1333,7 +1333,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="JC0-GK-mcu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0l-xy-9X4">
                                                 <rect key="frame" x="40" y="271" width="85" height="21"/>
@@ -1362,6 +1362,7 @@
                                             <constraint firstItem="X0l-xy-9X4" firstAttribute="top" secondItem="q3t-rL-caU" secondAttribute="bottom" constant="25" id="PNA-hJ-JdE"/>
                                             <constraint firstItem="dQy-TR-R3d" firstAttribute="leading" secondItem="ZMx-Go-tNi" secondAttribute="leading" id="c1g-GF-Kzo"/>
                                             <constraint firstAttribute="trailing" secondItem="dQy-TR-R3d" secondAttribute="trailing" id="gYI-4M-LTl"/>
+                                            <constraint firstAttribute="bottom" secondItem="X0l-xy-9X4" secondAttribute="bottom" constant="20" id="jhN-3a-jqF"/>
                                             <constraint firstItem="zPc-Za-as5" firstAttribute="top" secondItem="ZMx-Go-tNi" secondAttribute="top" constant="20" id="ky8-T9-CgO"/>
                                             <constraint firstAttribute="trailing" secondItem="yI6-BH-Omb" secondAttribute="trailing" constant="40" id="oeS-Lk-Kpi"/>
                                             <constraint firstItem="q3t-rL-caU" firstAttribute="leading" secondItem="ZMx-Go-tNi" secondAttribute="leading" constant="40" id="otc-hh-FNT"/>
@@ -1395,6 +1396,9 @@
                             <constraint firstItem="yL8-la-IUi" firstAttribute="leading" secondItem="b2K-hC-vKE" secondAttribute="leading" id="qru-zL-92w"/>
                             <constraint firstItem="yL8-la-IUi" firstAttribute="top" secondItem="b2K-hC-vKE" secondAttribute="top" id="ttD-1p-1sv"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="uVE-4i-kbZ" appends="YES" id="E8Q-Gq-5rN"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="7cI-Op-xjL">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Pis-fG-5TL">
@@ -1402,7 +1406,7 @@
                                 <action selector="cancelButtonTapped:" destination="Ryf-Fg-KA2" id="7sC-Us-zZU"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rZI-eX-0Qn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rZI-eX-0Qn">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="Ryf-Fg-KA2" id="lNf-8x-keb"/>
                             </connections>
@@ -1416,6 +1420,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6H-2V-VOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uVE-4i-kbZ">
+                    <connections>
+                        <action selector="screenTapped:" destination="Ryf-Fg-KA2" id="AxZ-W2-Z7M"/>
+                        <outlet property="delegate" destination="Ryf-Fg-KA2" id="mgp-eo-Wii"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-131" y="302"/>
         </scene>

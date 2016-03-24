@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeIngredientEditViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
 
     var recipeIngredient = RecipeIngredientLink()
     var isAddMode = false
@@ -20,6 +20,8 @@ class RecipeIngredientEditViewController: UIViewController, UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ingredientName.delegate = self
+        amount.delegate = self
         
         if isAddMode == false{
             ingredientName.text = recipeIngredient.ingredient.ingredientName
@@ -33,6 +35,11 @@ class RecipeIngredientEditViewController: UIViewController, UITableViewDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        ingredientName.resignFirstResponder()
+        amount.resignFirstResponder()
+        return true
+    }
     
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -46,6 +53,11 @@ class RecipeIngredientEditViewController: UIViewController, UITableViewDelegate,
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
+    {
+        return true
+    }
 
 
     // MARK: - IBAction
@@ -55,6 +67,10 @@ class RecipeIngredientEditViewController: UIViewController, UITableViewDelegate,
 
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     /*
