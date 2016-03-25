@@ -1,4 +1,7 @@
 PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Realm (0.98.2):
     - Realm/Headers (= 0.98.2)
   - Realm/Headers (0.98.2)
@@ -6,9 +9,11 @@ PODS:
     - Realm (= 0.98.2)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift
   - RealmSwift
 
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Realm: 88a147fe04b8f07191a676b15c779b2b448991de
   RealmSwift: 9907c7415b3e19ef2ab9f89878fc890f03f93aea
 

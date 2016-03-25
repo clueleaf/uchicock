@@ -18,6 +18,9 @@ class IngredientListItemTableViewCell: UITableViewCell {
         didSet{
             ingredientName.text = ingredient.ingredientName
             stock.on = ingredient.stockFlag
+            
+//            ingredientName.backgroundColor = UIColor.flatWatermelonColor()
+//            stock.backgroundColor = UIColor.flatWatermelonColor()
         }
     }
 

@@ -8,16 +8,17 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
+        setColor()
         // first time to launch this app
         let defaults = NSUserDefaults.standardUserDefaults()
         let dic = ["firstLaunch": true]
@@ -32,6 +33,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setBool(false, forKey: "firstLaunch")
         }
         return true
+    }
+    
+    func setColor(){
+        Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
+        
+        UITableView.appearance().backgroundColor = FlatSand()
+//        UITableView.headerViewForSection(UITableView).
+        
+        UIButton.appearanceWhenContainedInInstancesOfClasses([UITableView.self]).backgroundColor = UIColor.clearColor()
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = FlatWhiteDark()
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
+        UITableViewCell.appearance().backgroundColor = FlatWhite()
+        
+        UITabBar.appearance().tintColor = FlatYellowDark()
+        
+        UIButton.appearance().tintColor = FlatSkyBlue()
+        
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>79FA92281519ADFD631D78C000CE5EB8</key>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B073427FEF440585251C42C39D12DDC</key>
+		<key>628AEB6E095B05D947DAD4235D777EC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96ACFDDD73AAB5C06C6EACDAF9776BA0</key>
+		<key>B78D9C33CFF914C987FC7047EE358FBD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD022A1CA3A3DF600C75250B18A88C88</key>
 		<dict>
 			<key>primary</key>
 			<true/>
