@@ -226,7 +226,54 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if hasImportantInformationChanged() == true{
+            let alertView = UIAlertController(title: "", message: "編集内容を破棄しますか？", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "はい",style: .Default){
+                action in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            alertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
+            presentViewController(alertView, animated: true, completion: nil)
+        }else{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    func hasImportantInformationChanged () -> Bool {
+        if recipe.recipeName != recipeName.text{
+            return true
+        }
+        if recipe.memo != memo.text{
+            return true
+        }
+        if recipe.recipeIngredients.count != editingRecipeIngredientList.count{
+            return true
+        }else{
+            for var i = 0; i < recipe.recipeIngredients.count; ++i{
+                if recipe.recipeIngredients[i].ingredient.ingredientName != editingRecipeIngredientList[i].ingredientName{
+                    return true
+                }
+                if recipe.recipeIngredients[i].amount != editingRecipeIngredientList[i].amount{
+                    return true
+                }
+                if recipe.recipeIngredients[i].mustFlag != editingRecipeIngredientList[i].mustFlag{
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func isIngredientDuplicated() -> Bool {
+        for var i = 0; i < editingRecipeIngredientList.count - 1; ++i{
+            for var j = i+1; j < editingRecipeIngredientList.count; ++j{
+                if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
@@ -238,6 +285,26 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else if editingRecipeIngredientList.count == 0{
             //材料が一つもない
             let noNameAlertView = UIAlertController(title: "", message: "材料を一つ以上入力してください", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 30{
+            //レシピ名が長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "レシピ名が長すぎます", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if memo.text.characters.count > 1000{
+            //メモが長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "メモが長すぎます", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if editingRecipeIngredientList.count > 30{
+            //材料数が多すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "材料の数が多すぎます", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        } else if isIngredientDuplicated() {
+            //材料が重複している
+            let noNameAlertView = UIAlertController(title: "", message: "重複している材料があります", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
         }else{
@@ -358,11 +425,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         let riec = fromViewController as! RecipeIngredientEditViewController
         if riec.isAddMode{
-            let editingRecipeIngredient = EditingRecipeIngredient()
-            editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            editingRecipeIngredient.amount = riec.amount.text!
-            editingRecipeIngredient.mustFlag = !riec.option.on
-            editingRecipeIngredientList.append(editingRecipeIngredient)
+            if riec.deleteFlag{
+            }else{
+                let editingRecipeIngredient = EditingRecipeIngredient()
+                editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                editingRecipeIngredient.amount = riec.amount.text!
+                editingRecipeIngredient.mustFlag = !riec.option.on
+                editingRecipeIngredientList.append(editingRecipeIngredient)                
+            }
         }else{
             if riec.deleteFlag{
                 for var i = 0; i < editingRecipeIngredientList.count; ++i{
@@ -374,7 +444,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 for editingRecipeIngredient in editingRecipeIngredientList{
                     if editingRecipeIngredient.id == riec.recipeIngredient.id{
                         editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                        editingRecipeIngredient.amount = riec.amount.text!
+                        editingRecipeIngredient.amount = riec.amount.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         editingRecipeIngredient.mustFlag = !riec.option.on
                     }
                 }

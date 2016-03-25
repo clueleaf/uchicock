@@ -118,6 +118,16 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if ingredientName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 30{
+            //材料名が長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "材料名が長すぎます", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if memo.text.characters.count > 300{
+            //メモが長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "メモが長すぎます", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
             

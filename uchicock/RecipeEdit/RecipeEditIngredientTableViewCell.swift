@@ -18,18 +18,18 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
     {
         //First Call Super
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        ingredientName = UILabel(frame: CGRectMake(10, 10, 300, 21))
+        ingredientName = UILabel(frame: CGRectMake(10, 5, 300, 21))
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFontOfSize(17)
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRectMake(10, 40, 70, 20))
+        option = UILabel(frame: CGRectMake(10, 35, 70, 20))
         option.text = ""
         option.font = UIFont.systemFontOfSize(14)
         option.textColor = UIColor.grayColor()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(100, 40, 200, 21))
+        amount = UILabel(frame: CGRectMake(100, 35, 200, 21))
         amount.text = ""
         amount.font = UIFont.systemFontOfSize(17)
         self.addSubview(amount)
