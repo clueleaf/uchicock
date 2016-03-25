@@ -322,11 +322,11 @@
                         <viewControllerLayoutGuide type="bottom" id="RVH-hI-oXH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pql-Hy-AhQ">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jVN-Ee-Vqr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -416,11 +416,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecipeDetailMethod" rowHeight="100" id="i7C-nS-rVj" userLabel="技法セル" customClass="RecipeDetailMethodTableViewCell" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="158" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="i7C-nS-rVj" id="EFd-IF-SfW">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i7C-nS-rVj" id="EFd-IF-SfW">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-24-ySn" userLabel="技法">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-24-ySn" userLabel="技法">
                                                     <rect key="frame" x="20" y="55" width="560" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="gUV-gB-eef"/>
@@ -439,7 +439,7 @@
                                                         </mask>
                                                     </variation>
                                                 </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liT-fq-d79" userLabel="技法">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liT-fq-d79" userLabel="技法">
                                                     <rect key="frame" x="8" y="15" width="34" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="x4r-FH-GWh"/>
@@ -457,6 +457,11 @@
                                                 <constraint firstItem="Icm-24-ySn" firstAttribute="leading" secondItem="EFd-IF-SfW" secondAttribute="leading" constant="20" id="pSl-yh-Pp7"/>
                                                 <constraint firstItem="liT-fq-d79" firstAttribute="leading" secondItem="EFd-IF-SfW" secondAttribute="leading" constant="8" id="w1b-wv-P5G"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="GrH-By-FE1"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="method" destination="Icm-24-ySn" id="MBe-X9-s7C"/>
@@ -605,7 +610,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このレシピを削除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uv6-eW-Saw">
-                                                    <rect key="frame" x="220" y="12.5" width="160" height="24"/>
+                                                    <rect key="frame" x="220" y="12" width="160" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -662,11 +667,11 @@
                         <viewControllerLayoutGuide type="bottom" id="uSJ-Bl-f7m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D2O-cT-D4w">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ops-ce-Fdm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="IngredientDetailName" rowHeight="80" id="7Ca-c4-zr9" customClass="IngredientDetailNameTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -793,7 +798,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cx-pP-UZw">
-                                                    <rect key="frame" x="8" y="38.5" width="551" height="21"/>
+                                                    <rect key="frame" x="8" y="38" width="551" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="dNt-Sc-TOD"/>
                                                     </constraints>
@@ -917,13 +922,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="fW3-m2-e2r">
-                                                    <rect key="frame" x="76" y="8" width="516" height="63.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="fW3-m2-e2r">
+                                                    <rect key="frame" x="76" y="8" width="516" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0D-4t-hbc">
-                                                    <rect key="frame" x="8" y="29.5" width="60" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0D-4t-hbc">
+                                                    <rect key="frame" x="8" y="19.5" width="60" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="wn4-0U-VnV"/>
                                                     </constraints>
@@ -1530,9 +1535,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BF7-gd-8JQ"/>
-        <segue reference="pyL-Bh-L11"/>
-        <segue reference="9Wz-4C-0K0"/>
         <segue reference="7SF-P9-ikG"/>
+        <segue reference="9Wz-4C-0K0"/>
+        <segue reference="pyL-Bh-L11"/>
+        <segue reference="hrp-Pj-JYM"/>
     </inferredMetricsTieBreakers>
 </document>
