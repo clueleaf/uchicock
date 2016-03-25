@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RecipeEditIngredientTableViewCell: UITableViewCell {
 
@@ -26,10 +27,10 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         option = UILabel(frame: CGRectMake(10, 35, 70, 20))
         option.text = ""
         option.font = UIFont.systemFontOfSize(14)
-        option.textColor = UIColor.grayColor()
+        option.textColor = FlatGrayDark()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(100, 35, 200, 21))
+        amount = UILabel(frame: CGRectMake(80, 35, 200, 21))
         amount.text = ""
         amount.font = UIFont.systemFontOfSize(17)
         self.addSubview(amount)

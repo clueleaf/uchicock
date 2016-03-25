@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
 
@@ -20,6 +21,7 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var option: UISwitch!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,10 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             option.on = false
             self.navigationItem.title = "材料の追加"
         }
+        
+        tableView.backgroundColor = FlatWhite()
+        deleteButton.backgroundColor = UIColor.clearColor()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }
 

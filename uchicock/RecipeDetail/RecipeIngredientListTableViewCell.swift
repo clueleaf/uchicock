@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RecipeIngredientListTableViewCell: UITableViewCell {
 
@@ -21,24 +22,27 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
             amount.text = recipeIngredient.amount
             if recipeIngredient.mustFlag{
                 option.text = ""
+                option.textColor = FlatBlack()
                 option.backgroundColor = UIColor.clearColor()
             }else{
                 option.text = "オプション"
-                option.backgroundColor = UIColor.grayColor()
+                option.textColor = FlatBlack()
+                option.backgroundColor = FlatWhiteDark()
             }
             
             if recipeIngredient.ingredient.stockFlag {
                 stock.text = "在庫あり"
-                stock.backgroundColor = UIColor.blueColor()
-                ingredientName.textColor = UIColor.blackColor()
-                amount.textColor = UIColor.blackColor()
+                stock.textColor = FlatWhite()
+                stock.backgroundColor = FlatSkyBlueDark()
+                ingredientName.textColor = FlatBlack()
+                amount.textColor = FlatBlack()
             }else{
                 stock.text = "在庫なし"
-                stock.backgroundColor = UIColor.grayColor()
-                ingredientName.textColor = UIColor.grayColor()
-                amount.textColor = UIColor.grayColor()
+                stock.textColor = FlatBlack()
+                stock.backgroundColor = FlatWhiteDark()
+                ingredientName.textColor = FlatGrayDark()
+                amount.textColor = FlatGrayDark()
             }
-            
         }
     }
     

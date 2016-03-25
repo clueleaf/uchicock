@@ -8,19 +8,19 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var stock: UISwitch!
+    @IBOutlet weak var stockLabel: UILabel!
     
     var ingredient: Ingredient = Ingredient(){
         didSet{
             ingredientName.text = ingredient.ingredientName
             stock.on = ingredient.stockFlag
-            
-//            ingredientName.backgroundColor = UIColor.flatWatermelonColor()
-//            stock.backgroundColor = UIColor.flatWatermelonColor()
+            stockLabel.textColor = FlatGrayDark()
         }
     }
 

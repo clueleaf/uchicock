@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RecipeListItemTableViewCell: UITableViewCell {
 
@@ -28,6 +29,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             default:
                 favorites.text = "★★☆"
             }
+            favorites.textColor = FlatSkyBlue()
             
             var shortageNum = 0
             var shortageName = ""
@@ -39,17 +41,20 @@ class RecipeListItemTableViewCell: UITableViewCell {
             }
             if shortageNum == 0 {
                 shortage.text = "すぐつくれる！"
-                shortage.textColor = UIColor.blueColor()
+                shortage.textColor = FlatSkyBlueDark()
+                shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
             }else if shortageNum == 1{
                 if shortageName.characters.count > 10{
                     shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
                 }else{
                     shortage.text = shortageName + "が足りません"
                 }
-                shortage.textColor = UIColor.grayColor()
+                shortage.textColor = FlatGrayDark()
+                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
             }else{
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                shortage.textColor = UIColor.grayColor()
+                shortage.textColor = FlatGrayDark()
+                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
             }
         }
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -92,11 +93,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 2{
-            return 30
-        } else {
-            return 0
-        }
+        return 0
     }
 
     
@@ -148,7 +145,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
             return cell
         }else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailDelete") as! RecipeDetailDeleteTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailDelete") as!RecipeDetailDeleteTableViewCell
             return cell
         }
         return UITableViewCell()

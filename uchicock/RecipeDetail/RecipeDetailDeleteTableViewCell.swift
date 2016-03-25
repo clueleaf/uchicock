@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RecipeDetailDeleteTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var delete: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        delete.textColor = FlatRed()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

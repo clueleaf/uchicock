@@ -39,18 +39,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
         
         UITableView.appearance().backgroundColor = FlatSand()
-//        UITableView.headerViewForSection(UITableView).
         
         UIButton.appearanceWhenContainedInInstancesOfClasses([UITableView.self]).backgroundColor = UIColor.clearColor()
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = FlatWhiteDark()
         UITableViewCell.appearance().selectedBackgroundView = backgroundView
         UITableViewCell.appearance().backgroundColor = FlatWhite()
         
-        UITabBar.appearance().tintColor = FlatYellowDark()
+        UITabBar.appearance().tintColor = FlatOrange()
         
-        UIButton.appearance().tintColor = FlatSkyBlue()
+        UIButton.appearance().tintColor = FlatSkyBlueDark()
         
+        UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
+        
+        UILabel.appearance().textColor = FlatBlack()
         
     }
 

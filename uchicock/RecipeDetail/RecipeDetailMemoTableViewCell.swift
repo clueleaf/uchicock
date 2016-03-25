@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class RecipeDetailMemoTableViewCell: UITableViewCell {
 
@@ -15,6 +16,7 @@ class RecipeDetailMemoTableViewCell: UITableViewCell {
     var recipeMemo: String = String(){
         didSet{
             memo.text = recipeMemo
+            memo.textColor = FlatGrayDark()
         }
     }
     

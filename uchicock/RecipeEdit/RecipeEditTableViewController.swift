@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
@@ -140,11 +141,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
 
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }else if section == 1{
-            return 30
-        }
         return 0
     }
     
@@ -174,7 +170,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.selectionStyle = .Default
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
-                return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                cell.textLabel?.textColor = FlatSkyBlue()
+                cell.textLabel?.text = "材料を追加"
+                cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
+                cell.textLabel?.textAlignment = .Center;
+                return cell
             }
         }
         return UITableViewCell()

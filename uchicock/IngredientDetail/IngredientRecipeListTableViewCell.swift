@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class IngredientRecipeListTableViewCell: UITableViewCell {
 
@@ -28,6 +29,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
             default:
                 favorites.text = "★★☆"
             }
+            favorites.textColor = FlatSkyBlue()
             
             var shortageNum = 0
             var shortageName = ""
@@ -39,20 +41,23 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
             }
             if shortageNum == 0 {
                 shortage.text = "すぐつくれる！"
-                shortage.textColor = UIColor.blueColor()
-                recipeName.textColor = UIColor.blackColor()
+                shortage.textColor = FlatSkyBlueDark()
+                shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
+                recipeName.textColor = FlatBlack()
             }else if shortageNum == 1{
                 if shortageName.characters.count > 10{
                     shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
                 }else{
                     shortage.text = shortageName + "が足りません"
                 }
-                shortage.textColor = UIColor.grayColor()
-                recipeName.textColor = UIColor.grayColor()
+                shortage.textColor = FlatGrayDark()
+                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                recipeName.textColor = FlatGrayDark()
             }else{
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                shortage.textColor = UIColor.grayColor()
-                recipeName.textColor = UIColor.grayColor()
+                shortage.textColor = FlatGrayDark()
+                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                recipeName.textColor = FlatGrayDark()
             }
         }
     }
