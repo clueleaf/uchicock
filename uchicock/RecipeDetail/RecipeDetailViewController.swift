@@ -54,7 +54,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         if indexPath.section == 0 && indexPath.row == 0 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if recipe.imageData != nil{
-                performSegueWithIdentifier("PushPhotoDetail", sender: indexPath)
+                //レシピ削除のバグに対するワークアラウンド
+                let photo = UIImage(data: recipe.imageData!)
+                if photo != nil{
+                    performSegueWithIdentifier("PushPhotoDetail", sender: indexPath)
+                }
             }
         }else if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)

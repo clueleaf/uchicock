@@ -60,7 +60,9 @@ class RecipeListItemTableViewCell: UITableViewCell {
             
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
-            }else{
+            }
+            //レシピ削除のバグに対するワークアラウンド
+            if photo.image == nil{
                 photo.image = UIImage(named: "no-photo")
             }
         }

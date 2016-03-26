@@ -76,10 +76,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         selectPhoto.textColor = FlatSkyBlue()
         if recipe.imageData == nil{
-            selectPhoto.text = "写真を追加"
         }else{
             photo.image = UIImage(data: recipe.imageData!)
-            selectPhoto.text = "写真を変更"
+        }
+        //レシピ削除のバグに対するワークアラウンド
+        if photo.image == nil{
+            selectPhoto.text = "写真を追加"
+        }else{
+            selectPhoto.text = "写真を変更"            
         }
         
         recipeName.text = recipe.recipeName

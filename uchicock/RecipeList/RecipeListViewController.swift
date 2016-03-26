@@ -20,20 +20,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeList: Results<Recipe>?
     
     
-    /////////////////////////
-    var token = NotificationToken()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-        
-        
-        ////////////////////////
-        let realm = try! Realm()
-        token = realm.objects(Recipe).addNotificationBlock { results, realm in
-            print("変更されました！！！！！！！！")
-        }
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -141,6 +130,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     for ri in deletingRecipeIngredientList{
                         realm.delete(ri)
                     }
+                    //これを実行すると、最後に追加したレシピのimageDataがnilでなくなる現象が確認
+                    //解決法がわからないのでとりあえずワークアラウンドする
                     realm.delete(recipe)
                 }
                 
