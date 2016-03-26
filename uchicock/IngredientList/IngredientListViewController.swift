@@ -9,26 +9,52 @@
 import UIKit
 import RealmSwift
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var stockState: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
+        reloadIngredientList()
         tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func getTextFieldFromView(view: UIView) -> UITextField?{
+        for subview in view.subviews{
+            if subview.isKindOfClass(UITextField){
+                return subview as? UITextField
+            }else{
+                let textField = self.getTextFieldFromView(subview)
+                if textField != nil{
+                    return textField
+                }
+            }
+        }
+        return nil
+    }
+    
+    // MARK: - UISearchBarDelegate
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        reloadIngredientList()
+        tableView.reloadData()
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     // MARK: - UITableViewDelegate
@@ -66,16 +92,21 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             let realm = try! Realm()
-            let dataContent = realm.objects(Ingredient)
-            return dataContent.count
-        }        
+            switch stockState.selectedSegmentIndex{
+            case 0:
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).count
+            case 1:
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!).count
+            case 2:
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!).count
+            default:
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).count
+            }
+        }
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let realm = try! Realm()
-        ingredientList = realm.objects(Ingredient).sorted("ingredientName")
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
             cell.ingredient = ingredientList![indexPath.row]
@@ -84,9 +115,28 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return UITableViewCell()
     }
     
+    func reloadIngredientList(){
+        let realm = try! Realm()
+        switch stockState.selectedSegmentIndex{
+        case 0:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).sorted("ingredientName")
+        case 1:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!).sorted("ingredientName")
+        case 2:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!).sorted("ingredientName")
+        default:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).sorted("ingredientName")
+        }
+    }
+    
     // MARK: - IBAction
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushAddIngredient", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func stockStateTapped(sender: UISegmentedControl) {
+        reloadIngredientList()
+        tableView.reloadData()
     }
     
     // MARK: - Navigation

@@ -10,24 +10,53 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var favoriteSelect: UISegmentedControl!
+    @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     var recipeList: Results<Recipe>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
+        reloadRecipeList()
         tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    func getTextFieldFromView(view: UIView) -> UITextField?{
+        for subview in view.subviews{
+            if subview.isKindOfClass(UITextField){
+                return subview as? UITextField
+            }else{
+                let textField = self.getTextFieldFromView(subview)
+                if textField != nil{
+                    return textField
+                }
+            }
+        }
+        return nil
+    }
+    
+    // MARK: - UISearchBarDelegate
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        reloadRecipeList()
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     // MARK: - UITableViewDelegate
@@ -112,22 +141,49 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
             let realm = try! Realm()
-            let dataContent = realm.objects(Recipe)
-            return dataContent.count
+            switch favoriteSelect.selectedSegmentIndex{
+            case 0:
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).count
+            case 1:
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!).count
+            case 2:
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!).count
+            default:
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).count
+            }
         }
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let realm = try! Realm()
-        recipeList = realm.objects(Recipe).sorted("recipeName")
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
             cell.recipe = recipeList![indexPath.row]
             return cell
         }
         return UITableViewCell()
+    }
+    
+    @IBAction func favoriteStateTapped(sender: UISegmentedControl) {
+        reloadRecipeList()
+        tableView.reloadData()
+    }
+    
+    @IBAction func orderTapped(sender: UISegmentedControl) {
+    }
+    
+    func reloadRecipeList(){
+        let realm = try! Realm()
+        switch favoriteSelect.selectedSegmentIndex{
+        case 0:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
+        case 1:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!).sorted("recipeName")
+        case 2:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!).sorted("recipeName")
+        default:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
+        }
     }
     
     // MARK: - IBAction
