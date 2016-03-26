@@ -16,16 +16,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
+    var token = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
+
+        let realm = try! Realm()
+        token = realm.objects(Ingredient).addNotificationBlock { results, realm in
+            self.reloadIngredientList()
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewDidDisappear(animated)
         reloadIngredientList()
         tableView.reloadData()
+        
     }
     
     override func didReceiveMemoryWarning() {

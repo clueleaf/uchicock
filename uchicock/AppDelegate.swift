@@ -123,6 +123,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addRecipe("カルーアミルクh", favorites: 1, memo: "飲みやすい", method: 0)
         addRecipe("カルーアミルクi", favorites: 1, memo: "飲みやすい", method: 0)
         addRecipe("カルーアミルクj", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("アルーアミルク2", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("アルーアミルク3", favorites: 1, memo: "飲みやすい", method: 0)
     }
     
     func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
@@ -166,6 +168,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addRecipeToIngredientLink("カルーアミルクh", ingredientName: "牛乳", amount: "up", mustFlag: true)
         addRecipeToIngredientLink("カルーアミルクi", ingredientName: "牛乳", amount: "up", mustFlag: true)
         addRecipeToIngredientLink("カルーアミルクj", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("アルーアミルク2", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("アルーアミルク3", ingredientName: "牛乳", amount: "up", mustFlag: true)
     }
     
     func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){

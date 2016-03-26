@@ -19,9 +19,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeList: Results<Recipe>?
     
+    
+    /////////////////////////
+    var token = NotificationToken()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
+        
+        
+        ////////////////////////
+        let realm = try! Realm()
+        token = realm.objects(Recipe).addNotificationBlock { results, realm in
+            print("変更されました！！！！！！！！")
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -170,10 +182,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func orderTapped(sender: UISegmentedControl) {
+        reloadRecipeList()
+        tableView.reloadData()
     }
     
     func reloadRecipeList(){
         let realm = try! Realm()
+        
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
             recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
@@ -184,6 +199,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         default:
             recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
         }
+
+//        if order.selectedSegmentIndex == 1{
+//            try! realm.write {
+//                for recipe in recipeList!{
+//                    recipe.updateShortageNum()
+//                }
+//            }
+//            let sortProperties = [
+//                SortDescriptor(property: "shortageNum", ascending: true),
+//                SortDescriptor(property: "recipeName", ascending: true) ]
+//            recipeList = recipeList!.sorted(sortProperties)
+//        }
+        
     }
     
     // MARK: - IBAction

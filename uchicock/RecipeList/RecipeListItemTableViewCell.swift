@@ -34,10 +34,10 @@ class RecipeListItemTableViewCell: UITableViewCell {
             
             var shortageNum = 0
             var shortageName = ""
-            for (var i = 0; i<recipe.recipeIngredients.count; ++i){
-                if recipe.recipeIngredients[i].mustFlag && recipe.recipeIngredients[i].ingredient.stockFlag == false {
+            for recipeIngredient in recipe.recipeIngredients{
+                if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
                     shortageNum++
-                    shortageName = recipe.recipeIngredients[i].ingredient.ingredientName
+                    shortageName = recipeIngredient.ingredient.ingredientName
                 }
             }
             if shortageNum == 0 {
