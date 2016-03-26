@@ -81,13 +81,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if ingredient.recipeIngredients.count == 0 && section == 2{
-            return 30
-        } else if ingredient.recipeIngredients.count > 0 && section == 1{
-            return 30
-        }else{
-            return 0
-        }
+        return 0
     }
 
     // MARK: - UITableViewDataSource
