@@ -61,7 +61,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
             }else{
-                photo.image = nil
+                photo.image = UIImage(named: "no-photo")
             }
         }
     }

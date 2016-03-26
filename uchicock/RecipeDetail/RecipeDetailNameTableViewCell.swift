@@ -19,8 +19,9 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
             }else{
-                photo.image = nil
+                photo.image = UIImage(named: "no-photo")
             }
+            self.selectionStyle = .None
         }
     }
 
