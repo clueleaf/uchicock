@@ -155,7 +155,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            if indexPath.row == 1{
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+                cell.textLabel?.textColor = FlatSkyBlue()
+                if recipe.imageData == nil{
+                    cell.textLabel?.text = "写真を追加"
+                }else{
+                    cell.textLabel?.text = "写真を変更"
+                }
+                cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
+                cell.textLabel?.textAlignment = .Center;
+                return cell
+            }else{
+                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            }
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
@@ -182,7 +195,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1{
+        if indexPath.section == 0 && indexPath.row == 1{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            //写真を追加
+        }else if indexPath.section == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
         }

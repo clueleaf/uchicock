@@ -29,6 +29,8 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
                 option.textColor = FlatBlack()
                 option.backgroundColor = FlatWhiteDark()
             }
+            option.layer.cornerRadius = 4
+            option.clipsToBounds = true
             
             if recipeIngredient.ingredient.stockFlag {
                 stock.text = "在庫あり"
@@ -43,6 +45,8 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
                 ingredientName.textColor = FlatGrayDark()
                 amount.textColor = FlatGrayDark()
             }
+            stock.layer.cornerRadius = 4
+            stock.clipsToBounds = true
         }
     }
     

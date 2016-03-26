@@ -10,11 +10,17 @@ import UIKit
 
 class RecipeDetailNameTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     
-    var name: String = String(){
+    var recipe: Recipe = Recipe(){
         didSet{
-            recipeName.text = name
+            recipeName.text = recipe.recipeName
+            if recipe.imageData != nil{
+                photo.image = UIImage(data: recipe.imageData!)
+            }else{
+                
+            }
         }
     }
 

@@ -19,6 +19,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,6 +35,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }else{
             recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
+
             tableView.reloadData()
             
             self.tableView.estimatedRowHeight = 70
@@ -96,7 +98,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         return 0
     }
 
-    
     // MARK: - UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -125,7 +126,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailName") as! RecipeDetailNameTableViewCell
-                cell.name = recipe.recipeName
+                cell.recipe = recipe
                 return cell
             }else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailFavorite") as! RecipeDetailFavoriteTableViewCell
@@ -149,6 +150,14 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             return cell
         }
         return UITableViewCell()
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let scrollOffset = scrollView.contentOffset.y + scrollView.contentInset.top
+        if scrollOffset <= 0 {
+            
+        }
     }
     
     // MARK: - IBAction

@@ -11,6 +11,7 @@ import ChameleonFramework
 
 class RecipeListItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var favorites: UILabel!
     @IBOutlet weak var shortage: UILabel!
@@ -55,6 +56,12 @@ class RecipeListItemTableViewCell: UITableViewCell {
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
                 shortage.textColor = FlatGrayDark()
                 shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+            }
+            
+            if recipe.imageData != nil{
+                photo.image = UIImage(data: recipe.imageData!)
+            }else{
+                
             }
         }
     }
