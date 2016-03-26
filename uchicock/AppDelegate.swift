@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
         
         UILabel.appearance().textColor = FlatBlack()
-        
     }
 
     func applicationWillResignActive(application: UIApplication) {

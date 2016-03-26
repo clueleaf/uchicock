@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     

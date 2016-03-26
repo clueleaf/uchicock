@@ -10,9 +10,11 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var recipeName: UITextField!
+    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var selectPhoto: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
@@ -26,6 +28,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var recipe = Recipe()
     var isAddMode = true
     var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
+    var ipc = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +74,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             isAddMode = false
         }
         
+        selectPhoto.textColor = FlatSkyBlue()
+        if recipe.imageData == nil{
+            selectPhoto.text = "写真を追加"
+        }else{
+            photo.image = UIImage(data: recipe.imageData!)
+            selectPhoto.text = "写真を変更"
+        }
+        
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
+        
         memo.text = recipe.memo
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
+        
+        ipc.delegate = self
+        ipc.allowsEditing = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -155,20 +170,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if indexPath.row == 1{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0))
-                cell.textLabel?.textColor = FlatSkyBlue()
-                if recipe.imageData == nil{
-                    cell.textLabel?.text = "写真を追加"
-                }else{
-                    cell.textLabel?.text = "写真を変更"
-                }
-                cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
-                cell.textLabel?.textAlignment = .Center;
-                return cell
-            }else{
-                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-            }
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
@@ -197,7 +199,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            //写真を追加
+            addPhoto()
         }else if indexPath.section == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
@@ -205,11 +207,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+        if indexPath.section == 0 && indexPath.row == 1{
+            if selectPhoto.text == "写真を追加"{
+                return false
+            }
+            else if selectPhoto.text == "写真を変更"{
+            return true
+            }
+        }else if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
             return true
         }else{
             return false
         }
+        return false
     }
     
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -218,10 +228,49 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            editingRecipeIngredientList.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            if indexPath.section == 0 && indexPath.row == 1{
+                selectPhoto.text = "写真を追加"
+                photo.image = nil
+            }else if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+                editingRecipeIngredientList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
         }
     }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        ipc.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
+            photo.image = image
+            selectPhoto.text = "写真を変更"
+        }
+        ipc.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func addPhoto() {
+        let alert = UIAlertController(title: nil, message:nil, preferredStyle: .ActionSheet)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera){
+            alert.addAction(UIAlertAction(title: "写真を撮る", style: .Default,handler:{
+                action in
+                self.ipc.sourceType = .Camera
+                self.presentViewController(self.ipc, animated: true, completion: nil)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "写真を選択",style: .Default, handler:{
+            action in
+            self.ipc.sourceType = .PhotoLibrary
+            self.presentViewController(self.ipc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title:"キャンセル",style: .Cancel, handler:{
+            action in
+        }))
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
 
     // MARK: - IBAction
     @IBAction func star1Tapped(sender: UIButton) {
@@ -243,42 +292,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        if hasImportantInformationChanged() == true{
-            let alertView = UIAlertController(title: "", message: "編集内容を破棄しますか？", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "はい",style: .Default){
-                action in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                })
-            alertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
-            presentViewController(alertView, animated: true, completion: nil)
-        }else{
+        let alertView = UIAlertController(title: "", message: "編集内容を破棄しますか？", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "はい",style: .Default){
+            action in
             self.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
-    func hasImportantInformationChanged () -> Bool {
-        if recipe.recipeName != recipeName.text{
-            return true
-        }
-        if recipe.memo != memo.text{
-            return true
-        }
-        if recipe.recipeIngredients.count != editingRecipeIngredientList.count{
-            return true
-        }else{
-            for var i = 0; i < recipe.recipeIngredients.count; ++i{
-                if recipe.recipeIngredients[i].ingredient.ingredientName != editingRecipeIngredientList[i].ingredientName{
-                    return true
-                }
-                if recipe.recipeIngredients[i].amount != editingRecipeIngredientList[i].amount{
-                    return true
-                }
-                if recipe.recipeIngredients[i].mustFlag != editingRecipeIngredientList[i].mustFlag{
-                    return true
-                }
-            }
-        }
-        return false
+            })
+        alertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
+        presentViewController(alertView, animated: true, completion: nil)
     }
     
     func isIngredientDuplicated() -> Bool {
@@ -345,6 +365,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }else{
                             newRecipe.favorites = 1
                         }
+                        if photo.image != nil{
+                            newRecipe.imageData = UIImagePNGRepresentation(photo.image!)
+                        }else{
+                            newRecipe.imageData = nil
+                        }
                         
                         newRecipe.method = method.selectedSegmentIndex
                         newRecipe.memo = memo.text
@@ -401,6 +426,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.favorites = 2
                         }else{
                             recipe.favorites = 1
+                        }
+                        if photo.image != nil{
+                            recipe.imageData = UIImagePNGRepresentation(photo.image!)
+                        }else{
+                            recipe.imageData = nil
                         }
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text
