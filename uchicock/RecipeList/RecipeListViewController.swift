@@ -16,12 +16,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var favoriteSelect: UISegmentedControl!
     @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControlContainer: UIView!
     
     var recipeList: Results<Recipe>?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
     }
     

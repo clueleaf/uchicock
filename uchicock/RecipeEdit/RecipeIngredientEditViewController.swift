@@ -16,6 +16,9 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
     var isAddMode = false
     var deleteFlag = false
     var suggestList = Array<String>()
+    @IBOutlet var totalView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var innerView: UIView!
     
     @IBOutlet weak var ingredientName: UITextField!
     @IBOutlet weak var amount: UITextField!
@@ -25,6 +28,10 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        totalView.backgroundColor = FlatWhite()
+        scrollView.backgroundColor = FlatWhite()
+        innerView.backgroundColor = FlatWhite()
+        
         ingredientName.delegate = self
         amount.delegate = self
         ingredientName.tag = 0
@@ -44,6 +51,8 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
         
         tableView.backgroundColor = FlatWhite()
         deleteButton.backgroundColor = UIColor.clearColor()
+        deleteButton.layer.borderColor = FlatWhiteDark().CGColor
+        deleteButton.layer.borderWidth = 1
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }

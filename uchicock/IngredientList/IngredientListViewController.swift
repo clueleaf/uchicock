@@ -8,18 +8,21 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var stockState: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControlContainer: UIView!
     
     var ingredientList: Results<Ingredient>?
     var token = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
 
         let realm = try! Realm()

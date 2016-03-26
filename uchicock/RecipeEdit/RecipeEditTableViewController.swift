@@ -291,7 +291,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "", message: "編集内容を破棄しますか？", preferredStyle: .Alert)
+        let alertView = UIAlertController(title: "", message: "編集をやめますか？", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "はい",style: .Default){
             action in
             self.dismissViewControllerAnimated(true, completion: nil)

@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rev-jS-7mA">
-                                <rect key="frame" x="0.0" y="128" width="600" height="408"/>
+                                <rect key="frame" x="0.0" y="116" width="600" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListItem" rowHeight="70" id="HXx-Bk-ylr" customClass="RecipeListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -128,49 +128,61 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="EVC-gH-W3O"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWl-Ai-21r">
-                                <rect key="frame" x="8" y="52" width="584" height="29"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU7-zN-cmX" userLabel="セグメントコントロールコンテナ">
+                                <rect key="frame" x="0.0" y="44" width="600" height="72"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWl-Ai-21r">
+                                        <rect key="frame" x="8" y="0.0" width="584" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="KQB-yF-WIB"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="すべて"/>
+                                            <segment title="★★☆以上"/>
+                                            <segment title="★★★のみ"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="favoriteStateTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="PB3-Z8-rRq"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGC-mX-LWw">
+                                        <rect key="frame" x="8" y="36" width="584" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="ZcL-g4-YzN"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="名前順"/>
+                                            <segment title="つくれる順"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="orderTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="fja-U9-thn"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="KQB-yF-WIB"/>
+                                    <constraint firstItem="MGC-mX-LWw" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="8rL-TG-qTB"/>
+                                    <constraint firstAttribute="bottom" secondItem="MGC-mX-LWw" secondAttribute="bottom" constant="8" id="Cdn-do-czV"/>
+                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" id="CyP-HI-KjA"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZWl-Ai-21r" secondAttribute="trailing" constant="8" id="OPu-da-LCm"/>
+                                    <constraint firstAttribute="trailing" secondItem="MGC-mX-LWw" secondAttribute="trailing" constant="8" id="ezH-Dd-aRE"/>
+                                    <constraint firstItem="MGC-mX-LWw" firstAttribute="top" secondItem="ZWl-Ai-21r" secondAttribute="bottom" constant="8" id="l3x-ej-gDi"/>
+                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="wHI-vb-laK"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="すべて"/>
-                                    <segment title="★★☆以上"/>
-                                    <segment title="★★★のみ"/>
-                                </segments>
-                                <connections>
-                                    <action selector="favoriteStateTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="PB3-Z8-rRq"/>
-                                </connections>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGC-mX-LWw">
-                                <rect key="frame" x="8" y="92" width="584" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="ZcL-g4-YzN"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="名前順"/>
-                                    <segment title="つくれる順"/>
-                                </segments>
-                                <connections>
-                                    <action selector="orderTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="fja-U9-thn"/>
-                                </connections>
-                            </segmentedControl>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rev-jS-7mA" secondAttribute="trailing" id="0Bh-4h-vY7"/>
-                            <constraint firstItem="rev-jS-7mA" firstAttribute="top" secondItem="MGC-mX-LWw" secondAttribute="bottom" constant="8" id="5AW-yF-XR8"/>
-                            <constraint firstItem="ZWl-Ai-21r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="5O5-CO-M06"/>
-                            <constraint firstAttribute="trailing" secondItem="ZWl-Ai-21r" secondAttribute="trailing" constant="8" id="7if-NN-dUw"/>
-                            <constraint firstItem="ZWl-Ai-21r" firstAttribute="top" secondItem="LdP-YB-YF7" secondAttribute="bottom" constant="8" id="BLN-0p-sjG"/>
+                            <constraint firstItem="EU7-zN-cmX" firstAttribute="top" secondItem="LdP-YB-YF7" secondAttribute="bottom" id="2sd-2D-9uJ"/>
                             <constraint firstItem="LdP-YB-YF7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BQz-AX-oit"/>
                             <constraint firstItem="LdP-YB-YF7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Bra-e4-3Fb"/>
-                            <constraint firstAttribute="trailing" secondItem="MGC-mX-LWw" secondAttribute="trailing" constant="8" id="J9F-Ts-YkT"/>
                             <constraint firstItem="rev-jS-7mA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MQu-5C-VSa"/>
-                            <constraint firstItem="MGC-mX-LWw" firstAttribute="top" secondItem="ZWl-Ai-21r" secondAttribute="bottom" constant="12" id="OL5-a0-xfA"/>
                             <constraint firstItem="rev-jS-7mA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QC7-4H-Reu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rev-jS-7mA" secondAttribute="bottom" id="SNb-Fh-ZgV"/>
-                            <constraint firstItem="MGC-mX-LWw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="UTv-Pd-stK"/>
+                            <constraint firstItem="EU7-zN-cmX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VZj-uE-FOc"/>
+                            <constraint firstItem="rev-jS-7mA" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="bottom" id="hvU-oG-4fX"/>
+                            <constraint firstAttribute="trailing" secondItem="EU7-zN-cmX" secondAttribute="trailing" id="iqV-dI-tiV"/>
                             <constraint firstAttribute="bottom" secondItem="rev-jS-7mA" secondAttribute="bottom" id="njS-IZ-nGy"/>
                             <constraint firstAttribute="trailing" secondItem="LdP-YB-YF7" secondAttribute="trailing" id="pSF-3a-SSK"/>
                             <constraint firstItem="rev-jS-7mA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="v7P-AK-sxX"/>
@@ -196,6 +208,7 @@
                         <outlet property="favoriteSelect" destination="ZWl-Ai-21r" id="SoB-C3-Cev"/>
                         <outlet property="order" destination="MGC-mX-LWw" id="pnD-AG-KgA"/>
                         <outlet property="searchBar" destination="LdP-YB-YF7" id="YO2-R7-Pfn"/>
+                        <outlet property="segmentedControlContainer" destination="EU7-zN-cmX" id="nUw-rl-m4m"/>
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="bvf-aa-P4b" kind="show" identifier="PushRecipeDetail" id="tyH-qi-X5f"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushAddRecipe" id="BF7-gd-8JQ"/>
@@ -218,7 +231,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-GC-4Ax">
-                                <rect key="frame" x="0.0" y="88" width="600" height="448"/>
+                                <rect key="frame" x="0.0" y="80" width="600" height="456"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientListItem" rowHeight="50" id="P9w-m9-Hhq" customClass="IngredientListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -300,31 +313,43 @@
                                     <outlet property="delegate" destination="IFZ-In-CDc" id="SQ9-i8-FN7"/>
                                 </connections>
                             </searchBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M">
-                                <rect key="frame" x="8" y="52" width="584" height="29"/>
-                                <segments>
-                                    <segment title="すべて"/>
-                                    <segment title="在庫あり"/>
-                                    <segment title="在庫なし"/>
-                                </segments>
-                                <connections>
-                                    <action selector="stockStateTapped:" destination="IFZ-In-CDc" eventType="valueChanged" id="vP8-Kj-wji"/>
-                                </connections>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-aJ-DQL" userLabel="Container">
+                                <rect key="frame" x="0.0" y="44" width="600" height="36"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M">
+                                        <rect key="frame" x="8" y="0.0" width="584" height="29"/>
+                                        <segments>
+                                            <segment title="すべて"/>
+                                            <segment title="在庫あり"/>
+                                            <segment title="在庫なし"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="stockStateTapped:" destination="IFZ-In-CDc" eventType="valueChanged" id="vP8-Kj-wji"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="wmB-he-16M" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="5Jk-2q-NEK"/>
+                                    <constraint firstAttribute="bottom" secondItem="wmB-he-16M" secondAttribute="bottom" constant="8" id="Bxn-yd-T4g"/>
+                                    <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="jTc-Oi-VTd"/>
+                                    <constraint firstItem="wmB-he-16M" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="top" id="odZ-Gf-wmg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="33d-x1-RLZ"/>
-                            <constraint firstItem="wmB-he-16M" firstAttribute="top" secondItem="Ju1-KR-IKb" secondAttribute="bottom" constant="8" id="812-wP-Qbg"/>
                             <constraint firstItem="Ju1-KR-IKb" firstAttribute="top" secondItem="3Pb-wn-CyZ" secondAttribute="top" id="8nh-3k-qil"/>
                             <constraint firstItem="KNl-GC-4Ax" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="CzN-eC-IPr"/>
                             <constraint firstItem="Ju1-KR-IKb" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="E4M-rL-6ht"/>
-                            <constraint firstItem="KNl-GC-4Ax" firstAttribute="top" secondItem="wmB-he-16M" secondAttribute="bottom" constant="8" id="LdI-lh-dxc"/>
                             <constraint firstAttribute="trailing" secondItem="Ju1-KR-IKb" secondAttribute="trailing" id="M2g-2T-tmG"/>
                             <constraint firstAttribute="bottom" secondItem="KNl-GC-4Ax" secondAttribute="bottom" id="Pug-Z9-8LN"/>
+                            <constraint firstItem="KNl-GC-4Ax" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="bottom" id="U5n-yZ-Gzg"/>
+                            <constraint firstAttribute="trailing" secondItem="jYr-aJ-DQL" secondAttribute="trailing" id="XPg-ag-W0n"/>
                             <constraint firstItem="KNl-GC-4Ax" firstAttribute="top" secondItem="3Pb-wn-CyZ" secondAttribute="top" id="dMA-nd-AFx"/>
                             <constraint firstAttribute="trailing" secondItem="KNl-GC-4Ax" secondAttribute="trailing" id="hdI-Ri-zsj"/>
-                            <constraint firstItem="wmB-he-16M" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" constant="8" id="rUE-6B-6ma"/>
+                            <constraint firstItem="jYr-aJ-DQL" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="iDE-69-hZx"/>
+                            <constraint firstItem="jYr-aJ-DQL" firstAttribute="top" secondItem="Ju1-KR-IKb" secondAttribute="bottom" id="xg6-G3-hZk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -342,6 +367,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="Ju1-KR-IKb" id="qxQ-UW-cCB"/>
+                        <outlet property="segmentedControlContainer" destination="jYr-aJ-DQL" id="Pim-f2-nxm"/>
                         <outlet property="stockState" destination="wmB-he-16M" id="1tT-Xf-o9f"/>
                         <outlet property="tableView" destination="KNl-GC-4Ax" id="yp8-EL-s8S"/>
                         <segue destination="ki6-Wr-KQo" kind="show" identifier="PushIngredientDetail" id="bzu-23-lxG"/>
@@ -1560,7 +1586,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMx-Go-tNi">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="404"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="420"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-Za-as5">
                                                 <rect key="frame" x="66" y="8" width="526" height="40"/>
@@ -1587,7 +1613,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z7p-hl-0xF">
-                                                <rect key="frame" x="58" y="243.5" width="534" height="40"/>
+                                                <rect key="frame" x="58" y="243" width="534" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="JC0-GK-mcu"/>
                                                 </constraints>
@@ -1611,9 +1637,12 @@
                                                 </constraints>
                                             </switch>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3u-U3-uA4">
-                                                <rect key="frame" x="0.0" y="350" width="600" height="34"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <state key="normal" title="このレシピの材料から削除する">
+                                                <rect key="frame" x="0.0" y="350" width="600" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="63i-X9-wbe"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="材料の追加をやめる">
                                                     <color key="titleColor" red="1" green="0.082812381099999999" blue="0.16452394789999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -1741,8 +1770,11 @@
                         <outlet property="amount" destination="z7p-hl-0xF" id="tjY-fu-Kwy"/>
                         <outlet property="deleteButton" destination="M3u-U3-uA4" id="fRc-61-O9B"/>
                         <outlet property="ingredientName" destination="zPc-Za-as5" id="Dzg-Mu-w7z"/>
+                        <outlet property="innerView" destination="ZMx-Go-tNi" id="ygN-Eq-f0s"/>
                         <outlet property="option" destination="yI6-BH-Omb" id="Ytg-yF-9T6"/>
+                        <outlet property="scrollView" destination="yL8-la-IUi" id="3ph-ev-SZf"/>
                         <outlet property="tableView" destination="dQy-TR-R3d" id="3hD-Dv-yHY"/>
+                        <outlet property="totalView" destination="b2K-hC-vKE" id="MHD-ob-4GW"/>
                         <segue destination="tOr-ol-U21" kind="unwind" identifier="UnwindToRecipeEdit" unwindAction="unwindToRecipeEdit:" id="HDA-CR-tBG"/>
                     </connections>
                 </viewController>
@@ -1763,9 +1795,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tyH-qi-X5f"/>
-        <segue reference="bzu-23-lxG"/>
-        <segue reference="VoJ-51-RUH"/>
-        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="pyL-Bh-L11"/>
+        <segue reference="9Wz-4C-0K0"/>
+        <segue reference="7SF-P9-ikG"/>
+        <segue reference="hrp-Pj-JYM"/>
     </inferredMetricsTieBreakers>
 </document>

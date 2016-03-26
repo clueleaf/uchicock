@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setColor(){
         Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
         
-        UITableView.appearance().backgroundColor = FlatSand()
+        UITableView.appearance().backgroundColor = FlatWhite()
+        
+        UISearchBar.appearance().backgroundColor = FlatSand()
         
         UIButton.appearanceWhenContainedInInstancesOfClasses([UITableView.self]).backgroundColor = UIColor.clearColor()
         
