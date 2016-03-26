@@ -207,19 +207,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == 0 && indexPath.row == 1{
-            if selectPhoto.text == "写真を追加"{
-                return false
-            }
-            else if selectPhoto.text == "写真を変更"{
-            return true
-            }
-        }else if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
             return true
         }else{
             return false
         }
-        return false
     }
     
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -228,10 +220,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            if indexPath.section == 0 && indexPath.row == 1{
-                selectPhoto.text = "写真を追加"
-                photo.image = nil
-            }else if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+            if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
                 editingRecipeIngredientList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
@@ -265,6 +254,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.ipc.sourceType = .PhotoLibrary
             self.presentViewController(self.ipc, animated: true, completion: nil)
         }))
+        if self.photo.image != nil{
+            alert.addAction(UIAlertAction(title: "写真を削除",style: .Destructive){
+                action in
+                self.selectPhoto.text = "写真を追加"
+                self.photo.image = nil
+                })
+        }
         alert.addAction(UIAlertAction(title:"キャンセル",style: .Cancel, handler:{
             action in
         }))
