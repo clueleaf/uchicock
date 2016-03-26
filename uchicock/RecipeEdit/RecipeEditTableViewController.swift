@@ -79,7 +79,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else{
             photo.image = UIImage(data: recipe.imageData!)
         }
-        //レシピ削除のバグに対するワークアラウンド
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
         }else{

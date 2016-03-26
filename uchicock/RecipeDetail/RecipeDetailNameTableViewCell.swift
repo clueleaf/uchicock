@@ -18,10 +18,12 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
             recipeName.text = recipe.recipeName
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
-            }
-            //レシピ削除のバグに対するワークアラウンド
-            if photo.image == nil{
-                photo.image = UIImage(named: "no-photo")
+                //レシピ削除のバグに対するワークアラウンド
+                if photo.image == nil{
+                    photo.image = UIImage(named: "no-photo")
+                }
+            }else{
+                photo.image = UIImage(named: "no-photo")                
             }
             self.selectionStyle = .None
         }
