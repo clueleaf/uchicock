@@ -35,9 +35,11 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             amount.text = recipeIngredient.amount
             option.on = !recipeIngredient.mustFlag
             self.navigationItem.title = "材料の変更"
+            deleteButton.setTitle("このレシピの材料から外す", forState: .Normal)
         }else{
             option.on = false
             self.navigationItem.title = "材料の追加"
+            deleteButton.setTitle("材料の追加をやめる", forState: .Normal)
         }
         
         tableView.backgroundColor = FlatWhite()
@@ -176,8 +178,8 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
     
     @IBAction func notUseButtonTapped(sender: UIButton) {
         if isAddMode{
-            let alertView = UIAlertController(title: "この材料の編集をやめますか？", message: "", preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "編集をやめる",style: .Destructive){
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "追加をやめる",style: .Destructive){
                 action in
                 self.deleteFlag = true
                 self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
@@ -185,8 +187,8 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
             presentViewController(alertView, animated: true, completion: nil)
         }else{
-            let alertView = UIAlertController(title: "このレシピの材料から削除しますか？", message: "", preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "削除する",style: .Destructive){
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "外す",style: .Destructive){
                 action in
                 self.deleteFlag = true
                 self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)

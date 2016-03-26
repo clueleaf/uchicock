@@ -56,7 +56,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
                 alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                 presentViewController(alertView, animated: true, completion: nil)
             } else{
-                let alertView = UIAlertController(title: "本当に削除しますか？", message: "", preferredStyle: .ActionSheet)
+                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
                     action in
                     let realm = try! Realm()

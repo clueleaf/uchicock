@@ -51,11 +51,16 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            if recipe.imageData != nil{
+                performSegueWithIdentifier("PushPhotoDetail", sender: indexPath)
+            }
+        }else if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
         }else if indexPath.section == 2{
-            let alertView = UIAlertController(title: "本当に削除しますか？", message: "", preferredStyle: .ActionSheet)
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
             alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
                 action in
                 let realm = try! Realm()
@@ -176,6 +181,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
+        }else if segue.identifier == "PushPhotoDetail" {
+            let enc = segue.destinationViewController as! UINavigationController
+            let pvc = enc.visibleViewController as! PhotoDetailViewController
+            pvc.image = UIImage(data: recipe.imageData!)!
+            pvc.recipeName = recipe.recipeName
         }
     }
 
