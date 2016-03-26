@@ -191,17 +191,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
         }
 
-//        if order.selectedSegmentIndex == 1{
-//            try! realm.write {
-//                for recipe in recipeList!{
-//                    recipe.updateShortageNum()
-//                }
-//            }
-//            let sortProperties = [
-//                SortDescriptor(property: "shortageNum", ascending: true),
-//                SortDescriptor(property: "recipeName", ascending: true) ]
-//            recipeList = recipeList!.sorted(sortProperties)
-//        }
+        if order.selectedSegmentIndex == 1{
+            try! realm.write {
+                for recipe in recipeList!{
+                    recipe.updateShortageNum()
+                }
+            }
+            let sortProperties = [
+                SortDescriptor(property: "shortageNum", ascending: true),
+                SortDescriptor(property: "recipeName", ascending: true) ]
+            recipeList = recipeList!.sorted(sortProperties)
+        }
         
     }
     
