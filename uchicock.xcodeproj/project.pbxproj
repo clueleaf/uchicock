@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		79F6FA801A25D92818552697 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB758B17002CE7E61D78F3B /* Pods.framework */; };
+		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B3078C61CA421660014CE7E /* RecipeListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078C41CA421660014CE7E /* RecipeListItemTableViewCell.swift */; };
 		9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078C51CA421660014CE7E /* RecipeListViewController.swift */; };
 		9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078C81CA421AE0014CE7E /* Ingredient.swift */; };
@@ -67,6 +68,7 @@
 		34EEF1621ED608239061362E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		39E9598A26D53360CAD954E7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9AB758B17002CE7E61D78F3B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B3078C41CA421660014CE7E /* RecipeListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeListItemTableViewCell.swift; path = RecipeList/RecipeListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078C51CA421660014CE7E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeListViewController.swift; path = RecipeList/RecipeListViewController.swift; sourceTree = "<group>"; };
 		9B3078C81CA421AE0014CE7E /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Database/Ingredient.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9B3FE5831C9EA1630061D21C /* RecipeEdit */,
 				9B8772851C9D4BA80065A816 /* IngredientEdit */,
 				9BE32CF11C9C4E39001B98BF /* IngredientDetail */,
@@ -309,6 +312,7 @@
 				9BC9A30F1C783CAA0031F631 /* Resources */,
 				8F7EC021FD5B1D365CCEA720 /* Embed Pods Frameworks */,
 				81155ECD2C42A982BB4560DE /* Copy Pods Resources */,
+				9B0CF99C1CA7ED410024AF40 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -403,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
 				9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
@@ -470,6 +475,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9B0CF99C1CA7ED410024AF40 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:2:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
