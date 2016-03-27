@@ -23,7 +23,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillAppear(animated)
         let realm = try! Realm()
         let rec = realm.objects(Recipe).filter("id == %@",recipeId)
         if rec.count < 1 {
@@ -41,7 +41,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
         }
-
     }
 
     override func didReceiveMemoryWarning() {

@@ -33,7 +33,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillAppear(animated)
         reloadIngredientList()
         tableView.reloadData()
         
@@ -105,13 +105,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let realm = try! Realm()
             switch stockState.selectedSegmentIndex{
             case 0:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).count
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             case 1:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!).count
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             case 2:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!).count
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             default:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).count
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             }
         }
         return 0
@@ -130,13 +130,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let realm = try! Realm()
         switch stockState.selectedSegmentIndex{
         case 0:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         case 1:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         case 2:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         default:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         }
     }
     

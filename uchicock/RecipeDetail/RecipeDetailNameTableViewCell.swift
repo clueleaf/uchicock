@@ -28,7 +28,7 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
             self.selectionStyle = .None
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

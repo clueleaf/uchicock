@@ -28,7 +28,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillAppear(animated)
         reloadRecipeList()
         tableView.reloadData()
     }
@@ -148,13 +148,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let realm = try! Realm()
             switch favoriteSelect.selectedSegmentIndex{
             case 0:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).count
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             case 1:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!).count
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             case 2:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!).count
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             default:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).count
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
             }
         }
         return 0
@@ -184,13 +184,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
         case 1:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
         case 2:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
         default:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
         }
 
         if order.selectedSegmentIndex == 1{

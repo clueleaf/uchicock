@@ -13,5 +13,4 @@ class EditingRecipeIngredient: NSObject {
     var ingredientName = ""
     var amount = ""
     var mustFlag = false
-
 }

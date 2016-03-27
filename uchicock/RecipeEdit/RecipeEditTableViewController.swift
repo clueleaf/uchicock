@@ -99,7 +99,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
 
@@ -145,10 +145,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
@@ -158,10 +154,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return 0
     }
 
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return super.tableView(tableView, numberOfRowsInSection: 0)
@@ -215,10 +207,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else{
             return false
         }
-    }
-    
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -308,13 +296,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
             }
         }
-        
         return false
     }
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
         if recipeName.text == nil || recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
-            //名前を入れていない
+            //レシピ名を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
@@ -468,6 +455,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
+    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         let riec = fromViewController as! RecipeIngredientEditViewController
         if riec.isAddMode{
@@ -497,10 +488,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }
         return true
-    }
-    
-    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
     }
     
     @IBAction func unwindToRecipeEdit(segue: UIStoryboardSegue) {
