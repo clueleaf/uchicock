@@ -15,7 +15,6 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
-            recipeName.text = recipe.recipeName
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
                 //レシピ削除のバグに対するワークアラウンド
@@ -23,21 +22,21 @@ class RecipeDetailNameTableViewCell: UITableViewCell {
                     photo.image = UIImage(named: "no-photo")
                 }
             }else{
-                photo.image = UIImage(named: "no-photo")                
+                photo.image = UIImage(named: "no-photo")
             }
+
+            recipeName.text = recipe.recipeName
+            
             self.selectionStyle = .None
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

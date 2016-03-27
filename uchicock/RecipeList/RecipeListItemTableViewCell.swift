@@ -18,6 +18,16 @@ class RecipeListItemTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
+            if recipe.imageData != nil{
+                photo.image = UIImage(data: recipe.imageData!)
+                //レシピ削除のバグに対するワークアラウンド
+                if photo.image == nil{
+                    photo.image = UIImage(named: "no-photo")
+                }
+            }else{
+                photo.image = UIImage(named: "no-photo")
+            }
+
             recipeName.text = recipe.recipeName
             
             switch recipe.favorites{
@@ -28,7 +38,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             case 3:
                 favorites.text = "★★★"
             default:
-                favorites.text = "★★☆"
+                favorites.text = "★☆☆"
             }
             favorites.textColor = FlatSkyBlue()
             
@@ -40,11 +50,12 @@ class RecipeListItemTableViewCell: UITableViewCell {
                     shortageName = recipeIngredient.ingredient.ingredientName
                 }
             }
-            if shortageNum == 0 {
+            switch shortageNum {
+            case 0:
                 shortage.text = "すぐつくれる！"
                 shortage.textColor = FlatSkyBlueDark()
                 shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
-            }else if shortageNum == 1{
+            case 1:
                 if shortageName.characters.count > 10{
                     shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
                 }else{
@@ -52,34 +63,20 @@ class RecipeListItemTableViewCell: UITableViewCell {
                 }
                 shortage.textColor = FlatGrayDark()
                 shortage.font = UIFont.systemFontOfSize(CGFloat(14))
-            }else{
+            default:
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
                 shortage.textColor = FlatGrayDark()
                 shortage.font = UIFont.systemFontOfSize(CGFloat(14))
             }
-            
-            if recipe.imageData != nil{
-                photo.image = UIImage(data: recipe.imageData!)
-                //レシピ削除のバグに対するワークアラウンド
-                if photo.image == nil{
-                    photo.image = UIImage(named: "no-photo")
-                }
-            }else{
-                photo.image = UIImage(named: "no-photo")
-            }
         }
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

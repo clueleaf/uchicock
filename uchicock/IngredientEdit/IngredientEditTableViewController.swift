@@ -31,26 +31,30 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientName.text = ingredient.ingredientName
         ingredientName.delegate = self
+
         stock.on = ingredient.stockFlag
+
         memo.text = ingredient.memo
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
         return true
     }
+    
+    func textWithoutSpace ( text: String ) -> String {
+        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
 
-    // MARK: - Table view data source
+    // MARK: - UITableView
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -64,36 +68,35 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "", message: "編集をやめますか？", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "はい",style: .Default){
-            action in
+        let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "はい",style: .Default){ action in
             self.dismissViewControllerAnimated(true, completion: nil)
             })
-        alertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
+        alertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){ action in })
         presentViewController(alertView, animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
-        if ingredientName.text == nil || ingredientName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
-            //名前を入れていない
+        if ingredientName.text == nil || textWithoutSpace(ingredientName.text!) == ""{
+            //材料名を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
-        }else if ingredientName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 30{
+        }else if textWithoutSpace(ingredientName.text!).characters.count > 30{
             //材料名が長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "材料名が長すぎます", preferredStyle: .Alert)
+            let noNameAlertView = UIAlertController(title: "", message: "材料名を30文字以下にしてください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
         }else if memo.text.characters.count > 300{
             //メモが長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "メモが長すぎます", preferredStyle: .Alert)
+            let noNameAlertView = UIAlertController(title: "", message: "メモを300文字以下にしてください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
             
             if isAddMode {
-                let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+                let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@", textWithoutSpace(ingredientName.text!))
                 if sameNameIngredient.count != 0{
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .Alert)
@@ -101,7 +104,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     presentViewController(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     let newIngredient = Ingredient()
-                    newIngredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                    newIngredient.ingredientName = textWithoutSpace(ingredientName.text!)
                     newIngredient.stockFlag = stock.on
                     newIngredient.memo = memo.text
                     try! realm.write {
@@ -110,15 +113,15 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }else{
-                let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
-                if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()){
+                let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",textWithoutSpace(ingredientName.text!))
+                if sameNameIngredient.count != 0 && ingredient.ingredientName != textWithoutSpace(ingredientName.text!){
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .Alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                     presentViewController(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     try! realm.write {
-                        ingredient.ingredientName = ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        ingredient.ingredientName = textWithoutSpace(ingredientName.text!)
                         ingredient.stockFlag = stock.on
                         ingredient.memo = memo.text
                     }
@@ -131,16 +134,5 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func screenTapped(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

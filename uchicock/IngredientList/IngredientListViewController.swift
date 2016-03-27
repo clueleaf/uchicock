@@ -13,15 +13,16 @@ import ChameleonFramework
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var stockState: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentedControlContainer: UIView!
     
     var ingredientList: Results<Ingredient>?
     var token = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
 
@@ -34,9 +35,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         reloadIngredientList()
         tableView.reloadData()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,6 +58,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return nil
     }
     
+    func searchBarTextWithoutSpace() -> String {
+        return searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    func reloadIngredientList(){
+        let realm = try! Realm()
+        switch stockState.selectedSegmentIndex{
+        case 0:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+        case 1:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+        case 2:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+        default:
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+        }
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -68,9 +87,26 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UITableView
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            let realm = try! Realm()
+            switch stockState.selectedSegmentIndex{
+            case 0:
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).count
+            case 1:
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBarTextWithoutSpace()).count
+            case 2:
+                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBarTextWithoutSpace()).count
+            default:
+                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).count
+            }
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -99,24 +135,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }    
     
-    // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            let realm = try! Realm()
-            switch stockState.selectedSegmentIndex{
-            case 0:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            case 1:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            case 2:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            default:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            }
-        }
-        return 0
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
@@ -124,20 +142,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             return cell
         }
         return UITableViewCell()
-    }
-    
-    func reloadIngredientList(){
-        let realm = try! Realm()
-        switch stockState.selectedSegmentIndex{
-        case 0:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
-        case 1:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
-        case 2:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
-        default:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
-        }
     }
     
     // MARK: - IBAction

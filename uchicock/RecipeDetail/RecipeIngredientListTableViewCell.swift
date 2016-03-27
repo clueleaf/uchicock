@@ -11,15 +11,15 @@ import ChameleonFramework
 
 class RecipeIngredientListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var option: UILabel!
     @IBOutlet weak var ingredientName: UILabel!
-    @IBOutlet weak var amount: UILabel!
+    @IBOutlet weak var option: UILabel!
     @IBOutlet weak var stock: UILabel!
+    @IBOutlet weak var amount: UILabel!
     
     var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
         didSet{
             ingredientName.text = recipeIngredient.ingredient.ingredientName
-            amount.text = recipeIngredient.amount
+
             if recipeIngredient.mustFlag{
                 option.text = ""
                 option.textColor = FlatBlack()
@@ -31,7 +31,7 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
             }
             option.layer.cornerRadius = 4
             option.clipsToBounds = true
-            
+
             if recipeIngredient.ingredient.stockFlag {
                 stock.text = "在庫あり"
                 stock.textColor = FlatWhite()
@@ -47,18 +47,17 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
             }
             stock.layer.cornerRadius = 4
             stock.clipsToBounds = true
+
+            amount.text = recipeIngredient.amount
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

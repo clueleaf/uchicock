@@ -12,18 +12,18 @@ import ChameleonFramework
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeName: UITextField!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
+    @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
-    @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
     @IBOutlet weak var methodTableViewCell: UITableViewCell!
+    @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
+    @IBOutlet weak var memo: UITextView!
     
     var recipe = Recipe()
     var isAddMode = true
@@ -32,16 +32,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.registerClass(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
         
-        for ri in recipe.recipeIngredients {
-            let editingRecipeIngredient = EditingRecipeIngredient()
-            editingRecipeIngredient.id = ri.id
-            editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
-            editingRecipeIngredient.amount = ri.amount
-            editingRecipeIngredient.mustFlag = ri.mustFlag
-            editingRecipeIngredientList.append(editingRecipeIngredient)
+        recipeName.text = recipe.recipeName
+        recipeName.delegate = self
+
+        selectPhoto.textColor = FlatSkyBlue()
+        if recipe.imageData == nil{
+        }else{
+            photo.image = UIImage(data: recipe.imageData!)
         }
+        if photo.image == nil{
+            selectPhoto.text = "写真を追加"
+        }else{
+            selectPhoto.text = "写真を変更"
+        }
+        
+        ipc.delegate = self
+        ipc.allowsEditing = true
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
@@ -74,38 +83,30 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             isAddMode = false
         }
         
-        selectPhoto.textColor = FlatSkyBlue()
-        if recipe.imageData == nil{
-        }else{
-            photo.image = UIImage(data: recipe.imageData!)
-        }
-        if photo.image == nil{
-            selectPhoto.text = "写真を追加"
-        }else{
-            selectPhoto.text = "写真を変更"            
-        }
-        
-        recipeName.text = recipe.recipeName
-        recipeName.delegate = self
-        
         memo.text = recipe.memo
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = UIColor.grayColor().CGColor
         
-        ipc.delegate = self
-        ipc.allowsEditing = true
+        for ri in recipe.recipeIngredients {
+            let editingRecipeIngredient = EditingRecipeIngredient()
+            editingRecipeIngredient.id = ri.id
+            editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
+            editingRecipeIngredient.amount = ri.amount
+            editingRecipeIngredient.mustFlag = ri.mustFlag
+            editingRecipeIngredientList.append(editingRecipeIngredient)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool{
@@ -113,7 +114,30 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return true
     }
     
-    // MARK: - UITableViewDelegate
+    func isIngredientDuplicated() -> Bool {
+        for var i = 0; i < editingRecipeIngredientList.count - 1; ++i{
+            for var j = i+1; j < editingRecipeIngredientList.count; ++j{
+                if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func textWithoutSpace(text: String) -> String{
+        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    // MARK: - UITableView
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 30
+        }else {
+         return 0
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -127,8 +151,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return 0
     }
     
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return super.tableView(tableView, numberOfRowsInSection: 0)
+        } else if section == 1{
+            return editingRecipeIngredientList.count + 1
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
@@ -144,23 +173,35 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return 0
     }
     
-    // MARK: - Table view data source
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }else if section == 1{
-            return 30
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 1{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            addPhoto()
+        }else if indexPath.section == 1{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
         }
-        return 0
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return super.tableView(tableView, numberOfRowsInSection: 0)
-        } else if section == 1{
-            return editingRecipeIngredientList.count + 1
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+            return true
+        }else{
+            return false
         }
-        return 0
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
+                editingRecipeIngredientList.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            }
+        }
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -189,33 +230,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }
         return UITableViewCell()
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 1{
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            addPhoto()
-        }else if indexPath.section == 1{
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
-        }
-    }
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
-            return true
-        }else{
-            return false
-        }
-    }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
-                editingRecipeIngredientList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            }
-        }
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -288,21 +302,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         presentViewController(alertView, animated: true, completion: nil)
     }
     
-    func isIngredientDuplicated() -> Bool {
-        for var i = 0; i < editingRecipeIngredientList.count - 1; ++i{
-            for var j = i+1; j < editingRecipeIngredientList.count; ++j{
-                if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
-                    return true
-                }
-            }
-        }
-        return false
-    }
-    
     @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
-        if recipeName.text == nil || recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())==""{
+        if recipeName.text == nil || textWithoutSpace(recipeName.text!) == ""{
             //レシピ名を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if textWithoutSpace(recipeName.text!).characters.count > 30{
+            //レシピ名が長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "レシピ名を30文字以下にしてください", preferredStyle: .Alert)
+            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+            presentViewController(noNameAlertView, animated: true, completion: nil)
+        }else if memo.text.characters.count > 1000 {
+            //メモが長すぎる
+            let noNameAlertView = UIAlertController(title: "", message: "メモを1000文字以下にしてください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count == 0{
@@ -310,19 +323,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let noNameAlertView = UIAlertController(title: "", message: "材料を一つ以上入力してください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
-        }else if recipeName.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 30{
-            //レシピ名が長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "レシピ名が長すぎます", preferredStyle: .Alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
-            presentViewController(noNameAlertView, animated: true, completion: nil)
-        }else if memo.text.characters.count > 1000{
-            //メモが長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "メモが長すぎます", preferredStyle: .Alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
-            presentViewController(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count > 30{
             //材料数が多すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "材料の数が多すぎます", preferredStyle: .Alert)
+            let noNameAlertView = UIAlertController(title: "", message: "材料を30個以下にしてください", preferredStyle: .Alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
             presentViewController(noNameAlertView, animated: true, completion: nil)
         } else if isIngredientDuplicated() {
@@ -334,7 +337,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let realm = try! Realm()
             
             if isAddMode {
-                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",textWithoutSpace(recipeName.text!))
                 if sameNameRecipe.count != 0{
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .Alert)
@@ -343,7 +346,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }else{
                     try! realm.write{
                         let newRecipe = Recipe()
-                        newRecipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        newRecipe.recipeName = textWithoutSpace(recipeName.text!)
+
                         if star3.currentTitle == "★" {
                             newRecipe.favorites = 3
                         }else if star2.currentTitle == "★" {
@@ -351,6 +355,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }else{
                             newRecipe.favorites = 1
                         }
+
                         if photo.image != nil{
                             newRecipe.imageData = UIImagePNGRepresentation(photo.image!)
                         }else{
@@ -377,8 +382,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }else{
-                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
-                if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()){
+                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",textWithoutSpace(recipeName.text!))
+                if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(recipeName.text!){
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .Alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
@@ -405,7 +410,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             realm.delete(ri)
                         }
 
-                        recipe.recipeName = recipeName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        recipe.recipeName = textWithoutSpace(recipeName.text!)
                         if star3.currentTitle == "★" {
                             recipe.favorites = 3
                         }else if star2.currentTitle == "★" {
@@ -413,11 +418,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }else{
                             recipe.favorites = 1
                         }
+                        
                         if photo.image != nil{
                             recipe.imageData = UIImagePNGRepresentation(photo.image!)
                         }else{
                             recipe.imageData = nil
                         }
+                        
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text
                         
@@ -441,6 +448,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func unwindToRecipeEdit(segue: UIStoryboardSegue) {
+    }
+    
+    // MARK: - GestureRecognizer
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
     {
         if touch.view!.isDescendantOfView(recipeNameTableViewCell) {
@@ -455,17 +470,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
-    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
+    // MARK: - Navigation
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         let riec = fromViewController as! RecipeIngredientEditViewController
         if riec.isAddMode{
             if riec.deleteFlag{
             }else{
                 let editingRecipeIngredient = EditingRecipeIngredient()
-                editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                 editingRecipeIngredient.amount = riec.amount.text!
                 editingRecipeIngredient.mustFlag = !riec.option.on
                 editingRecipeIngredientList.append(editingRecipeIngredient)                
@@ -480,8 +492,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 for editingRecipeIngredient in editingRecipeIngredientList{
                     if editingRecipeIngredient.id == riec.recipeIngredient.id{
-                        editingRecipeIngredient.ingredientName = riec.ingredientName.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                        editingRecipeIngredient.amount = riec.amount.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
+                        editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)
                         editingRecipeIngredient.mustFlag = !riec.option.on
                     }
                 }
@@ -489,11 +501,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         return true
     }
-    
-    @IBAction func unwindToRecipeEdit(segue: UIStoryboardSegue) {
-    }
 
-    // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushEditIngredient" {
             let enc = segue.destinationViewController as! UINavigationController

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 
 class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -19,11 +18,13 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         let realm = try! Realm()
         let rec = realm.objects(Recipe).filter("id == %@",recipeId)
         if rec.count < 1 {
@@ -45,10 +46,42 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UITableView
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0{
+            return 0
+        } else {
+            return 30
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            return "材料"
+        }else{
+            return nil
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section{
+        case 0:
+            return 4
+        case 1:
+            return recipe.recipeIngredients.count
+        case 2:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -87,84 +120,45 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
                     realm.delete(self.recipe)
                 }
                 self.navigationController?.popViewControllerAnimated(true)
-                })
+            })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
             presentViewController(alertView, animated: true, completion: nil)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 0
-        } else {
-            return 30
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 4
-        }else if section == 1 {
-            return recipe.recipeIngredients.count
-        }else if section == 2{
-            return 1
-        }
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "材料"
-        }else{
-            return nil
-        }
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row{
+            case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailName") as! RecipeDetailNameTableViewCell
                 cell.recipe = recipe
                 return cell
-            }else if indexPath.row == 1 {
+            case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailFavorite") as! RecipeDetailFavoriteTableViewCell
                 cell.recipe = recipe
                 return cell
-            }else if indexPath.row == 2 {
+            case 2:
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMethod") as! RecipeDetailMethodTableViewCell
                 cell.recipeMethod = recipe.method
                 return cell
-            }else if indexPath.row == 3 {
+            case 3:
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMemo") as! RecipeDetailMemoTableViewCell
                 cell.recipeMemo = recipe.memo
                 return cell
+            default:
+                return UITableViewCell()
             }
-        }else if indexPath.section == 1 {
+        case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientItem") as! RecipeIngredientListTableViewCell
             cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
             return cell
-        }else if indexPath.section == 2 {
+        case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailDelete") as!RecipeDetailDeleteTableViewCell
             return cell
-        }
-        return UITableViewCell()
-    }
-    
-    // MARK: - UIScrollViewDelegate
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let scrollOffset = scrollView.contentOffset.y + scrollView.contentInset.top
-        if scrollOffset <= 0 {
-            
+        default:
+            return UITableViewCell()
         }
     }
     

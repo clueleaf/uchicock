@@ -22,6 +22,7 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         let realm = try! Realm()
         let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
         if ing.count < 1 {
@@ -42,10 +43,48 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UITableView
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if ingredient.recipeIngredients.count > 0 {
+            return 2
+        }else{
+            return 3
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1{
+            return 30
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1 {
+            if ingredient.recipeIngredients.count > 0 {
+                return "この材料を使うレシピ"
+            }else {
+                return "この材料を使うレシピはありません"
+            }
+        }else{
+            return nil
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 3
+        }else if section == 1 {
+            return ingredient.recipeIngredients.count
+        }else if section == 2 {
+            return 1
+        }
+        return 0
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -72,74 +111,35 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1{
-            return 30
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if ingredient.recipeIngredients.count > 0 {
-            return 2
-        }else{
-            return 3
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 3
-        }else if section == 1 {
-            return ingredient.recipeIngredients.count
-        }else if section == 2 {
-            return 1
-        }
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            if ingredient.recipeIngredients.count > 0 {
-                return "この材料を使うレシピ"
-            }else {
-                return "この材料を使うレシピはありません"
-            }
-        }else{
-            return nil
-        }
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row{
+            case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailName") as! IngredientDetailNameTableViewCell
                 cell.name = ingredient.ingredientName
                 return cell
-            }else if indexPath.row == 1 {
+            case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailStock") as! IngredientDetailStockTableViewCell
                 cell.ingredientStock = ingredient.stockFlag
                 return cell
-            }else if indexPath.row == 2 {
+            case 2:
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailMemo") as! IngredientDetailMemoTableViewCell
                 cell.ingredientMemo = ingredient.memo
                 return cell
+            default:
+                return UITableViewCell()
             }
-        }else if indexPath.section == 1 {
+        case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeItem") as! IngredientRecipeListTableViewCell
             cell.recipeIngredient = ingredient.recipeIngredients[indexPath.row]
             return cell
-        }else if indexPath.section == 2 {
+        case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientDetailDelete") as! IngredientDetailDeleteTableViewCell
             return cell
+        default:
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
     
     // MARK: - IBAction
@@ -148,16 +148,9 @@ class IngredientDetailViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBAction func stockButtonTapped(sender: UISwitch) {
-        if sender.on{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }else{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = false
-            }
+        let realm = try! Realm()
+        try! realm.write {
+            ingredient.stockFlag = sender.on
         }
         tableView.reloadData()
     }

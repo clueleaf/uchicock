@@ -14,18 +14,9 @@ class RecipeDetailMethodTableViewCell: UITableViewCell {
     
     var recipeMethod: Int = Int(){
         didSet{
-            switch recipeMethod{
-            case 0:
-                method.selectedSegmentIndex = 0
-            case 1:
-                method.selectedSegmentIndex = 1
-            case 2:
-                method.selectedSegmentIndex = 2
-            case 3:
-                method.selectedSegmentIndex = 3
-            case 4:
-                method.selectedSegmentIndex = 4
-            default:
+            if recipeMethod >= 0 && recipeMethod < 5 {
+                method.selectedSegmentIndex = recipeMethod
+            } else {
                 method.selectedSegmentIndex = 4
             }
         }
@@ -33,13 +24,10 @@ class RecipeDetailMethodTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

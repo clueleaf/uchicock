@@ -15,10 +15,9 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
     var option = UILabel()
     var amount = UILabel()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!)
-    {
-        //First Call Super
+    override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         ingredientName = UILabel(frame: CGRectMake(10, 5, 300, 21))
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFontOfSize(17)
@@ -36,20 +35,16 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         self.addSubview(amount)
     }
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)!
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

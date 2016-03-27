@@ -13,22 +13,23 @@ import ChameleonFramework
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var favoriteSelect: UISegmentedControl!
     @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentedControlContainer: UIView!
     
     var recipeList: Results<Recipe>?
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         reloadRecipeList()
         tableView.reloadData()
     }
@@ -51,9 +52,68 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
     
+    func deleteRecipe(recipe: Recipe) {
+        let realm = try! Realm()
+        
+        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+        for ri in recipe.recipeIngredients{
+            let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
+            deletingRecipeIngredientList.append(recipeIngredient)
+        }
+        
+        try! realm.write{
+            for ri in deletingRecipeIngredientList{
+                let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                    if ingredient.recipeIngredients[i].id == ri.id{
+                        ingredient.recipeIngredients.removeAtIndex(i)
+                    }
+                }
+            }
+            for ri in deletingRecipeIngredientList{
+                realm.delete(ri)
+            }
+            //これを実行すると、最後に追加したレシピのimageDataがnilでなくなる現象が確認
+            //解決法がわからないのでとりあえずワークアラウンドする
+            realm.delete(recipe)
+        }
+    }
+    
+    func searchBarTextWithoutSpace() -> String {
+        return searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    func reloadRecipeList(){
+        let realm = try! Realm()
+        
+        switch favoriteSelect.selectedSegmentIndex{
+        case 0:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).sorted("recipeName")
+        case 1:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBarTextWithoutSpace()).sorted("recipeName")
+        case 2:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBarTextWithoutSpace()).sorted("recipeName")
+        default:
+            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).sorted("recipeName")
+        }
+        
+        if order.selectedSegmentIndex == 1{
+            try! realm.write {
+                for recipe in recipeList!{
+                    recipe.updateShortageNum()
+                }
+            }
+            let sortProperties = [
+                SortDescriptor(property: "shortageNum", ascending: true),
+                SortDescriptor(property: "recipeName", ascending: true) ]
+            recipeList = recipeList!.sorted(sortProperties)
+        }
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+
         reloadRecipeList()
         tableView.reloadData()
     }
@@ -62,7 +122,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - UITableView
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        if section == 0 {
+            let realm = try! Realm()
+            switch favoriteSelect.selectedSegmentIndex{
+            case 0:
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).count
+            case 1:
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBarTextWithoutSpace()).count
+            case 2:
+                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBarTextWithoutSpace()).count
+            default:
+                return realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).count
+            }
+        }
+        return 0
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
@@ -81,83 +158,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if self.recipeList![indexPath.row].favorites == 3 {
                 let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "お気に入り★★★のレシピです", preferredStyle: .Alert)
                 favoriteAlertView.addAction(UIAlertAction(title: "はい", style: .Default, handler: {action in
-                    let realm = try! Realm()
-                    let recipe = self.recipeList![indexPath.row]
-                    
-                    let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                    for ri in recipe.recipeIngredients{
-                        let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
-                        deletingRecipeIngredientList.append(recipeIngredient)
-                    }
-                    
-                    try! realm.write{
-                        for ri in deletingRecipeIngredientList{
-                            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for var i = 0; i < ingredient.recipeIngredients.count; ++i{
-                                if ingredient.recipeIngredients[i].id == ri.id{
-                                    ingredient.recipeIngredients.removeAtIndex(i)
-                                }
-                            }
-                        }
-                        for ri in deletingRecipeIngredientList{
-                            realm.delete(ri)
-                        }
-                        realm.delete(recipe)
-                    }
-                    
+                    self.deleteRecipe(self.recipeList![indexPath.row])
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 }))
-                favoriteAlertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in
-                    })
+                favoriteAlertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
                 presentViewController(favoriteAlertView, animated: true, completion: nil)
             }else{
-                let realm = try! Realm()
-                let recipe = self.recipeList![indexPath.row]
-                
-                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for ri in recipe.recipeIngredients{
-                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
-                    deletingRecipeIngredientList.append(recipeIngredient)
-                }
-                
-                try! realm.write{
-                    for ri in deletingRecipeIngredientList{
-                        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                        for var i = 0; i < ingredient.recipeIngredients.count; ++i{
-                            if ingredient.recipeIngredients[i].id == ri.id{
-                                ingredient.recipeIngredients.removeAtIndex(i)
-                            }
-                        }
-                    }
-                    for ri in deletingRecipeIngredientList{
-                        realm.delete(ri)
-                    }
-                    //これを実行すると、最後に追加したレシピのimageDataがnilでなくなる現象が確認
-                    //解決法がわからないのでとりあえずワークアラウンドする
-                    realm.delete(recipe)
-                }
-                
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)                
-            }
-      }
-    }
-
-    // MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if section == 0 {
-            let realm = try! Realm()
-            switch favoriteSelect.selectedSegmentIndex{
-            case 0:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            case 1:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            case 2:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
-            default:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).count
+                self.deleteRecipe(self.recipeList![indexPath.row])
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }
         }
-        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -169,6 +179,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    // MARK: - IBAction
     @IBAction func favoriteStateTapped(sender: UISegmentedControl) {
         reloadRecipeList()
         tableView.reloadData()
@@ -179,35 +190,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
     
-    func reloadRecipeList(){
-        let realm = try! Realm()
-        
-        switch favoriteSelect.selectedSegmentIndex{
-        case 0:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
-        case 1:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
-        case 2:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
-        default:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("recipeName")
-        }
-
-        if order.selectedSegmentIndex == 1{
-            try! realm.write {
-                for recipe in recipeList!{
-                    recipe.updateShortageNum()
-                }
-            }
-            let sortProperties = [
-                SortDescriptor(property: "shortageNum", ascending: true),
-                SortDescriptor(property: "recipeName", ascending: true) ]
-            recipeList = recipeList!.sorted(sortProperties)
-        }
-        
-    }
-    
-    // MARK: - IBAction
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushAddRecipe", sender: UIBarButtonItem())
     }
