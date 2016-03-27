@@ -23,16 +23,6 @@
       <string>sbVersion</string>
     </dict>
     <dict>
-      <key>Type</key>
-      <string>PSTitleValueSpecifier</string>
-      <key>DefaultValue</key>
-      <string>1</string>
-      <key>Title</key>
-      <string>Build</string>
-      <key>Key</key>
-      <string>sbBuild</string>
-    </dict>
-    <dict>
             <key>Type</key>
             <string>PSChildPaneSpecifier</string>
             <key>Title</key>
