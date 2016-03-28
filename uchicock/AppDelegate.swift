@@ -81,108 +81,118 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func addSampleIngredient(){
-        addIngredient("テキーラ", stockFlag: false, memo: "メキシコ産")
-        addIngredient("オレンジジュース", stockFlag: false, memo: "オレンジジュースです")
-        addIngredient("グレナデンシロップ", stockFlag: false, memo: "シロップです")
-        addIngredient("クリーム・ド・カシス", stockFlag: false, memo: "")
-        addIngredient("ジン", stockFlag: false, memo: "")
-        addIngredient("トニックウォーター", stockFlag: false, memo: "")
-        addIngredient("カルーア", stockFlag: false, memo: "")
-        addIngredient("牛乳", stockFlag: false, memo: "")
-        addIngredient("牛乳a", stockFlag: false, memo: "")
-        addIngredient("牛乳b", stockFlag: false, memo: "")
-        addIngredient("牛乳c", stockFlag: false, memo: "")
-        addIngredient("牛乳d", stockFlag: false, memo: "")
-        addIngredient("牛乳e", stockFlag: false, memo: "")
-        addIngredient("牛乳f", stockFlag: false, memo: "")
-        addIngredient("牛乳g", stockFlag: false, memo: "")
-        addIngredient("牛乳h", stockFlag: false, memo: "")
-        addIngredient("牛乳i", stockFlag: false, memo: "")
-        addIngredient("牛乳j", stockFlag: false, memo: "")
+        addIngredient("1", ingredientName: "テキーラ", stockFlag: false, memo: "メキシコ産")
+        addIngredient("2", ingredientName: "オレンジジュース", stockFlag: false, memo: "オレンジジュースです")
+        addIngredient("3", ingredientName: "グレナデンシロップ", stockFlag: false, memo: "シロップです")
+        addIngredient("4", ingredientName: "クリーム・ド・カシス", stockFlag: false, memo: "")
+        addIngredient("5", ingredientName: "ジン", stockFlag: false, memo: "")
+        addIngredient("6", ingredientName: "トニックウォーター", stockFlag: false, memo: "")
+        addIngredient("7", ingredientName: "カルーア", stockFlag: false, memo: "")
+        addIngredient("8", ingredientName: "牛乳", stockFlag: false, memo: "")
+        addIngredient("9", ingredientName: "牛乳a", stockFlag: false, memo: "")
+        addIngredient("10", ingredientName: "牛乳b", stockFlag: false, memo: "")
+        addIngredient("11", ingredientName: "牛乳c", stockFlag: false, memo: "")
+        addIngredient("12", ingredientName: "牛乳d", stockFlag: false, memo: "")
+        addIngredient("13", ingredientName: "牛乳e", stockFlag: false, memo: "")
+        addIngredient("14", ingredientName: "牛乳f", stockFlag: false, memo: "")
+        addIngredient("15", ingredientName: "牛乳g", stockFlag: false, memo: "")
+        addIngredient("16", ingredientName: "牛乳h", stockFlag: false, memo: "")
+        addIngredient("17", ingredientName: "牛乳i", stockFlag: false, memo: "")
+        addIngredient("18", ingredientName: "牛乳j", stockFlag: false, memo: "")
     }
     
-    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
+    func addIngredient(id: String, ingredientName: String, stockFlag: Bool, memo: String){
         let realm = try! Realm()
-        let ingredient = Ingredient()
-        ingredient.ingredientName = ingredientName
-        ingredient.stockFlag = stockFlag
-        ingredient.memo = memo
-        realm.add(ingredient)
+        let ing = realm.objects(Ingredient).filter("id == %@",id)
+        if ing.count < 1 {
+            let ingredient = Ingredient()
+            ingredient.id = id
+            ingredient.ingredientName = ingredientName
+            ingredient.stockFlag = stockFlag
+            ingredient.memo = memo
+            realm.add(ingredient)
+        }
     }
     
     func addSampleRecipe() {
-        addRecipe("テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 0)
-        addRecipe("カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 0)
-        addRecipe("ジントニック", favorites: 1, memo: "定番", method: 0)
-        addRecipe("カルーアミルク", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクa", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクb", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクc", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクd", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクe", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクf", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクg", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクh", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクj", favorites: 1, memo: "飲みやすい", method: 0)
-        addRecipe("カルーアミルクi", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("1", recipeName: "テキーラサンライズ", favorites: 1, memo: "きれいな色です", method: 0)
+        addRecipe("2", recipeName: "カシスオレンジ", favorites: 1, memo: "ソフトドリンクみたい", method: 0)
+        addRecipe("3", recipeName: "ジントニック", favorites: 1, memo: "定番", method: 0)
+        addRecipe("4", recipeName: "カルーアミルク", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("5", recipeName: "カルーアミルクa", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("6", recipeName: "カルーアミルクb", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("7", recipeName: "カルーアミルクc", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("8", recipeName: "カルーアミルクd", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("9", recipeName: "カルーアミルクe", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("10", recipeName: "カルーアミルクf", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("11", recipeName: "カルーアミルクg", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("12", recipeName: "カルーアミルクh", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("13", recipeName: "カルーアミルクj", favorites: 1, memo: "飲みやすい", method: 0)
+        addRecipe("14", recipeName: "カルーアミルクi", favorites: 1, memo: "飲みやすい", method: 0)
     }
     
-    func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
+    func addRecipe(id:String, recipeName:String, favorites:Int, memo:String, method:Int){
         let realm = try! Realm()
-        let recipe = Recipe()
-        recipe.recipeName = recipeName
-        recipe.favorites = favorites
-        recipe.memo = memo
-        recipe.method = method
-
-        realm.add(recipe)
+        let rec = realm.objects(Recipe).filter("id == %@",id)
+        if rec.count < 1 {
+            let recipe = Recipe()
+            recipe.id = id
+            recipe.recipeName = recipeName
+            recipe.favorites = favorites
+            recipe.memo = memo
+            recipe.method = method
+            realm.add(recipe)
+        }
     }
     
     func addSampleRecipeToIngredientLink(){
-        addRecipeToIngredientLink("テキーラサンライズ", ingredientName: "テキーラ", amount: "15ml", mustFlag: true)
-        addRecipeToIngredientLink("テキーラサンライズ", ingredientName: "オレンジジュース", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("テキーラサンライズ", ingredientName: "グレナデンシロップ", amount: "少々", mustFlag: false)
-        addRecipeToIngredientLink("カシスオレンジ", ingredientName: "クリーム・ド・カシス", amount: "30ml", mustFlag: true)
-        addRecipeToIngredientLink("カシスオレンジ", ingredientName: "オレンジジュース", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("ジントニック", ingredientName: "ジン", amount: "30ml", mustFlag: true)
-        addRecipeToIngredientLink("ジントニック", ingredientName: "トニックウォーター", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "カルーア", amount: "30ml", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳a", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳b", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳c", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳d", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳e", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳f", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳g", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳h", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳i", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルク", ingredientName: "牛乳j", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクa", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクb", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクc", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクd", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクe", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクf", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクg", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクh", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクi", ingredientName: "牛乳", amount: "up", mustFlag: true)
-        addRecipeToIngredientLink("カルーアミルクj", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("1", recipeName: "テキーラサンライズ", ingredientName: "テキーラ", amount: "15ml", mustFlag: true)
+        addRecipeToIngredientLink("2", recipeName: "テキーラサンライズ", ingredientName: "オレンジジュース", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("3", recipeName: "テキーラサンライズ", ingredientName: "グレナデンシロップ", amount: "少々", mustFlag: false)
+        addRecipeToIngredientLink("4", recipeName: "カシスオレンジ", ingredientName: "クリーム・ド・カシス", amount: "30ml", mustFlag: true)
+        addRecipeToIngredientLink("5", recipeName: "カシスオレンジ", ingredientName: "オレンジジュース", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("6", recipeName: "ジントニック", ingredientName: "ジン", amount: "30ml", mustFlag: true)
+        addRecipeToIngredientLink("7", recipeName: "ジントニック", ingredientName: "トニックウォーター", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("8", recipeName: "カルーアミルク", ingredientName: "カルーア", amount: "30ml", mustFlag: true)
+        addRecipeToIngredientLink("9", recipeName: "カルーアミルク", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("10", recipeName: "カルーアミルク", ingredientName: "牛乳a", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("11", recipeName: "カルーアミルク", ingredientName: "牛乳b", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("12", recipeName: "カルーアミルク", ingredientName: "牛乳c", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("13", recipeName: "カルーアミルク", ingredientName: "牛乳d", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("14", recipeName: "カルーアミルク", ingredientName: "牛乳e", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("15", recipeName: "カルーアミルク", ingredientName: "牛乳f", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("16", recipeName: "カルーアミルク", ingredientName: "牛乳g", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("17", recipeName: "カルーアミルク", ingredientName: "牛乳h", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("18", recipeName: "カルーアミルク", ingredientName: "牛乳i", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("19", recipeName: "カルーアミルク", ingredientName: "牛乳j", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("20", recipeName: "カルーアミルクa", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("21", recipeName: "カルーアミルクb", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("22", recipeName: "カルーアミルクc", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("23", recipeName: "カルーアミルクd", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("24", recipeName: "カルーアミルクe", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("25", recipeName: "カルーアミルクf", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("26", recipeName: "カルーアミルクg", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("27", recipeName: "カルーアミルクh", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("28", recipeName: "カルーアミルクi", ingredientName: "牛乳", amount: "up", mustFlag: true)
+        addRecipeToIngredientLink("29", recipeName: "カルーアミルクj", ingredientName: "牛乳", amount: "up", mustFlag: true)
     }
     
-    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){
+    func addRecipeToIngredientLink(id:String, recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){
         let realm = try! Realm()
-        let recipeIngredientLink = RecipeIngredientLink()
-        recipeIngredientLink.amount = amount
-        recipeIngredientLink.mustFlag = mustFlag
-
-        realm.add(recipeIngredientLink)
-
-        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
-        ingredient.recipeIngredients.append(recipeIngredientLink)
-        
-        let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
-        recipe.recipeIngredients.append(recipeIngredientLink)
+        let lin = realm.objects(RecipeIngredientLink).filter("id == %@",id)
+        if lin.count < 1 {
+            let recipeIngredientLink = RecipeIngredientLink()
+            recipeIngredientLink.id = id
+            recipeIngredientLink.amount = amount
+            recipeIngredientLink.mustFlag = mustFlag
+            realm.add(recipeIngredientLink)
+            
+            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
+            ingredient.recipeIngredients.append(recipeIngredientLink)
+            
+            let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
+            recipe.recipeIngredients.append(recipeIngredientLink)
+        }
     }
 
 }
