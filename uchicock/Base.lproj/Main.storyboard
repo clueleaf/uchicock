@@ -1554,7 +1554,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HBW-Lv-Gnj">
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="NJQ-9A-1cY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="NJQ-9A-1cY">
                             <connections>
                                 <action selector="stopButtonTapped:" destination="rfe-eY-rT0" id="SXG-Ng-IuB"/>
                             </connections>
