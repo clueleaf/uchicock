@@ -1559,6 +1559,11 @@
                                 <action selector="stopButtonTapped:" destination="rfe-eY-rT0" id="SXG-Ng-IuB"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="KIh-L3-xmm">
+                            <connections>
+                                <action selector="organizeButtonTapped:" destination="rfe-eY-rT0" id="r06-jZ-Qjd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="photo" destination="XCu-Lo-rT9" id="e7G-2J-wA0"/>
