@@ -218,7 +218,7 @@ class IngredientDetailTableViewController: UITableViewController {
             let evc = enc.visibleViewController as! IngredientEditTableViewController
             evc.ingredient = self.ingredient
         }else if segue.identifier == "PushRecipeDetail"{
-            let vc = segue.destinationViewController as! RecipeDetailViewController
+            let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.recipeId = ingredient.recipeIngredients[indexPath.row].recipe.id
             }
