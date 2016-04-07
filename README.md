@@ -14,7 +14,7 @@
 	* その材料を使うレシピ一覧
 
 #### アプリダウンロード
-* iOSから： [https://appsto.re/l7pCbb]
+* iOSから： https://appsto.re/jp/l7pCbb
 
 #### バージョン履歴
 ###### 2016-04-05 v1.0
