@@ -157,7 +157,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushIngredientDetail" {
-            let vc = segue.destinationViewController as! IngredientDetailViewController
+            let vc = segue.destinationViewController as! IngredientDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.ingredientId = ingredientList![indexPath.row].id
             }

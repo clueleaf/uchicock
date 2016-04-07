@@ -369,13 +369,13 @@
                         <outlet property="segmentedControlContainer" destination="jYr-aJ-DQL" id="Pim-f2-nxm"/>
                         <outlet property="stockState" destination="wmB-he-16M" id="1tT-Xf-o9f"/>
                         <outlet property="tableView" destination="KNl-GC-4Ax" id="yp8-EL-s8S"/>
-                        <segue destination="ki6-Wr-KQo" kind="show" identifier="PushIngredientDetail" id="bzu-23-lxG"/>
                         <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushAddIngredient" id="VoJ-51-RUH"/>
+                        <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="Ee4-db-L8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1876" y="1058"/>
+            <point key="canvasLocation" x="-1778" y="1030"/>
         </scene>
         <!--材料編集-->
         <scene sceneID="azX-tq-QSA">
@@ -559,6 +559,7 @@
                                             <outlet property="star1" destination="OQY-Du-k6h" id="FFH-py-wZ2"/>
                                             <outlet property="star2" destination="3gM-NM-cLJ" id="zTB-hi-Ui5"/>
                                             <outlet property="star3" destination="2kF-JQ-xsg" id="ecx-KL-SNn"/>
+                                            <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="I9V-8n-5Kg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecipeDetailMethod" rowHeight="100" id="i7C-nS-rVj" userLabel="技法セル" customClass="RecipeDetailMethodTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -799,7 +800,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jVN-Ee-Vqr" id="6KX-kb-K4h"/>
-                        <segue destination="ki6-Wr-KQo" kind="show" identifier="PushIngredientDetail" id="9Wz-4C-0K0"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="hrp-Pj-JYM"/>
                         <segue destination="hP7-4C-Rcc" kind="presentation" identifier="PushPhotoDetail" id="op1-0i-P1h"/>
                     </connections>
@@ -817,11 +817,11 @@
                         <viewControllerLayoutGuide type="bottom" id="uSJ-Bl-f7m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D2O-cT-D4w">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ops-ce-Fdm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="IngredientDetailName" rowHeight="80" id="7Ca-c4-zr9" customClass="IngredientDetailNameTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -1045,18 +1045,16 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ops-ce-Fdm" id="9B0-st-ULj"/>
-                        <segue destination="bvf-aa-P4b" kind="show" identifier="PushRecipeDetail" id="pyL-Bh-L11"/>
-                        <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="7SF-P9-ikG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKe-Su-VXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1090" y="1058"/>
+            <point key="canvasLocation" x="-106" y="1196"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Title-->
         <scene sceneID="oPV-WD-oJT">
             <objects>
-                <tableViewController id="yKB-1k-jl3" sceneMemberID="viewController">
+                <tableViewController id="yKB-1k-jl3" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sp4-ci-kt2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1065,7 +1063,7 @@
                             <tableViewSection headerTitle="Section-1" id="Gqe-iN-XRG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="PcX-1c-Q1E">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PcX-1c-Q1E" id="j28-8M-sMz">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -1074,7 +1072,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0Y-88-hex">
                                                     <rect key="frame" x="8" y="20" width="584" height="39.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1087,7 +1085,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="iKe-xM-eF5">
-                                        <rect key="frame" x="0.0" y="108" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="172" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iKe-xM-eF5" id="oDe-wM-46s">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -1100,7 +1098,7 @@
                                                         <constraint firstAttribute="width" constant="42" id="NoR-wV-ZOM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rsb-6V-UzB">
@@ -1109,6 +1107,9 @@
                                                         <constraint firstAttribute="height" constant="31" id="Qd6-sl-JpA"/>
                                                         <constraint firstAttribute="width" constant="49" id="gbt-8g-d1u"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="stockSwitchTapped:" destination="yKB-1k-jl3" eventType="valueChanged" id="stW-9x-CsH"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -1125,11 +1126,11 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uhi-J9-lfe">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="uhi-J9-lfe">
+                                        <rect key="frame" x="0.0" y="222" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhi-J9-lfe" id="xkh-SK-g6x">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lw9-9s-APB">
@@ -1139,11 +1140,11 @@
                                                         <constraint firstAttribute="height" constant="21" id="S6H-3b-o0R"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9v-M5-Six">
-                                                    <rect key="frame" x="20" y="50.5" width="560" height="18"/>
+                                                    <rect key="frame" x="20" y="50.5" width="560" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1163,8 +1164,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="YrO-lc-dGj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="70" id="EuR-RB-R4O">
-                                        <rect key="frame" x="0.0" y="230" width="600" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientRecipeList" rowHeight="70" id="EuR-RB-R4O" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="350" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EuR-RB-R4O" id="iia-hk-fqL">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>
@@ -1176,7 +1177,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="nzb-sx-CPR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkT-jn-Zwx">
@@ -1218,12 +1219,8 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Section-3" id="WAE-NN-UVf">
-                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="dck-zW-2bp">
-                                        <rect key="frame" x="0.0" y="328" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="420" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dck-zW-2bp" id="81j-T5-hTI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -1250,10 +1247,25 @@
                             <outlet property="delegate" destination="yKB-1k-jl3" id="WO5-y6-dxe"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="ucA-U4-qFS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bif-St-IPk">
+                            <connections>
+                                <action selector="editButtonTapped:" destination="yKB-1k-jl3" id="mHa-r6-XVX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="deleteLabel" destination="pyA-7t-rsu" id="3tJ-re-mYk"/>
+                        <outlet property="ingredientName" destination="z0Y-88-hex" id="qzd-rz-jmd"/>
+                        <outlet property="memo" destination="h9v-M5-Six" id="8uf-5Z-pPH"/>
+                        <outlet property="stock" destination="Rsb-6V-UzB" id="JZs-mx-pqc"/>
+                        <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="rrh-vr-JPb"/>
+                        <segue destination="bvf-aa-P4b" kind="show" identifier="PushRecipeDetail" id="bBj-uL-HwR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-4F-zMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-350" y="1073"/>
+            <point key="canvasLocation" x="-998" y="1041"/>
         </scene>
         <!--Ingredient Edit Table View Controller-->
         <scene sceneID="iId-y0-NWp">
@@ -2001,9 +2013,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7SF-P9-ikG"/>
-        <segue reference="9Wz-4C-0K0"/>
-        <segue reference="pyL-Bh-L11"/>
-        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="bBj-uL-HwR"/>
+        <segue reference="I9V-8n-5Kg"/>
+        <segue reference="rrh-vr-JPb"/>
+        <segue reference="hrp-Pj-JYM"/>
     </inferredMetricsTieBreakers>
 </document>
