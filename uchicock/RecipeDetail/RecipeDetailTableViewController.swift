@@ -23,7 +23,7 @@ class RecipeDetailTableViewController: UITableViewController {
     
     var recipeId = String()
     var recipe = Recipe()
-    
+    var noPhotoFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +46,15 @@ class RecipeDetailTableViewController: UITableViewController {
             recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
             
+            noPhotoFlag = false
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
-                    photo.image = UIImage(named: "no-photo")
+                    noPhotoFlag = true
                 }
             }else{
-                photo.image = UIImage(named: "no-photo")
+                noPhotoFlag = true
             }
             
             recipeName.text = recipe.recipeName
@@ -108,10 +109,9 @@ class RecipeDetailTableViewController: UITableViewController {
         }
     }
     
-    //TODO: 写真の有無で分岐させる
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 0{
+            if noPhotoFlag == false && indexPath.row == 0{
                 return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
             }else{
                 return UITableViewAutomaticDimension
@@ -134,8 +134,11 @@ class RecipeDetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            //TODO:写真の有無で分岐させる
-            return 6
+            if noPhotoFlag {
+                return 5
+            }else{
+                return 6
+            }
         }else if section == 1{
             return recipe.recipeIngredients.count
         }else if section == 2{
@@ -145,10 +148,13 @@ class RecipeDetailTableViewController: UITableViewController {
         }
     }
     
-    //TODO:写真の有無で分岐させる
     override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
         if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+            if noPhotoFlag{
+                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
+            }else{
+                return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+            }
         }else if indexPath.section == 1{
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }else if indexPath.section == 2{
@@ -158,7 +164,7 @@ class RecipeDetailTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.section == 0 && indexPath.row == 0 && noPhotoFlag == false{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
@@ -202,11 +208,14 @@ class RecipeDetailTableViewController: UITableViewController {
         }
     }
 
-    //TODO:写真の有無で分岐させる
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            if noPhotoFlag{
+                return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row+1, inSection: 0))
+            }else{
+                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            }
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientList", forIndexPath: indexPath) as! RecipeIngredientListTableViewCell
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName

@@ -42,9 +42,9 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
-        var message = "アルバムへ保存しました"
+        var message = "カメラロールへ保存しました"
         if error != nil {
-            message = "アルバムへの保存に失敗しました"
+            message = "カメラロールへの保存に失敗しました"
         }
         let alertView = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
@@ -64,7 +64,7 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func organizeButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alertView.addAction(UIAlertAction(title: "アルバムへ保存する",style: .Default){ action in
+        alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
             UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
             })
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
