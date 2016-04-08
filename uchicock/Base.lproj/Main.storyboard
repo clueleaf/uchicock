@@ -792,12 +792,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="RpO-1z-3k2">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Jps-Bw-41U">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="Jps-Bw-41U">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="TaE-ce-gSx" id="3b5-L6-nw8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="XFh-r9-3bm">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="XFh-r9-3bm">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="TaE-ce-gSx" id="8Pd-BO-Fg8"/>
                             </connections>
