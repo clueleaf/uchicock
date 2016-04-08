@@ -19,12 +19,12 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = self.bounds.size.width;
 
-        recipeName = UILabel(frame: CGRectMake(8, 8, width - 76, 21))
+        recipeName = UILabel(frame: CGRectMake(8, 8, width - 104, 21))
         recipeName.text = ""
         recipeName.font = UIFont.systemFontOfSize(17)
         self.addSubview(recipeName)
         
-        favorites = UILabel(frame: CGRectMake(width - 78, 8, 60, 21))
+        favorites = UILabel(frame: CGRectMake(width - 88, 8, 60, 21))
         favorites.text = "☆☆☆"
         favorites.font = UIFont.systemFontOfSize(20)
         favorites.textColor = FlatSkyBlue()

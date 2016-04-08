@@ -92,7 +92,6 @@ class RecipeDetailTableViewController: UITableViewController {
             self.tableView.rowHeight = UITableViewAutomaticDimension
             tableView.reloadData()
         }
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,13 +111,15 @@ class RecipeDetailTableViewController: UITableViewController {
     //TODO: 写真の有無で分岐させる
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
-        }else if indexPath.section == 1{
-            if ingredient.recipeIngredients.count > 0{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
-            } else{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+            if indexPath.row == 0{
+                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+            }else{
+                return UITableViewAutomaticDimension
             }
+        }else if indexPath.section == 1{
+            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+        }else if indexPath.section == 2{
+            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
         }
         return 0
     }
@@ -136,7 +137,9 @@ class RecipeDetailTableViewController: UITableViewController {
             //TODO:写真の有無で分岐させる
             return 6
         }else if section == 1{
-            return recipe.recipeIngredients.count + 1
+            return recipe.recipeIngredients.count
+        }else if section == 2{
+            return 1
         }else{
             return 0
         }
@@ -147,11 +150,9 @@ class RecipeDetailTableViewController: UITableViewController {
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
-            if ingredient.recipeIngredients.count > 0{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
-            }else{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
-            }
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+        }else if indexPath.section == 2{
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
         }
         return 0
     }
@@ -167,39 +168,37 @@ class RecipeDetailTableViewController: UITableViewController {
                 }
             }
         }else if indexPath.section == 1 {
-            if indexPath.row < recipe.recipeIngredients.count{
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
-            }else if indexPath.row == recipe.recipeIngredients.count{
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
-                    action in
-                    let realm = try! Realm()
-                    let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                    for (var i = 0; i < self.recipe.recipeIngredients.count ; ++i){
-                        let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
-                        deletingRecipeIngredientList.append(recipeIngredient)
-                    }
-                    try! realm.write{
-                        for ri in deletingRecipeIngredientList{
-                            let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for var i = 0; i < ingredient.recipeIngredients.count; ++i{
-                                if ingredient.recipeIngredients[i].id == ri.id{
-                                    ingredient.recipeIngredients.removeAtIndex(i)
-                                }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
+        }else if indexPath.section == 2{
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
+                action in
+                let realm = try! Realm()
+                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                for (var i = 0; i < self.recipe.recipeIngredients.count ; ++i){
+                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
+                    deletingRecipeIngredientList.append(recipeIngredient)
+                }
+                try! realm.write{
+                    for ri in deletingRecipeIngredientList{
+                        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                        for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                            if ingredient.recipeIngredients[i].id == ri.id{
+                                ingredient.recipeIngredients.removeAtIndex(i)
                             }
                         }
-                        for ri in deletingRecipeIngredientList{
-                            realm.delete(ri)
-                        }
-                        realm.delete(self.recipe)
                     }
-                    self.navigationController?.popViewControllerAnimated(true)
-                    })
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                presentViewController(alertView, animated: true, completion: nil)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            }
+                    for ri in deletingRecipeIngredientList{
+                        realm.delete(ri)
+                    }
+                    realm.delete(self.recipe)
+                }
+                self.navigationController?.popViewControllerAnimated(true)
+                })
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            presentViewController(alertView, animated: true, completion: nil)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
 
@@ -207,33 +206,46 @@ class RecipeDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            switch indexPath.row{
-            case 0:
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailName") as! RecipeDetailNameTableViewCell
-                cell.recipe = recipe
-                return cell
-            case 1:
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailFavorite") as! RecipeDetailFavoriteTableViewCell
-                cell.recipe = recipe
-                return cell
-            case 2:
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMethod") as! RecipeDetailMethodTableViewCell
-                cell.recipeMethod = recipe.method
-                return cell
-            case 3:
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailMemo") as! RecipeDetailMemoTableViewCell
-                cell.recipeMemo = recipe.memo
-                return cell
-            default:
-                return UITableViewCell()
-            }
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientItem") as! RecipeIngredientListTableViewCell
-            cell.recipeIngredient = recipe.recipeIngredients[indexPath.row]
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientList", forIndexPath: indexPath) as! RecipeIngredientListTableViewCell
+            cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            if recipe.recipeIngredients[indexPath.row].mustFlag{
+                cell.option.text = ""
+                cell.option.textColor = FlatBlack()
+                cell.option.backgroundColor = UIColor.clearColor()
+            }else{
+                cell.option.text = "オプション"
+                cell.option.textColor = FlatBlack()
+                cell.option.backgroundColor = FlatWhiteDark()
+            }
+            cell.option.layer.cornerRadius = 4
+            cell.option.clipsToBounds = true
+            cell.option.textAlignment = NSTextAlignment.Center
+
+            if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
+                cell.stock.text = "在庫あり"
+                cell.stock.textColor = FlatWhite()
+                cell.stock.backgroundColor = FlatSkyBlueDark()
+                cell.ingredientName.textColor = FlatBlack()
+                cell.amount.textColor = FlatBlack()
+            }else{
+                cell.stock.text = "在庫なし"
+                cell.stock.textColor = FlatBlack()
+                cell.stock.backgroundColor = FlatWhiteDark()
+                cell.ingredientName.textColor = FlatGrayDark()
+                cell.amount.textColor = FlatGrayDark()
+            }
+            cell.stock.layer.cornerRadius = 4
+            cell.stock.clipsToBounds = true
+            cell.stock.textAlignment = NSTextAlignment.Center
+            cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
+            
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = .Default
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeDetailDelete") as!RecipeDetailDeleteTableViewCell
-            return cell
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         default:
             return UITableViewCell()
         }
