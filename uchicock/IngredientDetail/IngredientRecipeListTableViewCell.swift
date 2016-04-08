@@ -11,57 +11,35 @@ import ChameleonFramework
 
 class IngredientRecipeListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var favorites: UILabel!
-    @IBOutlet weak var shortage: UILabel!
+    var recipeName = UILabel()
+    var favorites = UILabel()
+    var shortage = UILabel()
 
-    var recipeIngredient: RecipeIngredientLink = RecipeIngredientLink(){
-        didSet{
-            recipeName.text = recipeIngredient.recipe.recipeName
-            
-            switch recipeIngredient.recipe.favorites{
-            case 1:
-                favorites.text = "★☆☆"
-            case 2:
-                favorites.text = "★★☆"
-            case 3:
-                favorites.text = "★★★"
-            default:
-                favorites.text = "★☆☆"
-            }
-            favorites.textColor = FlatSkyBlue()
-            
-            var shortageNum = 0
-            var shortageName = ""
-            for ri in recipeIngredient.recipe.recipeIngredients{
-                if ri.mustFlag && ri.ingredient.stockFlag == false{
-                    shortageNum++
-                    shortageName = ri.ingredient.ingredientName
-                }
-            }
-            if shortageNum == 0 {
-                shortage.text = "すぐつくれる！"
-                shortage.textColor = FlatSkyBlueDark()
-                shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
-                recipeName.textColor = FlatBlack()
-            }else if shortageNum == 1{
-                if shortageName.characters.count > 10{
-                    shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
-                }else{
-                    shortage.text = shortageName + "が足りません"
-                }
-                shortage.textColor = FlatGrayDark()
-                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
-                recipeName.textColor = FlatGrayDark()
-            }else{
-                shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                shortage.textColor = FlatGrayDark()
-                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
-                recipeName.textColor = FlatGrayDark()
-            }
-        }
+    override init(style: UITableViewCellStyle, reuseIdentifier: String!){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let width = self.bounds.size.width;
+
+        recipeName = UILabel(frame: CGRectMake(8, 8, width - 104, 21))
+        recipeName.text = ""
+        recipeName.font = UIFont.systemFontOfSize(17)
+        self.addSubview(recipeName)
+        
+        favorites = UILabel(frame: CGRectMake(width - 88, 8, 60, 21))
+        favorites.text = "☆☆☆"
+        favorites.font = UIFont.systemFontOfSize(20)
+        favorites.textColor = FlatSkyBlue()
+        self.addSubview(favorites)
+        
+        shortage = UILabel(frame: CGRectMake(8, 39, width - 16, 21))
+        shortage.text = ""
+        shortage.font = UIFont.systemFontOfSize(12)
+        self.addSubview(shortage)
     }
 
+    required init(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)!
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

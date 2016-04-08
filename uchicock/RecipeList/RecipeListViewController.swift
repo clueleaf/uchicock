@@ -197,7 +197,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushRecipeDetail" {
-            let vc = segue.destinationViewController as! RecipeDetailViewController
+            let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.recipeId = recipeList![indexPath.row].id
             }

@@ -17,8 +17,9 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let width = self.bounds.size.width;
 
-        ingredientName = UILabel(frame: CGRectMake(10, 5, 300, 21))
+        ingredientName = UILabel(frame: CGRectMake(10, 5, width - 40, 21))
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFontOfSize(17)
         self.addSubview(ingredientName)
@@ -29,7 +30,7 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         option.textColor = FlatGrayDark()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(80, 35, 200, 21))
+        amount = UILabel(frame: CGRectMake(80, 35, width - 115, 21))
         amount.text = ""
         amount.font = UIFont.systemFontOfSize(17)
         self.addSubview(amount)
