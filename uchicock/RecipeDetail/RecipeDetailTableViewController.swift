@@ -29,6 +29,9 @@ class RecipeDetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
+        tableView.addGestureRecognizer(longPressRecognizer)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -100,6 +103,32 @@ class RecipeDetailTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(point)
+        if indexPath == nil {
+        } else if indexPath?.section == 0 && indexPath?.row == 0 && noPhotoFlag == false &&
+            recognizer.state == UIGestureRecognizerState.Began  {
+                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
+                    UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                    })
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                presentViewController(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
+        var message = "カメラロールへ保存しました"
+        if error != nil {
+            message = "カメラロールへの保存に失敗しました"
+        }
+        let alertView = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+        }))
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
     // MARK: - UITableView
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
