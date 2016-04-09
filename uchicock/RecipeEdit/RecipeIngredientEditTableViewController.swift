@@ -96,7 +96,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == suggestTableView && section == 0{
             return 30
-        }else if tableView == self.tableView && section == 1{
+        }else if tableView == self.view && section == 1{
             return 30
         }
         return 0
@@ -110,46 +110,29 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableView == self.tableView{
+        if tableView == self.view{
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-        }else if tableView == suggestTableView && indexPath.section == 0{
+        }else if tableView == suggestTableView{
             return 30
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.tableView{
+        if tableView == self.view{
             if section == 0{
                 return 4
             }else if section == 1{
                 return 1
             }
-        }else if tableView == suggestTableView && section == 0{
+        }else if tableView == suggestTableView{
             return suggestList.count
         }
         return 0
     }
     
-//    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
-//        if tableView == self.tableView{
-//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
-//        }
-//        if indexPath.section == 0 {
-//            if noPhotoFlag{
-//            }else{
-//                return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
-//            }
-//        }else if indexPath.section == 1{
-//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
-//        }else if indexPath.section == 2{
-//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
-//        }
-//        return 0
-//    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if tableView == self.tableView && indexPath.section == 1 && indexPath.row == 0{
+        if tableView == self.view && indexPath.section == 1 && indexPath.row == 0{
             if isAddMode{
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .Destructive){
@@ -176,12 +159,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tableView == self.tableView{
+        if tableView == self.view{
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        }else if tableView == suggestTableView{
-            let cell = tableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
+        }else if tableView == suggestTableView && indexPath.section == 0{
+            let cell = suggestTableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row]
-//            cell.ingredientName.text = suggestList[indexPath.row]
             return cell
         }
         return UITableViewCell()

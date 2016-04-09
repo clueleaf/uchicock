@@ -1162,19 +1162,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="164.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="00h-qA-8uE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="164.5"/>
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="30" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="00h-qA-8uE">
+                                                    <rect key="frame" x="0.0" y="0.5" width="600" height="164"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestIngredient" rowHeight="30" id="nEp-og-DpU" customClass="SuggestIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="28" width="600" height="30"/>
+                                                            <rect key="frame" x="0.0" y="30" width="600" height="30"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nEp-og-DpU" id="JCw-h5-hUw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="29.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btI-Kk-ujD">
-                                                                        <rect key="frame" x="8" y="4.5" width="584" height="20.5"/>
+                                                                        <rect key="frame" x="8" y="4" width="584" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -1191,6 +1191,7 @@
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
+                                                    <sections/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="7UF-JZ-CJz" id="e84-wf-vDM"/>
                                                         <outlet property="delegate" destination="7UF-JZ-CJz" id="HGZ-Qx-kSx"/>
@@ -1198,10 +1199,10 @@
                                                 </tableView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="00h-qA-8uE" firstAttribute="top" secondItem="rB7-35-2pO" secondAttribute="top" id="Axg-B8-4aF"/>
-                                                <constraint firstItem="00h-qA-8uE" firstAttribute="leading" secondItem="rB7-35-2pO" secondAttribute="leading" id="dbc-em-fBB"/>
-                                                <constraint firstAttribute="bottom" secondItem="00h-qA-8uE" secondAttribute="bottom" id="sc6-eI-Rn3"/>
-                                                <constraint firstAttribute="trailing" secondItem="00h-qA-8uE" secondAttribute="trailing" id="ya5-Re-iw6"/>
+                                                <constraint firstAttribute="trailing" secondItem="00h-qA-8uE" secondAttribute="trailing" id="eed-s3-7sI"/>
+                                                <constraint firstItem="00h-qA-8uE" firstAttribute="top" secondItem="rB7-35-2pO" secondAttribute="top" id="es2-F5-XwT"/>
+                                                <constraint firstItem="00h-qA-8uE" firstAttribute="leading" secondItem="rB7-35-2pO" secondAttribute="leading" id="kgy-cH-6SW"/>
+                                                <constraint firstAttribute="bottom" secondItem="00h-qA-8uE" secondAttribute="bottom" id="xep-BG-WPA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
