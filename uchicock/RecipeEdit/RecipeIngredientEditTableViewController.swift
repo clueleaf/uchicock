@@ -1,8 +1,8 @@
 //
-//  RecipeIngredientEditViewController.swift
+//  RecipeIngredientEditTableViewController.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2016/03/24.
+//  Created by Kou Kinyo on 2016/04/09.
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
@@ -10,32 +10,25 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
-
-    @IBOutlet var totalView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var innerView: UIView!
+class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
 
     @IBOutlet weak var ingredientName: UITextField!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var suggestTableViewCell: UITableViewCell!
+    @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var option: UISwitch!
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var deleteTableViewCell: UITableViewCell!
+    @IBOutlet weak var deleteLabel: UILabel!
     
     var recipeIngredient = EditingRecipeIngredient()
     var isAddMode = false
     var deleteFlag = false
     var suggestList = Array<String>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalView.backgroundColor = FlatWhite()
-        scrollView.backgroundColor = FlatWhite()
-        innerView.backgroundColor = FlatWhite()
-        
-        ingredientName.delegate = self
+
         ingredientName.tag = 0
-        amount.delegate = self
         amount.tag = 1
         
         if isAddMode == false{
@@ -43,18 +36,15 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             amount.text = recipeIngredient.amount
             option.on = !recipeIngredient.mustFlag
             self.navigationItem.title = "材料の変更"
-            deleteButton.setTitle("このレシピの材料から外す", forState: .Normal)
+            deleteLabel.text = "このレシピの材料から外す"
         }else{
             option.on = false
             self.navigationItem.title = "材料の追加"
-            deleteButton.setTitle("材料の追加をやめる", forState: .Normal)
+            deleteLabel.text = "材料の追加をやめる"
         }
+        deleteLabel.textColor = FlatRed()
         
-        tableView.backgroundColor = FlatWhite()
-
-        deleteButton.backgroundColor = UIColor.clearColor()
-        deleteButton.layer.borderColor = FlatWhiteDark().CGColor
-        deleteButton.layer.borderWidth = 1
+        suggestTableView.backgroundColor = FlatWhite()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }
@@ -77,7 +67,7 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
             for ingredient in ingredientList {
                 suggestList.append(ingredient.ingredientName)
             }
-            tableView.reloadData()
+//            suggestTableView.reloadData()
         }
     }
     
@@ -88,68 +78,131 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
         for ingredient in ingredientList {
             suggestList.append(ingredient.ingredientName)
         }
-        tableView.reloadData()
+        suggestTableView.reloadData()
     }
     
     func textFieldDidEndEditing(textField: UITextField){
         if textField.tag == 0{
             suggestList.removeAll()
-            tableView.reloadData()
+            suggestTableView.reloadData()
         }
     }
     
     func textWithoutSpace(text: String) -> String{
         return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
-    
-    // MARK: - UITableView
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "材料候補"
-    }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0{
+    // MARK: - UITableView
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == suggestTableView && section == 0{
+            return 30
+        }else if tableView == self.tableView && section == 1{
             return 30
         }
         return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == suggestTableView && section == 0{
+            return "材料候補"
+        }
+        return nil
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView == self.tableView{
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }else if tableView == suggestTableView && indexPath.section == 0{
+            return 30
+        }
+        return 0
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.tableView{
+            if section == 0{
+                return 4
+            }else if section == 1{
+                return 1
+            }
+        }else if tableView == suggestTableView && section == 0{
             return suggestList.count
         }
         return 0
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        ingredientName.text = suggestList[indexPath.row]
+    
+//    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+//        if tableView == self.tableView{
+//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+//        }
+//        if indexPath.section == 0 {
+//            if noPhotoFlag{
+//            }else{
+//                return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+//            }
+//        }else if indexPath.section == 1{
+//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+//        }else if indexPath.section == 2{
+//            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
+//        }
+//        return 0
+//    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.tableView && indexPath.section == 1 && indexPath.row == 0{
+            if isAddMode{
+                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                alertView.addAction(UIAlertAction(title: "追加をやめる",style: .Destructive){
+                    action in
+                    self.deleteFlag = true
+                    self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
+                    })
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                presentViewController(alertView, animated: true, completion: nil)
+            }else{
+                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                alertView.addAction(UIAlertAction(title: "外す",style: .Destructive){
+                    action in
+                    self.deleteFlag = true
+                    self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
+                    })
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                presentViewController(alertView, animated: true, completion: nil)
+            }
+        }else if tableView == suggestTableView{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            ingredientName.text = suggestList[indexPath.row]
+        }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SuggestIngredient", forIndexPath: indexPath) as! SuggestIngredientTableViewCell
-        cell.name = suggestList[indexPath.row]
-        return cell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if tableView == self.tableView{
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        }else if tableView == suggestTableView{
+            let cell = tableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
+            cell.name = suggestList[indexPath.row]
+//            cell.ingredientName.text = suggestList[indexPath.row]
+            return cell
+        }
+        return UITableViewCell()
     }
-
+    
     // MARK: - GestureRecognizer
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool
     {
-        if touch.view!.isDescendantOfView(tableView) {
+        if touch.view!.isDescendantOfView(deleteTableViewCell) {
+            return false
+        }else if touch.view!.isDescendantOfView(suggestTableViewCell){
             return false
         }
         return true
     }
-
+    
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
         if textWithoutSpace(ingredientName.text!) == "" {
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .Alert)
@@ -188,28 +241,6 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
         }
     }
     
-    @IBAction func notUseButtonTapped(sender: UIButton) {
-        if isAddMode{
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "追加をやめる",style: .Destructive){
-                action in
-                self.deleteFlag = true
-                self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
-                })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            presentViewController(alertView, animated: true, completion: nil)
-        }else{
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "外す",style: .Destructive){
-                action in
-                self.deleteFlag = true
-                self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
-                })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            presentViewController(alertView, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func screenTapped(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -219,5 +250,5 @@ class RecipeIngredientEditViewController: UIViewController, UITextFieldDelegate,
         if segue.identifier == "UnwindToRecipeEdit"{
         }
     }
-
+    
 }

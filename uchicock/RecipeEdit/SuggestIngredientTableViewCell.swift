@@ -10,6 +10,7 @@ import UIKit
 
 class SuggestIngredientTableViewCell: UITableViewCell {
 
+//    var ingredientName = UILabel()
     @IBOutlet weak var ingredientName: UILabel!
     
     var name: String = String(){
@@ -18,6 +19,20 @@ class SuggestIngredientTableViewCell: UITableViewCell {
         }
     }
 
+//    override init(style: UITableViewCellStyle, reuseIdentifier: String!){
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        let width = self.bounds.size.width;
+//        
+//        ingredientName = UILabel(frame: CGRectMake(8, 8, width - 8, 21))
+//        ingredientName.text = ""
+//        ingredientName.font = UIFont.systemFontOfSize(17)
+//        self.addSubview(ingredientName)
+//    }
+//    
+//    required init(coder aDecoder: NSCoder){
+//        super.init(coder: aDecoder)!
+//    }
+//    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
