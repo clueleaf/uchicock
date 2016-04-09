@@ -398,7 +398,7 @@
             <objects>
                 <navigationController id="KKp-Zy-7zd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="レシピ" image="tabbar-recipe" id="LxU-1k-8wl"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Mv-r3-hnc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9Mv-r3-hnc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -433,7 +433,7 @@
             <objects>
                 <navigationController id="2U6-sC-jhY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="材料" image="tabbar-ingredient" id="4uJ-fe-pdf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6sM-B0-LYW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="6sM-B0-LYW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -450,7 +450,7 @@
             <objects>
                 <tableViewController id="yKB-1k-jl3" userLabel="Ingredient Detail Table View Controller" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sp4-ci-kt2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -477,9 +477,6 @@
                                                 <constraint firstItem="z0Y-88-hex" firstAttribute="leading" secondItem="j28-8M-sMz" secondAttribute="leading" constant="8" id="xk2-Uu-ux6"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="h9o-RC-v1T"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="iKe-xM-eF5">
                                         <rect key="frame" x="0.0" y="108" width="600" height="50"/>
@@ -657,6 +654,7 @@
                         <outlet property="memo" destination="h9v-M5-Six" id="8uf-5Z-pPH"/>
                         <outlet property="stock" destination="Rsb-6V-UzB" id="JZs-mx-pqc"/>
                         <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="rrh-vr-JPb"/>
+                        <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="WL9-sL-eOj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-4F-zMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -668,7 +666,7 @@
             <objects>
                 <tableViewController id="TaE-ce-gSx" customClass="IngredientEditTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oOt-8s-sJd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -792,12 +790,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="RpO-1z-3k2">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Jps-Bw-41U">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="Jps-Bw-41U">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="TaE-ce-gSx" id="3b5-L6-nw8"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="XFh-r9-3bm">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="XFh-r9-3bm">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="TaE-ce-gSx" id="8Pd-BO-Fg8"/>
                             </connections>
@@ -1123,12 +1121,12 @@
             </objects>
             <point key="canvasLocation" x="-503" y="303"/>
         </scene>
-        <!--Title-->
+        <!--Recipe Detail Table View Controller-->
         <scene sceneID="eSX-CY-gLe">
             <objects>
-                <tableViewController id="3cq-Fg-8AL" customClass="RecipeDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3cq-Fg-8AL" userLabel="Recipe Detail Table View Controller" customClass="RecipeDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CtV-9j-wVj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1181,6 +1179,42 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u92-hq-Fbn" id="ZSd-Ic-Cl6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6j-XK-oPt" userLabel="twitter">
+                                                    <rect key="frame" x="20" y="9" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="FFm-W2-oFS"/>
+                                                        <constraint firstAttribute="width" constant="60" id="jSS-Kl-kub"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="sns-twitter"/>
+                                                    <connections>
+                                                        <action selector="twitterTapped:" destination="3cq-Fg-8AL" eventType="touchUpInside" id="s2k-rA-on9"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqB-In-xpb" userLabel="line">
+                                                    <rect key="frame" x="90" y="14" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="AMh-nX-7bP"/>
+                                                        <constraint firstAttribute="width" constant="50" id="bMZ-2h-ycc"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="sns-line"/>
+                                                    <connections>
+                                                        <action selector="lineTapped:" destination="3cq-Fg-8AL" eventType="touchUpInside" id="Asw-Wi-129"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="J6j-XK-oPt" firstAttribute="leading" secondItem="ZSd-Ic-Cl6" secondAttribute="leading" constant="20" id="2a9-YT-KbN"/>
+                                                <constraint firstItem="J6j-XK-oPt" firstAttribute="centerY" secondItem="ZSd-Ic-Cl6" secondAttribute="centerY" id="NMr-g0-1NL"/>
+                                                <constraint firstItem="yqB-In-xpb" firstAttribute="leading" secondItem="J6j-XK-oPt" secondAttribute="trailing" constant="10" id="ZNh-Oc-dDo"/>
+                                                <constraint firstItem="yqB-In-xpb" firstAttribute="leading" secondItem="J6j-XK-oPt" secondAttribute="trailing" constant="20" id="jgv-tq-115"/>
+                                                <constraint firstItem="yqB-In-xpb" firstAttribute="centerY" secondItem="ZSd-Ic-Cl6" secondAttribute="centerY" id="tVU-xF-jlU"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="jgv-tq-115"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="oKI-CP-2mn">
@@ -1375,6 +1409,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="deleteLabel" destination="z8d-dz-Rbo" id="nCm-Gf-byK"/>
+                        <outlet property="line" destination="yqB-In-xpb" id="YLN-l5-pR4"/>
                         <outlet property="memo" destination="755-Az-IcZ" id="gMD-rL-oRV"/>
                         <outlet property="method" destination="j5q-N8-5yd" id="ExC-Dq-ddt"/>
                         <outlet property="photo" destination="hoz-wG-eO7" id="9Bo-9K-YP7"/>
@@ -1382,6 +1417,7 @@
                         <outlet property="star1" destination="JrF-pQ-HX6" id="Gco-R9-pOF"/>
                         <outlet property="star2" destination="qhb-Bg-qgv" id="JEZ-hr-HJm"/>
                         <outlet property="star3" destination="4ap-hu-NGP" id="Cpp-rf-hVm"/>
+                        <outlet property="twitter" destination="J6j-XK-oPt" id="rmc-H0-qMC"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="WbW-98-e9q"/>
                         <segue destination="hP7-4C-Rcc" kind="presentation" identifier="PushPhotoDetail" id="qgK-nt-vNA"/>
                         <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="AL8-XH-VAL"/>
@@ -1673,13 +1709,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="sns-line" width="80" height="80"/>
+        <image name="sns-twitter" width="843" height="843"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h9o-RC-v1T"/>
+        <segue reference="WbW-98-e9q"/>
+        <segue reference="WL9-sL-eOj"/>
         <segue reference="AL8-XH-VAL"/>
         <segue reference="rrh-vr-JPb"/>
-        <segue reference="WbW-98-e9q"/>
     </inferredMetricsTieBreakers>
 </document>
