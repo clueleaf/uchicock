@@ -16,7 +16,6 @@ class RecipeDetailTableViewController: UITableViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var twitter: UIButton!
-    @IBOutlet weak var facebook: UIButton!
     @IBOutlet weak var line: UIButton!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
@@ -37,9 +36,6 @@ class RecipeDetailTableViewController: UITableViewController {
         }
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
             twitter.enabled = true
-        }
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-            facebook.enabled = true
         }
 
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
@@ -314,10 +310,6 @@ class RecipeDetailTableViewController: UITableViewController {
     
     @IBAction func twitterTapped(sender: UIButton) {
         share(SLServiceTypeTwitter, message: createShortMessage())
-    }
-    
-    @IBAction func facebookTapped(sender: UIButton) {
-        share(SLServiceTypeFacebook, message: createLongMessage())
     }
     
     @IBAction func lineTapped(sender: UIButton) {
