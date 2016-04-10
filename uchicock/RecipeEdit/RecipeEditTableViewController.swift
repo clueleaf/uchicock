@@ -472,7 +472,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     // MARK: - Navigation
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
-        let riec = fromViewController as! RecipeIngredientEditViewController
+        let riec = fromViewController as! RecipeIngredientEditTableViewController
         if riec.isAddMode{
             if riec.deleteFlag{
             }else{
@@ -505,7 +505,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushEditIngredient" {
             let enc = segue.destinationViewController as! UINavigationController
-            let evc = enc.visibleViewController as! RecipeIngredientEditViewController
+            let evc = enc.visibleViewController as! RecipeIngredientEditTableViewController
             if let indexPath = sender as? NSIndexPath{
                 if indexPath.row < editingRecipeIngredientList.count{
                     if self.editingRecipeIngredientList[indexPath.row].id == ""{

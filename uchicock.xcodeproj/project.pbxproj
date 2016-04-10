@@ -21,7 +21,6 @@
 		9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */; };
 		9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */; };
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
-		9B3078F31CA422630014CE7E /* RecipeIngredientEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */; };
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */; };
@@ -35,6 +34,7 @@
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
 		9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* uchicockTests.swift */; };
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
+		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1B1C7DC8DC00A27175 /* Realm.framework */; };
 		9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */; };
 /* End PBXBuildFile section */
@@ -73,7 +73,6 @@
 		9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditingRecipeIngredient.swift; path = RecipeEdit/EditingRecipeIngredient.swift; sourceTree = "<group>"; };
 		9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditIngredientTableViewCell.swift; path = RecipeEdit/RecipeEditIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
-		9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditViewController.swift; path = RecipeEdit/RecipeIngredientEditViewController.swift; sourceTree = "<group>"; };
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "Pods/../build/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockUITests.swift; sourceTree = "<group>"; };
 		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */,
-				9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */,
+				9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */,
 				9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */,
 				9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */,
 				9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */,
@@ -490,7 +490,7 @@
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
-				9B3078F31CA422630014CE7E /* RecipeIngredientEditViewController.swift in Sources */,
+				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
