@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '84C76E67684A6B04D1BA33AF'
-               BlueprintName = 'Pods'
+               BlueprintIdentifier = '83396DA251B99B9436A319EE'
+               BlueprintName = 'LINEActivity'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods.framework'>
+               BuildableName = 'LINEActivity.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
