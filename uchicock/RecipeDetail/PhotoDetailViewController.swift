@@ -41,6 +41,17 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
+        var message = "カメラロールへ保存しました"
+        if error != nil {
+            message = "カメラロールへの保存に失敗しました"
+        }
+        let alertView = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+        }))
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
     // MARK: - UIScrollViewDelegate
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return photo
@@ -51,4 +62,25 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func organizeButtonTapped(sender: UIBarButtonItem) {
+        let excludedActivityTypes = [
+            UIActivityTypeMessage,
+            UIActivityTypeMail,
+            UIActivityTypePrint,
+            UIActivityTypeCopyToPasteboard,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeAddToReadingList,
+            UIActivityTypePostToFlickr,
+            UIActivityTypePostToVimeo,
+            UIActivityTypePostToWeibo,
+            UIActivityTypePostToTencentWeibo,
+            UIActivityTypeAirDrop
+        ]
+        
+        let shareImage = photo.image!
+        let activityItems = [shareImage, ""]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        self.presentViewController(activityVC, animated: true, completion: nil)
+    }
 }

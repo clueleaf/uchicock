@@ -14,35 +14,28 @@
 		9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078C81CA421AE0014CE7E /* Ingredient.swift */; };
 		9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078C91CA421AE0014CE7E /* Recipe.swift */; };
 		9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078CA1CA421AE0014CE7E /* RecipeIngredientLink.swift */; };
-		9B3078D51CA421DD0014CE7E /* RecipeDetailDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078CE1CA421DD0014CE7E /* RecipeDetailDeleteTableViewCell.swift */; };
-		9B3078D61CA421DD0014CE7E /* RecipeDetailFavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078CF1CA421DD0014CE7E /* RecipeDetailFavoriteTableViewCell.swift */; };
-		9B3078D71CA421DD0014CE7E /* RecipeDetailMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D01CA421DD0014CE7E /* RecipeDetailMemoTableViewCell.swift */; };
-		9B3078D81CA421DD0014CE7E /* RecipeDetailMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D11CA421DD0014CE7E /* RecipeDetailMethodTableViewCell.swift */; };
-		9B3078D91CA421DD0014CE7E /* RecipeDetailNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D21CA421DD0014CE7E /* RecipeDetailNameTableViewCell.swift */; };
-		9B3078DA1CA421DD0014CE7E /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D31CA421DD0014CE7E /* RecipeDetailViewController.swift */; };
 		9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D41CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift */; };
 		9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078DC1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift */; };
 		9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078DD1CA4220C0014CE7E /* IngredientListViewController.swift */; };
-		9B3078E61CA4223D0014CE7E /* IngredientDetailDeleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E01CA4223D0014CE7E /* IngredientDetailDeleteTableViewCell.swift */; };
-		9B3078E71CA4223D0014CE7E /* IngredientDetailMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E11CA4223D0014CE7E /* IngredientDetailMemoTableViewCell.swift */; };
-		9B3078E81CA4223D0014CE7E /* IngredientDetailNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E21CA4223D0014CE7E /* IngredientDetailNameTableViewCell.swift */; };
-		9B3078E91CA4223D0014CE7E /* IngredientDetailStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E31CA4223D0014CE7E /* IngredientDetailStockTableViewCell.swift */; };
-		9B3078EA1CA4223D0014CE7E /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E41CA4223D0014CE7E /* IngredientDetailViewController.swift */; };
 		9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */; };
 		9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */; };
 		9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */; };
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
-		9B3078F31CA422630014CE7E /* RecipeIngredientEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */; };
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
+		9B498C151CBA63050099E825 /* LINEActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B498C141CBA63050099E825 /* LINEActivity.framework */; };
 		9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */; };
 		9B8B50F21CA6412F00766C8E /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8B50F11CA6412F00766C8E /* PhotoDetailViewController.swift */; };
+		9B8E59D21CB819A8004D2C1A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E59D11CB819A8004D2C1A /* Social.framework */; };
+		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
+		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
 		9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A3181C783CAA0031F631 /* Main.storyboard */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
 		9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* uchicockTests.swift */; };
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
+		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1B1C7DC8DC00A27175 /* Realm.framework */; };
 		9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */; };
 /* End PBXBuildFile section */
@@ -74,29 +67,24 @@
 		9B3078C81CA421AE0014CE7E /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Database/Ingredient.swift; sourceTree = "<group>"; };
 		9B3078C91CA421AE0014CE7E /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = Database/Recipe.swift; sourceTree = "<group>"; };
 		9B3078CA1CA421AE0014CE7E /* RecipeIngredientLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientLink.swift; path = Database/RecipeIngredientLink.swift; sourceTree = "<group>"; };
-		9B3078CE1CA421DD0014CE7E /* RecipeDetailDeleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailDeleteTableViewCell.swift; path = RecipeDetail/RecipeDetailDeleteTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078CF1CA421DD0014CE7E /* RecipeDetailFavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailFavoriteTableViewCell.swift; path = RecipeDetail/RecipeDetailFavoriteTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078D01CA421DD0014CE7E /* RecipeDetailMemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailMemoTableViewCell.swift; path = RecipeDetail/RecipeDetailMemoTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078D11CA421DD0014CE7E /* RecipeDetailMethodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailMethodTableViewCell.swift; path = RecipeDetail/RecipeDetailMethodTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078D21CA421DD0014CE7E /* RecipeDetailNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailNameTableViewCell.swift; path = RecipeDetail/RecipeDetailNameTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078D31CA421DD0014CE7E /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailViewController.swift; path = RecipeDetail/RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		9B3078D41CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientListTableViewCell.swift; path = RecipeDetail/RecipeIngredientListTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078DC1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientListItemTableViewCell.swift; path = IngredientList/IngredientListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078DD1CA4220C0014CE7E /* IngredientListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientListViewController.swift; path = IngredientList/IngredientListViewController.swift; sourceTree = "<group>"; };
-		9B3078E01CA4223D0014CE7E /* IngredientDetailDeleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailDeleteTableViewCell.swift; path = IngredientDetail/IngredientDetailDeleteTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078E11CA4223D0014CE7E /* IngredientDetailMemoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailMemoTableViewCell.swift; path = IngredientDetail/IngredientDetailMemoTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078E21CA4223D0014CE7E /* IngredientDetailNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailNameTableViewCell.swift; path = IngredientDetail/IngredientDetailNameTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078E31CA4223D0014CE7E /* IngredientDetailStockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailStockTableViewCell.swift; path = IngredientDetail/IngredientDetailStockTableViewCell.swift; sourceTree = "<group>"; };
-		9B3078E41CA4223D0014CE7E /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailViewController.swift; path = IngredientDetail/IngredientDetailViewController.swift; sourceTree = "<group>"; };
 		9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientRecipeListTableViewCell.swift; path = IngredientDetail/IngredientRecipeListTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditingRecipeIngredient.swift; path = RecipeEdit/EditingRecipeIngredient.swift; sourceTree = "<group>"; };
 		9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditIngredientTableViewCell.swift; path = RecipeEdit/RecipeEditIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
-		9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditViewController.swift; path = RecipeEdit/RecipeIngredientEditViewController.swift; sourceTree = "<group>"; };
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
+		9B498C0D1CBA62290099E825 /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B498C0E1CBA62290099E825 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B498C0F1CBA622A0099E825 /* uchicockUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicockUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B498C141CBA63050099E825 /* LINEActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LINEActivity.framework; path = "Pods/../build/Debug-iphoneos/LINEActivity.framework"; sourceTree = "<group>"; };
 		9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "Pods/../build/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
 		9B8B50F11CA6412F00766C8E /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoDetailViewController.swift; path = RecipeDetail/PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
+		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BC9A3111C783CAA0031F631 /* uchicock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchicock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC9A3141C783CAA0031F631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC9A3191C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +98,7 @@
 		9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockUITests.swift; sourceTree = "<group>"; };
 		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B498C151CBA63050099E825 /* LINEActivity.framework in Frameworks */,
+				9B8E59D21CB819A8004D2C1A /* Social.framework in Frameworks */,
 				9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */,
 				9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */,
 				9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */,
@@ -166,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */,
-				9B3078EF1CA422630014CE7E /* RecipeIngredientEditViewController.swift */,
+				9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */,
 				9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */,
 				9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */,
 				9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */,
@@ -185,14 +176,9 @@
 		9BAAFB6F1C99953400E67791 /* RecipeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9B3078D31CA421DD0014CE7E /* RecipeDetailViewController.swift */,
+				9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */,
 				9B8B50F11CA6412F00766C8E /* PhotoDetailViewController.swift */,
-				9B3078D21CA421DD0014CE7E /* RecipeDetailNameTableViewCell.swift */,
-				9B3078CF1CA421DD0014CE7E /* RecipeDetailFavoriteTableViewCell.swift */,
-				9B3078D11CA421DD0014CE7E /* RecipeDetailMethodTableViewCell.swift */,
-				9B3078D01CA421DD0014CE7E /* RecipeDetailMemoTableViewCell.swift */,
 				9B3078D41CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift */,
-				9B3078CE1CA421DD0014CE7E /* RecipeDetailDeleteTableViewCell.swift */,
 			);
 			name = RecipeDetail;
 			sourceTree = "<group>";
@@ -235,6 +221,9 @@
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
+				9B498C0D1CBA62290099E825 /* uchicock-Bridging-Header.h */,
+				9B498C0E1CBA62290099E825 /* uchicockTests-Bridging-Header.h */,
+				9B498C0F1CBA622A0099E825 /* uchicockUITests-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -278,12 +267,8 @@
 		9BE32CF11C9C4E39001B98BF /* IngredientDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9B3078E41CA4223D0014CE7E /* IngredientDetailViewController.swift */,
-				9B3078E21CA4223D0014CE7E /* IngredientDetailNameTableViewCell.swift */,
-				9B3078E31CA4223D0014CE7E /* IngredientDetailStockTableViewCell.swift */,
-				9B3078E11CA4223D0014CE7E /* IngredientDetailMemoTableViewCell.swift */,
+				9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */,
 				9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */,
-				9B3078E01CA4223D0014CE7E /* IngredientDetailDeleteTableViewCell.swift */,
 			);
 			name = IngredientDetail;
 			sourceTree = "<group>";
@@ -291,6 +276,8 @@
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B498C141CBA63050099E825 /* LINEActivity.framework */,
+				9B8E59D11CB819A8004D2C1A /* Social.framework */,
 				9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */,
 				9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */,
 				9BF98A1B1C7DC8DC00A27175 /* Realm.framework */,
@@ -500,30 +487,21 @@
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
-				9B3078D91CA421DD0014CE7E /* RecipeDetailNameTableViewCell.swift in Sources */,
 				9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */,
-				9B3078D61CA421DD0014CE7E /* RecipeDetailFavoriteTableViewCell.swift in Sources */,
-				9B3078DA1CA421DD0014CE7E /* RecipeDetailViewController.swift in Sources */,
-				9B3078E71CA4223D0014CE7E /* IngredientDetailMemoTableViewCell.swift in Sources */,
+				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
 				9B8B50F21CA6412F00766C8E /* PhotoDetailViewController.swift in Sources */,
 				9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */,
 				9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */,
 				9B3078C61CA421660014CE7E /* RecipeListItemTableViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
-				9B3078D71CA421DD0014CE7E /* RecipeDetailMemoTableViewCell.swift in Sources */,
+				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
-				9B3078D81CA421DD0014CE7E /* RecipeDetailMethodTableViewCell.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
-				9B3078F31CA422630014CE7E /* RecipeIngredientEditViewController.swift in Sources */,
-				9B3078E81CA4223D0014CE7E /* IngredientDetailNameTableViewCell.swift in Sources */,
-				9B3078E61CA4223D0014CE7E /* IngredientDetailDeleteTableViewCell.swift in Sources */,
-				9B3078EA1CA4223D0014CE7E /* IngredientDetailViewController.swift in Sources */,
-				9B3078E91CA4223D0014CE7E /* IngredientDetailStockTableViewCell.swift in Sources */,
+				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
-				9B3078D51CA421DD0014CE7E /* RecipeDetailDeleteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +643,7 @@
 			baseConfigurationReference = 39E9598A26D53360CAD954E7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -676,6 +655,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -684,6 +665,7 @@
 			baseConfigurationReference = 34EEF1621ED608239061362E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -695,6 +677,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -702,10 +685,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
 			};
 			name = Debug;
@@ -714,10 +700,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
 			};
 			name = Release;
@@ -725,10 +713,13 @@
 		9BC9A3401C783CAA0031F631 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = uchicock;
 				USES_XCTRUNNER = YES;
 			};
@@ -737,10 +728,12 @@
 		9BC9A3411C783CAA0031F631 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
 				TEST_TARGET_NAME = uchicock;
 				USES_XCTRUNNER = YES;
 			};
