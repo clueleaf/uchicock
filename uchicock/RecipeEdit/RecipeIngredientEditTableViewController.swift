@@ -30,6 +30,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
         ingredientName.tag = 0
         amount.tag = 1
+        self.tableView.tag = 0
+        suggestTableView.tag = 1
         
         if isAddMode == false{
             ingredientName.text = recipeIngredient.ingredientName
@@ -67,7 +69,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             for ingredient in ingredientList {
                 suggestList.append(ingredient.ingredientName)
             }
-//            suggestTableView.reloadData()
+            suggestTableView.reloadData()
         }
     }
     
@@ -93,46 +95,59 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
 
     // MARK: - UITableView
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if tableView.tag == 0{
+            return 2
+        }else if tableView.tag == 1{
+            return 1
+        }
+        return 0
+    }
+
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if tableView == suggestTableView && section == 0{
+        if tableView.tag == 1 && section == 0{
             return 30
-        }else if tableView == self.view && section == 1{
+        }else if tableView.tag == 0 && section == 1{
             return 30
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView == suggestTableView && section == 0{
+        if tableView.tag == 1 && section == 0{
             return "材料候補"
         }
         return nil
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableView == self.view{
+        if tableView.tag == 0 {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-        }else if tableView == suggestTableView{
+        }else if tableView.tag == 1{
             return 30
         }
         return 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.view{
+        if tableView.tag == 0{
             if section == 0{
                 return 4
             }else if section == 1{
                 return 1
             }
-        }else if tableView == suggestTableView{
+        }else if tableView.tag == 1{
             return suggestList.count
         }
         return 0
     }
     
+    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+        return 0
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if tableView == self.view && indexPath.section == 1 && indexPath.row == 0{
+        if tableView.tag == 0 && indexPath.section == 1 && indexPath.row == 0{
             if isAddMode{
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .Destructive){
@@ -152,16 +167,16 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 presentViewController(alertView, animated: true, completion: nil)
             }
-        }else if tableView == suggestTableView{
+        }else if tableView.tag == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             ingredientName.text = suggestList[indexPath.row]
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tableView == self.view{
+        if tableView.tag == 0{
             return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        }else if tableView == suggestTableView && indexPath.section == 0{
+        }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row]
             return cell
