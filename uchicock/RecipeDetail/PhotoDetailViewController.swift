@@ -64,7 +64,6 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func organizeButtonTapped(sender: UIBarButtonItem) {
         let excludedActivityTypes = [
-//            UIActivityTypePostToFacebook,
             UIActivityTypeMessage,
             UIActivityTypeMail,
             UIActivityTypePrint,

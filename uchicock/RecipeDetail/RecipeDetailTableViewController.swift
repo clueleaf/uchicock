@@ -298,12 +298,10 @@ class RecipeDetailTableViewController: UITableViewController {
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
-        var excludedActivityTypes = [
-//            UIActivityTypePostToFacebook,
+        let excludedActivityTypes = [
             UIActivityTypeMessage,
             UIActivityTypeMail,
             UIActivityTypePrint,
-            UIActivityTypeCopyToPasteboard,
             UIActivityTypeAssignToContact,
             UIActivityTypeAddToReadingList,
             UIActivityTypePostToFlickr,
@@ -320,16 +318,11 @@ class RecipeDetailTableViewController: UITableViewController {
             myApplicationActivities = []
         }
         if noPhotoFlag == false{
-            let shareImage = photo.image!
-            let activityItems = [shareText, shareImage]
-            
-            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: myApplicationActivities)
+            let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: myApplicationActivities)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }else{
-            let activityItems = [shareText]
-            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: myApplicationActivities)
-            excludedActivityTypes.append(UIActivityTypePostToFacebook)
+            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: myApplicationActivities)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }
