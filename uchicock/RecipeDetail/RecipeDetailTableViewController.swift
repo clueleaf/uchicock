@@ -10,6 +10,7 @@ import UIKit
 import Social
 import RealmSwift
 import ChameleonFramework
+import Accounts
 
 class RecipeDetailTableViewController: UITableViewController {
 
@@ -306,6 +307,39 @@ class RecipeDetailTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushEditRecipe", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+        var excludedActivityTypes = [
+//            UIActivityTypePostToFacebook,
+            UIActivityTypeMessage,
+            UIActivityTypeMail,
+            UIActivityTypePrint,
+            UIActivityTypeCopyToPasteboard,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeAddToReadingList,
+            UIActivityTypePostToFlickr,
+            UIActivityTypePostToVimeo,
+            UIActivityTypePostToWeibo,
+            UIActivityTypePostToTencentWeibo,
+            UIActivityTypeAirDrop
+        ]
+        
+        
+        let shareText = createLongMessage()
+        if noPhotoFlag == false{
+            let shareImage = photo.image!
+            let activityItems = [shareText, shareImage]
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }else{
+            let activityItems = [shareText]
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            excludedActivityTypes.append(UIActivityTypePostToFacebook)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
     }
     
     @IBAction func twitterTapped(sender: UIButton) {

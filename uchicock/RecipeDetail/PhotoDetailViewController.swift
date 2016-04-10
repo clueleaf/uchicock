@@ -63,11 +63,25 @@ class PhotoDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func organizeButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
-            UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
-            })
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-        presentViewController(alertView, animated: true, completion: nil)
+        let excludedActivityTypes = [
+//            UIActivityTypePostToFacebook,
+            UIActivityTypeMessage,
+            UIActivityTypeMail,
+            UIActivityTypePrint,
+            UIActivityTypeCopyToPasteboard,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeAddToReadingList,
+            UIActivityTypePostToFlickr,
+            UIActivityTypePostToVimeo,
+            UIActivityTypePostToWeibo,
+            UIActivityTypePostToTencentWeibo,
+            UIActivityTypeAirDrop
+        ]
+        
+        let shareImage = photo.image!
+        let activityItems = [shareImage, ""]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
 }

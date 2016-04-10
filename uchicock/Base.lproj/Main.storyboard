@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--レシピ編集-->
@@ -1640,11 +1641,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="Cae-A6-fF4">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="5XA-Bc-Qtc">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="3cq-Fg-8AL" id="K8n-lo-A37"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="5XA-Bc-Qtc">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="3cq-Fg-8AL" id="K8n-lo-A37"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="Qj7-Pm-R41">
+                                <connections>
+                                    <action selector="actionButtonTapped:" destination="3cq-Fg-8AL" id="E7a-H2-VB2"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="deleteLabel" destination="z8d-dz-Rbo" id="nCm-Gf-byK"/>
@@ -1712,7 +1720,7 @@
                                 <action selector="stopButtonTapped:" destination="rfe-eY-rT0" id="SXG-Ng-IuB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="KIh-L3-xmm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="KIh-L3-xmm">
                             <connections>
                                 <action selector="organizeButtonTapped:" destination="rfe-eY-rT0" id="r06-jZ-Qjd"/>
                             </connections>
@@ -1735,9 +1743,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SNB-c3-dZb"/>
         <segue reference="VoJ-51-RUH"/>
-        <segue reference="Ee4-db-L8m"/>
-        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="SNB-c3-dZb"/>
+        <segue reference="WbW-98-e9q"/>
+        <segue reference="AL8-XH-VAL"/>
     </inferredMetricsTieBreakers>
 </document>
