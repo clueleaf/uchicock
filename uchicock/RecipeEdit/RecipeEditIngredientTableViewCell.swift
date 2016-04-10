@@ -17,7 +17,7 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let width = self.bounds.size.width;
+        let width = UIScreen.mainScreen().bounds.size.width
 
         ingredientName = UILabel(frame: CGRectMake(10, 5, width - 40, 21))
         ingredientName.text = ""

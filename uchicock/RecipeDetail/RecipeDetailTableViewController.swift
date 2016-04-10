@@ -253,13 +253,12 @@ class RecipeDetailTableViewController: UITableViewController {
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
-                cell.option.textColor = FlatBlack()
                 cell.option.backgroundColor = UIColor.clearColor()
             }else{
                 cell.option.text = "オプション"
-                cell.option.textColor = FlatBlack()
                 cell.option.backgroundColor = FlatWhiteDark()
             }
+            cell.option.textColor = FlatBlack()
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.Center

@@ -214,9 +214,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
                 if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
+                    cell.option.backgroundColor = UIColor.clearColor()
                 }else{
                     cell.option.text = "オプション"
+                    cell.option.backgroundColor = FlatWhiteDark()
                 }
+                cell.option.textColor = FlatBlack()
+                cell.option.layer.cornerRadius = 4
+                cell.option.clipsToBounds = true
+                cell.option.textAlignment = NSTextAlignment.Center
+
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = .Default
                 return cell
