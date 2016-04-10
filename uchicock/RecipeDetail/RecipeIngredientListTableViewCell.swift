@@ -18,7 +18,7 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let width = self.bounds.size.width;
+        let width = UIScreen.mainScreen().bounds.size.width
 
         ingredientName = UILabel(frame: CGRectMake(8, 8, width - 43, 21))
         ingredientName.text = ""

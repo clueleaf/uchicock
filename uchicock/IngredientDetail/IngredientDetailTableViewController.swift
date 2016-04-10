@@ -147,6 +147,16 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
+                if ingredient.recipeIngredients[indexPath.row].recipe.imageData != nil{
+                    cell.photo.image = UIImage(data: ingredient.recipeIngredients[indexPath.row].recipe.imageData!)
+                    //レシピ削除のバグに対するワークアラウンド
+                    if cell.photo.image == nil{
+                        cell.photo.image = UIImage(named: "no-photo")
+                    }
+                }else{
+                    cell.photo.image = UIImage(named: "no-photo")
+                }
+                
                 cell.recipeName.text = ingredient.recipeIngredients[indexPath.row].recipe.recipeName
                 switch ingredient.recipeIngredients[indexPath.row].recipe.favorites{
                 case 1:
