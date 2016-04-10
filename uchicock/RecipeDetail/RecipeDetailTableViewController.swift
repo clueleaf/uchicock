@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import Social
+//import Social
 import RealmSwift
 import ChameleonFramework
 import Accounts
+import LINEActivity
 
 class RecipeDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var twitter: UIButton!
-    @IBOutlet weak var line: UIButton!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
@@ -32,13 +31,6 @@ class RecipeDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "line://")!){
-            line.enabled = true
-        }
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
-            twitter.enabled = true
-        }
-
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
@@ -153,10 +145,6 @@ class RecipeDetailTableViewController: UITableViewController {
         if indexPath.section == 0 {
             if noPhotoFlag == false && indexPath.row == 0{
                 return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-            }else if noPhotoFlag == false && indexPath.row == 2{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 2, inSection: 0))
-            }else if noPhotoFlag == true && indexPath.row == 1{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 2, inSection: 0))
             }else{
                 return UITableViewAutomaticDimension
             }
@@ -179,9 +167,9 @@ class RecipeDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             if noPhotoFlag {
-                return 5
+                return 4
             }else{
-                return 6
+                return 5
             }
         }else if section == 1{
             return recipe.recipeIngredients.count
@@ -325,67 +313,30 @@ class RecipeDetailTableViewController: UITableViewController {
             UIActivityTypeAirDrop
         ]
         
-        
         let shareText = createLongMessage()
+        let LineKit = LINEActivity()
+        var myApplicationActivities = [LineKit]
+        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "line://")!) == false{
+            myApplicationActivities = []
+        }
         if noPhotoFlag == false{
             let shareImage = photo.image!
             let activityItems = [shareText, shareImage]
-            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: myApplicationActivities)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }else{
             let activityItems = [shareText]
-            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: myApplicationActivities)
             excludedActivityTypes.append(UIActivityTypePostToFacebook)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }
     
-    @IBAction func twitterTapped(sender: UIButton) {
-        share(SLServiceTypeTwitter, message: createShortMessage())
-    }
-    
-    @IBAction func lineTapped(sender: UIButton) {
-        let message = createLongMessage()
-        if let encoded = message.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet()){
-            if let uri = NSURL(string: "line://msg/text/" + encoded){
-                UIApplication.sharedApplication().openURL(uri)
-            }
-        }
-    }
-    
-    func createShortMessage() -> String{
-        var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
-        switch recipe.method{
-        case 0:
-            message += "技法：ビルド\n"
-        case 1:
-            message += "技法：ステア\n"
-        case 2:
-            message += "技法：シェイク\n"
-        case 3:
-            message += "技法：ブレンド\n"
-        case 4:
-            message += "技法：その他\n"
-        default: break
-        }
-        message += "材料："
-        for recipeIngredient in recipe.recipeIngredients{
-            message += recipeIngredient.ingredient.ingredientName + " " + recipeIngredient.amount + ","
-        }
-
-        if recipe.memo != "" {
-            message += "\nメモ：" + recipe.memo
-        }
-        return message
-    }
-    
     func createLongMessage() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
-        if recipe.memo != "" {
-            message += recipe.memo + "\n\n"
-        }
         switch recipe.method{
         case 0:
             message += "技法：ビルド\n\n"
@@ -403,16 +354,10 @@ class RecipeDetailTableViewController: UITableViewController {
         for recipeIngredient in recipe.recipeIngredients{
             message += recipeIngredient.ingredient.ingredientName + " " + recipeIngredient.amount + "\n"
         }
-        return message
-    }
-    
-    func share(type: String, message: String){
-        let vc = SLComposeViewController(forServiceType: type)
-        vc.setInitialText(message)
-        if noPhotoFlag == false{
-            vc.addImage(photo.image)
+        if recipe.memo != "" {
+            message += "\n" + recipe.memo
         }
-        self.presentViewController(vc, animated: true, completion: nil)
+        return message
     }
     
     @IBAction func star1Tapped(sender: UIButton) {

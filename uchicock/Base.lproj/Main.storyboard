@@ -1413,52 +1413,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="u92-hq-Fbn">
-                                        <rect key="frame" x="0.0" y="358" width="600" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u92-hq-Fbn" id="ZSd-Ic-Cl6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J6j-XK-oPt" userLabel="twitter">
-                                                    <rect key="frame" x="20" y="9" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="FFm-W2-oFS"/>
-                                                        <constraint firstAttribute="width" constant="60" id="jSS-Kl-kub"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="sns-twitter"/>
-                                                    <connections>
-                                                        <action selector="twitterTapped:" destination="3cq-Fg-8AL" eventType="touchUpInside" id="s2k-rA-on9"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqB-In-xpb" userLabel="line">
-                                                    <rect key="frame" x="90" y="14" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="AMh-nX-7bP"/>
-                                                        <constraint firstAttribute="width" constant="50" id="bMZ-2h-ycc"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="sns-line"/>
-                                                    <connections>
-                                                        <action selector="lineTapped:" destination="3cq-Fg-8AL" eventType="touchUpInside" id="Asw-Wi-129"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="J6j-XK-oPt" firstAttribute="leading" secondItem="ZSd-Ic-Cl6" secondAttribute="leading" constant="20" id="2a9-YT-KbN"/>
-                                                <constraint firstItem="J6j-XK-oPt" firstAttribute="centerY" secondItem="ZSd-Ic-Cl6" secondAttribute="centerY" id="NMr-g0-1NL"/>
-                                                <constraint firstItem="yqB-In-xpb" firstAttribute="leading" secondItem="J6j-XK-oPt" secondAttribute="trailing" constant="10" id="ZNh-Oc-dDo"/>
-                                                <constraint firstItem="yqB-In-xpb" firstAttribute="leading" secondItem="J6j-XK-oPt" secondAttribute="trailing" constant="20" id="jgv-tq-115"/>
-                                                <constraint firstItem="yqB-In-xpb" firstAttribute="centerY" secondItem="ZSd-Ic-Cl6" secondAttribute="centerY" id="tVU-xF-jlU"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="jgv-tq-115"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="oKI-CP-2mn">
-                                        <rect key="frame" x="0.0" y="438" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="358" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oKI-CP-2mn" id="RSg-GA-cJc">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -1511,7 +1467,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="CmS-To-RxC">
-                                        <rect key="frame" x="0.0" y="488" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="408" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CmS-To-RxC" id="wgN-De-0Rq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -1557,7 +1513,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="Uge-vh-Gjf">
-                                        <rect key="frame" x="0.0" y="588" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="508" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uge-vh-Gjf" id="faa-ON-WR3">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -1601,7 +1557,7 @@
                             <tableViewSection headerTitle="Section-2" id="nrE-Wu-T0t">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="4lg-cX-DdN" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="716" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="636" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4lg-cX-DdN" id="lo8-c2-lCB">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
@@ -1613,7 +1569,7 @@
                             <tableViewSection headerTitle="Section-3" id="37m-pd-LnG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="E74-zK-kWp">
-                                        <rect key="frame" x="0.0" y="814" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="734" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E74-zK-kWp" id="l4P-dh-5x3">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -1656,7 +1612,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="deleteLabel" destination="z8d-dz-Rbo" id="nCm-Gf-byK"/>
-                        <outlet property="line" destination="yqB-In-xpb" id="YLN-l5-pR4"/>
                         <outlet property="memo" destination="755-Az-IcZ" id="gMD-rL-oRV"/>
                         <outlet property="method" destination="j5q-N8-5yd" id="ExC-Dq-ddt"/>
                         <outlet property="photo" destination="hoz-wG-eO7" id="9Bo-9K-YP7"/>
@@ -1664,7 +1619,6 @@
                         <outlet property="star1" destination="JrF-pQ-HX6" id="Gco-R9-pOF"/>
                         <outlet property="star2" destination="qhb-Bg-qgv" id="JEZ-hr-HJm"/>
                         <outlet property="star3" destination="4ap-hu-NGP" id="Cpp-rf-hVm"/>
-                        <outlet property="twitter" destination="J6j-XK-oPt" id="rmc-H0-qMC"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="WbW-98-e9q"/>
                         <segue destination="hP7-4C-Rcc" kind="presentation" identifier="PushPhotoDetail" id="qgK-nt-vNA"/>
                         <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="AL8-XH-VAL"/>
@@ -1737,8 +1691,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sns-line" width="80" height="80"/>
-        <image name="sns-twitter" width="843" height="843"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>

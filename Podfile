@@ -3,6 +3,7 @@ use_frameworks!
 
 pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
+pod "LINEActivity", "~> 0.2.0"
 
 post_install do | installer |
   require 'fileutils'
