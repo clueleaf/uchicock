@@ -20,12 +20,12 @@ class IngredientDetailTableViewController: UITableViewController {
 
     var ingredientId = String()
     var ingredient = Ingredient()
+    var ingredientRecipeBasicList = Array<IngredientRecipeBasic>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +48,15 @@ class IngredientDetailTableViewController: UITableViewController {
             memo.text = ingredient.memo
             memo.textColor = FlatGrayDark()            
             deleteLabel.textColor = FlatRed()
+            
+            ingredientRecipeBasicList.removeAll()
+            for recipeIngredient in ingredient.recipeIngredients{
+                let ingredientRecipeBasic = IngredientRecipeBasic()
+                ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
+                ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
+                ingredientRecipeBasicList.append(ingredientRecipeBasic)
+            }
+            ingredientRecipeBasicList.sortInPlace({ $0.recipeName < $1.recipeName })
             
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -147,8 +156,12 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
-                if ingredient.recipeIngredients[indexPath.row].recipe.imageData != nil{
-                    cell.photo.image = UIImage(data: ingredient.recipeIngredients[indexPath.row].recipe.imageData!)
+                
+                let realm = try! Realm()
+                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
+
+                if recipeIngredient.recipe.imageData != nil{
+                    cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData!)
                     //レシピ削除のバグに対するワークアラウンド
                     if cell.photo.image == nil{
                         cell.photo.image = UIImage(named: "no-photo")
@@ -157,8 +170,8 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.photo.image = UIImage(named: "no-photo")
                 }
                 
-                cell.recipeName.text = ingredient.recipeIngredients[indexPath.row].recipe.recipeName
-                switch ingredient.recipeIngredients[indexPath.row].recipe.favorites{
+                cell.recipeName.text = recipeIngredient.recipe.recipeName
+                switch recipeIngredient.recipe.favorites{
                 case 1:
                     cell.favorites.text = "★☆☆"
                 case 2:
@@ -170,7 +183,7 @@ class IngredientDetailTableViewController: UITableViewController {
                 }
                 var shortageNum = 0
                 var shortageName = ""
-                for ri in ingredient.recipeIngredients[indexPath.row].recipe.recipeIngredients{
+                for ri in recipeIngredient.recipe.recipeIngredients{
                     if ri.mustFlag && ri.ingredient.stockFlag == false{
                         shortageNum++
                         shortageName = ri.ingredient.ingredientName
@@ -230,7 +243,9 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.recipeId = ingredient.recipeIngredients[indexPath.row].recipe.id
+                let realm = try! Realm()
+                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
+                vc.recipeId = recipeIngredient.recipe.id
             }
         }
     }
