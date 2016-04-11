@@ -174,6 +174,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
             cell.recipe = recipeList![indexPath.row]
+            cell.backgroundColor = FlatWhite()
             return cell
         }
         return UITableViewCell()

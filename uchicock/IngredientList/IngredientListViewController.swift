@@ -139,6 +139,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
             cell.ingredient = ingredientList![indexPath.row]
+            cell.backgroundColor = FlatWhite()
             return cell
         }
         return UITableViewCell()

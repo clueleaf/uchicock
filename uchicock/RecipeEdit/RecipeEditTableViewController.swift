@@ -206,7 +206,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            cell.backgroundColor = FlatWhite()
+            return cell
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecipeEditIngredient", forIndexPath: indexPath) as! RecipeEditIngredientTableViewCell
@@ -226,6 +228,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = .Default
+                cell.backgroundColor = FlatWhite()
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
@@ -233,6 +236,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
                 cell.textLabel?.textAlignment = .Center;
+                cell.backgroundColor = FlatWhite()
                 return cell
             }
         }

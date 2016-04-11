@@ -242,9 +242,13 @@ class RecipeDetailTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             if noPhotoFlag{
-                return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row+1, inSection: 0))
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row+1, inSection: 0))
+                cell.backgroundColor = FlatWhite()
+                return cell
             }else{
-                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                cell.backgroundColor = FlatWhite()
+                return cell
             }
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientList", forIndexPath: indexPath) as! RecipeIngredientListTableViewCell
@@ -281,9 +285,12 @@ class RecipeDetailTableViewController: UITableViewController {
             
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = .Default
+            cell.backgroundColor = FlatWhite()
             return cell
         case 2:
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            cell.backgroundColor = FlatWhite()
+            return cell
         default:
             return UITableViewCell()
         }

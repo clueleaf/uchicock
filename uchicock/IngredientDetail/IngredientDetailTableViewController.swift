@@ -152,7 +152,9 @@ class IngredientDetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            cell.backgroundColor = FlatWhite()
+            return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
@@ -212,9 +214,12 @@ class IngredientDetailTableViewController: UITableViewController {
                 
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = .Default
+                cell.backgroundColor = FlatWhite()
                 return cell
             }else{
-                return super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                cell.backgroundColor = FlatWhite()
+                return cell
             }
         }
         return UITableViewCell()

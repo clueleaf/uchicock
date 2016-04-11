@@ -167,6 +167,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 presentViewController(alertView, animated: true, completion: nil)
             }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }else if tableView.tag == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             ingredientName.text = suggestList[indexPath.row]
@@ -175,10 +176,13 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView.tag == 0{
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            cell.backgroundColor = FlatWhite()
+            return cell
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row]
+            cell.backgroundColor = FlatWhite()
             return cell
         }
         return UITableViewCell()

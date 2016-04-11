@@ -66,6 +66,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
         return 0
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.backgroundColor = FlatWhite()
+        return cell
+    }
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {

@@ -39,23 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
         
         UITableView.appearance().backgroundColor = FlatWhite()
-        
         UISearchBar.appearance().backgroundColor = FlatSand()
-        
         UIButton.appearanceWhenContainedInInstancesOfClasses([UITableView.self]).backgroundColor = UIColor.clearColor()
+        UITabBar.appearance().tintColor = FlatOrange()
+        UIButton.appearance().tintColor = FlatSkyBlueDark()
+        UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
+        UILabel.appearance().textColor = FlatBlack()
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = FlatWhiteDark()
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
-        UITableViewCell.appearance().backgroundColor = FlatWhite()
-        
-        UITabBar.appearance().tintColor = FlatOrange()
-        
-        UIButton.appearance().tintColor = FlatSkyBlueDark()
-        
-        UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
-        
-        UILabel.appearance().textColor = FlatBlack()
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView        
     }
 
     func applicationWillResignActive(application: UIApplication) {
