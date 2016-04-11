@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>LINEActivity.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1FB4EDE846B51A59DF99DBF51DB7EA70</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F2C0E2598671EC29713F5856C2866E0</key>
+		<key>628AEB6E095B05D947DAD4235D777EC4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99DF1283F72C56FFDFA806164D09CBB2</key>
+		<key>B78D9C33CFF914C987FC7047EE358FBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E10C8574388E24E83B14FA17A844E68B</key>
+		<key>BD022A1CA3A3DF600C75250B18A88C88</key>
 		<dict>
 			<key>primary</key>
 			<true/>

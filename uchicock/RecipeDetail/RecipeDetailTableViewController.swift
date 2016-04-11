@@ -7,11 +7,9 @@
 //
 
 import UIKit
-//import Social
 import RealmSwift
 import ChameleonFramework
 import Accounts
-import LINEActivity
 
 class RecipeDetailTableViewController: UITableViewController {
 
@@ -311,17 +309,12 @@ class RecipeDetailTableViewController: UITableViewController {
         ]
         
         let shareText = createLongMessage()
-        let LineKit = LINEActivity()
-        var myApplicationActivities = [LineKit]
-        if UIApplication.sharedApplication().canOpenURL(NSURL(string: "line://")!) == false{
-            myApplicationActivities = []
-        }
         if noPhotoFlag == false{
-            let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: myApplicationActivities)
+            let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }else{
-            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: myApplicationActivities)
+            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
         }

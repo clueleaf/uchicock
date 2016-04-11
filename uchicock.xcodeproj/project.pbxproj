@@ -23,10 +23,8 @@
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
-		9B498C151CBA63050099E825 /* LINEActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B498C141CBA63050099E825 /* LINEActivity.framework */; };
 		9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */; };
 		9B8B50F21CA6412F00766C8E /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8B50F11CA6412F00766C8E /* PhotoDetailViewController.swift */; };
-		9B8E59D21CB819A8004D2C1A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E59D11CB819A8004D2C1A /* Social.framework */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
@@ -76,9 +74,6 @@
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
-		9B498C0D1CBA62290099E825 /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
-		9B498C0E1CBA62290099E825 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		9B498C0F1CBA622A0099E825 /* uchicockUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicockUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B498C141CBA63050099E825 /* LINEActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LINEActivity.framework; path = "Pods/../build/Debug-iphoneos/LINEActivity.framework"; sourceTree = "<group>"; };
 		9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "Pods/../build/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
 		9B8B50F11CA6412F00766C8E /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoDetailViewController.swift; path = RecipeDetail/PhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -108,8 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B498C151CBA63050099E825 /* LINEActivity.framework in Frameworks */,
-				9B8E59D21CB819A8004D2C1A /* Social.framework in Frameworks */,
 				9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */,
 				9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */,
 				9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */,
@@ -221,9 +214,6 @@
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
-				9B498C0D1CBA62290099E825 /* uchicock-Bridging-Header.h */,
-				9B498C0E1CBA62290099E825 /* uchicockTests-Bridging-Header.h */,
-				9B498C0F1CBA622A0099E825 /* uchicockUITests-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -655,7 +645,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -677,7 +666,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 			};
 			name = Release;
 		};
