@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
@@ -38,7 +39,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = UIColor.grayColor().CGColor
+        memo.layer.borderColor = FlatWhiteDark().CGColor
     }
 
     override func didReceiveMemoryWarning() {

@@ -87,7 +87,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = UIColor.grayColor().CGColor
+        memo.layer.borderColor = FlatWhiteDark().CGColor
         
         for ri in recipe.recipeIngredients {
             let editingRecipeIngredient = EditingRecipeIngredient()
