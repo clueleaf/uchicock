@@ -142,7 +142,7 @@ class RecipeDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if noPhotoFlag == false && indexPath.row == 0{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+                return UIScreen.mainScreen().bounds.size.width
             }else{
                 return UITableViewAutomaticDimension
             }
