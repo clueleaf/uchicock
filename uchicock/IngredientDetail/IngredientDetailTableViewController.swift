@@ -93,7 +93,7 @@ class IngredientDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             if ingredient.recipeIngredients.count > 0 {
-                return "この材料を使うレシピ"
+                return "この材料を使うレシピ(" + String(ingredient.recipeIngredients.count) + ")"
             }else {
                 return "この材料を使うレシピはありません"
             }

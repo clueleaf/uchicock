@@ -198,6 +198,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
+                        <barButtonItem key="backBarButtonItem" title="レシピ" id="u8H-uo-o5b"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="59t-ya-4Ew">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="L80-da-DOj"/>
@@ -242,7 +243,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-mV-WHi" userLabel="Ingredient Name">
-                                                    <rect key="frame" x="8" y="14" width="464" height="21"/>
+                                                    <rect key="frame" x="38" y="14" width="437" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="oxF-8G-BjK"/>
                                                     </constraints>
@@ -270,21 +271,35 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F97-6R-ReK" userLabel="レシピ数">
+                                                    <rect key="frame" x="8" y="14" width="25" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="npA-PR-dnb"/>
+                                                        <constraint firstAttribute="height" constant="21" id="o2A-56-jrz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="F97-6R-ReK" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="3nf-28-QDe"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="leading" secondItem="h1f-kO-fpz" secondAttribute="leading" constant="8" id="5xS-sJ-TGb"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="top" secondItem="h1f-kO-fpz" secondAttribute="topMargin" constant="8" id="Azf-3z-sCB"/>
                                                 <constraint firstItem="RbF-JI-w4W" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="IBD-Th-JGw"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="leading" secondItem="h1f-kO-fpz" secondAttribute="leadingMargin" constant="8" id="Qhz-XX-zHW"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="hUy-Ji-hE3"/>
-                                                <constraint firstItem="pqk-Jc-SWd" firstAttribute="leading" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="8" id="jfS-1o-Kof"/>
+                                                <constraint firstItem="pqk-Jc-SWd" firstAttribute="leading" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="5" id="jfS-1o-Kof"/>
+                                                <constraint firstItem="WQN-mV-WHi" firstAttribute="leading" secondItem="F97-6R-ReK" secondAttribute="trailing" constant="5" id="lq0-WE-u98"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="8" id="nTi-uc-5tw"/>
+                                                <constraint firstItem="F97-6R-ReK" firstAttribute="leading" secondItem="h1f-kO-fpz" secondAttribute="leading" constant="8" id="qb9-2G-1q4"/>
                                                 <constraint firstItem="RbF-JI-w4W" firstAttribute="leading" secondItem="pqk-Jc-SWd" secondAttribute="trailing" id="sZH-Fy-oEp"/>
                                                 <constraint firstItem="pqk-Jc-SWd" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="voD-PT-MLG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="RbF-JI-w4W" secondAttribute="trailing" id="zG1-29-odi"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="5xS-sJ-TGb"/>
                                                     <exclude reference="Azf-3z-sCB"/>
                                                     <exclude reference="Qhz-XX-zHW"/>
                                                     <exclude reference="nTi-uc-5tw"/>
@@ -293,6 +308,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ingredientName" destination="WQN-mV-WHi" id="pGg-OF-Isv"/>
+                                            <outlet property="recipeNum" destination="F97-6R-ReK" id="TDC-0y-3Q6"/>
                                             <outlet property="stock" destination="RbF-JI-w4W" id="8HY-vE-ASU"/>
                                             <outlet property="stockLabel" destination="pqk-Jc-SWd" id="SIE-EK-xwB"/>
                                         </connections>
@@ -359,6 +375,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="材料" id="bt3-Io-nFd">
+                        <barButtonItem key="backBarButtonItem" title="材料" id="8r7-fW-qdR"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gUd-Cu-gPd">
                             <connections>
                                 <action selector="addButtonTapped:" destination="IFZ-In-CDc" id="En3-fU-Jbr"/>
@@ -1695,9 +1712,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BF7-gd-8JQ"/>
         <segue reference="VoJ-51-RUH"/>
         <segue reference="SNB-c3-dZb"/>
-        <segue reference="AL8-XH-VAL"/>
+        <segue reference="WbW-98-e9q"/>
+        <segue reference="Ee4-db-L8m"/>
     </inferredMetricsTieBreakers>
 </document>

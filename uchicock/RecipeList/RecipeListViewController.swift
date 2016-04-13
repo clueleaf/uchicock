@@ -108,6 +108,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 SortDescriptor(property: "recipeName", ascending: true) ]
             recipeList = recipeList!.sorted(sortProperties)
         }
+        
+        self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
     }
     
     // MARK: - UISearchBarDelegate
@@ -160,12 +162,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 favoriteAlertView.addAction(UIAlertAction(title: "はい", style: .Default, handler: {action in
                     self.deleteRecipe(self.recipeList![indexPath.row])
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
                 }))
                 favoriteAlertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
                 presentViewController(favoriteAlertView, animated: true, completion: nil)
             }else{
                 self.deleteRecipe(self.recipeList![indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
             }
         }
     }
