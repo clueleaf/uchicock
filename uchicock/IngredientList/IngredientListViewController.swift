@@ -74,6 +74,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         default:
             ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         }
+        self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
     }
     
     // MARK: - UISearchBarDelegate

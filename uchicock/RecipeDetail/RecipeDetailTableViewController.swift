@@ -156,7 +156,7 @@ class RecipeDetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
-            return "材料"
+            return "材料(" + String(recipe.recipeIngredients.count) + ")"
         }else{
             return nil
         }
