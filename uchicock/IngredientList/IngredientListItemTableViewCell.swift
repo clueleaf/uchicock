@@ -22,7 +22,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.backgroundColor = FlatGray()
-            }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 99 {
+            }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.backgroundColor = FlatSkyBlue()
             }else{
