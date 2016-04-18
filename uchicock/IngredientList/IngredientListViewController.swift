@@ -142,7 +142,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
         del.backgroundColor = FlatRed()
         
-        return [del, edit]
+        if self.ingredientList![indexPath.row].recipeIngredients.count == 0 {
+            return [del, edit]
+        }else{
+            return [edit]
+        }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
