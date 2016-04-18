@@ -14,6 +14,7 @@ import Accounts
 class RecipeDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
@@ -28,6 +29,9 @@ class RecipeDetailTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
+        openInSafari.layer.cornerRadius = 4
         
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
@@ -49,6 +53,16 @@ class RecipeDetailTableViewController: UITableViewController {
         }else{
             recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
+            
+            let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+            let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+            if UIApplication.sharedApplication().canOpenURL(url!) {
+                openInSafari.enabled = true
+                openInSafari.backgroundColor = FlatSkyBlueDark()
+            }else{
+                openInSafari.enabled = false
+                openInSafari.backgroundColor = FlatWhiteDark()
+            }
             
             noPhotoFlag = false
             if recipe.imageData != nil{
@@ -350,6 +364,14 @@ class RecipeDetailTableViewController: UITableViewController {
             message += "\n" + recipe.memo
         }
         return message
+    }
+    
+    @IBAction func openInSafariTapped(sender: UIButton) {
+        let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+        let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        if UIApplication.sharedApplication().canOpenURL(url!){
+            UIApplication.sharedApplication().openURL(url!)
+        }
     }
     
     @IBAction func star1Tapped(sender: UIButton) {
