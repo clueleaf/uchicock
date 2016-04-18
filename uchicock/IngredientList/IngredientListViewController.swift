@@ -28,8 +28,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         let realm = try! Realm()
         token = realm.objects(Ingredient).addNotificationBlock { results, realm in
-            self.reloadIngredientList()
-            self.tableView.reloadData()
+            if self.stockState.selectedSegmentIndex != 0 {
+                self.reloadIngredientList()
+                self.tableView.reloadData()
+            }
         }
     }
     
