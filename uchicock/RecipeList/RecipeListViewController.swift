@@ -151,12 +151,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete{
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .Normal, title: "編集") {
+            (action, indexPath) in
+            self.performSegueWithIdentifier("PushAddRecipe", sender: indexPath)
+        }
+        edit.backgroundColor = FlatGray()
+        
+        let del = UITableViewRowAction(style: .Default, title: "削除") {
+            (action, indexPath) in
             if self.recipeList![indexPath.row].favorites == 3 {
                 let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "お気に入り★★★のレシピです", preferredStyle: .Alert)
                 favoriteAlertView.addAction(UIAlertAction(title: "はい", style: .Default, handler: {action in
@@ -165,13 +168,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
                 }))
                 favoriteAlertView.addAction(UIAlertAction(title: "いいえ", style: .Cancel){action in})
-                presentViewController(favoriteAlertView, animated: true, completion: nil)
+                self.presentViewController(favoriteAlertView, animated: true, completion: nil)
             }else{
                 self.deleteRecipe(self.recipeList![indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
+                self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
             }
         }
+        del.backgroundColor = FlatRed()
+        
+        return [del, edit]
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -207,6 +220,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 vc.recipeId = recipeList![indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
+            if let indexPath = sender as? NSIndexPath{
+                let enc = segue.destinationViewController as! UINavigationController
+                let evc = enc.visibleViewController as! RecipeEditTableViewController
+                evc.recipe = recipeList![indexPath.row]
+            }
         }
     }
 
