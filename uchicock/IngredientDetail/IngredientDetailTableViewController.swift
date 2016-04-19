@@ -269,7 +269,10 @@ class IngredientDetailTableViewController: UITableViewController {
         }))
         favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(favoriteAlertView, animated: true, completion: nil)
-        
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 
     // MARK: - Navigation
