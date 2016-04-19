@@ -131,13 +131,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                 self.presentViewController(alertView, animated: true, completion: nil)
             } else{
-                let realm = try! Realm()
-                let ingredient = self.ingredientList![indexPath.row]
-                try! realm.write {
-                    realm.delete(ingredient)
-                }
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.navigationItem.title = "材料(" + String(self.ingredientList!.count) + ")"
+                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+                favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Default, handler: {action in
+                    let realm = try! Realm()
+                    let ingredient = self.ingredientList![indexPath.row]
+                    try! realm.write {
+                        realm.delete(ingredient)
+                    }
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    self.navigationItem.title = "材料(" + String(self.ingredientList!.count) + ")"
+                }))
+                favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                self.presentViewController(favoriteAlertView, animated: true, completion: nil)
             }
         }
         del.backgroundColor = FlatRed()
