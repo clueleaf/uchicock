@@ -393,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1778" y="1030"/>
+            <point key="canvasLocation" x="-1938" y="1026"/>
         </scene>
         <!--材料編集-->
         <scene sceneID="azX-tq-QSA">
@@ -409,7 +409,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0G-Pc-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1436" y="1808"/>
+            <point key="canvasLocation" x="-1564" y="1808"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -660,11 +660,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="ucA-U4-qFS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="bif-St-IPk">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="yKB-1k-jl3" id="mHa-r6-XVX"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="bif-St-IPk">
+                                <connections>
+                                    <action selector="editButtonTapped:" destination="yKB-1k-jl3" id="mHa-r6-XVX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="MbZ-8E-833">
+                                <connections>
+                                    <action selector="actionButtonTapped:" destination="yKB-1k-jl3" id="AzL-qu-yUg"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="deleteLabel" destination="pyA-7t-rsu" id="3tJ-re-mYk"/>
@@ -677,7 +684,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5M-4F-zMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-998" y="1041"/>
+            <point key="canvasLocation" x="-1168" y="1017"/>
         </scene>
         <!--Ingredient Edit Table View Controller-->
         <scene sceneID="iId-y0-NWp">
@@ -832,7 +839,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-697" y="1823"/>
+            <point key="canvasLocation" x="-837" y="1819"/>
         </scene>
         <!--Recipe Edit Table View Controller-->
         <scene sceneID="fvV-gX-y9T">
@@ -1121,7 +1128,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gg8-Wf-B9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-123" y="-450"/>
+            <point key="canvasLocation" x="-123" y="-417"/>
         </scene>
         <!--Recipe Ingredient Edit Table View Controller-->
         <scene sceneID="uKk-pv-842">
@@ -1360,7 +1367,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="550" y="-431"/>
+            <point key="canvasLocation" x="562" y="-417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dc3-5f-DNv">
@@ -1735,9 +1742,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VoJ-51-RUH"/>
-        <segue reference="SNB-c3-dZb"/>
+        <segue reference="WL9-sL-eOj"/>
         <segue reference="AL8-XH-VAL"/>
+        <segue reference="rrh-vr-JPb"/>
         <segue reference="WbW-98-e9q"/>
     </inferredMetricsTieBreakers>
 </document>

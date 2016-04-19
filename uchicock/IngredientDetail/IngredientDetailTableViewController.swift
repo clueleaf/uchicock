@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import RealmSwift
 import ChameleonFramework
 
@@ -66,6 +67,21 @@ class IngredientDetailTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func createReminder(eventStore: EKEventStore, title: String) {
+        let reminder = EKReminder(eventStore: eventStore)
+        
+        reminder.title = title
+        reminder.calendar = eventStore.defaultCalendarForNewReminders()
+        do {
+            try eventStore.saveReminder(reminder, commit: true)
+        } catch {
+            let favoriteAlertView = UIAlertController(title: "リマインダーへの保存に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
+            favoriteAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            }))
+            self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+        }
     }
 
     // MARK: - UITableView
@@ -238,6 +254,23 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+        let favoriteAlertView = UIAlertController(title: nil, message: "リマインダーへ保存します", preferredStyle: .Alert)
+        favoriteAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            let eventStore = EKEventStore()
+            if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
+                eventStore.requestAccessToEntityType(.Reminder, completion: {
+                    granted, error in
+                    self.createReminder(eventStore, title: self.ingredientName.text! + "を買う")
+                })
+            } else {
+                self.createReminder(eventStore, title: self.ingredientName.text! + "を買う")
+            }
+        }))
+        favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+        self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+        
+    }
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
