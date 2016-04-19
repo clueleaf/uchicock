@@ -8,8 +8,9 @@
 
 import UIKit
 import EventKit
+import ChameleonFramework
 
-class ReminderTableViewController: UITableViewController {
+class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
@@ -17,6 +18,9 @@ class ReminderTableViewController: UITableViewController {
     @IBOutlet weak var date: UITextField!
     
     var ingredientName = ""
+    let nowDate = NSDate()
+    let dateFormat = NSDateFormatter()
+    let datePicker = UIDatePicker()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,26 @@ class ReminderTableViewController: UITableViewController {
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.on = false
         date.enabled = false
-    }
+        
+        dateFormat.dateFormat = "yyyy/MM/dd HH:mm"
+        date.text = dateFormat.stringFromDate(nowDate)
+        date.delegate = self
+        
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
+        date.inputView = datePicker
+        
+        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
+        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+        toolBar.barStyle = .BlackTranslucent
+        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self,action: "")
+        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "toolBarButtonPush:")
+        toolBar.items = [spaceBarButton,toolBarButton]
+        date.inputAccessoryView = toolBar
 
+        setTextField()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -47,6 +69,13 @@ class ReminderTableViewController: UITableViewController {
         }
     }
 
+    func toolBarButtonPush(sender: UIBarButtonItem){
+        let pickerDate = datePicker.date
+        date.text = dateFormat.stringFromDate(pickerDate)
+        
+        self.view.endEditing(true)
+    }
+    
     // MARK: - UITableView
 //    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        return UITableViewAutomaticDimension
@@ -56,12 +85,33 @@ class ReminderTableViewController: UITableViewController {
         return 3
     }
 
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.backgroundColor = FlatWhite()
+        return cell
+    }
+    
+    func setTextField(){
+        if dateFlag.on{
+            date.enabled = true
+            date.backgroundColor = UIColor.whiteColor()
+            date.textColor = UIColor.blackColor()
+        }else{
+            date.enabled = false
+            date.backgroundColor = FlatWhiteDark()
+            date.textColor = FlatGray()
+        }
+    }
+    
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+        //TODO: 登録先で処理を分ける
+        //TODO: 日時指定があるかどうかで処理を分ける
+        
         let eventStore = EKEventStore()
         if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
             eventStore.requestAccessToEntityType(.Reminder, completion: {
@@ -76,18 +126,16 @@ class ReminderTableViewController: UITableViewController {
     @IBAction func reminderTypeTapped(sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.enabled = true
+            setTextField()
         }else if reminderType.selectedSegmentIndex == 1{
             dateFlag.on = true
             dateFlag.enabled = false
+            setTextField()
         }
     }
     
     @IBAction func dateFlagTapped(sender: UISwitch) {
-        if dateFlag.on{
-            date.enabled = true
-        }else{
-            date.enabled = false
-        }
+        setTextField()
     }
     
 }

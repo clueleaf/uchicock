@@ -1469,7 +1469,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登録先" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kv-QU-76W">
-                                                    <rect key="frame" x="8" y="15" width="60" height="21"/>
+                                                    <rect key="frame" x="8" y="19.5" width="60" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="O0Z-NX-yIy"/>
                                                         <constraint firstAttribute="width" constant="60" id="Rhz-hY-0Mh"/>
@@ -1497,9 +1497,16 @@
                                                 <constraint firstAttribute="trailing" secondItem="mMI-NU-fw4" secondAttribute="trailing" constant="8" id="DUV-tH-s1f"/>
                                                 <constraint firstItem="4kv-QU-76W" firstAttribute="leading" secondItem="DV7-yA-jOq" secondAttribute="leading" constant="8" id="KUG-Jh-7fs"/>
                                                 <constraint firstItem="mMI-NU-fw4" firstAttribute="leading" secondItem="4kv-QU-76W" secondAttribute="trailing" constant="30" id="Odx-7c-Efa"/>
+                                                <constraint firstItem="mMI-NU-fw4" firstAttribute="centerY" secondItem="DV7-yA-jOq" secondAttribute="centerY" id="Qaf-FF-QWp"/>
                                                 <constraint firstAttribute="bottom" secondItem="mMI-NU-fw4" secondAttribute="bottom" constant="8" id="SX8-UA-JrK"/>
                                                 <constraint firstItem="4kv-QU-76W" firstAttribute="centerY" secondItem="DV7-yA-jOq" secondAttribute="centerY" id="yTw-UY-OYv"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="CJF-vV-fwe"/>
+                                                    <exclude reference="SX8-UA-JrK"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="120" id="Ac3-GC-UkN">
@@ -1534,6 +1541,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="kol-wh-pfn"/>
                                                     </constraints>
+                                                    <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
