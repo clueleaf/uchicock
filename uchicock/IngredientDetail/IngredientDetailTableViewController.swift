@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EventKit
 import RealmSwift
 import ChameleonFramework
 
@@ -69,21 +68,6 @@ class IngredientDetailTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func createReminder(eventStore: EKEventStore, title: String) {
-        let reminder = EKReminder(eventStore: eventStore)
-        
-        reminder.title = title
-        reminder.calendar = eventStore.defaultCalendarForNewReminders()
-        do {
-            try eventStore.saveReminder(reminder, commit: true)
-        } catch {
-            let favoriteAlertView = UIAlertController(title: "リマインダーへの保存に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-            favoriteAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            }))
-            self.presentViewController(favoriteAlertView, animated: true, completion: nil)
-        }
-    }
-
     // MARK: - UITableView
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
@@ -255,20 +239,7 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
-        let favoriteAlertView = UIAlertController(title: nil, message: "リマインダーへ保存します", preferredStyle: .Alert)
-        favoriteAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            let eventStore = EKEventStore()
-            if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
-                eventStore.requestAccessToEntityType(.Reminder, completion: {
-                    granted, error in
-                    self.createReminder(eventStore, title: self.ingredientName.text! + "を買う")
-                })
-            } else {
-                self.createReminder(eventStore, title: self.ingredientName.text! + "を買う")
-            }
-        }))
-        favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-        self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+        performSegueWithIdentifier("CreateEvent", sender: UIBarButtonItem())
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -288,6 +259,10 @@ class IngredientDetailTableViewController: UITableViewController {
                 let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
                 vc.recipeId = recipeIngredient.recipe.id
             }
+        }else if segue.identifier == "CreateEvent" {
+            let enc = segue.destinationViewController as! UINavigationController
+            let evc = enc.visibleViewController as! ReminderTableViewController
+            evc.ingredientName = self.ingredient.ingredientName
         }
     }
 
