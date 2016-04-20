@@ -31,13 +31,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         dateFlag.on = false
         date.enabled = false
         
-        let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
-        let weekdaySymbolIndex: Int = comp.weekday - 1
-        
         dateFormat.locale = NSLocale(localeIdentifier: "ja")
-        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
-        date.text = dateFormat.stringFromDate(registerDate)
-        date.delegate = self
         
         datePicker.datePickerMode = .DateAndTime
         datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
@@ -115,10 +109,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     func toolBarButtonPush(sender: UIBarButtonItem){
         registerDate = datePicker.date
 
-        let comp: NSDateComponents = cal.components(
-            [NSCalendarUnit.Weekday],
-            fromDate: registerDate
-        )
+        let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
         let weekdaySymbolIndex: Int = comp.weekday - 1
         dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
         date.text = dateFormat.stringFromDate(registerDate)
@@ -131,6 +122,12 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
             date.enabled = true
             date.backgroundColor = UIColor.whiteColor()
             date.textColor = UIColor.blackColor()
+            if date.text == ""{
+                let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
+                let weekdaySymbolIndex: Int = comp.weekday - 1
+                dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
+                date.text = dateFormat.stringFromDate(registerDate)
+            }
         }else{
             date.enabled = false
             date.backgroundColor = FlatWhiteDark()

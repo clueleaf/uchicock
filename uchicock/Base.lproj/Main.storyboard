@@ -1544,6 +1544,9 @@
                                                     <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="LMb-7q-hBt" id="zNZ-9i-y8b"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
