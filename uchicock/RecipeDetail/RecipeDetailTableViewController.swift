@@ -126,7 +126,9 @@ class RecipeDetailTableViewController: UITableViewController {
             recognizer.state == UIGestureRecognizerState.Began  {
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
-                    UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                    if self.photo.image != nil{
+                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                    }
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 presentViewController(alertView, animated: true, completion: nil)
@@ -330,7 +332,7 @@ class RecipeDetailTableViewController: UITableViewController {
         ]
         
         let shareText = createLongMessage()
-        if noPhotoFlag == false{
+        if noPhotoFlag == false && photo.image != nil{
             let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)

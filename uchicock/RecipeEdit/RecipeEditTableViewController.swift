@@ -39,8 +39,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.delegate = self
         
         selectPhoto.textColor = FlatSkyBlue()
-        if recipe.imageData == nil{
-        }else{
+        if recipe.imageData != nil{
             photo.image = UIImage(data: recipe.imageData!)
         }
         if photo.image == nil{
