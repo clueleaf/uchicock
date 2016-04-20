@@ -161,6 +161,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+        self.view.endEditing(true)
+        
         let eventStore = EKEventStore()
         
         if reminderType.selectedSegmentIndex == 0{
