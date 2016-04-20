@@ -123,6 +123,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
             date.backgroundColor = UIColor.whiteColor()
             date.textColor = UIColor.blackColor()
             if date.text == ""{
+                registerDate = NSDate(timeInterval: 60*60, sinceDate: NSDate())
                 let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
                 let weekdaySymbolIndex: Int = comp.weekday - 1
                 dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
