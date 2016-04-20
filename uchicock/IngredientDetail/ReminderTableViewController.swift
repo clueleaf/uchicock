@@ -21,7 +21,6 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     var registerDate = NSDate(timeInterval: 60*60, sinceDate: NSDate())
     let dateFormat = NSDateFormatter()
     let datePicker = UIDatePicker()
-    
     let cal: NSCalendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
 
     override func viewDidLoad() {
@@ -32,14 +31,11 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         dateFlag.on = false
         date.enabled = false
         
-        let comp: NSDateComponents = cal.components(
-            [NSCalendarUnit.Weekday],
-            fromDate: registerDate
-        )
+        let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
         let weekdaySymbolIndex: Int = comp.weekday - 1
         
-        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
         dateFormat.locale = NSLocale(localeIdentifier: "ja")
+        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
         date.text = dateFormat.stringFromDate(registerDate)
         date.delegate = self
         
@@ -57,6 +53,9 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         date.inputAccessoryView = toolBar
 
         setTextField()
+        
+        self.tableView.estimatedRowHeight = 70
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func didReceiveMemoryWarning() {
