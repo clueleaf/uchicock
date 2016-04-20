@@ -18,9 +18,11 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var date: UITextField!
     
     var ingredientName = ""
-    let nowDate = NSDate()
+    var registerDate = NSDate(timeInterval: 60*60, sinceDate: NSDate())
     let dateFormat = NSDateFormatter()
     let datePicker = UIDatePicker()
+    
+    let cal: NSCalendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +32,20 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         dateFlag.on = false
         date.enabled = false
         
-        dateFormat.dateFormat = "yyyy/MM/dd HH:mm"
-        date.text = dateFormat.stringFromDate(nowDate)
+        let comp: NSDateComponents = cal.components(
+            [NSCalendarUnit.Weekday],
+            fromDate: registerDate
+        )
+        let weekdaySymbolIndex: Int = comp.weekday - 1
+        
+        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
+        dateFormat.locale = NSLocale(localeIdentifier: "ja")
+        date.text = dateFormat.stringFromDate(registerDate)
         date.delegate = self
         
         datePicker.datePickerMode = .DateAndTime
         datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
+        datePicker.setDate(registerDate, animated: true)
         date.inputView = datePicker
         
         let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
@@ -58,37 +68,63 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
+        if dateFlag.on {
+            let calendarUnit: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
+            reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: registerDate)
+            reminder.addAlarm(EKAlarm(absoluteDate: registerDate))
+        }
+        
         do {
             try eventStore.saveReminder(reminder, commit: true)
-            self.dismissViewControllerAnimated(true, completion: nil)
-        } catch {
-            let favoriteAlertView = UIAlertController(title: "リマインダーへの保存に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-            favoriteAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            let alertView = UIAlertController(title: "リマインダーへ登録しました", message: nil, preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                self.dismissViewControllerAnimated(true, completion: nil)
             }))
-            self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+            self.presentViewController(alertView, animated: true, completion: nil)
+        } catch {
+            let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            }))
+            self.presentViewController(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func createEvent(eventStore: EKEventStore, title: String, startDate: NSDate, endDate: NSDate) {
+        let event = EKEvent(eventStore: eventStore)
+        
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        event.addAlarm(EKAlarm(absoluteDate: startDate))
+        
+        do {
+            try eventStore.saveEvent(event, span: .ThisEvent)
+            let alertView = UIAlertController(title: "カレンダーへ登録しました", message: nil, preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            self.presentViewController(alertView, animated: true, completion: nil)
+        } catch {
+            let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            }))
+            self.presentViewController(alertView, animated: true, completion: nil)
         }
     }
 
     func toolBarButtonPush(sender: UIBarButtonItem){
-        let pickerDate = datePicker.date
-        date.text = dateFormat.stringFromDate(pickerDate)
+        registerDate = datePicker.date
+
+        let comp: NSDateComponents = cal.components(
+            [NSCalendarUnit.Weekday],
+            fromDate: registerDate
+        )
+        let weekdaySymbolIndex: Int = comp.weekday - 1
+        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
+        date.text = dateFormat.stringFromDate(registerDate)
         
         self.view.endEditing(true)
-    }
-    
-    // MARK: - UITableView
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        cell.backgroundColor = FlatWhite()
-        return cell
     }
     
     func setTextField(){
@@ -103,23 +139,53 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: - UITableView
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return UITableViewAutomaticDimension
+        }else{
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        cell.backgroundColor = FlatWhite()
+        return cell
+    }
+    
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
-        //TODO: 登録先で処理を分ける
-        //TODO: 日時指定があるかどうかで処理を分ける
-        
         let eventStore = EKEventStore()
-        if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
-            eventStore.requestAccessToEntityType(.Reminder, completion: {
-                granted, error in
-                self.createReminder(eventStore, title: self.reminderTitle.text!)
-            })
-        } else {
-            createReminder(eventStore, title: reminderTitle.text!)
+        
+        if reminderType.selectedSegmentIndex == 0{
+            if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
+                eventStore.requestAccessToEntityType(.Reminder, completion: {
+                    granted, error in
+                    self.createReminder(eventStore, title: self.reminderTitle.text!)
+                })
+            } else {
+                createReminder(eventStore, title: reminderTitle.text!)
+            }
+        }else if reminderType.selectedSegmentIndex == 1{
+            let startDate = registerDate
+            let endDate = registerDate
+            if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
+                eventStore.requestAccessToEntityType(.Event, completion: {
+                    granted, error in
+                    self.createEvent(eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
+                })
+            } else {
+                createEvent(eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
+            }
         }
     }
 
