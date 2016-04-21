@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -25,6 +26,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -112,6 +117,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
     }
     
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "条件にあてはまるレシピはありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+        
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var recipeIdList = Array<String>()
 
@@ -32,6 +33,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }
+        
+        self.collectionView!.emptyDataSetSource = self
+        self.collectionView!.emptyDataSetDelegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,7 +68,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "写真が登録されたレシピはありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
 
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "最近写真を登録した場合、\n右上のリロードボタンをタップしてみてください"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
     // MARK: UICollectionView
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let size = self.view.frame.size.width / 2 - 2
@@ -128,6 +144,27 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.presentViewController(alertView, animated: true, completion: nil)
     }
 
+    @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
+        let alertView = UIAlertController(title: "リロード", message: "写真をリロードし、名前順に表示します", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.recipeIdList.removeAll()
+            let realm = try! Realm()
+            let recipeList = realm.objects(Recipe).sorted("recipeName")
+            for recipe in recipeList{
+                if recipe.imageData != nil{
+                    //レシピ削除のバグに対するワークアラウンド
+                    if UIImage(data: recipe.imageData!) != nil{
+                        self.recipeIdList.append(recipe.id)
+                    }
+                }
+            }
+            self.collectionView!.reloadData()
+            self.navigationItem.title = "アルバム(" + String(self.recipeIdList.count) + ")"
+        }))
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+        self.presentViewController(alertView, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "RecipeTapped" {
