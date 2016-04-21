@@ -28,8 +28,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         let realm = try! Realm()
         token = realm.objects(Ingredient).addNotificationBlock { results, realm in
-            self.reloadIngredientList()
-            self.tableView.reloadData()
+            if self.stockState.selectedSegmentIndex != 0 {
+                self.reloadIngredientList()
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -115,26 +117,49 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .Normal, title: "編集") {
+            (action, indexPath) in
+            self.performSegueWithIdentifier("PushAddIngredient", sender: indexPath)
+        }
+        edit.backgroundColor = FlatGray()
+        
+        let del = UITableViewRowAction(style: .Default, title: "削除") {
+            (action, indexPath) in
+            if self.ingredientList![indexPath.row].recipeIngredients.count > 0 {
+                let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
+                self.presentViewController(alertView, animated: true, completion: nil)
+            } else{
+                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+                favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Default, handler: {action in
+                    let realm = try! Realm()
+                    let ingredient = self.ingredientList![indexPath.row]
+                    try! realm.write {
+                        realm.delete(ingredient)
+                    }
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    self.navigationItem.title = "材料(" + String(self.ingredientList!.count) + ")"
+                }))
+                favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+            }
+        }
+        del.backgroundColor = FlatRed()
+        
+        if self.ingredientList![indexPath.row].recipeIngredients.count == 0 {
+            return [del, edit]
+        }else{
+            return [edit]
+        }
+    }
+    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete{
-            if ingredientList![indexPath.row].recipeIngredients.count > 0 {
-                let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .Alert)
-                alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
-                presentViewController(alertView, animated: true, completion: nil)
-            } else{
-                let realm = try! Realm()
-                let ingredient = ingredientList![indexPath.row]
-                try! realm.write {
-                    realm.delete(ingredient)
-                }
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            }
-        }
-    }    
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -164,6 +189,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 vc.ingredientId = ingredientList![indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
+            if let indexPath = sender as? NSIndexPath {
+                let enc = segue.destinationViewController as! UINavigationController
+                let evc = enc.visibleViewController as! IngredientEditTableViewController
+                evc.ingredient = ingredientList![indexPath.row]
+            }
         }
     }
 }

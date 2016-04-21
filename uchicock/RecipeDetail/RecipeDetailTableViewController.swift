@@ -14,6 +14,7 @@ import Accounts
 class RecipeDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
@@ -28,6 +29,9 @@ class RecipeDetailTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
+        openInSafari.layer.cornerRadius = 4
         
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
@@ -49,6 +53,16 @@ class RecipeDetailTableViewController: UITableViewController {
         }else{
             recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
+            
+            let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+            let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+            if UIApplication.sharedApplication().canOpenURL(url!) {
+                openInSafari.enabled = true
+                openInSafari.backgroundColor = FlatSkyBlueDark()
+            }else{
+                openInSafari.enabled = false
+                openInSafari.backgroundColor = FlatWhiteDark()
+            }
             
             noPhotoFlag = false
             if recipe.imageData != nil{
@@ -111,8 +125,16 @@ class RecipeDetailTableViewController: UITableViewController {
         } else if indexPath?.section == 0 && indexPath?.row == 0 && noPhotoFlag == false &&
             recognizer.state == UIGestureRecognizerState.Began  {
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
-                    UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
+                    if self.photo.image != nil{
+                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                    }
+                    })
+                alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
+                    if self.photo.image != nil{
+                        let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
+                        pasteboard.image = self.photo.image!
+                    }
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 presentViewController(alertView, animated: true, completion: nil)
@@ -120,14 +142,21 @@ class RecipeDetailTableViewController: UITableViewController {
     }
     
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
-        var message = "カメラロールへ保存しました"
-        if error != nil {
-            message = "カメラロールへの保存に失敗しました"
+        if error == nil{
+            let alertView = UIAlertController(title: "カメラロールへ保存しました", message: nil, preferredStyle: .Alert)
+            self.presentViewController(alertView, animated: true) { () -> Void in
+                let delay = 1.0 * Double(NSEC_PER_SEC)
+                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
+        }else{
+            let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            }))
+            presentViewController(alertView, animated: true, completion: nil)
         }
-        let alertView = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-        }))
-        presentViewController(alertView, animated: true, completion: nil)
     }
     
     // MARK: - UITableView
@@ -316,7 +345,7 @@ class RecipeDetailTableViewController: UITableViewController {
         ]
         
         let shareText = createLongMessage()
-        if noPhotoFlag == false{
+        if noPhotoFlag == false && photo.image != nil{
             let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.presentViewController(activityVC, animated: true, completion: nil)
@@ -350,6 +379,14 @@ class RecipeDetailTableViewController: UITableViewController {
             message += "\n" + recipe.memo
         }
         return message
+    }
+    
+    @IBAction func openInSafariTapped(sender: UIButton) {
+        let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+        let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        if UIApplication.sharedApplication().canOpenURL(url!){
+            UIApplication.sharedApplication().openURL(url!)
+        }
     }
     
     @IBAction func star1Tapped(sender: UIButton) {

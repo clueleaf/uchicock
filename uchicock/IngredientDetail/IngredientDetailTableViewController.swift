@@ -67,7 +67,7 @@ class IngredientDetailTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - UITableView
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
@@ -238,6 +238,13 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("CreateEvent", sender: UIBarButtonItem())
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -252,6 +259,10 @@ class IngredientDetailTableViewController: UITableViewController {
                 let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
                 vc.recipeId = recipeIngredient.recipe.id
             }
+        }else if segue.identifier == "CreateEvent" {
+            let enc = segue.destinationViewController as! UINavigationController
+            let evc = enc.visibleViewController as! ReminderTableViewController
+            evc.ingredientName = self.ingredient.ingredientName
         }
     }
 
