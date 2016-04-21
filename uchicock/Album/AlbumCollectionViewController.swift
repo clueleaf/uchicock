@@ -50,6 +50,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipeIdList.count
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("RecipeTapped", sender: indexPath)
+    }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumItem", forIndexPath: indexPath) as! AlbumCollectionViewCell
@@ -69,25 +73,18 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         return cell
     }
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
 
-    /*
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        if segue.identifier == "RecipeTapped" {
+            let vc = segue.destinationViewController as! RecipeDetailTableViewController
+            if let indexPath = sender as? NSIndexPath{
+                vc.recipeId = recipeIdList[indexPath.row]
+            }
+        }
     }
-    */
     
 }
