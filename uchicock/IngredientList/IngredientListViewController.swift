@@ -84,9 +84,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     

@@ -68,9 +68,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "写真が登録されたレシピはありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
 
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "写真が登録されたレシピはありません\n\n最近写真を登録した場合、\n右上のリロード＆シャッフルボタンを\nタップしてみてください"
+        let str = "最近写真を登録した場合、\n右上のリロード＆シャッフルボタンを\nタップしてみてください"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: attrs)
     }

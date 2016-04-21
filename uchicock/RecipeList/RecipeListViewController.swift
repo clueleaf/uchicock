@@ -117,12 +117,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
-    
+        
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
