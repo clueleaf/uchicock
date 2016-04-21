@@ -49,6 +49,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
         self.collectionView!.reloadData()
+        self.navigationItem.title = "アルバム(" + String(recipeIdList.count) + ")"
     }
 
     override func didReceiveMemoryWarning() {
@@ -121,6 +122,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
             self.shuffle(&self.recipeIdList)
             self.collectionView!.reloadData()
+            self.navigationItem.title = "アルバム(" + String(self.recipeIdList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(alertView, animated: true, completion: nil)
