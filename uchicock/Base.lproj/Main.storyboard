@@ -490,11 +490,18 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
                         <barButtonItem key="backBarButtonItem" title="アルバム" id="Wm3-Ba-Mrh"/>
-                        <barButtonItem key="rightBarButtonItem" image="reload-and-shuffle" id="T3L-KT-GGi">
-                            <connections>
-                                <action selector="reloadButtonTapped:" destination="N5u-Pe-SYk" id="u40-0D-8P5"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="reload-and-shuffle" id="T3L-KT-GGi">
+                                <connections>
+                                    <action selector="reloadButtonTapped:" destination="N5u-Pe-SYk" id="u40-0D-8P5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="order" id="cid-ka-mKY">
+                                <connections>
+                                    <action selector="orderButtonTapped:" destination="N5u-Pe-SYk" id="swB-cs-JPf"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="3cq-Fg-8AL" kind="show" identifier="RecipeTapped" id="cFv-BH-Owh"/>
@@ -2029,6 +2036,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="order" width="24" height="24"/>
         <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="reminder" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
