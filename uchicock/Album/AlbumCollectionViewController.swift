@@ -54,6 +54,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func shuffle<T>(inout array: [T]) {
+        for index in 0..<array.count {
+            let newIndex = Int(arc4random_uniform(UInt32(array.count - index))) + index
+            if index != newIndex {
+                swap(&array[index], &array[newIndex])
+            }
+        }
+    }
 
     // MARK: UICollectionView
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -97,23 +106,24 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - IBAction
     @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
-        //TODO:リロード＆シャッフルロジック
-        
-        recipeIdList.removeAll()
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe).sorted("recipeName")
-        for recipe in recipeList{
-            if recipe.imageData != nil{
-                //レシピ削除のバグに対するワークアラウンド
-                if UIImage(data: recipe.imageData!) != nil{
-                    recipeIdList.append(recipe.id)
+        let alertView = UIAlertController(title: "リロード＆シャッフル", message: "写真をリロードし、シャッフル表示します", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.recipeIdList.removeAll()
+            let realm = try! Realm()
+            let recipeList = realm.objects(Recipe).sorted("recipeName")
+            for recipe in recipeList{
+                if recipe.imageData != nil{
+                    //レシピ削除のバグに対するワークアラウンド
+                    if UIImage(data: recipe.imageData!) != nil{
+                        self.recipeIdList.append(recipe.id)
+                    }
                 }
             }
-        }
-        //TODO:シャッフル
-
-        
-        self.collectionView!.reloadData()
+            self.shuffle(&self.recipeIdList)
+            self.collectionView!.reloadData()
+        }))
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
 
     // MARK: - Navigation
