@@ -23,6 +23,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         photo = UIImageView(frame: CGRectMake(0, 0, 69, 69))
         photo.contentMode = UIViewContentMode.ScaleAspectFill
         photo.image = nil
+        photo.clipsToBounds = true
         self.addSubview(photo)
         
         recipeName = UILabel(frame: CGRectMake(77, 8, width - 173, 21))
