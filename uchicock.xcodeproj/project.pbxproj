@@ -35,6 +35,7 @@
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
 		9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* uchicockTests.swift */; };
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
+		9BCB2DE51CC91A8D00E8ED0E /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCB2DE41CC91A8D00E8ED0E /* DZNEmptyDataSet.framework */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
@@ -99,6 +100,8 @@
 		9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockUITests.swift; sourceTree = "<group>"; };
 		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
+		9BCB2DE41CC91A8D00E8ED0E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "Pods/../build/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCB2DE51CC91A8D00E8ED0E /* DZNEmptyDataSet.framework in Frameworks */,
 				9B8823171CA571B0008D2F08 /* ChameleonFramework.framework in Frameworks */,
 				9BF98A1E1C7DC8E100A27175 /* RealmSwift.framework in Frameworks */,
 				9BF98A1C1C7DC8DC00A27175 /* Realm.framework in Frameworks */,
@@ -223,6 +227,7 @@
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
+				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BCB2DE41CC91A8D00E8ED0E /* DZNEmptyDataSet.framework */,
 				9B498C141CBA63050099E825 /* LINEActivity.framework */,
 				9B8E59D11CB819A8004D2C1A /* Social.framework */,
 				9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */,
@@ -660,12 +666,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = uchicock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -678,11 +689,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = uchicock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -33,6 +34,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 self.tableView.reloadData()
             }
         }
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,6 +82,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
         }
         self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "条件にあてはまる材料はありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
     }
     
     // MARK: - UISearchBarDelegate

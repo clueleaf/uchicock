@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var recipeIdList = Array<String>()
 
@@ -32,6 +33,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }
+        
+        self.collectionView!.emptyDataSetSource = self
+        self.collectionView!.emptyDataSetDelegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,6 +69,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
 
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "写真が登録されたレシピはありません\n\n最近写真を登録した場合、\n右上のリロード＆シャッフルボタンを\nタップしてみてください"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
     // MARK: UICollectionView
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let size = self.view.frame.size.width / 2 - 2
