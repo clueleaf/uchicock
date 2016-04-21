@@ -269,6 +269,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.ipc.sourceType = .PhotoLibrary
             self.presentViewController(self.ipc, animated: true, completion: nil)
         }))
+        let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
+        let pasteImage: UIImage? = pasteboard.image
+        if pasteImage != nil{
+            alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .Default, handler:{
+                action in
+                self.photo.image = pasteImage!
+                self.selectPhoto.text = "写真を変更"
+            }))
+        }
         if self.photo.image != nil{
             alert.addAction(UIAlertAction(title: "写真を削除",style: .Destructive){
                 action in
