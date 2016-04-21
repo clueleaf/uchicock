@@ -21,6 +21,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         self.collectionView!.backgroundColor = FlatWhite()
 
+        recipeIdList.removeAll()
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe).sorted("recipeName")
         for recipe in recipeList{
@@ -31,6 +32,23 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let realm = try! Realm()
+        for var i = recipeIdList.count - 1; i >= 0; --i {
+            let recipeList = realm.objects(Recipe).filter("id == %@",recipeIdList[i])
+            if recipeList.count == 0 {
+                recipeIdList.removeAtIndex(i)
+            }else if recipeList.first!.imageData == nil{
+                //レシピ削除のバグに対するワークアラウンド
+                recipeIdList.removeAtIndex(i)
+            }else if UIImage(data: recipeList.first!.imageData!) == nil{
+                recipeIdList.removeAtIndex(i)
+            }
+        }
+        self.collectionView!.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +93,27 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
+    }
+    
+    // MARK: - IBAction
+    @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
+        //TODO:リロード＆シャッフルロジック
+        
+        recipeIdList.removeAll()
+        let realm = try! Realm()
+        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        for recipe in recipeList{
+            if recipe.imageData != nil{
+                //レシピ削除のバグに対するワークアラウンド
+                if UIImage(data: recipe.imageData!) != nil{
+                    recipeIdList.append(recipe.id)
+                }
+            }
+        }
+        //TODO:シャッフル
+
+        
+        self.collectionView!.reloadData()
     }
 
     // MARK: - Navigation

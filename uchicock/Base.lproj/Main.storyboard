@@ -489,7 +489,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
-                        <barButtonItem key="rightBarButtonItem" image="reload-and-shuffle" id="T3L-KT-GGi"/>
+                        <barButtonItem key="rightBarButtonItem" image="reload-and-shuffle" id="T3L-KT-GGi">
+                            <connections>
+                                <action selector="reloadButtonTapped:" destination="N5u-Pe-SYk" id="u40-0D-8P5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="3cq-Fg-8AL" kind="show" identifier="RecipeTapped" id="cFv-BH-Owh"/>

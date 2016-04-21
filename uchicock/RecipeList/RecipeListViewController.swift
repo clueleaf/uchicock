@@ -160,14 +160,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del = UITableViewRowAction(style: .Default, title: "削除") {
             (action, indexPath) in
-            let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
-            favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Default, handler: {action in
+            let alertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "削除", style: .Default, handler: {action in
                 self.deleteRecipe(self.recipeList![indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
             }))
-            favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            self.presentViewController(alertView, animated: true, completion: nil)
         }
         del.backgroundColor = FlatRed()
         
