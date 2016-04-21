@@ -125,9 +125,15 @@ class RecipeDetailTableViewController: UITableViewController {
         } else if indexPath?.section == 0 && indexPath?.row == 0 && noPhotoFlag == false &&
             recognizer.state == UIGestureRecognizerState.Began  {
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: "カメラロールへ保存する",style: .Default){ action in
+                alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
                     if self.photo.image != nil{
                         UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                    }
+                    })
+                alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
+                    if self.photo.image != nil{
+                        let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
+                        pasteboard.image = self.photo.image!
                     }
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
@@ -138,9 +144,13 @@ class RecipeDetailTableViewController: UITableViewController {
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
         if error == nil{
             let alertView = UIAlertController(title: "カメラロールへ保存しました", message: nil, preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            }))
-            presentViewController(alertView, animated: true, completion: nil)
+            self.presentViewController(alertView, animated: true) { () -> Void in
+                let delay = 1.0 * Double(NSEC_PER_SEC)
+                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
         }else{
             let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
