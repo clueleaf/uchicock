@@ -669,7 +669,7 @@
                                     <action selector="editButtonTapped:" destination="yKB-1k-jl3" id="mHa-r6-XVX"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="action" id="MbZ-8E-833">
+                            <barButtonItem image="reminder" id="MbZ-8E-833">
                                 <connections>
                                     <action selector="actionButtonTapped:" destination="yKB-1k-jl3" id="AzL-qu-yUg"/>
                                 </connections>
@@ -1952,6 +1952,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="reminder" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
