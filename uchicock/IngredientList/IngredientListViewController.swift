@@ -143,7 +143,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 self.presentViewController(alertView, animated: true, completion: nil)
             } else{
                 let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
-                favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Default, handler: {action in
+                favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                     let realm = try! Realm()
                     let ingredient = self.ingredientList![indexPath.row]
                     try! realm.write {
