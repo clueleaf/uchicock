@@ -69,7 +69,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         try! realm.write{
             for ri in deletingRecipeIngredientList{
                 let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                for i in 0 ..< ingredient.recipeIngredients.count{
+                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
                         ingredient.recipeIngredients.removeAtIndex(i)
                     }

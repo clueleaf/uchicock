@@ -47,7 +47,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         deleteLabel.textColor = FlatRed()
         
         suggestTableView.backgroundColor = FlatWhite()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }
 

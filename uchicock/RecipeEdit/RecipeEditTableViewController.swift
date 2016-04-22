@@ -417,7 +417,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         
                         for ri in deletingRecipeIngredientList{
                             let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for i in 0 ..< ingredient.recipeIngredients.count{
+                            for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count {
                                 if ingredient.recipeIngredients[i].id == ri.id{
                                     ingredient.recipeIngredients.removeAtIndex(i)
                                 }
@@ -503,7 +503,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }else{
             if riec.deleteFlag{
-                for i in 0 ..< editingRecipeIngredientList.count{
+                for i in 0 ..< editingRecipeIngredientList.count where i < editingRecipeIngredientList.count {
                     if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
                         editingRecipeIngredientList.removeAtIndex(i)
                     }

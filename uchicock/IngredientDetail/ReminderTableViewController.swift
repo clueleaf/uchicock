@@ -80,17 +80,6 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
             }))
             self.presentViewController(alertView, animated: true, completion: nil)
         }
-
-//
-//        let alertView = UIAlertController(title: nil, message: "リマインダーへ登録しました", preferredStyle: .Alert)
-//        self.presentViewController(alertView, animated: true) { () -> Void in
-//            let delay = 1.0 * Double(NSEC_PER_SEC)
-//            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//            dispatch_after(time, dispatch_get_main_queue(), {
-//                self.dismissView()
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            })
-//        }
     }
     
     func createEvent(eventStore: EKEventStore, title: String, startDate: NSDate, endDate: NSDate) {
@@ -114,16 +103,6 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
             }))
             self.presentViewController(alertView, animated: true, completion: nil)
         }
-        
-//        let alertView = UIAlertController(title: "カレンダーへ登録しました", message: nil, preferredStyle: .Alert)
-//        self.presentViewController(alertView, animated: true) { () -> Void in
-//            let delay = 1.0 * Double(NSEC_PER_SEC)
-//            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//            dispatch_after(time, dispatch_get_main_queue(), {
-//                self.dismissView()
-//                self.dismissViewControllerAnimated(true, completion: nil)
-//            })
-//        }
     }
 
     func toolBarButtonPush(sender: UIBarButtonItem){
