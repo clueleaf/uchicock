@@ -224,7 +224,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .Alert)
-                registAlertView.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: {action in
+                registAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(self.ingredientName.text!)
                     ingredient.stockFlag = false
@@ -233,7 +233,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                         realm.add(ingredient)
                     }
                     self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)}))
-                registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Default){action in})
+                registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 presentViewController(registAlertView, animated: true, completion: nil)
             }else{
                 self.performSegueWithIdentifier("UnwindToRecipeEdit", sender: self)
