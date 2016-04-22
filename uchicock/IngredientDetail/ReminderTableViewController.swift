@@ -42,7 +42,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
         toolBar.barStyle = .BlackTranslucent
-        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self,action: Selector(""))
+        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self, action: nil)
         let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: #selector(ReminderTableViewController.toolBarButtonPush(_:)))
         toolBar.items = [spaceBarButton,toolBarButton]
         date.inputAccessoryView = toolBar
