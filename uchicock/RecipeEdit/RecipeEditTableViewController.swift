@@ -114,8 +114,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func isIngredientDuplicated() -> Bool {
-        for var i = 0; i < editingRecipeIngredientList.count - 1; ++i{
-            for var j = i+1; j < editingRecipeIngredientList.count; ++j{
+        for i in 0 ..< editingRecipeIngredientList.count - 1{
+            for j in i+1 ..< editingRecipeIngredientList.count{
                 if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
                     return true
                 }
@@ -417,7 +417,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         
                         for ri in deletingRecipeIngredientList{
                             let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                            for i in 0 ..< ingredient.recipeIngredients.count{
                                 if ingredient.recipeIngredients[i].id == ri.id{
                                     ingredient.recipeIngredients.removeAtIndex(i)
                                 }
@@ -503,7 +503,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }else{
             if riec.deleteFlag{
-                for var i = 0; i < editingRecipeIngredientList.count; ++i{
+                for i in 0 ..< editingRecipeIngredientList.count{
                     if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
                         editingRecipeIngredientList.removeAtIndex(i)
                     }

@@ -46,7 +46,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             var shortageName = ""
             for recipeIngredient in recipe.recipeIngredients{
                 if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
-                    shortageNum++
+                    shortageNum += 1
                     shortageName = recipeIngredient.ingredient.ingredientName
                 }
             }

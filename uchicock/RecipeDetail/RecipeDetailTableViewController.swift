@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SCLAlertView
 import Accounts
 
 class RecipeDetailTableViewController: UITableViewController {
@@ -35,7 +36,7 @@ class RecipeDetailTableViewController: UITableViewController {
         
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.cellLongPressed(_:)))
         tableView.addGestureRecognizer(longPressRecognizer)
     }
 
@@ -127,7 +128,7 @@ class RecipeDetailTableViewController: UITableViewController {
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
                     if self.photo.image != nil{
-                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }
                     })
                 alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
@@ -143,14 +144,9 @@ class RecipeDetailTableViewController: UITableViewController {
     
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
         if error == nil{
-            let alertView = UIAlertController(title: "カメラロールへ保存しました", message: nil, preferredStyle: .Alert)
-            self.presentViewController(alertView, animated: true) { () -> Void in
-                let delay = 1.0 * Double(NSEC_PER_SEC)
-                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue(), {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                })
-            }
+            let alertView = SCLAlertView()
+            alertView.showCloseButton = false
+            alertView.showSuccess("", subTitle: "カメラロールへ保存しました", colorStyle: 0x3498DB, duration: 2.0)
         }else{
             let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
@@ -241,14 +237,14 @@ class RecipeDetailTableViewController: UITableViewController {
                 action in
                 let realm = try! Realm()
                 let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for (var i = 0; i < self.recipe.recipeIngredients.count ; ++i){
+                for i in 0 ..< self.recipe.recipeIngredients.count {
                     let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
                 try! realm.write{
                     for ri in deletingRecipeIngredientList{
                         let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                        for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                        for i in 0 ..< ingredient.recipeIngredients.count{
                             if ingredient.recipeIngredients[i].id == ri.id{
                                 ingredient.recipeIngredients.removeAtIndex(i)
                             }

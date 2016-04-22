@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import ChameleonFramework
+import SCLAlertView
 
 class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
@@ -41,8 +42,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
         toolBar.barStyle = .BlackTranslucent
-        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self,action: "")
-        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "toolBarButtonPush:")
+        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self,action: Selector(""))
+        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: #selector(ReminderTableViewController.toolBarButtonPush(_:)))
         toolBar.items = [spaceBarButton,toolBarButton]
         date.inputAccessoryView = toolBar
 
@@ -69,22 +70,27 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveReminder(reminder, commit: true)
+            let alertView = SCLAlertView()
+            alertView.showCloseButton = false
+            alertView.showSuccess("", subTitle: "リマインダーへ登録しました", colorStyle: 0x3498DB, duration: 2.0)
+            self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             }))
             self.presentViewController(alertView, animated: true, completion: nil)
         }
-        
-        let alertView = UIAlertController(title: nil, message: "リマインダーへ登録しました", preferredStyle: .Alert)
-        self.presentViewController(alertView, animated: true) { () -> Void in
-            let delay = 1.0 * Double(NSEC_PER_SEC)
-            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                self.dismissView()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
-        }
+
+//
+//        let alertView = UIAlertController(title: nil, message: "リマインダーへ登録しました", preferredStyle: .Alert)
+//        self.presentViewController(alertView, animated: true) { () -> Void in
+//            let delay = 1.0 * Double(NSEC_PER_SEC)
+//            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+//            dispatch_after(time, dispatch_get_main_queue(), {
+//                self.dismissView()
+//                self.dismissViewControllerAnimated(true, completion: nil)
+//            })
+//        }
     }
     
     func createEvent(eventStore: EKEventStore, title: String, startDate: NSDate, endDate: NSDate) {
@@ -98,6 +104,10 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveEvent(event, span: .ThisEvent)
+            let alertView = SCLAlertView()
+            alertView.showCloseButton = false
+            alertView.showSuccess("", subTitle: "カレンダーへ登録しました", colorStyle: 0x3498DB, duration: 2.0)
+            self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
@@ -105,15 +115,15 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
             self.presentViewController(alertView, animated: true, completion: nil)
         }
         
-        let alertView = UIAlertController(title: "カレンダーへ登録しました", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alertView, animated: true) { () -> Void in
-            let delay = 1.0 * Double(NSEC_PER_SEC)
-            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                self.dismissView()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
-        }
+//        let alertView = UIAlertController(title: "カレンダーへ登録しました", message: nil, preferredStyle: .Alert)
+//        self.presentViewController(alertView, animated: true) { () -> Void in
+//            let delay = 1.0 * Double(NSEC_PER_SEC)
+//            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+//            dispatch_after(time, dispatch_get_main_queue(), {
+//                self.dismissView()
+//                self.dismissViewControllerAnimated(true, completion: nil)
+//            })
+//        }
     }
 
     func toolBarButtonPush(sender: UIBarButtonItem){
