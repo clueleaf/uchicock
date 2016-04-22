@@ -235,7 +235,7 @@ class IngredientDetailTableViewController: UITableViewController {
         try! realm.write {
             ingredient.stockFlag = sender.on
         }
-        tableView.reloadData()
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
