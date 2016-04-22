@@ -187,7 +187,7 @@ class IngredientDetailTableViewController: UITableViewController {
                 var shortageName = ""
                 for ri in recipeIngredient.recipe.recipeIngredients{
                     if ri.mustFlag && ri.ingredient.stockFlag == false{
-                        shortageNum++
+                        shortageNum += 1
                         shortageName = ri.ingredient.ingredientName
                     }
                 }

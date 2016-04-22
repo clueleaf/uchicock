@@ -4,6 +4,7 @@ use_frameworks!
 pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
 pod 'DZNEmptyDataSet'
+pod 'SCLAlertView'
 
 post_install do | installer |
   require 'fileutils'

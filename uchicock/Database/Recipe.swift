@@ -27,7 +27,7 @@ class Recipe: Object {
         var num = 0
         for ri in self.recipeIngredients{
             if ri.mustFlag && ri.ingredient.stockFlag == false {
-                num++
+                num += 1
             }
         }
         self.shortageNum = num
