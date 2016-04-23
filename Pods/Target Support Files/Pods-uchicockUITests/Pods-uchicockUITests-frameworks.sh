@@ -91,8 +91,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-uchicockUITests/MWPhotoBrowser.framework"
   install_framework "Pods-uchicockUITests/Realm.framework"
   install_framework "Pods-uchicockUITests/RealmSwift.framework"
-  install_framework "Pods-uchicockUITests/SCLAlertView.framework"
   install_framework "Pods-uchicockUITests/SDWebImage.framework"
+  install_framework "Pods-uchicockUITests/SVProgressHUD.framework"
   install_framework "Pods-uchicockUITests/Nimble.framework"
   install_framework "Pods-uchicockUITests/Quick.framework"
 fi
@@ -104,8 +104,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-uchicockUITests/MWPhotoBrowser.framework"
   install_framework "Pods-uchicockUITests/Realm.framework"
   install_framework "Pods-uchicockUITests/RealmSwift.framework"
-  install_framework "Pods-uchicockUITests/SCLAlertView.framework"
   install_framework "Pods-uchicockUITests/SDWebImage.framework"
+  install_framework "Pods-uchicockUITests/SVProgressHUD.framework"
   install_framework "Pods-uchicockUITests/Nimble.framework"
   install_framework "Pods-uchicockUITests/Quick.framework"
 fi

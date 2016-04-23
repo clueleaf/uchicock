@@ -26,9 +26,9 @@
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */; };
 		9B8B0B731CCB6E4B00E8EEBA /* MWPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8B0B721CCB6E4B00E8EEBA /* MWPhotoBrowser.framework */; };
+		9B8B0B751CCB7C4500E8EEBA /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8B0B741CCB7C4500E8EEBA /* SVProgressHUD.framework */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
-		9BC5495C1CCA46670015C774 /* SCLAlertView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495B1CCA46670015C774 /* SCLAlertView.framework */; };
 		9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */; };
 		9BC549601CCA46840015C774 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */; };
 		9BC549621CCA46870015C774 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC549611CCA46870015C774 /* Realm.framework */; };
@@ -92,6 +92,7 @@
 		9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientRecipeBasic.swift; path = IngredientDetail/IngredientRecipeBasic.swift; sourceTree = "<group>"; };
 		9B8823161CA571B0008D2F08 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "Pods/../build/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
 		9B8B0B721CCB6E4B00E8EEBA /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MWPhotoBrowser.framework; path = "Pods/../build/Debug-iphoneos/MWPhotoBrowser.framework"; sourceTree = "<group>"; };
+		9B8B0B741CCB7C4500E8EEBA /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -133,12 +134,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8B0B751CCB7C4500E8EEBA /* SVProgressHUD.framework in Frameworks */,
 				9B8B0B731CCB6E4B00E8EEBA /* MWPhotoBrowser.framework in Frameworks */,
 				9BC549641CCA468B0015C774 /* RealmSwift.framework in Frameworks */,
 				9BC549621CCA46870015C774 /* Realm.framework in Frameworks */,
 				9BC549601CCA46840015C774 /* ChameleonFramework.framework in Frameworks */,
 				9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */,
-				9BC5495C1CCA46670015C774 /* SCLAlertView.framework in Frameworks */,
 				79F6FA801A25D92818552697 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +321,7 @@
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B8B0B741CCB7C4500E8EEBA /* SVProgressHUD.framework */,
 				9B8B0B721CCB6E4B00E8EEBA /* MWPhotoBrowser.framework */,
 				9BC549631CCA468B0015C774 /* RealmSwift.framework */,
 				9BC549611CCA46870015C774 /* Realm.framework */,
