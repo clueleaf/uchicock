@@ -10,9 +10,10 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import SCLAlertView
+import MWPhotoBrowser
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController {
+class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
@@ -116,7 +117,6 @@ class RecipeDetailTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
@@ -152,6 +152,42 @@ class RecipeDetailTableViewController: UITableViewController {
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             }))
             presentViewController(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: MWPhotoBrowser
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return 1
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        if index == 0{
+            return MWPhoto(image: photo.image)
+        }
+        return nil
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, actionButtonPressedForPhotoAtIndex index: UInt) {
+        if index == 0{
+            let excludedActivityTypes = [
+                UIActivityTypeMessage,
+                UIActivityTypeMail,
+                UIActivityTypePrint,
+                UIActivityTypeCopyToPasteboard,
+                UIActivityTypeAssignToContact,
+                UIActivityTypeAddToReadingList,
+                UIActivityTypePostToFlickr,
+                UIActivityTypePostToVimeo,
+                UIActivityTypePostToWeibo,
+                UIActivityTypePostToTencentWeibo,
+                UIActivityTypeAirDrop
+            ]
+            
+            let shareImage = photo.image!
+            let activityItems = [shareImage, ""]
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }
     
@@ -225,7 +261,15 @@ class RecipeDetailTableViewController: UITableViewController {
                 //レシピ削除のバグに対するワークアラウンド
                 let photo = UIImage(data: recipe.imageData!)
                 if photo != nil{
-                    performSegueWithIdentifier("PushPhotoDetail", sender: indexPath)
+                    let browser = MWPhotoBrowser(delegate: self)
+                    browser.displayActionButton = true
+                    browser.displayNavArrows = false
+                    browser.displaySelectionButtons = false
+                    browser.zoomPhotosToFill = true
+                    browser.alwaysShowControls = false
+                    browser.enableGrid = false
+                    browser.startOnGrid = false
+                    self.navigationController?.pushViewController(browser, animated: true)
                 }
             }
         }else if indexPath.section == 1 {
@@ -418,7 +462,6 @@ class RecipeDetailTableViewController: UITableViewController {
         }
     }
     
-    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushIngredientDetail" {
@@ -430,11 +473,6 @@ class RecipeDetailTableViewController: UITableViewController {
             let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
-        }else if segue.identifier == "PushPhotoDetail" {
-            let enc = segue.destinationViewController as! UINavigationController
-            let pvc = enc.visibleViewController as! PhotoDetailViewController
-            pvc.image = UIImage(data: recipe.imageData!)!
-            pvc.recipeName = recipe.recipeName
         }
     }
     
