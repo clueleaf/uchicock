@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         setColor()
+        setSVProgressHUD()
         // first time to launch this app
         let defaults = NSUserDefaults.standardUserDefaults()
         let dic = ["firstLaunch": true]
@@ -52,7 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = FlatWhiteDark()
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView        
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
+    }
+    
+    func setSVProgressHUD(){
+        SVProgressHUD.setMinimumDismissTimeInterval(2.0)
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
     }
 
     func applicationWillResignActive(application: UIApplication) {

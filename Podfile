@@ -4,8 +4,8 @@ use_frameworks!
 pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
 pod 'DZNEmptyDataSet'
-pod 'SCLAlertView'
 pod "MWPhotoBrowser"
+pod 'SVProgressHUD'
 
 def testing_pods
     pod 'Quick'

@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 import ChameleonFramework
-import SCLAlertView
+import SVProgressHUD
 
 class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
@@ -70,9 +70,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveReminder(reminder, commit: true)
-            let alertView = SCLAlertView()
-            alertView.showCloseButton = false
-            alertView.showSuccess("", subTitle: "リマインダーへ登録しました", colorStyle: 0x3498DB, duration: 2.0)
+            SVProgressHUD.showSuccessWithStatus("リマインダーへ登録しました")
             self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
@@ -93,9 +91,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveEvent(event, span: .ThisEvent)
-            let alertView = SCLAlertView()
-            alertView.showCloseButton = false
-            alertView.showSuccess("", subTitle: "カレンダーへ登録しました", colorStyle: 0x3498DB, duration: 2.0)
+            SVProgressHUD.showSuccessWithStatus("カレンダーへ登録しました")
             self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)

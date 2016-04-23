@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
-import SCLAlertView
+import SVProgressHUD
 import MWPhotoBrowser
 import Accounts
 
@@ -144,9 +144,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
         if error == nil{
-            let alertView = SCLAlertView()
-            alertView.showCloseButton = false
-            alertView.showSuccess("", subTitle: "カメラロールへ保存しました", colorStyle: 0x3498DB, duration: 2.0)
+            SVProgressHUD.showSuccessWithStatus("カメラロールへ保存しました")
         }else{
             let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in

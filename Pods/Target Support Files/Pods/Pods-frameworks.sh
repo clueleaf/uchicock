@@ -91,8 +91,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/MWPhotoBrowser.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
-  install_framework "Pods/SCLAlertView.framework"
   install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ChameleonFramework.framework"
@@ -102,6 +102,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/MWPhotoBrowser.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
-  install_framework "Pods/SCLAlertView.framework"
   install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
 fi
