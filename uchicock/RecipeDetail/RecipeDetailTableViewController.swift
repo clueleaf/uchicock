@@ -38,6 +38,8 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.cellLongPressed(_:)))
+        longPressRecognizer.allowableMovement = 100
+        longPressRecognizer.minimumPressDuration = 0.2
         tableView.addGestureRecognizer(longPressRecognizer)
     }
 
