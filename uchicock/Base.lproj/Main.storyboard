@@ -1480,6 +1480,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <sections>
                             <tableViewSection id="QdS-TU-7g0">
                                 <cells>
@@ -1642,6 +1643,7 @@
                         <connections>
                             <outlet property="dataSource" destination="LMb-7q-hBt" id="jUM-E1-R1b"/>
                             <outlet property="delegate" destination="LMb-7q-hBt" id="vmO-XP-dgL"/>
+                            <outletCollection property="gestureRecognizers" destination="qSX-lc-haC" appends="YES" id="jwX-RE-6ta"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="nIf-Pm-ihi">
@@ -1664,6 +1666,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jl0-pw-mgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qSX-lc-haC">
+                    <connections>
+                        <action selector="tableTapped:" destination="LMb-7q-hBt" id="Enf-TD-boW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="326" y="1793"/>
         </scene>

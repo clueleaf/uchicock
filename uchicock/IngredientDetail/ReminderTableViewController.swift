@@ -206,4 +206,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         setTextField()
     }
     
+    @IBAction func tableTapped(sender: UITapGestureRecognizer) {
+        date?.resignFirstResponder()
+    }
+
 }
