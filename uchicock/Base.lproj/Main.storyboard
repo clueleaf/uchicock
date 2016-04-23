@@ -1472,22 +1472,6 @@
             </objects>
             <point key="canvasLocation" x="562" y="-417"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dc3-5f-DNv">
-            <objects>
-                <navigationController id="hP7-4C-Rcc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gIs-QL-MpG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="rfe-eY-rT0" kind="relationship" relationship="rootViewController" id="xJ7-fl-7ty"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="91t-EN-iYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-495" y="327"/>
-        </scene>
         <!--Reminder Table View Controller-->
         <scene sceneID="8pa-DZ-uGD">
             <objects>
@@ -1965,74 +1949,12 @@
                         <outlet property="star2" destination="qhb-Bg-qgv" id="JEZ-hr-HJm"/>
                         <outlet property="star3" destination="4ap-hu-NGP" id="Cpp-rf-hVm"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="WbW-98-e9q"/>
-                        <segue destination="hP7-4C-Rcc" kind="presentation" identifier="PushPhotoDetail" id="qgK-nt-vNA"/>
                         <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="AL8-XH-VAL"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3iW-ha-DHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1160" y="345"/>
-        </scene>
-        <!--Photo Detail View Controller-->
-        <scene sceneID="lbl-aL-00C">
-            <objects>
-                <viewController id="rfe-eY-rT0" customClass="PhotoDetailViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aZa-00-RUb"/>
-                        <viewControllerLayoutGuide type="bottom" id="7zL-h2-AP7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eWA-oD-5gW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ih-mU-izo">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XCu-Lo-rT9">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="XCu-Lo-rT9" firstAttribute="leading" secondItem="2ih-mU-izo" secondAttribute="leading" id="FCb-dT-9ae"/>
-                                    <constraint firstAttribute="trailing" secondItem="XCu-Lo-rT9" secondAttribute="trailing" id="Yqi-Eg-5G5"/>
-                                    <constraint firstItem="XCu-Lo-rT9" firstAttribute="top" secondItem="2ih-mU-izo" secondAttribute="top" id="a8n-PS-k9r"/>
-                                    <constraint firstAttribute="bottom" secondItem="XCu-Lo-rT9" secondAttribute="bottom" id="dZp-WM-lzw"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="rfe-eY-rT0" id="ik0-h8-0mO"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="2ih-mU-izo" secondAttribute="bottom" id="AN3-jG-YLf"/>
-                            <constraint firstItem="XCu-Lo-rT9" firstAttribute="width" secondItem="eWA-oD-5gW" secondAttribute="width" id="Mb0-uM-M4D"/>
-                            <constraint firstItem="2ih-mU-izo" firstAttribute="leading" secondItem="eWA-oD-5gW" secondAttribute="leading" id="e8Q-l6-b5N"/>
-                            <constraint firstItem="XCu-Lo-rT9" firstAttribute="height" secondItem="eWA-oD-5gW" secondAttribute="height" id="k6d-UH-riK"/>
-                            <constraint firstAttribute="trailing" secondItem="2ih-mU-izo" secondAttribute="trailing" id="kir-JX-kaH"/>
-                            <constraint firstItem="2ih-mU-izo" firstAttribute="top" secondItem="eWA-oD-5gW" secondAttribute="top" id="sDu-gc-Ld1"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="HBW-Lv-Gnj">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="NJQ-9A-1cY">
-                            <connections>
-                                <action selector="stopButtonTapped:" destination="rfe-eY-rT0" id="SXG-Ng-IuB"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="KIh-L3-xmm">
-                            <connections>
-                                <action selector="organizeButtonTapped:" destination="rfe-eY-rT0" id="r06-jZ-Qjd"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="photo" destination="XCu-Lo-rT9" id="e7G-2J-wA0"/>
-                        <outlet property="scrollView" destination="2ih-mU-izo" id="2Su-bU-yuM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FRQ-5v-e6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="181" y="327"/>
         </scene>
     </scenes>
     <resources>

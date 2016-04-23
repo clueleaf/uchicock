@@ -5,6 +5,7 @@ pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
 pod 'DZNEmptyDataSet'
 pod 'SCLAlertView'
+pod "MWPhotoBrowser"
 
 def testing_pods
     pod 'Quick'

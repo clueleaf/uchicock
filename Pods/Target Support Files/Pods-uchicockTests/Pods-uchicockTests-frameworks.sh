@@ -85,19 +85,27 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-uchicockTests/ChameleonFramework.framework"
+  install_framework "Pods-uchicockTests/DACircularProgress.framework"
   install_framework "Pods-uchicockTests/DZNEmptyDataSet.framework"
+  install_framework "Pods-uchicockTests/MBProgressHUD.framework"
+  install_framework "Pods-uchicockTests/MWPhotoBrowser.framework"
   install_framework "Pods-uchicockTests/Realm.framework"
   install_framework "Pods-uchicockTests/RealmSwift.framework"
   install_framework "Pods-uchicockTests/SCLAlertView.framework"
+  install_framework "Pods-uchicockTests/SDWebImage.framework"
   install_framework "Pods-uchicockTests/Nimble.framework"
   install_framework "Pods-uchicockTests/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-uchicockTests/ChameleonFramework.framework"
+  install_framework "Pods-uchicockTests/DACircularProgress.framework"
   install_framework "Pods-uchicockTests/DZNEmptyDataSet.framework"
+  install_framework "Pods-uchicockTests/MBProgressHUD.framework"
+  install_framework "Pods-uchicockTests/MWPhotoBrowser.framework"
   install_framework "Pods-uchicockTests/Realm.framework"
   install_framework "Pods-uchicockTests/RealmSwift.framework"
   install_framework "Pods-uchicockTests/SCLAlertView.framework"
+  install_framework "Pods-uchicockTests/SDWebImage.framework"
   install_framework "Pods-uchicockTests/Nimble.framework"
   install_framework "Pods-uchicockTests/Quick.framework"
 fi
