@@ -9,11 +9,12 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
     @IBOutlet weak var ingredientName: UITextField!
-    @IBOutlet weak var stock: UISwitch!
+    @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UITextView!
     
     var ingredient = Ingredient()
@@ -33,7 +34,19 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.text = ingredient.ingredientName
         ingredientName.delegate = self
 
-        stock.on = ingredient.stockFlag
+        stock.backgroundColor = FlatWhite()
+        stock.tintColor = FlatSkyBlueDark()
+        stock.secondaryTintColor = FlatSkyBlueDark()
+        stock.boxLineWidth = 2.0
+        stock.markType = .Checkmark
+        stock.boxType = .Circle
+        stock.stateChangeAnimation = .Expand(.Fill)
+        if ingredient.stockFlag{
+            stock.setCheckState(.Checked, animated: true)
+        }else{
+            stock.setCheckState(.Unchecked, animated: true)
+        }
+        stock.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "stockTapped:"))
 
         memo.text = ingredient.memo
         memo.layer.masksToBounds = true
@@ -41,7 +54,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.borderWidth = 1
         memo.layer.borderColor = FlatWhiteDark().CGColor
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -53,6 +66,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     func textWithoutSpace ( text: String ) -> String {
         return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    func stockTapped(sender: UITapGestureRecognizer) {
+        stock.toggleCheckState()
     }
 
     // MARK: - UITableView
@@ -112,7 +129,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 }else{
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = textWithoutSpace(ingredientName.text!)
-                    newIngredient.stockFlag = stock.on
+                    if stock.checkState == .Checked{
+                        newIngredient.stockFlag = true
+                    }else{
+                        newIngredient.stockFlag = false
+                    }
                     newIngredient.memo = memo.text
                     try! realm.write {
                         realm.add(newIngredient)
@@ -129,7 +150,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 }else{
                     try! realm.write {
                         ingredient.ingredientName = textWithoutSpace(ingredientName.text!)
-                        ingredient.stockFlag = stock.on
+                        if stock.checkState == .Checked{
+                            ingredient.stockFlag = true
+                        }else{
+                            ingredient.stockFlag = false
+                        }
                         ingredient.memo = memo.text
                     }
                     self.dismissViewControllerAnimated(true, completion: nil)

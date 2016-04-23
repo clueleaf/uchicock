@@ -856,18 +856,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IOV-XQ-OZS">
-                                                    <rect key="frame" x="511" y="9" width="51" height="31"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnc-vs-9sM" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <rect key="frame" x="520" y="5" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="N07-kE-qg6"/>
-                                                        <constraint firstAttribute="height" constant="31" id="yhY-o2-mal"/>
+                                                        <constraint firstAttribute="width" constant="40" id="3bv-wv-yfN"/>
+                                                        <constraint firstAttribute="height" constant="40" id="tUP-UX-5Jn"/>
                                                     </constraints>
-                                                </switch>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="IOV-XQ-OZS" secondAttribute="trailing" constant="40" id="7qY-08-bpL"/>
                                                 <constraint firstItem="oI8-ts-Ky2" firstAttribute="leading" secondItem="VId-ii-AUf" secondAttribute="leading" constant="8" id="N8t-Ui-NW9"/>
-                                                <constraint firstItem="IOV-XQ-OZS" firstAttribute="centerY" secondItem="VId-ii-AUf" secondAttribute="centerY" id="UAH-EL-JJf"/>
+                                                <constraint firstAttribute="trailing" secondItem="qnc-vs-9sM" secondAttribute="trailing" constant="40" id="PDT-6V-HI5"/>
+                                                <constraint firstItem="qnc-vs-9sM" firstAttribute="centerY" secondItem="VId-ii-AUf" secondAttribute="centerY" id="qBa-qN-c6b"/>
                                                 <constraint firstItem="oI8-ts-Ky2" firstAttribute="centerY" secondItem="VId-ii-AUf" secondAttribute="centerY" id="uAl-g6-fA4"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -932,7 +933,7 @@
                     <connections>
                         <outlet property="ingredientName" destination="fW3-m2-e2r" id="QWn-jE-wj7"/>
                         <outlet property="memo" destination="RTE-Fj-Fa4" id="Tf5-NO-bSu"/>
-                        <outlet property="stock" destination="IOV-XQ-OZS" id="3X7-8p-ARz"/>
+                        <outlet property="stock" destination="qnc-vs-9sM" id="1Jz-TC-FFX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGD-3S-adR" userLabel="First Responder" sceneMemberID="firstResponder"/>
