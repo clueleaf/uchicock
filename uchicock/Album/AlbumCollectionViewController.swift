@@ -41,17 +41,16 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        let c = recipeIdList.count - 1
         let realm = try! Realm()
-        for i in 0..<recipeIdList.count {
-            let recipeList = realm.objects(Recipe).filter("id == %@",recipeIdList[c - i])
+        for i in (0..<recipeIdList.count).reverse() {
+            let recipeList = realm.objects(Recipe).filter("id == %@",recipeIdList[i])
             if recipeList.count == 0 {
-                recipeIdList.removeAtIndex(c - i)
+                recipeIdList.removeAtIndex(i)
             }else if recipeList.first!.imageData == nil{
                 //レシピ削除のバグに対するワークアラウンド
-                recipeIdList.removeAtIndex(c - i)
+                recipeIdList.removeAtIndex(i)
             }else if UIImage(data: recipeList.first!.imageData!) == nil{
-                recipeIdList.removeAtIndex(c - i)
+                recipeIdList.removeAtIndex(i)
             }
         }
         self.collectionView!.reloadData()
