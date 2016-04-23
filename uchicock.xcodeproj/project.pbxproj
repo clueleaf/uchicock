@@ -37,11 +37,13 @@
 		9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A3181C783CAA0031F631 /* Main.storyboard */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
-		9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* uchicockTests.swift */; };
+		9BC9A32A1C783CAA0031F631 /* recipeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* recipeListTests.swift */; };
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
+		BBFACDF1C4663C17EFBAA2CE /* Pods_uchicockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */; };
+		CFEC9210D08DEA40275E6605 /* Pods_uchicockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71895E92D0B0ED3E21A39EB /* Pods_uchicockUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicockTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34EEF1621ED608239061362E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		384C1AE7875F5F7AB61F2727 /* Pods-uchicockUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicockUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicockUITests/Pods-uchicockUITests.release.xcconfig"; sourceTree = "<group>"; };
 		39E9598A26D53360CAD954E7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4B9261C17FA27CB3AB97EE3A /* Pods-uchicockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uchicockUITests/Pods-uchicockUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8879C7EE8F031804DD817366 /* Pods-uchicockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uchicockTests/Pods-uchicockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AB758B17002CE7E61D78F3B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderTableViewController.swift; path = IngredientDetail/ReminderTableViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -100,7 +106,7 @@
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A3291C783CAA0031F631 /* uchicockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockTests.swift; sourceTree = "<group>"; };
+		9BC9A3291C783CAA0031F631 /* recipeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeListTests.swift; sourceTree = "<group>"; };
 		9BC9A32B1C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockUITests.swift; sourceTree = "<group>"; };
@@ -112,8 +118,12 @@
 		9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BE2025D1CCA2CFB00F2382C /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
+		9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		D71895E92D0B0ED3E21A39EB /* Pods_uchicockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E86A3C6451DBEA5F504357BA /* Pods-uchicockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicockTests/Pods-uchicockTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFACDF1C4663C17EFBAA2CE /* Pods_uchicockTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFEC9210D08DEA40275E6605 /* Pods_uchicockUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +164,10 @@
 			children = (
 				39E9598A26D53360CAD954E7 /* Pods.debug.xcconfig */,
 				34EEF1621ED608239061362E /* Pods.release.xcconfig */,
+				8879C7EE8F031804DD817366 /* Pods-uchicockTests.debug.xcconfig */,
+				E86A3C6451DBEA5F504357BA /* Pods-uchicockTests.release.xcconfig */,
+				4B9261C17FA27CB3AB97EE3A /* Pods-uchicockUITests.debug.xcconfig */,
+				384C1AE7875F5F7AB61F2727 /* Pods-uchicockUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -221,21 +237,23 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
-				9BD8A7071CC8F436001EB1A9 /* Album */,
-				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
-				9B3FE5831C9EA1630061D21C /* RecipeEdit */,
-				9B8772851C9D4BA80065A816 /* IngredientEdit */,
-				9BE32CF11C9C4E39001B98BF /* IngredientDetail */,
-				9BE32CEA1C9C2B71001B98BF /* IngredientList */,
-				9B2AED061C9B5CD700B255C9 /* Database */,
-				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
+				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
+				9B3FE5831C9EA1630061D21C /* RecipeEdit */,
+				9BD8A7071CC8F436001EB1A9 /* Album */,
+				9BE32CEA1C9C2B71001B98BF /* IngredientList */,
+				9BE32CF11C9C4E39001B98BF /* IngredientDetail */,
+				9B8772851C9D4BA80065A816 /* IngredientEdit */,
+				9B2AED061C9B5CD700B255C9 /* Database */,
+				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
 				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
 				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,
+				9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */,
+				9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -243,7 +261,7 @@
 		9BC9A3281C783CAA0031F631 /* uchicockTests */ = {
 			isa = PBXGroup;
 			children = (
-				9BC9A3291C783CAA0031F631 /* uchicockTests.swift */,
+				9BC9A3291C783CAA0031F631 /* recipeListTests.swift */,
 				9BC9A32B1C783CAA0031F631 /* Info.plist */,
 			);
 			path = uchicockTests;
@@ -312,6 +330,8 @@
 				9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */,
 				9BF98A1B1C7DC8DC00A27175 /* Realm.framework */,
 				9AB758B17002CE7E61D78F3B /* Pods.framework */,
+				1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */,
+				D71895E92D0B0ED3E21A39EB /* Pods_uchicockUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -344,9 +364,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BC9A33C1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockTests" */;
 			buildPhases = (
+				D7D61F08469785B098750D78 /* Check Pods Manifest.lock */,
 				9BC9A3211C783CAA0031F631 /* Sources */,
 				9BC9A3221C783CAA0031F631 /* Frameworks */,
 				9BC9A3231C783CAA0031F631 /* Resources */,
+				377A97B5935096BA7A0AD84F /* Embed Pods Frameworks */,
+				A137ABBA46C7476E396E73CB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,9 +385,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BC9A33F1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockUITests" */;
 			buildPhases = (
+				041477AA82EA0BA7E790EAF8 /* Check Pods Manifest.lock */,
 				9BC9A32C1C783CAA0031F631 /* Sources */,
 				9BC9A32D1C783CAA0031F631 /* Frameworks */,
 				9BC9A32E1C783CAA0031F631 /* Resources */,
+				1D823C83C81DF63B084CFA9E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -448,6 +473,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		041477AA82EA0BA7E790EAF8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1D823C83C81DF63B084CFA9E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uchicockUITests/Pods-uchicockUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		377A97B5935096BA7A0AD84F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uchicockTests/Pods-uchicockTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4234BC075158D201243F5892 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +576,36 @@
 			shellPath = /bin/sh;
 			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n";
 		};
+		A137ABBA46C7476E396E73CB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uchicockTests/Pods-uchicockTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7D61F08469785B098750D78 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -543,7 +643,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC9A32A1C783CAA0031F631 /* uchicockTests.swift in Sources */,
+				9BC9A32A1C783CAA0031F631 /* recipeListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +780,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = uchicock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -699,6 +800,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -714,6 +816,7 @@
 		};
 		9BC9A33D1C783CAA0031F631 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8879C7EE8F031804DD817366 /* Pods-uchicockTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -729,6 +832,7 @@
 		};
 		9BC9A33E1C783CAA0031F631 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E86A3C6451DBEA5F504357BA /* Pods-uchicockTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -743,6 +847,7 @@
 		};
 		9BC9A3401C783CAA0031F631 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9261C17FA27CB3AB97EE3A /* Pods-uchicockUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockUITests/Info.plist;
@@ -758,6 +863,7 @@
 		};
 		9BC9A3411C783CAA0031F631 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 384C1AE7875F5F7AB61F2727 /* Pods-uchicockUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = uchicockUITests/Info.plist;
