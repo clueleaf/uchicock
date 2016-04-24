@@ -138,17 +138,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
-            let realm = try! Realm()
-            switch favoriteSelect.selectedSegmentIndex{
-            case 0:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).count
-            case 1:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBarTextWithoutSpace()).count
-            case 2:
-                return realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBarTextWithoutSpace()).count
-            default:
-                return realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).count
+            if recipeList == nil{
+                reloadRecipeList()
             }
+            return recipeList!.count
         }
         return 0
     }
