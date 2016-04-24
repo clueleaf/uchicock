@@ -91,6 +91,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let cell = view as! IngredientListItemTableViewCell
             let touchIndex = self.tableView.indexPathForCell(cell)
             tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
+            reloadIngredientList()
+            if ingredientList!.count == 0{
+                tableView.reloadData()
+            }
         }
     }
     
@@ -180,6 +184,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
             cell.stockState = stockState.selectedSegmentIndex
+            cell.stock.stateChangeAnimation = .Fade(.Fill)
+            cell.stock.animationDuration = 0
+            if ingredientList![indexPath.row].stockFlag{
+                cell.stock.setCheckState(.Checked, animated: true)
+            }else{
+                cell.stock.setCheckState(.Unchecked, animated: true)
+            }
             cell.ingredient = ingredientList![indexPath.row]
             cell.backgroundColor = FlatWhite()
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
