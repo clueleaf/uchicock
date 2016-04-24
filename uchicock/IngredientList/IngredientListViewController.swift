@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
+import M13Checkbox
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
@@ -19,21 +20,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
-    var token = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-
-        let realm = try! Realm()
-        token = realm.objects(Ingredient).addNotificationBlock { results, realm in
-            if self.stockState.selectedSegmentIndex != 0 {
-                self.reloadIngredientList()
-                self.tableView.reloadData()
-            }
-        }
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
@@ -88,6 +80,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let str = "条件にあてはまる材料はありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func cellStockTapped(sender: M13Checkbox){
+        if stockState.selectedSegmentIndex != 0{
+            var view = sender.superview
+            while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
+                view = view!.superview
+            }
+            let cell = view as! IngredientListItemTableViewCell
+            let touchIndex = self.tableView.indexPathForCell(cell)
+            tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
+        }
     }
     
     // MARK: - UISearchBarDelegate
@@ -178,6 +182,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             cell.stockState = stockState.selectedSegmentIndex
             cell.ingredient = ingredientList![indexPath.row]
             cell.backgroundColor = FlatWhite()
+            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            
             return cell
         }
         return UITableViewCell()
