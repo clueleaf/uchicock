@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -498,8 +499,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let editingRecipeIngredient = EditingRecipeIngredient()
                 editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                 editingRecipeIngredient.amount = riec.amount.text!
-                editingRecipeIngredient.mustFlag = !riec.option.on
-                editingRecipeIngredientList.append(editingRecipeIngredient)                
+                if riec.option.checkState == .Checked{
+                    editingRecipeIngredient.mustFlag = false
+                }else{
+                    editingRecipeIngredient.mustFlag = true
+                }
+                editingRecipeIngredientList.append(editingRecipeIngredient)
             }
         }else{
             if riec.deleteFlag{
@@ -513,7 +518,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     if editingRecipeIngredient.id == riec.recipeIngredient.id{
                         editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                         editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)
-                        editingRecipeIngredient.mustFlag = !riec.option.on
+                        if riec.option.checkState == .Checked{
+                            editingRecipeIngredient.mustFlag = false
+                        }else{
+                            editingRecipeIngredient.mustFlag = true
+                        }
                     }
                 }
             }

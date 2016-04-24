@@ -34,10 +34,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.text = ingredient.ingredientName
         ingredientName.delegate = self
 
-        stock.backgroundColor = FlatWhite()
+        stock.backgroundColor = UIColor.clearColor()
         stock.tintColor = FlatSkyBlueDark()
-        stock.secondaryTintColor = FlatSkyBlueDark()
-        stock.boxLineWidth = 2.0
+        stock.secondaryTintColor = FlatGray()
+        stock.boxLineWidth = 1.0
         stock.markType = .Checkmark
         stock.boxType = .Circle
         stock.stateChangeAnimation = .Expand(.Fill)
@@ -46,7 +46,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }else{
             stock.setCheckState(.Unchecked, animated: true)
         }
-        stock.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "stockTapped:"))
 
         memo.text = ingredient.memo
         memo.layer.masksToBounds = true
@@ -68,10 +67,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
-    func stockTapped(sender: UITapGestureRecognizer) {
-        stock.toggleCheckState()
-    }
-
     // MARK: - UITableView
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
