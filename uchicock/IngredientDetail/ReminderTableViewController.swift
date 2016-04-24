@@ -10,12 +10,13 @@ import UIKit
 import EventKit
 import ChameleonFramework
 import SVProgressHUD
+import M13Checkbox
 
 class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
-    @IBOutlet weak var dateFlag: UISwitch!
+    @IBOutlet weak var dateFlag: M13Checkbox!
     @IBOutlet weak var date: UITextField!
     
     var ingredientName = ""
@@ -29,7 +30,15 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
         self.navigationItem.title = "リマインダーへ登録"
         reminderTitle.text = ingredientName + "を買う"
-        dateFlag.on = false
+        dateFlag.setCheckState(.Unchecked, animated: true)
+        dateFlag.backgroundColor = UIColor.clearColor()
+        dateFlag.tintColor = FlatSkyBlueDark()
+        dateFlag.secondaryTintColor = FlatGray()
+        dateFlag.boxLineWidth = 1.0
+        dateFlag.markType = .Checkmark
+        dateFlag.boxType = .Circle
+        dateFlag.stateChangeAnimation = .Expand(.Fill)
+        
         date.enabled = false
         
         dateFormat.locale = NSLocale(localeIdentifier: "ja")
@@ -62,7 +71,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
-        if dateFlag.on {
+        if dateFlag.checkState == .Checked {
             let calendarUnit: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
             reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: registerDate)
             reminder.addAlarm(EKAlarm(absoluteDate: registerDate))
@@ -113,7 +122,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func setTextField(){
-        if dateFlag.on{
+        if dateFlag.checkState == .Checked{
             date.enabled = true
             date.backgroundColor = UIColor.whiteColor()
             date.textColor = UIColor.blackColor()
@@ -190,15 +199,17 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func reminderTypeTapped(sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.enabled = true
+            dateFlag.tintColor = FlatSkyBlueDark()
             setTextField()
         }else if reminderType.selectedSegmentIndex == 1{
-            dateFlag.on = true
+            dateFlag.setCheckState(.Checked, animated: true)
             dateFlag.enabled = false
+            dateFlag.tintColor = FlatWhiteDark()
             setTextField()
         }
     }
     
-    @IBAction func dateFlagTapped(sender: UISwitch) {
+    @IBAction func dateFlagTapped(sender: M13Checkbox) {
         setTextField()
     }
     

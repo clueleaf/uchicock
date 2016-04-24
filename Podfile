@@ -1,11 +1,12 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
 pod 'DZNEmptyDataSet'
-pod "MWPhotoBrowser"
+pod 'MWPhotoBrowser'
 pod 'SVProgressHUD'
+pod 'M13Checkbox'
 
 def testing_pods
     pod 'Quick'

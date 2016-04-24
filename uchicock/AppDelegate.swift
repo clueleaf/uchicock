@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import SVProgressHUD
+import M13Checkbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -55,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backgroundView = UIView()
         backgroundView.backgroundColor = FlatWhiteDark()
         UITableViewCell.appearance().selectedBackgroundView = backgroundView
+        
     }
     
     func setSVProgressHUD(){
