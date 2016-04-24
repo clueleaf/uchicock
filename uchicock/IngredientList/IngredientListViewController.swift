@@ -68,13 +68,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let realm = try! Realm()
         switch stockState.selectedSegmentIndex{
         case 0:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).sorted("ingredientName")
         case 1:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBarTextWithoutSpace()).sorted("ingredientName")
         case 2:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBarTextWithoutSpace()).sorted("ingredientName")
         default:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).sorted("ingredientName")
         }
         self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
     }
@@ -97,17 +97,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            let realm = try! Realm()
-            switch stockState.selectedSegmentIndex{
-            case 0:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).count
-            case 1:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBarTextWithoutSpace()).count
-            case 2:
-                return realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBarTextWithoutSpace()).count
-            default:
-                return realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).count
+            if ingredientList == nil{
+                reloadIngredientList()
             }
+            return ingredientList!.count
         }
         return 0
     }
