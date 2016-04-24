@@ -46,14 +46,6 @@ class IngredientListItemTableViewCell: UITableViewCell {
             stock.boxLineWidth = 1.0
             stock.markType = .Checkmark
             stock.boxType = .Circle
-            stock.stateChangeAnimation = .Fade(.Fill)
-            stock.animationDuration = 0
-            if ingredient.stockFlag{
-                stock.setCheckState(.Checked, animated: true)
-            }else{
-                stock.setCheckState(.Unchecked, animated: true)
-            }
-            //アニメーションをスムーズに表示するため
             stock.animationDuration = 0.3
             if stockState == 0{
                 stock.stateChangeAnimation = .Expand(.Fill)
