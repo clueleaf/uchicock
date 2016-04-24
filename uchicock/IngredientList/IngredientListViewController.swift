@@ -175,6 +175,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
+            cell.stockState = stockState.selectedSegmentIndex
             cell.ingredient = ingredientList![indexPath.row]
             cell.backgroundColor = FlatWhite()
             return cell
