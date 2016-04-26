@@ -278,9 +278,6 @@
                                                         <constraint firstAttribute="width" constant="40" id="9er-gt-qFf"/>
                                                         <constraint firstAttribute="height" constant="40" id="aJK-FS-qxj"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <action selector="stockSwitchTapped:" destination="P9w-m9-Hhq" eventType="valueChanged" id="FDq-BN-BoU"/>
-                                                    </connections>
                                                 </view>
                                             </subviews>
                                             <constraints>

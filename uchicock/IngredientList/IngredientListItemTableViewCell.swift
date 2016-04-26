@@ -61,18 +61,4 @@ class IngredientListItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    // MARK: - IBAction
-    @IBAction func stockSwitchTapped(sender: M13Checkbox) {
-        if sender.checkState == .Checked{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }else{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = false
-            }
-        }
-    }
 }

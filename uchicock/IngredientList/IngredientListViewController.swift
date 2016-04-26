@@ -83,13 +83,26 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func cellStockTapped(sender: M13Checkbox){
-        if stockState.selectedSegmentIndex != 0{
-            var view = sender.superview
-            while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
-                view = view!.superview
+        var view = sender.superview
+        while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
+            view = view!.superview
+        }
+        let cell = view as! IngredientListItemTableViewCell
+        let touchIndex = self.tableView.indexPathForCell(cell)
+        
+        if ingredientList![touchIndex!.row].stockFlag {
+            let realm = try! Realm()
+            try! realm.write {
+                ingredientList![touchIndex!.row].stockFlag = false
             }
-            let cell = view as! IngredientListItemTableViewCell
-            let touchIndex = self.tableView.indexPathForCell(cell)
+        }else{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredientList![touchIndex!.row].stockFlag = true
+            }
+        }
+
+        if stockState.selectedSegmentIndex != 0{
             tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
             if ingredientList!.count == 0{
                 tableView.reloadData()
