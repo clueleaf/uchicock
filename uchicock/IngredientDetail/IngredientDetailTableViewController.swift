@@ -9,12 +9,13 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: UILabel!
-    @IBOutlet weak var stock: UISwitch!
+    @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
 
@@ -25,6 +26,14 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        stock.backgroundColor = UIColor.clearColor()
+        stock.tintColor = FlatSkyBlueDark()
+        stock.secondaryTintColor = FlatGray()
+        stock.boxLineWidth = 1.0
+        stock.markType = .Checkmark
+        stock.boxType = .Circle
+        stock.stateChangeAnimation = .Expand(.Fill)
+
         tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
     }
     
@@ -44,7 +53,11 @@ class IngredientDetailTableViewController: UITableViewController {
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
-            stock.on = ingredient.stockFlag
+            if ingredient.stockFlag{
+                stock.setCheckState(.Checked, animated: true)
+            }else{
+                stock.setCheckState(.Unchecked, animated: true)
+            }
             memo.text = ingredient.memo
             memo.textColor = FlatGrayDark()            
             deleteLabel.textColor = FlatRed()
@@ -79,7 +92,11 @@ class IngredientDetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
+            if indexPath.row == 1{
+                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            }else{
+                return UITableViewAutomaticDimension
+            }
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
@@ -187,7 +204,7 @@ class IngredientDetailTableViewController: UITableViewController {
                 var shortageName = ""
                 for ri in recipeIngredient.recipe.recipeIngredients{
                     if ri.mustFlag && ri.ingredient.stockFlag == false{
-                        shortageNum++
+                        shortageNum += 1
                         shortageName = ri.ingredient.ingredientName
                     }
                 }
@@ -230,12 +247,16 @@ class IngredientDetailTableViewController: UITableViewController {
         performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
     }
     
-    @IBAction func stockSwitchTapped(sender: UISwitch) {
+    @IBAction func stockTapped(sender: M13Checkbox) {
         let realm = try! Realm()
         try! realm.write {
-            ingredient.stockFlag = sender.on
+            if stock.checkState == .Checked{
+                ingredient.stockFlag = true
+            }else{
+                ingredient.stockFlag = false
+            }
         }
-        tableView.reloadData()
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {

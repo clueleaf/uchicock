@@ -9,9 +9,11 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SVProgressHUD
+import MWPhotoBrowser
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController {
+class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
@@ -35,7 +37,9 @@ class RecipeDetailTableViewController: UITableViewController {
         
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.cellLongPressed(_:)))
+        longPressRecognizer.allowableMovement = 100
+        longPressRecognizer.minimumPressDuration = 0.2
         tableView.addGestureRecognizer(longPressRecognizer)
     }
 
@@ -115,7 +119,6 @@ class RecipeDetailTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
@@ -127,7 +130,7 @@ class RecipeDetailTableViewController: UITableViewController {
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
                     if self.photo.image != nil{
-                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                     }
                     })
                 alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
@@ -143,19 +146,48 @@ class RecipeDetailTableViewController: UITableViewController {
     
     func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
         if error == nil{
-            let alertView = UIAlertController(title: "カメラロールへ保存しました", message: nil, preferredStyle: .Alert)
-            self.presentViewController(alertView, animated: true) { () -> Void in
-                let delay = 1.0 * Double(NSEC_PER_SEC)
-                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue(), {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                })
-            }
+            SVProgressHUD.showSuccessWithStatus("カメラロールへ保存しました")
         }else{
             let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             }))
             presentViewController(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: MWPhotoBrowser
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return 1
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        if index == 0{
+            return MWPhoto(image: photo.image)
+        }
+        return nil
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, actionButtonPressedForPhotoAtIndex index: UInt) {
+        if index == 0{
+            let excludedActivityTypes = [
+                UIActivityTypeMessage,
+                UIActivityTypeMail,
+                UIActivityTypePrint,
+                UIActivityTypeCopyToPasteboard,
+                UIActivityTypeAssignToContact,
+                UIActivityTypeAddToReadingList,
+                UIActivityTypePostToFlickr,
+                UIActivityTypePostToVimeo,
+                UIActivityTypePostToWeibo,
+                UIActivityTypePostToTencentWeibo,
+                UIActivityTypeAirDrop
+            ]
+            
+            let shareImage = photo.image!
+            let activityItems = [shareImage, ""]
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }
     
@@ -229,7 +261,15 @@ class RecipeDetailTableViewController: UITableViewController {
                 //レシピ削除のバグに対するワークアラウンド
                 let photo = UIImage(data: recipe.imageData!)
                 if photo != nil{
-                    performSegueWithIdentifier("PushPhotoDetail", sender: indexPath)
+                    let browser = MWPhotoBrowser(delegate: self)
+                    browser.displayActionButton = true
+                    browser.displayNavArrows = false
+                    browser.displaySelectionButtons = false
+                    browser.zoomPhotosToFill = true
+                    browser.alwaysShowControls = false
+                    browser.enableGrid = false
+                    browser.startOnGrid = false
+                    self.navigationController?.pushViewController(browser, animated: true)
                 }
             }
         }else if indexPath.section == 1 {
@@ -241,14 +281,14 @@ class RecipeDetailTableViewController: UITableViewController {
                 action in
                 let realm = try! Realm()
                 let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for (var i = 0; i < self.recipe.recipeIngredients.count ; ++i){
+                for i in 0 ..< self.recipe.recipeIngredients.count {
                     let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
                 try! realm.write{
                     for ri in deletingRecipeIngredientList{
                         let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                        for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                        for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                             if ingredient.recipeIngredients[i].id == ri.id{
                                 ingredient.recipeIngredients.removeAtIndex(i)
                             }
@@ -422,7 +462,6 @@ class RecipeDetailTableViewController: UITableViewController {
         }
     }
     
-    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushIngredientDetail" {
@@ -434,11 +473,6 @@ class RecipeDetailTableViewController: UITableViewController {
             let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
-        }else if segue.identifier == "PushPhotoDetail" {
-            let enc = segue.destinationViewController as! UINavigationController
-            let pvc = enc.visibleViewController as! PhotoDetailViewController
-            pvc.image = UIImage(data: recipe.imageData!)!
-            pvc.recipeName = recipe.recipeName
         }
     }
     

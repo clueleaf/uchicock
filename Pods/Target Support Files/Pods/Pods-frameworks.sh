@@ -85,11 +85,25 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/ChameleonFramework.framework"
+  install_framework "Pods/DACircularProgress.framework"
+  install_framework "Pods/DZNEmptyDataSet.framework"
+  install_framework "Pods/M13Checkbox.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/MWPhotoBrowser.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
+  install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ChameleonFramework.framework"
+  install_framework "Pods/DACircularProgress.framework"
+  install_framework "Pods/DZNEmptyDataSet.framework"
+  install_framework "Pods/M13Checkbox.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/MWPhotoBrowser.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
+  install_framework "Pods/SDWebImage.framework"
+  install_framework "Pods/SVProgressHUD.framework"
 fi

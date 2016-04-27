@@ -9,8 +9,9 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -25,6 +26,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,7 +69,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         try! realm.write{
             for ri in deletingRecipeIngredientList{
                 let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
                         ingredient.recipeIngredients.removeAtIndex(i)
                     }
@@ -112,6 +117,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
     }
     
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "条件にあてはまるレシピはありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+        
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -153,14 +164,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del = UITableViewRowAction(style: .Default, title: "削除") {
             (action, indexPath) in
-            let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
-            favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
+            let alertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                 self.deleteRecipe(self.recipeList![indexPath.row])
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
             }))
-            favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            self.presentViewController(favoriteAlertView, animated: true, completion: nil)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            self.presentViewController(alertView, animated: true, completion: nil)
         }
         del.backgroundColor = FlatRed()
         

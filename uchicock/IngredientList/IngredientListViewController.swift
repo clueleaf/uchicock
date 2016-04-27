@@ -9,8 +9,10 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import DZNEmptyDataSet
+import M13Checkbox
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -18,21 +20,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
-    var token = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-
-        let realm = try! Realm()
-        token = realm.objects(Ingredient).addNotificationBlock { results, realm in
-            if self.stockState.selectedSegmentIndex != 0 {
-                self.reloadIngredientList()
-                self.tableView.reloadData()
-            }
-        }
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,6 +74,41 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).sorted("ingredientName")
         }
         self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
+    }
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "条件にあてはまる材料はありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func cellStockTapped(sender: M13Checkbox){
+        var view = sender.superview
+        while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
+            view = view!.superview
+        }
+        let cell = view as! IngredientListItemTableViewCell
+        let touchIndex = self.tableView.indexPathForCell(cell)
+        
+        if ingredientList![touchIndex!.row].stockFlag {
+            let realm = try! Realm()
+            try! realm.write {
+                ingredientList![touchIndex!.row].stockFlag = false
+            }
+        }else{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredientList![touchIndex!.row].stockFlag = true
+            }
+        }
+
+        if stockState.selectedSegmentIndex != 0{
+            tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
+            if ingredientList!.count == 0{
+                tableView.reloadData()
+            }
+            self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
+        }
     }
     
     // MARK: - UISearchBarDelegate
@@ -157,8 +189,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("IngredientListItem") as! IngredientListItemTableViewCell
+            cell.stockState = stockState.selectedSegmentIndex
+            cell.stock.stateChangeAnimation = .Fade(.Fill)
+            cell.stock.animationDuration = 0
+            if ingredientList![indexPath.row].stockFlag{
+                cell.stock.setCheckState(.Checked, animated: true)
+            }else{
+                cell.stock.setCheckState(.Unchecked, animated: true)
+            }
             cell.ingredient = ingredientList![indexPath.row]
             cell.backgroundColor = FlatWhite()
+            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            
             return cell
         }
         return UITableViewCell()

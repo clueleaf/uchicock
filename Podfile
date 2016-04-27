@@ -1,8 +1,25 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 pod 'RealmSwift'
 pod 'ChameleonFramework/Swift'
+pod 'DZNEmptyDataSet'
+pod 'MWPhotoBrowser'
+pod 'SVProgressHUD'
+pod 'M13Checkbox'
+
+def testing_pods
+    pod 'Quick'
+    pod 'Nimble'
+end
+
+target 'uchicockTests' do
+    testing_pods
+end
+
+target 'uchicockUITests' do
+    testing_pods
+end
 
 post_install do | installer |
   require 'fileutils'

@@ -9,13 +9,16 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeNum: UILabel!
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var stock: UISwitch!
+    @IBOutlet weak var stock: M13Checkbox!
+    
+    var stockState = 0
     
     var ingredient: Ingredient = Ingredient(){
         didSet{
@@ -36,7 +39,17 @@ class IngredientListItemTableViewCell: UITableViewCell {
 
             ingredientName.text = ingredient.ingredientName
             stockLabel.textColor = FlatGrayDark()
-            stock.on = ingredient.stockFlag
+            
+            stock.backgroundColor = UIColor.clearColor()
+            stock.tintColor = FlatSkyBlueDark()
+            stock.secondaryTintColor = FlatGray()
+            stock.boxLineWidth = 1.0
+            stock.markType = .Checkmark
+            stock.boxType = .Circle
+            stock.animationDuration = 0.3
+            if stockState == 0{
+                stock.stateChangeAnimation = .Expand(.Fill)
+            }
         }
     }
 
@@ -48,18 +61,4 @@ class IngredientListItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    // MARK: - IBAction
-    @IBAction func stockSwitchTapped(sender: UISwitch) {
-        if sender.on{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }else{
-            let realm = try! Realm()
-            try! realm.write {
-                ingredient.stockFlag = false
-            }
-        }
-    }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
 
@@ -16,7 +17,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: UITextField!
-    @IBOutlet weak var option: UISwitch!
+    @IBOutlet weak var option: M13Checkbox!
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
@@ -33,22 +34,33 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
+        option.backgroundColor = UIColor.clearColor()
+        option.tintColor = FlatSkyBlueDark()
+        option.secondaryTintColor = FlatGray()
+        option.boxLineWidth = 1.0
+        option.markType = .Checkmark
+        option.boxType = .Circle
+        option.stateChangeAnimation = .Expand(.Fill)
+        
         if isAddMode == false{
             ingredientName.text = recipeIngredient.ingredientName
             amount.text = recipeIngredient.amount
-            option.on = !recipeIngredient.mustFlag
+            if recipeIngredient.mustFlag{
+                option.setCheckState(.Unchecked, animated: true)
+            }else{
+                option.setCheckState(.Checked, animated: true)
+            }
             self.navigationItem.title = "材料の変更"
             deleteLabel.text = "このレシピの材料から外す"
         }else{
-            option.on = false
+            option.setCheckState(.Unchecked, animated: true)
             self.navigationItem.title = "材料の追加"
             deleteLabel.text = "材料の追加をやめる"
         }
         deleteLabel.textColor = FlatRed()
         
         suggestTableView.backgroundColor = FlatWhite()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }
 
     override func didReceiveMemoryWarning() {

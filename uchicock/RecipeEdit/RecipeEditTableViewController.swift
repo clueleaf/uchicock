@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import M13Checkbox
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -114,8 +115,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func isIngredientDuplicated() -> Bool {
-        for var i = 0; i < editingRecipeIngredientList.count - 1; ++i{
-            for var j = i+1; j < editingRecipeIngredientList.count; ++j{
+        for i in 0 ..< editingRecipeIngredientList.count - 1{
+            for j in i+1 ..< editingRecipeIngredientList.count{
                 if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
                     return true
                 }
@@ -417,7 +418,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         
                         for ri in deletingRecipeIngredientList{
                             let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for var i = 0; i < ingredient.recipeIngredients.count; ++i{
+                            for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count {
                                 if ingredient.recipeIngredients[i].id == ri.id{
                                     ingredient.recipeIngredients.removeAtIndex(i)
                                 }
@@ -498,12 +499,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let editingRecipeIngredient = EditingRecipeIngredient()
                 editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                 editingRecipeIngredient.amount = riec.amount.text!
-                editingRecipeIngredient.mustFlag = !riec.option.on
-                editingRecipeIngredientList.append(editingRecipeIngredient)                
+                if riec.option.checkState == .Checked{
+                    editingRecipeIngredient.mustFlag = false
+                }else{
+                    editingRecipeIngredient.mustFlag = true
+                }
+                editingRecipeIngredientList.append(editingRecipeIngredient)
             }
         }else{
             if riec.deleteFlag{
-                for var i = 0; i < editingRecipeIngredientList.count; ++i{
+                for i in 0 ..< editingRecipeIngredientList.count where i < editingRecipeIngredientList.count {
                     if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
                         editingRecipeIngredientList.removeAtIndex(i)
                     }
@@ -513,7 +518,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     if editingRecipeIngredient.id == riec.recipeIngredient.id{
                         editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                         editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)
-                        editingRecipeIngredient.mustFlag = !riec.option.on
+                        if riec.option.checkState == .Checked{
+                            editingRecipeIngredient.mustFlag = false
+                        }else{
+                            editingRecipeIngredient.mustFlag = true
+                        }
                     }
                 }
             }

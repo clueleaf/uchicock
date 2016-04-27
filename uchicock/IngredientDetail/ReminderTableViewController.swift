@@ -9,12 +9,14 @@
 import UIKit
 import EventKit
 import ChameleonFramework
+import SVProgressHUD
+import M13Checkbox
 
 class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
-    @IBOutlet weak var dateFlag: UISwitch!
+    @IBOutlet weak var dateFlag: M13Checkbox!
     @IBOutlet weak var date: UITextField!
     
     var ingredientName = ""
@@ -28,7 +30,15 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
 
         self.navigationItem.title = "リマインダーへ登録"
         reminderTitle.text = ingredientName + "を買う"
-        dateFlag.on = false
+        dateFlag.setCheckState(.Unchecked, animated: true)
+        dateFlag.backgroundColor = UIColor.clearColor()
+        dateFlag.tintColor = FlatSkyBlueDark()
+        dateFlag.secondaryTintColor = FlatGray()
+        dateFlag.boxLineWidth = 1.0
+        dateFlag.markType = .Checkmark
+        dateFlag.boxType = .Circle
+        dateFlag.stateChangeAnimation = .Expand(.Fill)
+        
         date.enabled = false
         
         dateFormat.locale = NSLocale(localeIdentifier: "ja")
@@ -41,8 +51,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
         toolBar.barStyle = .BlackTranslucent
-        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self,action: "")
-        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "toolBarButtonPush:")
+        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self, action: nil)
+        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: #selector(ReminderTableViewController.toolBarButtonPush(_:)))
         toolBar.items = [spaceBarButton,toolBarButton]
         date.inputAccessoryView = toolBar
 
@@ -61,7 +71,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
-        if dateFlag.on {
+        if dateFlag.checkState == .Checked {
             let calendarUnit: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
             reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: registerDate)
             reminder.addAlarm(EKAlarm(absoluteDate: registerDate))
@@ -69,21 +79,13 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveReminder(reminder, commit: true)
+            SVProgressHUD.showSuccessWithStatus("リマインダーへ登録しました")
+            self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             }))
             self.presentViewController(alertView, animated: true, completion: nil)
-        }
-        
-        let alertView = UIAlertController(title: nil, message: "リマインダーへ登録しました", preferredStyle: .Alert)
-        self.presentViewController(alertView, animated: true) { () -> Void in
-            let delay = 1.0 * Double(NSEC_PER_SEC)
-            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                self.dismissView()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
         }
     }
     
@@ -98,21 +100,13 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         
         do {
             try eventStore.saveEvent(event, span: .ThisEvent)
+            SVProgressHUD.showSuccessWithStatus("カレンダーへ登録しました")
+            self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
             let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             }))
             self.presentViewController(alertView, animated: true, completion: nil)
-        }
-        
-        let alertView = UIAlertController(title: "カレンダーへ登録しました", message: nil, preferredStyle: .Alert)
-        self.presentViewController(alertView, animated: true) { () -> Void in
-            let delay = 1.0 * Double(NSEC_PER_SEC)
-            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                self.dismissView()
-                self.dismissViewControllerAnimated(true, completion: nil)
-            })
         }
     }
 
@@ -128,7 +122,7 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func setTextField(){
-        if dateFlag.on{
+        if dateFlag.checkState == .Checked{
             date.enabled = true
             date.backgroundColor = UIColor.whiteColor()
             date.textColor = UIColor.blackColor()
@@ -205,16 +199,22 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func reminderTypeTapped(sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.enabled = true
+            dateFlag.tintColor = FlatSkyBlueDark()
             setTextField()
         }else if reminderType.selectedSegmentIndex == 1{
-            dateFlag.on = true
+            dateFlag.setCheckState(.Checked, animated: true)
             dateFlag.enabled = false
+            dateFlag.tintColor = FlatWhiteDark()
             setTextField()
         }
     }
     
-    @IBAction func dateFlagTapped(sender: UISwitch) {
+    @IBAction func dateFlagTapped(sender: M13Checkbox) {
         setTextField()
     }
     
+    @IBAction func tableTapped(sender: UITapGestureRecognizer) {
+        date?.resignFirstResponder()
+    }
+
 }
