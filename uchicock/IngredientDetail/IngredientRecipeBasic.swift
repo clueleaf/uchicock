@@ -11,5 +11,6 @@ import UIKit
 class IngredientRecipeBasic: NSObject {
     var recipeIngredientLinkId = ""
     var recipeName = ""
+    var recipeKanaName = ""
 }
 

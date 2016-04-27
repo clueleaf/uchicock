@@ -67,9 +67,10 @@ class IngredientDetailTableViewController: UITableViewController {
                 let ingredientRecipeBasic = IngredientRecipeBasic()
                 ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
                 ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
+                ingredientRecipeBasic.recipeKanaName = recipeIngredient.recipe.recipeName.katakana()
                 ingredientRecipeBasicList.append(ingredientRecipeBasic)
             }
-            ingredientRecipeBasicList.sortInPlace({ $0.recipeName < $1.recipeName })
+            ingredientRecipeBasicList.sortInPlace({ $0.recipeKanaName < $1.recipeKanaName })
             
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
