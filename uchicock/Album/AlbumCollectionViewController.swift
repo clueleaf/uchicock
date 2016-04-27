@@ -65,8 +65,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
                     var newPhotoFlag = true
-                    for id in recipeBasicList{
-                        if recipe.id == id{
+                    for rb in recipeBasicList{
+                        if recipe.id == rb.id{
                             newPhotoFlag = false
                             break
                         }
