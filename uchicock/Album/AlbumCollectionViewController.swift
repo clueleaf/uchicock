@@ -13,7 +13,7 @@ import DZNEmptyDataSet
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    var recipeIdList = Array<String>()
+    var recipeBasicList = Array<RecipeBasic>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +22,22 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         self.collectionView!.backgroundColor = FlatWhite()
 
-        recipeIdList.removeAll()
+        recipeBasicList.removeAll()
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        let recipeList = realm.objects(Recipe)
         for recipe in recipeList{
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
-                    recipeIdList.append(recipe.id)
+                    let rb = RecipeBasic()
+                    rb.id = recipe.id
+                    rb.name = recipe.recipeName
+                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
+                    recipeBasicList.append(rb)
                 }
             }
         }
+        recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
         
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
@@ -42,15 +47,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillAppear(animated)
 
         let realm = try! Realm()
-        for i in (0..<recipeIdList.count).reverse() {
-            let recipeList = realm.objects(Recipe).filter("id == %@",recipeIdList[i])
+        for i in (0..<recipeBasicList.count).reverse() {
+            let recipeList = realm.objects(Recipe).filter("id == %@",recipeBasicList[i].id)
             if recipeList.count == 0 {
-                recipeIdList.removeAtIndex(i)
+                recipeBasicList.removeAtIndex(i)
             }else if recipeList.first!.imageData == nil{
                 //レシピ削除のバグに対するワークアラウンド
-                recipeIdList.removeAtIndex(i)
+                recipeBasicList.removeAtIndex(i)
             }else if UIImage(data: recipeList.first!.imageData!) == nil{
-                recipeIdList.removeAtIndex(i)
+                recipeBasicList.removeAtIndex(i)
             }
         }
 
@@ -60,21 +65,25 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
                     var newPhotoFlag = true
-                    for id in recipeIdList{
+                    for id in recipeBasicList{
                         if recipe.id == id{
                             newPhotoFlag = false
                             break
                         }
                     }
                     if newPhotoFlag{
-                        recipeIdList.append(recipe.id)
+                        let rb = RecipeBasic()
+                        rb.id = recipe.id
+                        rb.name = recipe.recipeName
+                        rb.kanaName = recipe.recipeName.katakana().lowercaseString
+                        recipeBasicList.append(rb)
                     }
                 }
             }
         }
         
         self.collectionView!.reloadData()
-        self.navigationItem.title = "アルバム(" + String(recipeIdList.count) + ")"
+        self.navigationItem.title = "アルバム(" + String(recipeBasicList.count) + ")"
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +116,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipeIdList.count
+        return recipeBasicList.count
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -118,7 +127,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumItem", forIndexPath: indexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
-        let recipe = realm.objects(Recipe).filter("id == %@",recipeIdList[indexPath.row]).first!
+        let recipe = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).first!
 
         if recipe.imageData != nil{
             cell.photo.image = UIImage(data: recipe.imageData!)
@@ -140,20 +149,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            self.recipeIdList.removeAll()
-            let realm = try! Realm()
-            let recipeList = realm.objects(Recipe).sorted("recipeName")
-            for recipe in recipeList{
-                if recipe.imageData != nil{
-                    //レシピ削除のバグに対するワークアラウンド
-                    if UIImage(data: recipe.imageData!) != nil{
-                        self.recipeIdList.append(recipe.id)
-                    }
-                }
-            }
-            self.shuffle(&self.recipeIdList)
+            self.shuffle(&self.recipeBasicList)
             self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeIdList.count) + ")"
+            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(alertView, animated: true, completion: nil)
@@ -162,19 +160,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            self.recipeIdList.removeAll()
-            let realm = try! Realm()
-            let recipeList = realm.objects(Recipe).sorted("recipeName")
-            for recipe in recipeList{
-                if recipe.imageData != nil{
-                    //レシピ削除のバグに対するワークアラウンド
-                    if UIImage(data: recipe.imageData!) != nil{
-                        self.recipeIdList.append(recipe.id)
-                    }
-                }
-            }
+            self.recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
             self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeIdList.count) + ")"
+            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(alertView, animated: true, completion: nil)
@@ -185,7 +173,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if segue.identifier == "RecipeTapped" {
             let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.recipeId = recipeIdList[indexPath.row]
+                let realm = try! Realm()
+                let recipe = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).first!
+                vc.recipeId = recipe.id
             }
         }
     }
