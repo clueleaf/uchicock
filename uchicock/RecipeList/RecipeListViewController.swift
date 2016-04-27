@@ -135,6 +135,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.resignFirstResponder()
     }
     
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.reloadRecipeList()
+            self.tableView.reloadData()
+        }
+        return true
+    }
+    
     // MARK: - UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {

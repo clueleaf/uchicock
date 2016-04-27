@@ -122,6 +122,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.resignFirstResponder()
     }
     
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.reloadIngredientList()
+            self.tableView.reloadData()
+        }
+        return true
+    }
+    
+
+    
     // MARK: - UITableView
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
