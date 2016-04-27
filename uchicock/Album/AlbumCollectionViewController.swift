@@ -53,6 +53,26 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 recipeIdList.removeAtIndex(i)
             }
         }
+
+        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        for recipe in recipeList{
+            if recipe.imageData != nil{
+                //レシピ削除のバグに対するワークアラウンド
+                if UIImage(data: recipe.imageData!) != nil{
+                    var newPhotoFlag = true
+                    for id in recipeIdList{
+                        if recipe.id == id{
+                            newPhotoFlag = false
+                            break
+                        }
+                    }
+                    if newPhotoFlag{
+                        recipeIdList.append(recipe.id)
+                    }
+                }
+            }
+        }
+        
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(recipeIdList.count) + ")"
     }
@@ -76,12 +96,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         return NSAttributedString(string: str, attributes: attrs)
     }
 
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "最近写真を登録した場合、\n右上のリロードボタンをタップしてみてください"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
-    }
-    
     // MARK: UICollectionView
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let size = self.view.frame.size.width / 2 - 2
@@ -124,7 +138,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - IBAction
     @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "リロード＆シャッフル", message: "写真をリロードし、シャッフル表示します", preferredStyle: .Alert)
+        let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.recipeIdList.removeAll()
             let realm = try! Realm()
@@ -146,7 +160,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "リロード", message: "写真をリロードし、名前順に表示します", preferredStyle: .Alert)
+        let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.recipeIdList.removeAll()
             let realm = try! Realm()
