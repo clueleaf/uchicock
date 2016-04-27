@@ -92,7 +92,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reloadRecipeList(){
         let realm = try! Realm()
-        
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
             recipeList = realm.objects(Recipe).sorted("recipeName")
