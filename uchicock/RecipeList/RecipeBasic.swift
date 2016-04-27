@@ -6,9 +6,9 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class IngredientRecipeBasic: NSObject {
-    var recipeIngredientLinkId = ""
-    var recipeName = ""
-    var recipeKanaName = ""
+class RecipeBasic: NSObject {
+    var id = ""
+    var name = ""
+    var kanaName = ""
 }
 
