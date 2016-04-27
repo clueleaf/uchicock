@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = FlatOrange()
         UIButton.appearance().tintColor = FlatSkyBlueDark()
         UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
+        UISegmentedControl.appearance().backgroundColor = FlatWhite()
         UILabel.appearance().textColor = FlatBlack()
         
         let backgroundView = UIView()
