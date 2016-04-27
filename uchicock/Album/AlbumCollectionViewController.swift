@@ -20,25 +20,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        self.collectionView!.backgroundColor = FlatWhite()
-
-        recipeBasicList.removeAll()
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe)
-        for recipe in recipeList{
-            if recipe.imageData != nil{
-                //レシピ削除のバグに対するワークアラウンド
-                if UIImage(data: recipe.imageData!) != nil{
-                    let rb = RecipeBasic()
-                    rb.id = recipe.id
-                    rb.name = recipe.recipeName
-                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                    recipeBasicList.append(rb)
-                }
-            }
-        }
-        recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+        reloadRecipeList()
         
+        self.collectionView!.backgroundColor = FlatWhite()
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
     }
@@ -104,6 +88,25 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
+    
+    func reloadRecipeList(){
+        recipeBasicList.removeAll()
+        let realm = try! Realm()
+        let recipeList = realm.objects(Recipe)
+        for recipe in recipeList{
+            if recipe.imageData != nil{
+                //レシピ削除のバグに対するワークアラウンド
+                if UIImage(data: recipe.imageData!) != nil{
+                    let rb = RecipeBasic()
+                    rb.id = recipe.id
+                    rb.name = recipe.recipeName
+                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
+                    recipeBasicList.append(rb)
+                }
+            }
+        }
+        recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+    }
 
     // MARK: UICollectionView
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -149,6 +152,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.reloadRecipeList()
             self.shuffle(&self.recipeBasicList)
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
@@ -160,7 +164,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            self.recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+            self.reloadRecipeList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
