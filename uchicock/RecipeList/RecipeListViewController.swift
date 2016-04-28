@@ -149,7 +149,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-
         reloadRecipeBasicList()
         tableView.reloadData()
     }
@@ -159,7 +158,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_MSEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.reloadRecipeBasicList()
             self.tableView.reloadData()
@@ -199,7 +198,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let alertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                 self.deleteRecipe(self.recipeBasicList[indexPath.row].id)
-                self.reloadRecipeList()
+                self.recipeBasicList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                 self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
             }))

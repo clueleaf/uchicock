@@ -126,7 +126,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
 
         if stockState.selectedSegmentIndex != 0{
-            reloadIngredientBasicList()
+            ingredientBasicList.removeAtIndex(touchIndex!.row)
             tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
             if ingredientBasicList.count == 0{
                 tableView.reloadData()
@@ -147,15 +147,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(100 * Double(NSEC_PER_MSEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             self.reloadIngredientBasicList()
             self.tableView.reloadData()
         }
         return true
     }
-    
-
     
     // MARK: - UITableView
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -201,7 +199,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     try! realm.write {
                         realm.delete(ingredient)
                     }
-                    self.reloadIngredientList()
+                    self.ingredientBasicList.removeAtIndex(indexPath.row)
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                 }))
