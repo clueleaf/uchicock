@@ -104,6 +104,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return NSAttributedString(string: str, attributes: attrs)
     }
     
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -self.tableView.frame.size.height/4.0
+    }
+    
     func cellStockTapped(sender: M13Checkbox){
         var view = sender.superview
         while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
