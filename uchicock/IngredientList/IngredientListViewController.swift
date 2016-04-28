@@ -20,7 +20,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
-    
+    var ingredientBasicList = Array<IngredientBasic>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,21 +66,46 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let realm = try! Realm()
         switch stockState.selectedSegmentIndex{
         case 0:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).sorted("ingredientName")
         case 1:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == true", searchBarTextWithoutSpace()).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("stockFlag == true").sorted("ingredientName")
         case 2:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@ and stockFlag == false", searchBarTextWithoutSpace()).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).filter("stockFlag == false").sorted("ingredientName")
         default:
-            ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@", searchBarTextWithoutSpace()).sorted("ingredientName")
+            ingredientList = realm.objects(Ingredient).sorted("ingredientName")
         }
-        self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
+        
+        reloadIngredientBasicList()
+    }
+    
+    func reloadIngredientBasicList(){
+        ingredientBasicList.removeAll()
+        for ingredient in ingredientList!{
+            let ib = IngredientBasic()
+            ib.id = ingredient.id
+            ib.name = ingredient.ingredientName
+            ib.kanaName = ingredient.ingredientName.katakana().lowercaseString
+            ingredientBasicList.append(ib)
+        }
+        
+        for i in (0..<ingredientBasicList.count).reverse(){
+            if searchBarTextWithoutSpace() != "" && ingredientBasicList[i].kanaName.containsString(searchBarTextWithoutSpace().katakana().lowercaseString) == false{
+                ingredientBasicList.removeAtIndex(i)
+            }
+        }
+        ingredientBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+        
+        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -self.tableView.frame.size.height/4.0
     }
     
     func cellStockTapped(sender: M13Checkbox){
@@ -90,36 +116,47 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let cell = view as! IngredientListItemTableViewCell
         let touchIndex = self.tableView.indexPathForCell(cell)
         
-        if ingredientList![touchIndex!.row].stockFlag {
-            let realm = try! Realm()
+        let realm = try! Realm()
+        let ingredient = realm.objects(Ingredient).filter("id == %@", ingredientBasicList[touchIndex!.row].id).first!
+
+        if ingredient.stockFlag {
             try! realm.write {
-                ingredientList![touchIndex!.row].stockFlag = false
+                ingredient.stockFlag = false
             }
         }else{
-            let realm = try! Realm()
             try! realm.write {
-                ingredientList![touchIndex!.row].stockFlag = true
+                ingredient.stockFlag = true
             }
         }
 
         if stockState.selectedSegmentIndex != 0{
+            ingredientBasicList.removeAtIndex(touchIndex!.row)
             tableView.deleteRowsAtIndexPaths([touchIndex!], withRowAnimation: .Automatic)
-            if ingredientList!.count == 0{
+            if ingredientBasicList.count == 0{
                 tableView.reloadData()
             }
-            self.navigationItem.title = "材料(" + String(ingredientList!.count) + ")"
+            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
         }
     }
     
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        reloadIngredientList()
+        reloadIngredientBasicList()
         tableView.reloadData()
     }
 
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.reloadIngredientBasicList()
+            self.tableView.reloadData()
+        }
+        return true
     }
     
     // MARK: - UITableView
@@ -132,7 +169,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if ingredientList == nil{
                 reloadIngredientList()
             }
-            return ingredientList!.count
+            return ingredientBasicList.count
         }
         return 0
     }
@@ -151,7 +188,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         let del = UITableViewRowAction(style: .Default, title: "削除") {
             (action, indexPath) in
-            if self.ingredientList![indexPath.row].recipeIngredients.count > 0 {
+            let realm = try! Realm()
+            let ingredient = realm.objects(Ingredient).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+
+            
+            if ingredient.recipeIngredients.count > 0 {
                 let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .Alert)
                 alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                 self.presentViewController(alertView, animated: true, completion: nil)
@@ -159,12 +200,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
                 favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                     let realm = try! Realm()
-                    let ingredient = self.ingredientList![indexPath.row]
                     try! realm.write {
                         realm.delete(ingredient)
                     }
+                    self.ingredientBasicList.removeAtIndex(indexPath.row)
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    self.navigationItem.title = "材料(" + String(self.ingredientList!.count) + ")"
+                    self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                 }))
                 favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                 self.presentViewController(favoriteAlertView, animated: true, completion: nil)
@@ -172,7 +213,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
         del.backgroundColor = FlatRed()
         
-        if self.ingredientList![indexPath.row].recipeIngredients.count == 0 {
+        let realm = try! Realm()
+        let ingredient = realm.objects(Ingredient).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+        if ingredient.recipeIngredients.count == 0 {
             return [del, edit]
         }else{
             return [edit]
@@ -192,12 +235,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             cell.stockState = stockState.selectedSegmentIndex
             cell.stock.stateChangeAnimation = .Fade(.Fill)
             cell.stock.animationDuration = 0
-            if ingredientList![indexPath.row].stockFlag{
+            
+            let realm = try! Realm()
+            let ingredient = realm.objects(Ingredient).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+
+            if ingredient.stockFlag{
                 cell.stock.setCheckState(.Checked, animated: true)
             }else{
                 cell.stock.setCheckState(.Unchecked, animated: true)
             }
-            cell.ingredient = ingredientList![indexPath.row]
+            cell.ingredient = ingredient
             cell.backgroundColor = FlatWhite()
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
             
@@ -221,13 +268,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destinationViewController as! IngredientDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.ingredientId = ingredientList![indexPath.row].id
+                vc.ingredientId = ingredientBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
             if let indexPath = sender as? NSIndexPath {
                 let enc = segue.destinationViewController as! UINavigationController
                 let evc = enc.visibleViewController as! IngredientEditTableViewController
-                evc.ingredient = ingredientList![indexPath.row]
+                let realm = try! Realm()
+                let ingredient = realm.objects(Ingredient).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+                evc.ingredient = ingredient
             }
         }
     }

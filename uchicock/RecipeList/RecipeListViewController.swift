@@ -20,6 +20,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     var recipeList: Results<Recipe>?
+    var recipeBasicList = Array<RecipeBasic>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +58,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
     
-    func deleteRecipe(recipe: Recipe) {
+    func deleteRecipe(id: String) {
         let realm = try! Realm()
+        let recipe = realm.objects(Recipe).filter("id == %@", id).first!
         
         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
         for ri in recipe.recipeIngredients{
@@ -90,16 +92,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reloadRecipeList(){
         let realm = try! Realm()
-        
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).sorted("recipeName")
+            recipeList = realm.objects(Recipe).sorted("recipeName")
         case 1:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites > 1", searchBarTextWithoutSpace()).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("favorites > 1").sorted("recipeName")
         case 2:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@ and favorites == 3", searchBarTextWithoutSpace()).sorted("recipeName")
+            recipeList = realm.objects(Recipe).filter("favorites == 3").sorted("recipeName")
         default:
-            recipeList = realm.objects(Recipe).filter("recipeName contains %@", searchBarTextWithoutSpace()).sorted("recipeName")
+            recipeList = realm.objects(Recipe).sorted("recipeName")
         }
         
         if order.selectedSegmentIndex == 1{
@@ -114,7 +115,29 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeList = recipeList!.sorted(sortProperties)
         }
         
-        self.navigationItem.title = "レシピ(" + String(recipeList!.count) + ")"
+        reloadRecipeBasicList()
+    }
+    
+    func reloadRecipeBasicList(){
+        recipeBasicList.removeAll()
+        for recipe in recipeList!{
+            let rb = RecipeBasic()
+            rb.id = recipe.id
+            rb.name = recipe.recipeName
+            rb.kanaName = recipe.recipeName.katakana().lowercaseString
+            recipeBasicList.append(rb)
+        }
+        
+        for i in (0..<recipeBasicList.count).reverse(){
+            if searchBarTextWithoutSpace() != "" && recipeBasicList[i].kanaName.containsString(searchBarTextWithoutSpace().katakana().lowercaseString) == false{
+                recipeBasicList.removeAtIndex(i)
+            }
+        }
+        if order.selectedSegmentIndex == 0{
+            recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+        }
+        
+        self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -122,17 +145,29 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
-        
+    
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -self.tableView.frame.size.height/4.0
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-
-        reloadRecipeList()
+        reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.reloadRecipeBasicList()
+            self.tableView.reloadData()
+        }
+        return true
     }
     
     // MARK: - UITableView
@@ -141,7 +176,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if recipeList == nil{
                 reloadRecipeList()
             }
-            return recipeList!.count
+            return recipeBasicList.count
         }
         return 0
     }
@@ -166,9 +201,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             (action, indexPath) in
             let alertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
-                self.deleteRecipe(self.recipeList![indexPath.row])
+                self.deleteRecipe(self.recipeBasicList[indexPath.row].id)
+                self.recipeBasicList.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.navigationItem.title = "レシピ(" + String(self.recipeList!.count) + ")"
+                self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
             }))
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
             self.presentViewController(alertView, animated: true, completion: nil)
@@ -188,7 +224,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
-            cell.recipe = recipeList![indexPath.row]
+            let realm = try! Realm()
+            let recipe = realm.objects(Recipe).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+            cell.recipe = recipe
             cell.backgroundColor = FlatWhite()
             return cell
         }
@@ -215,13 +253,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "PushRecipeDetail" {
             let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
-                vc.recipeId = recipeList![indexPath.row].id
+                vc.recipeId = recipeBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
             if let indexPath = sender as? NSIndexPath{
                 let enc = segue.destinationViewController as! UINavigationController
                 let evc = enc.visibleViewController as! RecipeEditTableViewController
-                evc.recipe = recipeList![indexPath.row]
+                let realm = try! Realm()
+                let recipe = realm.objects(Recipe).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+                evc.recipe = recipe
             }
         }
     }
