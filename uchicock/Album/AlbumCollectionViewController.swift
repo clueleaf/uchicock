@@ -45,23 +45,21 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         let recipeList = realm.objects(Recipe).sorted("recipeName")
         for recipe in recipeList{
-            if recipe.imageData != nil{
+            var newPhotoFlag = true
+            for rb in recipeBasicList{
+                if recipe.id == rb.id{
+                    newPhotoFlag = false
+                    break
+                }
+            }
+            if newPhotoFlag && recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
-                    var newPhotoFlag = true
-                    for rb in recipeBasicList{
-                        if recipe.id == rb.id{
-                            newPhotoFlag = false
-                            break
-                        }
-                    }
-                    if newPhotoFlag{
-                        let rb = RecipeBasic()
-                        rb.id = recipe.id
-                        rb.name = recipe.recipeName
-                        rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                        recipeBasicList.append(rb)
-                    }
+                    let rb = RecipeBasic()
+                    rb.id = recipe.id
+                    rb.name = recipe.recipeName
+                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
+                    recipeBasicList.append(rb)
                 }
             }
         }
