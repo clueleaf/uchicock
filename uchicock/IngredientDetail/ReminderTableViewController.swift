@@ -218,3 +218,10 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
 }
+
+class DateTextField: UITextField{
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        UIMenuController.sharedMenuController().menuVisible = false
+        return false
+    }
+}
