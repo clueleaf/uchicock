@@ -443,7 +443,9 @@
                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
-                                                <fragment content="同じ名前のレシピが既にある場合、内容が違っても復元できません。復元したい場合は同じ名前のレシピを削除するか、名前を変更してください。">
+                                                <fragment>
+                                                    <string key="content">
+同じ名前のレシピが既にある場合、内容が違っても復元できません。復元したい場合は同じ名前のレシピを削除するか、名前を変更してください。</string>
                                                     <attributes>
                                                         <color key="NSColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="17" name="HiraginoSans-W3"/>
@@ -606,6 +608,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="isTarget" destination="kNf-Mw-1Vy" id="NBg-HE-AuM"/>
+                                    <outlet property="recipeName" destination="8ML-xX-9YY" id="Q0A-Kg-VKN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

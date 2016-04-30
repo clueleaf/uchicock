@@ -13,26 +13,18 @@ import M13Checkbox
 class RecoverTargetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var isTarget: M13Checkbox!
+    @IBOutlet weak var recipeName: UILabel!
     
-    var isRecoverable = false
-    
+    var isRecoverable: Bool = Bool(){
+        didSet{
+            isTarget.stateChangeAnimation = .Expand(.Fill)
+            isTarget.animationDuration = 0.3
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        isTarget.stateChangeAnimation = .Expand(.Fill)
-        isTarget.backgroundColor = UIColor.clearColor()
-        isTarget.boxLineWidth = 1.0
-        isTarget.markType = .Checkmark
-        isTarget.boxType = .Circle
-        if isRecoverable {
-            isTarget.enabled = true
-            isTarget.setCheckState(.Unchecked, animated: true)
-            isTarget.tintColor = FlatSkyBlueDark()
-        }else{
-            isTarget.enabled = false
-            isTarget.setCheckState(.Mixed, animated: true)
-            isTarget.tintColor = FlatWhiteDark()
-        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -49,6 +49,7 @@
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */; };
 		9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */; };
+		9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 		BBFACDF1C4663C17EFBAA2CE /* Pods_uchicockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */; };
@@ -136,6 +137,7 @@
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverDescriptionTableViewCell.swift; path = Recover/RecoverDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverRecipeBasic.swift; path = Recover/RecoverRecipeBasic.swift; sourceTree = "<group>"; };
 		9BE2025D1CCA2CFB00F2382C /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */,
 				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
+				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
 			);
 			name = Recover;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
+				9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */,
 				9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */,
 				9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */,
 				9B3078C61CA421660014CE7E /* RecipeListItemTableViewCell.swift in Sources */,

@@ -17,8 +17,12 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
     @IBOutlet weak var unableRecover: M13Checkbox!
     @IBOutlet weak var recoverableNumberLabel: UILabel!
     
-    var sampleRecipeNum = 0
     var recoverableRecipeNum = 0
+    var sampleRecipeNum: Int = Int(){
+        didSet{
+            recoverableNumberLabel.text = String(sampleRecipeNum) + "レシピ中" + String(recoverableRecipeNum) + "レシピを復元できます。"
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,8 +53,6 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         unableRecover.boxLineWidth = 1.0
         unableRecover.markType = .Checkmark
         unableRecover.boxType = .Circle
-        
-        recoverableNumberLabel.text = String(sampleRecipeNum) + "レシピ中" + String(recoverableRecipeNum) + "レシピを復元できます。"
 }
 
     override func setSelected(selected: Bool, animated: Bool) {
