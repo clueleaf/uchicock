@@ -77,11 +77,11 @@ class RecoverTableViewController: UITableViewController {
         let cell = view as! RecoverTargetTableViewCell
         let touchIndex = self.tableView.indexPathForCell(cell)
         
-        if touchIndex!.row - 1 < recoverableSampleRecipeList.count{
+        if touchIndex!.row < recoverableSampleRecipeList.count{
             if sender.checkState == .Checked{
-                recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = true
+                recoverableSampleRecipeList[touchIndex!.row].recoverTarget = true
             }else if sender.checkState == .Unchecked{
-                recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = false
+                recoverableSampleRecipeList[touchIndex!.row].recoverTarget = false
             }
         }
     }
@@ -187,30 +187,28 @@ class RecoverTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            if indexPath.row == 0{
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                if recoverableSampleRecipeList.count == 0{
-                    let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .Alert)
-                    alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-                    }))
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                }else{
-                    let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
-                    alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
-                        for recipe in self.recoverableSampleRecipeList{
-                            recipe.recoverTarget = true
-                        }
-                        self.recover()
-                        SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }))
-                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                }
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            if recoverableSampleRecipeList.count == 0{
+                let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                }))
+                self.presentViewController(alertView, animated: true, completion: nil)
             }else{
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                performSegueWithIdentifier("PushPreview", sender: indexPath)
+                let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                    for recipe in self.recoverableSampleRecipeList{
+                        recipe.recoverTarget = true
+                    }
+                    self.recover()
+                    SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                self.presentViewController(alertView, animated: true, completion: nil)
             }
+        }else if indexPath.section == 2{
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("PushPreview", sender: indexPath)
         }
     }
     
@@ -223,14 +221,16 @@ class RecoverTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 1
+        }else if section == 1{
+            return 1
         }else{
-            return recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count + 1
+            return recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
         }
     }
     
@@ -242,38 +242,36 @@ class RecoverTableViewController: UITableViewController {
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
             return cell
         case 1:
-            if indexPath.row == 0{
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecoverAll") as! RecoverAllTableViewCell
-                return cell
-            }else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecoverTarget") as! RecoverTargetTableViewCell
-                cell.isTarget.stateChangeAnimation = .Fade(.Fill)
-                cell.isTarget.animationDuration = 0
-                cell.isTarget.backgroundColor = UIColor.clearColor()
-                cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.markType = .Checkmark
-                cell.isTarget.boxType = .Circle
-                
-                if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
-                    cell.isTarget.enabled = true
-                    cell.isTarget.tintColor = FlatSkyBlueDark()
-                    if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
-                        cell.isTarget.setCheckState(.Checked, animated: true)
-                    }else{
-                        cell.isTarget.setCheckState(.Unchecked, animated: true)
-                    }
-                    cell.isRecoverable = true
-                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverAll") as! RecoverAllTableViewCell
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverTarget") as! RecoverTargetTableViewCell
+            cell.isTarget.stateChangeAnimation = .Fade(.Fill)
+            cell.isTarget.animationDuration = 0
+            cell.isTarget.backgroundColor = UIColor.clearColor()
+            cell.isTarget.boxLineWidth = 1.0
+            cell.isTarget.markType = .Checkmark
+            cell.isTarget.boxType = .Circle
+            
+            if indexPath.row < recoverableSampleRecipeList.count{
+                cell.recipeName.text = recoverableSampleRecipeList[indexPath.row].name
+                cell.isTarget.enabled = true
+                cell.isTarget.tintColor = FlatSkyBlueDark()
+                if recoverableSampleRecipeList[indexPath.row].recoverTarget{
+                    cell.isTarget.setCheckState(.Checked, animated: true)
                 }else{
-                    cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
-                    cell.isTarget.enabled = false
-                    cell.isTarget.tintColor = FlatWhiteDark()
-                    cell.isTarget.setCheckState(.Mixed, animated: true)
-                    cell.isRecoverable = false
+                    cell.isTarget.setCheckState(.Unchecked, animated: true)
                 }
-                return cell
+                cell.isRecoverable = true
+                cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            }else{
+                cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name
+                cell.isTarget.enabled = false
+                cell.isTarget.tintColor = FlatWhiteDark()
+                cell.isTarget.setCheckState(.Mixed, animated: true)
+                cell.isRecoverable = false
             }
+            return cell
         default:
             return UITableViewCell()
         }
@@ -319,11 +317,11 @@ class RecoverTableViewController: UITableViewController {
             let vc = segue.destinationViewController as! RecoverPreviewTableViewController
             if let indexPath = sender as? NSIndexPath{
                 let realm = try! Realm()
-                if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    let recipe = realm.objects(Recipe).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
+                if indexPath.row < recoverableSampleRecipeList.count{
+                    let recipe = realm.objects(Recipe).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row].name).first!
                     vc.recipe = recipe
                 }else{
-                    let recipe = realm.objects(Recipe).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
+                    let recipe = realm.objects(Recipe).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name).first!
                     vc.recipe = recipe
                 }
             }
