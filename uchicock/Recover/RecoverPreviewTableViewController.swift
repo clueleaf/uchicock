@@ -28,6 +28,9 @@ class RecoverPreviewTableViewController: UITableViewController {
         } else {
             method.selectedSegmentIndex = 4
         }
+
+        self.tableView.estimatedRowHeight = 70
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +48,11 @@ class RecoverPreviewTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            if indexPath.row == 0{
+                return UITableViewAutomaticDimension
+            }else{
+                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            }
         }else if indexPath.section == 1{
             return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }
@@ -106,6 +113,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.ingredientName.textColor = FlatBlack()
             cell.amount.textColor = FlatBlack()
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
+            cell.selectionStyle = .None
             cell.backgroundColor = FlatWhite()
             return cell
         default:

@@ -14,11 +14,13 @@ class RecoverTargetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var isTarget: M13Checkbox!
     @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var previewLabel: UILabel!
     
     var isRecoverable: Bool = Bool(){
         didSet{
             isTarget.stateChangeAnimation = .Expand(.Fill)
             isTarget.animationDuration = 0.3
+            previewLabel.textColor = FlatGrayDark()
         }
     }
 
