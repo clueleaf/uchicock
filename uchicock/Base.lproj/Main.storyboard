@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1570" y="-417"/>
+            <point key="canvasLocation" x="-1548" y="-417"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -419,167 +419,204 @@
         <scene sceneID="7Cu-5Z-UEE">
             <objects>
                 <tableViewController id="TFa-fz-OIP" customClass="RecoverTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6N7-u7-c8S">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6N7-u7-c8S">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection headerTitle="Section-1" id="pHo-XN-O6W">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="Vzn-kl-fwJ">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="250"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vzn-kl-fwJ" id="Zk2-7Y-jRZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGD-9P-dgZ">
-                                                    <rect key="frame" x="8" y="8" width="584" height="79"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment>
-                                                            <string key="content">選択したサンプルレシピを復元します。
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverDescription" rowHeight="300" id="Vzn-kl-fwJ" customClass="RecoverDescriptionTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vzn-kl-fwJ" id="Zk2-7Y-jRZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="299.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGD-9P-dgZ">
+                                            <rect key="frame" x="8" y="8" width="584" height="86"/>
+                                            <attributedString key="attributedText">
+                                                <fragment>
+                                                    <string key="content">選択したサンプルレシピを復元します。
+</string>
+                                                    <attributes>
+                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="同じ名前のレシピが既にある場合、内容が違っても復元できません。復元したい場合は同じ名前のレシピを削除するか、名前を変更してください。">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
 
 サンプルレシピは、アプリアップデートで追加されることがあります。</string>
-                                                            <attributes>
-                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                <font key="NSFont" size="17" name="HiraginoSans-W3"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Ji-xBn" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="8" y="107" width="40" height="40"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="7sL-cg-5lj"/>
-                                                        <constraint firstAttribute="height" constant="40" id="lzt-Pn-ejS"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfD-hE-RyC" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="8" y="155" width="40" height="40"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="wZc-Hi-cp4"/>
-                                                        <constraint firstAttribute="width" constant="40" id="xl9-bX-JCB"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaG-pb-y5i" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="8" y="203" width="40" height="40"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="2V6-7k-9tO"/>
-                                                        <constraint firstAttribute="width" constant="40" id="RA7-n2-KbQ"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-vh-NsM">
-                                                    <rect key="frame" x="56" y="117" width="536" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="LuW-e8-Ij2"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象でない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPU-tj-WHM">
-                                                    <rect key="frame" x="56" y="165" width="536" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="bfj-6I-BsE"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。復元したい場合は先に同じ名前のレシピを削除してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK5-dy-wSN">
-                                                    <rect key="frame" x="56" y="205" width="536" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                                    <attributes>
+                                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Ji-xBn" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="114" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="N7z-Ji-xBn" firstAttribute="top" secondItem="yGD-9P-dgZ" secondAttribute="bottom" constant="20" id="12j-nb-LzG"/>
-                                                <constraint firstItem="SFM-vh-NsM" firstAttribute="leading" secondItem="N7z-Ji-xBn" secondAttribute="trailing" constant="8" id="4AT-cx-Cx6"/>
-                                                <constraint firstItem="LaG-pb-y5i" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="9Lt-ec-fzX"/>
-                                                <constraint firstItem="SFM-vh-NsM" firstAttribute="centerY" secondItem="N7z-Ji-xBn" secondAttribute="centerY" id="9Xg-Ss-Vyr"/>
-                                                <constraint firstAttribute="trailing" secondItem="SFM-vh-NsM" secondAttribute="trailing" constant="8" id="BEW-Qt-NBy"/>
-                                                <constraint firstItem="fK5-dy-wSN" firstAttribute="centerY" secondItem="LaG-pb-y5i" secondAttribute="centerY" id="EwH-vg-qwC"/>
-                                                <constraint firstItem="LaG-pb-y5i" firstAttribute="top" secondItem="AfD-hE-RyC" secondAttribute="bottom" constant="8" id="Fo9-7X-J0R"/>
-                                                <constraint firstItem="VPU-tj-WHM" firstAttribute="leading" secondItem="AfD-hE-RyC" secondAttribute="trailing" constant="8" id="MN9-tC-BXp"/>
-                                                <constraint firstAttribute="trailing" secondItem="VPU-tj-WHM" secondAttribute="trailing" constant="8" id="PYd-Jy-YKp"/>
-                                                <constraint firstAttribute="trailing" secondItem="yGD-9P-dgZ" secondAttribute="trailing" constant="8" id="SI1-oO-Eiw"/>
-                                                <constraint firstItem="VPU-tj-WHM" firstAttribute="centerY" secondItem="AfD-hE-RyC" secondAttribute="centerY" id="Saq-fL-F8M"/>
-                                                <constraint firstItem="AfD-hE-RyC" firstAttribute="top" secondItem="N7z-Ji-xBn" secondAttribute="bottom" constant="8" id="T6T-ZZ-y1T"/>
-                                                <constraint firstItem="yGD-9P-dgZ" firstAttribute="top" secondItem="Zk2-7Y-jRZ" secondAttribute="top" constant="8" id="VkS-yg-7gj"/>
-                                                <constraint firstItem="N7z-Ji-xBn" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="fvf-Bz-x21"/>
-                                                <constraint firstItem="yGD-9P-dgZ" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="gGV-gC-1dB"/>
-                                                <constraint firstItem="fK5-dy-wSN" firstAttribute="leading" secondItem="LaG-pb-y5i" secondAttribute="trailing" constant="8" id="gXf-iN-ixm"/>
-                                                <constraint firstItem="AfD-hE-RyC" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="lDm-de-2X7"/>
-                                                <constraint firstAttribute="trailing" secondItem="fK5-dy-wSN" secondAttribute="trailing" constant="8" id="lwF-a5-ONy"/>
-                                                <constraint firstAttribute="bottom" secondItem="fK5-dy-wSN" secondAttribute="bottom" constant="8" id="rMG-y1-07J"/>
+                                                <constraint firstAttribute="width" constant="40" id="7sL-cg-5lj"/>
+                                                <constraint firstAttribute="height" constant="40" id="lzt-Pn-ejS"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Section-2" id="uqb-8R-Ina">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="1zB-FP-8XU" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="370" width="600" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zB-FP-8XU" id="3qx-NS-6Ge">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-Mw-1Vy" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="8" y="5" width="40" height="40"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="pOs-bp-Ghn"/>
-                                                        <constraint firstAttribute="width" constant="40" id="vde-1L-57T"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QY-VK-i26">
-                                                    <rect key="frame" x="507" y="14" width="60" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="DIr-eV-t7d"/>
-                                                        <constraint firstAttribute="height" constant="21" id="s23-c4-cti"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-xX-9YY">
-                                                    <rect key="frame" x="56" y="14.5" width="443" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="HoJ-pm-O3a"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfD-hE-RyC" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="162" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="8ML-xX-9YY" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="1df-fL-WFV"/>
-                                                <constraint firstItem="kNf-Mw-1Vy" firstAttribute="leading" secondItem="3qx-NS-6Ge" secondAttribute="leading" constant="8" id="Dht-rz-x66"/>
-                                                <constraint firstItem="6QY-VK-i26" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Eyv-Uc-hNI"/>
-                                                <constraint firstItem="kNf-Mw-1Vy" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Rnn-d7-6IZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="6QY-VK-i26" secondAttribute="trailing" id="Xqf-3r-81B"/>
-                                                <constraint firstItem="8ML-xX-9YY" firstAttribute="leading" secondItem="kNf-Mw-1Vy" secondAttribute="trailing" constant="8" id="cDl-JI-0GL"/>
-                                                <constraint firstItem="6QY-VK-i26" firstAttribute="leading" secondItem="8ML-xX-9YY" secondAttribute="trailing" constant="8" id="dbO-yl-fk0"/>
+                                                <constraint firstAttribute="height" constant="40" id="wZc-Hi-cp4"/>
+                                                <constraint firstAttribute="width" constant="40" id="xl9-bX-JCB"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaG-pb-y5i" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="210" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="2V6-7k-9tO"/>
+                                                <constraint firstAttribute="width" constant="40" id="RA7-n2-KbQ"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-vh-NsM">
+                                            <rect key="frame" x="56" y="124" width="536" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="LuW-e8-Ij2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象でない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPU-tj-WHM">
+                                            <rect key="frame" x="56" y="172" width="536" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="bfj-6I-BsE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK5-dy-wSN">
+                                            <rect key="frame" x="56" y="221" width="536" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-76-G58">
+                                            <rect key="frame" x="8" y="270" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="gpF-yU-C3x"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="N7z-Ji-xBn" firstAttribute="top" secondItem="yGD-9P-dgZ" secondAttribute="bottom" constant="20" id="12j-nb-LzG"/>
+                                        <constraint firstItem="SFM-vh-NsM" firstAttribute="leading" secondItem="N7z-Ji-xBn" secondAttribute="trailing" constant="8" id="4AT-cx-Cx6"/>
+                                        <constraint firstItem="LaG-pb-y5i" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="9Lt-ec-fzX"/>
+                                        <constraint firstItem="SFM-vh-NsM" firstAttribute="centerY" secondItem="N7z-Ji-xBn" secondAttribute="centerY" id="9Xg-Ss-Vyr"/>
+                                        <constraint firstAttribute="trailing" secondItem="SFM-vh-NsM" secondAttribute="trailing" constant="8" id="BEW-Qt-NBy"/>
+                                        <constraint firstItem="fK5-dy-wSN" firstAttribute="centerY" secondItem="LaG-pb-y5i" secondAttribute="centerY" id="EwH-vg-qwC"/>
+                                        <constraint firstItem="LaG-pb-y5i" firstAttribute="top" secondItem="AfD-hE-RyC" secondAttribute="bottom" constant="8" id="Fo9-7X-J0R"/>
+                                        <constraint firstItem="VPU-tj-WHM" firstAttribute="leading" secondItem="AfD-hE-RyC" secondAttribute="trailing" constant="8" id="MN9-tC-BXp"/>
+                                        <constraint firstAttribute="trailing" secondItem="VPU-tj-WHM" secondAttribute="trailing" constant="8" id="PYd-Jy-YKp"/>
+                                        <constraint firstAttribute="trailing" secondItem="XEt-76-G58" secondAttribute="trailing" constant="8" id="R7P-qm-DSN"/>
+                                        <constraint firstAttribute="trailing" secondItem="yGD-9P-dgZ" secondAttribute="trailing" constant="8" id="SI1-oO-Eiw"/>
+                                        <constraint firstItem="XEt-76-G58" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="SVg-YA-U1J"/>
+                                        <constraint firstItem="VPU-tj-WHM" firstAttribute="centerY" secondItem="AfD-hE-RyC" secondAttribute="centerY" id="Saq-fL-F8M"/>
+                                        <constraint firstItem="AfD-hE-RyC" firstAttribute="top" secondItem="N7z-Ji-xBn" secondAttribute="bottom" constant="8" id="T6T-ZZ-y1T"/>
+                                        <constraint firstAttribute="bottom" secondItem="XEt-76-G58" secondAttribute="bottom" constant="8" id="Tlr-Qs-sda"/>
+                                        <constraint firstItem="yGD-9P-dgZ" firstAttribute="top" secondItem="Zk2-7Y-jRZ" secondAttribute="top" constant="8" id="VkS-yg-7gj"/>
+                                        <constraint firstItem="N7z-Ji-xBn" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="fvf-Bz-x21"/>
+                                        <constraint firstItem="yGD-9P-dgZ" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="gGV-gC-1dB"/>
+                                        <constraint firstItem="XEt-76-G58" firstAttribute="top" secondItem="LaG-pb-y5i" secondAttribute="bottom" constant="20" id="gTu-ZX-5Fv"/>
+                                        <constraint firstItem="fK5-dy-wSN" firstAttribute="leading" secondItem="LaG-pb-y5i" secondAttribute="trailing" constant="8" id="gXf-iN-ixm"/>
+                                        <constraint firstItem="AfD-hE-RyC" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="lDm-de-2X7"/>
+                                        <constraint firstAttribute="trailing" secondItem="fK5-dy-wSN" secondAttribute="trailing" constant="8" id="lwF-a5-ONy"/>
+                                        <constraint firstAttribute="bottom" secondItem="fK5-dy-wSN" secondAttribute="bottom" constant="8" id="rMG-y1-07J"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="rMG-y1-07J"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nonRecoverTarget" destination="AfD-hE-RyC" id="p1F-3n-BEz"/>
+                                    <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="0cj-eg-TT2"/>
+                                    <outlet property="recoverableNumberLabel" destination="XEt-76-G58" id="xFn-CF-vHy"/>
+                                    <outlet property="unableRecover" destination="LaG-pb-y5i" id="tph-51-VLc"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="1zB-FP-8XU" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="392" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zB-FP-8XU" id="3qx-NS-6Ge">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-Mw-1Vy" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="5" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="pOs-bp-Ghn"/>
+                                                <constraint firstAttribute="width" constant="40" id="vde-1L-57T"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QY-VK-i26">
+                                            <rect key="frame" x="507" y="14" width="60" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="DIr-eV-t7d"/>
+                                                <constraint firstAttribute="height" constant="21" id="s23-c4-cti"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-xX-9YY">
+                                            <rect key="frame" x="56" y="14.5" width="443" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="HoJ-pm-O3a"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8ML-xX-9YY" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="1df-fL-WFV"/>
+                                        <constraint firstItem="kNf-Mw-1Vy" firstAttribute="leading" secondItem="3qx-NS-6Ge" secondAttribute="leading" constant="8" id="Dht-rz-x66"/>
+                                        <constraint firstItem="6QY-VK-i26" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Eyv-Uc-hNI"/>
+                                        <constraint firstItem="kNf-Mw-1Vy" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Rnn-d7-6IZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="6QY-VK-i26" secondAttribute="trailing" id="Xqf-3r-81B"/>
+                                        <constraint firstItem="8ML-xX-9YY" firstAttribute="leading" secondItem="kNf-Mw-1Vy" secondAttribute="trailing" constant="8" id="cDl-JI-0GL"/>
+                                        <constraint firstItem="6QY-VK-i26" firstAttribute="leading" secondItem="8ML-xX-9YY" secondAttribute="trailing" constant="8" id="dbO-yl-fk0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isTarget" destination="kNf-Mw-1Vy" id="NBg-HE-AuM"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="TFa-fz-OIP" id="me9-1s-hkg"/>
                             <outlet property="delegate" destination="TFa-fz-OIP" id="Wpq-DO-mMl"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="サンプルレシピ復元" id="5L2-cN-G3U">
+                        <barButtonItem key="backBarButtonItem" title="レシピ復元" id="DLn-lv-F6y"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XTZ-Wj-Ob4">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="TFa-fz-OIP" id="Mq0-xb-JgP"/>
@@ -591,11 +628,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="nonRecoverTarget" destination="AfD-hE-RyC" id="CjL-Bq-m0L"/>
-                        <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="1KT-mT-7bU"/>
-                        <outlet property="unableRecover" destination="LaG-pb-y5i" id="qxA-gT-sc8"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -48,6 +48,7 @@
 		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */; };
+		9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 		BBFACDF1C4663C17EFBAA2CE /* Pods_uchicockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */; };
@@ -134,6 +135,7 @@
 		9BCB2DE41CC91A8D00E8ED0E /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "Pods/../build/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverDescriptionTableViewCell.swift; path = Recover/RecoverDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		9BE2025D1CCA2CFB00F2382C /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */,
+				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
 			);
 			name = Recover;
@@ -671,6 +674,7 @@
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
+				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B6D67CA1CD0E8F9001E8079 /* IngredientName.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,

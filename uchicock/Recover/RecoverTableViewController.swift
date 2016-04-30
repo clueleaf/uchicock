@@ -7,51 +7,32 @@
 //
 
 import UIKit
+import RealmSwift
 import ChameleonFramework
 import M13Checkbox
 
 class RecoverTableViewController: UITableViewController {
 
-    @IBOutlet weak var recoverTarget: M13Checkbox!
-    @IBOutlet weak var nonRecoverTarget: M13Checkbox!
-    @IBOutlet weak var unableRecover: M13Checkbox!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recoverTarget.stateChangeAnimation = .Expand(.Fill)
-        recoverTarget.enabled = false
-        recoverTarget.setCheckState(.Checked, animated: true)
-        recoverTarget.backgroundColor = UIColor.clearColor()
-        recoverTarget.tintColor = FlatSkyBlueDark()
-        recoverTarget.boxLineWidth = 1.0
-        recoverTarget.markType = .Checkmark
-        recoverTarget.boxType = .Circle
-        
-        nonRecoverTarget.stateChangeAnimation = .Expand(.Fill)
-        nonRecoverTarget.enabled = false
-        nonRecoverTarget.setCheckState(.Unchecked, animated: true)
-        nonRecoverTarget.backgroundColor = UIColor.clearColor()
-        nonRecoverTarget.tintColor = FlatSkyBlueDark()
-        nonRecoverTarget.boxLineWidth = 1.0
-        nonRecoverTarget.markType = .Checkmark
-        nonRecoverTarget.boxType = .Circle
-
-        unableRecover.stateChangeAnimation = .Expand(.Fill)
-        unableRecover.enabled = false
-        unableRecover.setCheckState(.Mixed, animated: true)
-        unableRecover.backgroundColor = UIColor.clearColor()
-        unableRecover.tintColor = FlatWhiteDark()
-        unableRecover.boxLineWidth = 1.0
-        unableRecover.markType = .Checkmark
-        unableRecover.boxType = .Circle
-
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
+
+        let realmPath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: true, path: realmPath)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
     }
 
     // MARK: - Table view
@@ -66,8 +47,9 @@ class RecoverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return UITableViewAutomaticDimension
+        }else{
+            return 50
         }
-        return 0
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -93,10 +75,10 @@ class RecoverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverDescription") as! RecoverDescriptionTableViewCell
             return cell
         case 1:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverTarget") as! RecoverTargetTableViewCell
             return cell
         default:
             return UITableViewCell()
