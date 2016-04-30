@@ -255,7 +255,6 @@ class RecoverTableViewController: UITableViewController {
                 cell.isTarget.boxType = .Circle
                 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    cell.isRecoverable = true
                     cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
                     cell.isTarget.enabled = true
                     cell.isTarget.tintColor = FlatSkyBlueDark()
@@ -264,15 +263,15 @@ class RecoverTableViewController: UITableViewController {
                     }else{
                         cell.isTarget.setCheckState(.Unchecked, animated: true)
                     }
+                    cell.isRecoverable = true
+                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
                 }else{
-                    cell.isRecoverable = false
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.enabled = false
                     cell.isTarget.tintColor = FlatWhiteDark()
                     cell.isTarget.setCheckState(.Mixed, animated: true)
+                    cell.isRecoverable = false
                 }
-                cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
-                
                 return cell
             }
         default:
