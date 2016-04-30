@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import M13Checkbox
+import SVProgressHUD
 
 class RecoverTableViewController: UITableViewController {
 
@@ -83,6 +84,88 @@ class RecoverTableViewController: UITableViewController {
                 recoverableSampleRecipeList[touchIndex!.row].recoverTarget = false
             }
         }
+    }
+    
+    func recover(){
+        var recoverRecipeList = Array<RecoverRecipe>()
+        for rr in recoverableSampleRecipeList{
+            if rr.recoverTarget{
+                let realm = try! Realm()
+                let recipe = realm.objects(Recipe).filter("recipeName == %@", rr.name).first!
+                
+                let recoverRecipe = RecoverRecipe()
+                recoverRecipe.name = recipe.recipeName
+                recoverRecipe.method = recipe.method
+                for ri in recipe.recipeIngredients{
+                    let recoverIngredient = RecoverIngredient()
+                    recoverIngredient.name = ri.ingredient.ingredientName
+                    recoverIngredient.amount = ri.amount
+                    recoverIngredient.mustflag = ri.mustFlag
+                    recoverRecipe.ingredientList.append(recoverIngredient)
+                }
+                recoverRecipeList.append(recoverRecipe)
+            }
+        }
+        
+        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+        
+        for recoverRecipe in recoverRecipeList{
+            let realm = try! Realm()
+            let rec = realm.objects(Recipe).filter("recipeName == %@",recoverRecipe.name)
+            if rec.count < 1 {
+                try! realm.write {
+                    for recoverIngredient in recoverRecipe.ingredientList{
+                        addIngredient(recoverIngredient.name, stockFlag: false, memo: "")
+                    }
+                    addRecipe(recoverRecipe.name, favorites: 1, memo: "", method: recoverRecipe.method)
+                    
+                    for recoverIngredient in recoverRecipe.ingredientList{
+                        addRecipeToIngredientLink(recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)
+                    }
+                }
+            }
+        }
+    }
+    
+    func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
+        let realm = try! Realm()
+        let rec = realm.objects(Recipe).filter("recipeName == %@",recipeName)
+        if rec.count < 1 {
+            let recipe = Recipe()
+            recipe.recipeName = recipeName
+            recipe.favorites = favorites
+            recipe.memo = memo
+            recipe.method = method
+            realm.add(recipe)
+        }
+    }
+    
+    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
+        let realm = try! Realm()
+        let ing = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName)
+        if ing.count < 1 {
+            let ingredient = Ingredient()
+            ingredient.ingredientName = ingredientName
+            ingredient.stockFlag = stockFlag
+            ingredient.memo = memo
+            realm.add(ingredient)
+        }
+    }
+    
+    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){
+        let realm = try! Realm()
+        let recipeIngredientLink = RecipeIngredientLink()
+        recipeIngredientLink.amount = amount
+        recipeIngredientLink.mustFlag = mustFlag
+        realm.add(recipeIngredientLink)
+        
+        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
+        ingredient.recipeIngredients.append(recipeIngredientLink)
+        
+        let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
+        recipe.recipeIngredients.append(recipeIngredientLink)
     }
 
     // MARK: - Table view
@@ -178,24 +261,28 @@ class RecoverTableViewController: UITableViewController {
     }
     
     @IBAction func recoverButtonTapped(sender: UIBarButtonItem) {
-        //レシピリスト（材料リスト含む）を変数に保存
+        var recoverCount = 0
+        for rr in recoverableSampleRecipeList{
+            if rr.recoverTarget{
+                recoverCount += 1
+            }
+        }
         
-        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
-        
-        /*レシピ数だけ繰り返し*/
-        //レシピ登録
-        
-        //材料の存在確認
-        
-        //なければ材料登録
-        
-        //レシピ材料登録
-        
-        /*レシピ数だけ繰り返し*/
-
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if recoverCount == 0{
+            let alertView = UIAlertController(title: nil, message: "復元対象のレシピが\n1つも選択されていません", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            }))
+            self.presentViewController(alertView, animated: true, completion: nil)
+        }else{
+            let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                self.recover()
+                SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            self.presentViewController(alertView, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Navigation
