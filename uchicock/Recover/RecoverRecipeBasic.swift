@@ -13,3 +13,14 @@ class SampleRecipeBasic: NSObject {
     var recoverTarget = false
 }
 
+class RecoverIngredient: NSObject {
+    var name = ""
+    var amount = ""
+    var mustflag = false
+}
+
+class RecoverRecipe: NSObject {
+    var name = ""
+    var method = 0
+    var ingredientList = Array<RecoverIngredient>()
+}

@@ -34,14 +34,6 @@ class RecoverTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
-    }
-    
     func loadUserRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe).sorted("recipeName")
@@ -110,6 +102,11 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("PushPreview", sender: indexPath)
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "復元したいレシピを選んでください"
@@ -173,10 +170,49 @@ class RecoverTableViewController: UITableViewController {
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func recoverButtonTapped(sender: UIBarButtonItem) {
+        //レシピリスト（材料リスト含む）を変数に保存
+        
+        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+        
+        /*レシピ数だけ繰り返し*/
+        //レシピ登録
+        
+        //材料の存在確認
+        
+        //なければ材料登録
+        
+        //レシピ材料登録
+        
+        /*レシピ数だけ繰り返し*/
+
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushPreview" {
+            let vc = segue.destinationViewController as! RecoverPreviewTableViewController
+            if let indexPath = sender as? NSIndexPath{
+                let realm = try! Realm()
+                if indexPath.row < recoverableSampleRecipeList.count{
+                    let recipe = realm.objects(Recipe).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row].name).first!
+                    vc.recipe = recipe
+                }else{
+                    let recipe = realm.objects(Recipe).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name).first!
+                    vc.recipe = recipe
+                }
+            }
+        }
+    }
+
 }

@@ -559,6 +559,7 @@
                                     <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="0cj-eg-TT2"/>
                                     <outlet property="recoverableNumberLabel" destination="XEt-76-G58" id="xFn-CF-vHy"/>
                                     <outlet property="unableRecover" destination="LaG-pb-y5i" id="tph-51-VLc"/>
+                                    <segue destination="eFq-6N-jtR" kind="show" identifier="PushPreview" id="Cgi-q3-aB8"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="1zB-FP-8XU" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -635,6 +636,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2288" y="-1149"/>
+        </scene>
+        <!--Recover Preview Table View Controller-->
+        <scene sceneID="wG4-xa-fQy">
+            <objects>
+                <tableViewController id="eFq-6N-jtR" customClass="RecoverPreviewTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="thL-4I-Qkw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="8aa-vg-8yg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="Y4n-2f-Emk">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y4n-2f-Emk" id="d0M-XT-vlP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-Ab-gIU">
+                                                    <rect key="frame" x="8" y="20" width="584" height="39.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="2vg-Ab-gIU" secondAttribute="trailing" constant="8" id="Bad-Dy-5ge"/>
+                                                <constraint firstAttribute="bottom" secondItem="2vg-Ab-gIU" secondAttribute="bottom" constant="20" id="GiP-yt-lc2"/>
+                                                <constraint firstItem="2vg-Ab-gIU" firstAttribute="leading" secondItem="d0M-XT-vlP" secondAttribute="leading" constant="8" id="aB9-So-EeQ"/>
+                                                <constraint firstItem="2vg-Ab-gIU" firstAttribute="top" secondItem="d0M-XT-vlP" secondAttribute="top" constant="20" id="o3P-l9-pFH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="CPg-Cd-MXA">
+                                        <rect key="frame" x="0.0" y="172" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CPg-Cd-MXA" id="0hz-A4-y3q">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eer-9C-H1i">
+                                                    <rect key="frame" x="8" y="15" width="34" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Pxf-9x-Wbf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Q2s-fw-O5E">
+                                                    <rect key="frame" x="20" y="55" width="560" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="cvK-GN-Adq"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="ビルド" enabled="NO"/>
+                                                        <segment title="ステア" enabled="NO"/>
+                                                        <segment title="シェイク" enabled="NO"/>
+                                                        <segment title="ブレンド" enabled="NO"/>
+                                                        <segment title="その他" enabled="NO"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q2s-fw-O5E" firstAttribute="top" secondItem="eer-9C-H1i" secondAttribute="bottom" constant="15" id="0dV-3P-Kim"/>
+                                                <constraint firstItem="eer-9C-H1i" firstAttribute="leading" secondItem="0hz-A4-y3q" secondAttribute="leading" constant="8" id="Lcv-kd-rsA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q2s-fw-O5E" secondAttribute="bottom" constant="16.5" id="RV2-NC-osR"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q2s-fw-O5E" secondAttribute="trailing" constant="20" id="eou-d5-qxZ"/>
+                                                <constraint firstItem="Q2s-fw-O5E" firstAttribute="leading" secondItem="0hz-A4-y3q" secondAttribute="leading" constant="20" id="h33-aD-j0G"/>
+                                                <constraint firstItem="eer-9C-H1i" firstAttribute="top" secondItem="0hz-A4-y3q" secondAttribute="top" constant="15" id="isD-RQ-MlM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="waP-6F-jta">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="zij-t6-akW" customClass="RecoverPreviewIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="300" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zij-t6-akW" id="REJ-Yj-fSp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="eFq-6N-jtR" id="FGT-DA-kT1"/>
+                            <outlet property="delegate" destination="eFq-6N-jtR" id="2qH-Ld-OAm"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="method" destination="Q2s-fw-O5E" id="Hlk-3b-FYa"/>
+                        <outlet property="recipeName" destination="2vg-Ab-gIU" id="gPD-pN-tn4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dua-OH-xde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1598" y="-1149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dBC-Hi-rGs">
@@ -2217,9 +2320,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ee4-db-L8m"/>
-        <segue reference="BF7-gd-8JQ"/>
         <segue reference="VoJ-51-RUH"/>
+        <segue reference="AL8-XH-VAL"/>
         <segue reference="WL9-sL-eOj"/>
+        <segue reference="WbW-98-e9q"/>
     </inferredMetricsTieBreakers>
 </document>
