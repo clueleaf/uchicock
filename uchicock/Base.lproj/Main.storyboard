@@ -572,11 +572,33 @@
                                     <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="0cj-eg-TT2"/>
                                     <outlet property="recoverableNumberLabel" destination="XEt-76-G58" id="xFn-CF-vHy"/>
                                     <outlet property="unableRecover" destination="LaG-pb-y5i" id="tph-51-VLc"/>
-                                    <segue destination="eFq-6N-jtR" kind="show" identifier="PushPreview" id="Cgi-q3-aB8"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverAll" id="DC8-sd-Wdd" customClass="RecoverAllTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="392" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DC8-sd-Wdd" id="I9y-Cw-P4P">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元できる全レシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9x-pj-hcn">
+                                            <rect key="frame" x="160" y="10" width="280" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="L9x-pj-hcn" firstAttribute="centerX" secondItem="I9y-Cw-P4P" secondAttribute="centerX" id="2aJ-tg-wRh"/>
+                                        <constraint firstItem="L9x-pj-hcn" firstAttribute="centerY" secondItem="I9y-Cw-P4P" secondAttribute="centerY" id="JF7-oJ-FLg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recoverAll" destination="L9x-pj-hcn" id="Khc-BC-vUa"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="1zB-FP-8XU" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="392" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="436" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zB-FP-8XU" id="3qx-NS-6Ge">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
@@ -646,6 +668,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="eFq-6N-jtR" kind="show" identifier="PushPreview" id="PJu-Yn-bef"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

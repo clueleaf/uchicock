@@ -33,6 +33,7 @@
 		9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
+		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
 		9BB6DF191CCBDF650035797A /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF181CCBDF650035797A /* M13Checkbox.framework */; };
 		9BB6DF1B1CCBDF6E0035797A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */; };
 		9BB6DF1D1CCBDF750035797A /* MWPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */; };
@@ -113,6 +114,7 @@
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
+		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
 		9BB6DF181CCBDF650035797A /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/M13Checkbox.framework"; sourceTree = "<group>"; };
 		9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MWPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/MWPhotoBrowser.framework"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
 				9BDB39391CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift */,
 				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
+				9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */,
 			);
 			name = Recover;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */,
 				9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */,
+				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */,
