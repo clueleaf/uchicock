@@ -34,9 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
             defaults.setBool(false, forKey: "firstLaunch")
         }
-        
-//        let realmPath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
-//        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: true, path: realmPath)
 
         let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
