@@ -26,6 +26,7 @@ class RecoverTableViewController: UITableViewController {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: true, path: realmPath)
         
         loadSampleRecipe()
+        setNavigationTitle()
 
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -69,6 +70,17 @@ class RecoverTableViewController: UITableViewController {
         unrecoverableSampleRecipeList.sortInPlace({ $0.kanaName < $1.kanaName })
     }
     
+    func setNavigationTitle(){
+        var recoverCount = 0
+        for rr in recoverableSampleRecipeList{
+            if rr.recoverTarget{
+                recoverCount += 1
+            }
+        }
+        
+        self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
+    }
+    
     func isTargetTapped(sender: M13Checkbox){
         var view = sender.superview
         while(view!.isKindOfClass(RecoverTargetTableViewCell) == false) {
@@ -83,6 +95,7 @@ class RecoverTableViewController: UITableViewController {
             }else if sender.checkState == .Unchecked{
                 recoverableSampleRecipeList[touchIndex!.row].recoverTarget = false
             }
+            setNavigationTitle()
         }
     }
     
@@ -247,17 +260,20 @@ class RecoverTableViewController: UITableViewController {
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecoverTarget") as! RecoverTargetTableViewCell
             cell.isTarget.stateChangeAnimation = .Fade(.Fill)
-            cell.isTarget.animationDuration = 0
+            cell.isTarget.animationDuration = 0.0
             cell.isTarget.backgroundColor = UIColor.clearColor()
             cell.isTarget.boxLineWidth = 1.0
             cell.isTarget.markType = .Checkmark
             cell.isTarget.boxType = .Circle
+            cell.isTarget.secondaryTintColor = FlatGray()
             
             if indexPath.row < recoverableSampleRecipeList.count{
                 cell.recipeName.text = recoverableSampleRecipeList[indexPath.row].name
                 cell.isTarget.enabled = true
                 cell.isTarget.tintColor = FlatSkyBlueDark()
                 if recoverableSampleRecipeList[indexPath.row].recoverTarget{
+                    //CheckedとMixedを直接変換するとエラーになる
+                    cell.isTarget.setCheckState(.Unchecked, animated: true)
                     cell.isTarget.setCheckState(.Checked, animated: true)
                 }else{
                     cell.isTarget.setCheckState(.Unchecked, animated: true)
@@ -268,6 +284,8 @@ class RecoverTableViewController: UITableViewController {
                 cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name
                 cell.isTarget.enabled = false
                 cell.isTarget.tintColor = FlatWhiteDark()
+                //CheckedとMixedを直接変換するとエラーになる
+                cell.isTarget.setCheckState(.Unchecked, animated: true)
                 cell.isTarget.setCheckState(.Mixed, animated: true)
                 cell.isRecoverable = false
             }
