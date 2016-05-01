@@ -77,7 +77,6 @@ class RecoverTableViewController: UITableViewController {
                 recoverCount += 1
             }
         }
-        
         self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
     }
     
@@ -313,10 +312,10 @@ class RecoverTableViewController: UITableViewController {
         }
         
         if recoverCount == 0{
-            let alertView = UIAlertController(title: nil, message: "復元対象のレシピが\n1つも選択されていません", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            }))
-            self.presentViewController(alertView, animated: true, completion: nil)
+            let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+            let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+            Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }else{
             let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
