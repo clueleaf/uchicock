@@ -7,6 +7,7 @@ pod 'DZNEmptyDataSet'
 pod 'MWPhotoBrowser'
 pod 'SVProgressHUD'
 pod 'M13Checkbox'
+pod 'iVersion'
 
 def testing_pods
     pod 'Quick'
