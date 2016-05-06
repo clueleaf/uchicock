@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  uchicock
@@ -34,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
             defaults.setBool(false, forKey: "firstLaunch")
         }
-        
+
         let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)

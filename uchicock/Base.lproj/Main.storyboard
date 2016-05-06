@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1570" y="-417"/>
+            <point key="canvasLocation" x="-1548" y="-417"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -199,6 +199,11 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
                         <barButtonItem key="backBarButtonItem" title="レシピ" id="u8H-uo-o5b"/>
+                        <barButtonItem key="leftBarButtonItem" image="restore" id="6Dm-7b-rl1">
+                            <connections>
+                                <action selector="restoreButtonTapped:" destination="BYZ-38-t0r" id="2gu-I3-oeY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="59t-ya-4Ew">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="L80-da-DOj"/>
@@ -213,6 +218,7 @@
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushAddRecipe" id="BF7-gd-8JQ"/>
                         <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="SNB-c3-dZb"/>
+                        <segue destination="8Hu-Gj-yvP" kind="presentation" identifier="PushRecoverRecipe" id="IrA-VZ-jDV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -409,6 +415,385 @@
             </objects>
             <point key="canvasLocation" x="-1620" y="2560"/>
         </scene>
+        <!--サンプルレシピ復元-->
+        <scene sceneID="7Cu-5Z-UEE">
+            <objects>
+                <tableViewController id="TFa-fz-OIP" customClass="RecoverTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6N7-u7-c8S">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverDescription" rowHeight="300" id="Vzn-kl-fwJ" customClass="RecoverDescriptionTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vzn-kl-fwJ" id="Zk2-7Y-jRZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="299.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGD-9P-dgZ">
+                                            <rect key="frame" x="8" y="8" width="584" height="86"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="サンプルレシピを">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="選択して">
+                                                    <attributes>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">復元します。
+</string>
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
+同名のレシピが保存されている場合、内容が違っても復元できません。復元したい場合は先に同名のレシピを削除するか、名前を変更してください。</string>
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <string key="content">
+
+サンプルレシピは、アプリアップデートで追加されることがあります。</string>
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="17" name="HiraginoSans-W3"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-Ji-xBn" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="114" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="7sL-cg-5lj"/>
+                                                <constraint firstAttribute="height" constant="40" id="lzt-Pn-ejS"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AfD-hE-RyC" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="162" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="wZc-Hi-cp4"/>
+                                                <constraint firstAttribute="width" constant="40" id="xl9-bX-JCB"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaG-pb-y5i" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="210" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="2V6-7k-9tO"/>
+                                                <constraint firstAttribute="width" constant="40" id="RA7-n2-KbQ"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-vh-NsM">
+                                            <rect key="frame" x="56" y="124" width="536" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="LuW-e8-Ij2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象でない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPU-tj-WHM">
+                                            <rect key="frame" x="56" y="172" width="536" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="bfj-6I-BsE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fK5-dy-wSN">
+                                            <rect key="frame" x="56" y="221" width="536" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-76-G58">
+                                            <rect key="frame" x="8" y="270" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="gpF-yU-C3x"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="N7z-Ji-xBn" firstAttribute="top" secondItem="yGD-9P-dgZ" secondAttribute="bottom" constant="20" id="12j-nb-LzG"/>
+                                        <constraint firstItem="SFM-vh-NsM" firstAttribute="leading" secondItem="N7z-Ji-xBn" secondAttribute="trailing" constant="8" id="4AT-cx-Cx6"/>
+                                        <constraint firstItem="LaG-pb-y5i" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="9Lt-ec-fzX"/>
+                                        <constraint firstItem="SFM-vh-NsM" firstAttribute="centerY" secondItem="N7z-Ji-xBn" secondAttribute="centerY" id="9Xg-Ss-Vyr"/>
+                                        <constraint firstAttribute="trailing" secondItem="SFM-vh-NsM" secondAttribute="trailing" constant="8" id="BEW-Qt-NBy"/>
+                                        <constraint firstItem="fK5-dy-wSN" firstAttribute="centerY" secondItem="LaG-pb-y5i" secondAttribute="centerY" id="EwH-vg-qwC"/>
+                                        <constraint firstItem="LaG-pb-y5i" firstAttribute="top" secondItem="AfD-hE-RyC" secondAttribute="bottom" constant="8" id="Fo9-7X-J0R"/>
+                                        <constraint firstItem="VPU-tj-WHM" firstAttribute="leading" secondItem="AfD-hE-RyC" secondAttribute="trailing" constant="8" id="MN9-tC-BXp"/>
+                                        <constraint firstAttribute="trailing" secondItem="VPU-tj-WHM" secondAttribute="trailing" constant="8" id="PYd-Jy-YKp"/>
+                                        <constraint firstAttribute="trailing" secondItem="XEt-76-G58" secondAttribute="trailing" constant="8" id="R7P-qm-DSN"/>
+                                        <constraint firstAttribute="trailing" secondItem="yGD-9P-dgZ" secondAttribute="trailing" constant="8" id="SI1-oO-Eiw"/>
+                                        <constraint firstItem="XEt-76-G58" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="SVg-YA-U1J"/>
+                                        <constraint firstItem="VPU-tj-WHM" firstAttribute="centerY" secondItem="AfD-hE-RyC" secondAttribute="centerY" id="Saq-fL-F8M"/>
+                                        <constraint firstItem="AfD-hE-RyC" firstAttribute="top" secondItem="N7z-Ji-xBn" secondAttribute="bottom" constant="8" id="T6T-ZZ-y1T"/>
+                                        <constraint firstAttribute="bottom" secondItem="XEt-76-G58" secondAttribute="bottom" constant="8" id="Tlr-Qs-sda"/>
+                                        <constraint firstItem="yGD-9P-dgZ" firstAttribute="top" secondItem="Zk2-7Y-jRZ" secondAttribute="top" constant="8" id="VkS-yg-7gj"/>
+                                        <constraint firstItem="N7z-Ji-xBn" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="fvf-Bz-x21"/>
+                                        <constraint firstItem="yGD-9P-dgZ" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="gGV-gC-1dB"/>
+                                        <constraint firstItem="XEt-76-G58" firstAttribute="top" secondItem="LaG-pb-y5i" secondAttribute="bottom" constant="20" id="gTu-ZX-5Fv"/>
+                                        <constraint firstItem="fK5-dy-wSN" firstAttribute="leading" secondItem="LaG-pb-y5i" secondAttribute="trailing" constant="8" id="gXf-iN-ixm"/>
+                                        <constraint firstItem="AfD-hE-RyC" firstAttribute="leading" secondItem="Zk2-7Y-jRZ" secondAttribute="leading" constant="8" id="lDm-de-2X7"/>
+                                        <constraint firstAttribute="trailing" secondItem="fK5-dy-wSN" secondAttribute="trailing" constant="8" id="lwF-a5-ONy"/>
+                                        <constraint firstAttribute="bottom" secondItem="fK5-dy-wSN" secondAttribute="bottom" constant="8" id="rMG-y1-07J"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="rMG-y1-07J"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nonRecoverTarget" destination="AfD-hE-RyC" id="p1F-3n-BEz"/>
+                                    <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="0cj-eg-TT2"/>
+                                    <outlet property="recoverableNumberLabel" destination="XEt-76-G58" id="xFn-CF-vHy"/>
+                                    <outlet property="unableRecover" destination="LaG-pb-y5i" id="tph-51-VLc"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverAll" id="DC8-sd-Wdd" customClass="RecoverAllTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="392" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DC8-sd-Wdd" id="I9y-Cw-P4P">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元できる全レシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9x-pj-hcn">
+                                            <rect key="frame" x="160" y="10" width="280" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="L9x-pj-hcn" firstAttribute="centerX" secondItem="I9y-Cw-P4P" secondAttribute="centerX" id="2aJ-tg-wRh"/>
+                                        <constraint firstItem="L9x-pj-hcn" firstAttribute="centerY" secondItem="I9y-Cw-P4P" secondAttribute="centerY" id="JF7-oJ-FLg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recoverAll" destination="L9x-pj-hcn" id="Khc-BC-vUa"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="1zB-FP-8XU" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="436" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zB-FP-8XU" id="3qx-NS-6Ge">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNf-Mw-1Vy" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="5" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="pOs-bp-Ghn"/>
+                                                <constraint firstAttribute="width" constant="40" id="vde-1L-57T"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6QY-VK-i26">
+                                            <rect key="frame" x="507" y="14" width="60" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="DIr-eV-t7d"/>
+                                                <constraint firstAttribute="height" constant="21" id="s23-c4-cti"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-xX-9YY">
+                                            <rect key="frame" x="56" y="14.5" width="443" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="HoJ-pm-O3a"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8ML-xX-9YY" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="1df-fL-WFV"/>
+                                        <constraint firstItem="kNf-Mw-1Vy" firstAttribute="leading" secondItem="3qx-NS-6Ge" secondAttribute="leading" constant="8" id="Dht-rz-x66"/>
+                                        <constraint firstItem="6QY-VK-i26" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Eyv-Uc-hNI"/>
+                                        <constraint firstItem="kNf-Mw-1Vy" firstAttribute="centerY" secondItem="3qx-NS-6Ge" secondAttribute="centerY" id="Rnn-d7-6IZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="6QY-VK-i26" secondAttribute="trailing" id="Xqf-3r-81B"/>
+                                        <constraint firstItem="8ML-xX-9YY" firstAttribute="leading" secondItem="kNf-Mw-1Vy" secondAttribute="trailing" constant="8" id="cDl-JI-0GL"/>
+                                        <constraint firstItem="6QY-VK-i26" firstAttribute="leading" secondItem="8ML-xX-9YY" secondAttribute="trailing" constant="8" id="dbO-yl-fk0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isTarget" destination="kNf-Mw-1Vy" id="NBg-HE-AuM"/>
+                                    <outlet property="previewLabel" destination="6QY-VK-i26" id="Hh0-lQ-sNJ"/>
+                                    <outlet property="recipeName" destination="8ML-xX-9YY" id="Q0A-Kg-VKN"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="TFa-fz-OIP" id="me9-1s-hkg"/>
+                            <outlet property="delegate" destination="TFa-fz-OIP" id="Wpq-DO-mMl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="サンプルレシピ復元" id="5L2-cN-G3U">
+                        <barButtonItem key="backBarButtonItem" title="レシピ復元" id="DLn-lv-F6y"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XTZ-Wj-Ob4">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="TFa-fz-OIP" id="Mq0-xb-JgP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="復元" id="ckG-mf-U3M">
+                            <connections>
+                                <action selector="recoverButtonTapped:" destination="TFa-fz-OIP" id="NZv-cI-i7P"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="eFq-6N-jtR" kind="show" identifier="PushPreview" id="PJu-Yn-bef"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2288" y="-1149"/>
+        </scene>
+        <!--Recover Preview Table View Controller-->
+        <scene sceneID="wG4-xa-fQy">
+            <objects>
+                <tableViewController id="eFq-6N-jtR" customClass="RecoverPreviewTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="thL-4I-Qkw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="8aa-vg-8yg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="Y4n-2f-Emk">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y4n-2f-Emk" id="d0M-XT-vlP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vg-Ab-gIU">
+                                                    <rect key="frame" x="8" y="20" width="584" height="39.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="2vg-Ab-gIU" secondAttribute="trailing" constant="8" id="Bad-Dy-5ge"/>
+                                                <constraint firstAttribute="bottom" secondItem="2vg-Ab-gIU" secondAttribute="bottom" constant="20" id="GiP-yt-lc2"/>
+                                                <constraint firstItem="2vg-Ab-gIU" firstAttribute="leading" secondItem="d0M-XT-vlP" secondAttribute="leading" constant="8" id="aB9-So-EeQ"/>
+                                                <constraint firstItem="2vg-Ab-gIU" firstAttribute="top" secondItem="d0M-XT-vlP" secondAttribute="top" constant="20" id="o3P-l9-pFH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="CPg-Cd-MXA">
+                                        <rect key="frame" x="0.0" y="172" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CPg-Cd-MXA" id="0hz-A4-y3q">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eer-9C-H1i">
+                                                    <rect key="frame" x="8" y="15" width="34" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Pxf-9x-Wbf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Q2s-fw-O5E">
+                                                    <rect key="frame" x="20" y="55" width="560" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="cvK-GN-Adq"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="ビルド" enabled="NO"/>
+                                                        <segment title="ステア" enabled="NO"/>
+                                                        <segment title="シェイク" enabled="NO"/>
+                                                        <segment title="ブレンド" enabled="NO"/>
+                                                        <segment title="その他" enabled="NO"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q2s-fw-O5E" firstAttribute="top" secondItem="eer-9C-H1i" secondAttribute="bottom" constant="15" id="0dV-3P-Kim"/>
+                                                <constraint firstItem="eer-9C-H1i" firstAttribute="leading" secondItem="0hz-A4-y3q" secondAttribute="leading" constant="8" id="Lcv-kd-rsA"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q2s-fw-O5E" secondAttribute="bottom" constant="16.5" id="RV2-NC-osR"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q2s-fw-O5E" secondAttribute="trailing" constant="20" id="eou-d5-qxZ"/>
+                                                <constraint firstItem="Q2s-fw-O5E" firstAttribute="leading" secondItem="0hz-A4-y3q" secondAttribute="leading" constant="20" id="h33-aD-j0G"/>
+                                                <constraint firstItem="eer-9C-H1i" firstAttribute="top" secondItem="0hz-A4-y3q" secondAttribute="top" constant="15" id="isD-RQ-MlM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="waP-6F-jta">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="zij-t6-akW" customClass="RecoverPreviewIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="300" width="600" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zij-t6-akW" id="REJ-Yj-fSp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="eFq-6N-jtR" id="FGT-DA-kT1"/>
+                            <outlet property="delegate" destination="eFq-6N-jtR" id="2qH-Ld-OAm"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="method" destination="Q2s-fw-O5E" id="Hlk-3b-FYa"/>
+                        <outlet property="recipeName" destination="2vg-Ab-gIU" id="gPD-pN-tn4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dua-OH-xde" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1598" y="-1149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dBC-Hi-rGs">
+            <objects>
+                <navigationController id="8Hu-Gj-yvP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oTy-LA-JJp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TFa-fz-OIP" kind="relationship" relationship="rootViewController" id="TMz-4b-nFb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u0M-38-Cbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2288" y="-417"/>
+        </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
             <objects>
@@ -550,7 +935,7 @@
             <objects>
                 <tableViewController id="yKB-1k-jl3" userLabel="Ingredient Detail Table View Controller" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sp4-ci-kt2">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1486,7 +1871,7 @@
                             <tableViewSection id="QdS-TU-7g0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="frI-0b-cjV">
-                                        <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="frI-0b-cjV" id="Do4-e4-MpI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1532,7 +1917,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="GQ5-ky-fGp">
-                                        <rect key="frame" x="0.0" y="108" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="44" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GQ5-ky-fGp" id="DV7-yA-jOq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -1580,7 +1965,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="110" id="Ac3-GC-UkN">
-                                        <rect key="frame" x="0.0" y="168" width="600" height="110"/>
+                                        <rect key="frame" x="0.0" y="104" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ac3-GC-UkN" id="IW3-Q8-8Gr">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
@@ -1679,7 +2064,7 @@
             <objects>
                 <tableViewController id="3cq-Fg-8AL" userLabel="Recipe Detail Table View Controller" customClass="RecipeDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CtV-9j-wVj">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1968,14 +2353,15 @@
         <image name="order" width="24" height="24"/>
         <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="reminder" width="24" height="24"/>
+        <image name="restore" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BF7-gd-8JQ"/>
-        <segue reference="Ee4-db-L8m"/>
         <segue reference="VoJ-51-RUH"/>
-        <segue reference="SNB-c3-dZb"/>
+        <segue reference="AL8-XH-VAL"/>
+        <segue reference="WL9-sL-eOj"/>
+        <segue reference="WbW-98-e9q"/>
     </inferredMetricsTieBreakers>
 </document>
