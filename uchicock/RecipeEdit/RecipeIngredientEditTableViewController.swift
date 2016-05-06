@@ -22,12 +22,17 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteLabel: UILabel!
     
     var recipeIngredient = EditingRecipeIngredient()
+    var ingredientList: Results<Ingredient>?
+
     var isAddMode = false
     var deleteFlag = false
-    var suggestList = Array<String>()
+    var suggestList = Array<IngredientName>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let realm = try! Realm()
+        ingredientList = realm.objects(Ingredient)
 
         ingredientName.tag = 0
         amount.tag = 1
@@ -76,22 +81,42 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     func textFieldDidBeginEditing(textField: UITextField){
         if textField.tag == 0{
             suggestList.removeAll()
-            let realm = try! Realm()
-            let ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@",ingredientName.text!).sorted("ingredientName")
-            for ingredient in ingredientList {
-                suggestList.append(ingredient.ingredientName)
+            
+            for ingredient in ingredientList! {
+                let ingredientName = IngredientName()
+                ingredientName.name = ingredient.ingredientName
+                ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
+                suggestList.append(ingredientName)
             }
+
+            for i in (0..<suggestList.count).reverse() {
+                if ingredientName.text! != "" && suggestList[i].kanaName.containsString(ingredientName.text!.katakana().lowercaseString) == false{
+                    suggestList.removeAtIndex(i)
+                }
+            }
+            
+            suggestList.sortInPlace({ $0.kanaName < $1.kanaName })
             suggestTableView.reloadData()
         }
     }
     
     func textFieldDidChange(notification:NSNotification){
         suggestList.removeAll()
-        let realm = try! Realm()
-        let ingredientList = realm.objects(Ingredient).filter("ingredientName contains %@",ingredientName.text!).sorted("ingredientName")
-        for ingredient in ingredientList {
-            suggestList.append(ingredient.ingredientName)
+        
+        for ingredient in ingredientList! {
+            let ingredientName = IngredientName()
+            ingredientName.name = ingredient.ingredientName
+            ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
+            suggestList.append(ingredientName)
         }
+        
+        for i in (0..<suggestList.count).reverse() {
+            if ingredientName.text! != "" && suggestList[i].kanaName.containsString(ingredientName.text!.katakana().lowercaseString) == false{
+                suggestList.removeAtIndex(i)
+            }
+        }
+        
+        suggestList.sortInPlace({ $0.kanaName < $1.kanaName })
         suggestTableView.reloadData()
     }
     
@@ -182,7 +207,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }else if tableView.tag == 1{
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            ingredientName.text = suggestList[indexPath.row]
+            ingredientName.text = suggestList[indexPath.row].name
         }
     }
     
@@ -193,7 +218,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             return cell
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
-            cell.name = suggestList[indexPath.row]
+            cell.name = suggestList[indexPath.row].name
             cell.backgroundColor = FlatWhite()
             return cell
         }

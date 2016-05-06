@@ -119,7 +119,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mFV-ja-vjq"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="レシピ名で検索" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-YB-YF7">
+                            <searchBar contentMode="redraw" placeholder="レシピ名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-YB-YF7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9cn-07-eUk"/>
@@ -317,7 +317,7 @@
                                     <outlet property="delegate" destination="IFZ-In-CDc" id="ZUW-Lo-9YR"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="材料名で検索" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-KR-IKb">
+                            <searchBar contentMode="redraw" placeholder="材料名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-KR-IKb">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ZXf-SH-x6f"/>
@@ -1973,9 +1973,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VoJ-51-RUH"/>
-        <segue reference="Ee4-db-L8m"/>
-        <segue reference="WL9-sL-eOj"/>
         <segue reference="BF7-gd-8JQ"/>
+        <segue reference="Ee4-db-L8m"/>
+        <segue reference="VoJ-51-RUH"/>
+        <segue reference="SNB-c3-dZb"/>
     </inferredMetricsTieBreakers>
 </document>
