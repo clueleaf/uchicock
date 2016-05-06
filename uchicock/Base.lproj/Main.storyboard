@@ -458,7 +458,7 @@
                                                 </fragment>
                                                 <fragment>
                                                     <string key="content">
-同じ名前のレシピが保存されている場合、内容が違っていても復元できません。復元したい場合は先に同じ名前のレシピを削除するか、名前を変更してください。</string>
+同名のレシピが保存されている場合、内容が違っても復元できません。復元したい場合は先に同名のレシピを削除するか、名前を変更してください。</string>
                                                     <attributes>
                                                         <color key="NSColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="17" name="HiraginoSans-W3"/>
