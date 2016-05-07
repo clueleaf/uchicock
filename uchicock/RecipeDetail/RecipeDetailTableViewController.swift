@@ -80,13 +80,18 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
             noPhotoFlag = false
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
-                photoHeight = tableView.bounds.width
-                photo.clipsToBounds = true
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
                     noPhotoFlag = true
                     photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
                     photoHeight = 0.0
+                }else{
+                    if photo.image!.size.width > photo.image!.size.height{
+                        photoHeight = tableView.bounds.width * photo.image!.size.height / photo.image!.size.width
+                    }else{
+                        photoHeight = tableView.bounds.width
+                    }
+                    photo.clipsToBounds = true
                 }
             }else{
                 noPhotoFlag = true
