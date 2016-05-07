@@ -77,6 +77,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
                 openInSafari.backgroundColor = FlatWhiteDark()
             }
             
+            tableView.tableHeaderView = nil
             noPhotoFlag = false
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
@@ -92,16 +93,13 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
                         photoHeight = tableView.bounds.width
                     }
                     photo.clipsToBounds = true
+                    tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                    self.view.bringSubviewToFront(photoBackground)
                 }
             }else{
                 noPhotoFlag = true
                 photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
                 photoHeight = 0.0
-            }
-            tableView.tableHeaderView = nil
-            if noPhotoFlag == false{
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-                self.view.bringSubviewToFront(photoBackground)
             }
             updateHeaderView()
 
