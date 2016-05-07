@@ -26,6 +26,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
     var isAddMode = false
     var deleteFlag = false
+    var isTypingName = false
     var suggestList = Array<IngredientName>()
     
     override func viewDidLoad() {
@@ -80,6 +81,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     func textFieldDidBeginEditing(textField: UITextField){
         if textField.tag == 0{
+            isTypingName = true
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
@@ -124,6 +127,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if textField.tag == 0{
             suggestList.removeAll()
             suggestTableView.reloadData()
+            isTypingName = false
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
         }
     }
     
@@ -159,7 +164,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if tableView.tag == 0 {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            if isTypingName{
+                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            }else{
+                if indexPath.section == 0 && indexPath.row > 0{
+                    return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
+                }else{
+                    return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+                }
+            }
         }else if tableView.tag == 1{
             return 30
         }
@@ -169,7 +182,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 0{
             if section == 0{
-                return 4
+                if isTypingName{
+                    return 4
+                }else{
+                    return 3
+                }
             }else if section == 1{
                 return 1
             }
@@ -213,9 +230,21 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView.tag == 0{
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-            cell.backgroundColor = FlatWhite()
-            return cell
+            if isTypingName{
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                cell.backgroundColor = FlatWhite()
+                return cell
+            }else{
+                if indexPath.section == 0 && indexPath.row > 0{
+                    let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
+                    cell.backgroundColor = FlatWhite()
+                    return cell
+                }else{
+                    let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                    cell.backgroundColor = FlatWhite()
+                    return cell
+                }
+            }
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCellWithIdentifier("SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row].name
