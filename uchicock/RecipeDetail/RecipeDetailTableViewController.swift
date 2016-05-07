@@ -10,10 +10,10 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import SVProgressHUD
-import MWPhotoBrowser
+import IDMPhotoBrowser
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDelegate {
+class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDelegate{
 
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
@@ -38,6 +38,8 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
+        
+        photoBackground.backgroundColor = FlatWhite()
 
         openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
         openInSafari.layer.cornerRadius = 4
@@ -160,17 +162,13 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         if noPhotoFlag == false{
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
-                let photo = UIImage(data: recipe.imageData!)
-                if photo != nil{
-                    let browser = MWPhotoBrowser(delegate: self)
-                    browser.displayActionButton = true
-                    browser.displayNavArrows = false
-                    browser.displaySelectionButtons = false
-                    browser.zoomPhotosToFill = true
-                    browser.alwaysShowControls = false
-                    browser.enableGrid = false
-                    browser.startOnGrid = false
-                    self.navigationController?.pushViewController(browser, animated: true)
+                let browsePhoto = UIImage(data: recipe.imageData!)
+                if browsePhoto != nil{
+                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [IDMPhoto(image: browsePhoto)], animatedFromView: photo)
+                    browser.displayDoneButton = false
+                    browser.displayActionButton = false
+                    browser.displayArrowButton = false
+                    self.presentViewController(browser, animated: true, completion: nil)
                 }
             }
         }
@@ -208,42 +206,6 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         updateHeaderView()
-    }
-    
-    // MARK: MWPhotoBrowser
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
-        return 1
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        if index == 0{
-            return MWPhoto(image: photo.image)
-        }
-        return nil
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, actionButtonPressedForPhotoAtIndex index: UInt) {
-        if index == 0{
-            let excludedActivityTypes = [
-                UIActivityTypeMessage,
-                UIActivityTypeMail,
-                UIActivityTypePrint,
-                UIActivityTypeCopyToPasteboard,
-                UIActivityTypeAssignToContact,
-                UIActivityTypeAddToReadingList,
-                UIActivityTypePostToFlickr,
-                UIActivityTypePostToVimeo,
-                UIActivityTypePostToWeibo,
-                UIActivityTypePostToTencentWeibo,
-                UIActivityTypeAirDrop
-            ]
-            
-            let shareImage = photo.image!
-            let activityItems = [shareImage, ""]
-            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-            activityVC.excludedActivityTypes = excludedActivityTypes
-            self.presentViewController(activityVC, animated: true, completion: nil)
-        }
     }
     
     // MARK: - UITableView
