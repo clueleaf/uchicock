@@ -165,7 +165,6 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 let browsePhoto = UIImage(data: recipe.imageData!)
                 if browsePhoto != nil{
                     let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [IDMPhoto(image: browsePhoto)], animatedFromView: photo)
-                    browser.displayDoneButton = false
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
                     self.presentViewController(browser, animated: true, completion: nil)
