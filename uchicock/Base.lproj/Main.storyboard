@@ -2067,30 +2067,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="BY5-gV-soD">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gcu-i0-oyx">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Gcu-i0-oyx" secondAttribute="bottom" id="8OH-lM-y9t"/>
+                                <constraint firstAttribute="trailing" secondItem="Gcu-i0-oyx" secondAttribute="trailing" id="PCp-wz-11e"/>
+                                <constraint firstItem="Gcu-i0-oyx" firstAttribute="top" secondItem="BY5-gV-soD" secondAttribute="top" id="TUH-hJ-PSq"/>
+                                <constraint firstItem="Gcu-i0-oyx" firstAttribute="leading" secondItem="BY5-gV-soD" secondAttribute="leading" id="kkZ-sT-EqF"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Section-1" id="QSK-fM-dHy">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="Zhh-jX-yIK">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="250"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zhh-jX-yIK" id="C6f-Ka-Ihq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hoz-wG-eO7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="249.5"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="hoz-wG-eO7" secondAttribute="bottom" id="0YH-Gd-KSY"/>
-                                                <constraint firstAttribute="trailing" secondItem="hoz-wG-eO7" secondAttribute="trailing" id="8yq-65-BvG"/>
-                                                <constraint firstItem="hoz-wG-eO7" firstAttribute="leading" secondItem="C6f-Ka-Ihq" secondAttribute="leading" id="DuZ-IA-xGq"/>
-                                                <constraint firstItem="hoz-wG-eO7" firstAttribute="top" secondItem="C6f-Ka-Ihq" secondAttribute="top" id="ee5-Ck-HOh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="nYl-rR-nIJ">
-                                        <rect key="frame" x="0.0" y="278" width="600" height="80"/>
+                                        <rect key="frame" x="0.0" y="128" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nYl-rR-nIJ" id="RYw-fg-6OD">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
@@ -2134,7 +2131,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="oKI-CP-2mn">
-                                        <rect key="frame" x="0.0" y="358" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="208" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oKI-CP-2mn" id="RSg-GA-cJc">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -2187,7 +2184,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="CmS-To-RxC">
-                                        <rect key="frame" x="0.0" y="408" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="258" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CmS-To-RxC" id="wgN-De-0Rq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -2233,7 +2230,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="Uge-vh-Gjf">
-                                        <rect key="frame" x="0.0" y="508" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="358" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uge-vh-Gjf" id="faa-ON-WR3">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -2277,7 +2274,7 @@
                             <tableViewSection headerTitle="Section-2" id="nrE-Wu-T0t">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="4lg-cX-DdN" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="636" width="600" height="70"/>
+                                        <rect key="frame" x="0.0" y="486" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4lg-cX-DdN" id="lo8-c2-lCB">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
@@ -2289,7 +2286,7 @@
                             <tableViewSection headerTitle="Section-3" id="37m-pd-LnG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="E74-zK-kWp">
-                                        <rect key="frame" x="0.0" y="734" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="584" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E74-zK-kWp" id="l4P-dh-5x3">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
@@ -2335,7 +2332,8 @@
                         <outlet property="memo" destination="755-Az-IcZ" id="gMD-rL-oRV"/>
                         <outlet property="method" destination="j5q-N8-5yd" id="ExC-Dq-ddt"/>
                         <outlet property="openInSafari" destination="ohU-Dd-Aqj" id="iEJ-5V-Bqz"/>
-                        <outlet property="photo" destination="hoz-wG-eO7" id="9Bo-9K-YP7"/>
+                        <outlet property="photo" destination="Gcu-i0-oyx" id="0Y5-fe-x2V"/>
+                        <outlet property="photoBackground" destination="BY5-gV-soD" id="qwy-6q-Y5f"/>
                         <outlet property="recipeName" destination="ymV-Rj-Smb" id="AR0-XC-aD5"/>
                         <outlet property="star1" destination="JrF-pQ-HX6" id="Gco-R9-pOF"/>
                         <outlet property="star2" destination="qhb-Bg-qgv" id="JEZ-hr-HJm"/>
