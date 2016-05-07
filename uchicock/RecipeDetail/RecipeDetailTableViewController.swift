@@ -26,12 +26,18 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
+    var headerView: UIView!
+    var photoHeight: CGFloat = 0.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
         
         openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
         openInSafari.layer.cornerRadius = 4
@@ -48,7 +54,6 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         let realm = try! Realm()
         let rec = realm.objects(Recipe).filter("id == %@",recipeId)
         if rec.count < 1 {
@@ -74,18 +79,23 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
             noPhotoFlag = false
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
-                photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.width)
+                photoHeight = tableView.bounds.width
                 photo.clipsToBounds = true
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
                     noPhotoFlag = true
-                    photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, 0)
+                    photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
+                    photoHeight = 0.0
                 }
             }else{
                 noPhotoFlag = true
-                photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, 0)
+                photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
+                photoHeight = 0.0
             }
-            
+            tableView.contentInset = UIEdgeInsets(top: photoHeight,left: 0, bottom: 0, right: 0)
+            tableView.contentOffset = CGPoint(x: 0, y: -photoHeight)
+            updateHeaderView()
+
             recipeName.text = recipe.recipeName
             
             switch recipe.favorites{
@@ -126,6 +136,18 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func updateHeaderView(){
+        print(tableView.contentOffset.y)
+        if noPhotoFlag == false{
+            var headRect = CGRect(x: 0, y: -photoHeight, width: tableView.bounds.width, height: tableView.bounds.width)
+            if tableView.contentOffset.y < -photoHeight{
+                headRect.origin.y = tableView.contentOffset.y
+                headRect.size.height = -tableView.contentOffset.y
+            }
+            headerView.frame = headRect
+        }
     }
 
     func photoTapped(recognizer: UITapGestureRecognizer) {
@@ -176,6 +198,10 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
             }))
             presentViewController(alertView, animated: true, completion: nil)
         }
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateHeaderView()
     }
     
     // MARK: MWPhotoBrowser
