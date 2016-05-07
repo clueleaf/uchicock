@@ -36,9 +36,9 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         super.viewDidLoad()
 
         headerView = tableView.tableHeaderView
-        tableView.tableHeaderView = nil
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
-        
+
         openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
         openInSafari.layer.cornerRadius = 4
         
@@ -54,6 +54,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         let realm = try! Realm()
         let rec = realm.objects(Recipe).filter("id == %@",recipeId)
         if rec.count < 1 {
@@ -92,8 +93,11 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
                 photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
                 photoHeight = 0.0
             }
-            tableView.contentInset = UIEdgeInsets(top: photoHeight,left: 0, bottom: 0, right: 0)
-            tableView.contentOffset = CGPoint(x: 0, y: -photoHeight)
+            tableView.tableHeaderView = nil
+            if noPhotoFlag == false{
+                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                self.view.bringSubviewToFront(photoBackground)
+            }
             updateHeaderView()
 
             recipeName.text = recipe.recipeName
@@ -139,12 +143,11 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     }
     
     func updateHeaderView(){
-        print(tableView.contentOffset.y)
         if noPhotoFlag == false{
-            var headRect = CGRect(x: 0, y: -photoHeight, width: tableView.bounds.width, height: tableView.bounds.width)
-            if tableView.contentOffset.y < -photoHeight{
+            var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
+            if tableView.contentOffset.y < 0{
                 headRect.origin.y = tableView.contentOffset.y
-                headRect.size.height = -tableView.contentOffset.y
+                headRect.size.height = photoHeight - tableView.contentOffset.y
             }
             headerView.frame = headRect
         }
