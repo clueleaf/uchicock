@@ -15,6 +15,7 @@ import Accounts
 
 class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDelegate {
 
+    @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: UILabel!
@@ -37,10 +38,12 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         
         tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.cellLongPressed(_:)))
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
+        photoBackground.addGestureRecognizer(tapRecognizer)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoLongPressed(_:)))
         longPressRecognizer.allowableMovement = 100
         longPressRecognizer.minimumPressDuration = 0.2
-        tableView.addGestureRecognizer(longPressRecognizer)
+        photoBackground.addGestureRecognizer(longPressRecognizer)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -71,12 +74,16 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
             noPhotoFlag = false
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData!)
+                photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.width)
+                photo.clipsToBounds = true
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
                     noPhotoFlag = true
+                    photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, 0)
                 }
             }else{
                 noPhotoFlag = true
+                photoBackground.frame = CGRectMake(0 , 0, UIScreen.mainScreen().bounds.size.width, 0)
             }
             
             recipeName.text = recipe.recipeName
@@ -121,26 +128,42 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
         super.didReceiveMemoryWarning()
     }
 
-    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
-        let point = recognizer.locationInView(tableView)
-        let indexPath = tableView.indexPathForRowAtPoint(point)
-        if indexPath == nil {
-        } else if indexPath?.section == 0 && indexPath?.row == 0 && noPhotoFlag == false &&
-            recognizer.state == UIGestureRecognizerState.Began  {
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
-                    if self.photo.image != nil{
-                        UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
-                    }
-                    })
-                alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
-                    if self.photo.image != nil{
-                        let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
-                        pasteboard.image = self.photo.image!
-                    }
-                    })
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                presentViewController(alertView, animated: true, completion: nil)
+    func photoTapped(recognizer: UITapGestureRecognizer) {
+        if noPhotoFlag == false{
+            if recipe.imageData != nil{
+                //レシピ削除のバグに対するワークアラウンド
+                let photo = UIImage(data: recipe.imageData!)
+                if photo != nil{
+                    let browser = MWPhotoBrowser(delegate: self)
+                    browser.displayActionButton = true
+                    browser.displayNavArrows = false
+                    browser.displaySelectionButtons = false
+                    browser.zoomPhotosToFill = true
+                    browser.alwaysShowControls = false
+                    browser.enableGrid = false
+                    browser.startOnGrid = false
+                    self.navigationController?.pushViewController(browser, animated: true)
+                }
+            }
+        }
+    }
+    
+    func photoLongPressed(recognizer: UILongPressGestureRecognizer) {
+        if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.Began  {
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
+                if self.photo.image != nil{
+                    UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                }
+                })
+            alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
+                if self.photo.image != nil{
+                    let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
+                    pasteboard.image = self.photo.image!
+                }
+                })
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+            presentViewController(alertView, animated: true, completion: nil)
         }
     }
     
@@ -202,11 +225,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if noPhotoFlag == false && indexPath.row == 0{
-                return UIScreen.mainScreen().bounds.size.width
-            }else{
-                return UITableViewAutomaticDimension
-            }
+            return UITableViewAutomaticDimension
         }else if indexPath.section == 1{
             return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }else if indexPath.section == 2{
@@ -225,11 +244,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            if noPhotoFlag {
-                return 4
-            }else{
-                return 5
-            }
+            return 4
         }else if section == 1{
             return recipe.recipeIngredients.count
         }else if section == 2{
@@ -241,11 +256,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     
     override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
         if indexPath.section == 0 {
-            if noPhotoFlag{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
-            }else{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
-            }
+            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
         }else if indexPath.section == 2{
@@ -255,24 +266,7 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 && noPhotoFlag == false{
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            if recipe.imageData != nil{
-                //レシピ削除のバグに対するワークアラウンド
-                let photo = UIImage(data: recipe.imageData!)
-                if photo != nil{
-                    let browser = MWPhotoBrowser(delegate: self)
-                    browser.displayActionButton = true
-                    browser.displayNavArrows = false
-                    browser.displaySelectionButtons = false
-                    browser.zoomPhotosToFill = true
-                    browser.alwaysShowControls = false
-                    browser.enableGrid = false
-                    browser.startOnGrid = false
-                    self.navigationController?.pushViewController(browser, animated: true)
-                }
-            }
-        }else if indexPath.section == 1 {
+        if indexPath.section == 1 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
         }else if indexPath.section == 2{
@@ -310,15 +304,9 @@ class RecipeDetailTableViewController: UITableViewController, MWPhotoBrowserDele
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            if noPhotoFlag{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row+1, inSection: 0))
-                cell.backgroundColor = FlatWhite()
-                return cell
-            }else{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-                cell.backgroundColor = FlatWhite()
-                return cell
-            }
+            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            cell.backgroundColor = FlatWhite()
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientList", forIndexPath: indexPath) as! RecipeIngredientListTableViewCell
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
