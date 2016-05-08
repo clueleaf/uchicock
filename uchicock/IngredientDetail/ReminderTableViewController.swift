@@ -12,7 +12,7 @@ import ChameleonFramework
 import SVProgressHUD
 import M13Checkbox
 
-class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
+class ReminderTableViewController: UITableViewController{
 
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
