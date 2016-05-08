@@ -2009,10 +2009,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3cT-5c-hTW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="216.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="216" id="VzF-Od-jaR"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="484366771.51841599">
                                                         <!--2016-05-08 02:19:31 +0000-->
                                                     </date>
@@ -2020,10 +2017,10 @@
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="3cT-5c-hTW" secondAttribute="bottom" id="ROr-Ih-AfM"/>
-                                                <constraint firstItem="3cT-5c-hTW" firstAttribute="leading" secondItem="wQ5-8x-X01" secondAttribute="leading" id="gut-hZ-Rt2"/>
-                                                <constraint firstItem="3cT-5c-hTW" firstAttribute="top" secondItem="wQ5-8x-X01" secondAttribute="top" id="rHy-th-zcp"/>
-                                                <constraint firstAttribute="trailing" secondItem="3cT-5c-hTW" secondAttribute="trailing" id="w1c-H6-mqV"/>
+                                                <constraint firstItem="3cT-5c-hTW" firstAttribute="leading" secondItem="wQ5-8x-X01" secondAttribute="leading" id="5AR-lC-cw8"/>
+                                                <constraint firstAttribute="trailing" secondItem="3cT-5c-hTW" secondAttribute="trailing" id="UwJ-kP-BdT"/>
+                                                <constraint firstItem="3cT-5c-hTW" firstAttribute="top" secondItem="wQ5-8x-X01" secondAttribute="top" id="pJK-Vk-jke"/>
+                                                <constraint firstAttribute="bottom" secondItem="3cT-5c-hTW" secondAttribute="bottom" id="qdC-oZ-1DK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
