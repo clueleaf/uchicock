@@ -67,6 +67,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         suggestTableView.backgroundColor = FlatWhite()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        suggestTableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {

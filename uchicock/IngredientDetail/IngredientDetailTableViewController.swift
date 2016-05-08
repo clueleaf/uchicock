@@ -35,6 +35,8 @@ class IngredientDetailTableViewController: UITableViewController {
         stock.stateChangeAnimation = .Expand(.Fill)
 
         tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
+
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewWillAppear(animated: Bool) {

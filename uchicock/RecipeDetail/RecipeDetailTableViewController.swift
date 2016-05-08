@@ -52,6 +52,8 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         longPressRecognizer.allowableMovement = 100
         longPressRecognizer.minimumPressDuration = 0.2
         photoBackground.addGestureRecognizer(longPressRecognizer)
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func viewWillAppear(animated: Bool) {

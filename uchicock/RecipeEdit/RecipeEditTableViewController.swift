@@ -97,6 +97,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             editingRecipeIngredient.mustFlag = ri.mustFlag
             editingRecipeIngredientList.append(editingRecipeIngredient)
         }
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewWillAppear(animated: Bool) {
