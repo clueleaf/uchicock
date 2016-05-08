@@ -45,8 +45,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxF-Fn-k8s">
-                                                    <rect key="frame" x="77" y="38" width="474" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxF-Fn-k8s">
+                                                    <rect key="frame" x="77" y="38" width="490" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Kr4-lt-Ll3"/>
                                                     </constraints>
@@ -90,8 +90,8 @@
                                                 <constraint firstItem="tdE-27-bi7" firstAttribute="leading" secondItem="ngc-17-ztm" secondAttribute="leading" id="cl1-Sr-ved"/>
                                                 <constraint firstItem="agH-FO-X73" firstAttribute="top" secondItem="ngc-17-ztm" secondAttribute="top" constant="8" id="gvV-cE-rFB"/>
                                                 <constraint firstItem="tdE-27-bi7" firstAttribute="top" secondItem="ngc-17-ztm" secondAttribute="top" id="hb0-7e-vsh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wxF-Fn-k8s" secondAttribute="trailing" constant="8" id="i5N-3j-Vmx"/>
                                                 <constraint firstItem="6VU-6n-xbT" firstAttribute="top" secondItem="ngc-17-ztm" secondAttribute="top" constant="8" id="llG-be-YNn"/>
+                                                <constraint firstAttribute="trailing" secondItem="wxF-Fn-k8s" secondAttribute="trailing" id="pXl-71-fay"/>
                                                 <constraint firstItem="6VU-6n-xbT" firstAttribute="leading" secondItem="ngc-17-ztm" secondAttribute="leading" constant="8" id="pxT-F2-iPP"/>
                                                 <constraint firstAttribute="trailing" secondItem="6VU-6n-xbT" secondAttribute="trailing" constant="20" symbolic="YES" id="tmG-CR-bEA"/>
                                                 <constraint firstAttribute="trailing" secondItem="agH-FO-X73" secondAttribute="trailing" id="xWc-rL-7wL"/>
@@ -1064,7 +1064,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkT-jn-Zwx">
-                                                    <rect key="frame" x="8" y="38" width="551" height="21"/>
+                                                    <rect key="frame" x="8" y="38" width="559" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="z8S-aA-38X"/>
                                                     </constraints>
@@ -1085,7 +1085,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dcs-be-to8" firstAttribute="leading" secondItem="PLW-yu-Rsf" secondAttribute="trailing" constant="8" id="8x4-ew-HYO"/>
-                                                <constraint firstAttribute="trailing" secondItem="kkT-jn-Zwx" secondAttribute="trailing" constant="8" id="L1L-yE-zxf"/>
+                                                <constraint firstAttribute="trailing" secondItem="kkT-jn-Zwx" secondAttribute="trailing" id="L1L-yE-zxf"/>
                                                 <constraint firstItem="kkT-jn-Zwx" firstAttribute="leading" secondItem="iia-hk-fqL" secondAttribute="leading" constant="8" id="cRl-xQ-JBJ"/>
                                                 <constraint firstItem="PLW-yu-Rsf" firstAttribute="leading" secondItem="iia-hk-fqL" secondAttribute="leading" constant="8" id="eql-6M-UKy"/>
                                                 <constraint firstItem="PLW-yu-Rsf" firstAttribute="top" secondItem="iia-hk-fqL" secondAttribute="top" constant="8" id="knn-qi-gXu"/>
@@ -2353,9 +2353,9 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WbW-98-e9q"/>
+        <segue reference="BF7-gd-8JQ"/>
         <segue reference="SNB-c3-dZb"/>
-        <segue reference="VoJ-51-RUH"/>
         <segue reference="AL8-XH-VAL"/>
+        <segue reference="rrh-vr-JPb"/>
     </inferredMetricsTieBreakers>
 </document>

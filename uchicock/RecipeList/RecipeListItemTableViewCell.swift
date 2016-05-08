@@ -56,11 +56,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
                 shortage.textColor = FlatSkyBlueDark()
                 shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
             case 1:
-                if shortageName.characters.count > 10{
-                    shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
-                }else{
-                    shortage.text = shortageName + "が足りません"
-                }
+                shortage.text = shortageName + "が足りません"
                 shortage.textColor = FlatGrayDark()
                 shortage.font = UIFont.systemFontOfSize(CGFloat(14))
             default:
