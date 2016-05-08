@@ -30,7 +30,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewWillAppear(animated: Bool) {

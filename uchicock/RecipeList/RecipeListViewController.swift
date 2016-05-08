@@ -30,7 +30,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewWillAppear(animated: Bool) {
