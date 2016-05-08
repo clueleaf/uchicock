@@ -13,6 +13,7 @@ import DZNEmptyDataSet
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
+    var refreshControl:UIRefreshControl!
     var recipeBasicList = Array<RecipeBasic>()
 
     override func viewDidLoad() {
@@ -25,6 +26,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView!.backgroundColor = FlatWhite()
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張ってシャッフル")
+        self.refreshControl.addTarget(self, action: #selector(AlbumCollectionViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        self.collectionView!.backgroundView = refreshControl
+        self.collectionView!.alwaysBounceVertical = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -104,6 +111,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
         recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+    }
+    
+    func refresh(){
+        refreshControl.beginRefreshing()
+        self.reloadRecipeList()
+        self.shuffle(&self.recipeBasicList)
+        self.collectionView!.reloadData()
+        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        refreshControl.endRefreshing()
     }
 
     // MARK: UICollectionView
