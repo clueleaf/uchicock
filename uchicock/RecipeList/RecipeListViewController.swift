@@ -31,6 +31,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -148,6 +152,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
         return -self.tableView.frame.size.height/4.0
+    }
+    
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
     }
     
     // MARK: - UISearchBarDelegate
