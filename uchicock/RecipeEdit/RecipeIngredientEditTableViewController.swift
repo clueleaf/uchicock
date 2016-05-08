@@ -85,7 +85,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     func textFieldDidBeginEditing(textField: UITextField){
         if textField.tag == 0{
             isTypingName = true
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
@@ -131,7 +131,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             suggestTableView.reloadData()
             isTypingName = false
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
         }
     }
     

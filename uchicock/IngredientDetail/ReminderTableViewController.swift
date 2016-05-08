@@ -17,13 +17,9 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
     @IBOutlet weak var dateFlag: M13Checkbox!
-    @IBOutlet weak var date: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredientName = ""
-    var registerDate = NSDate(timeInterval: 60*60, sinceDate: NSDate())
-    let dateFormat = NSDateFormatter()
-    let datePicker = UIDatePicker()
-    let cal: NSCalendar = NSCalendar(identifier: NSCalendarIdentifierGregorian)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,24 +35,9 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         dateFlag.boxType = .Circle
         dateFlag.stateChangeAnimation = .Expand(.Fill)
         
-        date.enabled = false
-        
-        dateFormat.locale = NSLocale(localeIdentifier: "ja")
-        
         datePicker.datePickerMode = .DateAndTime
         datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
-        datePicker.setDate(registerDate, animated: true)
-        date.inputView = datePicker
-        
-        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = .BlackTranslucent
-        let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace,target: self, action: nil)
-        let toolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: #selector(ReminderTableViewController.toolBarButtonPush(_:)))
-        toolBar.items = [spaceBarButton,toolBarButton]
-        date.inputAccessoryView = toolBar
-
-        setTextField()
+        datePicker.setDate(NSDate(timeInterval: 60*60, sinceDate: NSDate()), animated: true)
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -75,8 +56,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
         if dateFlag.checkState == .Checked {
             let calendarUnit: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
-            reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: registerDate)
-            reminder.addAlarm(EKAlarm(absoluteDate: registerDate))
+            reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: datePicker.date)
+            reminder.addAlarm(EKAlarm(absoluteDate: datePicker.date))
         }
         
         do {
@@ -112,40 +93,6 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    func toolBarButtonPush(sender: UIBarButtonItem){
-        registerDate = datePicker.date
-
-        let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
-        let weekdaySymbolIndex: Int = comp.weekday - 1
-        dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
-        date.text = dateFormat.stringFromDate(registerDate)
-        
-        self.view.endEditing(true)
-    }
-    
-    func setTextField(){
-        if dateFlag.checkState == .Checked{
-            date.enabled = true
-            date.backgroundColor = UIColor.whiteColor()
-            date.textColor = UIColor.blackColor()
-            if date.text == ""{
-                registerDate = NSDate(timeInterval: 60*60, sinceDate: NSDate())
-                let comp: NSDateComponents = cal.components([NSCalendarUnit.Weekday], fromDate: registerDate)
-                let weekdaySymbolIndex: Int = comp.weekday - 1
-                dateFormat.dateFormat = "yyyy/MM/dd(\(dateFormat.shortWeekdaySymbols[weekdaySymbolIndex])) HH:mm"
-                date.text = dateFormat.stringFromDate(registerDate)
-            }
-        }else{
-            date.enabled = false
-            date.backgroundColor = FlatWhiteDark()
-            date.textColor = FlatGray()
-        }
-    }
-    
-    func dismissView(){
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // MARK: - UITableView
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0{
@@ -156,7 +103,11 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if dateFlag.checkState == .Checked{
+            return 4
+        }else{
+            return 3
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -185,8 +136,8 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
                 createReminder(eventStore, title: reminderTitle.text!)
             }
         }else if reminderType.selectedSegmentIndex == 1{
-            let startDate = registerDate
-            let endDate = registerDate
+            let startDate = datePicker.date
+            let endDate = datePicker.date
             if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
                 eventStore.requestAccessToEntityType(.Event, completion: {
                     granted, error in
@@ -202,28 +153,22 @@ class ReminderTableViewController: UITableViewController, UITextFieldDelegate {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.enabled = true
             dateFlag.tintColor = FlatSkyBlueDark()
-            setTextField()
         }else if reminderType.selectedSegmentIndex == 1{
-            dateFlag.setCheckState(.Checked, animated: true)
+            if dateFlag.checkState == .Unchecked{
+                dateFlag.setCheckState(.Checked, animated: true)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+            }
             dateFlag.enabled = false
             dateFlag.tintColor = FlatWhiteDark()
-            setTextField()
         }
     }
     
     @IBAction func dateFlagTapped(sender: M13Checkbox) {
-        setTextField()
+        if dateFlag.checkState == .Checked{
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+        }else{
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+        }
     }
     
-    @IBAction func tableTapped(sender: UITapGestureRecognizer) {
-        date?.resignFirstResponder()
-    }
-
-}
-
-class DateTextField: UITextField{
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        UIMenuController.sharedMenuController().menuVisible = false
-        return false
-    }
 }
