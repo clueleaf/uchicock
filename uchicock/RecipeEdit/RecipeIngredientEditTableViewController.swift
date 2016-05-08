@@ -67,6 +67,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         suggestTableView.backgroundColor = FlatWhite()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        suggestTableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,7 +85,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     func textFieldDidBeginEditing(textField: UITextField){
         if textField.tag == 0{
             isTypingName = true
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
@@ -128,7 +131,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             suggestTableView.reloadData()
             isTypingName = false
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Top)
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
         }
     }
     

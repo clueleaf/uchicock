@@ -210,10 +210,10 @@
 				9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */,
 				9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */,
 				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
+				9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */,
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
 				9BDB39391CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift */,
 				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
-				9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */,
 			);
 			name = Recover;
 			sourceTree = "<group>";

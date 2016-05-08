@@ -52,6 +52,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         memo.layer.borderColor = FlatWhiteDark().CGColor
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func didReceiveMemoryWarning() {
