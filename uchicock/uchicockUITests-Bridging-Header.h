@@ -3,5 +3,5 @@
 //
 
 #import "DZNEmptyDataSet/UIScrollView+EmptyDataSet.h"
-#import "MWPhotoBrowser/MWPhotoBrowser.h"
+#import "IDMPhotoBrowser/IDMPhotoBrowser.h"
 #import "SVProgressHUD/SVProgressHUD.h"

@@ -2358,8 +2358,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BF7-gd-8JQ"/>
-        <segue reference="VoJ-51-RUH"/>
         <segue reference="SNB-c3-dZb"/>
-        <segue reference="AL8-XH-VAL"/>
+        <segue reference="VoJ-51-RUH"/>
+        <segue reference="Ee4-db-L8m"/>
     </inferredMetricsTieBreakers>
 </document>
