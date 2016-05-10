@@ -20,24 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-
+        
         setColor()
         setSVProgressHUD()
-        // first time to launch this app
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let dic = ["firstLaunch": true]
-        defaults.registerDefaults(dic)
-        if defaults.boolForKey("firstLaunch") {
-
-            let seedFilePath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
-            let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-            let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-            try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
-            defaults.setBool(false, forKey: "firstLaunch")
-        }
-
+        
+        let manager = NSFileManager()
         let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        // first time to launch this app
+        if manager.fileExistsAtPath(realmPath) == false{
+            let seedFilePath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
+            try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
+        }
         Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
         
         return true
