@@ -176,11 +176,18 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
                         <barButtonItem key="backBarButtonItem" title="レシピ" id="u8H-uo-o5b"/>
-                        <barButtonItem key="leftBarButtonItem" image="restore" id="6Dm-7b-rl1">
-                            <connections>
-                                <action selector="restoreButtonTapped:" destination="BYZ-38-t0r" id="2gu-I3-oeY"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem image="info" id="PyK-oe-wJE">
+                                <connections>
+                                    <action selector="infoButtonTapped:" destination="BYZ-38-t0r" id="C4R-DX-hQl"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="restore" id="6Dm-7b-rl1">
+                                <connections>
+                                    <action selector="restoreButtonTapped:" destination="BYZ-38-t0r" id="2gu-I3-oeY"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="59t-ya-4Ew">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="L80-da-DOj"/>
@@ -2235,6 +2242,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="info" width="24" height="24"/>
         <image name="order" width="24" height="24"/>
         <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="reminder" width="24" height="24"/>

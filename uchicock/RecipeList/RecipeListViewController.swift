@@ -10,8 +10,9 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
+import MYBlurIntroductionView
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MYIntroductionDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -21,7 +22,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +36,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dic = ["firstLaunch": true]
+        defaults.registerDefaults(dic)
+        if defaults.boolForKey("firstLaunch") {
+            showIntroduction()
+            defaults.setBool(false, forKey: "firstLaunch")
+        }        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -166,6 +175,33 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
     }
     
+    func showIntroduction(){
+        let desc0 = "「うちカク！」をダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。"
+        let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "Thank you for downloading!!", description: desc0)
+        
+        let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
+        let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
+        introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        let desc2 = "ワンタップで材料の在庫を登録できます。\n材料からレシピを探すのもこの画面から。"
+        let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
+        introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        let desc3 = "アプリに登録されているレシピ写真だけを表示します。\n表示順をシャッフルして、気まぐれでカクテルを選んでみる？"
+        let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
+        introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+
+        let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+                introductionView.BackgroundImageView.image = UIImage(named: "launch-background")
+        introductionView.RightSkipButton.backgroundColor = UIColor.clearColor()
+        introductionView.delegate = self
+        introductionView.buildIntroductionWithPanels([introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
+
+        let window = UIApplication.sharedApplication().keyWindow!
+        window.addSubview(introductionView)
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -258,6 +294,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushAddRecipe", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func infoButtonTapped(sender: UIBarButtonItem) {
+        showIntroduction()
     }
     
     @IBAction func restoreButtonTapped(sender: UIBarButtonItem) {
