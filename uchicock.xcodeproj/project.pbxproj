@@ -34,6 +34,7 @@
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
+		9BB6BD8D1CE22B0D008C2281 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6BD8C1CE22B0D008C2281 /* MJRefresh.framework */; };
 		9BB6DF191CCBDF650035797A /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF181CCBDF650035797A /* M13Checkbox.framework */; };
 		9BB6DF1B1CCBDF6E0035797A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */; };
 		9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */; };
@@ -55,6 +56,7 @@
 		9BE05A461CDE3F3B00CE5F1D /* IDMPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE05A451CDE3F3B00CE5F1D /* IDMPhotoBrowser.framework */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
+		9BFB425F1CE36C5C009FBB92 /* MYBlurIntroductionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BFB425E1CE36C5C009FBB92 /* MYBlurIntroductionView.framework */; };
 		BBFACDF1C4663C17EFBAA2CE /* Pods_uchicockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8C139FAF459FFD3CE37BE4 /* Pods_uchicockTests.framework */; };
 		CFEC9210D08DEA40275E6605 /* Pods_uchicockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D71895E92D0B0ED3E21A39EB /* Pods_uchicockUITests.framework */; };
 /* End PBXBuildFile section */
@@ -115,6 +117,7 @@
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
+		9BB6BD8C1CE22B0D008C2281 /* MJRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJRefresh.framework; path = "Pods/../build/Debug-iphoneos/MJRefresh.framework"; sourceTree = "<group>"; };
 		9BB6DF181CCBDF650035797A /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/M13Checkbox.framework"; sourceTree = "<group>"; };
 		9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MWPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/MWPhotoBrowser.framework"; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
 		9BF98A1B1C7DC8DC00A27175 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "Pods/../build/Debug-iphoneos/Realm.framework"; sourceTree = "<group>"; };
 		9BF98A1D1C7DC8E100A27175 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
+		9BFB425E1CE36C5C009FBB92 /* MYBlurIntroductionView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MYBlurIntroductionView.framework; path = "Pods/../build/Debug-iphoneos/MYBlurIntroductionView.framework"; sourceTree = "<group>"; };
 		D71895E92D0B0ED3E21A39EB /* Pods_uchicockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86A3C6451DBEA5F504357BA /* Pods-uchicockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicockTests/Pods-uchicockTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFB425F1CE36C5C009FBB92 /* MYBlurIntroductionView.framework in Frameworks */,
+				9BB6BD8D1CE22B0D008C2281 /* MJRefresh.framework in Frameworks */,
 				9BE05A461CDE3F3B00CE5F1D /* IDMPhotoBrowser.framework in Frameworks */,
 				9BB6DF1B1CCBDF6E0035797A /* SVProgressHUD.framework in Frameworks */,
 				9BB6DF191CCBDF650035797A /* M13Checkbox.framework in Frameworks */,
@@ -368,6 +374,8 @@
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BFB425E1CE36C5C009FBB92 /* MYBlurIntroductionView.framework */,
+				9BB6BD8C1CE22B0D008C2281 /* MJRefresh.framework */,
 				9BE05A451CDE3F3B00CE5F1D /* IDMPhotoBrowser.framework */,
 				9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */,
 				9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */,

@@ -10,6 +10,8 @@ PODS:
     - SDWebImage
   - iVersion (1.11.4)
   - M13Checkbox (2.1.0)
+  - MJRefresh (3.1.0)
+  - MYBlurIntroductionView (1.0.3)
   - Nimble (4.0.1)
   - pop (1.0.9)
   - Quick (0.9.2)
@@ -29,6 +31,8 @@ DEPENDENCIES:
   - IDMPhotoBrowser
   - iVersion
   - M13Checkbox
+  - MJRefresh
+  - MYBlurIntroductionView
   - Nimble
   - Quick
   - RealmSwift
@@ -41,6 +45,8 @@ SPEC CHECKSUMS:
   IDMPhotoBrowser: b574fe3229754e701f32df271afbc4ac7e4e1997
   iVersion: 2b6ffe708672cb494ba3cab150a94800c2892e81
   M13Checkbox: 966db729167fdb364996260257deae4ccff6efba
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  MYBlurIntroductionView: b12651c25574580472ff34989a4c5b81c157009f
   Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226

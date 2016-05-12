@@ -8,6 +8,8 @@ pod 'IDMPhotoBrowser'
 pod 'SVProgressHUD'
 pod 'M13Checkbox'
 pod 'iVersion'
+pod 'MJRefresh'
+pod 'MYBlurIntroductionView'
 
 def testing_pods
     pod 'Quick'

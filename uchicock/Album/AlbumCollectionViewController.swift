@@ -10,11 +10,13 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
+import MJRefresh
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     var refreshControl:UIRefreshControl!
     var recipeBasicList = Array<RecipeBasic>()
+    let header = MJRefreshNormalHeader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張ってシャッフル")
-        self.refreshControl.addTarget(self, action: #selector(AlbumCollectionViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
-        self.collectionView!.backgroundView = refreshControl
-        self.collectionView!.alwaysBounceVertical = true
+        header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
+        header.lastUpdatedTimeLabel.hidden = true
+        header.setTitle("引っ張ってシャッフル", forState: MJRefreshState.Idle)
+        header.setTitle("離すとシャッフル", forState: MJRefreshState.Pulling)
+        header.setTitle("シャッフル中...", forState: MJRefreshState.Refreshing)
+        self.collectionView!.mj_header = header
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -114,12 +117,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func refresh(){
-        refreshControl.beginRefreshing()
+        self.collectionView!.mj_header.beginRefreshing()
         self.reloadRecipeList()
         self.shuffle(&self.recipeBasicList)
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
-        refreshControl.endRefreshing()
+        self.collectionView!.mj_header.endRefreshing()
     }
 
     // MARK: UICollectionView

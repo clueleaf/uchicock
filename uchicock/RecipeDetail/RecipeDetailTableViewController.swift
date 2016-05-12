@@ -166,7 +166,9 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 //レシピ削除のバグに対するワークアラウンド
                 let browsePhoto = UIImage(data: recipe.imageData!)
                 if browsePhoto != nil{
-                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [IDMPhoto(image: browsePhoto)], animatedFromView: photo)
+                    let p = IDMPhoto(image: browsePhoto)
+                    p.caption = self.recipe.recipeName
+                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFromView: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
                     self.presentViewController(browser, animated: true, completion: nil)
