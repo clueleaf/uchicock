@@ -176,18 +176,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func showIntroduction(){
-        let desc0 = "「うちカク！」をダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。"
+        view.endEditing(true)
+        
+        let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
         let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "Thank you for downloading!!", description: desc0)
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
-        let desc2 = "ワンタップで材料の在庫を登録できます。\n材料からレシピを探すのもこの画面から。"
+        let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
         introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
-        let desc3 = "アプリに登録されているレシピ写真だけを表示します。\n表示順をシャッフルして、気まぐれでカクテルを選んでみる？"
+        let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
         let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
         introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
