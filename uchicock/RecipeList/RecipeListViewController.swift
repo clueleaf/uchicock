@@ -195,7 +195,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
 
         let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-                introductionView.BackgroundImageView.image = UIImage(named: "launch-background")
+        introductionView.BackgroundImageView.image = UIImage(named: "launch-background")
         introductionView.RightSkipButton.backgroundColor = UIColor.clearColor()
         introductionView.delegate = self
         introductionView.buildIntroductionWithPanels([introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
