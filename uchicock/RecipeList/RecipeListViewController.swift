@@ -209,6 +209,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.reloadRecipeBasicList()
+            self.tableView.reloadData()
+        }
+    }
+    
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
