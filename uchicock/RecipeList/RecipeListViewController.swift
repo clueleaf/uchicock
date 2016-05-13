@@ -176,8 +176,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func showIntroduction(){
-        view.endEditing(true)
-        
         let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
         let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "Thank you for downloading!!", description: desc0)
         
@@ -299,6 +297,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func infoButtonTapped(sender: UIBarButtonItem) {
+        view.endEditing(true)        
+        reloadRecipeBasicList()
+        tableView.reloadData()
         showIntroduction()
     }
     
