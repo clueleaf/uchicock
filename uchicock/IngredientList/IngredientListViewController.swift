@@ -30,7 +30,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+                
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(IngredientListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(IngredientListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -139,6 +143,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -146,8 +162,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.reloadData()
     }
 
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.reloadIngredientBasicList()
+            self.tableView.reloadData()
+        }
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -197,7 +216,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in}))
                 self.presentViewController(alertView, animated: true, completion: nil)
             } else{
-                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .Alert)
                 favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                     let realm = try! Realm()
                     try! realm.write {

@@ -40,6 +40,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         shortage = UILabel(frame: CGRectMake(77, 39, width - 105, 21))
         shortage.text = ""
         shortage.font = UIFont.systemFontOfSize(12)
+        shortage.lineBreakMode = .ByTruncatingMiddle
         self.addSubview(shortage)
     }
 

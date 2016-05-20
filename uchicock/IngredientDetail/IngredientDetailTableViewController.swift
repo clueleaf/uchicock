@@ -35,6 +35,8 @@ class IngredientDetailTableViewController: UITableViewController {
         stock.stateChangeAnimation = .Expand(.Fill)
 
         tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
+
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -215,11 +217,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
                     cell.recipeName.textColor = FlatBlack()
                 }else if shortageNum == 1{
-                    if shortageName.characters.count > 10{
-                        cell.shortage.text = (shortageName as NSString).substringToIndex(10) + "...が足りません"
-                    }else{
-                        cell.shortage.text = shortageName + "が足りません"
-                    }
+                    cell.shortage.text = shortageName + "が足りません"
                     cell.shortage.textColor = FlatGrayDark()
                     cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
                     cell.recipeName.textColor = FlatGrayDark()

@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  uchicock
@@ -19,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-
+        
         setColor()
         setSVProgressHUD()
-
+        
         let manager = NSFileManager()
         let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let realmPath = documentDir.stringByAppendingPathComponent("default.realm")

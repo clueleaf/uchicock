@@ -10,8 +10,9 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
+import MYBlurIntroductionView
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MYIntroductionDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -21,7 +22,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +31,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dic = ["firstLaunch": true]
+        defaults.registerDefaults(dic)
+        if defaults.boolForKey("firstLaunch") {
+            showIntroduction()
+            defaults.setBool(false, forKey: "firstLaunch")
+        }        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -150,6 +163,45 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return -self.tableView.frame.size.height/4.0
     }
     
+    func handleKeyboardWillShowNotification(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+    }
+    
+    func handleKeyboardWillHideNotification(notification: NSNotification) {
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+    }
+    
+    func showIntroduction(){
+        let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
+        let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "Thank you for downloading!!", description: desc0)
+        
+        let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
+        let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
+        introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
+        let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
+        introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
+        let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
+        introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+
+        let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        introductionView.BackgroundImageView.image = UIImage(named: "launch-background")
+        introductionView.RightSkipButton.backgroundColor = UIColor.clearColor()
+        introductionView.delegate = self
+        introductionView.buildIntroductionWithPanels([introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
+
+        let window = UIApplication.sharedApplication().keyWindow!
+        window.addSubview(introductionView)
+    }
+    
     // MARK: - UISearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -157,8 +209,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.reloadRecipeBasicList()
+            self.tableView.reloadData()
+        }
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -199,7 +254,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del = UITableViewRowAction(style: .Default, title: "削除") {
             (action, indexPath) in
-            let alertView = UIAlertController(title: "本当に削除しますか？", message: "一度削除すると戻せません", preferredStyle: .Alert)
+            let alertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
                 self.deleteRecipe(self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.removeAtIndex(indexPath.row)
@@ -246,6 +301,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("PushAddRecipe", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func infoButtonTapped(sender: UIBarButtonItem) {
+        view.endEditing(true)        
+        reloadRecipeBasicList()
+        tableView.reloadData()
+        showIntroduction()
+    }
+    
+    @IBAction func restoreButtonTapped(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("PushRecoverRecipe", sender: UIBarButtonItem())
     }
     
     // MARK: - Navigation
