@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 import M13Checkbox
+import IDMPhotoBrowser
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -45,9 +46,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
+            photo.userInteractionEnabled = false
         }else{
             selectPhoto.text = "写真を変更"
+            photo.userInteractionEnabled = true
         }
+        let photoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeEditTableViewController.photoTapped))
+        self.photo.addGestureRecognizer(photoTapGestureRecognizer)
         
         ipc.delegate = self
         ipc.allowsEditing = true
@@ -125,6 +130,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }
         return false
+    }
+    
+    func photoTapped(){
+        if photo.image != nil{
+            if UIImagePNGRepresentation(photo.image!) != nil{
+                let browsePhoto = UIImage(data: UIImagePNGRepresentation(photo.image!)!)
+                if browsePhoto != nil{
+                    let p = IDMPhoto(image: browsePhoto)
+                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFromView: photo)
+                    browser.displayActionButton = false
+                    browser.displayArrowButton = false
+                    self.presentViewController(browser, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func textWithoutSpace(text: String) -> String{
@@ -254,6 +274,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
             photo.image = image
             selectPhoto.text = "写真を変更"
+            photo.userInteractionEnabled = true
         }
         ipc.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -279,6 +300,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 action in
                 self.photo.image = pasteImage!
                 self.selectPhoto.text = "写真を変更"
+                self.photo.userInteractionEnabled = true
             }))
         }
         if self.photo.image != nil{
@@ -286,6 +308,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 action in
                 self.selectPhoto.text = "写真を追加"
                 self.photo.image = nil
+                self.photo.userInteractionEnabled = false
                 })
         }
         alert.addAction(UIAlertAction(title:"キャンセル",style: .Cancel, handler:{
