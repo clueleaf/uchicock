@@ -17,7 +17,9 @@ class RecoverTableViewController: UITableViewController {
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
-    
+    let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
+    var canPreview = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserRecipe()
@@ -28,6 +30,8 @@ class RecoverTableViewController: UITableViewController {
         loadSampleRecipe()
         setNavigationTitle()
 
+        canPreview = true
+        
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -209,19 +213,28 @@ class RecoverTableViewController: UITableViewController {
                 }else{
                     let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
                     alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
-                        for recipe in self.recoverableSampleRecipeList{
-                            recipe.recoverTarget = true
+                        self.canPreview = false
+                        SVProgressHUD.showWithStatus("復元中...")
+                        dispatch_async(self.queue){
+                            for recipe in self.recoverableSampleRecipeList{
+                                recipe.recoverTarget = true
+                            }
+                            self.recover()
+                            dispatch_async(dispatch_get_main_queue()){
+                                SVProgressHUD.dismiss()
+                                SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
                         }
-                        self.recover()
-                        SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                        self.dismissViewControllerAnimated(true, completion: nil)
                     }))
                     alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
                     self.presentViewController(alertView, animated: true, completion: nil)
                 }
             }else{
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                performSegueWithIdentifier("PushPreview", sender: indexPath)
+                if canPreview {
+                    performSegueWithIdentifier("PushPreview", sender: indexPath)
+                }
             }
         }
     }
@@ -323,9 +336,16 @@ class RecoverTableViewController: UITableViewController {
         }else{
             let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
             alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
-                self.recover()
-                SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.canPreview = false
+                SVProgressHUD.showWithStatus("復元中...")
+                dispatch_async(self.queue){
+                    self.recover()
+                    dispatch_async(dispatch_get_main_queue()){
+                        SVProgressHUD.dismiss()
+                        SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                }
             }))
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
             self.presentViewController(alertView, animated: true, completion: nil)
