@@ -28,7 +28,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        SVProgressHUD.showWithStatus("ロード中")
+        SVProgressHUD.showWithStatus("ロード中...")
         dispatch_async(queue){
             self.reloadRecipeList()
         }
@@ -48,7 +48,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        SVProgressHUD.showWithStatus("ロード中")
+        SVProgressHUD.showWithStatus("ロード中...")
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""
 
@@ -192,11 +192,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            self.reloadRecipeList()
-            self.shuffle(&self.tempRecipeBasicList)
-            self.recipeBasicList = self.tempRecipeBasicList
-            self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+            SVProgressHUD.showWithStatus("シャッフル中...")
+            dispatch_async(self.queue){
+                self.reloadRecipeList()
+                self.shuffle(&self.tempRecipeBasicList)
+                self.recipeBasicList = self.tempRecipeBasicList
+                dispatch_async(dispatch_get_main_queue()){
+                    self.collectionView!.reloadData()
+                    self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+                    SVProgressHUD.dismiss()
+                }
+            }
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(alertView, animated: true, completion: nil)
@@ -205,10 +211,16 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            self.reloadRecipeList()
-            self.recipeBasicList = self.tempRecipeBasicList
-            self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+            SVProgressHUD.showWithStatus("並べ替え中...")
+            dispatch_async(self.queue){
+                self.reloadRecipeList()
+                self.recipeBasicList = self.tempRecipeBasicList
+                dispatch_async(dispatch_get_main_queue()){
+                    self.collectionView!.reloadData()
+                    self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+                    SVProgressHUD.dismiss()
+                }
+            }
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
         self.presentViewController(alertView, animated: true, completion: nil)
