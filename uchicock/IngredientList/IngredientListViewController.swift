@@ -27,7 +27,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-        
+        searchBar.returnKeyType = UIReturnKeyType.Done
+
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
