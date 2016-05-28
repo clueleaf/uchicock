@@ -19,6 +19,7 @@ class RecoverTableViewController: UITableViewController {
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
     var canPreview = true
+    let leastWaitTime = 0.2
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,6 +184,16 @@ class RecoverTableViewController: UITableViewController {
         let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
         recipe.recipeIngredients.append(recipeIngredientLink)
     }
+    
+    func waitAtLeast(time : NSTimeInterval, @noescape _ block: () -> Void) {
+        let start = CFAbsoluteTimeGetCurrent()
+        block()
+        let end = CFAbsoluteTimeGetCurrent()
+        let wait = max(0.0, time - (end - start))
+        if wait > 0.0 {
+            NSThread.sleepForTimeInterval(wait)
+        }
+    }
 
     // MARK: - Table view
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -216,10 +227,12 @@ class RecoverTableViewController: UITableViewController {
                         self.canPreview = false
                         SVProgressHUD.showWithStatus("復元中...")
                         dispatch_async(self.queue){
-                            for recipe in self.recoverableSampleRecipeList{
-                                recipe.recoverTarget = true
+                            self.waitAtLeast(self.leastWaitTime) {
+                                for recipe in self.recoverableSampleRecipeList{
+                                    recipe.recoverTarget = true
+                                }
+                                self.recover()
                             }
-                            self.recover()
                             dispatch_async(dispatch_get_main_queue()){
                                 SVProgressHUD.dismiss()
                                 SVProgressHUD.showSuccessWithStatus("復元が完了しました")
@@ -339,7 +352,9 @@ class RecoverTableViewController: UITableViewController {
                 self.canPreview = false
                 SVProgressHUD.showWithStatus("復元中...")
                 dispatch_async(self.queue){
-                    self.recover()
+                    self.waitAtLeast(self.leastWaitTime) {
+                        self.recover()
+                    }
                     dispatch_async(dispatch_get_main_queue()){
                         SVProgressHUD.dismiss()
                         SVProgressHUD.showSuccessWithStatus("復元が完了しました")
