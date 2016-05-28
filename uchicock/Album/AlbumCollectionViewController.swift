@@ -21,6 +21,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let header = MJRefreshNormalHeader()
     
     let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
+    var emptyDataSetStr = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +49,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillAppear(animated)
         
         SVProgressHUD.showWithStatus("ロード中")
-        self.navigationItem.title = "アルバム"
-        
+        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        emptyDataSetStr = ""
+
         dispatch_async(queue){
             let realm = try! Realm()
             for i in (0..<self.tempRecipeBasicList.count).reverse() {
@@ -85,7 +87,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
             self.recipeBasicList = self.tempRecipeBasicList
-            
+            self.emptyDataSetStr = "写真が登録されたレシピはありません"
+
             dispatch_async(dispatch_get_main_queue()){
                 self.collectionView!.reloadData()
                 self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
@@ -108,9 +111,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "写真が登録されたレシピはありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: emptyDataSetStr, attributes: attrs)
     }
     
     func reloadRecipeList(){
@@ -157,7 +159,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("RecipeTapped", sender: indexPath)
+        let realm = try! Realm()
+        let recipeCount = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).count
+        if recipeCount > 0 {
+            performSegueWithIdentifier("RecipeTapped", sender: indexPath)
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
