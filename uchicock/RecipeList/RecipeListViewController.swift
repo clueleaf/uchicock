@@ -28,6 +28,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         segmentedControlContainer.backgroundColor = FlatSand()
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
+        searchBar.returnKeyType = UIReturnKeyType.Done
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self

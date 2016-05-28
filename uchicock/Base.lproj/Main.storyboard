@@ -111,7 +111,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9cn-07-eUk"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="EVC-gH-W3O"/>
                                 </connections>
@@ -300,7 +300,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ZXf-SH-x6f"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="IFZ-In-CDc" id="SQ9-i8-FN7"/>
                                 </connections>
@@ -2269,10 +2269,10 @@
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WbW-98-e9q"/>
-        <segue reference="WL9-sL-eOj"/>
-        <segue reference="AL8-XH-VAL"/>
-        <segue reference="7e9-IZ-O1r"/>
         <segue reference="VoJ-51-RUH"/>
+        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="SNB-c3-dZb"/>
+        <segue reference="7e9-IZ-O1r"/>
+        <segue reference="Ee4-db-L8m"/>
     </inferredMetricsTieBreakers>
 </document>
