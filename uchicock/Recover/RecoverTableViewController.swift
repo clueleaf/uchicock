@@ -234,7 +234,6 @@ class RecoverTableViewController: UITableViewController {
                                 self.recover()
                             }
                             dispatch_async(dispatch_get_main_queue()){
-                                SVProgressHUD.dismiss()
                                 SVProgressHUD.showSuccessWithStatus("復元が完了しました")
                                 self.dismissViewControllerAnimated(true, completion: nil)
                             }
@@ -356,7 +355,6 @@ class RecoverTableViewController: UITableViewController {
                         self.recover()
                     }
                     dispatch_async(dispatch_get_main_queue()){
-                        SVProgressHUD.dismiss()
                         SVProgressHUD.showSuccessWithStatus("復元が完了しました")
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
