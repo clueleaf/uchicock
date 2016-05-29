@@ -18,7 +18,7 @@ class RecoverTableViewController: UITableViewController {
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
-    var canPreview = true
+    var isRecovering = false
     let leastWaitTime = 0.2
 
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class RecoverTableViewController: UITableViewController {
         loadSampleRecipe()
         setNavigationTitle()
 
-        canPreview = true
+        isRecovering = false
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -40,7 +40,7 @@ class RecoverTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func loadUserRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe).sorted("recipeName")
@@ -86,20 +86,22 @@ class RecoverTableViewController: UITableViewController {
     }
     
     func isTargetTapped(sender: M13Checkbox){
-        var view = sender.superview
-        while(view!.isKindOfClass(RecoverTargetTableViewCell) == false) {
-            view = view!.superview
-        }
-        let cell = view as! RecoverTargetTableViewCell
-        let touchIndex = self.tableView.indexPathForCell(cell)
-        
-        if touchIndex!.row - 1 < recoverableSampleRecipeList.count{
-            if sender.checkState == .Checked{
-                recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = true
-            }else if sender.checkState == .Unchecked{
-                recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = false
+        if isRecovering == false {
+            var view = sender.superview
+            while(view!.isKindOfClass(RecoverTargetTableViewCell) == false) {
+                view = view!.superview
             }
-            setNavigationTitle()
+            let cell = view as! RecoverTargetTableViewCell
+            let touchIndex = self.tableView.indexPathForCell(cell)
+            
+            if touchIndex!.row - 1 < recoverableSampleRecipeList.count{
+                if sender.checkState == .Checked{
+                    recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = true
+                }else if sender.checkState == .Unchecked{
+                    recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = false
+                }
+                setNavigationTitle()
+            }            
         }
     }
     
@@ -214,37 +216,39 @@ class RecoverTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            if indexPath.row == 0{
+            if indexPath.row == 0 {
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                if recoverableSampleRecipeList.count == 0{
-                    let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .Alert)
-                    alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-                    }))
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                }else{
-                    let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
-                    alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
-                        self.canPreview = false
-                        SVProgressHUD.showWithStatus("復元中...")
-                        dispatch_async(self.queue){
-                            self.waitAtLeast(self.leastWaitTime) {
-                                for recipe in self.recoverableSampleRecipeList{
-                                    recipe.recoverTarget = true
+                if isRecovering == false {
+                    if recoverableSampleRecipeList.count == 0{
+                        let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                        }))
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                    }else{
+                        let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
+                        alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                            self.isRecovering = true
+                            SVProgressHUD.showWithStatus("復元中...")
+                            dispatch_async(self.queue){
+                                self.waitAtLeast(self.leastWaitTime) {
+                                    for recipe in self.recoverableSampleRecipeList{
+                                        recipe.recoverTarget = true
+                                    }
+                                    self.recover()
                                 }
-                                self.recover()
+                                dispatch_async(dispatch_get_main_queue()){
+                                    SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                }
                             }
-                            dispatch_async(dispatch_get_main_queue()){
-                                SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                                self.dismissViewControllerAnimated(true, completion: nil)
-                            }
-                        }
-                    }))
-                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                    self.presentViewController(alertView, animated: true, completion: nil)
+                        }))
+                        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                        self.presentViewController(alertView, animated: true, completion: nil)
+                    }
                 }
             }else{
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                if canPreview {
+                if isRecovering == false {
                     performSegueWithIdentifier("PushPreview", sender: indexPath)
                 }
             }
@@ -325,43 +329,47 @@ class RecoverTableViewController: UITableViewController {
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
-
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func recoverButtonTapped(sender: UIBarButtonItem) {
-        var recoverCount = 0
-        for rr in recoverableSampleRecipeList{
-            if rr.recoverTarget{
-                recoverCount += 1
-            }
-        }
-        
-        if recoverCount == 0{
+        if isRecovering == false {
             let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
             let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
             Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+            
             self.dismissViewControllerAnimated(true, completion: nil)
-        }else{
-            let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
-                self.canPreview = false
-                SVProgressHUD.showWithStatus("復元中...")
-                dispatch_async(self.queue){
-                    self.waitAtLeast(self.leastWaitTime) {
-                        self.recover()
-                    }
-                    dispatch_async(dispatch_get_main_queue()){
-                        SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }
+        }
+    }
+    
+    @IBAction func recoverButtonTapped(sender: UIBarButtonItem) {
+        if isRecovering == false{
+            var recoverCount = 0
+            for rr in recoverableSampleRecipeList{
+                if rr.recoverTarget{
+                    recoverCount += 1
                 }
-            }))
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            self.presentViewController(alertView, animated: true, completion: nil)
+            }
+            
+            if recoverCount == 0{
+                let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+                let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+                Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }else{
+                let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                    self.isRecovering = true
+                    SVProgressHUD.showWithStatus("復元中...")
+                    dispatch_async(self.queue){
+                        self.waitAtLeast(self.leastWaitTime) {
+                            self.recover()
+                        }
+                        dispatch_async(dispatch_get_main_queue()){
+                            SVProgressHUD.showSuccessWithStatus("復元が完了しました")
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                    }
+                }))
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
         }
     }
     
