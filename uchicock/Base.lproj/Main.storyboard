@@ -8,7 +8,7 @@
         <!--レシピ編集-->
         <scene sceneID="4kw-M6-q9V">
             <objects>
-                <navigationController id="0eU-Qx-7IP" userLabel="レシピ編集" customClass="RecipeEditNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="0eU-Qx-7IP" userLabel="レシピ編集" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="tgF-78-Zlk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2270,9 +2270,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VoJ-51-RUH"/>
+        <segue reference="Ee4-db-L8m"/>
         <segue reference="BF7-gd-8JQ"/>
         <segue reference="SNB-c3-dZb"/>
         <segue reference="7e9-IZ-O1r"/>
-        <segue reference="Ee4-db-L8m"/>
     </inferredMetricsTieBreakers>
 </document>
