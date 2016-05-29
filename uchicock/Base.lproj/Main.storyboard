@@ -2094,13 +2094,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="JrF-pQ-HX6" firstAttribute="centerY" secondItem="RSg-GA-cJc" secondAttribute="centerY" id="0rW-Ir-LGF"/>
-                                                <constraint firstItem="qhb-Bg-qgv" firstAttribute="centerY" secondItem="RSg-GA-cJc" secondAttribute="centerY" id="Dog-RX-i0F"/>
-                                                <constraint firstItem="4ap-hu-NGP" firstAttribute="centerY" secondItem="RSg-GA-cJc" secondAttribute="centerY" id="P3F-Bl-Xfu"/>
+                                                <constraint firstItem="JNj-Sm-JRu" firstAttribute="top" secondItem="RSg-GA-cJc" secondAttribute="top" constant="12" id="5Up-2X-d0J"/>
+                                                <constraint firstItem="qhb-Bg-qgv" firstAttribute="centerY" secondItem="JNj-Sm-JRu" secondAttribute="centerY" id="8If-7D-i5n"/>
+                                                <constraint firstItem="JrF-pQ-HX6" firstAttribute="centerY" secondItem="JNj-Sm-JRu" secondAttribute="centerY" id="BAy-5w-T58"/>
+                                                <constraint firstAttribute="bottom" secondItem="JNj-Sm-JRu" secondAttribute="bottom" constant="12" id="XoM-TJ-tFU"/>
                                                 <constraint firstAttribute="trailing" secondItem="4ap-hu-NGP" secondAttribute="trailing" constant="40" id="abB-4E-Kpw"/>
+                                                <constraint firstItem="4ap-hu-NGP" firstAttribute="centerY" secondItem="JNj-Sm-JRu" secondAttribute="centerY" id="dPz-w7-8Qx"/>
                                                 <constraint firstItem="qhb-Bg-qgv" firstAttribute="leading" secondItem="JrF-pQ-HX6" secondAttribute="trailing" constant="15" id="mFp-y0-6DX"/>
                                                 <constraint firstItem="4ap-hu-NGP" firstAttribute="leading" secondItem="qhb-Bg-qgv" secondAttribute="trailing" constant="15" id="mJy-CQ-0VL"/>
-                                                <constraint firstItem="JNj-Sm-JRu" firstAttribute="centerY" secondItem="RSg-GA-cJc" secondAttribute="centerY" id="qLE-I9-5Mg"/>
                                                 <constraint firstItem="JNj-Sm-JRu" firstAttribute="leading" secondItem="RSg-GA-cJc" secondAttribute="leading" constant="8" id="w4Q-TZ-omE"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2270,9 +2271,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VoJ-51-RUH"/>
-        <segue reference="Ee4-db-L8m"/>
-        <segue reference="BF7-gd-8JQ"/>
         <segue reference="SNB-c3-dZb"/>
+        <segue reference="AL8-XH-VAL"/>
+        <segue reference="WbW-98-e9q"/>
         <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>
