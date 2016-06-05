@@ -3,7 +3,7 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - DACircularProgress (2.3.1)
-  - DZNEmptyDataSet (1.7.3)
+  - DZNEmptyDataSet (1.8.1)
   - IDMPhotoBrowser (1.8.4):
     - DACircularProgress
     - pop
@@ -41,7 +41,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IDMPhotoBrowser: b574fe3229754e701f32df271afbc4ac7e4e1997
   iVersion: 2b6ffe708672cb494ba3cab150a94800c2892e81
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
