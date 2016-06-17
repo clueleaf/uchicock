@@ -65,10 +65,18 @@ class ReminderTableViewController: UITableViewController{
             SVProgressHUD.showSuccessWithStatus("リマインダーへ登録しました")
             self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
-            let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            }))
-            self.presentViewController(alertView, animated: true, completion: nil)
+            dispatch_async(dispatch_get_main_queue()){
+                let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+                }))
+                alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
+                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                }))
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
         }
     }
     
@@ -86,10 +94,18 @@ class ReminderTableViewController: UITableViewController{
             SVProgressHUD.showSuccessWithStatus("カレンダーへ登録しました")
             self.dismissViewControllerAnimated(true, completion: nil)
         } catch {
-            let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            }))
-            self.presentViewController(alertView, animated: true, completion: nil)
+            dispatch_async(dispatch_get_main_queue()){
+                let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+                }))
+                alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
+                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.sharedApplication().openURL(url)
+                    }
+                }))
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
         }
     }
 
