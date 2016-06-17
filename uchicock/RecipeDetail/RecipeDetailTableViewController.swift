@@ -297,6 +297,16 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let reminder = UITableViewRowAction(style: .Normal, title: "リマインダー") {
+            (action, indexPath) in
+            self.performSegueWithIdentifier("PushReminder", sender: indexPath)
+        }
+        reminder.backgroundColor = FlatSkyBlueDark()
+        
+        return [reminder]
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section{
@@ -458,6 +468,12 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             let enc = segue.destinationViewController as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
+        }else if segue.identifier == "PushReminder" {
+            let enc = segue.destinationViewController as! UINavigationController
+            let evc = enc.visibleViewController as! ReminderTableViewController
+            if let indexPath = sender as? NSIndexPath{
+                evc.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            }
         }
     }
     
