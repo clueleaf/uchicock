@@ -19,20 +19,20 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = UIScreen.mainScreen().bounds.size.width
 
-        ingredientName = UILabel(frame: CGRectMake(10, 5, width - 40, 21))
+        ingredientName = UILabel(frame: CGRectMake(8, 8, width - 43, 21))
         ingredientName.text = ""
-        ingredientName.font = UIFont.systemFontOfSize(17)
+        ingredientName.font = UIFont.systemFontOfSize(15)
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRectMake(10, 35, 70, 20))
+        option = UILabel(frame: CGRectMake(5, 35, 50, 21))
         option.text = ""
-        option.font = UIFont.systemFontOfSize(14)
+        option.font = UIFont.systemFontOfSize(10)
         option.textColor = FlatGrayDark()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(80, 35, width - 115, 21))
+        amount = UILabel(frame: CGRectMake(60, 35, width - 95, 21))
         amount.text = ""
-        amount.font = UIFont.systemFontOfSize(17)
+        amount.font = UIFont.systemFontOfSize(12)
         self.addSubview(amount)
     }
     
