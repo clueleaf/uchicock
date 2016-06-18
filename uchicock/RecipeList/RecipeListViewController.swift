@@ -34,10 +34,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
 
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
         let defaults = NSUserDefaults.standardUserDefaults()
         let dic = ["firstLaunch": true]
         defaults.registerDefaults(dic)
@@ -50,8 +46,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RecipeListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         reloadRecipeList()
         tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
