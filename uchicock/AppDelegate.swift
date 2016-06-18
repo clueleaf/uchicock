@@ -34,7 +34,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
         
+        correct_v_2_2()
+        
         return true
+    }
+    
+    func correct_v_2_2(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dic = ["corrected_v2.2": false]
+        defaults.registerDefaults(dic)
+        if defaults.boolForKey("corrected_v2.2") == false {
+            let realm = try! Realm()
+            let rec1 = realm.objects(Recipe).filter("recipeName == %@", "ハバナピーチ")
+            if rec1.count > 0 {
+                let rec2 = realm.objects(Recipe).filter("recipeName == %@", "ハバナビーチ")
+                if rec2.count < 1 {
+                    let recipe = realm.objects(Recipe).filter("recipeName == %@", "ハバナピーチ").first!
+                    try! realm.write{
+                        recipe.recipeName = "ハバナビーチ"
+                    }
+                }
+            }
+            defaults.setBool(true, forKey: "corrected_v2.2")
+        }
     }
     
     func setColor(){

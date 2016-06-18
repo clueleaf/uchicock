@@ -201,7 +201,13 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             SVProgressHUD.showSuccessWithStatus("カメラロールへ保存しました")
         }else{
             let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+            }))
+            alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
+                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.sharedApplication().openURL(url)
+                }
             }))
             presentViewController(alertView, animated: true, completion: nil)
         }
