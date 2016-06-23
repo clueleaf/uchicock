@@ -106,8 +106,6 @@ class IngredientDetailTableViewController: UITableViewController {
         }else{
             ingredientRecipeBasicList.sortInPlace({ $0.recipeKanaName < $1.recipeKanaName })
         }
-        
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     // MARK: - UITableView
@@ -298,6 +296,7 @@ class IngredientDetailTableViewController: UITableViewController {
             }
         }
         reloadIngredientRecipeBasicList()
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
@@ -306,6 +305,7 @@ class IngredientDetailTableViewController: UITableViewController {
     
     @IBAction func orderTapped(sender: UISegmentedControl) {
         reloadIngredientRecipeBasicList()
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
