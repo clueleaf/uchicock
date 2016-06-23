@@ -17,6 +17,7 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UILabel!
+    @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var deleteLabel: UILabel!
 
     var ingredientId = String()
@@ -64,24 +65,49 @@ class IngredientDetailTableViewController: UITableViewController {
             memo.textColor = FlatGrayDark()            
             deleteLabel.textColor = FlatRed()
             
-            ingredientRecipeBasicList.removeAll()
-            for recipeIngredient in ingredient.recipeIngredients{
-                let ingredientRecipeBasic = IngredientRecipeBasic()
-                ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
-                ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
-                ingredientRecipeBasic.recipeKanaName = recipeIngredient.recipe.recipeName.katakana().lowercaseString
-                ingredientRecipeBasicList.append(ingredientRecipeBasic)
-            }
-            ingredientRecipeBasicList.sortInPlace({ $0.recipeKanaName < $1.recipeKanaName })
+            reloadIngredientRecipeBasicList()
             
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func reloadIngredientRecipeBasicList(){
+        let realm = try! Realm()
+        try! realm.write {
+            for ri in ingredient.recipeIngredients{
+                ri.recipe.updateShortageNum()
+            }
+        }
+
+        ingredientRecipeBasicList.removeAll()
+        for recipeIngredient in ingredient.recipeIngredients{
+            let ingredientRecipeBasic = IngredientRecipeBasic()
+            ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
+            ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
+            ingredientRecipeBasic.recipeKanaName = recipeIngredient.recipe.recipeName.katakana().lowercaseString
+            ingredientRecipeBasic.shortageNum = recipeIngredient.recipe.shortageNum
+            ingredientRecipeBasicList.append(ingredientRecipeBasic)
+        }
+        
+        if order.selectedSegmentIndex == 1{
+            ingredientRecipeBasicList.sortInPlace { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    return a.recipeKanaName < b.recipeKanaName
+                }else{
+                    return a.shortageNum < b.shortageNum
+                }
+            }
+        }else{
+            ingredientRecipeBasicList.sortInPlace({ $0.recipeKanaName < $1.recipeKanaName })
+        }
+        
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
     // MARK: - UITableView
@@ -271,11 +297,15 @@ class IngredientDetailTableViewController: UITableViewController {
                 ingredient.stockFlag = false
             }
         }
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        reloadIngredientRecipeBasicList()
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("CreateEvent", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func orderTapped(sender: UISegmentedControl) {
+        reloadIngredientRecipeBasicList()
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

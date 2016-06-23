@@ -1017,6 +1017,9 @@
                                                         <segment title="名前順"/>
                                                         <segment title="つくれる順"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="orderTapped:" destination="yKB-1k-jl3" eventType="valueChanged" id="4aY-b0-x4C"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -1121,6 +1124,7 @@
                         <outlet property="deleteLabel" destination="pyA-7t-rsu" id="3tJ-re-mYk"/>
                         <outlet property="ingredientName" destination="z0Y-88-hex" id="qzd-rz-jmd"/>
                         <outlet property="memo" destination="h9v-M5-Six" id="8uf-5Z-pPH"/>
+                        <outlet property="order" destination="KS5-5x-Pwk" id="rxG-sS-jOl"/>
                         <outlet property="stock" destination="33O-t7-MVg" id="LLy-39-70z"/>
                         <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="rrh-vr-JPb"/>
                         <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="WL9-sL-eOj"/>

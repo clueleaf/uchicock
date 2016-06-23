@@ -10,5 +10,6 @@ class IngredientRecipeBasic: NSObject {
     var recipeIngredientLinkId = ""
     var recipeName = ""
     var recipeKanaName = ""
+    var shortageNum = 0
 }
 
