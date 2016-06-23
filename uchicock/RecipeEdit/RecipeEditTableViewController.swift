@@ -111,6 +111,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         self.tableView.reloadData()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isAddMode{
+            recipeName.becomeFirstResponder()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

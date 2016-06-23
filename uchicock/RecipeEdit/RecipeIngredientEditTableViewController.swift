@@ -71,6 +71,14 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         suggestTableView.tableFooterView = UIView(frame: CGRectZero)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isAddMode{
+            ingredientName.becomeFirstResponder()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

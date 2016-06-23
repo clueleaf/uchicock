@@ -56,6 +56,14 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isAddMode{
+            ingredientName.becomeFirstResponder()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
