@@ -102,9 +102,13 @@ class IngredientDetailTableViewController: UITableViewController {
             }
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                if indexPath.row == 0{
+                    return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                }else{
+                    return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                }
             } else{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 2, inSection: 1))
             }
         }
         return 0
@@ -127,7 +131,7 @@ class IngredientDetailTableViewController: UITableViewController {
             return 3
         }else if section == 1 {
             if ingredient.recipeIngredients.count > 0{
-                return ingredient.recipeIngredients.count
+                return ingredient.recipeIngredients.count + 1
             }else{
                 return 1
             }
@@ -140,9 +144,13 @@ class IngredientDetailTableViewController: UITableViewController {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                if indexPath.row == 0{
+                    return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                }else{
+                    return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                }
             }else{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 2, inSection: 1))
             }
         }
         return 0
@@ -151,8 +159,10 @@ class IngredientDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             if ingredient.recipeIngredients.count > 0{
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+                if indexPath.row > 0 {
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+                }
             }else{
                 let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                 alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
@@ -177,63 +187,69 @@ class IngredientDetailTableViewController: UITableViewController {
             return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
-                let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
-                
-                let realm = try! Realm()
-                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
-
-                if recipeIngredient.recipe.imageData != nil{
-                    cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData!)
-                    //レシピ削除のバグに対するワークアラウンド
-                    if cell.photo.image == nil{
+                if indexPath.row > 0{
+                    let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
+                    
+                    let realm = try! Realm()
+                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                    
+                    if recipeIngredient.recipe.imageData != nil{
+                        cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData!)
+                        //レシピ削除のバグに対するワークアラウンド
+                        if cell.photo.image == nil{
+                            cell.photo.image = UIImage(named: "no-photo")
+                        }
+                    }else{
                         cell.photo.image = UIImage(named: "no-photo")
                     }
-                }else{
-                    cell.photo.image = UIImage(named: "no-photo")
-                }
-                
-                cell.recipeName.text = recipeIngredient.recipe.recipeName
-                switch recipeIngredient.recipe.favorites{
-                case 1:
-                    cell.favorites.text = "★☆☆"
-                case 2:
-                    cell.favorites.text = "★★☆"
-                case 3:
-                    cell.favorites.text = "★★★"
-                default:
-                    cell.favorites.text = "★☆☆"
-                }
-                var shortageNum = 0
-                var shortageName = ""
-                for ri in recipeIngredient.recipe.recipeIngredients{
-                    if ri.mustFlag && ri.ingredient.stockFlag == false{
-                        shortageNum += 1
-                        shortageName = ri.ingredient.ingredientName
+                    
+                    cell.recipeName.text = recipeIngredient.recipe.recipeName
+                    switch recipeIngredient.recipe.favorites{
+                    case 1:
+                        cell.favorites.text = "★☆☆"
+                    case 2:
+                        cell.favorites.text = "★★☆"
+                    case 3:
+                        cell.favorites.text = "★★★"
+                    default:
+                        cell.favorites.text = "★☆☆"
                     }
-                }
-                if shortageNum == 0 {
-                    cell.shortage.text = "すぐつくれる！"
-                    cell.shortage.textColor = FlatSkyBlueDark()
-                    cell.shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
-                    cell.recipeName.textColor = FlatBlack()
-                }else if shortageNum == 1{
-                    cell.shortage.text = shortageName + "が足りません"
-                    cell.shortage.textColor = FlatGrayDark()
-                    cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
-                    cell.recipeName.textColor = FlatGrayDark()
+                    var shortageNum = 0
+                    var shortageName = ""
+                    for ri in recipeIngredient.recipe.recipeIngredients{
+                        if ri.mustFlag && ri.ingredient.stockFlag == false{
+                            shortageNum += 1
+                            shortageName = ri.ingredient.ingredientName
+                        }
+                    }
+                    if shortageNum == 0 {
+                        cell.shortage.text = "すぐつくれる！"
+                        cell.shortage.textColor = FlatSkyBlueDark()
+                        cell.shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
+                        cell.recipeName.textColor = FlatBlack()
+                    }else if shortageNum == 1{
+                        cell.shortage.text = shortageName + "が足りません"
+                        cell.shortage.textColor = FlatGrayDark()
+                        cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                        cell.recipeName.textColor = FlatGrayDark()
+                    }else{
+                        cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
+                        cell.shortage.textColor = FlatGrayDark()
+                        cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                        cell.recipeName.textColor = FlatGrayDark()
+                    }
+                    
+                    cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                    cell.selectionStyle = .Default
+                    cell.backgroundColor = FlatWhite()
+                    return cell
                 }else{
-                    cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                    cell.shortage.textColor = FlatGrayDark()
-                    cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
-                    cell.recipeName.textColor = FlatGrayDark()
+                    let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                    cell.backgroundColor = FlatWhite()
+                    return cell
                 }
-                
-                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                cell.selectionStyle = .Default
-                cell.backgroundColor = FlatWhite()
-                return cell
             }else{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 2, inSection: 1))
                 cell.backgroundColor = FlatWhite()
                 return cell
             }
@@ -276,7 +292,7 @@ class IngredientDetailTableViewController: UITableViewController {
             let vc = segue.destinationViewController as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 let realm = try! Realm()
-                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row].recipeIngredientLinkId).first!
+                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
                 vc.recipeId = recipeIngredient.recipe.id
             }
         }else if segue.identifier == "CreateEvent" {
