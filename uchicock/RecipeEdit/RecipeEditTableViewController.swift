@@ -31,6 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var isAddMode = true
     var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
     var ipc = UIImagePickerController()
+    var focusRecipeNameFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +105,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        focusRecipeNameFlag = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,8 +118,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if isAddMode{
+        if isAddMode && focusRecipeNameFlag{
             recipeName.becomeFirstResponder()
+            focusRecipeNameFlag = false
         }
     }
 
