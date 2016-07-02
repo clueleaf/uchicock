@@ -66,10 +66,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         deleteLabel.textColor = FlatRed()
         
         suggestTableView.backgroundColor = FlatWhite()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         suggestTableView.tableFooterView = UIView(frame: CGRectZero)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -78,6 +83,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if isAddMode{
             ingredientName.becomeFirstResponder()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
