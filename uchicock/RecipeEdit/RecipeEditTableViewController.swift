@@ -551,15 +551,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }
                 }
             }else{
-                for var editingRecipeIngredient in editingRecipeIngredientList{
-                    if editingRecipeIngredient.id == riec.recipeIngredient.id{
-                        editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
-                        editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)
-                        if riec.option.checkState == .Checked{
-                            editingRecipeIngredient.mustFlag = false
-                        }else{
-                            editingRecipeIngredient.mustFlag = true
-                        }
+                for i in 0 ..< editingRecipeIngredientList.count where editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
+                    editingRecipeIngredientList[i].ingredientName = textWithoutSpace(riec.ingredientName.text!)
+                    editingRecipeIngredientList[i].amount = textWithoutSpace(riec.amount.text!)
+                    if riec.option.checkState == .Checked{
+                        editingRecipeIngredientList[i].mustFlag = false
+                    }else{
+                        editingRecipeIngredientList[i].mustFlag = true
                     }
                 }
             }
