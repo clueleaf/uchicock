@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
         
         correct_v_2_2()
+        correct_v_2_3()
         
         return true
     }
@@ -58,7 +59,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setBool(true, forKey: "corrected_v2.2")
         }
     }
-    
+
+    func correct_v_2_3(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dic = ["corrected_v2.3": false]
+        defaults.registerDefaults(dic)
+        if defaults.boolForKey("corrected_v2.3") == false {
+            let realm = try! Realm()
+            let ril = realm.objects(RecipeIngredientLink).filter("id == %@", "219")
+            if ril.count > 0 {
+                let link = realm.objects(RecipeIngredientLink).filter("id == %@", "219").first!
+                if link.amount == "45" {
+                    try! realm.write{
+                        link.amount = "45ml"
+                    }
+                }
+            }
+            defaults.setBool(true, forKey: "corrected_v2.3")
+        }
+    }
+
     func setColor(){
         Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
         
