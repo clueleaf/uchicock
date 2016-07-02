@@ -66,12 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.registerDefaults(dic)
         if defaults.boolForKey("corrected_v2.3") == false {
             let realm = try! Realm()
-            let ril = realm.objects(RecipeIngredientLink).filter("id == %@", "219")
-            if ril.count > 0 {
-                let link = realm.objects(RecipeIngredientLink).filter("id == %@", "219").first!
-                if link.amount == "45" {
-                    try! realm.write{
-                        link.amount = "45ml"
+            let rec = realm.objects(Recipe).filter("recipeName == %@", "アプリコットコラーダ")
+            if rec.count > 0{
+                for ri in rec.first!.recipeIngredients{
+                    if ri.ingredient.ingredientName == "牛乳" && ri.amount == "45"{
+                        try! realm.write{
+                            ri.amount = "45ml"
+                        }
                     }
                 }
             }
