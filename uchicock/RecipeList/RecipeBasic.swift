@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class RecipeBasic: NSObject {
+struct RecipeBasic{
     var id = ""
     var name = ""
     var kanaName = ""

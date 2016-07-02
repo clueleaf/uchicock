@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class IngredientName: NSObject {
+struct IngredientName{
     var name = ""
     var kanaName = ""
 }

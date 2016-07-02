@@ -80,7 +80,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     if newPhotoFlag && recipe.imageData != nil{
                         //レシピ削除のバグに対するワークアラウンド
                         if UIImage(data: recipe.imageData!) != nil{
-                            let rb = RecipeBasic()
+                            var rb = RecipeBasic()
                             rb.id = recipe.id
                             rb.name = recipe.recipeName
                             rb.kanaName = recipe.recipeName.katakana().lowercaseString
@@ -125,7 +125,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
-                    let rb = RecipeBasic()
+                    var rb = RecipeBasic()
                     rb.id = recipe.id
                     rb.name = recipe.recipeName
                     rb.kanaName = recipe.recipeName.katakana().lowercaseString

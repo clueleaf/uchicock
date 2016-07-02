@@ -92,7 +92,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            let ib = IngredientBasic()
+            var ib = IngredientBasic()
             ib.id = ingredient.id
             ib.name = ingredient.ingredientName
             ib.kanaName = ingredient.ingredientName.katakana().lowercaseString

@@ -87,7 +87,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            let ingredientRecipeBasic = IngredientRecipeBasic()
+            var ingredientRecipeBasic = IngredientRecipeBasic()
             ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
             ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
             ingredientRecipeBasic.recipeKanaName = recipeIngredient.recipe.recipeName.katakana().lowercaseString

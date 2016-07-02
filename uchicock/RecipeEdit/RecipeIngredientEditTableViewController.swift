@@ -108,7 +108,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
-                let ingredientName = IngredientName()
+                var ingredientName = IngredientName()
                 ingredientName.name = ingredient.ingredientName
                 ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
                 suggestList.append(ingredientName)
@@ -129,7 +129,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            let ingredientName = IngredientName()
+            var ingredientName = IngredientName()
             ingredientName.name = ingredient.ingredientName
             ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
             suggestList.append(ingredientName)

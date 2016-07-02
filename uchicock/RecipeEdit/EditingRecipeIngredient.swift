@@ -6,9 +6,7 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-import UIKit
-
-class EditingRecipeIngredient: NSObject {
+struct EditingRecipeIngredient{
     var id = ""
     var ingredientName = ""
     var amount = ""

@@ -6,20 +6,20 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class SampleRecipeBasic: NSObject {
+struct SampleRecipeBasic{
     var name = ""
     var kanaName = ""
     var recoverable = true
     var recoverTarget = false
 }
 
-class RecoverIngredient: NSObject {
+struct RecoverIngredient{
     var name = ""
     var amount = ""
     var mustflag = false
 }
 
-class RecoverRecipe: NSObject {
+struct RecoverRecipe{
     var name = ""
     var method = 0
     var ingredientList = Array<RecoverIngredient>()

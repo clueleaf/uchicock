@@ -96,7 +96,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.borderColor = FlatWhiteDark().CGColor
         
         for ri in recipe.recipeIngredients {
-            let editingRecipeIngredient = EditingRecipeIngredient()
+            var editingRecipeIngredient = EditingRecipeIngredient()
             editingRecipeIngredient.id = ri.id
             editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
             editingRecipeIngredient.amount = ri.amount
@@ -533,7 +533,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if riec.isAddMode{
             if riec.deleteFlag{
             }else{
-                let editingRecipeIngredient = EditingRecipeIngredient()
+                var editingRecipeIngredient = EditingRecipeIngredient()
                 editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                 editingRecipeIngredient.amount = riec.amount.text!
                 if riec.option.checkState == .Checked{
@@ -551,7 +551,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }
                 }
             }else{
-                for editingRecipeIngredient in editingRecipeIngredientList{
+                for var editingRecipeIngredient in editingRecipeIngredientList{
                     if editingRecipeIngredient.id == riec.recipeIngredient.id{
                         editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
                         editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)

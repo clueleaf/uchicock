@@ -61,7 +61,7 @@ class RecoverTableViewController: UITableViewController {
                 }
             }
 
-            let srb = SampleRecipeBasic()
+            var srb = SampleRecipeBasic()
             srb.name = sr.recipeName
             srb.kanaName = sr.recipeName.katakana().lowercaseString
             srb.recoverable = isRecoverable
@@ -112,11 +112,11 @@ class RecoverTableViewController: UITableViewController {
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe).filter("recipeName == %@", rr.name).first!
                 
-                let recoverRecipe = RecoverRecipe()
+                var recoverRecipe = RecoverRecipe()
                 recoverRecipe.name = recipe.recipeName
                 recoverRecipe.method = recipe.method
                 for ri in recipe.recipeIngredients{
-                    let recoverIngredient = RecoverIngredient()
+                    var recoverIngredient = RecoverIngredient()
                     recoverIngredient.name = ri.ingredient.ingredientName
                     recoverIngredient.amount = ri.amount
                     recoverIngredient.mustflag = ri.mustFlag
@@ -231,7 +231,7 @@ class RecoverTableViewController: UITableViewController {
                             SVProgressHUD.showWithStatus("復元中...")
                             dispatch_async(self.queue){
                                 self.waitAtLeast(self.leastWaitTime) {
-                                    for recipe in self.recoverableSampleRecipeList{
+                                    for var recipe in self.recoverableSampleRecipeList{
                                         recipe.recoverTarget = true
                                     }
                                     self.recover()

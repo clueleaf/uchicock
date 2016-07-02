@@ -140,7 +140,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            let rb = RecipeBasic()
+            var rb = RecipeBasic()
             rb.id = recipe.id
             rb.name = recipe.recipeName
             rb.kanaName = recipe.recipeName.katakana().lowercaseString
