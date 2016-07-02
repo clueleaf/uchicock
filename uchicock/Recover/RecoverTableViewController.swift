@@ -231,8 +231,8 @@ class RecoverTableViewController: UITableViewController {
                             SVProgressHUD.showWithStatus("復元中...")
                             dispatch_async(self.queue){
                                 self.waitAtLeast(self.leastWaitTime) {
-                                    for var recipe in self.recoverableSampleRecipeList{
-                                        recipe.recoverTarget = true
+                                    for i in 0..<self.recoverableSampleRecipeList.count {
+                                        self.recoverableSampleRecipeList[i].recoverTarget = true
                                     }
                                     self.recover()
                                 }
