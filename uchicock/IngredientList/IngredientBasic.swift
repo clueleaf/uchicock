@@ -7,8 +7,10 @@
 //
 
 struct IngredientBasic{
-    var id = ""
-    var name = ""
-    var kanaName = ""
+    var id : String
+    var name : String
+    var kanaName : String {
+        return name.katakana().lowercaseString
+    }
 }
 

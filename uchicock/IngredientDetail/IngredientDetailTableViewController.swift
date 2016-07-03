@@ -87,12 +87,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            var ingredientRecipeBasic = IngredientRecipeBasic()
-            ingredientRecipeBasic.recipeIngredientLinkId = recipeIngredient.id
-            ingredientRecipeBasic.recipeName = recipeIngredient.recipe.recipeName
-            ingredientRecipeBasic.recipeKanaName = recipeIngredient.recipe.recipeName.katakana().lowercaseString
-            ingredientRecipeBasic.shortageNum = recipeIngredient.recipe.shortageNum
-            ingredientRecipeBasicList.append(ingredientRecipeBasic)
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum))
         }
         
         if order.selectedSegmentIndex == 1{

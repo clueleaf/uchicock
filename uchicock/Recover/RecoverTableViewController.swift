@@ -61,10 +61,7 @@ class RecoverTableViewController: UITableViewController {
                 }
             }
 
-            var srb = SampleRecipeBasic()
-            srb.name = sr.recipeName
-            srb.kanaName = sr.recipeName.katakana().lowercaseString
-            srb.recoverable = isRecoverable
+            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
@@ -112,15 +109,9 @@ class RecoverTableViewController: UITableViewController {
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe).filter("recipeName == %@", rr.name).first!
                 
-                var recoverRecipe = RecoverRecipe()
-                recoverRecipe.name = recipe.recipeName
-                recoverRecipe.method = recipe.method
+                var recoverRecipe = RecoverRecipe(name: recipe.recipeName, method: recipe.method, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    var recoverIngredient = RecoverIngredient()
-                    recoverIngredient.name = ri.ingredient.ingredientName
-                    recoverIngredient.amount = ri.amount
-                    recoverIngredient.mustflag = ri.mustFlag
-                    recoverRecipe.ingredientList.append(recoverIngredient)
+                    recoverRecipe.ingredientList.append(RecoverIngredient(name: ri.ingredient.ingredientName, amount: ri.amount, mustflag: ri.mustFlag))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }

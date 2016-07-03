@@ -7,20 +7,22 @@
 //
 
 struct SampleRecipeBasic{
-    var name = ""
-    var kanaName = ""
-    var recoverable = true
-    var recoverTarget = false
+    var name : String
+    var kanaName : String{
+        return name.katakana().lowercaseString
+    }
+    var recoverable : Bool
+    var recoverTarget : Bool
 }
 
 struct RecoverIngredient{
-    var name = ""
-    var amount = ""
-    var mustflag = false
+    var name : String
+    var amount : String
+    var mustflag : Bool
 }
 
 struct RecoverRecipe{
-    var name = ""
-    var method = 0
+    var name : String
+    var method : Int
     var ingredientList = Array<RecoverIngredient>()
 }

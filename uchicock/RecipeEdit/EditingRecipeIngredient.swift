@@ -7,8 +7,8 @@
 //
 
 struct EditingRecipeIngredient{
-    var id = ""
-    var ingredientName = ""
-    var amount = ""
-    var mustFlag = false
+    var id : String
+    var ingredientName : String
+    var amount : String
+    var mustFlag : Bool
 }

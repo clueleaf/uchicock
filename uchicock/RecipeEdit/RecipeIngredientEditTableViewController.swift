@@ -21,7 +21,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
-    var recipeIngredient = EditingRecipeIngredient()
+    var recipeIngredient = EditingRecipeIngredient(id: "", ingredientName: "", amount: "", mustFlag: true)
     var ingredientList: Results<Ingredient>?
 
     var isAddMode = false
@@ -108,10 +108,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
-                var ingredientName = IngredientName()
-                ingredientName.name = ingredient.ingredientName
-                ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
-                suggestList.append(ingredientName)
+                suggestList.append(IngredientName(name: ingredient.ingredientName))
             }
 
             for i in (0..<suggestList.count).reverse() {
@@ -129,10 +126,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            var ingredientName = IngredientName()
-            ingredientName.name = ingredient.ingredientName
-            ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
-            suggestList.append(ingredientName)
+            suggestList.append(IngredientName(name: ingredient.ingredientName))
         }
         
         for i in (0..<suggestList.count).reverse() {

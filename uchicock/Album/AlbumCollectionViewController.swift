@@ -80,11 +80,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     if newPhotoFlag && recipe.imageData != nil{
                         //レシピ削除のバグに対するワークアラウンド
                         if UIImage(data: recipe.imageData!) != nil{
-                            var rb = RecipeBasic()
-                            rb.id = recipe.id
-                            rb.name = recipe.recipeName
-                            rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                            self.tempRecipeBasicList.append(rb)
+                            self.tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
                         }
                     }
                 }
@@ -125,11 +121,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
                 if UIImage(data: recipe.imageData!) != nil{
-                    var rb = RecipeBasic()
-                    rb.id = recipe.id
-                    rb.name = recipe.recipeName
-                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                    tempRecipeBasicList.append(rb)
+                    tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
                 }
             }
         }

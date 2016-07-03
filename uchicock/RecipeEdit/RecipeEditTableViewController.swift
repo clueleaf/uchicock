@@ -96,12 +96,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.borderColor = FlatWhiteDark().CGColor
         
         for ri in recipe.recipeIngredients {
-            var editingRecipeIngredient = EditingRecipeIngredient()
-            editingRecipeIngredient.id = ri.id
-            editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
-            editingRecipeIngredient.amount = ri.amount
-            editingRecipeIngredient.mustFlag = ri.mustFlag
-            editingRecipeIngredientList.append(editingRecipeIngredient)
+            editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -533,9 +528,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if riec.isAddMode{
             if riec.deleteFlag{
             }else{
-                var editingRecipeIngredient = EditingRecipeIngredient()
-                editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
-                editingRecipeIngredient.amount = riec.amount.text!
+                var editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: textWithoutSpace(riec.ingredientName.text!), amount: riec.amount.text!, mustFlag: true)
                 if riec.option.checkState == .Checked{
                     editingRecipeIngredient.mustFlag = false
                 }else{
