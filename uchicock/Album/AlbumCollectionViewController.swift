@@ -94,6 +94,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        collectionView!.setContentOffset(collectionView!.contentOffset, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

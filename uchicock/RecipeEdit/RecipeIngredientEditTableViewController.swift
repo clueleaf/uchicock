@@ -87,8 +87,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

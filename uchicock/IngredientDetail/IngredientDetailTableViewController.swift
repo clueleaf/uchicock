@@ -73,6 +73,11 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

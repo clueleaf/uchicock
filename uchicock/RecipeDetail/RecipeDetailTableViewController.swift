@@ -145,6 +145,11 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
