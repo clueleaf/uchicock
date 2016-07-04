@@ -32,7 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let seedFilePath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
             try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
         }
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+        
+        var config = Realm.Configuration(schemaVersion: 1)
+        config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
         
         correct_v_2_2()
         correct_v_2_3()
