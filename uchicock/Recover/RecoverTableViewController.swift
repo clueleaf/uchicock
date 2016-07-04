@@ -23,27 +23,19 @@ class RecoverTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("a")
         loadUserRecipe()
-        print("b")
         
         var config = Realm.Configuration(schemaVersion: 1)
         config.fileURL = NSBundle.mainBundle().URLForResource("default", withExtension: "realm")
         config.readOnly = true
         Realm.Configuration.defaultConfiguration = config
-        print("c")
 
         loadSampleRecipe()
         setNavigationTitle()
-        print("d")
-
-
         isRecovering = false
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        print("e")
-
     }
     
     override func viewWillDisappear(animated: Bool) {
