@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         correct_v_2_2()
         correct_v_2_3()
+        fixNilImage()
         
         return true
     }
@@ -80,6 +81,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             defaults.setBool(true, forKey: "corrected_v2.3")
+        }
+    }
+    
+    func fixNilImage(){
+        let realm = try! Realm()
+        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        for recipe in recipeList{
+            try! realm.write {
+                recipe.fixNilImage()
+            }
         }
     }
 
