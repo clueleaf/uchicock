@@ -36,7 +36,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             default:
                 favorites.text = "★☆☆"
             }
-            favorites.textColor = FlatSkyBlue()
+            favorites.textColor = FlatSkyBlueDark()
             
             var shortageNum = 0
             var shortageName = ""

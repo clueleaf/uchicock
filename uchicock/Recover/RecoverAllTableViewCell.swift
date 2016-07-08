@@ -16,7 +16,7 @@ class RecoverAllTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        recoverAll.textColor = FlatSkyBlue()
+        recoverAll.textColor = FlatSkyBlueDark()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

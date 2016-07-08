@@ -41,7 +41,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        selectPhoto.textColor = FlatSkyBlue()
+        selectPhoto.textColor = FlatSkyBlueDark()
         if recipe.imageData != nil{
             photo.image = UIImage(data: recipe.imageData!)
         }
@@ -266,7 +266,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
-                cell.textLabel?.textColor = FlatSkyBlue()
+                cell.textLabel?.textColor = FlatSkyBlueDark()
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
                 cell.textLabel?.textAlignment = .Center;
