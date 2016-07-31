@@ -6,21 +6,23 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class SampleRecipeBasic: NSObject {
-    var name = ""
-    var kanaName = ""
-    var recoverable = true
-    var recoverTarget = false
+struct SampleRecipeBasic{
+    var name : String
+    var kanaName : String{
+        return name.katakana().lowercaseString
+    }
+    var recoverable : Bool
+    var recoverTarget : Bool
 }
 
-class RecoverIngredient: NSObject {
-    var name = ""
-    var amount = ""
-    var mustflag = false
+struct RecoverIngredient{
+    var name : String
+    var amount : String
+    var mustflag : Bool
 }
 
-class RecoverRecipe: NSObject {
-    var name = ""
-    var method = 0
+struct RecoverRecipe{
+    var name : String
+    var method : Int
     var ingredientList = Array<RecoverIngredient>()
 }

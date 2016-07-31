@@ -61,9 +61,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     if recipeList.count == 0 {
                         self.tempRecipeBasicList.removeAtIndex(i)
                     }else if recipeList.first!.imageData == nil{
-                        //レシピ削除のバグに対するワークアラウンド
-                        self.tempRecipeBasicList.removeAtIndex(i)
-                    }else if UIImage(data: recipeList.first!.imageData!) == nil{
                         self.tempRecipeBasicList.removeAtIndex(i)
                     }
                 }
@@ -78,14 +75,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                         }
                     }
                     if newPhotoFlag && recipe.imageData != nil{
-                        //レシピ削除のバグに対するワークアラウンド
-                        if UIImage(data: recipe.imageData!) != nil{
-                            let rb = RecipeBasic()
-                            rb.id = recipe.id
-                            rb.name = recipe.recipeName
-                            rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                            self.tempRecipeBasicList.append(rb)
-                        }
+                        self.tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
                     }
                 }
                 self.recipeBasicList = self.tempRecipeBasicList
@@ -97,6 +87,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 SVProgressHUD.dismiss()
             }
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        collectionView!.setContentOffset(collectionView!.contentOffset, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,14 +118,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let recipeList = realm.objects(Recipe)
         for recipe in recipeList{
             if recipe.imageData != nil{
-                //レシピ削除のバグに対するワークアラウンド
-                if UIImage(data: recipe.imageData!) != nil{
-                    let rb = RecipeBasic()
-                    rb.id = recipe.id
-                    rb.name = recipe.recipeName
-                    rb.kanaName = recipe.recipeName.katakana().lowercaseString
-                    tempRecipeBasicList.append(rb)
-                }
+                tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
             }
         }
         tempRecipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })

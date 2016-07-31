@@ -33,4 +33,11 @@ class Recipe: Object {
         self.shortageNum = num
     }
     
+    func fixNilImage(){
+        if imageData != nil{
+            if UIImage(data: imageData!) == nil{
+                self.imageData = nil
+            }
+        }
+    }
 }

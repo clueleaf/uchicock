@@ -34,7 +34,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         favorites = UILabel(frame: CGRectMake(width - 88, 8, 60, 21))
         favorites.text = "☆☆☆"
         favorites.font = UIFont.systemFontOfSize(20)
-        favorites.textColor = FlatSkyBlue()
+        favorites.textColor = FlatSkyBlueDark()
         self.addSubview(favorites)
         
         shortage = UILabel(frame: CGRectMake(77, 39, width - 105, 21))

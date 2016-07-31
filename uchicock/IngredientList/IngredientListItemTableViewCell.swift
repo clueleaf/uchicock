@@ -27,10 +27,10 @@ class IngredientListItemTableViewCell: UITableViewCell {
                 recipeNum.backgroundColor = FlatGray()
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.backgroundColor = FlatSkyBlue()
+                recipeNum.backgroundColor = FlatSkyBlueDark()
             }else{
                 recipeNum.text = "99+"
-                recipeNum.backgroundColor = FlatSkyBlue()
+                recipeNum.backgroundColor = FlatSkyBlueDark()
             }
             recipeNum.textColor = FlatWhite()
             recipeNum.layer.cornerRadius = 10

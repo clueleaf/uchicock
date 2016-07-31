@@ -6,8 +6,10 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class IngredientName: NSObject {
-    var name = ""
-    var kanaName = ""
+struct IngredientName{
+    var name : String
+    var kanaName : String {
+        return name.katakana().lowercaseString
+    }
 }
 

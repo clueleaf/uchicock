@@ -25,16 +25,22 @@ class RecoverTableViewController: UITableViewController {
         super.viewDidLoad()
         loadUserRecipe()
         
-        let realmPath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: true, path: realmPath)
-        
+        var config = Realm.Configuration(schemaVersion: 1)
+        config.fileURL = NSBundle.mainBundle().URLForResource("default", withExtension: "realm")
+        config.readOnly = true
+        Realm.Configuration.defaultConfiguration = config
+
         loadSampleRecipe()
         setNavigationTitle()
-
         isRecovering = false
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,10 +67,7 @@ class RecoverTableViewController: UITableViewController {
                 }
             }
 
-            let srb = SampleRecipeBasic()
-            srb.name = sr.recipeName
-            srb.kanaName = sr.recipeName.katakana().lowercaseString
-            srb.recoverable = isRecoverable
+            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
@@ -112,23 +115,17 @@ class RecoverTableViewController: UITableViewController {
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe).filter("recipeName == %@", rr.name).first!
                 
-                let recoverRecipe = RecoverRecipe()
-                recoverRecipe.name = recipe.recipeName
-                recoverRecipe.method = recipe.method
+                var recoverRecipe = RecoverRecipe(name: recipe.recipeName, method: recipe.method, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    let recoverIngredient = RecoverIngredient()
-                    recoverIngredient.name = ri.ingredient.ingredientName
-                    recoverIngredient.amount = ri.amount
-                    recoverIngredient.mustflag = ri.mustFlag
-                    recoverRecipe.ingredientList.append(recoverIngredient)
+                    recoverRecipe.ingredientList.append(RecoverIngredient(name: ri.ingredient.ingredientName, amount: ri.amount, mustflag: ri.mustFlag))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
         }
         
-        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+        var config = Realm.Configuration(schemaVersion: 1)
+        config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
         
         for recoverRecipe in recoverRecipeList{
             let realm = try! Realm()
@@ -231,8 +228,8 @@ class RecoverTableViewController: UITableViewController {
                             SVProgressHUD.showWithStatus("復元中...")
                             dispatch_async(self.queue){
                                 self.waitAtLeast(self.leastWaitTime) {
-                                    for recipe in self.recoverableSampleRecipeList{
-                                        recipe.recoverTarget = true
+                                    for i in 0..<self.recoverableSampleRecipeList.count {
+                                        self.recoverableSampleRecipeList[i].recoverTarget = true
                                     }
                                     self.recover()
                                 }
@@ -330,9 +327,9 @@ class RecoverTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
         if isRecovering == false {
-            let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-            let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-            Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+            var config = Realm.Configuration(schemaVersion: 1)
+            config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+            Realm.Configuration.defaultConfiguration = config
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
@@ -348,9 +345,9 @@ class RecoverTableViewController: UITableViewController {
             }
             
             if recoverCount == 0{
-                let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-                let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
-                Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+                var config = Realm.Configuration(schemaVersion: 1)
+                config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+                Realm.Configuration.defaultConfiguration = config
                 self.dismissViewControllerAnimated(true, completion: nil)
             }else{
                 let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)

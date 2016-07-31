@@ -6,9 +6,11 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class RecipeBasic: NSObject {
-    var id = ""
-    var name = ""
-    var kanaName = ""
+struct RecipeBasic{
+    var id : String
+    var name : String
+    var kanaName : String {
+        return name.katakana().lowercaseString
+    }
 }
 

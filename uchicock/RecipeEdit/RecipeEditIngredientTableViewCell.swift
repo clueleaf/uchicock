@@ -24,13 +24,13 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         ingredientName.font = UIFont.systemFontOfSize(15)
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRectMake(5, 35, 50, 21))
+        option = UILabel(frame: CGRectMake(5, 33, 50, 21))
         option.text = ""
         option.font = UIFont.systemFontOfSize(10)
         option.textColor = FlatGrayDark()
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRectMake(60, 35, width - 95, 21))
+        amount = UILabel(frame: CGRectMake(60, 33, width - 95, 21))
         amount.text = ""
         amount.font = UIFont.systemFontOfSize(12)
         self.addSubview(amount)

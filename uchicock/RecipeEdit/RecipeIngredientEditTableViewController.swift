@@ -21,7 +21,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
-    var recipeIngredient = EditingRecipeIngredient()
+    var recipeIngredient = EditingRecipeIngredient(id: "", ingredientName: "", amount: "", mustFlag: true)
     var ingredientList: Results<Ingredient>?
 
     var isAddMode = false
@@ -66,10 +66,30 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         deleteLabel.textColor = FlatRed()
         
         suggestTableView.backgroundColor = FlatWhite()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         suggestTableView.tableFooterView = UIView(frame: CGRectZero)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isAddMode{
+            ingredientName.becomeFirstResponder()
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,10 +109,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
-                let ingredientName = IngredientName()
-                ingredientName.name = ingredient.ingredientName
-                ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
-                suggestList.append(ingredientName)
+                suggestList.append(IngredientName(name: ingredient.ingredientName))
             }
 
             for i in (0..<suggestList.count).reverse() {
@@ -110,10 +127,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            let ingredientName = IngredientName()
-            ingredientName.name = ingredient.ingredientName
-            ingredientName.kanaName = ingredient.ingredientName.katakana().lowercaseString
-            suggestList.append(ingredientName)
+            suggestList.append(IngredientName(name: ingredient.ingredientName))
         }
         
         for i in (0..<suggestList.count).reverse() {

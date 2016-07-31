@@ -6,9 +6,12 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-class IngredientRecipeBasic: NSObject {
-    var recipeIngredientLinkId = ""
-    var recipeName = ""
-    var recipeKanaName = ""
+struct IngredientRecipeBasic{
+    var recipeIngredientLinkId : String
+    var recipeName : String
+    var recipeKanaName : String {
+        return recipeName.katakana().lowercaseString
+    }
+    var shortageNum : Int
 }
 

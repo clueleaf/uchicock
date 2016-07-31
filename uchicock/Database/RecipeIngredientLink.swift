@@ -11,11 +11,13 @@ import RealmSwift
 
 class RecipeIngredientLink: Object {
     dynamic var id = NSUUID().UUIDString
+    let recipes = LinkingObjects(fromType: Recipe.self, property: "recipeIngredients")
     var recipe: Recipe {
-        return linkingObjects(Recipe.self, forProperty: "recipeIngredients").first!
+        return recipes.first!
     }
+    let ingredients = LinkingObjects(fromType: Ingredient.self, property: "recipeIngredients")
     var ingredient: Ingredient {
-        return linkingObjects(Ingredient.self, forProperty: "recipeIngredients").first!
+        return ingredients.first!
     }
     dynamic var amount = ""
     dynamic var mustFlag = false
@@ -25,3 +27,4 @@ class RecipeIngredientLink: Object {
     }
 
 }
+

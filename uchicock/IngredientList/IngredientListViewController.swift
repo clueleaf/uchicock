@@ -49,6 +49,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillDisappear(animated)
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,11 +93,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            let ib = IngredientBasic()
-            ib.id = ingredient.id
-            ib.name = ingredient.ingredientName
-            ib.kanaName = ingredient.ingredientName.katakana().lowercaseString
-            ingredientBasicList.append(ib)
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName))
         }
         
         for i in (0..<ingredientBasicList.count).reverse(){

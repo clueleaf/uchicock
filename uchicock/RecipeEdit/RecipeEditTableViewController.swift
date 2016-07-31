@@ -31,6 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var isAddMode = true
     var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
     var ipc = UIImagePickerController()
+    var focusRecipeNameFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        selectPhoto.textColor = FlatSkyBlue()
+        selectPhoto.textColor = FlatSkyBlueDark()
         if recipe.imageData != nil{
             photo.image = UIImage(data: recipe.imageData!)
         }
@@ -95,21 +96,32 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.borderColor = FlatWhiteDark().CGColor
         
         for ri in recipe.recipeIngredients {
-            let editingRecipeIngredient = EditingRecipeIngredient()
-            editingRecipeIngredient.id = ri.id
-            editingRecipeIngredient.ingredientName = ri.ingredient.ingredientName
-            editingRecipeIngredient.amount = ri.amount
-            editingRecipeIngredient.mustFlag = ri.mustFlag
-            editingRecipeIngredientList.append(editingRecipeIngredient)
+            editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        focusRecipeNameFlag = true
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isAddMode && focusRecipeNameFlag{
+            recipeName.becomeFirstResponder()
+            focusRecipeNameFlag = false
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -254,7 +266,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
-                cell.textLabel?.textColor = FlatSkyBlue()
+                cell.textLabel?.textColor = FlatSkyBlueDark()
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
                 cell.textLabel?.textAlignment = .Center;
@@ -521,9 +533,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if riec.isAddMode{
             if riec.deleteFlag{
             }else{
-                let editingRecipeIngredient = EditingRecipeIngredient()
-                editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
-                editingRecipeIngredient.amount = riec.amount.text!
+                var editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: textWithoutSpace(riec.ingredientName.text!), amount: riec.amount.text!, mustFlag: true)
                 if riec.option.checkState == .Checked{
                     editingRecipeIngredient.mustFlag = false
                 }else{
@@ -539,15 +549,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }
                 }
             }else{
-                for editingRecipeIngredient in editingRecipeIngredientList{
-                    if editingRecipeIngredient.id == riec.recipeIngredient.id{
-                        editingRecipeIngredient.ingredientName = textWithoutSpace(riec.ingredientName.text!)
-                        editingRecipeIngredient.amount = textWithoutSpace(riec.amount.text!)
-                        if riec.option.checkState == .Checked{
-                            editingRecipeIngredient.mustFlag = false
-                        }else{
-                            editingRecipeIngredient.mustFlag = true
-                        }
+                for i in 0 ..< editingRecipeIngredientList.count where editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
+                    editingRecipeIngredientList[i].ingredientName = textWithoutSpace(riec.ingredientName.text!)
+                    editingRecipeIngredientList[i].amount = textWithoutSpace(riec.amount.text!)
+                    if riec.option.checkState == .Checked{
+                        editingRecipeIngredientList[i].mustFlag = false
+                    }else{
+                        editingRecipeIngredientList[i].mustFlag = true
                     }
                 }
             }
