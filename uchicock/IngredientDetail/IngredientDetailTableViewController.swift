@@ -33,8 +33,7 @@ class IngredientDetailTableViewController: UITableViewController {
         stock.boxLineWidth = 1.0
         stock.markType = .Checkmark
         stock.boxType = .Circle
-        stock.stateChangeAnimation = .Expand(.Fill)
-
+        
         tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -56,11 +55,17 @@ class IngredientDetailTableViewController: UITableViewController {
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
+
+            stock.stateChangeAnimation = .Fade(.Fill)
+            stock.animationDuration = 0
             if ingredient.stockFlag{
                 stock.setCheckState(.Checked, animated: true)
             }else{
                 stock.setCheckState(.Unchecked, animated: true)
             }
+            stock.animationDuration = 0.3
+            stock.stateChangeAnimation = .Expand(.Fill)
+
             memo.text = ingredient.memo
             memo.textColor = FlatGrayDark()            
             deleteLabel.textColor = FlatRed()
@@ -71,6 +76,11 @@ class IngredientDetailTableViewController: UITableViewController {
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
     override func didReceiveMemoryWarning() {

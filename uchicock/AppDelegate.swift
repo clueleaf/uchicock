@@ -32,10 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let seedFilePath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
             try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
         }
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(readOnly: false, path: realmPath)
+        
+        var config = Realm.Configuration(schemaVersion: 1)
+        config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
         
         correct_v_2_2()
         correct_v_2_3()
+        fixNilImage()
         
         return true
     }
@@ -79,9 +83,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setBool(true, forKey: "corrected_v2.3")
         }
     }
+    
+    func fixNilImage(){
+        let realm = try! Realm()
+        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        for recipe in recipeList{
+            try! realm.write {
+                recipe.fixNilImage()
+            }
+        }
+    }
 
     func setColor(){
-        Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlue(), andContentStyle: UIContentStyle.Contrast)
+        Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlueDark(), andContentStyle: UIContentStyle.Contrast)
         
         UITableView.appearance().backgroundColor = FlatWhite()
         UISearchBar.appearance().backgroundColor = FlatSand()

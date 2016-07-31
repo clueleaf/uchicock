@@ -145,6 +145,11 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -423,7 +428,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
     
     @IBAction func openInSafariTapped(sender: UIButton) {
-        let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+        let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         if UIApplication.sharedApplication().canOpenURL(url!){
             UIApplication.sharedApplication().openURL(url!)
