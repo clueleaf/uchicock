@@ -39,18 +39,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IngredientListViewController.handleKeyboardWillShowNotification(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IngredientListViewController.handleKeyboardWillHideNotification(_:)), name: UIKeyboardWillHideNotification, object: nil)
-
         reloadIngredientList()
         tableView.reloadData()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -146,18 +136,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
         }
-    }
-    
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
-    }
-    
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
-        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
     }
     
     // MARK: - UIScrollViewDelegate
