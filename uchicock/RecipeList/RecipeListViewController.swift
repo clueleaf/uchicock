@@ -22,6 +22,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
+    var scrollBeginingYPoint: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -203,6 +204,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         let window = UIApplication.sharedApplication().keyWindow!
         window.addSubview(introductionView)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= 0{
+            scrollBeginingYPoint = scrollView.contentOffset.y
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -50{
+            searchBar.becomeFirstResponder()
+        }else if scrollBeginingYPoint < scrollView.contentOffset.y {
+            searchBar.resignFirstResponder()
+        }
     }
     
     // MARK: - UISearchBarDelegate

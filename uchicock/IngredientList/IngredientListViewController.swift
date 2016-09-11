@@ -21,6 +21,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
+    var scrollBeginingYPoint: CGFloat = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,6 +158,21 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func handleKeyboardWillHideNotification(notification: NSNotification) {
         tableView.contentInset = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, tabBarController!.tabBar.frame.size.height, 0)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= 0{
+            scrollBeginingYPoint = scrollView.contentOffset.y
+        }
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -50{
+            searchBar.becomeFirstResponder()
+        }else if scrollBeginingYPoint < scrollView.contentOffset.y {
+            searchBar.resignFirstResponder()
+        }
     }
     
     // MARK: - UISearchBarDelegate
