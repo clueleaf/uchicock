@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSRemindersUsageDescription</key>
+	<string>材料の購入予定をリマインダーに登録するために使います。</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>材料の購入予定をカレンダーに登録するために使います。</string>
+	<key>NSCameraUsageDescription</key>
+	<string>レシピの写真を撮影するために使います。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>レシピの写真を登録するために使います。</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ja_JP</string>
 	<key>CFBundleDisplayName</key>
