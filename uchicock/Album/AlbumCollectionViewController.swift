@@ -20,7 +20,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var tempRecipeBasicList = Array<RecipeBasic>()
     let header = MJRefreshNormalHeader()
     
-    let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
+    let queue = DispatchQueue(label: "queue")
     var emptyDataSetStr = ""
     let leastWaitTime = 0.2
 
@@ -30,7 +30,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         // self.clearsSelectionOnViewWillAppear = false
         
         SVProgressHUD.show(withStatus: "ロード中...")
-        dispatch_async(queue){
+        queue.async {
             self.reloadRecipeList()
         }
         
@@ -53,19 +53,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""
 
-        dispatch_async(queue){
+        queue.async {
             self.waitAtLeast(self.leastWaitTime) {
                 let realm = try! Realm()
-                for i in (0..<self.tempRecipeBasicList.count).reverse() {
-                    let recipeList = realm.objects(Recipe).filter("id == %@",self.tempRecipeBasicList[i].id)
+                for i in (0..<self.tempRecipeBasicList.count).reversed() {
+                    let recipeList = realm.objects(Recipe.self).filter("id == %@",self.tempRecipeBasicList[i].id)
                     if recipeList.count == 0 {
-                        self.tempRecipeBasicList.removeAtIndex(i)
+                        self.tempRecipeBasicList.remove(at: i)
                     }else if recipeList.first!.imageData == nil{
-                        self.tempRecipeBasicList.removeAtIndex(i)
+                        self.tempRecipeBasicList.remove(at: i)
                     }
                 }
                 
-                let recipeList = realm.objects(Recipe).sorted("recipeName")
+                let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
                 for recipe in recipeList{
                     var newPhotoFlag = true
                     for rb in self.tempRecipeBasicList{
@@ -81,7 +81,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 self.recipeBasicList = self.tempRecipeBasicList
                 self.emptyDataSetStr = "写真が登録されたレシピはありません"
             }
-            dispatch_async(dispatch_get_main_queue()){
+            DispatchQueue.main.async{
                 self.collectionView!.reloadData()
                 self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
                 SVProgressHUD.dismiss()
@@ -193,13 +193,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             SVProgressHUD.show(withStatus: "シャッフル中...")
-            self.queue.asynchronously(){
+            self.queue.async {
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
-                    self.shuffle(&self.tempRecipeBasicList)
+                    self.shuffle(array: &self.tempRecipeBasicList)
                     self.recipeBasicList = self.tempRecipeBasicList
                 }
-                dispatch_async(dispatch_get_main_queue()){
+                DispatchQueue.main.async{
                     self.collectionView!.reloadData()
                     self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
                     SVProgressHUD.dismiss()
@@ -214,12 +214,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             SVProgressHUD.show(withStatus: "並べ替え中...")
-            self.queue.asynchronously(){
+            self.queue.async {
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
                     self.recipeBasicList = self.tempRecipeBasicList
                 }
-                dispatch_async(dispatch_get_main_queue()){
+                DispatchQueue.main.async{
                     self.collectionView!.reloadData()
                     self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
                     SVProgressHUD.dismiss()

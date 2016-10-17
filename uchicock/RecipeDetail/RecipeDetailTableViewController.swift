@@ -72,8 +72,8 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             self.navigationItem.title = recipe.recipeName
             
             let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-            let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
-            if UIApplication.sharedApplication().canOpenURL(url!) {
+            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            if UIApplication.shared.canOpenURL(url!) {
                 openInSafari.isEnabled = true
                 openInSafari.backgroundColor = FlatSkyBlueDark()
             }else{
@@ -172,7 +172,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 let browsePhoto = UIImage(data: recipe.imageData! as Data)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
-                    p.caption = self.recipe.recipeName
+                    p!.caption = self.recipe.recipeName
                     let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFrom: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
@@ -429,7 +429,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     
     @IBAction func openInSafariTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-        let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         if UIApplication.sharedApplication().canOpenURL(url!){
             UIApplication.sharedApplication().openURL(url!)
         }

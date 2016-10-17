@@ -17,7 +17,7 @@ class RecoverTableViewController: UITableViewController {
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
-    let queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL)
+    let queue = DispatchQueue(label: "queue")
     var isRecovering = false
     let leastWaitTime = 0.2
 
@@ -124,7 +124,7 @@ class RecoverTableViewController: UITableViewController {
         }
         
         var config = Realm.Configuration(schemaVersion: 1)
-        config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
         for recoverRecipe in recoverRecipeList{
@@ -226,16 +226,16 @@ class RecoverTableViewController: UITableViewController {
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
                             SVProgressHUD.show(withStatus: "復元中...")
-                            self.queue.asynchronously(){
+                            self.queue.async {
                                 self.waitAtLeast(self.leastWaitTime) {
                                     for i in 0..<self.recoverableSampleRecipeList.count {
                                         self.recoverableSampleRecipeList[i].recoverTarget = true
                                     }
                                     self.recover()
                                 }
-                                dispatch_async(dispatch_get_main_queue()){
-                                    SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                                    self.dismissViewControllerAnimated(true, completion: nil)
+                                DispatchQueue.main.async{
+                                    SVProgressHUD.showSuccess(withStatus: "復元が完了しました")
+                                    self.dismiss(animated: true, completion: nil)
                                 }
                             }
                         }))
@@ -307,7 +307,7 @@ class RecoverTableViewController: UITableViewController {
                         cell.isTarget.setCheckState(.unchecked, animated: true)
                     }
                     cell.isRecoverable = true
-                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControlEvents.ValueChanged)
+                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControlEvents.valueChanged)
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
@@ -328,7 +328,7 @@ class RecoverTableViewController: UITableViewController {
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false {
             var config = Realm.Configuration(schemaVersion: 1)
-            config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+            config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
             Realm.Configuration.defaultConfiguration = config
             
             self.dismiss(animated: true, completion: nil)
@@ -346,7 +346,7 @@ class RecoverTableViewController: UITableViewController {
             
             if recoverCount == 0{
                 var config = Realm.Configuration(schemaVersion: 1)
-                config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+                config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
                 Realm.Configuration.defaultConfiguration = config
                 self.dismiss(animated: true, completion: nil)
             }else{
@@ -354,13 +354,13 @@ class RecoverTableViewController: UITableViewController {
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
                     SVProgressHUD.show(withStatus: "復元中...")
-                    self.queue.asynchronously(){
+                    self.queue.async {
                         self.waitAtLeast(self.leastWaitTime) {
                             self.recover()
                         }
-                        dispatch_async(dispatch_get_main_queue()){
-                            SVProgressHUD.showSuccessWithStatus("復元が完了しました")
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                        DispatchQueue.main.async{
+                            SVProgressHUD.showSuccess(withStatus: "復元が完了しました")
+                            self.dismiss(animated: true, completion: nil)
                         }
                     }
                 }))

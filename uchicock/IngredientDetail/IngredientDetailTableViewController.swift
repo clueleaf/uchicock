@@ -47,7 +47,7 @@ class IngredientDetailTableViewController: UITableViewController {
         if ing.count < 1 {
             let noIngredientAlertView = UIAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }))
             present(noIngredientAlertView, animated: true, completion: nil)
         } else {
@@ -200,7 +200,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     try! realm.write {
                         realm.delete(self.ingredient)
                     }
-                    self.navigationController?.popViewController(animated: true)
+                    _ = self.navigationController?.popViewController(animated: true)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 present(alertView, animated: true, completion: nil)

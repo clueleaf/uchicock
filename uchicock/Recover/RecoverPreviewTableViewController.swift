@@ -91,7 +91,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
 
-    override func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 

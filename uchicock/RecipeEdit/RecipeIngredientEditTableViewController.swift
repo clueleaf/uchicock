@@ -304,7 +304,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             present(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
-            let sameNameIngredient = realm.objects(Ingredient).filter("ingredientName == %@",textWithoutSpace(ingredientName.text!))
+            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)

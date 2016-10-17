@@ -70,17 +70,17 @@ class ReminderTableViewController: UITableViewController{
             SVProgressHUD.showSuccess(withStatus: "リマインダーへ登録しました")
             self.dismiss(animated: true, completion: nil)
         } catch {
-            DispatchQueue.main.asynchronously(){
+            DispatchQueue.main.async {
                 let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    UIApplication.sharedApplication.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
-                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication.openURL(url)
+                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                    if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.shared.openURL(url)
                     }
                 }))
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             }
         }
     }
@@ -99,14 +99,14 @@ class ReminderTableViewController: UITableViewController{
             SVProgressHUD.showSuccess(withStatus: "カレンダーへ登録しました")
             self.dismiss(animated: true, completion: nil)
         } catch {
-            dispatch_async(dispatch_get_main_queue()){
+            DispatchQueue.main.async{
                 let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    UIApplication.sharedApplication.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
-                    if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication.openURL(url)
+                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                    if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                        UIApplication.shared.openURL(url)
                     }
                 }))
                 self.present(alertView, animated: true, completion: nil)

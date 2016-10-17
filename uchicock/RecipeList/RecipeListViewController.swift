@@ -147,13 +147,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
     }
     
-    func titleForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
+    func titleforEmptyDataSetForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func verticalOffsetForEmptyDataSet(_ scrollView: UIScrollView!) -> CGFloat {
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -self.tableView.frame.size.height/4.0
     }
     
@@ -163,15 +163,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
-        introductionPanel1.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel1!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
 
         let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
-        introductionPanel2.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel2!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
 
         let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
         let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
-        introductionPanel3.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel3!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
 
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -269,7 +269,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return true
     }
     
-    func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowA indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{

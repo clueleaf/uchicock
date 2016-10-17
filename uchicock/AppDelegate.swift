@@ -25,16 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setSVProgressHUD()
         
         let manager = FileManager()
-        let documentDir: NSString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let realmPath = documentDir.stringByAppendingPathComponent("default.realm")
+        let documentDir: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let realmPath = documentDir.appendingPathComponent("default.realm")
         // first time to launch this app
-        if manager.fileExistsAtPath(realmPath) == false{
-            let seedFilePath = NSBundle.mainBundle().pathForResource("default", ofType: "realm")
-            try! NSFileManager.defaultManager().copyItemAtPath(seedFilePath!, toPath: realmPath)
+        if manager.fileExists(atPath: realmPath) == false{
+            let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
+            try! FileManager.default.copyItem(atPath: seedFilePath!, toPath: realmPath)
         }
         
         var config = Realm.Configuration(schemaVersion: 1)
-        config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
         correct_v_2_2()
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITableView.appearance().backgroundColor = FlatWhite()
         UISearchBar.appearance().backgroundColor = FlatSand()
-        UIButton.appearanceWhenContainedInInstancesOfClasses([UITableView.self]).backgroundColor = UIColor.clearColor()
+        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UITabBar.appearance().tintColor = FlatOrange()
         UIButton.appearance().tintColor = FlatSkyBlueDark()
         UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
