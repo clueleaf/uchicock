@@ -2,7 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 pod 'RealmSwift'
-pod 'ChameleonFramework/Swift'
+pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'swift3'
 pod 'DZNEmptyDataSet'
 pod 'IDMPhotoBrowser'
 pod 'SVProgressHUD'

@@ -1,1 +1,1 @@
-../../../Quick/Sources/Quick/World.h
+../../../Quick/Sources/QuickObjectiveC/World.h

@@ -1,1 +1,1 @@
-../../../Nimble/Sources/Nimble/Adapters/ObjectiveC/CurrentTestCaseTracker.h
+../../../Nimble/Sources/NimbleObjectiveC/CurrentTestCaseTracker.h

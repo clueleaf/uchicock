@@ -1,1 +1,1 @@
-../../../Quick/Sources/Quick/QuickSpec.h
+../../../Quick/Sources/QuickObjectiveC/QuickSpec.h

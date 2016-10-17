@@ -1,1 +1,1 @@
-../../../Nimble/Sources/Nimble/Adapters/ObjectiveC/DSL.h
+../../../Nimble/Sources/NimbleObjectiveC/DSL.h

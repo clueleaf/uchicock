@@ -1,1 +1,1 @@
-../../../Quick/Sources/Quick/DSL/QCKDSL.h
+../../../Quick/Sources/QuickObjectiveC/DSL/QCKDSL.h

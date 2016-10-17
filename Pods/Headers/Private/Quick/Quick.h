@@ -1,1 +1,1 @@
-../../../Quick/Sources/Quick/Quick.h
+../../../Quick/Sources/QuickObjectiveC/Quick.h

@@ -158,7 +158,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _initalPageIndex = 0;
         _autoHide = YES;
         _autoHideInterface = YES;
-        
+
         _displayDoneButton = YES;
         _doneButtonImage = nil;
 
@@ -409,6 +409,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 }
 
 - (void)performCloseAnimationWithScrollView:(IDMZoomingScrollView*)scrollView {
+
+    if ([_delegate respondsToSelector:@selector(willDisappearPhotoBrowser:)]) {
+        [_delegate willDisappearPhotoBrowser:self];
+    }
+
     float fadeAlpha = 1 - fabs(scrollView.frame.origin.y)/scrollView.frame.size.height;
 
     UIImage *imageFromView = [scrollView.photo underlyingImage];
@@ -528,12 +533,20 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 - (UIButton*)customToolbarButtonImage:(UIImage*)image imageSelected:(UIImage*)selectedImage action:(SEL)action {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button setBackgroundImage:selectedImage forState:UIControlStateDisabled];
+    [button setImage:image forState:UIControlStateNormal];
+    [button setImage:selectedImage forState:UIControlStateDisabled];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [button setContentMode:UIViewContentModeCenter];
-    [button setFrame:CGRectMake(0,0, image.size.width, image.size.height)];
+    [button setFrame:[self getToolbarButtonFrame:image]];
     return button;
+}
+
+- (CGRect)getToolbarButtonFrame:(UIImage *)image{
+    BOOL const isRetinaHd = ((float)[[UIScreen mainScreen] scale] > 2.0f);
+    float const defaultButtonSize = isRetinaHd ? 66.0f : 44.0f;
+    CGFloat buttonWidth = (image.size.width > defaultButtonSize) ? image.size.width : defaultButtonSize;
+    CGFloat buttonHeight = (image.size.height > defaultButtonSize) ? image.size.width : defaultButtonSize;
+    return CGRectMake(0,0, buttonWidth, buttonHeight);
 }
 
 - (UIImage*)getImageFromView:(UIView *)view {
@@ -668,6 +681,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 - (void)viewWillAppear:(BOOL)animated {
     // Update
     [self reloadData];
+
+
+    if ([_delegate respondsToSelector:@selector(willAppearPhotoBrowser:)]) {
+        [_delegate willAppearPhotoBrowser:self];
+    }
 
     // Super
 	[super viewWillAppear:animated];
@@ -1217,11 +1235,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
 // Enable/disable control visiblity timer
 - (void)hideControlsAfterDelay {
-	
+
     if (![self autoHideInterface]) {
         return;
     }
-	
+
 	if (![self areControlsHidden]) {
         [self cancelControlHiding];
 		_controlVisibilityTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(hideControls) userInfo:nil repeats:NO];
@@ -1249,6 +1267,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 #pragma mark - Buttons
 
 - (void)doneButtonPressed:(id)sender {
+
+    if ([_delegate respondsToSelector:@selector(willDisappearPhotoBrowser:)]) {
+        [_delegate willDisappearPhotoBrowser:self];
+    }
+
     if (_senderViewForAnimation && _currentPageIndex == _initalPageIndex) {
         IDMZoomingScrollView *scrollView = [self pageDisplayedAtIndex:_currentPageIndex];
         [self performCloseAnimationWithScrollView:scrollView];
