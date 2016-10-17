@@ -174,12 +174,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
             } else if indexPath.row == editingRecipeIngredientList.count{
-                return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
             }
         }
         return 0
@@ -196,12 +196,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
         }else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+                return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
             }else if indexPath.row == editingRecipeIngredientList.count{
-                return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 1, section: 1))
             }
         }
         return 0
@@ -240,7 +240,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         } else if indexPath.section == 1{
@@ -265,7 +265,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.backgroundColor = FlatWhite()
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
                 cell.textLabel?.textColor = FlatSkyBlueDark()
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)

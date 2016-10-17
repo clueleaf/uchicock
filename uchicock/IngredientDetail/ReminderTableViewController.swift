@@ -119,12 +119,12 @@ class ReminderTableViewController: UITableViewController{
         if indexPath.row == 0{
             return UITableViewAutomaticDimension
         }else{
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dateFlag.checkState == .Checked{
+        if dateFlag.checkState == .checked{
             return 4
         }else{
             return 3
@@ -132,7 +132,7 @@ class ReminderTableViewController: UITableViewController{
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = FlatWhite()
         return cell
     }

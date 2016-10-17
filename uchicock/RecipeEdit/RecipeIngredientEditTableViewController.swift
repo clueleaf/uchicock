@@ -182,12 +182,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == 0 {
             if isTypingName{
-                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+                return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
-                    return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                 }else{
-                    return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+                    return super.tableView(tableView, heightForRowAt: indexPath)
                 }
             }
         }else if tableView.tag == 1{
@@ -248,16 +248,16 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == 0{
             if isTypingName{
-                let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = FlatWhite()
                 return cell
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
-                    let cell = super.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: indexPath.row + 1, inSection: 0))
+                    let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                     cell.backgroundColor = FlatWhite()
                     return cell
                 }else{
-                    let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+                    let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = FlatWhite()
                     return cell
                 }

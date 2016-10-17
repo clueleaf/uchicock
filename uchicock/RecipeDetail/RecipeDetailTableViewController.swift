@@ -235,9 +235,9 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         if indexPath.section == 0 {
             return UITableViewAutomaticDimension
         }else if indexPath.section == 1{
-            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
         }else if indexPath.section == 2{
-            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
+            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 2))
         }
         return 0
     }
@@ -264,11 +264,11 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
         }else if indexPath.section == 1{
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
         }else if indexPath.section == 2{
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 2))
+            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 2))
         }
         return 0
     }
@@ -322,7 +322,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         case 1:
@@ -363,7 +363,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             cell.backgroundColor = FlatWhite()
             return cell
         case 2:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         default:

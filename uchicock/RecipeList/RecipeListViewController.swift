@@ -232,16 +232,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return 0
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
             self.performSegue(withIdentifier: "PushAddRecipe", sender: indexPath)
@@ -265,14 +265,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return [del, edit]
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowA indexPath: IndexPath) {
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListItem") as! RecipeListItemTableViewCell
             let realm = try! Realm()

@@ -57,10 +57,10 @@ class RecoverPreviewTableViewController: UITableViewController {
             if indexPath.row == 0{
                 return UITableViewAutomaticDimension
             }else{
-                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+                return super.tableView(tableView, heightForRowAt: indexPath)
             }
         }else if indexPath.section == 1{
-            return super.tableView(tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
         }
         return 0
     }
@@ -84,9 +84,9 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
         }else if indexPath.section == 1{
-            return super.tableView(tableView, indentationLevelForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1))
+            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
         }
         return 0
     }
@@ -98,7 +98,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         case 1:

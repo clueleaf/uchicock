@@ -95,7 +95,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = FlatWhite()
         return cell
     }
