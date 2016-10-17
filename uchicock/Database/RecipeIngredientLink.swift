@@ -10,7 +10,7 @@
 import RealmSwift
 
 class RecipeIngredientLink: Object {
-    dynamic var id = NSUUID().UUIDString
+    dynamic var id = NSUUID().uuidString
     let recipes = LinkingObjects(fromType: Recipe.self, property: "recipeIngredients")
     var recipe: Recipe {
         return recipes.first!

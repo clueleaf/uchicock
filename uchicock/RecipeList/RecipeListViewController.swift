@@ -28,23 +28,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         segmentedControlContainer.backgroundColor = FlatSand()
-        getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-        searchBar.returnKeyType = UIReturnKeyType.Done
+        getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
+        searchBar.returnKeyType = UIReturnKeyType.done
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
 
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         let dic = ["firstLaunch": true]
-        defaults.registerDefaults(dic)
-        if defaults.boolForKey("firstLaunch") {
+        defaults.register(defaults: dic)
+        if defaults.bool(forKey: "firstLaunch") {
             showIntroduction()
-            defaults.setBool(false, forKey: "firstLaunch")
+            defaults.set(false, forKey: "firstLaunch")
         }        
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         reloadRecipeList()
@@ -60,7 +60,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if subview.isKindOfClass(UITextField){
                 return subview as? UITextField
             }else{
-                let textField = self.getTextFieldFromView(subview)
+                let textField = self.getTextFieldFromView(view: subview)
                 if textField != nil{
                     return textField
                 }
@@ -71,20 +71,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func deleteRecipe(id: String) {
         let realm = try! Realm()
-        let recipe = realm.objects(Recipe).filter("id == %@", id).first!
+        let recipe = realm.objects(Recipe.self).filter("id == %@", id).first!
         
         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
         for ri in recipe.recipeIngredients{
-            let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@", ri.id).first!
+            let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@", ri.id).first!
             deletingRecipeIngredientList.append(recipeIngredient)
         }
         
         try! realm.write{
             for ri in deletingRecipeIngredientList{
-                let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                 for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
-                        ingredient.recipeIngredients.removeAtIndex(i)
+                        ingredient.recipeIngredients.remove(at: i)
                     }
                 }
             }
@@ -105,13 +105,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let realm = try! Realm()
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
-            recipeList = realm.objects(Recipe).sorted("recipeName")
+            recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
         case 1:
-            recipeList = realm.objects(Recipe).filter("favorites > 1").sorted("recipeName")
+            recipeList = realm.objects(Recipe.self).filter("favorites > 1").sorted(byProperty: "recipeName")
         case 2:
-            recipeList = realm.objects(Recipe).filter("favorites == 3").sorted("recipeName")
+            recipeList = realm.objects(Recipe.self).filter("favorites == 3").sorted(byProperty: "recipeName")
         default:
-            recipeList = realm.objects(Recipe).sorted("recipeName")
+            recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
         }
         
         if order.selectedSegmentIndex == 1{
@@ -123,7 +123,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let sortProperties = [
                 SortDescriptor(property: "shortageNum", ascending: true),
                 SortDescriptor(property: "recipeName", ascending: true) ]
-            recipeList = recipeList!.sorted(sortProperties)
+            recipeList = recipeList!.sorted(by: sortProperties)
         }
         
         reloadRecipeBasicList()
@@ -135,13 +135,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
         }
         
-        for i in (0..<recipeBasicList.count).reverse(){
+        for i in (0..<recipeBasicList.count).reversed(){
             if searchBarTextWithoutSpace() != "" && recipeBasicList[i].kanaName.containsString(searchBarTextWithoutSpace().katakana().lowercaseString) == false{
-                recipeBasicList.removeAtIndex(i)
+                recipeBasicList.remove(at: i)
             }
         }
         if order.selectedSegmentIndex == 0{
-            recipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+            recipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
         }
         
         self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
@@ -149,7 +149,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -159,28 +159,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func showIntroduction(){
         let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
-        let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "Thank you for downloading!!", description: desc0)
+        let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
-        let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
+        let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
         let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
-        let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
+        let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
         introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
         let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
-        let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
+        let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
         introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
 
-        let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-        introductionView.BackgroundImageView.image = UIImage(named: "launch-background")
-        introductionView.RightSkipButton.backgroundColor = UIColor.clearColor()
+        let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height))
+        introductionView.backgroundImageView.image = UIImage(named: "launch-background")
+        introductionView.rightSkipButton.backgroundColor = UIColor.clear
         introductionView.delegate = self
-        introductionView.buildIntroductionWithPanels([introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
+        introductionView.buildIntroduction(withPanels: [introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
 
-        let window = UIApplication.sharedApplication().keyWindow!
+        let window = UIApplication.shared.keyWindow!
         window.addSubview(introductionView)
     }
     
@@ -223,7 +223,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - UITableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
             if recipeList == nil{
                 reloadRecipeList()
@@ -239,27 +239,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+        performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style: .Normal, title: "編集") {
+        let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
-            self.performSegueWithIdentifier("PushAddRecipe", sender: indexPath)
+            self.performSegue(withIdentifier: "PushAddRecipe", sender: indexPath)
         }
         edit.backgroundColor = FlatGray()
         
-        let del = UITableViewRowAction(style: .Default, title: "削除") {
+        let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
-            let alertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "削除", style: .Destructive, handler: {action in
-                self.deleteRecipe(self.recipeBasicList[indexPath.row].id)
-                self.recipeBasicList.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            let alertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+                self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
+                self.recipeBasicList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
             }))
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            self.presentViewController(alertView, animated: true, completion: nil)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            self.present(alertView, animated: true, completion: nil)
         }
         del.backgroundColor = FlatRed()
         
@@ -275,9 +275,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeListItem") as! RecipeListItemTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListItem") as! RecipeListItemTableViewCell
             let realm = try! Realm()
-            let recipe = realm.objects(Recipe).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
             cell.recipe = recipe
             cell.backgroundColor = FlatWhite()
             return cell
@@ -297,7 +297,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("PushAddRecipe", sender: UIBarButtonItem())
+        performSegue(withIdentifier: "PushAddRecipe", sender: UIBarButtonItem())
     }
     
     @IBAction func infoButtonTapped(sender: UIBarButtonItem) {
@@ -308,22 +308,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func restoreButtonTapped(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("PushRecoverRecipe", sender: UIBarButtonItem())
+        performSegue(withIdentifier: "PushRecoverRecipe", sender: UIBarButtonItem())
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {
-            let vc = segue.destinationViewController as! RecipeDetailTableViewController
+            let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
             if let indexPath = sender as? NSIndexPath{
-                let enc = segue.destinationViewController as! UINavigationController
+                let enc = segue.destination as! UINavigationController
                 let evc = enc.visibleViewController as! RecipeEditTableViewController
                 let realm = try! Realm()
-                let recipe = realm.objects(Recipe).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+                let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
                 evc.recipe = recipe
             }
         }

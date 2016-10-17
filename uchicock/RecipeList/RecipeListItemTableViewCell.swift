@@ -19,7 +19,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
     var recipe: Recipe = Recipe(){
         didSet{
             if recipe.imageData != nil{
-                photo.image = UIImage(data: recipe.imageData!)
+                photo.image = UIImage(data: recipe.imageData! as Data)
             }else{
                 photo.image = UIImage(named: "no-photo")
             }
@@ -50,15 +50,15 @@ class RecipeListItemTableViewCell: UITableViewCell {
             case 0:
                 shortage.text = "すぐつくれる！"
                 shortage.textColor = FlatSkyBlueDark()
-                shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
+                shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 shortage.text = shortageName + "が足りません"
                 shortage.textColor = FlatGrayDark()
-                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             default:
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
                 shortage.textColor = FlatGrayDark()
-                shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
         }
     }
@@ -67,7 +67,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 

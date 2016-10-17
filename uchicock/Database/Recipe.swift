@@ -10,14 +10,14 @@
 import RealmSwift
 
 class Recipe: Object {
-    dynamic var id = NSUUID().UUIDString
+    dynamic var id = NSUUID().uuidString
     dynamic var recipeName = ""
     dynamic var favorites = 1
     dynamic var method = 0
     dynamic var memo = ""
     dynamic var imageData: NSData? = nil
     dynamic var shortageNum = 0
-    let recipeIngredients = List<RecipeIngredientLink>()
+    var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
         return "id"
@@ -35,7 +35,7 @@ class Recipe: Object {
     
     func fixNilImage(){
         if imageData != nil{
-            if UIImage(data: imageData!) == nil{
+            if UIImage(data: imageData! as Data) == nil{
                 self.imageData = nil
             }
         }

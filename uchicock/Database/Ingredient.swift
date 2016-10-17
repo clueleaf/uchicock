@@ -10,11 +10,11 @@
 import RealmSwift
 
 class Ingredient: Object {
-    dynamic var id = NSUUID().UUIDString
+    dynamic var id = NSUUID().uuidString
     dynamic var ingredientName = ""
     dynamic var stockFlag = false
     dynamic var memo = ""
-    let recipeIngredients = List<RecipeIngredientLink>()
+    var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
         return "id"
