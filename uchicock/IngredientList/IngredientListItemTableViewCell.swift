@@ -35,20 +35,20 @@ class IngredientListItemTableViewCell: UITableViewCell {
             recipeNum.textColor = FlatWhite()
             recipeNum.layer.cornerRadius = 10
             recipeNum.clipsToBounds = true
-            recipeNum.textAlignment = NSTextAlignment.Center
+            recipeNum.textAlignment = NSTextAlignment.center
 
             ingredientName.text = ingredient.ingredientName
             stockLabel.textColor = FlatGrayDark()
             
-            stock.backgroundColor = UIColor.clearColor()
+            stock.backgroundColor = UIColor.clear
             stock.tintColor = FlatSkyBlueDark()
             stock.secondaryTintColor = FlatGray()
             stock.boxLineWidth = 1.0
-            stock.markType = .Checkmark
-            stock.boxType = .Circle
+            stock.markType = .checkmark
+            stock.boxType = .circle
             stock.animationDuration = 0.3
             if stockState == 0{
-                stock.stateChangeAnimation = .Expand(.Fill)
+                stock.stateChangeAnimation = .expand(.fill)
             }
         }
     }
@@ -57,7 +57,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
