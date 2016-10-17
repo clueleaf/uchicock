@@ -175,9 +175,9 @@ class ReminderTableViewController: UITableViewController{
             dateFlag.isEnabled = true
             dateFlag.tintColor = FlatSkyBlueDark()
         }else if reminderType.selectedSegmentIndex == 1{
-            if dateFlag.checkState == .Unchecked{
+            if dateFlag.checkState == .unchecked{
                 dateFlag.setCheckState(.checked, animated: true)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+                tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
             }
             dateFlag.isEnabled = false
             dateFlag.tintColor = FlatWhiteDark()
@@ -186,9 +186,9 @@ class ReminderTableViewController: UITableViewController{
     
     @IBAction func dateFlagTapped(_ sender: M13Checkbox) {
         if dateFlag.checkState == .checked{
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+            tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
         }else{
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
+            tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
         }
     }
     

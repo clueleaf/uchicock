@@ -97,19 +97,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
     }
     
-    func title(_ forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func verticalOffset(_ forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -self.tableView.frame.size.height/4.0
     }
     
     func cellStockTapped(_ sender: M13Checkbox){
         var view = sender.superview
-        while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
+        while (view! is IngredientListItemTableViewCell) == false{
             view = view!.superview
         }
         let cell = view as! IngredientListItemTableViewCell

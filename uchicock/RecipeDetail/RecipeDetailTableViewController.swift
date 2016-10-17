@@ -301,7 +301,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                     }
                     realm.delete(self.recipe)
                 }
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             present(alertView, animated: true, completion: nil)

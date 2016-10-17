@@ -132,7 +132,7 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row == 0{
-                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, wection: 1))
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
                 }else{
                     return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
                 }
@@ -278,7 +278,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     return cell
                 }
             }else{
-                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 2, xection: 1))
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 2, section: 1))
                 cell.backgroundColor = FlatWhite()
                 return cell
             }

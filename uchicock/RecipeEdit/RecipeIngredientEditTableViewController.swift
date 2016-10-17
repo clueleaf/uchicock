@@ -74,7 +74,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,7 +105,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     func textFieldDidBeginEditing(_ textField: UITextField){
         if textField.tag == 0{
             isTypingName = true
-            tableView.insertRowsAtIndexPaths([IndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
+            tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
@@ -113,7 +113,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
 
             for i in (0..<suggestList.count).reversed() {
-                if ingredientName.text! != "" && suggestList[i].kanaName.containsString(ingredientName.text!.katakana().lowercased()) == false{
+                if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
                     suggestList.remove(at: i)
                 }
             }
@@ -131,7 +131,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
         
         for i in (0..<suggestList.count).reversed() {
-            if ingredientName.text! != "" && suggestList[i].kanaName.containsString(ingredientName.text!.katakana().lowercased()) == false{
+            if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
                 suggestList.remove(at: i)
             }
         }
@@ -145,7 +145,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             suggestTableView.reloadData()
             isTypingName = false
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1,inSection: 0)], withRowAnimation: .Middle)
+            tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
         }
     }
     

@@ -91,7 +91,7 @@ class RecoverTableViewController: UITableViewController {
     func isTargetTapped(_ sender: M13Checkbox){
         if isRecovering == false {
             var view = sender.superview
-            while(view!.isKindOfClass(RecoverTargetTableViewCell) == false) {
+            while (view! is RecoverTargetTableViewCell) == false{
                 view = view!.superview
             }
             let cell = view as! RecoverTargetTableViewCell

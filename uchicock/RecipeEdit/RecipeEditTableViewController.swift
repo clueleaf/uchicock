@@ -209,11 +209,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 1{
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            performSegueWithIdentifier("PushEditIngredient", sender: indexPath)
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "PushEditIngredient", sender: indexPath)
         }
     }
     
@@ -268,8 +268,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
                 cell.textLabel?.textColor = FlatSkyBlueDark()
                 cell.textLabel?.text = "材料を追加"
-                cell.textLabel?.font = UIFont.boldSystemFontOfSize(20.0)
-                cell.textLabel?.textAlignment = .Center;
+                cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+                cell.textLabel?.textAlignment = .center;
                 cell.backgroundColor = FlatWhite()
                 return cell
             }
@@ -394,7 +394,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let realm = try! Realm()
             
             if isAddMode {
-                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",textWithoutSpace(recipeName.text!))
+                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0{
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
@@ -439,8 +439,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     self.dismiss(animated: true, completion: nil)
                 }
             }else{
-                let sameNameRecipe = realm.objects(Recipe).filter("recipeName == %@",textWithoutSpace(recipeName.text!))
-                if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(recipeName.text!){
+                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
+                if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
                     //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
