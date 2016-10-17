@@ -313,7 +313,7 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
 

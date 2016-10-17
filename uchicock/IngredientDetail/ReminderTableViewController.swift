@@ -142,7 +142,7 @@ class ReminderTableViewController: UITableViewController{
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
         
         let eventStore = EKEventStore()

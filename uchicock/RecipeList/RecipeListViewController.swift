@@ -57,7 +57,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func getTextFieldFromView(view: UIView) -> UITextField?{
         for subview in view.subviews{
-            if subview.isKindOfClass(UITextField){
+            if subview is UITextField{
                 return subview as? UITextField
             }else{
                 let textField = self.getTextFieldFromView(view: subview)
@@ -98,7 +98,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func searchBarTextWithoutSpace() -> String {
-        return searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return searchBar.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     func reloadRecipeList(){
@@ -136,7 +136,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         for i in (0..<recipeBasicList.count).reversed(){
-            if searchBarTextWithoutSpace() != "" && recipeBasicList[i].kanaName.containsString(searchBarTextWithoutSpace().katakana().lowercaseString) == false{
+            if searchBarTextWithoutSpace() != "" && recipeBasicList[i].kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) == false{
                 recipeBasicList.remove(at: i)
             }
         }
@@ -147,13 +147,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func titleForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+    func verticalOffsetForEmptyDataSet(_ scrollView: UIScrollView!) -> CGFloat {
         return -self.tableView.frame.size.height/4.0
     }
     
@@ -163,15 +163,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
-        introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        introductionPanel1.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
 
         let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
-        introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        introductionPanel2.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
 
         let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
         let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
-        introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        introductionPanel3.PanelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
 
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -185,13 +185,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - UIScrollViewDelegate
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y >= 0{
             scrollBeginingYPoint = scrollView.contentOffset.y
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50{
             searchBar.becomeFirstResponder()
         }else if scrollBeginingYPoint < scrollView.contentOffset.y {
@@ -200,22 +200,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - UISearchBarDelegate
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             self.reloadRecipeBasicList()
             self.tableView.reloadData()
         }
     }
     
-    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.reloadRecipeBasicList()
             self.tableView.reloadData()
         }

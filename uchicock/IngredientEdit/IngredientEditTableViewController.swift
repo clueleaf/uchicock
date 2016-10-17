@@ -79,11 +79,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     func textWithoutSpace ( text: String ) -> String {
-        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     // MARK: - UITableView
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
@@ -110,7 +110,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         present(alertView, animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if ingredientName.text == nil || textWithoutSpace(text: ingredientName.text!) == ""{
             //材料名を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .alert)

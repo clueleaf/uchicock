@@ -27,7 +27,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         segmentedControlContainer.backgroundColor = FlatSand()
-        getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
+        getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
 
         tableView.emptyDataSetSource = self
@@ -49,10 +49,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
         for subview in view.subviews{
-            if subview.isKindOfClass(UITextField){
+            if subview is UITextField {
                 return subview as? UITextField
             }else{
-                let textField = self.getTextFieldFromView(view: subview)
+                let textField = self.getTextFieldFromView(subview)
                 if textField != nil{
                     return textField
                 }
@@ -62,7 +62,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func searchBarTextWithoutSpace() -> String {
-        return searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return searchBar.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     func reloadIngredientList(){
@@ -88,7 +88,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         for i in (0..<ingredientBasicList.count).reversed(){
-            if searchBarTextWithoutSpace() != "" && ingredientBasicList[i].kanaName.containsString(searchBarTextWithoutSpace().katakana().lowercaseString) == false{
+            if searchBarTextWithoutSpace() != "" && ingredientBasicList[i].kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) == false{
                 ingredientBasicList.remove(at: i)
             }
         }
@@ -97,17 +97,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
     }
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(_ forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    func verticalOffset(_ forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -self.tableView.frame.size.height/4.0
     }
     
-    func cellStockTapped(sender: M13Checkbox){
+    func cellStockTapped(_ sender: M13Checkbox){
         var view = sender.superview
         while(view!.isKindOfClass(IngredientListItemTableViewCell) == false) {
             view = view!.superview
@@ -168,8 +168,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(200 * Double(NSEC_PER_MSEC)))
-        dispatch_after(delayTime, DispatchQueue.main) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.reloadIngredientBasicList()
             self.tableView.reloadData()
         }
@@ -263,7 +262,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             cell.ingredient = ingredient
             cell.backgroundColor = FlatWhite()
-            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.ValueChanged)
+            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.valueChanged)
             
             return cell
         }

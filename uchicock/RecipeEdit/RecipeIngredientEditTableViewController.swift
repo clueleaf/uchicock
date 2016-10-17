@@ -150,7 +150,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     func textWithoutSpace(text: String) -> String{
-        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
     // MARK: - UITableView

@@ -134,7 +134,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView!.mj_header.endRefreshing()
     }
     
-    func waitAtLeast(time : TimeInterval, _ block: () -> Void) {
+    func waitAtLeast(_ time: TimeInterval, _ block: () -> Void) {
         let start = CFAbsoluteTimeGetCurrent()
         block()
         let end = CFAbsoluteTimeGetCurrent()

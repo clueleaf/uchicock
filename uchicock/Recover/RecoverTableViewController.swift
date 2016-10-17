@@ -88,7 +88,7 @@ class RecoverTableViewController: UITableViewController {
         self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
     }
     
-    func isTargetTapped(sender: M13Checkbox){
+    func isTargetTapped(_ sender: M13Checkbox){
         if isRecovering == false {
             var view = sender.superview
             while(view!.isKindOfClass(RecoverTargetTableViewCell) == false) {
@@ -184,7 +184,7 @@ class RecoverTableViewController: UITableViewController {
         recipe.recipeIngredients.append(recipeIngredientLink)
     }
     
-    func waitAtLeast(time : TimeInterval, _ block: () -> Void) {
+    func waitAtLeast(_ time : TimeInterval, _ block: () -> Void) {
         let start = CFAbsoluteTimeGetCurrent()
         block()
         let end = CFAbsoluteTimeGetCurrent()

@@ -160,7 +160,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func textWithoutSpace(text: String) -> String{
-        return text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     // MARK: - UITableView
@@ -282,7 +282,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         ipc.dismiss(animated: true, completion: nil)
     }
     
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
             photo.image = image
             selectPhoto.text = "写真を変更"

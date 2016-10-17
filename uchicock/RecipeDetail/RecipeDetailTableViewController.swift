@@ -165,7 +165,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
 
-    func photoTapped(recognizer: UITapGestureRecognizer) {
+    func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
@@ -182,7 +182,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    func photoLongPressed(recognizer: UILongPressGestureRecognizer) {
+    func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.began  {
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
@@ -201,7 +201,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
             SVProgressHUD.showSuccess(withStatus: "カメラロールへ保存しました")
         }else{
