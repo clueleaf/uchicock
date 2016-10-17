@@ -372,11 +372,11 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
 
     // MARK: - IBAction
-    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushEditRecipe", sender: UIBarButtonItem())
     }
     
-    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
         let excludedActivityTypes = [
             UIActivityType.message,
             UIActivityType.mail,
@@ -427,7 +427,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         return message
     }
     
-    @IBAction func openInSafariTapped(sender: UIButton) {
+    @IBAction func openInSafariTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         if UIApplication.sharedApplication().canOpenURL(url!){
@@ -435,7 +435,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    @IBAction func star1Tapped(sender: UIButton) {
+    @IBAction func star1Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("☆", for: .normal)
         star3.setTitle("☆", for: .normal)
@@ -446,7 +446,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    @IBAction func star2Tapped(sender: UIButton) {
+    @IBAction func star2Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("★", for: .normal)
         star3.setTitle("☆", for: .normal)
@@ -457,7 +457,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    @IBAction func star3Tapped(sender: UIButton) {
+    @IBAction func star3Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("★", for: .normal)
         star3.setTitle("★", for: .normal)

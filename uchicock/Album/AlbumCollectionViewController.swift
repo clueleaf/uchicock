@@ -29,7 +29,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        SVProgressHUD.showWithStatus("ロード中...")
+        SVProgressHUD.show(withStatus: "ロード中...")
         dispatch_async(queue){
             self.reloadRecipeList()
         }
@@ -39,17 +39,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView!.emptyDataSetDelegate = self
         
         header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
-        header.lastUpdatedTimeLabel.hidden = true
-        header.setTitle("引っ張ってシャッフル", forState: MJRefreshState.Idle)
-        header.setTitle("離すとシャッフル", forState: MJRefreshState.Pulling)
-        header.setTitle("シャッフル中...", forState: MJRefreshState.Refreshing)
+        header.lastUpdatedTimeLabel.isHidden = true
+        header.setTitle("引っ張ってシャッフル", for: MJRefreshState.idle)
+        header.setTitle("離すとシャッフル", for: MJRefreshState.pulling)
+        header.setTitle("シャッフル中...", for: MJRefreshState.refreshing)
         self.collectionView!.mj_header = header
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        SVProgressHUD.showWithStatus("ロード中...")
+        SVProgressHUD.show(withStatus: "ロード中...")
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""
 
@@ -89,7 +89,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         collectionView!.setContentOffset(collectionView!.contentOffset, animated: false)
     }
@@ -98,7 +98,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.didReceiveMemoryWarning()
     }
     
-    func shuffle<T>(inout array: [T]) {
+    func shuffle<T>( array: inout [T]) {
         for index in 0..<array.count {
             let newIndex = Int(arc4random_uniform(UInt32(array.count - index))) + index
             if index != newIndex {
@@ -107,73 +107,73 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: emptyDataSetStr, attributes: attrs)
     }
     
     func reloadRecipeList(){
         tempRecipeBasicList.removeAll()
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe)
+        let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
             if recipe.imageData != nil{
                 tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
             }
         }
-        tempRecipeBasicList.sortInPlace({ $0.kanaName < $1.kanaName })
+        tempRecipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
     }
     
     func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
         self.reloadRecipeList()
-        self.shuffle(&self.tempRecipeBasicList)
+        self.shuffle(array: &self.tempRecipeBasicList)
         recipeBasicList = tempRecipeBasicList
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         self.collectionView!.mj_header.endRefreshing()
     }
     
-    func waitAtLeast(time : NSTimeInterval, @noescape _ block: () -> Void) {
+    func waitAtLeast(time : TimeInterval, _ block: () -> Void) {
         let start = CFAbsoluteTimeGetCurrent()
         block()
         let end = CFAbsoluteTimeGetCurrent()
         let wait = max(0.0, time - (end - start))
         if wait > 0.0 {
-            NSThread.sleepForTimeInterval(wait)
+            Thread.sleep(forTimeInterval: wait)
         }
     }
 
     // MARK: UICollectionView
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = self.view.frame.size.width / 2 - 2
         return CGSize(width: size, height: size)
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipeBasicList.count
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let realm = try! Realm()
-        let recipeCount = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).count
+        let recipeCount = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).count
         if recipeCount > 0 {
-            performSegueWithIdentifier("RecipeTapped", sender: indexPath)
+            performSegue(withIdentifier: "RecipeTapped", sender: indexPath)
         }
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumItem", forIndexPath: indexPath) as! AlbumCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumItem", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
-        let recipe = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).first!
+        let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
 
         if recipe.imageData != nil{
-            cell.photo.image = UIImage(data: recipe.imageData!)
+            cell.photo.image = UIImage(data: recipe.imageData! as Data)
             //レシピ削除のバグに対するワークアラウンド
             if cell.photo.image == nil{
                 cell.photo.image = UIImage(named: "no-photo")
@@ -184,16 +184,16 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         return cell
     }
 
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     // MARK: - IBAction
-    @IBAction func reloadButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            SVProgressHUD.showWithStatus("シャッフル中...")
-            dispatch_async(self.queue){
+    @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
+        let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+            SVProgressHUD.show(withStatus: "シャッフル中...")
+            self.queue.asynchronously(){
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
                     self.shuffle(&self.tempRecipeBasicList)
@@ -206,15 +206,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }))
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-        self.presentViewController(alertView, animated: true, completion: nil)
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        self.present(alertView, animated: true, completion: nil)
     }
 
-    @IBAction func orderButtonTapped(sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-            SVProgressHUD.showWithStatus("並べ替え中...")
-            dispatch_async(self.queue){
+    @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
+        let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+            SVProgressHUD.show(withStatus: "並べ替え中...")
+            self.queue.asynchronously(){
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
                     self.recipeBasicList = self.tempRecipeBasicList
@@ -226,17 +226,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }))
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-        self.presentViewController(alertView, animated: true, completion: nil)
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        self.present(alertView, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RecipeTapped" {
-            let vc = segue.destinationViewController as! RecipeDetailTableViewController
+            let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 let realm = try! Realm()
-                let recipe = realm.objects(Recipe).filter("id == %@",recipeBasicList[indexPath.row].id).first!
+                let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
                 vc.recipeId = recipe.id
             }
         }

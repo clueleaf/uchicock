@@ -331,25 +331,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
 
     // MARK: - IBAction
-    @IBAction func star1Tapped(sender: UIButton) {
+    @IBAction func star1Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("☆", for: .normal)
         star3.setTitle("☆", for: .normal)
     }
     
-    @IBAction func star2Tapped(sender: UIButton) {
+    @IBAction func star2Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("★", for: .normal)
         star3.setTitle("☆", for: .normal)
     }
     
-    @IBAction func star3Tapped(sender: UIButton) {
+    @IBAction func star3Tapped(_ sender: UIButton) {
         star1.setTitle("★", for: .normal)
         star2.setTitle("★", for: .normal)
         star3.setTitle("★", for: .normal)
     }
     
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "", message: "編集をやめますか？", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "はい",style: .default){
             action in
@@ -359,7 +359,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         present(alertView, animated: true, completion: nil)
     }
     
-    @IBAction func saveButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if recipeName.text == nil || textWithoutSpace(text: recipeName.text!) == ""{
             //レシピ名を入れていない
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .alert)
@@ -505,11 +505,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
-    @IBAction func unwindToRecipeEdit(segue: UIStoryboardSegue) {
+    @IBAction func unwindToRecipeEdit(_ segue: UIStoryboardSegue) {
     }
     
     // MARK: - GestureRecognizer

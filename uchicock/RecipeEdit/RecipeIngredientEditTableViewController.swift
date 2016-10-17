@@ -283,11 +283,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     // MARK: - IBAction
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         if textWithoutSpace(text: ingredientName.text!) == "" {
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
@@ -325,7 +325,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    @IBAction func screenTapped(sender: UITapGestureRecognizer) {
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
