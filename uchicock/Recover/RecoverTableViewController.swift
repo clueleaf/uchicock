@@ -26,7 +26,7 @@ class RecoverTableViewController: UITableViewController {
         loadUserRecipe()
         
         var config = Realm.Configuration(schemaVersion: 1)
-        config.fileURL = NSBundle.mainBundle().URLForResource("default", withExtension: "realm")
+        config.fileURL = Bundle.main.url(forResource: "default", withExtension: "realm")
         config.readOnly = true
         Realm.Configuration.defaultConfiguration = config
 
@@ -38,7 +38,7 @@ class RecoverTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
@@ -49,7 +49,7 @@ class RecoverTableViewController: UITableViewController {
 
     func loadUserRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
         for ur in recipeList{
             userRecipeNameList.append(ur.recipeName)
         }
@@ -57,7 +57,7 @@ class RecoverTableViewController: UITableViewController {
     
     func loadSampleRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe).sorted("recipeName")
+        let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
         for sr in recipeList{
             var isRecoverable = true
             for ur in userRecipeNameList{
@@ -74,8 +74,8 @@ class RecoverTableViewController: UITableViewController {
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sortInPlace({ $0.kanaName < $1.kanaName })
-        unrecoverableSampleRecipeList.sortInPlace({ $0.kanaName < $1.kanaName })
+        recoverableSampleRecipeList.sort(by: { $0.kanaName < $1.kanaName })
+        unrecoverableSampleRecipeList.sort(by: { $0.kanaName < $1.kanaName })
     }
     
     func setNavigationTitle(){
@@ -95,12 +95,12 @@ class RecoverTableViewController: UITableViewController {
                 view = view!.superview
             }
             let cell = view as! RecoverTargetTableViewCell
-            let touchIndex = self.tableView.indexPathForCell(cell)
+            let touchIndex = self.tableView.indexPath(for: cell)
             
             if touchIndex!.row - 1 < recoverableSampleRecipeList.count{
-                if sender.checkState == .Checked{
+                if sender.checkState == .checked{
                     recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = true
-                }else if sender.checkState == .Unchecked{
+                }else if sender.checkState == .unchecked{
                     recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = false
                 }
                 setNavigationTitle()
@@ -113,7 +113,7 @@ class RecoverTableViewController: UITableViewController {
         for rr in recoverableSampleRecipeList{
             if rr.recoverTarget{
                 let realm = try! Realm()
-                let recipe = realm.objects(Recipe).filter("recipeName == %@", rr.name).first!
+                let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName, method: recipe.method, ingredientList: [])
                 for ri in recipe.recipeIngredients{
@@ -129,16 +129,16 @@ class RecoverTableViewController: UITableViewController {
         
         for recoverRecipe in recoverRecipeList{
             let realm = try! Realm()
-            let rec = realm.objects(Recipe).filter("recipeName == %@",recoverRecipe.name)
+            let rec = realm.objects(Recipe.self).filter("recipeName == %@",recoverRecipe.name)
             if rec.count < 1 {
                 try! realm.write {
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addIngredient(recoverIngredient.name, stockFlag: false, memo: "")
+                        addIngredient(ingredientName: recoverIngredient.name, stockFlag: false, memo: "")
                     }
-                    addRecipe(recoverRecipe.name, favorites: 1, memo: "", method: recoverRecipe.method)
+                    addRecipe(recipeName: recoverRecipe.name, favorites: 1, memo: "", method: recoverRecipe.method)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addRecipeToIngredientLink(recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)
+                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)
                     }
                 }
             }
@@ -147,7 +147,7 @@ class RecoverTableViewController: UITableViewController {
     
     func addRecipe(recipeName:String, favorites:Int, memo:String, method:Int){
         let realm = try! Realm()
-        let rec = realm.objects(Recipe).filter("recipeName == %@",recipeName)
+        let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
         if rec.count < 1 {
             let recipe = Recipe()
             recipe.recipeName = recipeName
@@ -160,7 +160,7 @@ class RecoverTableViewController: UITableViewController {
     
     func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
         let realm = try! Realm()
-        let ing = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName)
+        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName)
         if ing.count < 1 {
             let ingredient = Ingredient()
             ingredient.ingredientName = ingredientName
@@ -177,25 +177,25 @@ class RecoverTableViewController: UITableViewController {
         recipeIngredientLink.mustFlag = mustFlag
         realm.add(recipeIngredientLink)
         
-        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ingredientName).first!
+        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName).first!
         ingredient.recipeIngredients.append(recipeIngredientLink)
         
-        let recipe = realm.objects(Recipe).filter("recipeName == %@",recipeName).first!
+        let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
         recipe.recipeIngredients.append(recipeIngredientLink)
     }
     
-    func waitAtLeast(time : NSTimeInterval, @noescape _ block: () -> Void) {
+    func waitAtLeast(time : TimeInterval, _ block: () -> Void) {
         let start = CFAbsoluteTimeGetCurrent()
         block()
         let end = CFAbsoluteTimeGetCurrent()
         let wait = max(0.0, time - (end - start))
         if wait > 0.0 {
-            NSThread.sleepForTimeInterval(wait)
+            Thread.sleep(forTimeInterval: wait)
         }
     }
 
     // MARK: - Table view
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
             return 30
         } else {
@@ -203,7 +203,7 @@ class RecoverTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return UITableViewAutomaticDimension
         }else{
@@ -211,22 +211,22 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 0 {
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                tableView.deselectRow(at: indexPath, animated: true)
                 if isRecovering == false {
                     if recoverableSampleRecipeList.count == 0{
-                        let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .Alert)
-                        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+                        let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
+                        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                         }))
-                        self.presentViewController(alertView, animated: true, completion: nil)
+                        self.present(alertView, animated: true, completion: nil)
                     }else{
-                        let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
-                        alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                        let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                        alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
-                            SVProgressHUD.showWithStatus("復元中...")
-                            dispatch_async(self.queue){
+                            SVProgressHUD.show(withStatus: "復元中...")
+                            self.queue.asynchronously(){
                                 self.waitAtLeast(self.leastWaitTime) {
                                     for i in 0..<self.recoverableSampleRecipeList.count {
                                         self.recoverableSampleRecipeList[i].recoverTarget = true
@@ -239,20 +239,20 @@ class RecoverTableViewController: UITableViewController {
                                 }
                             }
                         }))
-                        alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                        self.presentViewController(alertView, animated: true, completion: nil)
+                        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                        self.present(alertView, animated: true, completion: nil)
                     }
                 }
             }else{
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                tableView.deselectRow(at: indexPath, animated: true)
                 if isRecovering == false {
-                    performSegueWithIdentifier("PushPreview", sender: indexPath)
+                    performSegue(withIdentifier: "PushPreview", sender: indexPath)
                 }
             }
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "復元したいレシピを選んでください"
         }else{
@@ -260,11 +260,11 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 1
         }else if section == 1{
@@ -274,47 +274,47 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverDescription") as! RecoverDescriptionTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
             return cell
         case 1:
             if indexPath.row == 0{
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecoverAll") as! RecoverAllTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
                 return cell
             }else{
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecoverTarget") as! RecoverTargetTableViewCell
-                cell.isTarget.stateChangeAnimation = .Fade(.Fill)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
+                cell.isTarget.stateChangeAnimation = .fade(.fill)
                 cell.isTarget.animationDuration = 0.0
-                cell.isTarget.backgroundColor = UIColor.clearColor()
+                cell.isTarget.backgroundColor = UIColor.clear
                 cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.markType = .Checkmark
-                cell.isTarget.boxType = .Circle
+                cell.isTarget.markType = .checkmark
+                cell.isTarget.boxType = .circle
                 cell.isTarget.secondaryTintColor = FlatGray()
                 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
                     cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
-                    cell.isTarget.enabled = true
+                    cell.isTarget.isEnabled = true
                     cell.isTarget.tintColor = FlatSkyBlueDark()
                     if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
                         //CheckedとMixedを直接変換するとエラーになる
-                        cell.isTarget.setCheckState(.Unchecked, animated: true)
-                        cell.isTarget.setCheckState(.Checked, animated: true)
+                        cell.isTarget.setCheckState(.unchecked, animated: true)
+                        cell.isTarget.setCheckState(.checked, animated: true)
                     }else{
-                        cell.isTarget.setCheckState(.Unchecked, animated: true)
+                        cell.isTarget.setCheckState(.unchecked, animated: true)
                     }
                     cell.isRecoverable = true
-                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), forControlEvents: UIControlEvents.ValueChanged)
+                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControlEvents.ValueChanged)
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
-                    cell.isTarget.enabled = false
+                    cell.isTarget.isEnabled = false
                     cell.isTarget.tintColor = FlatWhiteDark()
                     //CheckedとMixedを直接変換するとエラーになる
-                    cell.isTarget.setCheckState(.Unchecked, animated: true)
-                    cell.isTarget.setCheckState(.Mixed, animated: true)
+                    cell.isTarget.setCheckState(.unchecked, animated: true)
+                    cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }
                 return cell
@@ -325,17 +325,17 @@ class RecoverTableViewController: UITableViewController {
     }
 
     // MARK: - IBAction
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false {
             var config = Realm.Configuration(schemaVersion: 1)
             config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
             Realm.Configuration.defaultConfiguration = config
             
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction func recoverButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func recoverButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false{
             var recoverCount = 0
             for rr in recoverableSampleRecipeList{
@@ -348,13 +348,13 @@ class RecoverTableViewController: UITableViewController {
                 var config = Realm.Configuration(schemaVersion: 1)
                 config.fileURL = config.fileURL!.URLByDeletingLastPathComponent?.URLByAppendingPathComponent("default.realm")
                 Realm.Configuration.defaultConfiguration = config
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }else{
-                let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .Alert)
-                alertView.addAction(UIAlertAction(title: "復元", style: .Default, handler: {action in
+                let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
-                    SVProgressHUD.showWithStatus("復元中...")
-                    dispatch_async(self.queue){
+                    SVProgressHUD.show(withStatus: "復元中...")
+                    self.queue.asynchronously(){
                         self.waitAtLeast(self.leastWaitTime) {
                             self.recover()
                         }
@@ -364,23 +364,23 @@ class RecoverTableViewController: UITableViewController {
                         }
                     }
                 }))
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                self.presentViewController(alertView, animated: true, completion: nil)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                self.present(alertView, animated: true, completion: nil)
             }
         }
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushPreview" {
-            let vc = segue.destinationViewController as! RecoverPreviewTableViewController
+            let vc = segue.destination as! RecoverPreviewTableViewController
             if let indexPath = sender as? NSIndexPath{
                 let realm = try! Realm()
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    let recipe = realm.objects(Recipe).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
+                    let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
                     vc.recipe = recipe
                 }else{
-                    let recipe = realm.objects(Recipe).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
+                    let recipe = realm.objects(Recipe.self).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
                     vc.recipe = recipe
                 }
             }

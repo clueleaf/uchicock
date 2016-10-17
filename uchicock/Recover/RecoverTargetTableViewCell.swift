@@ -18,7 +18,7 @@ class RecoverTargetTableViewCell: UITableViewCell {
     
     var isRecoverable: Bool = Bool(){
         didSet{
-            isTarget.stateChangeAnimation = .Expand(.Fill)
+            isTarget.stateChangeAnimation = .expand(.fill)
             isTarget.animationDuration = 0.3
             previewLabel.textColor = FlatGrayDark()
         }
@@ -29,7 +29,7 @@ class RecoverTargetTableViewCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

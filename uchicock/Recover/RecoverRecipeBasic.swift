@@ -9,7 +9,7 @@
 struct SampleRecipeBasic{
     var name : String
     var kanaName : String{
-        return name.katakana().lowercaseString
+        return name.katakana().lowercased()
     }
     var recoverable : Bool
     var recoverTarget : Bool

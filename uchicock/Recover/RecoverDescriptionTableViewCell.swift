@@ -27,35 +27,35 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        recoverTarget.stateChangeAnimation = .Expand(.Fill)
-        recoverTarget.enabled = false
-        recoverTarget.setCheckState(.Checked, animated: true)
-        recoverTarget.backgroundColor = UIColor.clearColor()
+        recoverTarget.stateChangeAnimation = .expand(.fill)
+        recoverTarget.isEnabled = false
+        recoverTarget.setCheckState(.checked, animated: true)
+        recoverTarget.backgroundColor = UIColor.clear
         recoverTarget.tintColor = FlatSkyBlueDark()
         recoverTarget.boxLineWidth = 1.0
-        recoverTarget.markType = .Checkmark
-        recoverTarget.boxType = .Circle
+        recoverTarget.markType = .checkmark
+        recoverTarget.boxType = .circle
         
-        nonRecoverTarget.stateChangeAnimation = .Expand(.Fill)
-        nonRecoverTarget.enabled = false
-        nonRecoverTarget.setCheckState(.Unchecked, animated: true)
-        nonRecoverTarget.backgroundColor = UIColor.clearColor()
+        nonRecoverTarget.stateChangeAnimation = .expand(.fill)
+        nonRecoverTarget.isEnabled = false
+        nonRecoverTarget.setCheckState(.unchecked, animated: true)
+        nonRecoverTarget.backgroundColor = UIColor.clear
         nonRecoverTarget.tintColor = FlatSkyBlueDark()
         nonRecoverTarget.boxLineWidth = 1.0
-        nonRecoverTarget.markType = .Checkmark
-        nonRecoverTarget.boxType = .Circle
+        nonRecoverTarget.markType = .checkmark
+        nonRecoverTarget.boxType = .circle
         
-        unableRecover.stateChangeAnimation = .Expand(.Fill)
-        unableRecover.enabled = false
-        unableRecover.setCheckState(.Mixed, animated: true)
-        unableRecover.backgroundColor = UIColor.clearColor()
+        unableRecover.stateChangeAnimation = .expand(.fill)
+        unableRecover.isEnabled = false
+        unableRecover.setCheckState(.mixed, animated: true)
+        unableRecover.backgroundColor = UIColor.clear
         unableRecover.tintColor = FlatWhiteDark()
         unableRecover.boxLineWidth = 1.0
-        unableRecover.markType = .Checkmark
-        unableRecover.boxType = .Circle
+        unableRecover.markType = .checkmark
+        unableRecover.boxType = .circle
 }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

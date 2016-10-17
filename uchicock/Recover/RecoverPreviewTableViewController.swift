@@ -19,7 +19,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerClass(RecoverPreviewIngredientTableViewCell.self, forCellReuseIdentifier: "RecoverPreviewIngredient")
+        tableView.register(RecoverPreviewIngredientTableViewCell.self, forCellReuseIdentifier: "RecoverPreviewIngredient")
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
@@ -34,7 +34,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
@@ -44,7 +44,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
 
     // MARK: - UITableView
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
             return 0
         } else {
@@ -52,7 +52,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 0{
                 return UITableViewAutomaticDimension
@@ -65,7 +65,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "材料(" + String(recipe.recipeIngredients.count) + ")"
         }else{
@@ -73,7 +73,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 2
         }else if section == 1{
@@ -82,7 +82,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
@@ -91,22 +91,22 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecoverPreviewIngredient", forIndexPath: indexPath) as! RecoverPreviewIngredientTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverPreviewIngredient", for: indexPath) as! RecoverPreviewIngredientTableViewCell
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
-                cell.option.backgroundColor = UIColor.clearColor()
+                cell.option.backgroundColor = UIColor.clear
             }else{
                 cell.option.text = "オプション"
                 cell.option.backgroundColor = FlatWhiteDark()
@@ -114,12 +114,12 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.option.textColor = FlatBlack()
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
-            cell.option.textAlignment = NSTextAlignment.Center
+            cell.option.textAlignment = NSTextAlignment.center
             
             cell.ingredientName.textColor = FlatBlack()
             cell.amount.textColor = FlatBlack()
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
-            cell.selectionStyle = .None
+            cell.selectionStyle = .none
             cell.backgroundColor = FlatWhite()
             return cell
         default:
