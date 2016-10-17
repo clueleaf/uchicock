@@ -374,7 +374,7 @@ class RecoverTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushPreview" {
             let vc = segue.destination as! RecoverPreviewTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
                     let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!

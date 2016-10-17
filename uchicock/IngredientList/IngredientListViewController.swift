@@ -284,11 +284,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
-            if let indexPath = sender as? NSIndexPath {
+            if let indexPath = sender as? IndexPath {
                 let enc = segue.destination as! UINavigationController
                 let evc = enc.visibleViewController as! IngredientEditTableViewController
                 let realm = try! Realm()

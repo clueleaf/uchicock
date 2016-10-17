@@ -325,7 +325,7 @@ class IngredientDetailTableViewController: UITableViewController {
             evc.ingredient = self.ingredient
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destination as! RecipeDetailTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
                 let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
                 vc.recipeId = recipeIngredient.recipe.id

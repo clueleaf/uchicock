@@ -315,11 +315,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {
             let vc = segue.destination as! RecipeDetailTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 let enc = segue.destination as! UINavigationController
                 let evc = enc.visibleViewController as! RecipeEditTableViewController
                 let realm = try! Realm()

@@ -567,7 +567,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if segue.identifier == "PushEditIngredient" {
             let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! RecipeIngredientEditTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 if indexPath.row < editingRecipeIngredientList.count{
                     if self.editingRecipeIngredientList[indexPath.row].id == ""{
                         self.editingRecipeIngredientList[indexPath.row].id = NSUUID().uuidString

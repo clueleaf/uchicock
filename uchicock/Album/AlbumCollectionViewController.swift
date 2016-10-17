@@ -234,7 +234,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RecipeTapped" {
             let vc = segue.destination as! RecipeDetailTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
                 vc.recipeId = recipe.id

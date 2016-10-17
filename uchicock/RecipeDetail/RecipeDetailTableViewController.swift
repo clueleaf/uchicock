@@ -209,7 +209,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
+                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
                 if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
                     UIApplication.shared.openURL(url as URL)
                 }
@@ -472,7 +472,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             }
         }else if segue.identifier == "PushEditRecipe" {
@@ -482,7 +482,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }else if segue.identifier == "PushReminder" {
             let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! ReminderTableViewController
-            if let indexPath = sender as? NSIndexPath{
+            if let indexPath = sender as? IndexPath{
                 evc.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             }
         }

@@ -36,7 +36,7 @@ class ReminderTableViewController: UITableViewController{
         dateFlag.stateChangeAnimation = .expand(.fill)
         
         datePicker.datePickerMode = .dateAndTime
-        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
         self.tableView.estimatedRowHeight = 70

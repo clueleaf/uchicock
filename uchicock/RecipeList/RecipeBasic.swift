@@ -10,7 +10,7 @@ struct RecipeBasic{
     var id : String
     var name : String
     var kanaName : String {
-        return name.katakana().lowercaseString
+        return name.katakana().lowercased()
     }
 }
 
