@@ -430,8 +430,8 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     @IBAction func openInSafariTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-        if UIApplication.sharedApplication().canOpenURL(url!){
-            UIApplication.sharedApplication().openURL(url!)
+        if UIApplication.shared.canOpenURL(url!){
+            UIApplication.shared.openURL(url!)
         }
     }
     
