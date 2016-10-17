@@ -18,28 +18,28 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let width = UIScreen.mainScreen().bounds.size.width
+        let width = UIScreen.main.bounds.size.width
 
         ingredientName = UILabel(frame: CGRectMake(8, 8, width - 43, 21))
         ingredientName.text = ""
-        ingredientName.font = UIFont.systemFontOfSize(15)
+        ingredientName.font = UIFont.systemFont(ofSize: 15)
         self.addSubview(ingredientName)
         
         option = UILabel(frame: CGRectMake(5, 33, 50, 21))
         option.text = ""
-        option.font = UIFont.systemFontOfSize(10)
+        option.font = UIFont.systemFont(ofSize: 10)
         option.textColor = FlatGrayDark()
         self.addSubview(option)
         
         stock = UILabel(frame: CGRectMake(60, 33, 50, 21))
         stock.text = ""
-        stock.font = UIFont.systemFontOfSize(10)
+        stock.font = UIFont.systemFont(ofSize: 10)
         stock.textColor = FlatGrayDark()
         self.addSubview(stock)
         
         amount = UILabel(frame: CGRectMake(115, 33, width - 150, 21))
         amount.text = ""
-        amount.font = UIFont.systemFontOfSize(12)
+        amount.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(amount)
     }
     
@@ -51,7 +51,7 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 

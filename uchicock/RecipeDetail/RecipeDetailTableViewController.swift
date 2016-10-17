@@ -41,10 +41,10 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         
         photoBackground.backgroundColor = FlatWhite()
 
-        openInSafari.setTitleColor(FlatWhite(), forState: .Normal)
+        openInSafari.setTitleColor(FlatWhite(), for: .normal)
         openInSafari.layer.cornerRadius = 4
         
-        tableView.registerClass(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
+        tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
         photoBackground.addGestureRecognizer(tapRecognizer)
@@ -56,35 +56,35 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         let realm = try! Realm()
-        let rec = realm.objects(Recipe).filter("id == %@",recipeId)
+        let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)
         if rec.count < 1 {
-            let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .Alert)
-            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-                self.navigationController?.popViewControllerAnimated(true)
+            let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
+            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.navigationController?.popViewController(animated: true)
             }))
-            presentViewController(noRecipeAlertView, animated: true, completion: nil)
+            present(noRecipeAlertView, animated: true, completion: nil)
         }else{
-            recipe = realm.objects(Recipe).filter("id == %@",recipeId).first!
+            recipe = realm.objects(Recipe.self).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
             
             let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
             let url = NSURL(string:urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
             if UIApplication.sharedApplication().canOpenURL(url!) {
-                openInSafari.enabled = true
+                openInSafari.isEnabled = true
                 openInSafari.backgroundColor = FlatSkyBlueDark()
             }else{
-                openInSafari.enabled = false
+                openInSafari.isEnabled = false
                 openInSafari.backgroundColor = FlatWhiteDark()
             }
             
             tableView.tableHeaderView = nil
             noPhotoFlag = false
             if recipe.imageData != nil{
-                photo.image = UIImage(data: recipe.imageData!)
+                photo.image = UIImage(data: recipe.imageData! as Data)
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
                     noPhotoFlag = true
@@ -98,7 +98,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                     }
                     photo.clipsToBounds = true
                     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-                    self.view.bringSubviewToFront(photoBackground)
+                    self.view.bringSubview(toFront: photoBackground)
                 }
             }else{
                 noPhotoFlag = true
@@ -111,21 +111,21 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             
             switch recipe.favorites{
             case 1:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("☆", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
+                star1.setTitle("★", for: .normal)
+                star2.setTitle("☆", for: .normal)
+                star3.setTitle("☆", for: .normal)
             case 2:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("★", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
+                star1.setTitle("★", for: .normal)
+                star2.setTitle("★", for: .normal)
+                star3.setTitle("☆", for: .normal)
             case 3:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("★", forState: .Normal)
-                star3.setTitle("★", forState: .Normal)
+                star1.setTitle("★", for: .normal)
+                star2.setTitle("★", for: .normal)
+                star3.setTitle("★", for: .normal)
             default:
-                star1.setTitle("★", forState: .Normal)
-                star2.setTitle("☆", forState: .Normal)
-                star3.setTitle("☆", forState: .Normal)
+                star1.setTitle("★", for: .normal)
+                star2.setTitle("☆", for: .normal)
+                star3.setTitle("☆", for: .normal)
             }
             
             if recipe.method >= 0 && recipe.method < 5 {
@@ -145,7 +145,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
@@ -169,61 +169,61 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         if noPhotoFlag == false{
             if recipe.imageData != nil{
                 //レシピ削除のバグに対するワークアラウンド
-                let browsePhoto = UIImage(data: recipe.imageData!)
+                let browsePhoto = UIImage(data: recipe.imageData! as Data)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
                     p.caption = self.recipe.recipeName
-                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFromView: photo)
+                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFrom: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
-                    self.presentViewController(browser, animated: true, completion: nil)
+                    self.present(browser, animated: true, completion: nil)
                 }
             }
         }
     }
     
     func photoLongPressed(recognizer: UILongPressGestureRecognizer) {
-        if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.Began  {
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .Default){ action in
+        if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.began  {
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
                 if self.photo.image != nil{
                     UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 }
                 })
-            alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .Default){ action in
+            alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
                 if self.photo.image != nil{
-                    let pasteboard: UIPasteboard = UIPasteboard.generalPasteboard()
+                    let pasteboard: UIPasteboard = UIPasteboard.general
                     pasteboard.image = self.photo.image!
                 }
                 })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            presentViewController(alertView, animated: true, completion: nil)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            present(alertView, animated: true, completion: nil)
         }
     }
     
-    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutablePointer<Void>) {
+    func image(image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
-            SVProgressHUD.showSuccessWithStatus("カメラロールへ保存しました")
+            SVProgressHUD.showSuccess(withStatus: "カメラロールへ保存しました")
         }else{
-            let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .Alert)
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+            let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
-            alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
-                UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+            alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+                UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL)
                 if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
+                    UIApplication.shared.openURL(url as URL)
                 }
             }))
-            presentViewController(alertView, animated: true, completion: nil)
+            present(alertView, animated: true, completion: nil)
         }
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateHeaderView()
     }
     
     // MARK: - UITableView
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
             return 0
         } else {
@@ -231,7 +231,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return UITableViewAutomaticDimension
         }else if indexPath.section == 1{
@@ -242,7 +242,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         return 0
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "材料(" + String(recipe.recipeIngredients.count) + ")"
         }else{
@@ -250,7 +250,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 4
         }else if section == 1{
@@ -262,7 +262,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         }
     }
     
-    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
@@ -273,26 +273,26 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         return 0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            performSegueWithIdentifier("PushIngredientDetail", sender: indexPath)
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
         }else if indexPath.section == 2{
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
+            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
                 action in
                 let realm = try! Realm()
                 let deletingRecipeIngredientList = List<RecipeIngredientLink>()
                 for i in 0 ..< self.recipe.recipeIngredients.count {
-                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
+                    let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
                 try! realm.write{
                     for ri in deletingRecipeIngredientList{
-                        let ingredient = realm.objects(Ingredient).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                         for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                             if ingredient.recipeIngredients[i].id == ri.id{
-                                ingredient.recipeIngredients.removeAtIndex(i)
+                                ingredient.recipeIngredients.remove(at: i)
                             }
                         }
                     }
@@ -301,36 +301,36 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                     }
                     realm.delete(self.recipe)
                 }
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
                 })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-            presentViewController(alertView, animated: true, completion: nil)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            present(alertView, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let reminder = UITableViewRowAction(style: .Normal, title: "リマインダー") {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
             (action, indexPath) in
-            self.performSegueWithIdentifier("PushReminder", sender: indexPath)
+            self.performSegue(withIdentifier: "PushReminder", sender: indexPath)
         }
         reminder.backgroundColor = FlatSkyBlueDark()
         
         return [reminder]
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             cell.backgroundColor = FlatWhite()
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecipeIngredientList", forIndexPath: indexPath) as! RecipeIngredientListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
-                cell.option.backgroundColor = UIColor.clearColor()
+                cell.option.backgroundColor = UIColor.clear
             }else{
                 cell.option.text = "オプション"
                 cell.option.backgroundColor = FlatWhiteDark()
@@ -338,7 +338,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             cell.option.textColor = FlatBlack()
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
-            cell.option.textAlignment = NSTextAlignment.Center
+            cell.option.textAlignment = NSTextAlignment.center
 
             if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
                 cell.stock.text = "在庫あり"
@@ -355,11 +355,11 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             }
             cell.stock.layer.cornerRadius = 4
             cell.stock.clipsToBounds = true
-            cell.stock.textAlignment = NSTextAlignment.Center
+            cell.stock.textAlignment = NSTextAlignment.center
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
             
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            cell.selectionStyle = .Default
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.selectionStyle = .default
             cell.backgroundColor = FlatWhite()
             return cell
         case 2:
@@ -373,32 +373,32 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
 
     // MARK: - IBAction
     @IBAction func editButtonTapped(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("PushEditRecipe", sender: UIBarButtonItem())
+        performSegue(withIdentifier: "PushEditRecipe", sender: UIBarButtonItem())
     }
     
     @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
         let excludedActivityTypes = [
-            UIActivityTypeMessage,
-            UIActivityTypeMail,
-            UIActivityTypePrint,
-            UIActivityTypeAssignToContact,
-            UIActivityTypeAddToReadingList,
-            UIActivityTypePostToFlickr,
-            UIActivityTypePostToVimeo,
-            UIActivityTypePostToWeibo,
-            UIActivityTypePostToTencentWeibo,
-            UIActivityTypeAirDrop
+            UIActivityType.message,
+            UIActivityType.mail,
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.addToReadingList,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToWeibo,
+            UIActivityType.postToTencentWeibo,
+            UIActivityType.airDrop
         ]
         
         let shareText = createLongMessage()
         if noPhotoFlag == false && photo.image != nil{
             let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }else{
             let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }
     }
     
@@ -436,9 +436,9 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
     
     @IBAction func star1Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("☆", forState: .Normal)
-        star3.setTitle("☆", forState: .Normal)
+        star1.setTitle("★", for: .normal)
+        star2.setTitle("☆", for: .normal)
+        star3.setTitle("☆", for: .normal)
         
         let realm = try! Realm()
         try! realm.write {
@@ -447,9 +447,9 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
     
     @IBAction func star2Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("★", forState: .Normal)
-        star3.setTitle("☆", forState: .Normal)
+        star1.setTitle("★", for: .normal)
+        star2.setTitle("★", for: .normal)
+        star3.setTitle("☆", for: .normal)
         
         let realm = try! Realm()
         try! realm.write {
@@ -458,9 +458,9 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
     
     @IBAction func star3Tapped(sender: UIButton) {
-        star1.setTitle("★", forState: .Normal)
-        star2.setTitle("★", forState: .Normal)
-        star3.setTitle("★", forState: .Normal)
+        star1.setTitle("★", for: .normal)
+        star2.setTitle("★", for: .normal)
+        star3.setTitle("★", for: .normal)
         
         let realm = try! Realm()
         try! realm.write {
@@ -469,18 +469,18 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     }
     
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushIngredientDetail" {
-            let vc = segue.destinationViewController as! IngredientDetailTableViewController
+            let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             }
         }else if segue.identifier == "PushEditRecipe" {
-            let enc = segue.destinationViewController as! UINavigationController
+            let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
         }else if segue.identifier == "PushReminder" {
-            let enc = segue.destinationViewController as! UINavigationController
+            let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! ReminderTableViewController
             if let indexPath = sender as? NSIndexPath{
                 evc.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
