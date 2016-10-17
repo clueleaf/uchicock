@@ -9,16 +9,15 @@
 extension String {
     func katakana() -> String {
         var str = ""
-        
-        // 文字列を表現するUInt32
         for c in unicodeScalars {
             if c.value >= 0x3041 && c.value <= 0x3096 {
-                str.append(UnicodeScalar(c.value+96))
+                if let u = UnicodeScalar(c.value+96){
+                    str += "\(u)"
+                }
             } else {
-                str.append(c)
+                str += "\(c)"
             }
         }
-        
         return str
     }
     
@@ -26,12 +25,13 @@ extension String {
         var str = ""
         for c in unicodeScalars {
             if c.value >= 0x30A1 && c.value <= 0x30F6 {
-                str.append(UnicodeScalar(c.value-96))
+                if let u = UnicodeScalar(c.value-96){
+                    str += "\(u)"
+                }
             } else {
-                str.append(c)
+                str += "\(c)"
             }
         }
-        
         return str
     }
 }
