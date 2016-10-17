@@ -20,24 +20,24 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = UIScreen.main.bounds.size.width
 
-        ingredientName = UILabel(frame: CGRectMake(8, 8, width - 43, 21))
+        ingredientName = UILabel(frame: CGRect(x: 8, y: 8, width: width - 43, height: 21))
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFont(ofSize: 15)
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRectMake(5, 33, 50, 21))
+        option = UILabel(frame: CGRect(x: 5, y: 33, width: 50, height: 21))
         option.text = ""
         option.font = UIFont.systemFont(ofSize: 10)
         option.textColor = FlatGrayDark()
         self.addSubview(option)
         
-        stock = UILabel(frame: CGRectMake(60, 33, 50, 21))
+        stock = UILabel(frame: CGRect(x: 60, y: 33, width: 50, height: 21))
         stock.text = ""
         stock.font = UIFont.systemFont(ofSize: 10)
         stock.textColor = FlatGrayDark()
         self.addSubview(stock)
         
-        amount = UILabel(frame: CGRectMake(115, 33, width - 150, 21))
+        amount = UILabel(frame: CGRect(x: 115, y: 33, width: width - 150, height: 21))
         amount.text = ""
         amount.font = UIFont.systemFont(ofSize: 12)
         self.addSubview(amount)

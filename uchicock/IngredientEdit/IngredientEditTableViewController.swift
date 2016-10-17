@@ -53,7 +53,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.borderWidth = 1
         memo.layer.borderColor = FlatWhiteDark().cgColor
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -139,7 +139,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 }else{
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = textWithoutSpace(text: ingredientName.text!)
-                    if stock.checkState == .Checked{
+                    if stock.checkState == .checked{
                         newIngredient.stockFlag = true
                     }else{
                         newIngredient.stockFlag = false

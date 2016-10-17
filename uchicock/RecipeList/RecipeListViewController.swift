@@ -33,7 +33,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         let defaults = UserDefaults.standard
         let dic = ["firstLaunch": true]
@@ -149,7 +149,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyle.headline)]
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -159,22 +159,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func showIntroduction(){
         let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
-        let introductionPanel0 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)
+        let introductionPanel0 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
-        let introductionPanel1 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
+        let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
         let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
-        let introductionPanel2 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
+        let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
         introductionPanel2.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
 
         let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
-        let introductionPanel3 = MYIntroductionPanel(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
+        let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
         introductionPanel3.PanelImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
 
-        let introductionView = MYBlurIntroductionView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, UIScreen.main.bounds.height))
+        let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")
         introductionView.rightSkipButton.backgroundColor = UIColor.clear
         introductionView.delegate = self

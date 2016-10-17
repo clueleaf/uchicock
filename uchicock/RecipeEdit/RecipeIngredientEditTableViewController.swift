@@ -67,8 +67,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         suggestTableView.backgroundColor = FlatWhite()
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        suggestTableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {

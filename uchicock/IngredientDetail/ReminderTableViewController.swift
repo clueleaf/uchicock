@@ -42,7 +42,7 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

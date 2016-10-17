@@ -99,7 +99,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
         }
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         focusRecipeNameFlag = true
     }

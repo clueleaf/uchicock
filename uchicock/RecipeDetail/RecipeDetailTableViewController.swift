@@ -53,7 +53,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         longPressRecognizer.minimumPressDuration = 0.2
         photoBackground.addGestureRecognizer(longPressRecognizer)
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +88,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 //レシピ削除のバグに対するワークアラウンド
                 if photo.image == nil{
                     noPhotoFlag = true
-                    photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
+                    photoBackground.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0)
                     photoHeight = 0.0
                 }else{
                     if photo.image!.size.width > photo.image!.size.height{
@@ -102,7 +102,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 }
             }else{
                 noPhotoFlag = true
-                photoBackground.frame = CGRectMake(0 , 0, tableView.bounds.width, 0)
+                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
             }
             updateHeaderView()

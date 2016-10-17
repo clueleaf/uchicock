@@ -20,24 +20,24 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = UIScreen.main.bounds.size.width
         
-        photo = UIImageView(frame: CGRectMake(0, 0, 69, 69))
+        photo = UIImageView(frame: CGRect(x: 0, y: 0, width: 69, height: 69))
         photo.contentMode = UIViewContentMode.scaleAspectFill
         photo.image = nil
         photo.clipsToBounds = true
         self.addSubview(photo)
         
-        recipeName = UILabel(frame: CGRectMake(77, 8, width - 173, 21))
+        recipeName = UILabel(frame: CGRect(x: 77, y: 8, width: width - 173, height: 21))
         recipeName.text = ""
         recipeName.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(recipeName)
         
-        favorites = UILabel(frame: CGRectMake(width - 88, 8, 60, 21))
+        favorites = UILabel(frame: CGRect(x: width - 88, y: 8, width: 60, height: 21))
         favorites.text = "☆☆☆"
         favorites.font = UIFont.systemFont(ofSize: 20)
         favorites.textColor = FlatSkyBlueDark()
         self.addSubview(favorites)
         
-        shortage = UILabel(frame: CGRectMake(77, 39, width - 105, 21))
+        shortage = UILabel(frame: CGRect(x: 77, y: 39, width: width - 105, height: 21))
         shortage.text = ""
         shortage.font = UIFont.systemFont(ofSize: 12)
         shortage.lineBreakMode = .byTruncatingMiddle
