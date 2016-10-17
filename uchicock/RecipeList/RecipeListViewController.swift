@@ -233,16 +233,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return 0
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: NSIndexPath) -> CGFloat {
         return 70
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
             self.performSegue(withIdentifier: "PushAddRecipe", sender: indexPath)
@@ -266,14 +266,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return [del, edit]
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListItem") as! RecipeListItemTableViewCell
             let realm = try! Realm()
@@ -286,28 +286,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - IBAction
-    @IBAction func favoriteStateTapped(sender: UISegmentedControl) {
+    @IBAction func favoriteStateTapped(_ sender: UISegmentedControl) {
         reloadRecipeList()
         tableView.reloadData()
     }
     
-    @IBAction func orderTapped(sender: UISegmentedControl) {
+    @IBAction func orderTapped(_ sender: UISegmentedControl) {
         reloadRecipeList()
         tableView.reloadData()
     }
     
-    @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushAddRecipe", sender: UIBarButtonItem())
     }
     
-    @IBAction func infoButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func infoButtonTapped(_ sender: UIBarButtonItem) {
         view.endEditing(true)        
         reloadRecipeBasicList()
         tableView.reloadData()
         showIntroduction()
     }
     
-    @IBAction func restoreButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func restoreButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushRecoverRecipe", sender: UIBarButtonItem())
     }
     
