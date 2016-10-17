@@ -26,18 +26,18 @@ class ReminderTableViewController: UITableViewController{
 
         self.navigationItem.title = "リマインダーへ登録"
         reminderTitle.text = ingredientName + "を買う"
-        dateFlag.setCheckState(.Unchecked, animated: true)
-        dateFlag.backgroundColor = UIColor.clearColor()
+        dateFlag.setCheckState(.unchecked, animated: true)
+        dateFlag.backgroundColor = UIColor.clear
         dateFlag.tintColor = FlatSkyBlueDark()
         dateFlag.secondaryTintColor = FlatGray()
         dateFlag.boxLineWidth = 1.0
-        dateFlag.markType = .Checkmark
-        dateFlag.boxType = .Circle
-        dateFlag.stateChangeAnimation = .Expand(.Fill)
+        dateFlag.markType = .checkmark
+        dateFlag.boxType = .circle
+        dateFlag.stateChangeAnimation = .expand(.fill)
         
-        datePicker.datePickerMode = .DateAndTime
-        datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
-        datePicker.setDate(NSDate(timeInterval: 60*60, sinceDate: NSDate()), animated: true)
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -45,7 +45,7 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
@@ -59,25 +59,25 @@ class ReminderTableViewController: UITableViewController{
         
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
-        if dateFlag.checkState == .Checked {
-            let calendarUnit: NSCalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
+        if dateFlag.checkState == .checked {
+            let calendarUnit: CalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
             reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: datePicker.date)
             reminder.addAlarm(EKAlarm(absoluteDate: datePicker.date))
         }
         
         do {
-            try eventStore.saveReminder(reminder, commit: true)
-            SVProgressHUD.showSuccessWithStatus("リマインダーへ登録しました")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            try eventStore.save(reminder, commit: true)
+            SVProgressHUD.showSuccess(withStatus: "リマインダーへ登録しました")
+            self.dismiss(animated: true, completion: nil)
         } catch {
-            dispatch_async(dispatch_get_main_queue()){
-                let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+            DispatchQueue.main.asynchronously(){
+                let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
-                alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
-                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+                    UIApplication.sharedApplication.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
                     if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication().openURL(url)
+                        UIApplication.sharedApplication.openURL(url)
                     }
                 }))
                 self.presentViewController(alertView, animated: true, completion: nil)
@@ -85,7 +85,7 @@ class ReminderTableViewController: UITableViewController{
         }
     }
     
-    func createEvent(eventStore: EKEventStore, title: String, startDate: NSDate, endDate: NSDate) {
+    func createEvent(eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) {
         let event = EKEvent(eventStore: eventStore)
         
         event.title = title
@@ -95,27 +95,27 @@ class ReminderTableViewController: UITableViewController{
         event.addAlarm(EKAlarm(absoluteDate: startDate))
         
         do {
-            try eventStore.saveEvent(event, span: .ThisEvent)
-            SVProgressHUD.showSuccessWithStatus("カレンダーへ登録しました")
-            self.dismissViewControllerAnimated(true, completion: nil)
+            try eventStore.save(event, span: .thisEvent)
+            SVProgressHUD.showSuccess(withStatus: "カレンダーへ登録しました")
+            self.dismiss(animated: true, completion: nil)
         } catch {
             dispatch_async(dispatch_get_main_queue()){
-                let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .Alert)
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Default, handler: {action in
+                let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
-                alertView.addAction(UIAlertAction(title: "設定を開く", style: .Default, handler: {action in
-                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+                    UIApplication.sharedApplication.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
                     if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.sharedApplication().openURL(url)
+                        UIApplication.sharedApplication.openURL(url)
                     }
                 }))
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             }
         }
     }
 
     // MARK: - UITableView
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{
             return UITableViewAutomaticDimension
         }else{
@@ -123,7 +123,7 @@ class ReminderTableViewController: UITableViewController{
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dateFlag.checkState == .Checked{
             return 4
         }else{
@@ -131,15 +131,15 @@ class ReminderTableViewController: UITableViewController{
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         cell.backgroundColor = FlatWhite()
         return cell
     }
     
     // MARK: - IBAction
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addButtonTapped(sender: UIBarButtonItem) {
@@ -148,44 +148,44 @@ class ReminderTableViewController: UITableViewController{
         let eventStore = EKEventStore()
         
         if reminderType.selectedSegmentIndex == 0{
-            if (EKEventStore.authorizationStatusForEntityType(.Reminder) != EKAuthorizationStatus.Authorized) {
-                eventStore.requestAccessToEntityType(.Reminder, completion: {
+            if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
+                eventStore.requestAccess(to: .reminder, completion: {
                     granted, error in
-                    self.createReminder(eventStore, title: self.reminderTitle.text!)
+                    self.createReminder(eventStore: eventStore, title: self.reminderTitle.text!)
                 })
             } else {
-                createReminder(eventStore, title: reminderTitle.text!)
+                createReminder(eventStore: eventStore, title: reminderTitle.text!)
             }
         }else if reminderType.selectedSegmentIndex == 1{
             let startDate = datePicker.date
             let endDate = datePicker.date
-            if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
-                eventStore.requestAccessToEntityType(.Event, completion: {
+            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                eventStore.requestAccess(to: .event, completion: {
                     granted, error in
-                    self.createEvent(eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
+                    self.createEvent(eventStore: eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
                 })
             } else {
-                createEvent(eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
+                createEvent(eventStore: eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
             }
         }
     }
 
-    @IBAction func reminderTypeTapped(sender: UISegmentedControl) {
+    @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
-            dateFlag.enabled = true
+            dateFlag.isEnabled = true
             dateFlag.tintColor = FlatSkyBlueDark()
         }else if reminderType.selectedSegmentIndex == 1{
             if dateFlag.checkState == .Unchecked{
-                dateFlag.setCheckState(.Checked, animated: true)
+                dateFlag.setCheckState(.checked, animated: true)
                 tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
             }
-            dateFlag.enabled = false
+            dateFlag.isEnabled = false
             dateFlag.tintColor = FlatWhiteDark()
         }
     }
     
-    @IBAction func dateFlagTapped(sender: M13Checkbox) {
-        if dateFlag.checkState == .Checked{
+    @IBAction func dateFlagTapped(_ sender: M13Checkbox) {
+        if dateFlag.checkState == .checked{
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)
         }else{
             tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 3,inSection: 0)], withRowAnimation: .Middle)

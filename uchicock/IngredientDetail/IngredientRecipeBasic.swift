@@ -10,7 +10,7 @@ struct IngredientRecipeBasic{
     var recipeIngredientLinkId : String
     var recipeName : String
     var recipeKanaName : String {
-        return recipeName.katakana().lowercaseString
+        return recipeName.katakana().lowercased()
     }
     var shortageNum : Int
 }

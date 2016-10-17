@@ -27,44 +27,44 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stock.backgroundColor = UIColor.clearColor()
+        stock.backgroundColor = UIColor.clear
         stock.tintColor = FlatSkyBlueDark()
         stock.secondaryTintColor = FlatGray()
         stock.boxLineWidth = 1.0
-        stock.markType = .Checkmark
-        stock.boxType = .Circle
+        stock.markType = .checkmark
+        stock.boxType = .circle
         
-        tableView.registerClass(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
+        tableView.register(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let realm = try! Realm()
-        let ing = realm.objects(Ingredient).filter("id == %@",ingredientId)
+        let ing = realm.objects(Ingredient.self).filter("id == %@",ingredientId)
         if ing.count < 1 {
-            let noIngredientAlertView = UIAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .Alert)
-            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
-                self.navigationController?.popViewControllerAnimated(true)
+            let noIngredientAlertView = UIAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
+            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.navigationController?.popViewController(animated: true)
             }))
-            presentViewController(noIngredientAlertView, animated: true, completion: nil)
+            present(noIngredientAlertView, animated: true, completion: nil)
         } else {
-            ingredient = realm.objects(Ingredient).filter("id == %@",ingredientId).first!
+            ingredient = realm.objects(Ingredient.self).filter("id == %@",ingredientId).first!
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
 
-            stock.stateChangeAnimation = .Fade(.Fill)
+            stock.stateChangeAnimation = .fade(.fill)
             stock.animationDuration = 0
             if ingredient.stockFlag{
-                stock.setCheckState(.Checked, animated: true)
+                stock.setCheckState(.checked, animated: true)
             }else{
-                stock.setCheckState(.Unchecked, animated: true)
+                stock.setCheckState(.unchecked, animated: true)
             }
             stock.animationDuration = 0.3
-            stock.stateChangeAnimation = .Expand(.Fill)
+            stock.stateChangeAnimation = .expand(.fill)
 
             memo.text = ingredient.memo
             memo.textColor = FlatGrayDark()            
@@ -78,7 +78,7 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
@@ -101,7 +101,7 @@ class IngredientDetailTableViewController: UITableViewController {
         }
         
         if order.selectedSegmentIndex == 1{
-            ingredientRecipeBasicList.sortInPlace { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.recipeKanaName < b.recipeKanaName
                 }else{
@@ -109,12 +109,12 @@ class IngredientDetailTableViewController: UITableViewController {
                 }
             }
         }else{
-            ingredientRecipeBasicList.sortInPlace({ $0.recipeKanaName < $1.recipeKanaName })
+            ingredientRecipeBasicList.sort(by: { $0.recipeKanaName < $1.recipeKanaName })
         }
     }
     
     // MARK: - UITableView
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
             return 30
         } else {
@@ -122,7 +122,7 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 1{
                 return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
@@ -143,7 +143,7 @@ class IngredientDetailTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             if ingredient.recipeIngredients.count > 0 {
                 return "この材料を使うレシピ(" + String(ingredient.recipeIngredients.count) + ")"
@@ -155,7 +155,7 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 3
         }else if section == 1 {
@@ -168,7 +168,7 @@ class IngredientDetailTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int {
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         if indexPath.section == 0 {
             return super.tableView(tableView, indentationLevelForRowAtIndexPath: indexPath)
         }else if indexPath.section == 1{
@@ -185,31 +185,31 @@ class IngredientDetailTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0 {
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    performSegueWithIdentifier("PushRecipeDetail", sender: indexPath)
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
                 }
             }else{
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                alertView.addAction(UIAlertAction(title: "削除",style: .Destructive){
+                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
                     action in
                     let realm = try! Realm()
                     try! realm.write {
                         realm.delete(self.ingredient)
                     }
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController?.popViewController(animated: true)
                     })
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .Cancel){action in})
-                presentViewController(alertView, animated: true, completion: nil)
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                present(alertView, animated: true, completion: nil)
+                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             cell.backgroundColor = FlatWhite()
@@ -217,13 +217,13 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0{
-                    let cell = tableView.dequeueReusableCellWithIdentifier("IngredientRecipeList", forIndexPath: indexPath) as! IngredientRecipeListTableViewCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecipeList", for: indexPath) as! IngredientRecipeListTableViewCell
                     
                     let realm = try! Realm()
-                    let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                    let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
                     
                     if recipeIngredient.recipe.imageData != nil{
-                        cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData!)
+                        cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData! as Data)
                         //レシピ削除のバグに対するワークアラウンド
                         if cell.photo.image == nil{
                             cell.photo.image = UIImage(named: "no-photo")
@@ -254,22 +254,22 @@ class IngredientDetailTableViewController: UITableViewController {
                     if shortageNum == 0 {
                         cell.shortage.text = "すぐつくれる！"
                         cell.shortage.textColor = FlatSkyBlueDark()
-                        cell.shortage.font = UIFont.boldSystemFontOfSize(CGFloat(14))
+                        cell.shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = FlatBlack()
                     }else if shortageNum == 1{
                         cell.shortage.text = shortageName + "が足りません"
                         cell.shortage.textColor = FlatGrayDark()
-                        cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                        cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = FlatGrayDark()
                     }else{
                         cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
                         cell.shortage.textColor = FlatGrayDark()
-                        cell.shortage.font = UIFont.systemFontOfSize(CGFloat(14))
+                        cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = FlatGrayDark()
                     }
                     
-                    cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-                    cell.selectionStyle = .Default
+                    cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+                    cell.selectionStyle = .default
                     cell.backgroundColor = FlatWhite()
                     return cell
                 }else{
@@ -287,51 +287,51 @@ class IngredientDetailTableViewController: UITableViewController {
     }
 
     // MARK: - IBAction
-    @IBAction func editButtonTapped(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("PushEditIngredient", sender: UIBarButtonItem())
+    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "PushEditIngredient", sender: UIBarButtonItem())
     }
     
-    @IBAction func stockTapped(sender: M13Checkbox) {
+    @IBAction func stockTapped(_ sender: M13Checkbox) {
         let realm = try! Realm()
         try! realm.write {
-            if stock.checkState == .Checked{
+            if stock.checkState == .checked{
                 ingredient.stockFlag = true
             }else{
                 ingredient.stockFlag = false
             }
         }
         reloadIngredientRecipeBasicList()
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
     }
     
-    @IBAction func actionButtonTapped(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("CreateEvent", sender: UIBarButtonItem())
+    @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "CreateEvent", sender: UIBarButtonItem())
     }
     
-    @IBAction func orderTapped(sender: UISegmentedControl) {
+    @IBAction func orderTapped(_ sender: UISegmentedControl) {
         reloadIngredientRecipeBasicList()
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+        return UIModalPresentationStyle.none
     }
 
     // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushEditIngredient" {
-            let enc = segue.destinationViewController as! UINavigationController
+            let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! IngredientEditTableViewController
             evc.ingredient = self.ingredient
         }else if segue.identifier == "PushRecipeDetail"{
-            let vc = segue.destinationViewController as! RecipeDetailTableViewController
+            let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? NSIndexPath{
                 let realm = try! Realm()
-                let recipeIngredient = realm.objects(RecipeIngredientLink).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
                 vc.recipeId = recipeIngredient.recipe.id
             }
         }else if segue.identifier == "CreateEvent" {
-            let enc = segue.destinationViewController as! UINavigationController
+            let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! ReminderTableViewController
             evc.ingredientName = self.ingredient.ingredientName
         }

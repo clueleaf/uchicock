@@ -18,29 +18,29 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let width = UIScreen.mainScreen().bounds.size.width
+        let width = UIScreen.main.bounds.size.width
         
         photo = UIImageView(frame: CGRectMake(0, 0, 69, 69))
-        photo.contentMode = UIViewContentMode.ScaleAspectFill
+        photo.contentMode = UIViewContentMode.scaleAspectFill
         photo.image = nil
         photo.clipsToBounds = true
         self.addSubview(photo)
         
         recipeName = UILabel(frame: CGRectMake(77, 8, width - 173, 21))
         recipeName.text = ""
-        recipeName.font = UIFont.systemFontOfSize(17)
+        recipeName.font = UIFont.systemFont(ofSize: 17)
         self.addSubview(recipeName)
         
         favorites = UILabel(frame: CGRectMake(width - 88, 8, 60, 21))
         favorites.text = "☆☆☆"
-        favorites.font = UIFont.systemFontOfSize(20)
+        favorites.font = UIFont.systemFont(ofSize: 20)
         favorites.textColor = FlatSkyBlueDark()
         self.addSubview(favorites)
         
         shortage = UILabel(frame: CGRectMake(77, 39, width - 105, 21))
         shortage.text = ""
-        shortage.font = UIFont.systemFontOfSize(12)
-        shortage.lineBreakMode = .ByTruncatingMiddle
+        shortage.font = UIFont.systemFont(ofSize: 12)
+        shortage.lineBreakMode = .byTruncatingMiddle
         self.addSubview(shortage)
     }
 
@@ -52,7 +52,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
