@@ -64,7 +64,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
         if rec.count < 1 {
             let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }))
             present(noRecipeAlertView, animated: true, completion: nil)
         }else{
@@ -429,7 +429,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
     
     @IBAction func openInSafariTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-        let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         if UIApplication.shared.canOpenURL(url!){
             UIApplication.shared.openURL(url!)
         }

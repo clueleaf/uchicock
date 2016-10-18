@@ -60,8 +60,7 @@ class ReminderTableViewController: UITableViewController{
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
         if dateFlag.checkState == .checked {
-            let calendarUnit: CalendarUnit = [.Minute, .Hour, .Day, .Month, .Year]
-            reminder.dueDateComponents = NSCalendar.currentCalendar().components(calendarUnit, fromDate: datePicker.date)
+            reminder.dueDateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: datePicker.date)
             reminder.addAlarm(EKAlarm(absoluteDate: datePicker.date))
         }
         
