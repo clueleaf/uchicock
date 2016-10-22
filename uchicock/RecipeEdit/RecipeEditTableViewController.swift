@@ -282,7 +282,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         ipc.dismiss(animated: true, completion: nil)
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
             photo.image = image
             selectPhoto.text = "写真を変更"
