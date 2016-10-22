@@ -173,12 +173,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
         introductionPanel3!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
-
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")
         introductionView.rightSkipButton.backgroundColor = UIColor.clear
         introductionView.delegate = self
-        introductionView.buildIntroduction(withPanels: [introductionPanel0,introductionPanel1,introductionPanel2,introductionPanel3])
+        introductionView.buildIntroduction(withPanels: [introductionPanel0!,introductionPanel1!,introductionPanel2!,introductionPanel3!])
 
         let window = UIApplication.shared.keyWindow!
         window.addSubview(introductionView)
