@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let manager = FileManager()
         let documentDir: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let realmPath = documentDir.appending("default.realm")
+        let realmPath = documentDir.appending("/default.realm")
         // first time to launch this app
         if manager.fileExists(atPath: realmPath) == false{
             let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
