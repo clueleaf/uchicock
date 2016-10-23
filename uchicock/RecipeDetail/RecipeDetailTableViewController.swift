@@ -173,7 +173,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
                     p!.caption = self.recipe.recipeName
-                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p], animatedFrom: photo)
+                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p!], animatedFrom: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
                     self.present(browser, animated: true, completion: nil)
