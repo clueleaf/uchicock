@@ -13,7 +13,7 @@ import SVProgressHUD
 import IDMPhotoBrowser
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDelegate{
+class RecipeDetailTableViewController: UITableViewController{
 
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
