@@ -91,8 +91,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             for ri in deletingRecipeIngredientList{
                 realm.delete(ri)
             }
-            //これを実行すると、最後に追加したレシピのimageDataがnilでなくなる現象が確認
-            //解決法がわからないのでとりあえずワークアラウンドする
             realm.delete(recipe)
         }
     }
@@ -147,7 +145,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
     }
     
-    func titleforEmptyDataSetForEmptyDataSet(_ scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
         let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
