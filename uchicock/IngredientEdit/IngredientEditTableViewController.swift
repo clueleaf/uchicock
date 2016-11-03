@@ -132,7 +132,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             if isAddMode {
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", textWithoutSpace(text: ingredientName.text!))
                 if sameNameIngredient.count != 0{
-                    //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
@@ -153,7 +152,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             }else{
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
                 if sameNameIngredient.count != 0 && ingredient.ingredientName != textWithoutSpace(text: ingredientName.text!){
-                    //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
