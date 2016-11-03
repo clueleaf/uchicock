@@ -387,7 +387,8 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             UIActivityType.postToVimeo,
             UIActivityType.postToWeibo,
             UIActivityType.postToTencentWeibo,
-            UIActivityType.airDrop
+            UIActivityType.airDrop,
+            UIActivityType.openInIBooks
         ]
         
         let shareText = createLongMessage()
