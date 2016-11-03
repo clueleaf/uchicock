@@ -396,7 +396,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if isAddMode {
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0{
-                    //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
@@ -441,7 +440,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
-                    //同じ名前の材料がすでに登録されている
                     let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
