@@ -71,7 +71,7 @@ class RecipeDetailTableViewController: UITableViewController, IDMPhotoBrowserDel
             recipe = realm.objects(Recipe.self).filter("id == %@",recipeId).first!
             self.navigationItem.title = recipe.recipeName
             
-            let urlStr : String = "http://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
             let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
             if UIApplication.shared.canOpenURL(url!) {
                 openInSafari.isEnabled = true
