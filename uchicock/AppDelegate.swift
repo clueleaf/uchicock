@@ -91,20 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.register(defaults: dic)
         if defaults.bool(forKey: "corrected_v3.2") == false {
             let realm = try! Realm()
-            let rec1 = realm.objects(Recipe.self).filter("recipeName == %@", "ブルドッグ")
-            if rec1.count > 0{
-                for i in (0..<rec1.first!.recipeIngredients.count).reversed(){
-                    if rec1.first!.recipeIngredients[i].ingredient.ingredientName == "食塩"
-                        || rec1.first!.recipeIngredients[i].ingredient.ingredientName == "レモン"{
-                        try! realm.write{
-                            rec1.first!.recipeIngredients.remove(at: i)
-                        }
+            let rillist = realm.objects(RecipeIngredientLink.self)
+            for ril in rillist.reversed() {
+                if ril.recipe.recipeName == "ブルドッグ"
+                    && (ril.ingredient.ingredientName == "食塩"
+                    || ril.ingredient.ingredientName == "レモン"){
+                    try! realm.write {
+                        realm.delete(ril)
                     }
                 }
             }
-            let rec2 = realm.objects(Recipe.self).filter("recipeName == %@", "ソルティドッグ")
-            if rec2.count > 0{
-                for ri in rec2.first!.recipeIngredients{
+            let rec = realm.objects(Recipe.self).filter("recipeName == %@", "ソルティドッグ")
+            if rec.count > 0{
+                for ri in rec.first!.recipeIngredients{
                     if ri.ingredient.ingredientName == "食塩"
                         || ri.mustFlag == false{
                         try! realm.write{
