@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         correct_v_2_2()
         correct_v_2_3()
+        correct_v_3_2()
         fixNilImage()
         
         return true
@@ -84,6 +85,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func correct_v_3_2(){
+        let defaults = UserDefaults.standard
+        let dic = ["corrected_v3.2": false]
+        defaults.register(defaults: dic)
+        if defaults.bool(forKey: "corrected_v3.2") == false {
+            let realm = try! Realm()
+            let rec1 = realm.objects(Recipe.self).filter("recipeName == %@", "ブルドッグ")
+            if rec1.count > 0{
+                for i in (0..<rec1.first!.recipeIngredients.count).reversed(){
+                    if rec1.first!.recipeIngredients[i].ingredient.ingredientName == "食塩"
+                        || rec1.first!.recipeIngredients[i].ingredient.ingredientName == "レモン"{
+                        try! realm.write{
+                            rec1.first!.recipeIngredients.remove(at: i)
+                        }
+                    }
+                }
+            }
+            let rec2 = realm.objects(Recipe.self).filter("recipeName == %@", "ソルティドッグ")
+            if rec2.count > 0{
+                for ri in rec2.first!.recipeIngredients{
+                    if ri.ingredient.ingredientName == "食塩"
+                        || ri.mustFlag == false{
+                        try! realm.write{
+                            ri.mustFlag = true
+                        }
+                    }
+                }
+            }
+            defaults.set(true, forKey: "corrected_v3.2")
+        }
+    }
+
     func fixNilImage(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
