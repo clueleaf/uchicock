@@ -28,8 +28,8 @@ class IngredientDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         stock.backgroundColor = UIColor.clear
-        stock.tintColor = FlatSkyBlueDark()
-        stock.secondaryTintColor = FlatGray()
+        stock.tintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
@@ -67,8 +67,8 @@ class IngredientDetailTableViewController: UITableViewController {
             stock.stateChangeAnimation = .expand(.fill)
 
             memo.text = ingredient.memo
-            memo.textColor = FlatGrayDark()            
-            deleteLabel.textColor = FlatRed()
+            memo.textColor = Style.labelTextColorLight
+            deleteLabel.textColor = Style.deleteColor
             
             reloadIngredientRecipeBasicList()
             
@@ -212,7 +212,7 @@ class IngredientDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
@@ -253,33 +253,33 @@ class IngredientDetailTableViewController: UITableViewController {
                     }
                     if shortageNum == 0 {
                         cell.shortage.text = "すぐつくれる！"
-                        cell.shortage.textColor = FlatSkyBlueDark()
+                        cell.shortage.textColor = Style.secondaryColor
                         cell.shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
-                        cell.recipeName.textColor = FlatBlack()
+                        cell.recipeName.textColor = Style.labelTextColor
                     }else if shortageNum == 1{
                         cell.shortage.text = shortageName + "が足りません"
-                        cell.shortage.textColor = FlatGrayDark()
+                        cell.shortage.textColor = Style.labelTextColorLight
                         cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
-                        cell.recipeName.textColor = FlatGrayDark()
+                        cell.recipeName.textColor = Style.labelTextColorLight
                     }else{
                         cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                        cell.shortage.textColor = FlatGrayDark()
+                        cell.shortage.textColor = Style.labelTextColorLight
                         cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
-                        cell.recipeName.textColor = FlatGrayDark()
+                        cell.recipeName.textColor = Style.labelTextColorLight
                     }
                     
                     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                     cell.selectionStyle = .default
-                    cell.backgroundColor = FlatWhite()
+                    cell.backgroundColor = Style.basicBackgroundColor
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                    cell.backgroundColor = FlatWhite()
+                    cell.backgroundColor = Style.basicBackgroundColor
                     return cell
                 }
             }else{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 2, section: 1))
-                cell.backgroundColor = FlatWhite()
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }
         }

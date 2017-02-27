@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITableView.appearance().backgroundColor = Style.basicBackgroundColor
         UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
-        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = Style.buttonBackgroundColor
+        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UITabBar.appearance().tintColor = Style.tabBarTintColor
         UIButton.appearance().tintColor = Style.secondaryColor
         UISegmentedControl.appearance().tintColor = Style.secondaryColor

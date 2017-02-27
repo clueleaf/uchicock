@@ -18,7 +18,6 @@ struct Style{
     static var labelTextColorOnBadge = FlatWhite()
     static var filterContainerBackgroundColor = FlatSand()
     static var deleteColor = FlatRed()
-    static var buttonBackgroundColor = UIColor.clear
     static var tabBarTintColor = FlatOrange()
     static var tableViewCellSelectedBackgroundColor = FlatWhiteDark()
     static var tableViewCellEditBackgroundColor = FlatGray()

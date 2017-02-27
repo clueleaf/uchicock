@@ -28,8 +28,8 @@ class ReminderTableViewController: UITableViewController{
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.setCheckState(.unchecked, animated: true)
         dateFlag.backgroundColor = UIColor.clear
-        dateFlag.tintColor = FlatSkyBlueDark()
-        dateFlag.secondaryTintColor = FlatGray()
+        dateFlag.tintColor = Style.secondaryColor
+        dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         dateFlag.boxLineWidth = 1.0
         dateFlag.markType = .checkmark
         dateFlag.boxType = .circle
@@ -132,7 +132,7 @@ class ReminderTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = FlatWhite()
+        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
     
@@ -172,14 +172,14 @@ class ReminderTableViewController: UITableViewController{
     @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.isEnabled = true
-            dateFlag.tintColor = FlatSkyBlueDark()
+            dateFlag.tintColor = Style.secondaryColor
         }else if reminderType.selectedSegmentIndex == 1{
             if dateFlag.checkState == .unchecked{
                 dateFlag.setCheckState(.checked, animated: true)
                 tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
             }
             dateFlag.isEnabled = false
-            dateFlag.tintColor = FlatWhiteDark()
+            dateFlag.tintColor = Style.badgeDisableBackgroundColor
         }
     }
     
