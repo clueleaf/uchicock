@@ -38,7 +38,7 @@ class SettingsTableViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         case 2:
             tableView.deselectRow(at: indexPath, animated: true)
-//            performSegue(withIdentifier: "PushEditIngredient", sender: indexPath)
+            performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         default: break
         }
     }
@@ -47,24 +47,6 @@ class SettingsTableViewController: UITableViewController {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-/*        if segue.identifier == "PushEditIngredient" {
-            let enc = segue.destination as! UINavigationController
-            let evc = enc.visibleViewController as! RecipeIngredientEditTableViewController
-            if let indexPath = sender as? IndexPath{
-                if indexPath.row < editingRecipeIngredientList.count{
-                    if self.editingRecipeIngredientList[indexPath.row].id == ""{
-                        self.editingRecipeIngredientList[indexPath.row].id = NSUUID().uuidString
-                    }
-                    evc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
-                    evc.isAddMode = false
-                }else if indexPath.row == editingRecipeIngredientList.count{
-                    evc.isAddMode = true
-                }
-            }
-        }*/
     }
 
 }

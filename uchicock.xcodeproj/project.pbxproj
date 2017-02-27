@@ -40,6 +40,7 @@
 		9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FA71E6463BD009240FB /* TabBarController.swift */; };
 		9BB98FAA1E646733009240FB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FA91E646733009240FB /* Style.swift */; };
 		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
+		9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */; };
 		9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */; };
 		9BC549601CCA46840015C774 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */; };
 		9BC549621CCA46870015C774 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC549611CCA46870015C774 /* Realm.framework */; };
@@ -127,6 +128,7 @@
 		9BB98FA71E6463BD009240FB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9BB98FA91E646733009240FB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
+		9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeThemeTableViewController.swift; path = Settings/ChangeThemeTableViewController.swift; sourceTree = "<group>"; };
 		9BC5495B1CCA46670015C774 /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */,
+				9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,
+				9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
