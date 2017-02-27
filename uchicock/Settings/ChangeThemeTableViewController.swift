@@ -45,10 +45,10 @@ class ChangeThemeTableViewController: UITableViewController {
             cell.accessoryType = .checkmark
         }
         switch indexPath.row{
-        case 0: break
-//            tableView.deselectRow(at: indexPath, animated: true)
-        case 1: break
-//            tableView.deselectRow(at: indexPath, animated: true)
+        case 0:
+            Style.tequilaSunriseLight()
+        case 1:
+            Style.tequilaSunriseDark()
         case 2: break
 //            tableView.deselectRow(at: indexPath, animated: true)
         case 3: break
