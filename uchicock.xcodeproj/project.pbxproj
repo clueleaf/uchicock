@@ -37,6 +37,7 @@
 		9BB6BD8D1CE22B0D008C2281 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6BD8C1CE22B0D008C2281 /* MJRefresh.framework */; };
 		9BB6DF191CCBDF650035797A /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF181CCBDF650035797A /* M13Checkbox.framework */; };
 		9BB6DF1B1CCBDF6E0035797A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */; };
+		9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FA71E6463BD009240FB /* TabBarController.swift */; };
 		9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */; };
 		9BC549601CCA46840015C774 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */; };
 		9BC549621CCA46870015C774 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC549611CCA46870015C774 /* Realm.framework */; };
@@ -121,6 +122,7 @@
 		9BB6DF181CCBDF650035797A /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/M13Checkbox.framework"; sourceTree = "<group>"; };
 		9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MWPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/MWPhotoBrowser.framework"; sourceTree = "<group>"; };
+		9BB98FA71E6463BD009240FB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9BC5495B1CCA46670015C774 /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */,
 				9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */,
 				9B6D67C71CD0E5A4001E8079 /* Extension.swift */,
+				9BB98FA71E6463BD009240FB /* TabBarController.swift */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
+				9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */,
 				9B6D67CA1CD0E8F9001E8079 /* IngredientName.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
 				9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */,

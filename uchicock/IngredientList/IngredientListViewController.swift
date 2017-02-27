@@ -39,6 +39,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        searchBar.backgroundColor = FlatSand()
+
         reloadIngredientList()
         tableView.reloadData()
     }

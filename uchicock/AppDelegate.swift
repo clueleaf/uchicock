@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlueDark(), andContentStyle: UIContentStyle.contrast)
         
         UITableView.appearance().backgroundColor = FlatWhite()
-        UISearchBar.appearance().backgroundColor = FlatSand()
+//        UISearchBar.appearance().backgroundColor = FlatSand()
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UITabBar.appearance().tintColor = FlatOrange()
         UIButton.appearance().tintColor = FlatSkyBlueDark()

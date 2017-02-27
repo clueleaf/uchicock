@@ -46,6 +46,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        searchBar.backgroundColor = FlatSand()
 
         reloadRecipeList()
         tableView.reloadData()
