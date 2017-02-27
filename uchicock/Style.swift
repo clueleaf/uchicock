@@ -24,4 +24,6 @@ struct Style{
     static var tableViewCellEditBackgroundColor = FlatGray()
     static var tableViewCellReminderBackgroundColor = FlatSkyBlueDark()
     static var badgeDisableBackgroundColor = FlatWhiteDark()
+    static var memoBorderColor = FlatWhiteDark()
+    static var checkboxSecondaryTintColor = FlatGray()
 }

@@ -27,7 +27,7 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         option = UILabel(frame: CGRect(x: 5, y: 33, width: 50, height: 21))
         option.text = ""
         option.font = UIFont.systemFont(ofSize: 10)
-        option.textColor = FlatGrayDark()
+        option.textColor = Style.labelTextColor
         self.addSubview(option)
 
         amount = UILabel(frame: CGRect(x: 60, y: 33, width: width - 95, height: 21))

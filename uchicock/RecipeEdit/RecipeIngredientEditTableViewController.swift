@@ -41,8 +41,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestTableView.tag = 1
         
         option.backgroundColor = UIColor.clear
-        option.tintColor = FlatSkyBlueDark()
-        option.secondaryTintColor = FlatGray()
+        option.tintColor = Style.secondaryColor
+        option.secondaryTintColor = Style.checkboxSecondaryTintColor
         option.boxLineWidth = 1.0
         option.markType = .checkmark
         option.boxType = .circle
@@ -63,9 +63,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             self.navigationItem.title = "材料の追加"
             deleteLabel.text = "材料の追加をやめる"
         }
-        deleteLabel.textColor = FlatRed()
+        deleteLabel.textColor = Style.deleteColor
         
-        suggestTableView.backgroundColor = FlatWhite()
+        suggestTableView.backgroundColor = Style.basicBackgroundColor
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -249,23 +249,23 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if tableView.tag == 0{
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = FlatWhite()
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
-                    cell.backgroundColor = FlatWhite()
+                    cell.backgroundColor = Style.basicBackgroundColor
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                    cell.backgroundColor = FlatWhite()
+                    cell.backgroundColor = Style.basicBackgroundColor
                     return cell
                 }
             }
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row].name
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         }
         return UITableViewCell()

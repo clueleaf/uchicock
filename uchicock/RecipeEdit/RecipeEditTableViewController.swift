@@ -41,7 +41,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        selectPhoto.textColor = FlatSkyBlueDark()
+        selectPhoto.textColor = Style.secondaryColor
         if recipe.imageData != nil{
             photo.image = UIImage(data: recipe.imageData! as Data)
         }
@@ -93,7 +93,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = FlatWhiteDark().cgColor
+        memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         for ri in recipe.recipeIngredients {
             editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
@@ -241,7 +241,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
@@ -253,24 +253,24 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     cell.option.backgroundColor = UIColor.clear
                 }else{
                     cell.option.text = "オプション"
-                    cell.option.backgroundColor = FlatWhiteDark()
+                    cell.option.backgroundColor = Style.badgeDisableBackgroundColor
                 }
-                cell.option.textColor = FlatBlack()
+                cell.option.textColor = Style.labelTextColor
                 cell.option.layer.cornerRadius = 4
                 cell.option.clipsToBounds = true
                 cell.option.textAlignment = NSTextAlignment.center
 
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
-                cell.backgroundColor = FlatWhite()
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
-                cell.textLabel?.textColor = FlatSkyBlueDark()
+                cell.textLabel?.textColor = Style.secondaryColor
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
                 cell.textLabel?.textAlignment = .center;
-                cell.backgroundColor = FlatWhite()
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }
         }
