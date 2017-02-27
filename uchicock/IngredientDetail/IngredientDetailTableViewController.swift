@@ -42,6 +42,8 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("id == %@",ingredientId)
         if ing.count < 1 {

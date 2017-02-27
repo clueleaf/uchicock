@@ -59,6 +59,8 @@ class RecipeDetailTableViewController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)
         if rec.count < 1 {

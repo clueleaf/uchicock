@@ -40,6 +40,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             recipeNum.textAlignment = NSTextAlignment.center
 
             ingredientName.text = ingredient.ingredientName
+            ingredientName.textColor = Style.labelTextColor
             stockLabel.textColor = Style.labelTextColorLight
             
             stock.backgroundColor = UIColor.clear

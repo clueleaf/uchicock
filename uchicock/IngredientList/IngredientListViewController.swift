@@ -39,6 +39,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        tableView.backgroundColor = Style.basicBackgroundColor
+
         reloadIngredientList()
         tableView.reloadData()
     }

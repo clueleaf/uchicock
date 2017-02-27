@@ -30,6 +30,7 @@ struct Style{
     static func tequilaSunriseLight(){
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlueDark()
+//        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatWhite()
         labelTextColor = FlatBlack()
         labelTextColorLight = FlatGrayDark()
@@ -49,6 +50,7 @@ struct Style{
     static func tequilaSunriseDark(){
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlue()
+//        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()

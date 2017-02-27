@@ -49,6 +49,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.collectionView?.backgroundColor = Style.basicBackgroundColor
+        
         SVProgressHUD.show(withStatus: "ロード中...")
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""

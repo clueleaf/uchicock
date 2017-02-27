@@ -25,6 +25,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             }
 
             recipeName.text = recipe.recipeName
+            recipeName.textColor = Style.labelTextColor
             
             switch recipe.favorites{
             case 1:
