@@ -14,6 +14,9 @@ import SVProgressHUD
 
 class RecoverTableViewController: UITableViewController {
 
+    //    @IBOutlet weak var isTarget: M13Checkbox!
+
+    
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()

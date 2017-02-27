@@ -39,6 +39,7 @@
 		9BB6DF1B1CCBDF6E0035797A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB6DF1A1CCBDF6E0035797A /* SVProgressHUD.framework */; };
 		9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FA71E6463BD009240FB /* TabBarController.swift */; };
 		9BB98FAA1E646733009240FB /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FA91E646733009240FB /* Style.swift */; };
+		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
 		9BC5495E1CCA467B0015C774 /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */; };
 		9BC549601CCA46840015C774 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */; };
 		9BC549621CCA46870015C774 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC549611CCA46870015C774 /* Realm.framework */; };
@@ -125,6 +126,7 @@
 		9BB6DF1C1CCBDF750035797A /* MWPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MWPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/MWPhotoBrowser.framework"; sourceTree = "<group>"; };
 		9BB98FA71E6463BD009240FB /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9BB98FA91E646733009240FB /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9BC5495B1CCA46670015C774 /* SCLAlertView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SCLAlertView.framework"; sourceTree = "<group>"; };
 		9BC5495D1CCA467B0015C774 /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BC5495F1CCA46840015C774 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/ChameleonFramework.framework"; sourceTree = "<group>"; };
@@ -269,6 +271,14 @@
 			name = RecipeDetail;
 			sourceTree = "<group>";
 		};
+		9BB98FAB1E6480B1009240FB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		9BC9A3081C783CAA0031F631 = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +312,7 @@
 				9BE32CEA1C9C2B71001B98BF /* IngredientList */,
 				9BE32CF11C9C4E39001B98BF /* IngredientDetail */,
 				9B8772851C9D4BA80065A816 /* IngredientEdit */,
+				9BB98FAB1E6480B1009240FB /* Settings */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
@@ -696,6 +707,7 @@
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */,
 				9B6D67C81CD0E5A4001E8079 /* Extension.swift in Sources */,
+				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,

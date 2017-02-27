@@ -870,11 +870,117 @@
                         <segue destination="KKp-Zy-7zd" kind="relationship" relationship="viewControllers" id="h8i-zf-nRu"/>
                         <segue destination="3Ej-3Z-OyG" kind="relationship" relationship="viewControllers" id="Pdi-Zw-kQO"/>
                         <segue destination="2U6-sC-jhY" kind="relationship" relationship="viewControllers" id="gtb-v7-gkD"/>
+                        <segue destination="J7v-Ql-bMF" kind="relationship" relationship="viewControllers" id="fPD-HQ-cqG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leN-k5-xmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3510" y="1047"/>
+        </scene>
+        <!--いろいろ-->
+        <scene sceneID="yiQ-fk-hCI">
+            <objects>
+                <tableViewController id="MRW-oL-Tgz" customClass="SettingsTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="65P-E4-dtI">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="51A-QN-TEb">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WM4-aL-zNC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WM4-aL-zNC" id="Kz1-g0-hh5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使い方を見る" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5b-4c-3vx">
+                                                    <rect key="frame" x="8" y="11.5" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="V5b-4c-3vx" secondAttribute="trailing" constant="8" id="ioP-Hu-dYK"/>
+                                                <constraint firstItem="V5b-4c-3vx" firstAttribute="leading" secondItem="Kz1-g0-hh5" secondAttribute="leading" constant="8" id="pgZ-kx-sde"/>
+                                                <constraint firstItem="V5b-4c-3vx" firstAttribute="centerY" secondItem="Kz1-g0-hh5" secondAttribute="centerY" id="xIk-ty-Jsu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qYA-LB-axS">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYA-LB-axS" id="ZAL-Ez-NZm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="サンプルレシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdA-0V-4eT">
+                                                    <rect key="frame" x="8" y="11.5" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sdA-0V-4eT" firstAttribute="centerY" secondItem="ZAL-Ez-NZm" secondAttribute="centerY" id="DZU-Cp-XeL"/>
+                                                <constraint firstItem="sdA-0V-4eT" firstAttribute="leading" secondItem="ZAL-Ez-NZm" secondAttribute="leading" constant="8" id="aep-D0-7sv"/>
+                                                <constraint firstAttribute="trailing" secondItem="sdA-0V-4eT" secondAttribute="trailing" constant="8" id="sj9-S0-yvD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xZi-2K-hkX">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZi-2K-hkX" id="6UC-TN-uar">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テーマを変える" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkK-bC-dCO">
+                                                    <rect key="frame" x="8" y="11" width="359" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qkK-bC-dCO" firstAttribute="leading" secondItem="6UC-TN-uar" secondAttribute="leading" constant="8" id="Ilg-RH-crd"/>
+                                                <constraint firstItem="qkK-bC-dCO" firstAttribute="centerY" secondItem="6UC-TN-uar" secondAttribute="centerY" id="YDs-h7-2x7"/>
+                                                <constraint firstAttribute="trailing" secondItem="qkK-bC-dCO" secondAttribute="trailing" constant="8" id="zui-va-Dtx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="MRW-oL-Tgz" id="EUQ-Uy-lUi"/>
+                            <outlet property="delegate" destination="MRW-oL-Tgz" id="xDH-Oz-aK3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="いろいろ" id="GuV-CN-PIj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6Q-pA-Y2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1993" y="3341"/>
+        </scene>
+        <!--いろいろ-->
+        <scene sceneID="Pax-UG-754">
+            <objects>
+                <navigationController id="J7v-Ql-bMF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="いろいろ" image="tabbar-settings" id="R2e-eW-eDQ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="kDb-X7-3sj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MRW-oL-Tgz" kind="relationship" relationship="rootViewController" id="j1W-Vq-Ubq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ab-Z1-yRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2902" y="3341"/>
         </scene>
         <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
@@ -2300,6 +2406,7 @@
         <image name="tabbar-album" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
+        <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WL9-sL-eOj"/>
