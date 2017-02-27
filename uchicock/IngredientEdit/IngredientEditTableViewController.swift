@@ -35,8 +35,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.delegate = self
 
         stock.backgroundColor = UIColor.clear
-        stock.tintColor = FlatSkyBlueDark()
-        stock.secondaryTintColor = FlatGray()
+        stock.tintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
@@ -51,7 +51,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = FlatWhiteDark().cgColor
+        memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -96,7 +96,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = FlatWhite()
+        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
 
