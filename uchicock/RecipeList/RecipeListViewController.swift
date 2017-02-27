@@ -27,7 +27,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedControlContainer.backgroundColor = FlatSand()
+        segmentedControlContainer.backgroundColor = Style.segmentedControlContainerBackgroundColor
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
         
@@ -47,8 +47,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchBar.backgroundColor = FlatSand()
-
         reloadRecipeList()
         tableView.reloadData()
     }
@@ -245,7 +243,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             (action, indexPath) in
             self.performSegue(withIdentifier: "PushAddRecipe", sender: indexPath)
         }
-        edit.backgroundColor = FlatGray()
+        edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
@@ -259,7 +257,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             self.present(alertView, animated: true, completion: nil)
         }
-        del.backgroundColor = FlatRed()
+        del.backgroundColor = Style.tableViewCellDeleteBackgroundColor
         
         return [del, edit]
     }
@@ -277,7 +275,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let realm = try! Realm()
             let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
             cell.recipe = recipe
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.tableViewCellBackgroundColor
             return cell
         }
         return UITableViewCell()

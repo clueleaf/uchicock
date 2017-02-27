@@ -127,21 +127,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setColor(){
-        Chameleon.setGlobalThemeUsingPrimaryColor(FlatYellow(), withSecondaryColor: FlatSkyBlueDark(), andContentStyle: UIContentStyle.contrast)
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         
-        UITableView.appearance().backgroundColor = FlatWhite()
-//        UISearchBar.appearance().backgroundColor = FlatSand()
-        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
-        UITabBar.appearance().tintColor = FlatOrange()
-        UIButton.appearance().tintColor = FlatSkyBlueDark()
-        UISegmentedControl.appearance().tintColor = FlatSkyBlueDark()
-        UISegmentedControl.appearance().backgroundColor = FlatWhite()
-        UILabel.appearance().textColor = FlatBlack()
+        UITableView.appearance().backgroundColor = Style.tableViewBackgroundColor
+        UISearchBar.appearance().backgroundColor = Style.searchBarBackgroundColor
+        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = Style.buttonBackgroundColor
+        UITabBar.appearance().tintColor = Style.tabBarTintColor
+        UIButton.appearance().tintColor = Style.buttonTintColor
+        UISegmentedControl.appearance().tintColor = Style.segmentedControlTintColor
+        UISegmentedControl.appearance().backgroundColor = Style.segmentedControlbackgroundColor
+        UILabel.appearance().textColor = Style.labelTextColor
         
         let backgroundView = UIView()
-        backgroundView.backgroundColor = FlatWhiteDark()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         UITableViewCell.appearance().selectedBackgroundView = backgroundView
-        
     }
     
     func setSVProgressHUD(){

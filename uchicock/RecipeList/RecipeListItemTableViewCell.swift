@@ -36,7 +36,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             default:
                 favorites.text = "★☆☆"
             }
-            favorites.textColor = FlatSkyBlueDark()
+            favorites.textColor = Style.favoritesTextColor
             
             var shortageNum = 0
             var shortageName = ""
@@ -49,15 +49,15 @@ class RecipeListItemTableViewCell: UITableViewCell {
             switch shortageNum {
             case 0:
                 shortage.text = "すぐつくれる！"
-                shortage.textColor = FlatSkyBlueDark()
+                shortage.textColor = Style.ingredientEnoughTextColor
                 shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 shortage.text = shortageName + "が足りません"
-                shortage.textColor = FlatGrayDark()
+                shortage.textColor = Style.ingredientNotEnoughTextColor
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             default:
                 shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                shortage.textColor = FlatGrayDark()
+                shortage.textColor = Style.ingredientNotEnoughTextColor
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
         }
