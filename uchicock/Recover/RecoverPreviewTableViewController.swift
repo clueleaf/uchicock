@@ -99,7 +99,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverPreviewIngredient", for: indexPath) as! RecoverPreviewIngredientTableViewCell
@@ -109,18 +109,18 @@ class RecoverPreviewTableViewController: UITableViewController {
                 cell.option.backgroundColor = UIColor.clear
             }else{
                 cell.option.text = "オプション"
-                cell.option.backgroundColor = FlatWhiteDark()
+                cell.option.backgroundColor = Style.badgeDisableBackgroundColor
             }
-            cell.option.textColor = FlatBlack()
+            cell.option.textColor = Style.labelTextColor
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.center
             
-            cell.ingredientName.textColor = FlatBlack()
-            cell.amount.textColor = FlatBlack()
+            cell.ingredientName.textColor = Style.labelTextColor
+            cell.amount.textColor = Style.labelTextColor
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
             cell.selectionStyle = .none
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         default:
             return UITableViewCell()

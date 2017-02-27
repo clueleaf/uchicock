@@ -293,12 +293,12 @@ class RecoverTableViewController: UITableViewController {
                 cell.isTarget.boxLineWidth = 1.0
                 cell.isTarget.markType = .checkmark
                 cell.isTarget.boxType = .circle
-                cell.isTarget.secondaryTintColor = FlatGray()
+                cell.isTarget.secondaryTintColor = Style.checkboxSecondaryTintColor
                 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
                     cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
                     cell.isTarget.isEnabled = true
-                    cell.isTarget.tintColor = FlatSkyBlueDark()
+                    cell.isTarget.tintColor = Style.secondaryColor
                     if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
                         //CheckedとMixedを直接変換するとエラーになる
                         cell.isTarget.setCheckState(.unchecked, animated: true)
@@ -311,7 +311,7 @@ class RecoverTableViewController: UITableViewController {
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
-                    cell.isTarget.tintColor = FlatWhiteDark()
+                    cell.isTarget.tintColor = Style.badgeDisableBackgroundColor
                     //CheckedとMixedを直接変換するとエラーになる
                     cell.isTarget.setCheckState(.unchecked, animated: true)
                     cell.isTarget.setCheckState(.mixed, animated: true)
