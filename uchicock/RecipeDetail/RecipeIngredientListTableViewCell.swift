@@ -28,13 +28,13 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
         option = UILabel(frame: CGRect(x: 5, y: 33, width: 50, height: 21))
         option.text = ""
         option.font = UIFont.systemFont(ofSize: 10)
-        option.textColor = FlatGrayDark()
+        option.textColor = Style.labelTextColorLight
         self.addSubview(option)
         
         stock = UILabel(frame: CGRect(x: 60, y: 33, width: 50, height: 21))
         stock.text = ""
         stock.font = UIFont.systemFont(ofSize: 10)
-        stock.textColor = FlatGrayDark()
+        stock.textColor = Style.labelTextColorLight
         self.addSubview(stock)
         
         amount = UILabel(frame: CGRect(x: 115, y: 33, width: width - 150, height: 21))

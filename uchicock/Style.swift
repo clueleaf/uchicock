@@ -12,21 +12,16 @@ import ChameleonFramework
 struct Style{
     static var primaryColor = FlatYellow()
     static var secondaryColor = FlatSkyBlueDark()
-    static var tableViewBackgroundColor = FlatWhite()
-    static var searchBarBackgroundColor = FlatSand()
-    static var buttonBackgroundColor = UIColor.clear
-    static var buttonTintColor = FlatSkyBlueDark()
-    static var tabBarTintColor = FlatOrange()
-    static var segmentedControlTintColor = FlatSkyBlueDark()
-    static var segmentedControlbackgroundColor = FlatWhite()
-    static var segmentedControlContainerBackgroundColor = FlatSand()
+    static var basicBackgroundColor = FlatWhite()
     static var labelTextColor = FlatBlack()
-    static var tableViewCellBackgroundColor = FlatWhite()
+    static var labelTextColorLight = FlatGrayDark()
+    static var labelTextColorOnBadge = FlatWhite()
+    static var filterContainerBackgroundColor = FlatSand()
+    static var deleteColor = FlatRed()
+    static var buttonBackgroundColor = UIColor.clear
+    static var tabBarTintColor = FlatOrange()
     static var tableViewCellSelectedBackgroundColor = FlatWhiteDark()
     static var tableViewCellEditBackgroundColor = FlatGray()
-    static var tableViewCellDeleteBackgroundColor = FlatRed()
-
-    static var favoritesTextColor = FlatSkyBlueDark()
-    static var ingredientEnoughTextColor = FlatSkyBlueDark()
-    static var ingredientNotEnoughTextColor = FlatGrayDark()
+    static var tableViewCellReminderBackgroundColor = FlatSkyBlueDark()
+    static var badgeDisableBackgroundColor = FlatWhiteDark()
 }

@@ -39,9 +39,9 @@ class RecipeDetailTableViewController: UITableViewController{
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
         
-        photoBackground.backgroundColor = FlatWhite()
+        photoBackground.backgroundColor = Style.basicBackgroundColor
 
-        openInSafari.setTitleColor(FlatWhite(), for: .normal)
+        openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         openInSafari.layer.cornerRadius = 4
         
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
@@ -75,10 +75,10 @@ class RecipeDetailTableViewController: UITableViewController{
             let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
             if UIApplication.shared.canOpenURL(url!) {
                 openInSafari.isEnabled = true
-                openInSafari.backgroundColor = FlatSkyBlueDark()
+                openInSafari.backgroundColor = Style.secondaryColor
             }else{
                 openInSafari.isEnabled = false
-                openInSafari.backgroundColor = FlatWhiteDark()
+                openInSafari.backgroundColor = Style.badgeDisableBackgroundColor
             }
             
             tableView.tableHeaderView = nil
@@ -135,10 +135,10 @@ class RecipeDetailTableViewController: UITableViewController{
             }
 
             memo.text = recipe.memo
-            memo.textColor = FlatGrayDark()
+            memo.textColor = Style.labelTextColorLight
 
-            deleteLabel.textColor = FlatRed()
-
+            deleteLabel.textColor = Style.deleteColor
+            
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             tableView.reloadData()
@@ -314,7 +314,7 @@ class RecipeDetailTableViewController: UITableViewController{
             (action, indexPath) in
             self.performSegue(withIdentifier: "PushReminder", sender: indexPath)
         }
-        reminder.backgroundColor = FlatSkyBlueDark()
+        reminder.backgroundColor = Style.tableViewCellReminderBackgroundColor
         
         return [reminder]
     }
@@ -323,7 +323,7 @@ class RecipeDetailTableViewController: UITableViewController{
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
@@ -333,25 +333,25 @@ class RecipeDetailTableViewController: UITableViewController{
                 cell.option.backgroundColor = UIColor.clear
             }else{
                 cell.option.text = "オプション"
-                cell.option.backgroundColor = FlatWhiteDark()
+                cell.option.backgroundColor = Style.badgeDisableBackgroundColor
             }
-            cell.option.textColor = FlatBlack()
+            cell.option.textColor = Style.labelTextColor
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.center
 
             if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
                 cell.stock.text = "在庫あり"
-                cell.stock.textColor = FlatWhite()
-                cell.stock.backgroundColor = FlatSkyBlueDark()
-                cell.ingredientName.textColor = FlatBlack()
-                cell.amount.textColor = FlatBlack()
+                cell.stock.textColor = Style.labelTextColorOnBadge
+                cell.stock.backgroundColor = Style.secondaryColor
+                cell.ingredientName.textColor = Style.labelTextColor
+                cell.amount.textColor = Style.labelTextColor
             }else{
                 cell.stock.text = "在庫なし"
-                cell.stock.textColor = FlatBlack()
-                cell.stock.backgroundColor = FlatWhiteDark()
-                cell.ingredientName.textColor = FlatGrayDark()
-                cell.amount.textColor = FlatGrayDark()
+                cell.stock.textColor = Style.labelTextColor
+                cell.stock.backgroundColor = Style.badgeDisableBackgroundColor
+                cell.ingredientName.textColor = Style.labelTextColorLight
+                cell.amount.textColor = Style.labelTextColorLight
             }
             cell.stock.layer.cornerRadius = 4
             cell.stock.clipsToBounds = true
@@ -360,11 +360,11 @@ class RecipeDetailTableViewController: UITableViewController{
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = .default
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         default:
             return UITableViewCell()

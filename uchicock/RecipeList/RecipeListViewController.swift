@@ -27,7 +27,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedControlContainer.backgroundColor = Style.segmentedControlContainerBackgroundColor
+        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
         
@@ -257,7 +257,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             self.present(alertView, animated: true, completion: nil)
         }
-        del.backgroundColor = Style.tableViewCellDeleteBackgroundColor
+        del.backgroundColor = Style.deleteColor
         
         return [del, edit]
     }
@@ -275,7 +275,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let realm = try! Realm()
             let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
             cell.recipe = recipe
-            cell.backgroundColor = Style.tableViewCellBackgroundColor
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         }
         return UITableViewCell()
