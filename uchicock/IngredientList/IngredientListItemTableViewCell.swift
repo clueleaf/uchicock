@@ -24,25 +24,27 @@ class IngredientListItemTableViewCell: UITableViewCell {
         didSet{
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.backgroundColor = FlatGray()
+                recipeNum.backgroundColor = Style.badgeDisableBackgroundColor
+                recipeNum.textColor = Style.labelTextColor
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.backgroundColor = FlatSkyBlueDark()
+                recipeNum.backgroundColor = Style.secondaryColor
+                recipeNum.textColor = Style.labelTextColorOnBadge
             }else{
                 recipeNum.text = "99+"
-                recipeNum.backgroundColor = FlatSkyBlueDark()
+                recipeNum.backgroundColor = Style.secondaryColor
+                recipeNum.textColor = Style.labelTextColorOnBadge
             }
-            recipeNum.textColor = FlatWhite()
             recipeNum.layer.cornerRadius = 10
             recipeNum.clipsToBounds = true
             recipeNum.textAlignment = NSTextAlignment.center
 
             ingredientName.text = ingredient.ingredientName
-            stockLabel.textColor = FlatGrayDark()
+            stockLabel.textColor = Style.labelTextColorLight
             
             stock.backgroundColor = UIColor.clear
-            stock.tintColor = FlatSkyBlueDark()
-            stock.secondaryTintColor = FlatGray()
+            stock.tintColor = Style.secondaryColor
+            stock.secondaryTintColor = Style.checkboxSecondaryTintColor
             stock.boxLineWidth = 1.0
             stock.markType = .checkmark
             stock.boxType = .circle

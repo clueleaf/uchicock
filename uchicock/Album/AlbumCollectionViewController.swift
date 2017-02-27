@@ -34,7 +34,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.reloadRecipeList()
         }
         
-        self.collectionView!.backgroundColor = FlatWhite()
+        self.collectionView!.backgroundColor = Style.basicBackgroundColor
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
         

@@ -26,7 +26,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        segmentedControlContainer.backgroundColor = FlatSand()
+        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
 
@@ -200,7 +200,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             (action, indexPath) in
             self.performSegue(withIdentifier: "PushAddIngredient", sender: indexPath)
         }
-        edit.backgroundColor = FlatGray()
+        edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
@@ -227,7 +227,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 self.present(favoriteAlertView, animated: true, completion: nil)
             }
         }
-        del.backgroundColor = FlatRed()
+        del.backgroundColor = Style.deleteColor
         
         let realm = try! Realm()
         let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
@@ -261,7 +261,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
-            cell.backgroundColor = FlatWhite()
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.valueChanged)
             
             return cell
