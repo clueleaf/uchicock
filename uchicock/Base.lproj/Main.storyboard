@@ -884,7 +884,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WM4-aL-zNC" id="Kz1-g0-hh5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-info" translatesAutoresizingMaskIntoConstraints="NO" id="Nt7-5U-5Vf">
@@ -914,7 +914,7 @@
                                         <rect key="frame" x="0.0" y="60" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qYA-LB-axS" id="ZAL-Ez-NZm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-recover" translatesAutoresizingMaskIntoConstraints="NO" id="U7l-Rz-1HU">
@@ -944,7 +944,7 @@
                                         <rect key="frame" x="0.0" y="120" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZi-2K-hkX" id="6UC-TN-uar">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-theme" translatesAutoresizingMaskIntoConstraints="NO" id="tf6-Mp-Jwo">
@@ -994,7 +994,7 @@
             </objects>
             <point key="canvasLocation" x="-1994.4000000000001" y="3340.4797601199402"/>
         </scene>
-        <!--テーマカラーを変える-->
+        <!--テーマカラー-->
         <scene sceneID="1z1-hF-10A">
             <objects>
                 <tableViewController id="VGm-i1-PdT" customClass="ChangeThemeTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
@@ -1077,7 +1077,7 @@
                             <outlet property="delegate" destination="VGm-i1-PdT" id="XaT-7Z-Rfg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="テーマカラーを変える" id="oNu-Dq-W5c"/>
+                    <navigationItem key="navigationItem" title="テーマカラー" id="oNu-Dq-W5c"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIA-hL-uBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

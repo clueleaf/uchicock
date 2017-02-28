@@ -144,6 +144,7 @@ class ChangeThemeTableViewController: UITableViewController {
             Style.irishCoffeeDark()
         default: break
         }
+        UIButton.appearance().tintColor = Style.secondaryColor
 
         self.dismiss(animated: true, completion: nil)
     }
