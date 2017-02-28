@@ -39,9 +39,6 @@ class RecipeDetailTableViewController: UITableViewController{
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
         
-        photoBackground.backgroundColor = Style.basicBackgroundColor
-
-        openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         openInSafari.layer.cornerRadius = 4
         
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
@@ -62,6 +59,8 @@ class RecipeDetailTableViewController: UITableViewController{
         self.tableView.backgroundColor = Style.basicBackgroundColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
+        photoBackground.backgroundColor = Style.basicBackgroundColor
+        openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
 
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)

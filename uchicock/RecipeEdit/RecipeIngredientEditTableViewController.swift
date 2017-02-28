@@ -40,9 +40,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
-        option.backgroundColor = UIColor.clear
-        option.tintColor = Style.secondaryColor
-        option.secondaryTintColor = Style.checkboxSecondaryTintColor
         option.boxLineWidth = 1.0
         option.markType = .checkmark
         option.boxType = .circle
@@ -63,9 +60,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             self.navigationItem.title = "材料の追加"
             deleteLabel.text = "材料の追加をやめる"
         }
-        deleteLabel.textColor = Style.deleteColor
-        
-        suggestTableView.backgroundColor = Style.basicBackgroundColor
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -75,6 +69,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        option.backgroundColor = UIColor.clear
+        option.tintColor = Style.secondaryColor
+        option.secondaryTintColor = Style.checkboxSecondaryTintColor
+        deleteLabel.textColor = Style.deleteColor
+        suggestTableView.backgroundColor = Style.basicBackgroundColor
 
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
     }

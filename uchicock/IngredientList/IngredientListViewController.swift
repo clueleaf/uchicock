@@ -26,7 +26,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
 
@@ -39,6 +38,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         stockState.tintColor = Style.secondaryColor

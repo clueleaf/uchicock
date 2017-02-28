@@ -27,9 +27,6 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stock.backgroundColor = UIColor.clear
-        stock.tintColor = Style.secondaryColor
-        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
@@ -42,6 +39,9 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        stock.backgroundColor = UIColor.clear
+        stock.tintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor

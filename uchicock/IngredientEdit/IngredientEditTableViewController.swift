@@ -34,9 +34,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.text = ingredient.ingredientName
         ingredientName.delegate = self
 
-        stock.backgroundColor = UIColor.clear
-        stock.tintColor = Style.secondaryColor
-        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
@@ -51,13 +48,17 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        stock.backgroundColor = UIColor.clear
+        stock.tintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+        memo.layer.borderColor = Style.memoBorderColor.cgColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
     }
     

@@ -26,8 +26,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
         SVProgressHUD.show(withStatus: "ロード中...")
         queue.async {
@@ -49,7 +47,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillAppear(animated)
         
         self.collectionView!.backgroundColor = Style.basicBackgroundColor
-        
+
         SVProgressHUD.show(withStatus: "ロード中...")
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""

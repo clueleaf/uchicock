@@ -27,9 +27,6 @@ class ReminderTableViewController: UITableViewController{
         self.navigationItem.title = "リマインダーへ登録"
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.setCheckState(.unchecked, animated: true)
-        dateFlag.backgroundColor = UIColor.clear
-        dateFlag.tintColor = Style.secondaryColor
-        dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         dateFlag.boxLineWidth = 1.0
         dateFlag.markType = .checkmark
         dateFlag.boxType = .circle
@@ -47,8 +44,11 @@ class ReminderTableViewController: UITableViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        dateFlag.backgroundColor = UIColor.clear
+        dateFlag.tintColor = Style.secondaryColor
+        dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         reminderTitle.textColor = Style.labelTextColor
-        
         self.tableView.backgroundColor = Style.basicBackgroundColor
         reminderType.tintColor = Style.secondaryColor
         reminderType.backgroundColor = Style.basicBackgroundColor

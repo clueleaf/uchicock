@@ -41,7 +41,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        selectPhoto.textColor = Style.secondaryColor
         if recipe.imageData != nil{
             photo.image = UIImage(data: recipe.imageData! as Data)
         }
@@ -93,7 +92,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         for ri in recipe.recipeIngredients {
             editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
@@ -113,6 +111,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor
+        selectPhoto.textColor = Style.secondaryColor
+        memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         self.tableView.reloadData()
     }

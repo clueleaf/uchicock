@@ -27,7 +27,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
         
@@ -47,6 +46,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         favoriteSelect.tintColor = Style.secondaryColor

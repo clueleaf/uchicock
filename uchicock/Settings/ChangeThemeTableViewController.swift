@@ -16,18 +16,18 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
         cancelButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.leftBarButtonItem = cancelButton
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ChangeThemeTableViewController.doneButtonTapped))
         doneButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.rightBarButtonItem = doneButton
-        
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
 

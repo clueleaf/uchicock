@@ -51,7 +51,8 @@ struct Style{
     
     static func tequilaSunriseDark(){
         no = 1
-        primaryColor = FlatYellow()
+//        primaryColor = FlatYellow()
+        primaryColor = FlatBlack()
         secondaryColor = FlatSkyBlueDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
