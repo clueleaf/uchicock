@@ -21,7 +21,11 @@ class RecipeListItemTableViewCell: UITableViewCell {
             if recipe.imageData != nil{
                 photo.image = UIImage(data: recipe.imageData! as Data)
             }else{
-                photo.image = UIImage(named: "no-photo")
+                if Style.isDark{
+                    photo.image = UIImage(named: "no-photo-dark")
+                }else{
+                    photo.image = UIImage(named: "no-photo")
+                }
             }
 
             recipeName.text = recipe.recipeName

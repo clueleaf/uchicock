@@ -49,10 +49,25 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
-        favoriteSelect.tintColor = Style.secondaryColor
         favoriteSelect.backgroundColor = Style.basicBackgroundColor
-        order.tintColor = Style.secondaryColor
+        favoriteSelect.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
+        order.tintColor = Style.secondaryColor
+        
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    let textField: UITextField = subview as! UITextField
+                    textField.backgroundColor = Style.textFieldBackgroundColor
+                    textField.textColor = Style.labelTextColor
+                    if Style.isDark{
+                        textField.keyboardAppearance = .dark
+                    }else{
+                        textField.keyboardAppearance = .default
+                    }
+                }
+            }
+        }
         
         reloadRecipeList()
         tableView.reloadData()

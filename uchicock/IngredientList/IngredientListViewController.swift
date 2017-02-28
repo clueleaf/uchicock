@@ -44,6 +44,21 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         stockState.tintColor = Style.secondaryColor
         stockState.backgroundColor = Style.basicBackgroundColor
         
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    let textField: UITextField = subview as! UITextField
+                    textField.backgroundColor = Style.textFieldBackgroundColor
+                    textField.textColor = Style.labelTextColor
+                    if Style.isDark{
+                        textField.keyboardAppearance = .dark
+                    }else{
+                        textField.keyboardAppearance = .default
+                    }
+                }
+            }
+        }
+
         reloadIngredientList()
         tableView.reloadData()
     }

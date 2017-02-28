@@ -175,10 +175,18 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             cell.photo.image = UIImage(data: recipe.imageData! as Data)
             //レシピ削除のバグに対するワークアラウンド
             if cell.photo.image == nil{
-                cell.photo.image = UIImage(named: "no-photo")
+                if Style.isDark{
+                    cell.photo.image = UIImage(named: "no-photo-dark")
+                }else{
+                    cell.photo.image = UIImage(named: "no-photo")
+                }
             }
         }else{
-            cell.photo.image = UIImage(named: "no-photo")
+            if Style.isDark{
+                cell.photo.image = UIImage(named: "no-photo-dark")
+            }else{
+                cell.photo.image = UIImage(named: "no-photo")
+            }
         }
         return cell
     }

@@ -129,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setColor(){
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
+        UILabel.appearance().textColor = Style.labelTextColor
 
 //        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
 //        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
@@ -136,7 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
 //        UISegmentedControl.appearance().tintColor = Style.secondaryColor
 //        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-        UILabel.appearance().textColor = Style.labelTextColor
 //        UIButton.appearance().tintColor = Style.secondaryColor
 
         let backgroundView = UIView()
