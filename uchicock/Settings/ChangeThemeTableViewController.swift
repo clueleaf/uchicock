@@ -49,9 +49,6 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at:indexPath) {
-            cell.accessoryType = .checkmark
-        }
         switch indexPath.row{
         case 0:
             Style.tequilaSunriseLight()
@@ -63,6 +60,11 @@ class ChangeThemeTableViewController: UITableViewController {
         }
         newThemeNo = Style.no
         
+        if let cell = tableView.cellForRow(at:indexPath) {
+            cell.accessoryType = .checkmark
+        }
+        UIButton.appearance().tintColor = Style.secondaryColor
+
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
