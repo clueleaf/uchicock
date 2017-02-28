@@ -96,14 +96,14 @@ struct Style{
         primaryColor = FlatPink()
         secondaryColor = FlatPink()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
-        basicBackgroundColor = UIColor(red:1.0, green:0.97, blue:1.0, alpha:1.0)
+        basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatWhite()
         labelTextColor = FlatBlack()
         labelTextColorLight = FlatGrayDark()
         labelTextColorOnBadge = FlatWhite()
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
-        filterContainerBackgroundColor = UIColor(red:1.0, green:0.97, blue:1.0, alpha:1.0)
+        filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         deleteColor = FlatWatermelon()
         tabBarTintColor = FlatPink()
         tabBarBarTintColor = FlatWhite()
@@ -236,6 +236,32 @@ struct Style{
     }
 
     static func irishCoffeeDark(){
+        no = 7
+        isDark = true
+        primaryColor = FlatCoffeeDark()
+        secondaryColor = FlatCoffee()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatBlack()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatWatermelonDark()
+        tabBarTintColor = FlatWhite()
+        tabBarBarTintColor = FlatCoffeeDark()
+        tableViewCellSelectedBackgroundColor = FlatCoffeeDark()
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatCoffeeDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func loadTheme(){
