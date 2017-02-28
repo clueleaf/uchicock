@@ -77,7 +77,7 @@ struct Style{
         filterContainerBackgroundColor = FlatBlack()
         deleteColor = FlatRedDark()
         tabBarTintColor = FlatOrange()
-        tabBarBarTintColor = FlatBlack()
+        tabBarBarTintColor = FlatBlackDark()
         tableViewCellSelectedBackgroundColor = FlatYellowDark()
         tableViewCellEditBackgroundColor = FlatGrayDark()
         tableViewCellReminderBackgroundColor = FlatYellowDark()
@@ -120,6 +120,32 @@ struct Style{
     }
     
     static func seaBreezeDark(){
+        no = 3
+        isDark = true
+        primaryColor = FlatPink()
+        secondaryColor = FlatPink()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlackDark()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatBlackDark()
+        labelTextColorOnDisableBadge = FlatBlackDark()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlackDark()
+        deleteColor = FlatRed()
+        tabBarTintColor = FlatPink()
+        tabBarBarTintColor = FlatBlack()
+        tableViewCellSelectedBackgroundColor = FlatGrayDark()
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatPinkDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func chinaBlueLight(){
