@@ -127,10 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setColor(){
+        UILabel.appearance().textColor = FlatBlack() // ActivityViewControllerのボタンの色のために必要
         Style.loadTheme()
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
-        UILabel.appearance().textColor = Style.labelTextColor
-        UIButton.appearance().tintColor = Style.secondaryColor
+        UIButton.appearance().tintColor = Style.secondaryColor // テーマ変更画面のCheckboxの色のために必要
 
 //        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
 //        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
