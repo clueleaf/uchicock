@@ -20,6 +20,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +51,18 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.accessoryType = .disclosureIndicator
+        switch indexPath.row{
+        case 0:
+            cell.textLabel?.text = "使い方を見る"
+        case 1:
+            cell.textLabel?.text = "サンプルレシピを復元する"
+        case 2:
+            cell.textLabel?.text = "テーマを変える"
+        default: break
+        }
+        cell.textLabel?.textColor = Style.labelTextColor
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }

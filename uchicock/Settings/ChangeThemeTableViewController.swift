@@ -30,12 +30,6 @@ class ChangeThemeTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = doneButton
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
-
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        if let cell = tableView.cellForRow(at:indexPath) {
-            cell.accessoryType = .checkmark
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,10 +72,30 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = Style.basicBackgroundColor
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        switch indexPath.row{
+        case 0:
+            cell.textLabel?.text = "テキーラサンライズ - ライト"
+        case 1:
+            cell.textLabel?.text = "テキーラサンライズ - ダーク"
+        case 2:
+            cell.textLabel?.text = "スプモーニ - ダーク"
+        case 3:
+            cell.textLabel?.text = "チャイナブルー - ライト"
+        default: break
+        }
+
+        if indexPath.row == Style.no{
+            cell.accessoryType = .checkmark
+        }else{
+            cell.accessoryType = .none
+        }
         
+        cell.backgroundColor = Style.basicBackgroundColor
+        cell.textLabel?.textColor = Style.labelTextColor
+        cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        
         return cell
     }
     
