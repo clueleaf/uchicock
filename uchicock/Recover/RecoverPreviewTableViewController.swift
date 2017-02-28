@@ -66,7 +66,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
+        label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
             label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"

@@ -14,6 +14,9 @@ import M13Checkbox
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
 
     @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: UITextField!
@@ -69,6 +72,13 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        ingredientName.backgroundColor = Style.textFieldBackgroundColor
+        ingredientName.textColor = Style.labelTextColor
+        amount.backgroundColor = Style.textFieldBackgroundColor
+        ingredientNameLabel.textColor = Style.labelTextColor
+        amountLabel.textColor = Style.labelTextColor
+        amount.textColor = Style.labelTextColor
+        optionLabel.textColor = Style.labelTextColor
         option.backgroundColor = UIColor.clear
         option.tintColor = Style.secondaryColor
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
@@ -176,7 +186,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
+        label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if tableView.tag == 1 && section == 0{
             label.text = "  材料候補"

@@ -19,6 +19,9 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var starLabel: UILabel!
+    @IBOutlet weak var methodLabel: UILabel!
+    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
@@ -57,6 +60,9 @@ class RecipeDetailTableViewController: UITableViewController{
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        starLabel.textColor = Style.labelTextColor
+        methodLabel.textColor = Style.labelTextColor
+        memoLabel.textColor = Style.labelTextColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
         photoBackground.backgroundColor = Style.basicBackgroundColor
@@ -252,7 +258,7 @@ class RecipeDetailTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
+        label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
             label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"
@@ -347,7 +353,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 cell.option.text = "オプション"
                 cell.option.backgroundColor = Style.badgeDisableBackgroundColor
             }
-            cell.option.textColor = Style.labelTextColor
+            cell.option.textColor = Style.labelTextColorOnDisableBadge
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.center
@@ -360,7 +366,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 cell.amount.textColor = Style.labelTextColor
             }else{
                 cell.stock.text = "在庫なし"
-                cell.stock.textColor = Style.labelTextColor
+                cell.stock.textColor = Style.labelTextColorOnDisableBadge
                 cell.stock.backgroundColor = Style.badgeDisableBackgroundColor
                 cell.ingredientName.textColor = Style.labelTextColorLight
                 cell.amount.textColor = Style.labelTextColorLight

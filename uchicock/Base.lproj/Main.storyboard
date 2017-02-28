@@ -1366,8 +1366,10 @@
                         <outlet property="deleteLabel" destination="pyA-7t-rsu" id="3tJ-re-mYk"/>
                         <outlet property="ingredientName" destination="z0Y-88-hex" id="qzd-rz-jmd"/>
                         <outlet property="memo" destination="h9v-M5-Six" id="8uf-5Z-pPH"/>
+                        <outlet property="memoLabel" destination="lw9-9s-APB" id="M3K-FI-9gU"/>
                         <outlet property="order" destination="KS5-5x-Pwk" id="rxG-sS-jOl"/>
                         <outlet property="stock" destination="33O-t7-MVg" id="LLy-39-70z"/>
+                        <outlet property="stockLabel" destination="iQn-0L-Gik" id="oEK-D7-G2c"/>
                         <segue destination="8S6-Yq-9QD" kind="presentation" identifier="PushEditIngredient" id="rrh-vr-JPb"/>
                         <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="WL9-sL-eOj"/>
                     </connections>
@@ -1545,8 +1547,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ingredientName" destination="fW3-m2-e2r" id="QWn-jE-wj7"/>
+                        <outlet property="ingredientNameLabel" destination="e0D-4t-hbc" id="Bl8-JS-HNQ"/>
                         <outlet property="memo" destination="RTE-Fj-Fa4" id="Tf5-NO-bSu"/>
+                        <outlet property="memoLabel" destination="meI-aq-Bb8" id="7WN-RN-XQc"/>
                         <outlet property="stock" destination="qnc-vs-9sM" id="1Jz-TC-FFX"/>
+                        <outlet property="stockLabel" destination="oI8-ts-Ky2" id="ZDF-sm-Wyo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGD-3S-adR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1802,16 +1807,20 @@
                     <connections>
                         <outlet property="favoriteTableViewCell" destination="atH-Th-tlU" id="ugo-AJ-XOm"/>
                         <outlet property="memo" destination="nuS-qT-1VE" id="d4X-E7-xIk"/>
+                        <outlet property="memoLabel" destination="lT5-Kr-LcY" id="Lr7-9M-ueh"/>
                         <outlet property="memoTableViewCell" destination="fFx-Aa-A9l" id="PNo-Xc-TMx"/>
                         <outlet property="method" destination="Wl9-z4-uEZ" id="AHU-83-xOB"/>
+                        <outlet property="methodLabel" destination="npk-cl-eHo" id="4ng-YI-ZlF"/>
                         <outlet property="methodTableViewCell" destination="62p-l8-eWU" id="Kcj-2D-qcK"/>
                         <outlet property="photo" destination="ez2-J2-LMr" id="JPJ-NO-hjf"/>
                         <outlet property="recipeName" destination="8Gt-tz-8pq" id="bQS-33-Zez"/>
+                        <outlet property="recipeNameLabel" destination="mZv-me-Vxn" id="fEa-Rj-acW"/>
                         <outlet property="recipeNameTableViewCell" destination="Cem-Ww-FL9" id="Kqx-IF-Hd7"/>
                         <outlet property="selectPhoto" destination="hgz-rc-vlg" id="t7I-cI-OeW"/>
                         <outlet property="star1" destination="xcZ-mK-a4I" id="wzd-8J-sCz"/>
                         <outlet property="star2" destination="Xxa-2Y-mMc" id="IbM-vp-MbQ"/>
                         <outlet property="star3" destination="qah-nQ-qfT" id="J9y-Dn-5JP"/>
+                        <outlet property="starLabel" destination="dec-5e-iq9" id="JSx-sk-XbK"/>
                         <segue destination="KiW-0b-fWO" kind="presentation" identifier="PushEditIngredient" id="TXe-G3-lc7"/>
                     </connections>
                 </tableViewController>
@@ -2061,10 +2070,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="amount" destination="17K-ru-B62" id="000-je-9lh"/>
+                        <outlet property="amountLabel" destination="Aox-ie-Hhb" id="J0c-hm-v2L"/>
                         <outlet property="deleteLabel" destination="AxS-fL-UCK" id="JX7-Lo-mO4"/>
                         <outlet property="deleteTableViewCell" destination="HLc-P6-Dnu" id="5UT-vl-45t"/>
                         <outlet property="ingredientName" destination="l8D-W2-B4w" id="MhZ-ka-mG5"/>
+                        <outlet property="ingredientNameLabel" destination="MgC-g6-hn7" id="ddr-Su-jDZ"/>
                         <outlet property="option" destination="iAW-KI-pbY" id="03K-48-S8I"/>
+                        <outlet property="optionLabel" destination="ahy-ik-5J5" id="WZK-hB-ljw"/>
                         <outlet property="suggestTableView" destination="00h-qA-8uE" id="bJ1-oJ-E6E"/>
                         <outlet property="suggestTableViewCell" destination="Qkf-mV-bIn" id="eXw-fN-zTN"/>
                         <segue destination="mUU-LG-ICH" kind="unwind" identifier="UnwindToRecipeEdit" unwindAction="unwindToRecipeEdit:" id="6u0-zf-3qf"/>
@@ -2249,9 +2261,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateFlag" destination="yWe-Jw-GtV" id="zWy-Qd-HPT"/>
+                        <outlet property="dateLabel" destination="otw-7D-3C9" id="ZJm-iz-kX8"/>
                         <outlet property="datePicker" destination="3cT-5c-hTW" id="fdR-ql-j48"/>
                         <outlet property="reminderTitle" destination="hVJ-aT-u0S" id="PWf-sQ-qrw"/>
+                        <outlet property="reminderTitleLabel" destination="YoR-Tu-vRT" id="VG1-TQ-9DG"/>
                         <outlet property="reminderType" destination="mMI-NU-fw4" id="bVN-FD-ouO"/>
+                        <outlet property="reminderTypeLabel" destination="4kv-QU-76W" id="rK2-u9-H0y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jl0-pw-mgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2512,7 +2527,9 @@
                     <connections>
                         <outlet property="deleteLabel" destination="z8d-dz-Rbo" id="nCm-Gf-byK"/>
                         <outlet property="memo" destination="755-Az-IcZ" id="gMD-rL-oRV"/>
+                        <outlet property="memoLabel" destination="ngo-45-XLS" id="M23-f9-qqy"/>
                         <outlet property="method" destination="j5q-N8-5yd" id="ExC-Dq-ddt"/>
+                        <outlet property="methodLabel" destination="HoS-Gt-OJg" id="xKF-8M-ewa"/>
                         <outlet property="openInSafari" destination="ohU-Dd-Aqj" id="iEJ-5V-Bqz"/>
                         <outlet property="photo" destination="Gcu-i0-oyx" id="0Y5-fe-x2V"/>
                         <outlet property="photoBackground" destination="BY5-gV-soD" id="qwy-6q-Y5f"/>
@@ -2520,6 +2537,7 @@
                         <outlet property="star1" destination="JrF-pQ-HX6" id="Gco-R9-pOF"/>
                         <outlet property="star2" destination="qhb-Bg-qgv" id="JEZ-hr-HJm"/>
                         <outlet property="star3" destination="4ap-hu-NGP" id="Cpp-rf-hVm"/>
+                        <outlet property="starLabel" destination="JNj-Sm-JRu" id="29k-qi-ZC0"/>
                         <segue destination="0eU-Qx-7IP" kind="presentation" identifier="PushEditRecipe" id="WbW-98-e9q"/>
                         <segue destination="yKB-1k-jl3" kind="show" identifier="PushIngredientDetail" id="AL8-XH-VAL"/>
                         <segue destination="9de-nc-r4M" kind="presentation" identifier="PushReminder" id="q7t-4O-mA9"/>

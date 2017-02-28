@@ -15,7 +15,11 @@ import IDMPhotoBrowser
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
+    @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var recipeName: UITextField!
+    @IBOutlet weak var starLabel: UILabel!
+    @IBOutlet weak var methodLabel: UILabel!
+    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
     @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
@@ -106,12 +110,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        recipeNameLabel.textColor = Style.labelTextColor
+        starLabel.textColor = Style.labelTextColor
+        methodLabel.textColor = Style.labelTextColor
+        memoLabel.textColor = Style.labelTextColor
+        recipeName.backgroundColor = Style.textFieldBackgroundColor
+        recipeName.textColor = Style.labelTextColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor
         selectPhoto.textColor = Style.secondaryColor
+        memo.backgroundColor = Style.textFieldBackgroundColor
+        memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
         
         self.tableView.reloadData()
@@ -182,7 +194,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
+        label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
             label.text = "  材料編集"
@@ -275,7 +287,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     cell.option.text = "オプション"
                     cell.option.backgroundColor = Style.badgeDisableBackgroundColor
                 }
-                cell.option.textColor = Style.labelTextColor
+                cell.option.textColor = Style.labelTextColorOnDisableBadge
                 cell.option.layer.cornerRadius = 4
                 cell.option.clipsToBounds = true
                 cell.option.textAlignment = NSTextAlignment.center

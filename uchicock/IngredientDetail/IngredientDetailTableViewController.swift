@@ -15,6 +15,8 @@ class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var order: UISegmentedControl!
@@ -39,6 +41,8 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        stockLabel.textColor = Style.labelTextColor
+        memoLabel.textColor = Style.labelTextColor
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
@@ -151,7 +155,7 @@ class IngredientDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
+        label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
             if ingredient.recipeIngredients.count > 0 {

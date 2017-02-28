@@ -13,6 +13,9 @@ import M13Checkbox
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
+    @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var ingredientName: UITextField!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UITextView!
@@ -55,9 +58,16 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        ingredientName.backgroundColor = Style.textFieldBackgroundColor
+        ingredientName.textColor = Style.labelTextColor
+        ingredientNameLabel.textColor = Style.labelTextColor
+        stockLabel.textColor = Style.labelTextColor
+        memoLabel.textColor = Style.labelTextColor
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+        memo.backgroundColor = Style.textFieldBackgroundColor
+        memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
     }

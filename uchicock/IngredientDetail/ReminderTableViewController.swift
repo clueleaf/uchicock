@@ -14,6 +14,9 @@ import M13Checkbox
 
 class ReminderTableViewController: UITableViewController{
 
+    @IBOutlet weak var reminderTitleLabel: UILabel!
+    @IBOutlet weak var reminderTypeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderType: UISegmentedControl!
     @IBOutlet weak var dateFlag: M13Checkbox!
@@ -45,6 +48,9 @@ class ReminderTableViewController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        reminderTitleLabel.textColor = Style.labelTextColor
+        reminderTypeLabel.textColor = Style.labelTextColor
+        dateLabel.textColor = Style.labelTextColor
         dateFlag.backgroundColor = UIColor.clear
         dateFlag.tintColor = Style.secondaryColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
