@@ -321,10 +321,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "PushAddRecipe", sender: UIBarButtonItem())
     }
     
-    @IBAction func restoreButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "PushRecoverRecipe", sender: UIBarButtonItem())
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {
