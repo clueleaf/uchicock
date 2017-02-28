@@ -82,16 +82,19 @@ struct Style{
         checkboxSecondaryTintColor = FlatGray()
     }
 
-    static let availableThemes = ["Tequila Sunrise Light", "Tequila Sunrise Dark"]
-    
     static func loadTheme(){
         let defaults = UserDefaults.standard
-        if let name = defaults.string(forKey: "Theme"){
-            if name == "Tequila Sunrise Light"		{ tequilaSunriseLight()	}
-            if name == "Tequila Sunrise Dark"		{ tequilaSunriseDark()	}
+        if let no = defaults.string(forKey: "Theme"){
+            if no == "0"		{ tequilaSunriseLight()	}
+            if no == "1"		{ tequilaSunriseDark()	}
         }else{
-            defaults.set("Tequila Sunrise Light", forKey: "Theme")
+            defaults.set("0", forKey: "Theme")
             tequilaSunriseLight()
         }
+    }
+    
+    static func saveTheme(themeNo: String){
+        let defaults = UserDefaults.standard
+        defaults.set(themeNo, forKey: "Theme")
     }
 }

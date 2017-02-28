@@ -12,6 +12,8 @@ import ChameleonFramework
 class ChangeThemeTableViewController: UITableViewController {
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    var oldThemeNo = Style.no
+    var newThemeNo = Style.no
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,8 @@ class ChangeThemeTableViewController: UITableViewController {
         case 3: break
         default: break
         }
+        newThemeNo = Style.no
+        
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
@@ -101,10 +105,21 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: IBAction
     func cancelButtonTapped() {
+        switch oldThemeNo{
+        case 0:
+            Style.tequilaSunriseLight()
+        case 1:
+            Style.tequilaSunriseDark()
+        case 2: break
+        case 3: break
+        default: break
+        }
+
         self.dismiss(animated: true, completion: nil)
     }
     
     func doneButtonTapped() {
+        Style.saveTheme(themeNo: String(newThemeNo))
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setColor(){
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+//        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UILabel.appearance().textColor = Style.labelTextColor
 
@@ -142,6 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backgroundView = UIView()
         backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         UITableViewCell.appearance().selectedBackgroundView = backgroundView
+        Style.loadTheme()
     }
     
     func setSVProgressHUD(){
