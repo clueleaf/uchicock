@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
 //        UISegmentedControl.appearance().tintColor = Style.secondaryColor
 //        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-//        UILabel.appearance().textColor = Style.labelTextColor
+        UILabel.appearance().textColor = Style.labelTextColor
 //        UIButton.appearance().tintColor = Style.secondaryColor
 
         let backgroundView = UIView()
