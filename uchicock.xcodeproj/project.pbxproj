@@ -276,9 +276,9 @@
 		9BB98FAB1E6480B1009240FB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				9B41B2A91E65729E00EF2CEF /* Style.swift */,
 				9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */,
 				9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */,
+				9B41B2A91E65729E00EF2CEF /* Style.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

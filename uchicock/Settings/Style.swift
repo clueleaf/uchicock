@@ -55,31 +55,39 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
     
     static func tequilaSunriseDark(){
         no = 1
         isDark = true
         primaryColor = FlatYellow()
-        secondaryColor = FlatSkyBlue()
+        secondaryColor = FlatYellowDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
         tableViewHeaderBackgroundColor = FlatGrayDark()
-        labelTextColorOnDisableBadge = FlatBlack()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()
         labelTextColorOnBadge = FlatBlack()
+        labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
-        filterContainerBackgroundColor = FlatSandDark()
-        deleteColor = FlatWatermelon()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatRedDark()
         tabBarTintColor = FlatOrange()
         tabBarBarTintColor = FlatBlack()
-        tableViewCellSelectedBackgroundColor = FlatGrayDark()
+        tableViewCellSelectedBackgroundColor = FlatYellowDark()
         tableViewCellEditBackgroundColor = FlatGrayDark()
-        tableViewCellReminderBackgroundColor = FlatSkyBlue()
+        tableViewCellReminderBackgroundColor = FlatYellowDark()
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
-        checkboxSecondaryTintColor = FlatGray()
+        checkboxSecondaryTintColor = FlatGrayDark()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func loadTheme(){

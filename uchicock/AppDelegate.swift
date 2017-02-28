@@ -130,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Style.loadTheme()
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UILabel.appearance().textColor = Style.labelTextColor
+        UIButton.appearance().tintColor = Style.secondaryColor
 
 //        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
 //        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
@@ -137,11 +138,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
 //        UISegmentedControl.appearance().tintColor = Style.secondaryColor
 //        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-        UIButton.appearance().tintColor = Style.secondaryColor
-
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
     
     func setSVProgressHUD(){
