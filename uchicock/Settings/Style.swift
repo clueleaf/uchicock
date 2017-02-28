@@ -245,7 +245,7 @@ struct Style{
         tableViewHeaderBackgroundColor = FlatGrayDark()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()
-        labelTextColorOnBadge = FlatBlack()
+        labelTextColorOnBadge = FlatWhite()
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
