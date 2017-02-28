@@ -11,14 +11,32 @@ import MYBlurIntroductionView
 
 class SettingsTableViewController: UITableViewController, MYIntroductionDelegate {
 
+    @IBOutlet weak var introductionImage: UIImageView!
+    @IBOutlet weak var recoverImage: UIImageView!
+    @IBOutlet weak var changeThemeImage: UIImageView!
+    @IBOutlet weak var introductionLabel: UILabel!
+    @IBOutlet weak var recoverLabel: UILabel!
+    @IBOutlet weak var changeThemeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        introductionImage.image = introductionImage.image!.withRenderingMode(.alwaysTemplate)
+        recoverImage.image = recoverImage.image!.withRenderingMode(.alwaysTemplate)
+        changeThemeImage.image = changeThemeImage.image!.withRenderingMode(.alwaysTemplate)
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        introductionImage.tintColor = Style.secondaryColor
+        recoverImage.tintColor = Style.secondaryColor
+        changeThemeImage.tintColor = Style.secondaryColor
+        introductionLabel.textColor = Style.labelTextColor
+        recoverLabel.textColor = Style.labelTextColor
+        changeThemeLabel.textColor = Style.labelTextColor
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.reloadData()
@@ -63,6 +81,10 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
@@ -80,18 +102,8 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.accessoryType = .disclosureIndicator
-        switch indexPath.row{
-        case 0:
-            cell.textLabel?.text = "使い方を見る"
-        case 1:
-            cell.textLabel?.text = "サンプルレシピを復元する"
-        case 2:
-            cell.textLabel?.text = "テーマを変える"
-        default: break
-        }
-        cell.textLabel?.textColor = Style.labelTextColor
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
