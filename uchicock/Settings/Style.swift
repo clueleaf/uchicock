@@ -149,9 +149,61 @@ struct Style{
     }
 
     static func chinaBlueLight(){
+        no = 4
+        isDark = false
+        primaryColor = FlatSkyBlue()
+        secondaryColor = FlatSkyBlue()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatWhite()
+        tableViewHeaderBackgroundColor = FlatWhiteDark()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = FlatWhite()
+        deleteColor = FlatRed()
+        tabBarTintColor = FlatSkyBlue()
+        tabBarBarTintColor = FlatWhite()
+        tableViewCellSelectedBackgroundColor = FlatWhiteDark()
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatSkyBlueDark()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func chinaBlueDark(){
+        no = 5
+        isDark = true
+        primaryColor = FlatSkyBlue()
+        secondaryColor = FlatSkyBlue()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatBlack()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatRed()
+        tabBarTintColor = FlatSkyBlue()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = FlatGrayDark()
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatSkyBlueDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func grasshopperLight(){
