@@ -43,6 +43,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         stockState.tintColor = Style.secondaryColor
         stockState.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        stockState.setTitleTextAttributes(attribute, for: .normal)
         
         for view in searchBar.subviews {
             for subview in view.subviews {

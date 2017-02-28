@@ -53,6 +53,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         favoriteSelect.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
+        order.setTitleTextAttributes(attribute, for: .normal)
         
         for view in searchBar.subviews {
             for subview in view.subviews {
