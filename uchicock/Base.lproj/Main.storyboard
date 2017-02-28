@@ -532,10 +532,14 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="descriptionLabel" destination="yGD-9P-dgZ" id="lmo-4a-Gcd"/>
                                     <outlet property="nonRecoverTarget" destination="AfD-hE-RyC" id="p1F-3n-BEz"/>
+                                    <outlet property="nonRecoverTargetLabel" destination="VPU-tj-WHM" id="Zdj-Ol-rb9"/>
                                     <outlet property="recoverTarget" destination="N7z-Ji-xBn" id="0cj-eg-TT2"/>
+                                    <outlet property="recoverTargetLabel" destination="SFM-vh-NsM" id="74V-5E-iXj"/>
                                     <outlet property="recoverableNumberLabel" destination="XEt-76-G58" id="xFn-CF-vHy"/>
                                     <outlet property="unableRecover" destination="LaG-pb-y5i" id="tph-51-VLc"/>
+                                    <outlet property="unableRecoverLabel" destination="fK5-dy-wSN" id="6gf-Xh-AeA"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverAll" id="DC8-sd-Wdd" customClass="RecoverAllTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -735,6 +739,7 @@
                     </tableView>
                     <connections>
                         <outlet property="method" destination="Q2s-fw-O5E" id="Hlk-3b-FYa"/>
+                        <outlet property="methodLabel" destination="eer-9C-H1i" id="sca-cn-tFG"/>
                         <outlet property="recipeName" destination="2vg-Ab-gIU" id="gPD-pN-tn4"/>
                     </connections>
                 </tableViewController>

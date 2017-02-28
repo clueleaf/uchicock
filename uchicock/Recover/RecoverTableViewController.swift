@@ -38,6 +38,12 @@ class RecoverTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.backgroundColor = Style.basicBackgroundColor
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -255,14 +261,19 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.tableViewHeaderTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
-            return "復元したいレシピを選んでください"
+            label.text = "  復元したいレシピを選んでください"
         }else{
-            return nil
+            label.text = nil
         }
+        return label
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -283,10 +294,12 @@ class RecoverTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
@@ -320,6 +333,7 @@ class RecoverTableViewController: UITableViewController {
                     cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }
+                cell.backgroundColor = Style.basicBackgroundColor
                 return cell
             }
         default:

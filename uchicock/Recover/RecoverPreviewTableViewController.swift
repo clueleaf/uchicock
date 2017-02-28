@@ -12,6 +12,7 @@ import ChameleonFramework
 class RecoverPreviewTableViewController: UITableViewController {
 
     @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var method: UISegmentedControl!
     
     var recipe = Recipe()
@@ -37,6 +38,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         recipeName.textColor = Style.labelTextColor
+        methodLabel.textColor = Style.labelTextColor
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         method.tintColor = Style.secondaryColor
@@ -60,6 +62,19 @@ class RecoverPreviewTableViewController: UITableViewController {
             return 30
         }
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.tableViewHeaderTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        if section == 1 {
+            label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"
+        }else{
+            label.text = nil
+        }
+        return label
+    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
@@ -74,13 +89,8 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1 {
-            return "材料(" + String(recipe.recipeIngredients.count) + ")"
-        }else{
-            return nil
-        }
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{

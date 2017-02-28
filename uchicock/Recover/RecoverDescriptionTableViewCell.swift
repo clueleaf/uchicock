@@ -12,6 +12,10 @@ import M13Checkbox
 
 class RecoverDescriptionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var recoverTargetLabel: UILabel!
+    @IBOutlet weak var nonRecoverTargetLabel: UILabel!
+    @IBOutlet weak var unableRecoverLabel: UILabel!
     @IBOutlet weak var recoverTarget: M13Checkbox!
     @IBOutlet weak var nonRecoverTarget: M13Checkbox!
     @IBOutlet weak var unableRecover: M13Checkbox!
@@ -27,6 +31,11 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        descriptionLabel.textColor = Style.labelTextColor
+        recoverTargetLabel.textColor = Style.labelTextColor
+        nonRecoverTargetLabel.textColor = Style.labelTextColor
+        unableRecoverLabel.textColor = Style.labelTextColor
 
         recoverTarget.stateChangeAnimation = .expand(.fill)
         recoverTarget.isEnabled = false

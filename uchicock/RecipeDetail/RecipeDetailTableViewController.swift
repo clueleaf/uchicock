@@ -249,12 +249,17 @@ class RecipeDetailTableViewController: UITableViewController{
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.tableViewHeaderTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
-            return "材料(" + String(recipe.recipeIngredients.count) + ")"
+            label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"
         }else{
-            return nil
+            label.text = nil
         }
+        return label
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

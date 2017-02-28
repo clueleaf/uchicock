@@ -179,6 +179,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.tableViewHeaderTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        if section == 1 {
+            label.text = "  材料編集"
+        }else{
+            label.text = nil
+        }
+        return label
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return super.tableView(tableView, heightForRowAt: indexPath)

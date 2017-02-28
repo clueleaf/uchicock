@@ -173,13 +173,19 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.tableViewHeaderTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         if tableView.tag == 1 && section == 0{
-            return "材料候補"
+            label.text = "  材料候補"
+        }else{
+            label.text = nil
         }
-        return nil
+        return label
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == 0 {
             if isTypingName{
