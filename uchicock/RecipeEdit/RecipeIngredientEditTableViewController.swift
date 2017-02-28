@@ -84,6 +84,14 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         deleteLabel.textColor = Style.deleteColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor
+        
+        if Style.isDark {
+            ingredientName.keyboardAppearance = .dark
+            amount.keyboardAppearance = .dark
+        }else{
+            ingredientName.keyboardAppearance = .default
+            amount.keyboardAppearance = .default
+        }
 
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
     }

@@ -11,6 +11,7 @@ import ChameleonFramework
 
 struct Style{
     static var no = 0
+    static var isDark = false
     static var primaryColor = FlatYellow()
     static var secondaryColor = FlatSkyBlueDark()
     static var basicBackgroundColor = FlatWhite()
@@ -33,6 +34,7 @@ struct Style{
     
     static func tequilaSunriseLight(){
         no = 0
+        isDark = false
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlueDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
@@ -57,6 +59,7 @@ struct Style{
     
     static func tequilaSunriseDark(){
         no = 1
+        isDark = true
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlue()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
