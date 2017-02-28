@@ -321,13 +321,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "PushAddRecipe", sender: UIBarButtonItem())
     }
     
-    @IBAction func infoButtonTapped(_ sender: UIBarButtonItem) {
-        view.endEditing(true)        
-        reloadRecipeBasicList()
-        tableView.reloadData()
-        showIntroduction()
-    }
-    
     @IBAction func restoreButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushRecoverRecipe", sender: UIBarButtonItem())
     }

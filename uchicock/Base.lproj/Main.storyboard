@@ -180,18 +180,11 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
                         <barButtonItem key="backBarButtonItem" title="レシピ" id="u8H-uo-o5b"/>
-                        <leftBarButtonItems>
-                            <barButtonItem image="info" id="PyK-oe-wJE">
-                                <connections>
-                                    <action selector="infoButtonTapped:" destination="BYZ-38-t0r" id="C4R-DX-hQl"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="restore" id="6Dm-7b-rl1">
-                                <connections>
-                                    <action selector="restoreButtonTapped:" destination="BYZ-38-t0r" id="2gu-I3-oeY"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="restore" id="6Dm-7b-rl1">
+                            <connections>
+                                <action selector="restoreButtonTapped:" destination="BYZ-38-t0r" id="2gu-I3-oeY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="59t-ya-4Ew">
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="L80-da-DOj"/>
@@ -1078,7 +1071,7 @@
             <objects>
                 <tableViewController id="yKB-1k-jl3" userLabel="Ingredient Detail Table View Controller" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sp4-ci-kt2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -1356,7 +1349,7 @@
             <objects>
                 <tableViewController id="TaE-ce-gSx" customClass="IngredientEditTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oOt-8s-sJd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -2219,7 +2212,7 @@
             <objects>
                 <tableViewController id="3cq-Fg-8AL" userLabel="Recipe Detail Table View Controller" customClass="RecipeDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CtV-9j-wVj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="BY5-gV-soD">
@@ -2490,7 +2483,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="info" width="24" height="24"/>
         <image name="order" width="24" height="24"/>
         <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="reminder" width="24" height="24"/>
@@ -2501,10 +2493,10 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WL9-sL-eOj"/>
-        <segue reference="AL8-XH-VAL"/>
         <segue reference="rrh-vr-JPb"/>
-        <segue reference="WbW-98-e9q"/>
+        <segue reference="AL8-XH-VAL"/>
+        <segue reference="SNB-c3-dZb"/>
+        <segue reference="BF7-gd-8JQ"/>
         <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>
