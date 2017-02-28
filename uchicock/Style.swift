@@ -10,6 +10,7 @@ import Foundation
 import ChameleonFramework
 
 struct Style{
+    static var no = 0
     static var primaryColor = FlatYellow()
     static var secondaryColor = FlatSkyBlueDark()
     static var basicBackgroundColor = FlatWhite()
@@ -28,9 +29,10 @@ struct Style{
     static var checkboxSecondaryTintColor = FlatGray()
     
     static func tequilaSunriseLight(){
+        no = 0
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlueDark()
-//        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatWhite()
         labelTextColor = FlatBlack()
         labelTextColorLight = FlatGrayDark()
@@ -48,9 +50,10 @@ struct Style{
     }
     
     static func tequilaSunriseDark(){
+        no = 1
         primaryColor = FlatYellow()
-        secondaryColor = FlatSkyBlue()
-//        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        secondaryColor = FlatSkyBlueDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()

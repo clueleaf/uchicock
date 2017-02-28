@@ -34,6 +34,15 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        recipeName.textColor = Style.labelTextColor
+        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        method.tintColor = Style.secondaryColor
+        method.backgroundColor = Style.basicBackgroundColor
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)

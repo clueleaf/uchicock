@@ -128,17 +128,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setColor(){
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
-        
-        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
-        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
-        UITabBar.appearance().tintColor = Style.tabBarTintColor
-        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
-        UIButton.appearance().tintColor = Style.secondaryColor
-        UISegmentedControl.appearance().tintColor = Style.secondaryColor
-        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-        UILabel.appearance().textColor = Style.labelTextColor
-        
+
+//        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
+//        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
+//        UITabBar.appearance().tintColor = Style.tabBarTintColor
+//        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
+//        UISegmentedControl.appearance().tintColor = Style.secondaryColor
+//        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
+//        UILabel.appearance().textColor = Style.labelTextColor
+//        UIButton.appearance().tintColor = Style.secondaryColor
+
         let backgroundView = UIView()
         backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         UITableViewCell.appearance().selectedBackgroundView = backgroundView

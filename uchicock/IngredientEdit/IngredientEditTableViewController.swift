@@ -56,6 +56,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

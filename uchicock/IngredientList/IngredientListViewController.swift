@@ -40,7 +40,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
 
         tableView.backgroundColor = Style.basicBackgroundColor
-
+        searchBar.backgroundColor = Style.filterContainerBackgroundColor
+        stockState.tintColor = Style.secondaryColor
+        stockState.backgroundColor = Style.basicBackgroundColor
+        
         reloadIngredientList()
         tableView.reloadData()
     }

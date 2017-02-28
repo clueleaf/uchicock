@@ -74,6 +74,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
     }
     

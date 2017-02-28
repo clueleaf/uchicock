@@ -40,6 +40,9 @@ class RecoverTableViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 

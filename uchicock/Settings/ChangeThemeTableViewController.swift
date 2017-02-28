@@ -7,17 +7,29 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class ChangeThemeTableViewController: UITableViewController {
 
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
+        cancelButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
+        navigationItem.leftBarButtonItem = cancelButton
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ChangeThemeTableViewController.doneButtonTapped))
+        doneButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
+        navigationItem.rightBarButtonItem = doneButton
+        
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
 
         let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -50,11 +62,13 @@ class ChangeThemeTableViewController: UITableViewController {
         case 1:
             Style.tequilaSunriseDark()
         case 2: break
-//            tableView.deselectRow(at: indexPath, animated: true)
         case 3: break
-//            tableView.deselectRow(at: indexPath, animated: true)
         default: break
         }
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: ContrastColorOf(Style.primaryColor, returnFlat: true)]
+        navigationController?.navigationBar.barTintColor = Style.primaryColor        
+        navigationController?.loadView()
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -72,11 +86,11 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     // MARK: IBAction
-    @IBAction func cancelButtonTapped(_ sender: Any) {
+    func cancelButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButtonTapped(_ sender: Any) {
+    func doneButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -45,6 +45,15 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reminderTitle.textColor = Style.labelTextColor
+        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        reminderType.tintColor = Style.secondaryColor
+        reminderType.backgroundColor = Style.basicBackgroundColor
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)

@@ -15,6 +15,12 @@ class SettingsTableViewController: UITableViewController {
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

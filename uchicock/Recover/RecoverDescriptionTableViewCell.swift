@@ -21,6 +21,7 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
     var sampleRecipeNum: Int = Int(){
         didSet{
             recoverableNumberLabel.text = String(sampleRecipeNum) + "レシピ中" + String(recoverableRecipeNum) + "レシピを復元できます。"
+            recoverableNumberLabel.textColor = Style.labelTextColor
         }
     }
     

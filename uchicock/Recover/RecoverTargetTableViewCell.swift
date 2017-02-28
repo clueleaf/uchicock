@@ -20,6 +20,7 @@ class RecoverTargetTableViewCell: UITableViewCell {
         didSet{
             isTarget.stateChangeAnimation = .expand(.fill)
             isTarget.animationDuration = 0.3
+            recipeName.textColor = Style.labelTextColor
             previewLabel.textColor = Style.labelTextColorLight
         }
     }

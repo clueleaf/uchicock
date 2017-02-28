@@ -15,6 +15,7 @@ class SuggestIngredientTableViewCell: UITableViewCell {
     var name: String = String(){
         didSet{
             ingredientName.text = name
+            ingredientName.textColor = Style.labelTextColor
         }
     }
 

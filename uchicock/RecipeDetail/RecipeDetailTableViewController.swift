@@ -60,6 +60,8 @@ class RecipeDetailTableViewController: UITableViewController{
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        method.tintColor = Style.secondaryColor
+        method.backgroundColor = Style.basicBackgroundColor
 
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)
@@ -110,6 +112,7 @@ class RecipeDetailTableViewController: UITableViewController{
             updateHeaderView()
 
             recipeName.text = recipe.recipeName
+            recipeName.textColor = Style.labelTextColor
             
             switch recipe.favorites{
             case 1:
@@ -129,6 +132,9 @@ class RecipeDetailTableViewController: UITableViewController{
                 star2.setTitle("☆", for: .normal)
                 star3.setTitle("☆", for: .normal)
             }
+            star1.tintColor = Style.secondaryColor
+            star2.tintColor = Style.secondaryColor
+            star3.tintColor = Style.secondaryColor
             
             if recipe.method >= 0 && recipe.method < 5 {
                 method.selectedSegmentIndex = recipe.method

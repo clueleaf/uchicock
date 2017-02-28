@@ -43,7 +43,9 @@ class IngredientDetailTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
-
+        order.tintColor = Style.secondaryColor
+        order.backgroundColor = Style.basicBackgroundColor
+        
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("id == %@",ingredientId)
         if ing.count < 1 {
@@ -57,6 +59,7 @@ class IngredientDetailTableViewController: UITableViewController {
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
+            ingredientName.textColor = Style.labelTextColor
 
             stock.stateChangeAnimation = .fade(.fill)
             stock.animationDuration = 0

@@ -105,7 +105,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
+        super.viewWillAppear(animated)
+
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        method.tintColor = Style.secondaryColor
+        method.backgroundColor = Style.basicBackgroundColor
+        star1.tintColor = Style.secondaryColor
+        star2.tintColor = Style.secondaryColor
+        star3.tintColor = Style.secondaryColor
+        
         self.tableView.reloadData()
     }
     

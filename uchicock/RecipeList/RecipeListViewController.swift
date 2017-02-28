@@ -48,6 +48,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        searchBar.backgroundColor = Style.filterContainerBackgroundColor
+        favoriteSelect.tintColor = Style.secondaryColor
+        favoriteSelect.backgroundColor = Style.basicBackgroundColor
+        order.tintColor = Style.secondaryColor
+        order.backgroundColor = Style.basicBackgroundColor
         
         reloadRecipeList()
         tableView.reloadData()
