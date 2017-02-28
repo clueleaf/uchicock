@@ -45,7 +45,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 8
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,8 +54,18 @@ class ChangeThemeTableViewController: UITableViewController {
             Style.tequilaSunriseLight()
         case 1:
             Style.tequilaSunriseDark()
-        case 2: break
-        case 3: break
+        case 2:
+            Style.seaBreezeLight()
+        case 3:
+            Style.seaBreezeDark()
+        case 4:
+            Style.chinaBlueLight()
+        case 5:
+            Style.chinaBlueDark()
+        case 6:
+            Style.grasshopperLight()
+        case 7:
+            Style.irishCoffeeDark()
         default: break
         }
         newThemeNo = Style.no
@@ -85,9 +95,17 @@ class ChangeThemeTableViewController: UITableViewController {
         case 1:
             cell.textLabel?.text = "テキーラサンライズ - ダーク"
         case 2:
-            cell.textLabel?.text = "スプモーニ - ダーク"
+            cell.textLabel?.text = "シーブリーズ - ライト"
         case 3:
+            cell.textLabel?.text = "シーブリーズ - ダーク"
+        case 4:
             cell.textLabel?.text = "チャイナブルー - ライト"
+        case 5:
+            cell.textLabel?.text = "チャイナブルー - ダーク"
+        case 6:
+            cell.textLabel?.text = "グラスホッパー - ライト"
+        case 7:
+            cell.textLabel?.text = "アイリッシュコーヒー - ダーク"
         default: break
         }
 
@@ -112,8 +130,18 @@ class ChangeThemeTableViewController: UITableViewController {
             Style.tequilaSunriseLight()
         case 1:
             Style.tequilaSunriseDark()
-        case 2: break
-        case 3: break
+        case 2:
+            Style.seaBreezeLight()
+        case 3:
+            Style.seaBreezeDark()
+        case 4:
+            Style.chinaBlueLight()
+        case 5:
+            Style.chinaBlueDark()
+        case 6:
+            Style.grasshopperLight()
+        case 7:
+            Style.irishCoffeeDark()
         default: break
         }
 

@@ -89,12 +89,62 @@ struct Style{
         backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
+    
+    static func seaBreezeLight(){
+        no = 2
+        isDark = false
+        primaryColor = FlatPink()
+        secondaryColor = FlatPink()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = UIColor(red:1.0, green:0.97, blue:1.0, alpha:1.0)
+        tableViewHeaderBackgroundColor = FlatWhite()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = UIColor(red:1.0, green:0.97, blue:1.0, alpha:1.0)
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatPink()
+        tabBarBarTintColor = FlatWhite()
+        tableViewCellSelectedBackgroundColor = FlatWhiteDark()
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatPink()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
+    }
+    
+    static func seaBreezeDark(){
+    }
+
+    static func chinaBlueLight(){
+    }
+
+    static func chinaBlueDark(){
+    }
+
+    static func grasshopperLight(){
+    }
+
+    static func irishCoffeeDark(){
+    }
 
     static func loadTheme(){
         let defaults = UserDefaults.standard
         if let no = defaults.string(forKey: "Theme"){
             if no == "0"		{ tequilaSunriseLight()	}
             if no == "1"		{ tequilaSunriseDark()	}
+            if no == "2"		{ seaBreezeLight()      }
+            if no == "3"		{ seaBreezeDark()   	}
+            if no == "4"		{ chinaBlueLight()      }
+            if no == "5"		{ chinaBlueDark()       }
+            if no == "6"		{ grasshopperLight()	}
+            if no == "7"		{ irishCoffeeDark()     }
         }else{
             defaults.set("0", forKey: "Theme")
             tequilaSunriseLight()
