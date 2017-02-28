@@ -207,6 +207,32 @@ struct Style{
     }
 
     static func grasshopperLight(){
+        no = 6
+        isDark = false
+        primaryColor = FlatMint()
+        secondaryColor = FlatMintDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatWhite()
+        tableViewHeaderBackgroundColor = FlatWhiteDark()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = FlatMint()
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatMintDark()
+        tabBarBarTintColor = FlatWhite()
+        tableViewCellSelectedBackgroundColor = FlatWhiteDark()
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatMintDark()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func irishCoffeeDark(){
