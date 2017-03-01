@@ -52,8 +52,6 @@
 		9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A3181C783CAA0031F631 /* Main.storyboard */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
-		9BC9A32A1C783CAA0031F631 /* recipeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3291C783CAA0031F631 /* recipeListTests.swift */; };
-		9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */; };
 		9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */; };
@@ -134,10 +132,8 @@
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A3291C783CAA0031F631 /* recipeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recipeListTests.swift; sourceTree = "<group>"; };
 		9BC9A32B1C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uchicockUITests.swift; sourceTree = "<group>"; };
 		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -326,7 +322,6 @@
 		9BC9A3281C783CAA0031F631 /* uchicockTests */ = {
 			isa = PBXGroup;
 			children = (
-				9BC9A3291C783CAA0031F631 /* recipeListTests.swift */,
 				9BC9A32B1C783CAA0031F631 /* Info.plist */,
 			);
 			path = uchicockTests;
@@ -335,7 +330,6 @@
 		9BC9A3331C783CAA0031F631 /* uchicockUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9BC9A3341C783CAA0031F631 /* uchicockUITests.swift */,
 				9BC9A3361C783CAA0031F631 /* Info.plist */,
 			);
 			path = uchicockUITests;
@@ -476,12 +470,12 @@
 					};
 					9BC9A3241C783CAA0031F631 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = 9BC9A3101C783CAA0031F631;
 					};
 					9BC9A32F1C783CAA0031F631 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = 9BC9A3101C783CAA0031F631;
 					};
 				};
@@ -648,7 +642,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC9A32A1C783CAA0031F631 /* recipeListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,7 +649,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC9A3351C783CAA0031F631 /* uchicockUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,7 +832,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
 			};
 			name = Debug;
@@ -856,7 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
 			};
 			name = Release;
@@ -872,7 +864,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = uchicock;
 				USES_XCTRUNNER = YES;
 			};
@@ -888,7 +880,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = uchicock;
 				USES_XCTRUNNER = YES;
 			};
