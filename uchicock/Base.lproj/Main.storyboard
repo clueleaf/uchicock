@@ -578,7 +578,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-xX-9YY">
-                                            <rect key="frame" x="56" y="14.5" width="218" height="21"/>
+                                            <rect key="frame" x="56" y="15" width="218" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="HoJ-pm-O3a"/>
                                             </constraints>
@@ -2188,7 +2188,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日時指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otw-7D-3C9">
-                                                    <rect key="frame" x="8" y="15" width="70" height="21"/>
+                                                    <rect key="frame" x="8" y="14" width="70" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="58f-nW-zUs"/>
                                                         <constraint firstAttribute="width" constant="70" id="eFI-ru-cKP"/>
@@ -2198,7 +2198,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-Jw-GtV" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="327" y="5.5" width="40" height="40"/>
+                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="ayQ-Zh-NIC"/>

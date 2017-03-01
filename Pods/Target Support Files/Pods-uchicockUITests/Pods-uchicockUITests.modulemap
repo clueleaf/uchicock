@@ -1,6 +1,0 @@
-framework module Pods_uchicockUITests {
-  umbrella header "Pods-uchicockUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSArray *actionButtonTitles;
 @property (nonatomic, weak) UIImage *leftArrowImage, *leftArrowSelectedImage;
 @property (nonatomic, weak) UIImage *rightArrowImage, *rightArrowSelectedImage;
+@property (nonatomic, weak) UIImage *actionButtonImage, *actionButtonSelectedImage;
 
 // View customization
 @property (nonatomic) BOOL displayDoneButton;
@@ -55,7 +56,10 @@
 @property (nonatomic) BOOL usePopAnimation;
 @property (nonatomic) BOOL disableVerticalSwipe;
 
-// Default value: true. Set to false to tell the photo viewer not to hide the interface when scrolling
+@property (nonatomic) BOOL dismissOnTouch;
+
+// Default value: true
+// Set to false to tell the photo viewer not to hide the interface when scrolling
 @property (nonatomic) BOOL autoHideInterface;
 
 // Defines zooming of the background (default 1.0)
@@ -67,13 +71,13 @@
 // Init
 - (id)initWithPhotos:(NSArray *)photosArray;
 
-// Init (animated)
+// Init (animated from view)
 - (id)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view;
 
 // Init with NSURL objects
 - (id)initWithPhotoURLs:(NSArray *)photoURLsArray;
 
-// Init with NSURL objects (animated)
+// Init with NSURL objects (animated from view)
 - (id)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromView:(UIView*)view;
 
 // Reloads the photo browser and refetches data
