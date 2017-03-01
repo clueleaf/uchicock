@@ -122,19 +122,19 @@ struct Style{
     static func seaBreezeDark(){
         no = 3
         isDark = true
-        primaryColor = FlatPink()
-        secondaryColor = FlatPink()
+        primaryColor = FlatPinkDark()
+        secondaryColor = FlatPinkDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlackDark()
         tableViewHeaderBackgroundColor = FlatGrayDark()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()
-        labelTextColorOnBadge = FlatBlackDark()
+        labelTextColorOnBadge = FlatWhite()
         labelTextColorOnDisableBadge = FlatBlackDark()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlackDark()
         deleteColor = FlatRed()
-        tabBarTintColor = FlatPink()
+        tabBarTintColor = FlatPinkDark()
         tabBarBarTintColor = FlatBlack()
         tableViewCellSelectedBackgroundColor = FlatGrayDark()
         tableViewCellEditBackgroundColor = FlatGrayDark()
@@ -180,8 +180,8 @@ struct Style{
     static func chinaBlueDark(){
         no = 5
         isDark = true
-        primaryColor = FlatSkyBlue()
-        secondaryColor = FlatSkyBlue()
+        primaryColor = FlatSkyBlueDark()
+        secondaryColor = FlatSkyBlueDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
         tableViewHeaderBackgroundColor = FlatGrayDark()
@@ -192,7 +192,7 @@ struct Style{
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
         deleteColor = FlatRed()
-        tabBarTintColor = FlatSkyBlue()
+        tabBarTintColor = FlatSkyBlueDark()
         tabBarBarTintColor = FlatBlackDark()
         tableViewCellSelectedBackgroundColor = FlatGrayDark()
         tableViewCellEditBackgroundColor = FlatGrayDark()
