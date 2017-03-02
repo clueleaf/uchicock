@@ -91,13 +91,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let realm = try! Realm()
         switch stockState.selectedSegmentIndex{
         case 0:
-            ingredientList = realm.objects(Ingredient.self).sorted(byProperty: "ingredientName")
+            ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
         case 1:
-            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == true").sorted(byProperty: "ingredientName")
+            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == true").sorted(byKeyPath: "ingredientName")
         case 2:
-            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == false").sorted(byProperty: "ingredientName")
+            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == false").sorted(byKeyPath: "ingredientName")
         default:
-            ingredientList = realm.objects(Ingredient.self).sorted(byProperty: "ingredientName")
+            ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
         }
         
         reloadIngredientBasicList()

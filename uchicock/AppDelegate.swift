@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func fixNilImage(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
+        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
         for recipe in recipeList{
             try! realm.write {
                 recipe.fixNilImage()

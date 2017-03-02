@@ -128,13 +128,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let realm = try! Realm()
         switch favoriteSelect.selectedSegmentIndex{
         case 0:
-            recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
+            recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
         case 1:
-            recipeList = realm.objects(Recipe.self).filter("favorites > 1").sorted(byProperty: "recipeName")
+            recipeList = realm.objects(Recipe.self).filter("favorites > 1").sorted(byKeyPath: "recipeName")
         case 2:
-            recipeList = realm.objects(Recipe.self).filter("favorites == 3").sorted(byProperty: "recipeName")
+            recipeList = realm.objects(Recipe.self).filter("favorites == 3").sorted(byKeyPath: "recipeName")
         default:
-            recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
+            recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
         }
         
         if order.selectedSegmentIndex == 1{
@@ -144,8 +144,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
             let sortProperties = [
-                SortDescriptor(property: "shortageNum", ascending: true),
-                SortDescriptor(property: "recipeName", ascending: true) ]
+                SortDescriptor(keyPath: "shortageNum", ascending: true),
+                SortDescriptor(keyPath: "recipeName", ascending: true) ]
             recipeList = recipeList!.sorted(by: sortProperties)
         }
         

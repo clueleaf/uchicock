@@ -65,7 +65,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     }
                 }
                 
-                let recipeList = realm.objects(Recipe.self).sorted(byProperty: "recipeName")
+                let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
                 for recipe in recipeList{
                     var newPhotoFlag = true
                     for rb in self.tempRecipeBasicList{
