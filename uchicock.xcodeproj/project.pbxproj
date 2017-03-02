@@ -55,7 +55,6 @@
 		9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */; };
 		9BDB393A1CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39391CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
-		9BEF8B251E68738200F32DDB /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B241E68738200F32DDB /* SVProgressHUD.framework */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */; };
@@ -156,7 +155,6 @@
 				9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */,
 				9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */,
 				9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */,
-				9BEF8B251E68738200F32DDB /* SVProgressHUD.framework in Frameworks */,
 				9B55370F1E686C3A0054D692 /* ChameleonFramework.framework in Frameworks */,
 				9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */,
 				257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */,
