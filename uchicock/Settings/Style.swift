@@ -55,10 +55,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
     
     static func tequilaSunriseDark(){
@@ -84,10 +80,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
     
     static func seaBreezeLight(){
@@ -113,10 +105,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
     
     static func seaBreezeDark(){
@@ -142,10 +130,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
-
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func chinaBlueLight(){
@@ -171,10 +155,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func chinaBlueDark(){
@@ -200,10 +180,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
-
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func grasshopperLight(){
@@ -229,10 +205,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func irishCoffeeDark(){
@@ -258,10 +230,6 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        UITableViewCell.appearance().selectedBackgroundView = backgroundView
     }
 
     static func loadTheme(){
@@ -275,6 +243,10 @@ struct Style{
             if no == "5"		{ chinaBlueDark()       }
             if no == "6"		{ grasshopperLight()	}
             if no == "7"		{ irishCoffeeDark()     }
+
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+            UITableViewCell.appearance().selectedBackgroundView = backgroundView
         }else{
             defaults.set("0", forKey: "Theme")
             tequilaSunriseLight()
