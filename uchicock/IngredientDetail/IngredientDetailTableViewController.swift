@@ -265,6 +265,8 @@ class IngredientDetailTableViewController: UITableViewController {
                     default:
                         cell.favorites.text = "★☆☆"
                     }
+                    cell.favorites.textColor = Style.secondaryColor
+                    
                     var shortageNum = 0
                     var shortageName = ""
                     for ri in recipeIngredient.recipe.recipeIngredients{
