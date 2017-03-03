@@ -143,18 +143,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch tableView.numberOfRows(inSection: 1) - previousNumOfRowsInSection1{
         case 0:
             if indexPathForSelectedRow != nil{
-                tableView.selectRow(at: indexPathForSelectedRow, animated: true, scrollPosition: .none)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
                 }
             }
         case 1:
             let indexPathForAddedRow = IndexPath(row: previousNumOfRowsInSection1 - 1, section: 1)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.selectRow(at: indexPathForAddedRow, animated: true, scrollPosition: .middle)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    self.tableView.deselectRow(at: indexPathForAddedRow, animated: true)
-                }
+            self.tableView.selectRow(at: indexPathForAddedRow, animated: false, scrollPosition: .middle)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.tableView.deselectRow(at: indexPathForAddedRow, animated: true)
             }
         default:
             break

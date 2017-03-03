@@ -24,6 +24,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeBasicList = Array<RecipeBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
+    var selectedRecipeId: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -76,6 +78,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         reloadRecipeList()
         tableView.reloadData()
+        
+        if indexPathForSelectedRow != nil{
+            if tableView.numberOfRows(inSection: 0) > indexPathForSelectedRow!.row{
+                let nowRecipeId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? RecipeListItemTableViewCell)?.recipe.id
+                if nowRecipeId != nil && selectedRecipeId != nil{
+                    if nowRecipeId! == selectedRecipeId!{
+                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        selectedRecipeId = nil
     }
     
     override func didReceiveMemoryWarning() {
@@ -261,7 +278,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
@@ -329,6 +345,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if segue.identifier == "PushRecipeDetail" {
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
+                selectedRecipeId = recipeBasicList[indexPath.row].id
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
