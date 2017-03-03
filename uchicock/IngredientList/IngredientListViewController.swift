@@ -23,6 +23,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var ingredientBasicList = Array<IngredientBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
+    var selectedIngredientId: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
@@ -65,6 +67,21 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         reloadIngredientList()
         tableView.reloadData()
+        
+        if indexPathForSelectedRow != nil{
+            if tableView.numberOfRows(inSection: 0) > indexPathForSelectedRow!.row{
+                let nowIngredientId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? IngredientListItemTableViewCell)?.ingredient.id
+                if nowIngredientId != nil && selectedIngredientId != nil{
+                    if nowIngredientId! == selectedIngredientId!{
+                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        selectedIngredientId = nil
     }
     
     override func didReceiveMemoryWarning() {
@@ -215,7 +232,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     
@@ -309,6 +325,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? IndexPath{
+                selectedIngredientId = ingredientBasicList[indexPath.row].id
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddIngredient" {
