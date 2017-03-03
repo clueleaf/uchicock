@@ -24,15 +24,18 @@ class IngredientListItemTableViewCell: UITableViewCell {
         didSet{
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.backgroundColor = Style.badgeDisableBackgroundColor
+                recipeNum.backgroundColor = UIColor.clear
+                recipeNum.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
                 recipeNum.textColor = Style.labelTextColor
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.backgroundColor = Style.secondaryColor
+                recipeNum.backgroundColor = UIColor.clear
+                recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }else{
                 recipeNum.text = "99+"
-                recipeNum.backgroundColor = Style.secondaryColor
+                recipeNum.backgroundColor = UIColor.clear
+                recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }
             recipeNum.layer.cornerRadius = 10

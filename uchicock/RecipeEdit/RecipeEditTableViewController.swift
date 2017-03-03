@@ -317,9 +317,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
                     cell.option.backgroundColor = UIColor.clear
+                    cell.option.layer.backgroundColor = UIColor.clear.cgColor
                 }else{
                     cell.option.text = "オプション"
-                    cell.option.backgroundColor = Style.badgeDisableBackgroundColor
+                    cell.option.backgroundColor = UIColor.clear
+                    cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
                 }
                 cell.option.textColor = Style.labelTextColorOnDisableBadge
                 cell.option.layer.cornerRadius = 4
