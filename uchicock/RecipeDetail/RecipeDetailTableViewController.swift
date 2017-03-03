@@ -68,6 +68,8 @@ class RecipeDetailTableViewController: UITableViewController{
         memoLabel.textColor = Style.labelTextColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        method.setTitleTextAttributes(attribute, for: .normal)
         photoBackground.backgroundColor = Style.basicBackgroundColor
         openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

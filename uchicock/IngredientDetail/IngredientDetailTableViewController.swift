@@ -52,6 +52,8 @@ class IngredientDetailTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         let realm = try! Realm()
