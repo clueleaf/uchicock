@@ -108,7 +108,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
+        let previousNumOfRowsInSection1 = tableView.numberOfRows(inSection: 1)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeNameLabel.textColor = Style.labelTextColor
@@ -137,6 +139,26 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         self.tableView.reloadData()
+        
+        switch tableView.numberOfRows(inSection: 1) - previousNumOfRowsInSection1{
+        case 0:
+            if indexPathForSelectedRow != nil{
+                tableView.selectRow(at: indexPathForSelectedRow, animated: true, scrollPosition: .none)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                }
+            }
+        case 1:
+            let indexPathForAddedRow = IndexPath(row: previousNumOfRowsInSection1 - 1, section: 1)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView.selectRow(at: indexPathForAddedRow, animated: true, scrollPosition: .middle)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.tableView.deselectRow(at: indexPathForAddedRow, animated: true)
+                }
+            }
+        default:
+            break
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -254,7 +276,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushEditIngredient", sender: indexPath)
         }
     }
