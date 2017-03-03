@@ -35,6 +35,7 @@ class RecipeDetailTableViewController: UITableViewController{
     var recipe = Recipe()
     var noPhotoFlag = false
     let selectedCellBackgroundView = UIView()
+    var selectedIngredientId: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class RecipeDetailTableViewController: UITableViewController{
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -157,6 +159,21 @@ class RecipeDetailTableViewController: UITableViewController{
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             tableView.reloadData()
+            
+            if indexPathForSelectedRow != nil{
+                if tableView.numberOfRows(inSection: 1) > indexPathForSelectedRow!.row{
+                    let nowIngredientId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? RecipeIngredientListTableViewCell)?.ingredientId
+                    if nowIngredientId != nil && selectedIngredientId != nil{
+                        if nowIngredientId! == selectedIngredientId!{
+                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+            selectedIngredientId = nil
         }
     }
     
@@ -295,7 +312,6 @@ class RecipeDetailTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
         }else if indexPath.section == 2{
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -348,6 +364,7 @@ class RecipeDetailTableViewController: UITableViewController{
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
+            cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
@@ -497,6 +514,7 @@ class RecipeDetailTableViewController: UITableViewController{
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? IndexPath{
+                selectedIngredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             }
         }else if segue.identifier == "PushEditRecipe" {

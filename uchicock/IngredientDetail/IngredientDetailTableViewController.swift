@@ -26,7 +26,8 @@ class IngredientDetailTableViewController: UITableViewController {
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<IngredientRecipeBasic>()
     let selectedCellBackgroundView = UIView()
-    
+    var selectedRecipeId: String? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +41,7 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
         
         stockLabel.textColor = Style.labelTextColor
@@ -86,6 +88,21 @@ class IngredientDetailTableViewController: UITableViewController {
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.reloadData()
+            
+            if indexPathForSelectedRow != nil{
+                if tableView.numberOfRows(inSection: 1) > indexPathForSelectedRow!.row{
+                    let nowRecipeId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? IngredientRecipeListTableViewCell)?.recipeId
+                    if nowRecipeId != nil && selectedRecipeId != nil{
+                        if nowRecipeId! == selectedRecipeId!{
+                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
+            selectedRecipeId = nil
         }
     }
     
@@ -205,7 +222,6 @@ class IngredientDetailTableViewController: UITableViewController {
         if indexPath.section == 1 {
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0 {
-                    tableView.deselectRow(at: indexPath, animated: true)
                     performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
                 }
             }else{
@@ -257,6 +273,7 @@ class IngredientDetailTableViewController: UITableViewController {
                         }
                     }
                     
+                    cell.recipeId = recipeIngredient.recipe.id
                     cell.recipeName.text = recipeIngredient.recipe.recipeName
                     switch recipeIngredient.recipe.favorites{
                     case 1:
@@ -358,6 +375,7 @@ class IngredientDetailTableViewController: UITableViewController {
             if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
                 let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                selectedRecipeId = recipeIngredient.recipe.id
                 vc.recipeId = recipeIngredient.recipe.id
             }
         }else if segue.identifier == "CreateEvent" {

@@ -12,6 +12,7 @@ import ChameleonFramework
 class IngredientRecipeListTableViewCell: UITableViewCell {
 
     var photo = UIImageView()
+    var recipeId: String? = nil
     var recipeName = UILabel()
     var favorites = UILabel()
     var shortage = UILabel()

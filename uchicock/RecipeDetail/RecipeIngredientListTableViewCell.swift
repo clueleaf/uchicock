@@ -11,6 +11,7 @@ import ChameleonFramework
 
 class RecipeIngredientListTableViewCell: UITableViewCell {
 
+    var ingredientId: String? = nil
     var ingredientName = UILabel()
     var option = UILabel()
     var stock = UILabel()
