@@ -34,6 +34,7 @@ class RecipeDetailTableViewController: UITableViewController{
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
+    let selectedCellBackgroundView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,7 @@ class RecipeDetailTableViewController: UITableViewController{
         method.backgroundColor = Style.basicBackgroundColor
         photoBackground.backgroundColor = Style.basicBackgroundColor
         openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)
@@ -293,6 +295,7 @@ class RecipeDetailTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
         }else if indexPath.section == 2{
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -341,7 +344,7 @@ class RecipeDetailTableViewController: UITableViewController{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
@@ -379,12 +382,12 @@ class RecipeDetailTableViewController: UITableViewController{
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = .default
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         default:
             return UITableViewCell()

@@ -20,6 +20,7 @@ class RecoverTableViewController: UITableViewController {
     let queue = DispatchQueue(label: "queue")
     var isRecovering = false
     let leastWaitTime = 0.2
+    let selectedCellBackgroundView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class RecoverTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.backgroundColor = Style.basicBackgroundColor
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -253,6 +255,7 @@ class RecoverTableViewController: UITableViewController {
                     }
                 }
             }else{
+                tableView.deselectRow(at: indexPath, animated: true)
                 if isRecovering == false {
                     performSegue(withIdentifier: "PushPreview", sender: indexPath)
                 }
@@ -294,13 +297,13 @@ class RecoverTableViewController: UITableViewController {
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 1:
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
                 cell.backgroundColor = Style.basicBackgroundColor
-                cell.selectedBackgroundView = Style.backgroundView
+                cell.selectedBackgroundView = selectedCellBackgroundView
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
@@ -335,7 +338,7 @@ class RecoverTableViewController: UITableViewController {
                     cell.isRecoverable = false
                 }
                 cell.backgroundColor = Style.basicBackgroundColor
-                cell.selectedBackgroundView = Style.backgroundView
+                cell.selectedBackgroundView = selectedCellBackgroundView
                 return cell
             }
         default:

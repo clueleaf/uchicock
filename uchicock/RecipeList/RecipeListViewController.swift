@@ -23,6 +23,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
+    let selectedCellBackgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -259,6 +261,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
@@ -300,7 +303,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
             cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }
         return UITableViewCell()

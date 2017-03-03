@@ -31,6 +31,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     var deleteFlag = false
     var isTypingName = false
     var suggestList = Array<IngredientName>()
+    let selectedCellBackgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         deleteLabel.textColor = Style.deleteColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         if Style.isDark {
             ingredientName.keyboardAppearance = .dark
@@ -275,18 +277,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = Style.basicBackgroundColor
-                cell.selectedBackgroundView = Style.backgroundView
+                cell.selectedBackgroundView = selectedCellBackgroundView
                 return cell
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                     cell.backgroundColor = Style.basicBackgroundColor
-                    cell.selectedBackgroundView = Style.backgroundView
+                    cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = Style.basicBackgroundColor
-                    cell.selectedBackgroundView = Style.backgroundView
+                    cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell
                 }
             }
@@ -294,7 +296,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row].name
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }
         return UITableViewCell()

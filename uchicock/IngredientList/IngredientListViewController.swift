@@ -22,6 +22,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
+    let selectedCellBackgroundView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         stockState.backgroundColor = Style.basicBackgroundColor
         let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
         stockState.setTitleTextAttributes(attribute, for: .normal)
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -213,6 +215,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     
@@ -282,10 +285,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.valueChanged)
             
-            cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = Style.backgroundView
+            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }
         return UITableViewCell()
