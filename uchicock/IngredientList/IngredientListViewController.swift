@@ -213,7 +213,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     
@@ -283,9 +282,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.valueChanged)
             
+            cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = Style.backgroundView
             return cell
         }
         return UITableViewCell()

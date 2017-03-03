@@ -10,6 +10,7 @@ import Foundation
 import ChameleonFramework
 
 struct Style{
+    static var backgroundView = UIView()
     static var no = "0"
     static var isDark = false
     static var primaryColor = FlatYellow()
@@ -236,12 +237,10 @@ struct Style{
         let defaults = UserDefaults.standard
         if let themeNo = defaults.string(forKey: "Theme"){
             setTheme(themeNo: themeNo)
-//            let backgroundView = UIView()
-//            backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-//            UITableViewCell.appearance().selectedBackgroundView = backgroundView
         }else{
             defaults.set("0", forKey: "Theme")
             tequilaSunriseLight()
+            backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         }
     }
     
@@ -259,6 +258,7 @@ struct Style{
             default: break
             }
         }
+        backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
     }
     
     static func saveTheme(themeNo: String?){

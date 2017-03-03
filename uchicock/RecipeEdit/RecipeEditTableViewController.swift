@@ -252,7 +252,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushEditIngredient", sender: indexPath)
         }
     }
@@ -282,6 +281,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if indexPath.section == 0 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = Style.backgroundView
             return cell
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
@@ -303,6 +303,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
                 cell.backgroundColor = Style.basicBackgroundColor
+                cell.selectedBackgroundView = Style.backgroundView
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
@@ -311,6 +312,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
                 cell.textLabel?.textAlignment = .center;
                 cell.backgroundColor = Style.basicBackgroundColor
+                cell.selectedBackgroundView = Style.backgroundView
                 return cell
             }
         }

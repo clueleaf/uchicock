@@ -92,10 +92,8 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
             tableView.deselectRow(at: indexPath, animated: true)
             showIntroduction()
         case 1:
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
         case 2:
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         default: break
         }
@@ -105,6 +103,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = Style.basicBackgroundColor
+        cell.selectedBackgroundView = Style.backgroundView
         return cell
     }
 

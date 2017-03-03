@@ -97,11 +97,11 @@ class ChangeThemeTableViewController: UITableViewController {
             cell.accessoryType = .none
         }
         
-        cell.backgroundColor = Style.basicBackgroundColor
         cell.textLabel?.textColor = Style.labelTextColor
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        
+        cell.backgroundColor = Style.basicBackgroundColor
+        cell.selectedBackgroundView = Style.backgroundView
         return cell
     }
     

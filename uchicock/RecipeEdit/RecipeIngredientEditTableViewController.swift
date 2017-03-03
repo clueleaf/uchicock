@@ -275,15 +275,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = Style.basicBackgroundColor
+                cell.selectedBackgroundView = Style.backgroundView
                 return cell
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                     cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = Style.backgroundView
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = Style.backgroundView
                     return cell
                 }
             }
@@ -291,6 +294,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row].name
             cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = Style.backgroundView
             return cell
         }
         return UITableViewCell()

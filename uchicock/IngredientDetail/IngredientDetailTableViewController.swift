@@ -203,7 +203,6 @@ class IngredientDetailTableViewController: UITableViewController {
         if indexPath.section == 1 {
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0 {
-                    tableView.deselectRow(at: indexPath, animated: true)
                     performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
                 }
             }else{
@@ -227,6 +226,7 @@ class IngredientDetailTableViewController: UITableViewController {
         if indexPath.section == 0{
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = Style.backgroundView
             return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
@@ -295,15 +295,18 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                     cell.selectionStyle = .default
                     cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = Style.backgroundView
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
                     cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = Style.backgroundView
                     return cell
                 }
             }else{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 2, section: 1))
                 cell.backgroundColor = Style.basicBackgroundColor
+                cell.selectedBackgroundView = Style.backgroundView
                 return cell
             }
         }

@@ -149,6 +149,7 @@ class ReminderTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = Style.basicBackgroundColor
+        cell.selectedBackgroundView = Style.backgroundView
         return cell
     }
     

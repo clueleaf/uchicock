@@ -259,7 +259,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
@@ -301,6 +300,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
             cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = Style.backgroundView
             return cell
         }
         return UITableViewCell()
