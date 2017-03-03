@@ -10,7 +10,7 @@ import Foundation
 import ChameleonFramework
 
 struct Style{
-    static var no = 0
+    static var no = "0"
     static var isDark = false
     static var primaryColor = FlatYellow()
     static var secondaryColor = FlatSkyBlueDark()
@@ -33,7 +33,7 @@ struct Style{
     static var checkboxSecondaryTintColor = FlatGray()
     
     static func tequilaSunriseLight(){
-        no = 0
+        no = "0"
         isDark = false
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlueDark()
@@ -58,7 +58,7 @@ struct Style{
     }
     
     static func tequilaSunriseDark(){
-        no = 1
+        no = "1"
         isDark = true
         primaryColor = FlatYellow()
         secondaryColor = FlatYellowDark()
@@ -83,7 +83,7 @@ struct Style{
     }
     
     static func seaBreezeLight(){
-        no = 2
+        no = "2"
         isDark = false
         primaryColor = FlatPink()
         secondaryColor = FlatPink()
@@ -108,7 +108,7 @@ struct Style{
     }
     
     static func seaBreezeDark(){
-        no = 3
+        no = "3"
         isDark = true
         primaryColor = FlatPinkDark()
         secondaryColor = FlatPinkDark()
@@ -133,7 +133,7 @@ struct Style{
     }
 
     static func chinaBlueLight(){
-        no = 4
+        no = "4"
         isDark = false
         primaryColor = FlatSkyBlue()
         secondaryColor = FlatSkyBlue()
@@ -158,7 +158,7 @@ struct Style{
     }
 
     static func chinaBlueDark(){
-        no = 5
+        no = "5"
         isDark = true
         primaryColor = FlatSkyBlueDark()
         secondaryColor = FlatSkyBlueDark()
@@ -183,7 +183,7 @@ struct Style{
     }
 
     static func grasshopperLight(){
-        no = 6
+        no = "6"
         isDark = false
         primaryColor = FlatMint()
         secondaryColor = FlatMintDark()
@@ -208,7 +208,7 @@ struct Style{
     }
 
     static func irishCoffeeDark(){
-        no = 7
+        no = "7"
         isDark = true
         primaryColor = FlatCoffeeDark()
         secondaryColor = FlatCoffee()
@@ -234,27 +234,37 @@ struct Style{
 
     static func loadTheme(){
         let defaults = UserDefaults.standard
-        if let no = defaults.string(forKey: "Theme"){
-            if no == "0"		{ tequilaSunriseLight()	}
-            if no == "1"		{ tequilaSunriseDark()	}
-            if no == "2"		{ seaBreezeLight()      }
-            if no == "3"		{ seaBreezeDark()   	}
-            if no == "4"		{ chinaBlueLight()      }
-            if no == "5"		{ chinaBlueDark()       }
-            if no == "6"		{ grasshopperLight()	}
-            if no == "7"		{ irishCoffeeDark()     }
-
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-            UITableViewCell.appearance().selectedBackgroundView = backgroundView
+        if let themeNo = defaults.string(forKey: "Theme"){
+            setTheme(themeNo: themeNo)
+//            let backgroundView = UIView()
+//            backgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+//            UITableViewCell.appearance().selectedBackgroundView = backgroundView
         }else{
             defaults.set("0", forKey: "Theme")
             tequilaSunriseLight()
         }
     }
     
-    static func saveTheme(themeNo: String){
-        let defaults = UserDefaults.standard
-        defaults.set(themeNo, forKey: "Theme")
+    static func setTheme(themeNo: String?){
+        if themeNo != nil{
+            switch themeNo!{
+            case "0": tequilaSunriseLight()
+            case "1": tequilaSunriseDark()
+            case "2": seaBreezeLight()
+            case "3": seaBreezeDark()
+            case "4": chinaBlueLight()
+            case "5": chinaBlueDark()
+            case "6": grasshopperLight()
+            case "7": irishCoffeeDark()
+            default: break
+            }
+        }
+    }
+    
+    static func saveTheme(themeNo: String?){
+        if themeNo != nil{
+            let defaults = UserDefaults.standard
+            defaults.set(themeNo!, forKey: "Theme")
+        }
     }
 }

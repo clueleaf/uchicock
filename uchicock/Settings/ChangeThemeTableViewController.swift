@@ -49,25 +49,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row{
-        case 0:
-            Style.tequilaSunriseLight()
-        case 1:
-            Style.tequilaSunriseDark()
-        case 2:
-            Style.seaBreezeLight()
-        case 3:
-            Style.seaBreezeDark()
-        case 4:
-            Style.chinaBlueLight()
-        case 5:
-            Style.chinaBlueDark()
-        case 6:
-            Style.grasshopperLight()
-        case 7:
-            Style.irishCoffeeDark()
-        default: break
-        }
+        Style.setTheme(themeNo: String(indexPath.row))
         newThemeNo = Style.no
         
         if let cell = tableView.cellForRow(at:indexPath) {
@@ -109,7 +91,7 @@ class ChangeThemeTableViewController: UITableViewController {
         default: break
         }
 
-        if indexPath.row == Style.no{
+        if String(indexPath.row) == Style.no{
             cell.accessoryType = .checkmark
         }else{
             cell.accessoryType = .none
@@ -125,32 +107,14 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: IBAction
     func cancelButtonTapped() {
-        switch oldThemeNo{
-        case 0:
-            Style.tequilaSunriseLight()
-        case 1:
-            Style.tequilaSunriseDark()
-        case 2:
-            Style.seaBreezeLight()
-        case 3:
-            Style.seaBreezeDark()
-        case 4:
-            Style.chinaBlueLight()
-        case 5:
-            Style.chinaBlueDark()
-        case 6:
-            Style.grasshopperLight()
-        case 7:
-            Style.irishCoffeeDark()
-        default: break
-        }
+        Style.setTheme(themeNo: oldThemeNo)
         UIButton.appearance().tintColor = Style.secondaryColor
 
         self.dismiss(animated: true, completion: nil)
     }
     
     func doneButtonTapped() {
-        Style.saveTheme(themeNo: String(newThemeNo))
+        Style.saveTheme(themeNo: newThemeNo)
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -19,9 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        setColor()
+        UILabel.appearance().textColor = FlatBlack() // ActivityViewControllerのボタンの色のために必要
+        Style.loadTheme()
+        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
+        UIButton.appearance().tintColor = Style.secondaryColor // テーマ変更画面のCheckboxの色のために必要
         setSVProgressHUD()
         
         let manager = FileManager()
@@ -126,20 +128,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func setColor(){
-        UILabel.appearance().textColor = FlatBlack() // ActivityViewControllerのボタンの色のために必要
-        Style.loadTheme()
-        UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
-        UIButton.appearance().tintColor = Style.secondaryColor // テーマ変更画面のCheckboxの色のために必要
-
-//        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
-//        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
-//        UITabBar.appearance().tintColor = Style.tabBarTintColor
-//        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
-//        UISegmentedControl.appearance().tintColor = Style.secondaryColor
-//        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-    }
-    
     func setSVProgressHUD(){
         SVProgressHUD.setMinimumDismissTimeInterval(2.0)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
