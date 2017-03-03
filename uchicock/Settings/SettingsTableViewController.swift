@@ -95,10 +95,8 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
             tableView.deselectRow(at: indexPath, animated: true)
             showIntroduction()
         case 1:
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
         case 2:
-            tableView.deselectRow(at: indexPath, animated: true)
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         default: break
         }

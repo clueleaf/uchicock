@@ -255,7 +255,6 @@ class RecoverTableViewController: UITableViewController {
                     }
                 }
             }else{
-                tableView.deselectRow(at: indexPath, animated: true)
                 if isRecovering == false {
                     performSegue(withIdentifier: "PushPreview", sender: indexPath)
                 }
