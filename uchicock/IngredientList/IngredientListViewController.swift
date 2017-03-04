@@ -156,26 +156,27 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let cell = view as! IngredientListItemTableViewCell
         let touchIndex = self.tableView.indexPath(for: cell)
         
-        let realm = try! Realm()
-        let ingredient = realm.objects(Ingredient.self).filter("id == %@", ingredientBasicList[touchIndex!.row].id).first!
-
-        if ingredient.stockFlag {
-            try! realm.write {
-                ingredient.stockFlag = false
+        if touchIndex != nil {
+            let realm = try! Realm()
+            let ingredient = realm.objects(Ingredient.self).filter("id == %@", ingredientBasicList[touchIndex!.row].id).first!
+            if ingredient.stockFlag {
+                try! realm.write {
+                    ingredient.stockFlag = false
+                }
+            }else{
+                try! realm.write {
+                    ingredient.stockFlag = true
+                }
             }
-        }else{
-            try! realm.write {
-                ingredient.stockFlag = true
-            }
-        }
-
-        if stockState.selectedSegmentIndex != 0{
-            ingredientBasicList.remove(at: touchIndex!.row)
-            tableView.deleteRows(at: [touchIndex!], with: .automatic)
-            if ingredientBasicList.count == 0{
-                tableView.reloadData()
-            }
-            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+            
+            if stockState.selectedSegmentIndex != 0{
+                ingredientBasicList.remove(at: touchIndex!.row)
+                tableView.deleteRows(at: [touchIndex!], with: .automatic)
+                if ingredientBasicList.count == 0{
+                    tableView.reloadData()
+                }
+                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+            }            
         }
     }
     
