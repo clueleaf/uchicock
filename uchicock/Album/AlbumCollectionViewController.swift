@@ -172,8 +172,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
 
-        if recipe.imageData != nil{
-            cell.photo.image = UIImage(data: recipe.imageData! as Data)
+        if let image = recipe.imageData {
+            cell.photo.image = UIImage(data: image as Data)
             //レシピ削除のバグに対するワークアラウンド
             if cell.photo.image == nil{
                 if Style.isDark{

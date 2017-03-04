@@ -91,14 +91,14 @@ class IngredientDetailTableViewController: UITableViewController {
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.reloadData()
             
-            if indexPathForSelectedRow != nil{
-                if tableView.numberOfRows(inSection: 1) > indexPathForSelectedRow!.row{
-                    let nowRecipeId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? IngredientRecipeListTableViewCell)?.recipeId
+            if let index = indexPathForSelectedRow {
+                if tableView.numberOfRows(inSection: 1) > index.row{
+                    let nowRecipeId = (tableView.cellForRow(at: index) as? IngredientRecipeListTableViewCell)?.recipeId
                     if nowRecipeId != nil && selectedRecipeId != nil{
                         if nowRecipeId! == selectedRecipeId!{
                             tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                                self.tableView.deselectRow(at: index, animated: true)
                             }
                         }
                     }
@@ -257,8 +257,8 @@ class IngredientDetailTableViewController: UITableViewController {
                     let realm = try! Realm()
                     let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
                     
-                    if recipeIngredient.recipe.imageData != nil{
-                        cell.photo.image = UIImage(data: recipeIngredient.recipe.imageData! as Data)
+                    if let image = recipeIngredient.recipe.imageData {
+                        cell.photo.image = UIImage(data: image as Data)
                         //レシピ削除のバグに対するワークアラウンド
                         if cell.photo.image == nil{
                             if Style.isDark{

@@ -18,8 +18,8 @@ class RecipeListItemTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
-            if recipe.imageData != nil{
-                photo.image = UIImage(data: recipe.imageData! as Data)
+            if let image = recipe.imageData {
+                photo.image = UIImage(data: image as Data)
             }else{
                 if Style.isDark{
                     photo.image = UIImage(named: "no-photo-dark")

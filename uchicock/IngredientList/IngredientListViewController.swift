@@ -68,14 +68,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         reloadIngredientList()
         tableView.reloadData()
         
-        if indexPathForSelectedRow != nil{
-            if tableView.numberOfRows(inSection: 0) > indexPathForSelectedRow!.row{
-                let nowIngredientId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? IngredientListItemTableViewCell)?.ingredient.id
+        if let index = indexPathForSelectedRow{
+            if tableView.numberOfRows(inSection: 0) > index.row{
+                let nowIngredientId = (tableView.cellForRow(at: index) as? IngredientListItemTableViewCell)?.ingredient.id
                 if nowIngredientId != nil && selectedIngredientId != nil{
                     if nowIngredientId! == selectedIngredientId!{
                         tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                            self.tableView.deselectRow(at: index, animated: true)
                         }
                     }
                 }
@@ -156,9 +156,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let cell = view as! IngredientListItemTableViewCell
         let touchIndex = self.tableView.indexPath(for: cell)
         
-        if touchIndex != nil {
+        if let index = touchIndex {
             let realm = try! Realm()
-            let ingredient = realm.objects(Ingredient.self).filter("id == %@", ingredientBasicList[touchIndex!.row].id).first!
+            let ingredient = realm.objects(Ingredient.self).filter("id == %@", ingredientBasicList[index.row].id).first!
             if ingredient.stockFlag {
                 try! realm.write {
                     ingredient.stockFlag = false
@@ -170,8 +170,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             if stockState.selectedSegmentIndex != 0{
-                ingredientBasicList.remove(at: touchIndex!.row)
-                tableView.deleteRows(at: [touchIndex!], with: .automatic)
+                ingredientBasicList.remove(at: index.row)
+                tableView.deleteRows(at: [index], with: .automatic)
                 if ingredientBasicList.count == 0{
                     tableView.reloadData()
                 }

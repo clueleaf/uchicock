@@ -98,22 +98,23 @@ class RecipeDetailTableViewController: UITableViewController{
             
             tableView.tableHeaderView = nil
             noPhotoFlag = false
-            if recipe.imageData != nil{
-                photo.image = UIImage(data: recipe.imageData! as Data)
+            if let image = recipe.imageData{
+                photo.image = UIImage(data: image as Data)
                 //レシピ削除のバグに対するワークアラウンド
-                if photo.image == nil{
-                    noPhotoFlag = true
-                    photoBackground.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0)
-                    photoHeight = 0.0
-                }else{
-                    if photo.image!.size.width > photo.image!.size.height{
-                        photoHeight = tableView.bounds.width * photo.image!.size.height / photo.image!.size.width
+                if let im = photo.image {
+                    if im.size.width > im.size.height{
+                        photoHeight = tableView.bounds.width * im.size.height / im.size.width
                     }else{
                         photoHeight = tableView.bounds.width
                     }
                     photo.clipsToBounds = true
                     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
                     self.view.bringSubview(toFront: photoBackground)
+                }else{
+                    noPhotoFlag = true
+                    photoBackground.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0)
+                    photoHeight = 0.0
+                    
                 }
             }else{
                 noPhotoFlag = true
@@ -162,14 +163,14 @@ class RecipeDetailTableViewController: UITableViewController{
             self.tableView.rowHeight = UITableViewAutomaticDimension
             tableView.reloadData()
             
-            if indexPathForSelectedRow != nil{
-                if tableView.numberOfRows(inSection: 1) > indexPathForSelectedRow!.row{
-                    let nowIngredientId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? RecipeIngredientListTableViewCell)?.ingredientId
+            if let index = indexPathForSelectedRow {
+                if tableView.numberOfRows(inSection: 1) > index.row{
+                    let nowIngredientId = (tableView.cellForRow(at: index) as? RecipeIngredientListTableViewCell)?.ingredientId
                     if nowIngredientId != nil && selectedIngredientId != nil{
                         if nowIngredientId! == selectedIngredientId!{
                             tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                                self.tableView.deselectRow(at: index, animated: true)
                             }
                         }
                     }
@@ -201,9 +202,9 @@ class RecipeDetailTableViewController: UITableViewController{
 
     func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
-            if recipe.imageData != nil{
+            if let image = recipe.imageData {
                 //レシピ削除のバグに対するワークアラウンド
-                let browsePhoto = UIImage(data: recipe.imageData! as Data)
+                let browsePhoto = UIImage(data: image as Data)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
                     p!.caption = self.recipe.recipeName
@@ -220,14 +221,14 @@ class RecipeDetailTableViewController: UITableViewController{
         if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.began  {
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
-                if self.photo.image != nil{
-                    UIImageWriteToSavedPhotosAlbum(self.photo.image!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                if let image = self.photo.image {
+                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 }
                 })
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
-                if self.photo.image != nil{
+                if let image = self.photo.image {
                     let pasteboard: UIPasteboard = UIPasteboard.general
-                    pasteboard.image = self.photo.image!
+                    pasteboard.image = image
                 }
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
@@ -438,8 +439,8 @@ class RecipeDetailTableViewController: UITableViewController{
         ]
         
         let shareText = createLongMessage()
-        if noPhotoFlag == false && photo.image != nil{
-            let activityVC = UIActivityViewController(activityItems: [shareText, photo.image!], applicationActivities: nil)
+        if noPhotoFlag == false, let image = photo.image {
+            let activityVC = UIActivityViewController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             self.present(activityVC, animated: true, completion: nil)
         }else{

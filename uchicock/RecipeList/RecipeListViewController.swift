@@ -79,14 +79,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeList()
         tableView.reloadData()
         
-        if indexPathForSelectedRow != nil{
-            if tableView.numberOfRows(inSection: 0) > indexPathForSelectedRow!.row{
-                let nowRecipeId = (tableView.cellForRow(at: indexPathForSelectedRow!) as? RecipeListItemTableViewCell)?.recipe.id
+        if let path = indexPathForSelectedRow {
+            if tableView.numberOfRows(inSection: 0) > path.row{
+                let nowRecipeId = (tableView.cellForRow(at: path) as? RecipeListItemTableViewCell)?.recipe.id
                 if nowRecipeId != nil && selectedRecipeId != nil{
                     if nowRecipeId! == selectedRecipeId!{
-                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                        tableView.selectRow(at: path, animated: false, scrollPosition: .none)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                            self.tableView.deselectRow(at: path, animated: true)
                         }
                     }
                 }

@@ -46,8 +46,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        if recipe.imageData != nil{
-            photo.image = UIImage(data: recipe.imageData! as Data)
+        if let image = recipe.imageData{
+            photo.image = UIImage(data: image as Data)
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
@@ -142,11 +142,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         switch tableView.numberOfRows(inSection: 1) - previousNumOfRowsInSection1{
         case 0:
-            if indexPathForSelectedRow != nil{
+            if let index = indexPathForSelectedRow{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.tableView.deselectRow(at: indexPathForSelectedRow!, animated: true)
+                        self.tableView.deselectRow(at: index, animated: true)
                     }
                 }
             }
@@ -198,9 +198,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func photoTapped(){
-        if photo.image != nil{
-            if UIImagePNGRepresentation(photo.image!) != nil{
-                let browsePhoto = UIImage(data: UIImagePNGRepresentation(photo.image!)!)
+        if let image = photo.image{
+            if let repre = UIImagePNGRepresentation(image){
+                let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
                     let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p!], animatedFrom: photo)
@@ -377,10 +377,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }))
         let pasteboard: UIPasteboard = UIPasteboard.general
         let pasteImage: UIImage? = pasteboard.image
-        if pasteImage != nil{
+        if let image = pasteImage{
             alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                 action in
-                self.photo.image = pasteImage!
+                self.photo.image = image
                 self.selectPhoto.text = "写真を変更"
                 self.photo.isUserInteractionEnabled = true
             }))
@@ -482,8 +482,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             newRecipe.favorites = 1
                         }
 
-                        if photo.image != nil{
-                            newRecipe.imageData = UIImagePNGRepresentation(photo.image!) as NSData?
+                        if let image = photo.image{
+                            newRecipe.imageData = UIImagePNGRepresentation(image) as NSData?
                         }else{
                             newRecipe.imageData = nil
                         }
@@ -544,8 +544,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.favorites = 1
                         }
                         
-                        if photo.image != nil{
-                            recipe.imageData = UIImagePNGRepresentation(photo.image!) as NSData?
+                        if let image = photo.image{
+                            recipe.imageData = UIImagePNGRepresentation(image) as NSData?
                         }else{
                             recipe.imageData = nil
                         }

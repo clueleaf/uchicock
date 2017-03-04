@@ -108,14 +108,16 @@ class RecoverTableViewController: UITableViewController {
             let cell = view as! RecoverTargetTableViewCell
             let touchIndex = self.tableView.indexPath(for: cell)
             
-            if touchIndex!.row - 1 < recoverableSampleRecipeList.count{
-                if sender.checkState == .checked{
-                    recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = true
-                }else if sender.checkState == .unchecked{
-                    recoverableSampleRecipeList[touchIndex!.row - 1].recoverTarget = false
+            if let index = touchIndex{
+                if index.row - 1 < recoverableSampleRecipeList.count{
+                    if sender.checkState == .checked{
+                        recoverableSampleRecipeList[index.row - 1].recoverTarget = true
+                    }else if sender.checkState == .unchecked{
+                        recoverableSampleRecipeList[index.row - 1].recoverTarget = false
+                    }
+                    setNavigationTitle()
                 }
-                setNavigationTitle()
-            }            
+            }
         }
     }
     

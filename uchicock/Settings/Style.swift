@@ -243,8 +243,8 @@ struct Style{
     }
     
     static func setTheme(themeNo: String?){
-        if themeNo != nil{
-            switch themeNo!{
+        if let no = themeNo {
+            switch no{
             case "0": tequilaSunriseLight()
             case "1": tequilaSunriseDark()
             case "2": seaBreezeLight()
@@ -259,9 +259,9 @@ struct Style{
     }
     
     static func saveTheme(themeNo: String?){
-        if themeNo != nil{
+        if let no = themeNo{
             let defaults = UserDefaults.standard
-            defaults.set(themeNo!, forKey: "Theme")
+            defaults.set(no, forKey: "Theme")
         }
     }
 }
