@@ -108,24 +108,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func reloadIngredientList(){
         let realm = try! Realm()
-        switch stockState.selectedSegmentIndex{
-        case 0:
-            ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
-        case 1:
-            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == true").sorted(byKeyPath: "ingredientName")
-        case 2:
-            ingredientList = realm.objects(Ingredient.self).filter("stockFlag == false").sorted(byKeyPath: "ingredientName")
-        default:
-            ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
-        }
-        
+        ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
         reloadIngredientBasicList()
     }
     
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag))
         }
         
         for i in (0..<ingredientBasicList.count).reversed(){
@@ -133,6 +123,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 ingredientBasicList.remove(at: i)
             }
         }
+        
+        for i in (0..<ingredientBasicList.count).reversed(){
+            switch stockState.selectedSegmentIndex{
+            case 0:
+                break
+            case 1:
+                if ingredientBasicList[i].stockFlag == false{
+                    ingredientBasicList.remove(at: i)
+                }
+            case 2:
+                if ingredientBasicList[i].stockFlag{
+                    ingredientBasicList.remove(at: i)
+                }
+            default:
+                break
+            }
+        }
+
         ingredientBasicList.sort(by: { $0.kanaName < $1.kanaName })
         
         self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
@@ -317,7 +325,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func stockStateTapped(_ sender: UISegmentedControl) {
-        reloadIngredientList()
+        reloadIngredientBasicList()
         tableView.reloadData()
     }
     

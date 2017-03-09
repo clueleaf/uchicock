@@ -12,5 +12,6 @@ struct IngredientBasic{
     var kanaName : String {
         return name.katakana().lowercased()
     }
+    var stockFlag : Bool
 }
 
