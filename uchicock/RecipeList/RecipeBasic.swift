@@ -12,5 +12,6 @@ struct RecipeBasic{
     var kanaName : String {
         return name.katakana().lowercased()
     }
+    var shortageNum : Int
 }
 

@@ -156,25 +156,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
         }
         
-        if order.selectedSegmentIndex == 1{
-            try! realm.write {
-                for recipe in recipeList!{
-                    recipe.updateShortageNum()
-                }
-            }
-            let sortProperties = [
-                SortDescriptor(keyPath: "shortageNum", ascending: true),
-                SortDescriptor(keyPath: "recipeName", ascending: true) ]
-            recipeList = recipeList!.sorted(by: sortProperties)
-        }
-        
         reloadRecipeBasicList()
     }
     
     func reloadRecipeBasicList(){
+        let realm = try! Realm()
+        try! realm.write {
+            for recipe in recipeList!{
+                recipe.updateShortageNum()
+            }
+        }
+
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum))
         }
         
         for i in (0..<recipeBasicList.count).reversed(){
@@ -184,6 +179,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         if order.selectedSegmentIndex == 0{
             recipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
+        }else if order.selectedSegmentIndex == 1{
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    return a.kanaName < b.kanaName
+                } else {
+                    return a.shortageNum < b.shortageNum
+                }
+            })
         }
         
         self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
