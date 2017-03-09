@@ -35,7 +35,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! FileManager.default.copyItem(atPath: seedFilePath!, toPath: realmPath)
         }
         
-        var config = Realm.Configuration(schemaVersion: 1)
+        var config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 2) {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        let recipeName = oldObject!["recipeName"] as! String
+                        newObject!["japaneseDictionaryOrder"] = "\(recipeName.japaneseDictionaryOrder())"
+                    }
+                    migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
+                        let ingredientName = oldObject!["ingredientName"] as! String
+                        newObject!["japaneseDictionaryOrder"] = "\(ingredientName.japaneseDictionaryOrder())"
+                    }
+                }
+        })
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         

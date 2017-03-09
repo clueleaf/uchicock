@@ -26,7 +26,7 @@ class RecoverTableViewController: UITableViewController {
         super.viewDidLoad()
         loadUserRecipe()
         
-        var config = Realm.Configuration(schemaVersion: 1)
+        var config = Realm.Configuration(schemaVersion: 2)
         config.fileURL = Bundle.main.url(forResource: "default", withExtension: "realm")
         config.readOnly = true
         Realm.Configuration.defaultConfiguration = config
@@ -136,7 +136,7 @@ class RecoverTableViewController: UITableViewController {
             }
         }
         
-        var config = Realm.Configuration(schemaVersion: 1)
+        var config = Realm.Configuration(schemaVersion: 2)
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
@@ -350,7 +350,7 @@ class RecoverTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false {
-            var config = Realm.Configuration(schemaVersion: 1)
+            var config = Realm.Configuration(schemaVersion: 2)
             config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
             Realm.Configuration.defaultConfiguration = config
             
@@ -368,7 +368,7 @@ class RecoverTableViewController: UITableViewController {
             }
             
             if recoverCount == 0{
-                var config = Realm.Configuration(schemaVersion: 1)
+                var config = Realm.Configuration(schemaVersion: 2)
                 config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
                 Realm.Configuration.defaultConfiguration = config
                 self.dismiss(animated: true, completion: nil)

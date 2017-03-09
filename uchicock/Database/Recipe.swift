@@ -17,6 +17,7 @@ class Recipe: Object {
     dynamic var memo = ""
     dynamic var imageData: NSData? = nil
     dynamic var shortageNum = 0
+    dynamic var japaneseDictionaryOrder = ""
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
