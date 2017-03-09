@@ -145,17 +145,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reloadRecipeList(){
         let realm = try! Realm()
-        switch favoriteSelect.selectedSegmentIndex{
-        case 0:
-            recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-        case 1:
-            recipeList = realm.objects(Recipe.self).filter("favorites > 1").sorted(byKeyPath: "recipeName")
-        case 2:
-            recipeList = realm.objects(Recipe.self).filter("favorites == 3").sorted(byKeyPath: "recipeName")
-        default:
-            recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-        }
-        
+        recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
         reloadRecipeBasicList()
     }
     
@@ -169,7 +159,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites))
         }
         
         for i in (0..<recipeBasicList.count).reversed(){
@@ -177,6 +167,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.remove(at: i)
             }
         }
+        
+        for i in (0..<recipeBasicList.count).reversed(){
+            switch favoriteSelect.selectedSegmentIndex{
+            case 0:
+                break
+            case 1:
+                if recipeBasicList[i].favorites < 2 {
+                    recipeBasicList.remove(at: i)
+                }
+            case 2:
+                if recipeBasicList[i].favorites < 3 {
+                    recipeBasicList.remove(at: i)
+                }
+            default:
+                break
+            }
+        }
+
         if order.selectedSegmentIndex == 0{
             recipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
         }else if order.selectedSegmentIndex == 1{
@@ -330,12 +338,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - IBAction
     @IBAction func favoriteStateTapped(_ sender: UISegmentedControl) {
-        reloadRecipeList()
+        reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
-        reloadRecipeList()
+        reloadRecipeBasicList()
         tableView.reloadData()
     }
     

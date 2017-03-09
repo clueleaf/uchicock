@@ -13,5 +13,6 @@ struct RecipeBasic{
         return name.katakana().lowercased()
     }
     var shortageNum : Int
+    var favorites: Int
 }
 
