@@ -75,7 +75,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                         }
                     }
                     if newPhotoFlag && recipe.imageData != nil{
-                        self.tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites))
+                        self.tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
                     }
                 }
                 self.recipeBasicList = self.tempRecipeBasicList
@@ -118,10 +118,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
             if recipe.imageData != nil{
-                tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites))
+                tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
             }
         }
-        tempRecipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
+        tempRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
     }
     
     func refresh(){

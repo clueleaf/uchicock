@@ -13,5 +13,6 @@ struct IngredientRecipeBasic{
         return recipeName.katakana().lowercased()
     }
     var shortageNum : Int
+    var japaneseDictionaryOrder : String
 }
 

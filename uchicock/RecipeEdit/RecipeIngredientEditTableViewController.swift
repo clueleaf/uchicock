@@ -130,7 +130,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.removeAll()
             
             for ingredient in ingredientList! {
-                suggestList.append(IngredientName(name: ingredient.ingredientName))
+                suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
             }
 
             for i in (0..<suggestList.count).reversed() {
@@ -139,7 +139,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 }
             }
             
-            suggestList.sort(by: { $0.kanaName < $1.kanaName })
+            suggestList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
             suggestTableView.reloadData()
         }
     }
@@ -148,7 +148,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            suggestList.append(IngredientName(name: ingredient.ingredientName))
+            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
         }
         
         for i in (0..<suggestList.count).reversed() {
@@ -157,7 +157,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
         }
         
-        suggestList.sort(by: { $0.kanaName < $1.kanaName })
+        suggestList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
         suggestTableView.reloadData()
     }
     

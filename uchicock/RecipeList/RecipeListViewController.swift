@@ -159,7 +159,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
         }
         
         for i in (0..<recipeBasicList.count).reversed(){
@@ -186,11 +186,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         if order.selectedSegmentIndex == 0{
-            recipeBasicList.sort(by: { $0.kanaName < $1.kanaName })
+            recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
         }else if order.selectedSegmentIndex == 1{
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.kanaName < b.kanaName
+                    return a.japaneseDictionaryOrder < b.japaneseDictionaryOrder
                 } else {
                     return a.shortageNum < b.shortageNum
                 }

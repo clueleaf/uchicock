@@ -127,19 +127,19 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum))
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder))
         }
         
         if order.selectedSegmentIndex == 1{
             ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.recipeKanaName < b.recipeKanaName
+                    return a.japaneseDictionaryOrder < b.japaneseDictionaryOrder
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
             }
         }else{
-            ingredientRecipeBasicList.sort(by: { $0.recipeKanaName < $1.recipeKanaName })
+            ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
         }
     }
     

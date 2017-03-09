@@ -13,5 +13,6 @@ struct IngredientBasic{
         return name.katakana().lowercased()
     }
     var stockFlag : Bool
+    var japaneseDictionaryOrder : String
 }
 

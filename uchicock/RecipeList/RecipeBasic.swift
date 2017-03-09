@@ -14,5 +14,6 @@ struct RecipeBasic{
     }
     var shortageNum : Int
     var favorites: Int
+    var japaneseDictionaryOrder : String
 }
 

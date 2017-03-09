@@ -115,7 +115,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
         }
         
         for i in (0..<ingredientBasicList.count).reversed(){
@@ -141,7 +141,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
-        ingredientBasicList.sort(by: { $0.kanaName < $1.kanaName })
+        ingredientBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
         
         self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
     }

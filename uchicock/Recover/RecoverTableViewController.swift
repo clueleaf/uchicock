@@ -78,15 +78,15 @@ class RecoverTableViewController: UITableViewController {
                 }
             }
 
-            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false)
+            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false, japaneseDictionaryOrder: sr.japaneseDictionaryOrder)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.kanaName < $1.kanaName })
-        unrecoverableSampleRecipeList.sort(by: { $0.kanaName < $1.kanaName })
+        recoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        unrecoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
     }
     
     func setNavigationTitle(){
@@ -167,6 +167,7 @@ class RecoverTableViewController: UITableViewController {
             recipe.favorites = favorites
             recipe.memo = memo
             recipe.method = method
+            recipe.japaneseDictionaryOrder = recipeName.japaneseDictionaryOrder()
             realm.add(recipe)
         }
     }
@@ -179,6 +180,7 @@ class RecoverTableViewController: UITableViewController {
             ingredient.ingredientName = ingredientName
             ingredient.stockFlag = stockFlag
             ingredient.memo = memo
+            ingredient.japaneseDictionaryOrder = ingredientName.japaneseDictionaryOrder()
             realm.add(ingredient)
         }
     }

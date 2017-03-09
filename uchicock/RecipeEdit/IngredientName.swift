@@ -11,5 +11,6 @@ struct IngredientName{
     var kanaName : String {
         return name.katakana().lowercased()
     }
+    var japaneseDictionaryOrder : String
 }
 
