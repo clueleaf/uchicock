@@ -342,6 +342,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
+                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
                     ingredient.stockFlag = false
                     ingredient.memo = ""
                     try! realm.write {
