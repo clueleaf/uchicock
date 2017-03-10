@@ -96,7 +96,6 @@ class RecipeDetailTableViewController: UITableViewController{
                 openInSafari.backgroundColor = Style.badgeDisableBackgroundColor
             }
             
-            tableView.tableHeaderView = nil
             noPhotoFlag = false
             if let image = recipe.imageData{
                 photo.image = UIImage(data: image as Data)
@@ -111,12 +110,13 @@ class RecipeDetailTableViewController: UITableViewController{
                     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
                     self.view.bringSubview(toFront: photoBackground)
                 }else{
+                    tableView.tableHeaderView = nil
                     noPhotoFlag = true
                     photoBackground.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0)
                     photoHeight = 0.0
-                    
                 }
             }else{
+                tableView.tableHeaderView = nil
                 noPhotoFlag = true
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
