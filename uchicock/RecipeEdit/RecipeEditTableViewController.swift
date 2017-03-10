@@ -221,7 +221,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if section == 1 {
             return 30
         }else {
-         return 0
+            return 0
         }
     }
     
@@ -316,13 +316,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
                 if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
-                    cell.option.backgroundColor = UIColor.clear
                     cell.option.layer.backgroundColor = UIColor.clear.cgColor
                 }else{
                     cell.option.text = "オプション"
-                    cell.option.backgroundColor = UIColor.clear
                     cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
                 }
+                cell.option.backgroundColor = UIColor.clear
                 cell.option.textColor = Style.labelTextColorOnDisableBadge
                 cell.option.layer.cornerRadius = 4
                 cell.option.clipsToBounds = true

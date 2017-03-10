@@ -89,9 +89,6 @@ class RecoverPreviewTableViewController: UITableViewController {
         return 0
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 2
@@ -130,7 +127,7 @@ class RecoverPreviewTableViewController: UITableViewController {
                 cell.option.text = "オプション"
                 cell.option.backgroundColor = Style.badgeDisableBackgroundColor
             }
-            cell.option.textColor = Style.labelTextColor
+            cell.option.textColor = Style.labelTextColorOnDisableBadge
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.center

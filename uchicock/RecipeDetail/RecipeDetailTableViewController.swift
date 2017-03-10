@@ -371,13 +371,12 @@ class RecipeDetailTableViewController: UITableViewController{
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
-                cell.option.backgroundColor = UIColor.clear
                 cell.option.layer.backgroundColor = UIColor.clear.cgColor
             }else{
                 cell.option.text = "オプション"
-                cell.option.backgroundColor = UIColor.clear
                 cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
             }
+            cell.option.backgroundColor = UIColor.clear
             cell.option.textColor = Style.labelTextColorOnDisableBadge
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
@@ -386,18 +385,17 @@ class RecipeDetailTableViewController: UITableViewController{
             if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
                 cell.stock.text = "在庫あり"
                 cell.stock.textColor = Style.labelTextColorOnBadge
-                cell.stock.backgroundColor = UIColor.clear
                 cell.stock.layer.backgroundColor = Style.secondaryColor.cgColor
                 cell.ingredientName.textColor = Style.labelTextColor
                 cell.amount.textColor = Style.labelTextColor
             }else{
                 cell.stock.text = "在庫なし"
                 cell.stock.textColor = Style.labelTextColorOnDisableBadge
-                cell.stock.backgroundColor = UIColor.clear
                 cell.stock.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
                 cell.ingredientName.textColor = Style.labelTextColorLight
                 cell.amount.textColor = Style.labelTextColorLight
             }
+            cell.stock.backgroundColor = UIColor.clear
             cell.stock.layer.cornerRadius = 4
             cell.stock.clipsToBounds = true
             cell.stock.textAlignment = NSTextAlignment.center

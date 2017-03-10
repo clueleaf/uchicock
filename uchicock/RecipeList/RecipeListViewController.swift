@@ -146,17 +146,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-        reloadRecipeBasicList()
-    }
-    
-    func reloadRecipeBasicList(){
-        let realm = try! Realm()
         try! realm.write {
             for recipe in recipeList!{
                 recipe.updateShortageNum()
             }
         }
-
+        reloadRecipeBasicList()
+    }
+    
+    func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
@@ -170,8 +168,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         for i in (0..<recipeBasicList.count).reversed(){
             switch favoriteSelect.selectedSegmentIndex{
-            case 0:
-                break
             case 1:
                 if recipeBasicList[i].favorites < 2 {
                     recipeBasicList.remove(at: i)
@@ -318,9 +314,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{

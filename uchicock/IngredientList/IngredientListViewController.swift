@@ -126,8 +126,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         for i in (0..<ingredientBasicList.count).reversed(){
             switch stockState.selectedSegmentIndex{
-            case 0:
-                break
             case 1:
                 if ingredientBasicList[i].stockFlag == false{
                     ingredientBasicList.remove(at: i)
@@ -289,9 +287,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

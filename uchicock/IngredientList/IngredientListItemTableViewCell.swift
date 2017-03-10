@@ -26,7 +26,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.backgroundColor = UIColor.clear
                 recipeNum.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-                recipeNum.textColor = Style.labelTextColor
+                recipeNum.textColor = Style.labelTextColorOnDisableBadge
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.backgroundColor = UIColor.clear

@@ -9,7 +9,5 @@
 import UIKit
 
 class AlbumCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var photo: UIImageView!
-
 }

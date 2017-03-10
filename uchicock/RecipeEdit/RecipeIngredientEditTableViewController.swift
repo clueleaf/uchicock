@@ -127,24 +127,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if textField.tag == 0{
             isTypingName = true
             tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
-            suggestList.removeAll()
-            
-            for ingredient in ingredientList! {
-                suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
-            }
-
-            for i in (0..<suggestList.count).reversed() {
-                if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
-                    suggestList.remove(at: i)
-                }
-            }
-            
-            suggestList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
-            suggestTableView.reloadData()
+            reloadSuggestList()
         }
     }
     
     func textFieldDidChange(_ notification: Notification){
+        reloadSuggestList()
+    }
+    
+    func reloadSuggestList(){
         suggestList.removeAll()
         
         for ingredient in ingredientList! {

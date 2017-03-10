@@ -28,7 +28,7 @@ class RecoverPreviewIngredientTableViewCell: UITableViewCell {
         option = UILabel(frame: CGRect(x: 5, y: 35, width: 50, height: 21))
         option.text = ""
         option.font = UIFont.systemFont(ofSize: 10)
-        option.textColor = Style.labelTextColor
+        option.textColor = Style.labelTextColorOnDisableBadge
         self.addSubview(option)
         
         amount = UILabel(frame: CGRect(x: 60, y: 35, width: width - 100, height: 21))
@@ -45,13 +45,10 @@ class RecoverPreviewIngredientTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
