@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let recipe = realm.objects(Recipe.self).filter("recipeName == %@", "ハバナピーチ").first!
                     try! realm.write{
                         recipe.recipeName = "ハバナビーチ"
+                        recipe.japaneseDictionaryOrder = "ハバナビーチ".japaneseDictionaryOrder()
                     }
                 }
             }
