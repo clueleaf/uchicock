@@ -36,19 +36,17 @@ extension String {
     }
     
     func japaneseDictionaryOrder() -> String{
-        var katakana = ""
-        for c in unicodeScalars {
-            if c.value >= 0x3041 && c.value <= 0x3096 {
-                if let u = UnicodeScalar(c.value+96){
-                    katakana += "\(u)"
-                }
-            } else {
-                katakana += "\(c)"
+        var katakana = self.katakana()
+        var result = ""
+        var addstr = ""
+        
+        let addResult = { (addToResult: String, addToAddstr: UInt32) in
+            result.append(addToResult)
+            if let us = UnicodeScalar(addToAddstr){
+                addstr += "\(us)"
             }
         }
         
-        var result = ""
-        var addstr = ""
         for i in 0..<katakana.characters.count{
             let index = katakana.index(katakana.startIndex, offsetBy: i)
             switch katakana[index]{
@@ -57,237 +55,64 @@ extension String {
                     let beforeIndex = katakana.index(katakana.startIndex, offsetBy: i-1)
                     switch katakana[beforeIndex]{
                     case "ァ", "ア", "カ", "ガ", "サ", "ザ", "タ", "ダ", "ナ", "ハ", "バ", "パ", "マ", "ヤ", "ャ", "ラ", "ワ", "ヮ":
-                        result.append("ア")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("ア",0x2FFC)
                     case "ィ", "イ", "キ", "ギ", "シ", "ジ", "チ", "ヂ", "ニ", "ヒ", "ビ", "ピ", "ミ", "リ", "ヰ":
-                        result.append("イ")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("イ",0x2FFC)
                     case "ゥ", "ウ", "ヴ", "ク", "グ", "ス", "ズ", "ツ", "ヅ", "ヌ", "フ", "ブ", "プ", "ム", "ユ", "ュ", "ル":
-                        result.append("ウ")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("ウ",0x2FFC)
                     case "ェ", "エ", "ケ", "ゲ", "セ", "ゼ", "テ", "デ", "ネ", "ヘ", "ベ", "ペ", "メ", "レ", "ヱ":
-                        result.append("エ")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("エ",0x2FFC)
                     case "ォ", "オ", "コ", "ゴ", "ソ", "ゾ", "ト", "ド", "ノ", "ホ", "ボ", "ポ", "モ", "ヨ", "ョ", "ロ", "ヲ":
-                        result.append("オ")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("オ",0x2FFC)
                     case "ン":
-                        result.append("ン")
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult("ン",0x2FFC)
                     default:
-                        result.append(katakana[index])
-                        if let a = UnicodeScalar(0x2FFC){
-                            addstr += "\(a)"
-                        }
+                        addResult(String(katakana[index]),0x2FFC)
                     }
                 }else{
-                    result.append(katakana[index])
-                    if let a = UnicodeScalar(0x2FFC){
-                        addstr += "\(a)"
-                    }
+                    addResult(String(katakana[index]),0x2FFC)
                 }
-            case "ァ":
-                result.append("ア")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ィ":
-                result.append("イ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ゥ":
-                result.append("ウ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ェ":
-                result.append("エ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ォ":
-                result.append("オ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ガ":
-                result.append("カ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ギ":
-                result.append("キ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "グ":
-                result.append("ク")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ゲ":
-                result.append("ケ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ゴ":
-                result.append("コ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ザ":
-                result.append("サ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ジ":
-                result.append("シ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ズ":
-                result.append("ス")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ゼ":
-                result.append("セ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ゾ":
-                result.append("ソ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ダ":
-                result.append("タ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ヂ":
-                result.append("チ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ヅ":
-                result.append("ツ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ッ":
-                result.append("ツ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "デ":
-                result.append("テ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ド":
-                result.append("ト")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "バ":
-                result.append("ハ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "パ":
-                result.append("ハ")
-                if let a = UnicodeScalar(0x2FFE){
-                    addstr += "\(a)"
-                }
-            case "ビ":
-                result.append("ヒ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ピ":
-                result.append("ヒ")
-                if let a = UnicodeScalar(0x2FFE){
-                    addstr += "\(a)"
-                }
-            case "ブ":
-                result.append("フ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "プ":
-                result.append("フ")
-                if let a = UnicodeScalar(0x2FFE){
-                    addstr += "\(a)"
-                }
-            case "ベ":
-                result.append("ヘ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ペ":
-                result.append("ヘ")
-                if let a = UnicodeScalar(0x2FFE){
-                    addstr += "\(a)"
-                }
-            case "ボ":
-                result.append("ホ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            case "ポ":
-                result.append("ホ")
-                if let a = UnicodeScalar(0x2FFE){
-                    addstr += "\(a)"
-                }
-            case "ャ":
-                result.append("ヤ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ュ":
-                result.append("ユ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ョ":
-                result.append("ヨ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ヮ":
-                result.append("ワ")
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
-            case "ヴ":
-                result.append("ウ")
-                if let a = UnicodeScalar(0x2FFD){
-                    addstr += "\(a)"
-                }
-            default:
-                result.append(katakana[index])
-                if let a = UnicodeScalar(0x2FFC){
-                    addstr += "\(a)"
-                }
+            case "ァ": addResult("ア",0x2FFC)
+            case "ィ": addResult("イ",0x2FFC)
+            case "ゥ": addResult("ウ",0x2FFC)
+            case "ェ": addResult("エ",0x2FFC)
+            case "ォ": addResult("オ",0x2FFC)
+            case "ガ": addResult("カ",0x2FFD)
+            case "ギ": addResult("キ",0x2FFD)
+            case "グ": addResult("ク",0x2FFD)
+            case "ゲ": addResult("ケ",0x2FFD)
+            case "ゴ": addResult("コ",0x2FFD)
+            case "ザ": addResult("サ",0x2FFD)
+            case "ジ": addResult("シ",0x2FFD)
+            case "ズ": addResult("ス",0x2FFD)
+            case "ゼ": addResult("セ",0x2FFD)
+            case "ゾ": addResult("ソ",0x2FFD)
+            case "ダ": addResult("タ",0x2FFD)
+            case "ヂ": addResult("チ",0x2FFD)
+            case "ヅ": addResult("ツ",0x2FFD)
+            case "ッ": addResult("ツ",0x2FFC)
+            case "デ": addResult("テ",0x2FFD)
+            case "ド": addResult("ト",0x2FFD)
+            case "バ": addResult("ハ",0x2FFD)
+            case "パ": addResult("ハ",0x2FFE)
+            case "ビ": addResult("ヒ",0x2FFD)
+            case "ピ": addResult("ヒ",0x2FFE)
+            case "ブ": addResult("フ",0x2FFD)
+            case "プ": addResult("フ",0x2FFE)
+            case "ベ": addResult("ヘ",0x2FFD)
+            case "ペ": addResult("ヘ",0x2FFE)
+            case "ボ": addResult("ホ",0x2FFD)
+            case "ポ": addResult("ホ",0x2FFE)
+            case "ャ": addResult("ヤ",0x2FFC)
+            case "ュ": addResult("ユ",0x2FFC)
+            case "ョ": addResult("ヨ",0x2FFC)
+            case "ヮ": addResult("ワ",0x2FFC)
+            case "ヴ": addResult("ウ",0x2FFD)
+            default: addResult(String(katakana[index]),0x2FFC)
             }
         }
         
-        var finalChar = result
-        finalChar.append(addstr)
-        return finalChar
+        result.append(addstr)
+        return result
     }
 }
