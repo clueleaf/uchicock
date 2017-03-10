@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD0-8G-v9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1658" y="-303"/>
+            <point key="canvasLocation" x="-1708" y="-418"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -34,11 +34,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rev-jS-7mA">
-                                <rect key="frame" x="0.0" y="116" width="375" height="487"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="438"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListItem" rowHeight="70" id="HXx-Bk-ylr" customClass="RecipeListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -177,7 +177,7 @@
                             <constraint firstAttribute="trailing" secondItem="LdP-YB-YF7" secondAttribute="trailing" id="pSF-3a-SSK"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
                         <barButtonItem key="backBarButtonItem" title="レシピ" id="u8H-uo-o5b"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="59t-ya-4Ew">
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1925" y="345"/>
+            <point key="canvasLocation" x="-1959" y="345"/>
         </scene>
         <!--Ingredient List View Controller-->
         <scene sceneID="j5i-3t-PGe">
@@ -209,11 +209,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0sX-OP-C4Q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Pb-wn-CyZ">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-GC-4Ax">
-                                <rect key="frame" x="0.0" y="80" width="375" height="523"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="474"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientListItem" rowHeight="50" id="P9w-m9-Hhq" customClass="IngredientListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -334,7 +334,7 @@
                             <constraint firstItem="jYr-aJ-DQL" firstAttribute="top" secondItem="Ju1-KR-IKb" secondAttribute="bottom" id="xg6-G3-hZk"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="材料" id="bt3-Io-nFd">
                         <barButtonItem key="backBarButtonItem" title="材料" id="8r7-fW-qdR"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gUd-Cu-gPd">
@@ -354,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1914" y="1786"/>
+            <point key="canvasLocation" x="-1959" y="1785"/>
         </scene>
         <!--材料編集-->
         <scene sceneID="azX-tq-QSA">
@@ -629,7 +629,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="3233"/>
+            <point key="canvasLocation" x="-346" y="3340"/>
         </scene>
         <!--Recover Preview Table View Controller-->
         <scene sceneID="wG4-xa-fQy">
@@ -732,7 +732,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dua-OH-xde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="3234"/>
+            <point key="canvasLocation" x="452" y="3340"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dBC-Hi-rGs">
@@ -748,7 +748,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0M-38-Cbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1196" y="3233"/>
+            <point key="canvasLocation" x="-1162" y="3340"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -788,8 +788,8 @@
         <scene sceneID="vuN-wv-OyR">
             <objects>
                 <collectionViewController id="N5u-Pe-SYk" customClass="AlbumCollectionViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Zq0-6h-ohl">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Zq0-6h-ohl">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="1eP-oE-T2A">
                             <size key="itemSize" width="100" height="100"/>
@@ -826,6 +826,7 @@
                             <outlet property="delegate" destination="N5u-Pe-SYk" id="fB5-AC-8sb"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
                         <barButtonItem key="backBarButtonItem" title="アルバム" id="Wm3-Ba-Mrh"/>
                         <rightBarButtonItems>
@@ -874,7 +875,7 @@
             <objects>
                 <tableViewController id="MRW-oL-Tgz" customClass="SettingsTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="65P-E4-dtI">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -978,6 +979,7 @@
                             <outlet property="delegate" destination="MRW-oL-Tgz" id="xDH-Oz-aK3"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="いろいろ" id="GuV-CN-PIj"/>
                     <connections>
                         <outlet property="changeThemeImage" destination="tf6-Mp-Jwo" id="cuh-lW-lhD"/>
@@ -992,7 +994,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6Q-pA-Y2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994.4000000000001" y="3340.4797601199402"/>
+            <point key="canvasLocation" x="-1959" y="3340"/>
         </scene>
         <!--テーマカラー-->
         <scene sceneID="1z1-hF-10A">
@@ -1081,7 +1083,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIA-hL-uBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="3942"/>
+            <point key="canvasLocation" x="-346" y="4106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OIr-ta-HDK">
@@ -1097,7 +1099,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QY5-3w-ov6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1196" y="3943"/>
+            <point key="canvasLocation" x="-1161" y="4106"/>
         </scene>
         <!--いろいろ-->
         <scene sceneID="Pax-UG-754">
@@ -1114,7 +1116,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ab-Z1-yRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2902" y="3341"/>
+            <point key="canvasLocation" x="-2722" y="3340"/>
         </scene>
         <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
@@ -1131,14 +1133,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWC-9n-fy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2764" y="1786"/>
+            <point key="canvasLocation" x="-2722" y="1785"/>
         </scene>
         <!--Ingredient Detail Table View Controller-->
         <scene sceneID="oPV-WD-oJT">
             <objects>
                 <tableViewController id="yKB-1k-jl3" userLabel="Ingredient Detail Table View Controller" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sp4-ci-kt2">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -1349,6 +1351,7 @@
                             <outlet property="delegate" destination="yKB-1k-jl3" id="WO5-y6-dxe"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Title" id="ucA-U4-qFS">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="edit" id="bif-St-IPk">
@@ -1393,7 +1396,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yal-jD-S7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="784"/>
+            <point key="canvasLocation" x="-346" y="777"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bC4-FZ-qwE">
@@ -1562,7 +1565,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-893" y="2507"/>
+            <point key="canvasLocation" x="-825" y="2560"/>
         </scene>
         <!--Recipe Edit Table View Controller-->
         <scene sceneID="fvV-gX-y9T">
@@ -2272,14 +2275,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jl0-pw-mgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="1793"/>
+            <point key="canvasLocation" x="694" y="1247"/>
         </scene>
         <!--Recipe Detail Table View Controller-->
         <scene sceneID="eSX-CY-gLe">
             <objects>
                 <tableViewController id="3cq-Fg-8AL" userLabel="Recipe Detail Table View Controller" customClass="RecipeDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CtV-9j-wVj">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="BY5-gV-soD">
@@ -2511,6 +2514,7 @@
                             <outlet property="delegate" destination="3cq-Fg-8AL" id="ODm-5j-ft0"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Title" id="Cae-A6-fF4">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="edit" id="5XA-Bc-Qtc">
@@ -2563,9 +2567,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rrh-vr-JPb"/>
-        <segue reference="AL8-XH-VAL"/>
-        <segue reference="SNB-c3-dZb"/>
+        <segue reference="Ee4-db-L8m"/>
         <segue reference="BF7-gd-8JQ"/>
+        <segue reference="WL9-sL-eOj"/>
         <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>
