@@ -39,7 +39,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         favorites.textColor = Style.secondaryColor
         self.addSubview(favorites)
         
-        shortage = UILabel(frame: CGRect(x: 77, y: 39, width: width - 105, height: 21))
+        shortage = UILabel(frame: CGRect(x: 77, y: 34, width: width - 105, height: 21))
         shortage.text = ""
         shortage.font = UIFont.systemFont(ofSize: 12)
         shortage.lineBreakMode = .byTruncatingMiddle
