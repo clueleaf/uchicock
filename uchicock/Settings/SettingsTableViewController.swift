@@ -8,6 +8,7 @@
 
 import UIKit
 import MYBlurIntroductionView
+import ChameleonFramework
 
 class SettingsTableViewController: UITableViewController, MYIntroductionDelegate {
 
@@ -68,6 +69,8 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")
         introductionView.rightSkipButton.backgroundColor = UIColor.clear
+        introductionView.pageControl.currentPageIndicatorTintColor = FlatYellow()
+        introductionView.pageControl.pageIndicatorTintColor = FlatOrange()
         introductionView.delegate = self
         introductionView.buildIntroduction(withPanels: [introductionPanel0!,introductionPanel1!,introductionPanel2!,introductionPanel3!])
         
