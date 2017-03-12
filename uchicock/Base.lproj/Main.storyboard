@@ -446,11 +446,58 @@
                     <navigationItem key="navigationItem" title="逆引き" id="HyY-hb-zYQ"/>
                     <connections>
                         <outlet property="ingredientTableView" destination="W2i-5C-wrs" id="RxS-Se-um0"/>
+                        <segue destination="9pV-V1-PBI" kind="presentation" identifier="PushSelectIngredient" id="CE3-pP-hcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWI-mk-v0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1871" y="3233"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5kO-zz-3Cs">
+            <objects>
+                <navigationController id="9pV-V1-PBI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bJH-sF-9FS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="85V-Za-U46" kind="relationship" relationship="rootViewController" id="xlw-B7-xSp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RpG-R0-ia5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1074" y="3233"/>
+        </scene>
+        <!--材料選択-->
+        <scene sceneID="HQc-Sv-P5o">
+            <objects>
+                <viewController id="85V-Za-U46" customClass="ReverseLookupSelectIngredientViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jB7-SP-M6P"/>
+                        <viewControllerLayoutGuide type="bottom" id="fbP-Fr-vui"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8QT-rn-0o5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="材料選択" id="Xd0-WO-7Vf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Kdy-gQ-pmz">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="85V-Za-U46" id="a5Q-Xs-T3s"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="BKB-9I-owG">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="85V-Za-U46" id="bWr-wo-rmA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxA-1n-hB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-236" y="3240"/>
         </scene>
         <!--サンプルレシピ復元-->
         <scene sceneID="7Cu-5Z-UEE">

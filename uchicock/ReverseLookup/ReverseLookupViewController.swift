@@ -26,12 +26,20 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         firstIngredientLabel = ""
         secondIngredientLabel = ""
         thirdIngredientLabel = ""
-        
-        ingredientTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let selectedPathForIngredientTableView = ingredientTableView.indexPathForSelectedRow
+        
+        ingredientTableView.reloadData()
+
+        if let path = selectedPathForIngredientTableView{
+            ingredientTableView.selectRow(at: path, animated: false, scrollPosition: .none)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.ingredientTableView.deselectRow(at: path, animated: true)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +74,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 0{
-//            performSegue(withIdentifier: "PushSelectIngredient", sender: indexPath)
+            performSegue(withIdentifier: "PushSelectIngredient", sender: indexPath)
         }else if tableView.tag == 1{
 //            performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
         }
@@ -118,14 +126,14 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         return UITableViewCell()
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PushSelectIngredient" {
+            let enc = segue.destination as! UINavigationController
+            let evc = enc.visibleViewController as! ReverseLookupSelectIngredientViewController
+            if let indexPath = sender as? IndexPath{
+                evc.ingredientNumber = indexPath.row
+            }
+        }
     }
-    */
-
 }
