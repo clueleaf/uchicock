@@ -130,7 +130,7 @@
                                         </constraints>
                                         <segments>
                                             <segment title="すべて"/>
-                                            <segment title="★★☆以上"/>
+                                            <segment title="★★以上"/>
                                             <segment title="★★★のみ"/>
                                         </segments>
                                         <connections>
@@ -788,7 +788,7 @@
         <scene sceneID="vuN-wv-OyR">
             <objects>
                 <collectionViewController id="N5u-Pe-SYk" customClass="AlbumCollectionViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Zq0-6h-ohl">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Zq0-6h-ohl">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="1eP-oE-T2A">
@@ -2566,10 +2566,10 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rrh-vr-JPb"/>
-        <segue reference="Ee4-db-L8m"/>
         <segue reference="BF7-gd-8JQ"/>
-        <segue reference="WL9-sL-eOj"/>
+        <segue reference="SNB-c3-dZb"/>
         <segue reference="7e9-IZ-O1r"/>
+        <segue reference="Ee4-db-L8m"/>
+        <segue reference="rrh-vr-JPb"/>
     </inferredMetricsTieBreakers>
 </document>

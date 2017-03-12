@@ -279,14 +279,15 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.recipeName.text = recipeIngredient.recipe.recipeName
                     switch recipeIngredient.recipe.favorites{
                     case 1:
-                        cell.favorites.text = "★☆☆"
+                        cell.favorites.text = "★　　"
                     case 2:
-                        cell.favorites.text = "★★☆"
+                        cell.favorites.text = "★★　"
                     case 3:
                         cell.favorites.text = "★★★"
                     default:
-                        cell.favorites.text = "★☆☆"
+                        cell.favorites.text = "★　　"
                     }
+                    cell.favorites.textAlignment = .left
                     cell.favorites.textColor = Style.secondaryColor
                     
                     var shortageNum = 0

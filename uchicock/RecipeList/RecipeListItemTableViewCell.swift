@@ -33,14 +33,15 @@ class RecipeListItemTableViewCell: UITableViewCell {
 
             switch recipe.favorites{
             case 1:
-                favorites.text = "★☆☆"
+                favorites.text = "★　　"
             case 2:
-                favorites.text = "★★☆"
+                favorites.text = "★★　"
             case 3:
                 favorites.text = "★★★"
             default:
-                favorites.text = "★☆☆"
+                favorites.text = "★　　"
             }
+            favorites.textAlignment = .left
             favorites.textColor = Style.secondaryColor
             
             var shortageNum = 0
