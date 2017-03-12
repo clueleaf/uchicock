@@ -41,6 +41,7 @@
 		9B93B31B1E75437C0046687A /* ReverseLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */; };
 		9B93B31F1E754C2C0046687A /* ReverseLookupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */; };
 		9B93B3211E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */; };
+		9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
@@ -118,6 +119,7 @@
 		9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupViewController.swift; path = ReverseLookup/ReverseLookupViewController.swift; sourceTree = "<group>"; };
 		9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewCell.swift; path = ReverseLookup/ReverseLookupTableViewCell.swift; sourceTree = "<group>"; };
 		9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientViewController.swift; path = ReverseLookup/ReverseLookupSelectIngredientViewController.swift; sourceTree = "<group>"; };
+		9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientTableViewCell.swift; path = ReverseLookup/ReverseLookupSelectIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */,
 				9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */,
 				9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */,
+				9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */,
 			);
 			name = ReverseLookup;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				9BDB393A1CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
 				9B41B2AF1E659EC100EF2CEF /* AlbumNavigationController.swift in Sources */,
+				9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */,
 				9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */,
 				9B93B3211E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift in Sources */,
 				9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */,

@@ -7,40 +7,149 @@
 //
 
 import UIKit
+import RealmSwift
+import ChameleonFramework
 
-class ReverseLookupSelectIngredientViewController: UIViewController, UITextFieldDelegate {
+class ReverseLookupSelectIngredientViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var ingredientContainer: UIView!
     @IBOutlet weak var ingredientNameLabel: UILabel!
-    @IBOutlet weak var ingredientNameTextField: UITextField!
+    @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var suggestTableView: UITableView!
     
     var ingredientNumber: Int?
+    var ingredientList: Results<Ingredient>?
+    var suggestList = Array<IngredientName>()
     
+    let selectedCellBackgroundView = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ingredientNameTextField.delegate = self
-        ingredientNameTextField.becomeFirstResponder()
+        ingredientName.delegate = self
+        
+        let realm = try! Realm()
+        ingredientList = realm.objects(Ingredient.self)
+
+        suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        ingredientNameTextField.becomeFirstResponder()
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
+
+        suggestTableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ingredientName.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        ingredientNameTextField.resignFirstResponder()
+        ingredientName.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        reloadSuggestList()
+    }
+    
+    func textFieldDidChange(_ notification: Notification){
+        reloadSuggestList()
+    }
+    
+    func reloadSuggestList(){
+        suggestList.removeAll()
+        
+        for ingredient in ingredientList! {
+            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, stockFlag: ingredient.stockFlag))
+        }
+        
+        for i in (0..<suggestList.count).reversed() {
+            if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
+                suggestList.remove(at: i)
+            }
+        }
+        
+        suggestList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        suggestTableView.reloadData()
+    }
+    
+    func textWithoutSpace(text: String) -> String{
+        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    // MARK: - UITableView
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+        label.backgroundColor = Style.tableViewHeaderBackgroundColor
+        label.textColor = Style.labelTextColorOnDisableBadge
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.text = "  材料候補"
+        return label
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return suggestList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        ingredientName.text = suggestList[indexPath.row].name
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
+        cell.ingredientName.text = suggestList[indexPath.row].name
+        cell.ingredientName.textColor = Style.labelTextColor
+
+        if suggestList[indexPath.row].stockFlag{
+            cell.stockLabel.text = "在庫あり"
+            cell.stockLabel.textColor = Style.labelTextColorOnBadge
+            cell.stockLabel.layer.backgroundColor = Style.secondaryColor.cgColor
+        }else{
+            cell.stockLabel.text = "在庫なし"
+            cell.stockLabel.textColor = Style.labelTextColorOnDisableBadge
+            cell.stockLabel.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
+        }
+        cell.stockLabel.backgroundColor = UIColor.clear
+        cell.stockLabel.layer.cornerRadius = 4
+        cell.stockLabel.clipsToBounds = true
+        cell.stockLabel.textAlignment = NSTextAlignment.center
+        cell.backgroundColor = Style.basicBackgroundColor
+        cell.selectedBackgroundView = selectedCellBackgroundView
+        return cell
     }
 
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: Any) {
+        // userDefaultsに保存する
         self.dismiss(animated: true, completion: nil)
     }
 

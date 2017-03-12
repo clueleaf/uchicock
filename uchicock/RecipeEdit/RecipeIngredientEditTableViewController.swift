@@ -139,7 +139,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
+            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, stockFlag: ingredient.stockFlag))
         }
         
         for i in (0..<suggestList.count).reversed() {
