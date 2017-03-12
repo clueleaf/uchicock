@@ -372,6 +372,86 @@
             </objects>
             <point key="canvasLocation" x="-1620" y="2560"/>
         </scene>
+        <!--逆引き-->
+        <scene sceneID="Nt4-T2-poq">
+            <objects>
+                <viewController id="a7R-b4-ro5" customClass="ReverseLookupViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SIc-Vu-sZ6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jsz-QS-h3Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sph-O7-ZJT">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-5C-wrs">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="ZQB-Mm-Qdu"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReverseLookupIngredient" rowHeight="50" id="Cqt-dE-utD" customClass="ReverseLookupTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqt-dE-utD" id="mVE-AU-RaY">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC3-Wa-fMk">
+                                                    <rect key="frame" x="8" y="14.5" width="65" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="Uxr-nZ-SiC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMg-Yc-sdd">
+                                                    <rect key="frame" x="81" y="14.5" width="253" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fMg-Yc-sdd" firstAttribute="leading" secondItem="WC3-Wa-fMk" secondAttribute="trailing" constant="8" id="3rs-jv-eZ4"/>
+                                                <constraint firstItem="WC3-Wa-fMk" firstAttribute="centerY" secondItem="mVE-AU-RaY" secondAttribute="centerY" id="Bsp-xd-ldP"/>
+                                                <constraint firstItem="fMg-Yc-sdd" firstAttribute="centerY" secondItem="mVE-AU-RaY" secondAttribute="centerY" id="boc-SR-8tr"/>
+                                                <constraint firstAttribute="trailing" secondItem="fMg-Yc-sdd" secondAttribute="trailing" constant="8" id="g42-XM-Rrh"/>
+                                                <constraint firstItem="WC3-Wa-fMk" firstAttribute="leading" secondItem="mVE-AU-RaY" secondAttribute="leading" constant="8" id="umL-RS-e5M"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ingredientNameLabel" destination="fMg-Yc-sdd" id="bvH-wj-7WW"/>
+                                            <outlet property="ingredientNumberLabel" destination="WC3-Wa-fMk" id="54e-bf-fAF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="a7R-b4-ro5" id="Bug-WQ-aiy"/>
+                                    <outlet property="delegate" destination="a7R-b4-ro5" id="6qX-MD-48B"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W2i-5C-wrs" firstAttribute="leading" secondItem="Sph-O7-ZJT" secondAttribute="leading" id="Pqg-h0-WsV"/>
+                            <constraint firstItem="W2i-5C-wrs" firstAttribute="top" secondItem="Sph-O7-ZJT" secondAttribute="top" id="btq-aR-0Gl"/>
+                            <constraint firstAttribute="trailing" secondItem="W2i-5C-wrs" secondAttribute="trailing" id="y4L-F4-VE9"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="逆引き" id="HyY-hb-zYQ"/>
+                    <connections>
+                        <outlet property="ingredientTableView" destination="W2i-5C-wrs" id="RxS-Se-um0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tWI-mk-v0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1871" y="3233"/>
+        </scene>
         <!--サンプルレシピ復元-->
         <scene sceneID="7Cu-5Z-UEE">
             <objects>
@@ -629,7 +709,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADD-Gt-oak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="3340"/>
+            <point key="canvasLocation" x="-340" y="4018"/>
         </scene>
         <!--Recover Preview Table View Controller-->
         <scene sceneID="wG4-xa-fQy">
@@ -732,7 +812,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dua-OH-xde" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452" y="3340"/>
+            <point key="canvasLocation" x="458" y="4018"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dBC-Hi-rGs">
@@ -748,7 +828,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0M-38-Cbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1162" y="3340"/>
+            <point key="canvasLocation" x="-1156" y="4018"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
@@ -863,12 +943,30 @@
                         <segue destination="KKp-Zy-7zd" kind="relationship" relationship="viewControllers" id="h8i-zf-nRu"/>
                         <segue destination="3Ej-3Z-OyG" kind="relationship" relationship="viewControllers" id="Pdi-Zw-kQO"/>
                         <segue destination="2U6-sC-jhY" kind="relationship" relationship="viewControllers" id="gtb-v7-gkD"/>
+                        <segue destination="vI8-aO-1sO" kind="relationship" relationship="viewControllers" id="2Do-f7-1Vc"/>
                         <segue destination="J7v-Ql-bMF" kind="relationship" relationship="viewControllers" id="fPD-HQ-cqG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leN-k5-xmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3510" y="1047"/>
+            <point key="canvasLocation" x="-4186" y="1906"/>
+        </scene>
+        <!--逆引き-->
+        <scene sceneID="Hpa-Qg-biA">
+            <objects>
+                <navigationController id="vI8-aO-1sO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="逆引き" image="tabbar-reverse-lookup" id="009-ru-rzW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="KGg-ZN-GBX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="a7R-b4-ro5" kind="relationship" relationship="rootViewController" id="1rc-71-qX0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ArP-Z7-XKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2684" y="3233"/>
         </scene>
         <!--いろいろ-->
         <scene sceneID="yiQ-fk-hCI">
@@ -994,7 +1092,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6Q-pA-Y2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1959" y="3340"/>
+            <point key="canvasLocation" x="-1953" y="4018"/>
         </scene>
         <!--テーマカラー-->
         <scene sceneID="1z1-hF-10A">
@@ -1083,7 +1181,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIA-hL-uBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="4106"/>
+            <point key="canvasLocation" x="-340" y="4784"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OIr-ta-HDK">
@@ -1099,7 +1197,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QY5-3w-ov6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1161" y="4106"/>
+            <point key="canvasLocation" x="-1156" y="4784"/>
         </scene>
         <!--いろいろ-->
         <scene sceneID="Pax-UG-754">
@@ -1116,7 +1214,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ab-Z1-yRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2722" y="3340"/>
+            <point key="canvasLocation" x="-2716" y="4018"/>
         </scene>
         <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
@@ -2563,13 +2661,14 @@
         <image name="tabbar-album" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
+        <image name="tabbar-reverse-lookup" width="24" height="24"/>
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BF7-gd-8JQ"/>
-        <segue reference="SNB-c3-dZb"/>
         <segue reference="7e9-IZ-O1r"/>
+        <segue reference="WL9-sL-eOj"/>
         <segue reference="Ee4-db-L8m"/>
+        <segue reference="BF7-gd-8JQ"/>
         <segue reference="rrh-vr-JPb"/>
     </inferredMetricsTieBreakers>
 </document>
