@@ -8,15 +8,25 @@
 
 import UIKit
 
-class ReverseLookupSelectIngredientViewController: UIViewController {
+class ReverseLookupSelectIngredientViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var ingredientContainer: UIView!
+    @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var ingredientNameTextField: UITextField!
+    
     var ingredientNumber: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(ingredientNumber)
-        // Do any additional setup after loading the view.
+        ingredientNameTextField.delegate = self
+        ingredientNameTextField.becomeFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        ingredientNameTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +34,12 @@ class ReverseLookupSelectIngredientViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        ingredientNameTextField.resignFirstResponder()
+        return true
+    }
+
+    // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

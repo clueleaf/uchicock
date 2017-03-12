@@ -22,16 +22,17 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         ingredientTableView.tag = 0
-        // Userdefaultsからロードする
-        firstIngredientLabel = ""
-        secondIngredientLabel = ""
-        thirdIngredientLabel = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let selectedPathForIngredientTableView = ingredientTableView.indexPathForSelectedRow
         
+        // Userdefaultsからロードする
+        firstIngredientLabel = ""
+        secondIngredientLabel = ""
+        thirdIngredientLabel = ""
+
         ingredientTableView.reloadData()
 
         if let path = selectedPathForIngredientTableView{
