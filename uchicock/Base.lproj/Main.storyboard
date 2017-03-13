@@ -395,7 +395,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqt-dE-utD" id="mVE-AU-RaY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC3-Wa-fMk">
@@ -443,7 +443,13 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="逆引き" id="HyY-hb-zYQ"/>
+                    <navigationItem key="navigationItem" title="逆引き" id="HyY-hb-zYQ">
+                        <barButtonItem key="rightBarButtonItem" title="クリア" id="o4q-Sc-BEL">
+                            <connections>
+                                <action selector="clearButtonTapped:" destination="a7R-b4-ro5" id="U3p-cr-ty3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="ingredientTableView" destination="W2i-5C-wrs" id="RxS-Se-um0"/>
                         <segue destination="9pV-V1-PBI" kind="presentation" identifier="PushSelectIngredient" id="CE3-pP-hcd"/>
@@ -522,21 +528,21 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jCa-bv-5r6" id="dZv-xx-Fpk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3N-KW-0Xy">
-                                                    <rect key="frame" x="8" y="4" width="60" height="21"/>
+                                                    <rect key="frame" x="8" y="4" width="50" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="7Ub-cR-4kk"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Obj-0u-wfv"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Obj-0u-wfv"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6I0-dH-2Bd">
-                                                    <rect key="frame" x="76" y="4.5" width="291" height="21"/>
+                                                    <rect key="frame" x="66" y="4.5" width="301" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Ik1-B7-mM7"/>
                                                     </constraints>
@@ -554,8 +560,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ingredientName" destination="6I0-dH-2Bd" id="wlK-wg-0VR"/>
-                                            <outlet property="stockLabel" destination="Y3N-KW-0Xy" id="9jE-Ln-YQm"/>
+                                            <outlet property="ingredientName" destination="6I0-dH-2Bd" id="KX6-Lu-Cwe"/>
+                                            <outlet property="stockLabel" destination="Y3N-KW-0Xy" id="Nw8-zY-hwG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1104,7 +1110,7 @@
             <objects>
                 <navigationController id="vI8-aO-1sO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="逆引き" image="tabbar-reverse-lookup" id="009-ru-rzW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="KGg-ZN-GBX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KGg-ZN-GBX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2813,10 +2819,10 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7e9-IZ-O1r"/>
-        <segue reference="WL9-sL-eOj"/>
+        <segue reference="VoJ-51-RUH"/>
         <segue reference="AL8-XH-VAL"/>
-        <segue reference="rrh-vr-JPb"/>
+        <segue reference="WL9-sL-eOj"/>
         <segue reference="WbW-98-e9q"/>
+        <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>

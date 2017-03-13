@@ -19,7 +19,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     
     var ingredientNumber: Int?
     var ingredientList: Results<Ingredient>?
-    var suggestList = Array<IngredientName>()
+    var suggestList = Array<IngredientBasic>()
     
     let selectedCellBackgroundView = UIView()
 
@@ -32,6 +32,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         ingredientList = realm.objects(Ingredient.self)
 
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
+        reloadSuggestList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +40,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
 
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
-
-        suggestTableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,7 +75,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, stockFlag: ingredient.stockFlag))
+            suggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
         }
         
         for i in (0..<suggestList.count).reversed() {
@@ -126,22 +125,9 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
-        cell.ingredientName.text = suggestList[indexPath.row].name
-        cell.ingredientName.textColor = Style.labelTextColor
-
-        if suggestList[indexPath.row].stockFlag{
-            cell.stockLabel.text = "在庫あり"
-            cell.stockLabel.textColor = Style.labelTextColorOnBadge
-            cell.stockLabel.layer.backgroundColor = Style.secondaryColor.cgColor
-        }else{
-            cell.stockLabel.text = "在庫なし"
-            cell.stockLabel.textColor = Style.labelTextColorOnDisableBadge
-            cell.stockLabel.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-        }
-        cell.stockLabel.backgroundColor = UIColor.clear
-        cell.stockLabel.layer.cornerRadius = 4
-        cell.stockLabel.clipsToBounds = true
-        cell.stockLabel.textAlignment = NSTextAlignment.center
+        let realm = try! Realm()
+        let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.suggestList[indexPath.row].id).first!
+        cell.ingredient = ingredient
         cell.backgroundColor = Style.basicBackgroundColor
         cell.selectedBackgroundView = selectedCellBackgroundView
         return cell

@@ -369,6 +369,7 @@ class RecipeDetailTableViewController: UITableViewController{
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
             cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.option.backgroundColor = UIColor.clear
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
                 cell.option.layer.backgroundColor = UIColor.clear.cgColor
@@ -376,12 +377,12 @@ class RecipeDetailTableViewController: UITableViewController{
                 cell.option.text = "オプション"
                 cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
             }
-            cell.option.backgroundColor = UIColor.clear
             cell.option.textColor = Style.labelTextColorOnDisableBadge
             cell.option.layer.cornerRadius = 4
             cell.option.clipsToBounds = true
             cell.option.textAlignment = NSTextAlignment.center
 
+            cell.stock.backgroundColor = UIColor.clear
             if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
                 cell.stock.text = "在庫あり"
                 cell.stock.textColor = Style.labelTextColorOnBadge
@@ -395,7 +396,6 @@ class RecipeDetailTableViewController: UITableViewController{
                 cell.ingredientName.textColor = Style.labelTextColorLight
                 cell.amount.textColor = Style.labelTextColorLight
             }
-            cell.stock.backgroundColor = UIColor.clear
             cell.stock.layer.cornerRadius = 4
             cell.stock.clipsToBounds = true
             cell.stock.textAlignment = NSTextAlignment.center

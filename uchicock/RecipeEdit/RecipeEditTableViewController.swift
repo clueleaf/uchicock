@@ -314,6 +314,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeEditIngredient", for: indexPath) as! RecipeEditIngredientTableViewCell
                 cell.ingredientName.text = editingRecipeIngredientList[indexPath.row].ingredientName
                 cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
+                cell.option.backgroundColor = UIColor.clear
                 if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
                     cell.option.layer.backgroundColor = UIColor.clear.cgColor
@@ -321,7 +322,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     cell.option.text = "オプション"
                     cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
                 }
-                cell.option.backgroundColor = UIColor.clear
                 cell.option.textColor = Style.labelTextColorOnDisableBadge
                 cell.option.layer.cornerRadius = 4
                 cell.option.clipsToBounds = true

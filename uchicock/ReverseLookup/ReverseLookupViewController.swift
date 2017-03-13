@@ -126,6 +126,10 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return UITableViewCell()
     }
+    
+    // MARK: - IBAction
+    @IBAction func clearButtonTapped(_ sender: Any) {
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -12,7 +12,28 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var ingredientName: UILabel!
-    
+
+    var ingredient: Ingredient = Ingredient(){
+        didSet{
+            ingredientName.text = ingredient.ingredientName
+            ingredientName.textColor = Style.labelTextColor
+            
+            stockLabel.backgroundColor = UIColor.clear
+            if ingredient.stockFlag{
+                stockLabel.text = "在庫あり"
+                stockLabel.textColor = Style.labelTextColorOnBadge
+                stockLabel.layer.backgroundColor = Style.secondaryColor.cgColor
+            }else{
+                stockLabel.text = "在庫なし"
+                stockLabel.textColor = Style.labelTextColorOnDisableBadge
+                stockLabel.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
+            }
+            stockLabel.layer.cornerRadius = 4
+            stockLabel.clipsToBounds = true
+            stockLabel.textAlignment = NSTextAlignment.center
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -11,7 +11,6 @@ import ChameleonFramework
 
 class ChangeThemeTableViewController: UITableViewController {
 
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
     
@@ -27,9 +26,9 @@ class ChangeThemeTableViewController: UITableViewController {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
         cancelButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.leftBarButtonItem = cancelButton
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ChangeThemeTableViewController.doneButtonTapped))
-        doneButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
-        navigationItem.rightBarButtonItem = doneButton
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
+        saveButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
+        navigationItem.rightBarButtonItem = saveButton
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
     }
@@ -113,7 +112,7 @@ class ChangeThemeTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func doneButtonTapped() {
+    func saveButtonTapped() {
         Style.saveTheme(themeNo: newThemeNo)
         self.dismiss(animated: true, completion: nil)
     }
