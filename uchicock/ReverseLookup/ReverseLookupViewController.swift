@@ -140,9 +140,9 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if tableView.tag == 0{
             let label : UILabel = UILabel()
-            label.backgroundColor = Style.tableViewHeaderBackgroundColor
-            label.textColor = Style.labelTextColorOnDisableBadge
-            label.font = UIFont.boldSystemFont(ofSize: 15)
+            label.backgroundColor = Style.basicBackgroundColor
+            label.textColor = Style.labelTextColor
+            label.font = UIFont.systemFont(ofSize: 15)
             label.text = "  材料名は完全一致で検索されます"
             return label
         }

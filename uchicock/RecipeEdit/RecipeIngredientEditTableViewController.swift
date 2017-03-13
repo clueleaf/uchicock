@@ -143,7 +143,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
         
         for i in (0..<suggestList.count).reversed() {
-            if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
+            if textWithoutSpace(text: ingredientName.text!) != "" && suggestList[i].kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased()) == false{
                 suggestList.remove(at: i)
             }
         }

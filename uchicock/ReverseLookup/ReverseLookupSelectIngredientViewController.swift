@@ -94,7 +94,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         }
         
         for i in (0..<suggestList.count).reversed() {
-            if ingredientName.text! != "" && suggestList[i].kanaName.contains(ingredientName.text!.katakana().lowercased()) == false{
+            if textWithoutSpace(text: ingredientName.text!) != "" && suggestList[i].kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased()) == false{
                 suggestList.remove(at: i)
             }
         }
@@ -152,11 +152,11 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     @IBAction func doneButtonTapped(_ sender: Any) {
         let defaults = UserDefaults.standard
         if ingredientNumber == 0{
-            defaults.set(ingredientName.text, forKey: "ReverseLookupFirst")
+            defaults.set(textWithoutSpace(text: ingredientName.text!), forKey: "ReverseLookupFirst")
         }else if ingredientNumber == 1{
-            defaults.set(ingredientName.text, forKey: "ReverseLookupSecond")
+            defaults.set(textWithoutSpace(text: ingredientName.text!), forKey: "ReverseLookupSecond")
         }else if ingredientNumber == 2{
-            defaults.set(ingredientName.text, forKey: "ReverseLookupThird")
+            defaults.set(textWithoutSpace(text: ingredientName.text!), forKey: "ReverseLookupThird")
         }
         self.dismiss(animated: true, completion: nil)
     }
