@@ -28,6 +28,21 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
 
         ingredientName.delegate = self
         
+        let defaults = UserDefaults.standard
+        if ingredientNumber == 0{
+            if let name = defaults.string(forKey: "ReverseLookupFirst"){
+                ingredientName.text = name
+            }
+        }else if ingredientNumber == 1{
+            if let name = defaults.string(forKey: "ReverseLookupSecond"){
+                ingredientName.text = name
+            }
+        }else if ingredientNumber == 2{
+            if let name = defaults.string(forKey: "ReverseLookupThird"){
+                ingredientName.text = name
+            }
+        }
+        
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
 
@@ -135,7 +150,14 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
 
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: Any) {
-        // userDefaultsに保存する
+        let defaults = UserDefaults.standard
+        if ingredientNumber == 0{
+            defaults.set(ingredientName.text, forKey: "ReverseLookupFirst")
+        }else if ingredientNumber == 1{
+            defaults.set(ingredientName.text, forKey: "ReverseLookupSecond")
+        }else if ingredientNumber == 2{
+            defaults.set(ingredientName.text, forKey: "ReverseLookupThird")
+        }
         self.dismiss(animated: true, completion: nil)
     }
 

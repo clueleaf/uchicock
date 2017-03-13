@@ -37,12 +37,8 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-
-        // Userdefaultsからロードする
-        firstIngredientLabel = ""
-        secondIngredientLabel = ""
-        thirdIngredientLabel = ""
-
+        
+        loadIngredientsFromUserDefaults()
         ingredientTableView.reloadData()
         reloadRecipeList()
         recipeTableView.reloadData()
@@ -73,6 +69,25 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         super.didReceiveMemoryWarning()
     }
     
+    func loadIngredientsFromUserDefaults(){
+        let defaults = UserDefaults.standard
+        if let first = defaults.string(forKey: "ReverseLookupFirst"){
+            firstIngredientLabel = first
+        }else{
+            defaults.set("", forKey: "ReverseLookupFirst")
+        }
+        if let second = defaults.string(forKey: "ReverseLookupSecond"){
+            secondIngredientLabel = second
+        }else{
+            defaults.set("", forKey: "ReverseLookupSecond")
+        }
+        if let third = defaults.string(forKey: "ReverseLookupThird"){
+            thirdIngredientLabel = third
+        }else{
+            defaults.set("", forKey: "ReverseLookupThird")
+        }
+    }
+    
     func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
@@ -93,8 +108,6 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         // 対象外のレシピを除外する
         
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
-        
-        // ヘッダーのレシピ数を更新する
     }
     
     // MARK: - UITableView
@@ -153,7 +166,18 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         if tableView.tag == 0{
             let clear = UITableViewRowAction(style: .normal, title: "クリア") {
                 (action, indexPath) in
-                // 材料名をクリアする
+                let defaults = UserDefaults.standard
+                if indexPath.row == 0{
+                    defaults.set("", forKey: "ReverseLookupFirst")
+                }else if indexPath.row == 1{
+                    defaults.set("", forKey: "ReverseLookupSecond")
+                }else if indexPath.row == 2{
+                    defaults.set("", forKey: "ReverseLookupThird")
+                }
+                self.loadIngredientsFromUserDefaults()
+                self.ingredientTableView.reloadData()
+                self.reloadRecipeList()
+                self.recipeTableView.reloadData()
             }
             clear.backgroundColor = Style.tableViewCellEditBackgroundColor
             return [clear]
@@ -175,10 +199,13 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupIngredient") as! ReverseLookupTableViewCell
             if indexPath.row == 0{
                 cell.ingredientNumberLabel.text = "材料1："
+                cell.ingredientNameLabel.text = firstIngredientLabel
             }else if indexPath.row == 1{
                 cell.ingredientNumberLabel.text = "材料2："
+                cell.ingredientNameLabel.text = secondIngredientLabel
             }else if indexPath.row == 2{
                 cell.ingredientNumberLabel.text = "材料3："
+                cell.ingredientNameLabel.text = thirdIngredientLabel
             }
             cell.isUserInteractionEnabled = true
             return cell
@@ -197,6 +224,19 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: - IBAction
     @IBAction func clearButtonTapped(_ sender: Any) {
+        let alertView = UIAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
+            let defaults = UserDefaults.standard
+            defaults.set("", forKey: "ReverseLookupFirst")
+            defaults.set("", forKey: "ReverseLookupSecond")
+            defaults.set("", forKey: "ReverseLookupThird")
+            self.loadIngredientsFromUserDefaults()
+            self.ingredientTableView.reloadData()
+            self.reloadRecipeList()
+            self.recipeTableView.reloadData()
+        }))
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        self.present(alertView, animated: true, completion: nil)
     }
 
     // MARK: - Navigation
