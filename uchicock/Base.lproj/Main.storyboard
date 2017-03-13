@@ -395,7 +395,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqt-dE-utD" id="mVE-AU-RaY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC3-Wa-fMk">
@@ -447,12 +447,34 @@
                                     <outlet property="delegate" destination="a7R-b4-ro5" id="6qX-MD-48B"/>
                                 </connections>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-yg-pjm">
+                                <rect key="frame" x="0.0" y="180" width="375" height="374"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeList" rowHeight="69" id="iqm-nS-KDN" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="69"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iqm-nS-KDN" id="aCv-ds-Prt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="a7R-b4-ro5" id="GdF-Bi-AKW"/>
+                                    <outlet property="delegate" destination="a7R-b4-ro5" id="ubR-Hr-gEc"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="W2i-5C-wrs" firstAttribute="leading" secondItem="Sph-O7-ZJT" secondAttribute="leading" id="Pqg-h0-WsV"/>
                             <constraint firstItem="W2i-5C-wrs" firstAttribute="top" secondItem="Sph-O7-ZJT" secondAttribute="top" id="btq-aR-0Gl"/>
+                            <constraint firstAttribute="trailing" secondItem="iTC-yg-pjm" secondAttribute="trailing" id="iOI-s4-Yhg"/>
+                            <constraint firstItem="iTC-yg-pjm" firstAttribute="leading" secondItem="Sph-O7-ZJT" secondAttribute="leading" id="iws-Tq-z5x"/>
                             <constraint firstAttribute="trailing" secondItem="W2i-5C-wrs" secondAttribute="trailing" id="y4L-F4-VE9"/>
+                            <constraint firstAttribute="bottom" secondItem="iTC-yg-pjm" secondAttribute="bottom" id="yZ0-oA-u1F"/>
+                            <constraint firstItem="iTC-yg-pjm" firstAttribute="top" secondItem="W2i-5C-wrs" secondAttribute="bottom" id="z2B-iy-q5P"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -465,6 +487,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="ingredientTableView" destination="W2i-5C-wrs" id="RxS-Se-um0"/>
+                        <outlet property="recipeTableView" destination="iTC-yg-pjm" id="2ot-Cq-DjA"/>
                         <segue destination="9pV-V1-PBI" kind="presentation" identifier="PushSelectIngredient" id="CE3-pP-hcd"/>
                     </connections>
                 </viewController>
@@ -2832,8 +2855,8 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VoJ-51-RUH"/>
         <segue reference="Ee4-db-L8m"/>
+        <segue reference="rrh-vr-JPb"/>
         <segue reference="WL9-sL-eOj"/>
         <segue reference="WbW-98-e9q"/>
         <segue reference="7e9-IZ-O1r"/>
