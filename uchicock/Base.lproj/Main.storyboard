@@ -451,13 +451,68 @@
                                 <rect key="frame" x="0.0" y="180" width="375" height="374"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeList" rowHeight="69" id="iqm-nS-KDN" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="69"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReverseLookupRecipeItem" rowHeight="70" id="i38-1M-Dbk" customClass="ReverseLookupRecipeTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iqm-nS-KDN" id="aCv-ds-Prt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i38-1M-Dbk" id="Woe-r7-YqS">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07x-c6-nNe">
+                                                    <rect key="frame" x="77" y="33.5" width="265" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="GoR-gg-bb0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.4013573232" green="0.4013573232" blue="0.4013573232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyJ-FI-wSC" userLabel="Favorites">
+                                                    <rect key="frame" x="282" y="8" width="60" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="VVm-3h-Oam"/>
+                                                        <constraint firstAttribute="height" constant="21" id="sYS-57-Iut"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hrm-Tf-wSx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="69.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="69" id="EuH-Fs-IeW"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-UY-uLO">
+                                                    <rect key="frame" x="77" y="8" width="197" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Wmo-bC-mLD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oyJ-FI-wSC" firstAttribute="centerY" secondItem="sNM-UY-uLO" secondAttribute="centerY" id="3Ab-3c-Br4"/>
+                                                <constraint firstItem="sNM-UY-uLO" firstAttribute="top" secondItem="Woe-r7-YqS" secondAttribute="top" constant="8" id="78o-Ax-mIm"/>
+                                                <constraint firstItem="07x-c6-nNe" firstAttribute="leading" secondItem="sNM-UY-uLO" secondAttribute="leading" id="7pa-UZ-Cdd"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hrm-Tf-wSx" secondAttribute="bottom" id="QJV-J7-UNn"/>
+                                                <constraint firstAttribute="trailing" secondItem="07x-c6-nNe" secondAttribute="trailing" id="Qeq-Pc-KLu"/>
+                                                <constraint firstItem="oyJ-FI-wSC" firstAttribute="leading" secondItem="sNM-UY-uLO" secondAttribute="trailing" constant="8" id="TTM-nK-NqV"/>
+                                                <constraint firstItem="Hrm-Tf-wSx" firstAttribute="top" secondItem="Woe-r7-YqS" secondAttribute="top" id="ZFy-yV-f7Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="07x-c6-nNe" secondAttribute="bottom" constant="15" id="bQu-Yd-v1u"/>
+                                                <constraint firstAttribute="trailing" secondItem="oyJ-FI-wSC" secondAttribute="trailing" id="da6-J0-DAj"/>
+                                                <constraint firstItem="Hrm-Tf-wSx" firstAttribute="leading" secondItem="Woe-r7-YqS" secondAttribute="leading" id="fZp-9t-Ozd"/>
+                                                <constraint firstItem="sNM-UY-uLO" firstAttribute="leading" secondItem="Hrm-Tf-wSx" secondAttribute="trailing" constant="8" id="vGq-j9-9dW"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favorites" destination="oyJ-FI-wSC" id="Jaa-6t-Xr8"/>
+                                            <outlet property="photo" destination="Hrm-Tf-wSx" id="pr9-Fw-kJ5"/>
+                                            <outlet property="recipeName" destination="sNM-UY-uLO" id="sM8-rN-vZH"/>
+                                            <outlet property="shortage" destination="07x-c6-nNe" id="l3r-k7-M6h"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -489,6 +544,7 @@
                         <outlet property="ingredientTableView" destination="W2i-5C-wrs" id="RxS-Se-um0"/>
                         <outlet property="recipeTableView" destination="iTC-yg-pjm" id="2ot-Cq-DjA"/>
                         <segue destination="9pV-V1-PBI" kind="presentation" identifier="PushSelectIngredient" id="CE3-pP-hcd"/>
+                        <segue destination="3cq-Fg-8AL" kind="show" identifier="PushRecipeDetail" id="AE3-8w-gfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWI-mk-v0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2857,8 +2913,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ee4-db-L8m"/>
         <segue reference="rrh-vr-JPb"/>
-        <segue reference="WL9-sL-eOj"/>
-        <segue reference="WbW-98-e9q"/>
+        <segue reference="BF7-gd-8JQ"/>
+        <segue reference="AE3-8w-gfd"/>
         <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>

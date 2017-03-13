@@ -19,6 +19,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     var firstIngredientLabel = ""
     var secondIngredientLabel = ""
     var thirdIngredientLabel = ""
+    var selectedRecipeId: String? = nil
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
     let selectedCellBackgroundView = UIView()
@@ -33,7 +34,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let selectedPathForIngredientTableView = ingredientTableView.indexPathForSelectedRow
-        // recipeTableViewをdeselectする
+        let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
@@ -52,7 +53,20 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
                 self.ingredientTableView.deselectRow(at: path, animated: true)
             }
         }
-        // recipeTableViewをdeselectする
+        if let path = selectedPathForRecipeTableView {
+            if recipeTableView.numberOfRows(inSection: 0) > path.row{
+                let nowRecipeId = (recipeTableView.cellForRow(at: path) as? ReverseLookupRecipeTableViewCell)?.recipe.id
+                if nowRecipeId != nil && selectedRecipeId != nil{
+                    if nowRecipeId! == selectedRecipeId!{
+                        recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.recipeTableView.deselectRow(at: path, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        selectedRecipeId = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,9 +98,32 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - UITableView
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView.tag == 0{
+            let label : UILabel = UILabel()
+            label.backgroundColor = Style.tableViewHeaderBackgroundColor
+            label.textColor = Style.labelTextColorOnDisableBadge
+            label.font = UIFont.boldSystemFont(ofSize: 15)
+            label.text = "  材料名は完全一致で検索されます"
+            return label
+        }else if tableView.tag == 1{
+            let label : UILabel = UILabel()
+            label.backgroundColor = Style.tableViewHeaderBackgroundColor
+            label.textColor = Style.labelTextColorOnDisableBadge
+            label.font = UIFont.boldSystemFont(ofSize: 15)
+            label.text = "  上の材料を全て使うレシピ(" + String(self.recipeBasicList.count) + ")"
+            return label
+        }
+        return nil
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if tableView.tag == 0{
-            return 4
+            return 3
         }else if tableView.tag == 1{
             return recipeBasicList.count
         }
@@ -95,13 +132,8 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == 0{
-            switch indexPath.row{
-            case 0,1,2:
+            if indexPath.row < 3{
                 return 50
-            case 3:
-                return 30
-            default:
-                return 0
             }
         }else if tableView.tag == 1{
             return 70
@@ -113,7 +145,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         if tableView.tag == 0{
             performSegue(withIdentifier: "PushSelectIngredient", sender: indexPath)
         }else if tableView.tag == 1{
-//            performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+            performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
         }
     }
     
@@ -140,91 +172,24 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if tableView.tag == 0{
-            if indexPath.row < 3{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupIngredient") as! ReverseLookupTableViewCell
-                if indexPath.row == 0{
-                    cell.ingredientNumberLabel.text = "材料1："
-                }else if indexPath.row == 1{
-                    cell.ingredientNumberLabel.text = "材料2："
-                }else if indexPath.row == 2{
-                    cell.ingredientNumberLabel.text = "材料3："
-                }
-                cell.isUserInteractionEnabled = true
-                return cell
-            }else if indexPath.row == 3{
-                let cell = UITableViewCell()
-                cell.textLabel?.text = "材料名は完全一致で検索されます"
-                cell.isUserInteractionEnabled = false
-                return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupIngredient") as! ReverseLookupTableViewCell
+            if indexPath.row == 0{
+                cell.ingredientNumberLabel.text = "材料1："
+            }else if indexPath.row == 1{
+                cell.ingredientNumberLabel.text = "材料2："
+            }else if indexPath.row == 2{
+                cell.ingredientNumberLabel.text = "材料3："
             }
+            cell.isUserInteractionEnabled = true
+            return cell
         }else if tableView.tag == 1{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeList", for: indexPath) as! IngredientRecipeListTableViewCell
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem", for: indexPath) as! ReverseLookupRecipeTableViewCell
             let realm = try! Realm()
-            let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row ].id).first!
-            
-            if let image = recipe.imageData {
-                cell.photo.image = UIImage(data: image as Data)
-                //レシピ削除のバグに対するワークアラウンド
-                if cell.photo.image == nil{
-                    if Style.isDark{
-                        cell.photo.image = UIImage(named: "no-photo-dark")
-                    }else{
-                        cell.photo.image = UIImage(named: "no-photo")
-                    }
-                }
-            }else{
-                if Style.isDark{
-                    cell.photo.image = UIImage(named: "no-photo-dark")
-                }else{
-                    cell.photo.image = UIImage(named: "no-photo")
-                }
-            }
-            
-            cell.recipeId = recipe.id
-            cell.recipeName.text = recipe.recipeName
-            switch recipe.favorites{
-            case 1:
-                cell.favorites.text = "★　　"
-            case 2:
-                cell.favorites.text = "★★　"
-            case 3:
-                cell.favorites.text = "★★★"
-            default:
-                cell.favorites.text = "★　　"
-            }
-            cell.favorites.textAlignment = .left
-            cell.favorites.textColor = Style.secondaryColor
-            
-            var shortageNum = 0
-            var shortageName = ""
-            for ri in recipe.recipeIngredients{
-                if ri.mustFlag && ri.ingredient.stockFlag == false{
-                    shortageNum += 1
-                    shortageName = ri.ingredient.ingredientName
-                }
-            }
-            if shortageNum == 0 {
-                cell.shortage.text = "すぐつくれる！"
-                cell.shortage.textColor = Style.secondaryColor
-                cell.shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
-                cell.recipeName.textColor = Style.labelTextColor
-            }else if shortageNum == 1{
-                cell.shortage.text = shortageName + "が足りません"
-                cell.shortage.textColor = Style.labelTextColorLight
-                cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
-                cell.recipeName.textColor = Style.labelTextColorLight
-            }else{
-                cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                cell.shortage.textColor = Style.labelTextColorLight
-                cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
-                cell.recipeName.textColor = Style.labelTextColorLight
-            }
-            
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            cell.selectionStyle = .default
+            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+            cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
+
             return cell
         }
         return UITableViewCell()
@@ -241,6 +206,12 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             let evc = enc.visibleViewController as! ReverseLookupSelectIngredientViewController
             if let indexPath = sender as? IndexPath{
                 evc.ingredientNumber = indexPath.row
+            }
+        }else if segue.identifier == "PushRecipeDetail" {
+            let vc = segue.destination as! RecipeDetailTableViewController
+            if let indexPath = sender as? IndexPath{
+                selectedRecipeId = recipeBasicList[indexPath.row].id
+                vc.recipeId = recipeBasicList[indexPath.row].id
             }
         }
     }
