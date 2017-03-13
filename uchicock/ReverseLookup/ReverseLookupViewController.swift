@@ -11,7 +11,7 @@ import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
 
-class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var recipeTableView: UITableView!
@@ -27,8 +27,12 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recipeTableView.emptyDataSetSource = self
+        recipeTableView.emptyDataSetDelegate = self
+
         ingredientTableView.tag = 0
         recipeTableView.tag = 1
+        recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +41,9 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        
+        ingredientTableView.backgroundColor = Style.basicBackgroundColor
+        recipeTableView.backgroundColor = Style.basicBackgroundColor
+
         loadIngredientsFromUserDefaults()
         ingredientTableView.reloadData()
         reloadRecipeList()
@@ -135,6 +141,12 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "条件にあてはまるレシピはありません"
+        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView.tag == 1{
@@ -247,6 +259,11 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.ingredientNumberLabel.text = "材料3："
                 cell.ingredientNameLabel.text = thirdIngredientLabel
             }
+            cell.ingredientNumberLabel.textColor = Style.labelTextColor
+            cell.ingredientNameLabel.textColor = Style.labelTextColor
+            cell.changeLabel.textColor = Style.labelTextColorLight
+            cell.backgroundColor = Style.basicBackgroundColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
             cell.isUserInteractionEnabled = true
             return cell
         }else if tableView.tag == 1{
