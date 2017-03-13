@@ -12,6 +12,7 @@ class ReverseLookupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ingredientNumberLabel: UILabel!
     @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var changeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
