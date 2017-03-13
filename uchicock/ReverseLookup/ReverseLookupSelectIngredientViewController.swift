@@ -54,8 +54,19 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         super.viewWillAppear(animated)
 
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        suggestTableView.backgroundColor = Style.basicBackgroundColor
+        ingredientContainer.backgroundColor = Style.basicBackgroundColor
+        ingredientNameLabel.textColor = Style.labelTextColor
+        ingredientName.backgroundColor = Style.textFieldBackgroundColor
+        ingredientName.textColor = Style.labelTextColor
+        
+        if Style.isDark {
+            ingredientName.keyboardAppearance = .dark
+        }else{
+            ingredientName.keyboardAppearance = .default
+        }
 
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)        
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
     }
     
     override func viewDidAppear(_ animated: Bool) {

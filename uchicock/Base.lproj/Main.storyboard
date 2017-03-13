@@ -1200,7 +1200,7 @@
         <!--逆引き-->
         <scene sceneID="Hpa-Qg-biA">
             <objects>
-                <navigationController id="vI8-aO-1sO" sceneMemberID="viewController">
+                <navigationController id="vI8-aO-1sO" customClass="ReverseLookupNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="逆引き" image="tabbar-reverse-lookup" id="009-ru-rzW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KGg-ZN-GBX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
