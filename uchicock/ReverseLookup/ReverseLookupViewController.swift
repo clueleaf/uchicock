@@ -112,23 +112,38 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        if tableView.tag == 1{
+            return 30
+        }
+        return 0
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView.tag == 1{
+            let label : UILabel = UILabel()
+            label.backgroundColor = Style.tableViewHeaderBackgroundColor
+            label.textColor = Style.labelTextColorOnDisableBadge
+            label.font = UIFont.boldSystemFont(ofSize: 15)
+            label.text = "  上の材料を全て使うレシピ(" + String(self.recipeBasicList.count) + ")"
+            return label
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if tableView.tag == 0{
+            return 30
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if tableView.tag == 0{
             let label : UILabel = UILabel()
             label.backgroundColor = Style.tableViewHeaderBackgroundColor
             label.textColor = Style.labelTextColorOnDisableBadge
             label.font = UIFont.boldSystemFont(ofSize: 15)
             label.text = "  材料名は完全一致で検索されます"
-            return label
-        }else if tableView.tag == 1{
-            let label : UILabel = UILabel()
-            label.backgroundColor = Style.tableViewHeaderBackgroundColor
-            label.textColor = Style.labelTextColorOnDisableBadge
-            label.font = UIFont.boldSystemFont(ofSize: 15)
-            label.text = "  上の材料を全て使うレシピ(" + String(self.recipeBasicList.count) + ")"
             return label
         }
         return nil
