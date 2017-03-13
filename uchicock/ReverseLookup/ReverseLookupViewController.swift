@@ -105,9 +105,34 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
         }
         
-        // 対象外のレシピを除外する
+        if firstIngredientLabel != "" {
+            deleteFromRecipeBasicList(withoutUse: firstIngredientLabel)
+        }
+        if secondIngredientLabel != "" {
+            deleteFromRecipeBasicList(withoutUse: secondIngredientLabel)
+        }
+        if thirdIngredientLabel != "" {
+            deleteFromRecipeBasicList(withoutUse: thirdIngredientLabel)
+        }
         
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+    }
+    
+    func deleteFromRecipeBasicList(withoutUse ingredientName: String){
+        let realm = try! Realm()
+        for i in (0..<recipeBasicList.count).reversed(){
+            var hasIngredient = false
+            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[i].id).first!
+            for ri in recipe.recipeIngredients{
+                if ri.ingredient.ingredientName == ingredientName{
+                    hasIngredient = true
+                    break
+                }
+            }
+            if hasIngredient == false{
+                recipeBasicList.remove(at: i)
+            }
+        }
     }
     
     // MARK: - UITableView
