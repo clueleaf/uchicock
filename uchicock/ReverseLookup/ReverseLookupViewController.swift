@@ -97,29 +97,32 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-        try! realm.write {
-            for recipe in recipeList!{
-                recipe.updateShortageNum()
-            }
-        }
+
         reloadRecipeBasicList()
     }
     
     func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
         }
+        
+        print("d:", nowDate())
         
         if firstIngredientLabel != "" {
             deleteFromRecipeBasicList(withoutUse: firstIngredientLabel)
         }
+        print("e:", nowDate())
+        
         if secondIngredientLabel != "" {
             deleteFromRecipeBasicList(withoutUse: secondIngredientLabel)
         }
+        print("f:", nowDate())
+        
         if thirdIngredientLabel != "" {
             deleteFromRecipeBasicList(withoutUse: thirdIngredientLabel)
         }
+        print("g:", nowDate())
         
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
     }
