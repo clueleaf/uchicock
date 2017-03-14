@@ -395,7 +395,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqt-dE-utD" id="mVE-AU-RaY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC3-Wa-fMk">
@@ -455,7 +455,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i38-1M-Dbk" id="Woe-r7-YqS">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07x-c6-nNe">
@@ -1187,9 +1187,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="KKp-Zy-7zd" kind="relationship" relationship="viewControllers" id="h8i-zf-nRu"/>
-                        <segue destination="3Ej-3Z-OyG" kind="relationship" relationship="viewControllers" id="Pdi-Zw-kQO"/>
                         <segue destination="2U6-sC-jhY" kind="relationship" relationship="viewControllers" id="gtb-v7-gkD"/>
                         <segue destination="vI8-aO-1sO" kind="relationship" relationship="viewControllers" id="2Do-f7-1Vc"/>
+                        <segue destination="3Ej-3Z-OyG" kind="relationship" relationship="viewControllers" id="Pdi-Zw-kQO"/>
                         <segue destination="J7v-Ql-bMF" kind="relationship" relationship="viewControllers" id="fPD-HQ-cqG"/>
                     </connections>
                 </tabBarController>
