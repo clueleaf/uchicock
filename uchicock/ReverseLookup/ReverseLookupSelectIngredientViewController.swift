@@ -20,6 +20,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     var ingredientNumber: Int?
     var ingredientList: Results<Ingredient>?
     var suggestList = Array<IngredientBasic>()
+    var scrollBeginingYPoint: CGFloat = 0.0
     
     let selectedCellBackgroundView = UIView()
 
@@ -94,6 +95,11 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     }
     
     func textFieldDidChange(_ notification: Notification){
+        if let text = ingredientName.text {
+            if text.characters.count > 30 {
+                ingredientName.text = text.substring(to: text.index(text.startIndex, offsetBy: 30))
+            }
+        }
         reloadSuggestList()
     }
     
@@ -116,6 +122,21 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     
     func textWithoutSpace(text: String) -> String{
         return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= 0{
+            scrollBeginingYPoint = scrollView.contentOffset.y
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -30{
+            ingredientName.becomeFirstResponder()
+        }else if scrollBeginingYPoint < scrollView.contentOffset.y {
+            ingredientName.resignFirstResponder()
+        }
     }
     
     // MARK: - UITableView
