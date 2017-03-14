@@ -20,7 +20,6 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     var secondIngredientLabel = ""
     var thirdIngredientLabel = ""
     var selectedRecipeId: String? = nil
-    var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
     let selectedCellBackgroundView = UIView()
 
@@ -95,38 +94,65 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func reloadRecipeList(){
-        let realm = try! Realm()
-        recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-
-        reloadRecipeBasicList()
-    }
-    
-    func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
-        for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+        
+        if firstIngredientLabel != ""{
+            if secondIngredientLabel != ""{
+                if thirdIngredientLabel != ""{
+                    createRecipeBasicList(text1: firstIngredientLabel, text2: secondIngredientLabel, text3: thirdIngredientLabel)
+                }else{
+                    createRecipeBasicList(text1: firstIngredientLabel, text2: secondIngredientLabel, text3: nil)
+                }
+            }else{
+                if thirdIngredientLabel != ""{
+                    createRecipeBasicList(text1: firstIngredientLabel, text2: thirdIngredientLabel, text3: nil)
+                }else{
+                    createRecipeBasicList(text1: firstIngredientLabel, text2: nil, text3: nil)
+                }
+            }
+        }else{
+            if secondIngredientLabel != ""{
+                if thirdIngredientLabel != ""{
+                    createRecipeBasicList(text1: secondIngredientLabel, text2: thirdIngredientLabel, text3: nil)
+                }else{
+                    createRecipeBasicList(text1: secondIngredientLabel, text2: nil, text3: nil)
+                }
+            }else{
+                if thirdIngredientLabel != ""{
+                    createRecipeBasicList(text1: thirdIngredientLabel, text2: nil, text3: nil)
+                }else{
+                    createRecipeBasicList()
+                }
+            }
         }
-        
-        print("d:", nowDate())
-        
-        if firstIngredientLabel != "" {
-            deleteFromRecipeBasicList(withoutUse: firstIngredientLabel)
-        }
-        print("e:", nowDate())
-        
-        if secondIngredientLabel != "" {
-            deleteFromRecipeBasicList(withoutUse: secondIngredientLabel)
-        }
-        print("f:", nowDate())
-        
-        if thirdIngredientLabel != "" {
-            deleteFromRecipeBasicList(withoutUse: thirdIngredientLabel)
-        }
-        print("g:", nowDate())
-        
+
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
     }
     
+    func createRecipeBasicList(){
+        let realm = try! Realm()
+        let recipeList = realm.objects(Recipe.self)
+        for recipe in recipeList{
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+        }
+    }
+
+    func createRecipeBasicList(text1: String, text2: String?, text3: String?){
+        let realm = try! Realm()
+        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
+        if ing.count > 0 {
+            for ri in ing.first!.recipeIngredients{
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: 0, favorites: ri.recipe.favorites, japaneseDictionaryOrder: ri.recipe.japaneseDictionaryOrder))
+            }
+            if let t2 = text2 {
+                deleteFromRecipeBasicList(withoutUse: t2)
+                if let t3 = text3{
+                    deleteFromRecipeBasicList(withoutUse: t3)
+                }
+            }
+        }
+    }
+
     func deleteFromRecipeBasicList(withoutUse ingredientName: String){
         let realm = try! Realm()
         for i in (0..<recipeBasicList.count).reversed(){
