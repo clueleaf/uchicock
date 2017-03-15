@@ -146,9 +146,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
-        try! realm.write {
-            for recipe in recipeList!{
-                recipe.updateShortageNum()
+        if order.selectedSegmentIndex == 1{
+            try! realm.write {
+                for recipe in recipeList!{
+                    recipe.updateShortageNum()
+                }
             }
         }
         reloadRecipeBasicList()
@@ -338,6 +340,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
+        if order.selectedSegmentIndex == 1{
+            let realm = try! Realm()
+            try! realm.write {
+                for recipe in recipeList!{
+                    recipe.updateShortageNum()
+                }
+            }
+        }
         reloadRecipeBasicList()
         tableView.reloadData()
     }
