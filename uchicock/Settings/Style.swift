@@ -231,6 +231,81 @@ struct Style{
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
     }
+    
+    static func mojitoLight(){
+        no = "8"
+        isDark = false
+        primaryColor = FlatMint()
+        secondaryColor = FlatMintDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatWhite()
+        tableViewHeaderBackgroundColor = FlatWhiteDark()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = FlatMint()
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatMintDark()
+        tabBarBarTintColor = FlatWhite()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatMintDark()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+    }
+    
+    static func redEyeLight(){
+        no = "9"
+        isDark = false
+        primaryColor = FlatMint()
+        secondaryColor = FlatMintDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatWhite()
+        tableViewHeaderBackgroundColor = FlatWhiteDark()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = FlatMint()
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatMintDark()
+        tabBarBarTintColor = FlatWhite()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatMintDark()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+    }
+    
+    static func redEyeDark(){
+        no = "10"
+        isDark = true
+        primaryColor = FlatCoffeeDark()
+        secondaryColor = FlatCoffee()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatWatermelonDark()
+        tabBarTintColor = FlatWhite()
+        tabBarBarTintColor = FlatCoffeeDark()
+        tableViewCellSelectedBackgroundColor = FlatCoffeeDark()
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatCoffeeDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+    }
 
     static func loadTheme(){
         let defaults = UserDefaults.standard
@@ -253,6 +328,9 @@ struct Style{
             case "5": chinaBlueDark()
             case "6": grasshopperLight()
             case "7": irishCoffeeDark()
+            case "8": mojitoLight()
+            case "9": redEyeLight()
+            case "10": redEyeDark()
             default: break
             }
         }
