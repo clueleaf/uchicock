@@ -26,7 +26,7 @@ class RecoverTableViewController: UITableViewController {
         super.viewDidLoad()
         loadUserRecipe()
         
-        var config = Realm.Configuration(schemaVersion: 2)
+        var config = Realm.Configuration(schemaVersion: 3)
         config.fileURL = Bundle.main.url(forResource: "default", withExtension: "realm")
         config.readOnly = true
         Realm.Configuration.defaultConfiguration = config
@@ -130,13 +130,13 @@ class RecoverTableViewController: UITableViewController {
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName, method: recipe.method, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecoverIngredient(name: ri.ingredient.ingredientName, amount: ri.amount, mustflag: ri.mustFlag))
+                    recoverRecipe.ingredientList.append(RecoverIngredient(name: ri.ingredient.ingredientName, amount: ri.amount, mustflag: ri.mustFlag, category: ri.ingredient.category))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
         }
         
-        var config = Realm.Configuration(schemaVersion: 2)
+        var config = Realm.Configuration(schemaVersion: 3)
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
@@ -146,7 +146,7 @@ class RecoverTableViewController: UITableViewController {
             if rec.count < 1 {
                 try! realm.write {
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addIngredient(ingredientName: recoverIngredient.name, stockFlag: false, memo: "")
+                        addIngredient(ingredientName: recoverIngredient.name, stockFlag: false, memo: "", category: recoverIngredient.category)
                     }
                     addRecipe(recipeName: recoverRecipe.name, favorites: 1, memo: "", method: recoverRecipe.method)
                     
@@ -172,7 +172,7 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String){
+    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String, category: Int){
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName)
         if ing.count < 1 {
@@ -180,6 +180,7 @@ class RecoverTableViewController: UITableViewController {
             ingredient.ingredientName = ingredientName
             ingredient.stockFlag = stockFlag
             ingredient.memo = memo
+            ingredient.category = category
             ingredient.japaneseDictionaryOrder = ingredientName.japaneseDictionaryOrder()
             realm.add(ingredient)
         }
@@ -352,7 +353,7 @@ class RecoverTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false {
-            var config = Realm.Configuration(schemaVersion: 2)
+            var config = Realm.Configuration(schemaVersion: 3)
             config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
             Realm.Configuration.defaultConfiguration = config
             
@@ -370,7 +371,7 @@ class RecoverTableViewController: UITableViewController {
             }
             
             if recoverCount == 0{
-                var config = Realm.Configuration(schemaVersion: 2)
+                var config = Realm.Configuration(schemaVersion: 3)
                 config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
                 Realm.Configuration.defaultConfiguration = config
                 self.dismiss(animated: true, completion: nil)

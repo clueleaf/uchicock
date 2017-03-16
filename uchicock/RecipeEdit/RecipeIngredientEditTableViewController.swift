@@ -330,12 +330,35 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
-                registAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
                     ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
                     ingredient.stockFlag = false
                     ingredient.memo = ""
+                    ingredient.category = 0
+                    try! realm.write {
+                        realm.add(ingredient)
+                    }
+                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
+                registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
+                    let ingredient = Ingredient()
+                    ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
+                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
+                    ingredient.stockFlag = false
+                    ingredient.memo = ""
+                    ingredient.category = 1
+                    try! realm.write {
+                        realm.add(ingredient)
+                    }
+                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
+                registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
+                    let ingredient = Ingredient()
+                    ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
+                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
+                    ingredient.stockFlag = false
+                    ingredient.memo = ""
+                    ingredient.category = 2
                     try! realm.write {
                         realm.add(ingredient)
                     }

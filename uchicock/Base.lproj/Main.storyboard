@@ -1539,8 +1539,46 @@
                                             <segue destination="9cr-Pp-4dH" kind="presentation" identifier="CreateEvent" id="Wu1-1u-dCx"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="EG1-X1-Jpm">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="93"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EG1-X1-Jpm" id="fwI-vG-4KJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GH-n0-WER">
+                                                    <rect key="frame" x="8" y="15" width="87" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="rmn-tv-95n"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-IX-g5C">
+                                                    <rect key="frame" x="8" y="48" width="359" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="tg4-eC-9dc"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="アルコール" enabled="NO"/>
+                                                        <segment title="ノンアルコール" enabled="NO"/>
+                                                        <segment title="その他" enabled="NO"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4GH-n0-WER" firstAttribute="leading" secondItem="fwI-vG-4KJ" secondAttribute="leading" constant="8" id="5vW-pz-tgw"/>
+                                                <constraint firstItem="4GH-n0-WER" firstAttribute="top" secondItem="fwI-vG-4KJ" secondAttribute="top" constant="15" id="IqC-LR-aGc"/>
+                                                <constraint firstItem="xuO-IX-g5C" firstAttribute="top" secondItem="4GH-n0-WER" secondAttribute="bottom" constant="8" id="aNs-wC-Xmz"/>
+                                                <constraint firstAttribute="trailing" secondItem="xuO-IX-g5C" secondAttribute="trailing" constant="8" id="giL-hy-ERO"/>
+                                                <constraint firstAttribute="bottom" secondItem="xuO-IX-g5C" secondAttribute="bottom" constant="16.5" id="oZe-qC-jqP"/>
+                                                <constraint firstItem="xuO-IX-g5C" firstAttribute="leading" secondItem="fwI-vG-4KJ" secondAttribute="leading" constant="8" id="qyJ-KI-EnY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="iKe-xM-eF5">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="201" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iKe-xM-eF5" id="oDe-wM-46s">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -1577,7 +1615,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="uhi-J9-lfe">
-                                        <rect key="frame" x="0.0" y="158" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="251" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhi-J9-lfe" id="xkh-SK-g6x">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
@@ -1615,7 +1653,7 @@
                             <tableViewSection headerTitle="Section-2" id="YrO-lc-dGj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="taU-XD-uUU">
-                                        <rect key="frame" x="0.0" y="279" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="372" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="taU-XD-uUU" id="vmo-wE-SFj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
@@ -1643,7 +1681,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientRecipeList" rowHeight="69" id="EuR-RB-R4O" customClass="IngredientRecipeListTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="339" width="375" height="69"/>
+                                        <rect key="frame" x="0.0" y="432" width="375" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EuR-RB-R4O" id="iia-hk-fqL">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="68.5"/>
@@ -1692,7 +1730,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="dck-zW-2bp">
-                                        <rect key="frame" x="0.0" y="408" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="501" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dck-zW-2bp" id="81j-T5-hTI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -1735,6 +1773,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="category" destination="xuO-IX-g5C" id="DuD-aP-XWm"/>
+                        <outlet property="categoryLabel" destination="4GH-n0-WER" id="z8G-FX-lBs"/>
                         <outlet property="deleteLabel" destination="pyA-7t-rsu" id="3tJ-re-mYk"/>
                         <outlet property="ingredientName" destination="z0Y-88-hex" id="qzd-rz-jmd"/>
                         <outlet property="memo" destination="h9v-M5-Six" id="8uf-5Z-pPH"/>
@@ -2935,10 +2975,10 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ee4-db-L8m"/>
+        <segue reference="WbW-98-e9q"/>
+        <segue reference="WL9-sL-eOj"/>
+        <segue reference="AL8-XH-VAL"/>
         <segue reference="rrh-vr-JPb"/>
-        <segue reference="BF7-gd-8JQ"/>
-        <segue reference="AE3-8w-gfd"/>
         <segue reference="7e9-IZ-O1r"/>
     </inferredMetricsTieBreakers>
 </document>

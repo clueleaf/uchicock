@@ -20,6 +20,7 @@ struct RecoverIngredient{
     var name : String
     var amount : String
     var mustflag : Bool
+    var category : Int
 }
 
 struct RecoverRecipe{

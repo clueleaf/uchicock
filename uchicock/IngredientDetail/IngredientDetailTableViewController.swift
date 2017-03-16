@@ -15,8 +15,10 @@ class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
+    @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var order: UISegmentedControl!
@@ -44,15 +46,19 @@ class IngredientDetailTableViewController: UITableViewController {
         let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
         
+        categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
+        category.tintColor = Style.secondaryColor
+        category.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        category.setTitleTextAttributes(attribute, for: .normal)
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
@@ -71,6 +77,12 @@ class IngredientDetailTableViewController: UITableViewController {
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
 
+            if ingredient.category >= 0 && ingredient.category < 3 {
+                category.selectedSegmentIndex = ingredient.category
+            } else {
+                category.selectedSegmentIndex = 2
+            }
+            
             stock.stateChangeAnimation = .fade(.fill)
             stock.animationDuration = 0
             if ingredient.stockFlag{
