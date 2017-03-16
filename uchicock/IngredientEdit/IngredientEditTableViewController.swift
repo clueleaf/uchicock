@@ -14,9 +14,11 @@ import M13Checkbox
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
     @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UITextView!
     
@@ -61,8 +63,13 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
         ingredientNameLabel.textColor = Style.labelTextColor
+        categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
+        category.tintColor = Style.secondaryColor
+        category.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        category.setTitleTextAttributes(attribute, for: .normal)
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
@@ -77,6 +84,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }else{
             ingredientName.keyboardAppearance = .default
             memo.keyboardAppearance = .default
+        }
+        
+        if ingredient.category >= 0 && ingredient.category < 3 {
+            category.selectedSegmentIndex = ingredient.category
+        } else {
+            category.selectedSegmentIndex = 2
         }
     }
     
@@ -113,7 +126,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 4
         }
         return 0
     }
@@ -163,6 +176,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = textWithoutSpace(text: ingredientName.text!)
                     newIngredient.japaneseDictionaryOrder = textWithoutSpace(text: ingredientName.text!).japaneseDictionaryOrder()
+                    newIngredient.category = category.selectedSegmentIndex
                     if stock.checkState == .checked{
                         newIngredient.stockFlag = true
                     }else{
@@ -184,6 +198,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     try! realm.write {
                         ingredient.ingredientName = textWithoutSpace(text: ingredientName.text!)
                         ingredient.japaneseDictionaryOrder = textWithoutSpace(text: ingredientName.text!).japaneseDictionaryOrder()
+                        ingredient.category = category.selectedSegmentIndex
                         if stock.checkState == .checked{
                             ingredient.stockFlag = true
                         }else{
