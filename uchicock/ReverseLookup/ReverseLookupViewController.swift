@@ -309,7 +309,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - IBAction
-    @IBAction func clearButtonTapped(_ sender: Any) {
+    @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
             let defaults = UserDefaults.standard

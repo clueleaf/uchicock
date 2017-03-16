@@ -8,9 +8,6 @@
 
 struct SampleRecipeBasic{
     var name : String
-    var kanaName : String{
-        return name.katakana().lowercased()
-    }
     var recoverable : Bool
     var recoverTarget : Bool
     var japaneseDictionaryOrder : String

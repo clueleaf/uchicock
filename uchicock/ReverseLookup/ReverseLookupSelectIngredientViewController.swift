@@ -15,6 +15,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     @IBOutlet weak var ingredientContainer: UIView!
     @IBOutlet weak var ingredientNameLabel: UILabel!
     @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var suggestTableView: UITableView!
     
     var ingredientNumber: Int?
@@ -54,6 +55,10 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        category.tintColor = Style.secondaryColor
+        category.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor
         ingredientContainer.backgroundColor = Style.basicBackgroundColor
@@ -113,6 +118,25 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         for i in (0..<suggestList.count).reversed() {
             if textWithoutSpace(text: ingredientName.text!) != "" && suggestList[i].kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased()) == false{
                 suggestList.remove(at: i)
+            }
+        }
+        
+        for i in (0..<suggestList.count).reversed(){
+            switch category.selectedSegmentIndex{
+            case 1:
+                if suggestList[i].category != 0{
+                    suggestList.remove(at: i)
+                }
+            case 2:
+                if suggestList[i].category != 1{
+                    suggestList.remove(at: i)
+                }
+            case 3:
+                if suggestList[i].category != 2{
+                    suggestList.remove(at: i)
+                }
+            default:
+                break
             }
         }
         
@@ -181,7 +205,11 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     }
 
     // MARK: - IBAction
-    @IBAction func doneButtonTapped(_ sender: Any) {
+    @IBAction func categoryTapped(_ sender: UISegmentedControl) {
+        reloadSuggestList()
+    }
+    
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         let defaults = UserDefaults.standard
         if ingredientNumber == 0{
             defaults.set(textWithoutSpace(text: ingredientName.text!), forKey: "ReverseLookupFirst")
@@ -193,7 +221,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func cancelButtonTapped(_ sender: Any) {
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     

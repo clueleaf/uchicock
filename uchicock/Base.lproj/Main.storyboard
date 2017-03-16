@@ -599,7 +599,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dZ-fN-4Sd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOJ-Hi-AOn">
                                         <rect key="frame" x="8" y="15" width="60" height="21"/>
@@ -612,7 +612,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="gjH-bR-aJH">
-                                        <rect key="frame" x="76" y="5" width="291" height="40"/>
+                                        <rect key="frame" x="76" y="5.5" width="291" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="jeC-2F-jz4"/>
                                         </constraints>
@@ -620,19 +620,37 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AL0-Xb-wKG">
+                                        <rect key="frame" x="8" y="56" width="359" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="Ylh-aw-GVB"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="すべて"/>
+                                            <segment title="アルコール"/>
+                                            <segment title="ノンアル"/>
+                                            <segment title="その他"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="categoryTapped:" destination="85V-Za-U46" eventType="valueChanged" id="Sh7-6o-Euu"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gjH-bR-aJH" firstAttribute="centerY" secondItem="3dZ-fN-4Sd" secondAttribute="centerY" id="1Ao-h8-U7L"/>
                                     <constraint firstAttribute="trailing" secondItem="gjH-bR-aJH" secondAttribute="trailing" constant="8" id="3eP-Aw-9aB"/>
+                                    <constraint firstItem="AL0-Xb-wKG" firstAttribute="leading" secondItem="3dZ-fN-4Sd" secondAttribute="leading" constant="8" id="6UL-7G-Ezf"/>
+                                    <constraint firstItem="jOJ-Hi-AOn" firstAttribute="top" secondItem="3dZ-fN-4Sd" secondAttribute="top" constant="15" id="FA6-Kv-55Q"/>
+                                    <constraint firstItem="gjH-bR-aJH" firstAttribute="centerY" secondItem="jOJ-Hi-AOn" secondAttribute="centerY" id="GV6-GH-PGY"/>
+                                    <constraint firstAttribute="bottom" secondItem="AL0-Xb-wKG" secondAttribute="bottom" constant="8" id="Ovc-N8-eTs"/>
+                                    <constraint firstAttribute="trailing" secondItem="AL0-Xb-wKG" secondAttribute="trailing" constant="8" id="QSg-ln-MNe"/>
                                     <constraint firstItem="gjH-bR-aJH" firstAttribute="leading" secondItem="jOJ-Hi-AOn" secondAttribute="trailing" constant="8" id="QrN-IA-q4r"/>
-                                    <constraint firstItem="jOJ-Hi-AOn" firstAttribute="centerY" secondItem="3dZ-fN-4Sd" secondAttribute="centerY" id="nyu-yg-7t5"/>
                                     <constraint firstItem="jOJ-Hi-AOn" firstAttribute="leading" secondItem="3dZ-fN-4Sd" secondAttribute="leading" constant="8" id="pAg-Nr-4G3"/>
-                                    <constraint firstAttribute="height" constant="50" id="ps3-7L-Jd0"/>
+                                    <constraint firstAttribute="height" constant="92" id="ps3-7L-Jd0"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rdu-CS-9w3">
-                                <rect key="frame" x="0.0" y="50" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="511"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectIngredient" rowHeight="30" id="jCa-bv-5r6" customClass="ReverseLookupSelectIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -707,6 +725,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="category" destination="AL0-Xb-wKG" id="vrp-ZI-3NX"/>
                         <outlet property="ingredientContainer" destination="3dZ-fN-4Sd" id="FMl-u3-jBL"/>
                         <outlet property="ingredientName" destination="gjH-bR-aJH" id="Rjt-Op-kGT"/>
                         <outlet property="ingredientNameLabel" destination="jOJ-Hi-AOn" id="eca-yv-ArT"/>
@@ -715,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxA-1n-hB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-236" y="3240"/>
+            <point key="canvasLocation" x="-236.5" y="3239.5"/>
         </scene>
         <!--サンプルレシピ復元-->
         <scene sceneID="7Cu-5Z-UEE">
@@ -3032,10 +3051,10 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VoJ-51-RUH"/>
-        <segue reference="Ee4-db-L8m"/>
-        <segue reference="yVC-hM-JRi"/>
-        <segue reference="SNB-c3-dZb"/>
         <segue reference="BF7-gd-8JQ"/>
+        <segue reference="Ee4-db-L8m"/>
+        <segue reference="WL9-sL-eOj"/>
+        <segue reference="rrh-vr-JPb"/>
+        <segue reference="yVC-hM-JRi"/>
     </inferredMetricsTieBreakers>
 </document>
