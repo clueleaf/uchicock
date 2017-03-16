@@ -14,5 +14,6 @@ struct IngredientBasic{
     }
     var stockFlag : Bool
     var japaneseDictionaryOrder : String
+    var category : Int
 }
 

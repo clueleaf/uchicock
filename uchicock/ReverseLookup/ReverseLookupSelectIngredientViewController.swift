@@ -107,7 +107,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            suggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
+            suggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
         }
         
         for i in (0..<suggestList.count).reversed() {

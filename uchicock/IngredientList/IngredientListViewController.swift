@@ -16,6 +16,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
+    @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stockState: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +49,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         stockState.backgroundColor = Style.basicBackgroundColor
         let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
         stockState.setTitleTextAttributes(attribute, for: .normal)
+        category.tintColor = Style.secondaryColor
+        category.backgroundColor = Style.basicBackgroundColor
+        category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         for view in searchBar.subviews {
@@ -115,7 +119,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
         }
         
         for i in (0..<ingredientBasicList.count).reversed(){
@@ -132,6 +136,25 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             case 2:
                 if ingredientBasicList[i].stockFlag{
+                    ingredientBasicList.remove(at: i)
+                }
+            default:
+                break
+            }
+        }
+
+        for i in (0..<ingredientBasicList.count).reversed(){
+            switch category.selectedSegmentIndex{
+            case 1:
+                if ingredientBasicList[i].category != 0{
+                    ingredientBasicList.remove(at: i)
+                }
+            case 2:
+                if ingredientBasicList[i].category != 1{
+                    ingredientBasicList.remove(at: i)
+                }
+            case 3:
+                if ingredientBasicList[i].category != 2{
                     ingredientBasicList.remove(at: i)
                 }
             default:
@@ -317,6 +340,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushAddIngredient", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func categoryTapped(_ sender: UISegmentedControl) {
+        reloadIngredientBasicList()
+        tableView.reloadData()
     }
     
     @IBAction func stockStateTapped(_ sender: UISegmentedControl) {
