@@ -145,7 +145,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reloadRecipeList(){
         let realm = try! Realm()
-        recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
+        recipeList = realm.objects(Recipe.self)
         if order.selectedSegmentIndex == 1{
             try! realm.write {
                 for recipe in recipeList!{

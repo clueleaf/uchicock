@@ -108,7 +108,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func reloadIngredientList(){
         let realm = try! Realm()
-        ingredientList = realm.objects(Ingredient.self).sorted(byKeyPath: "ingredientName")
+        ingredientList = realm.objects(Ingredient.self)
         reloadIngredientBasicList()
     }
     

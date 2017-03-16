@@ -60,7 +60,7 @@ class RecoverTableViewController: UITableViewController {
 
     func loadUserRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
+        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "japaneseDictionaryOrder")
         for ur in recipeList{
             userRecipeNameList.append(ur.recipeName)
         }
@@ -68,7 +68,7 @@ class RecoverTableViewController: UITableViewController {
     
     func loadSampleRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
+        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "japaneseDictionaryOrder")
         for sr in recipeList{
             var isRecoverable = true
             for ur in userRecipeNameList{

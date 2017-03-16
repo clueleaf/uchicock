@@ -17,13 +17,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     var refreshControl:UIRefreshControl!
     var recipeBasicList = Array<RecipeBasic>()
-    var tempRecipeBasicList = Array<RecipeBasic>()
     let header = MJRefreshNormalHeader()
     
     let queue = DispatchQueue(label: "queue")
     var emptyDataSetStr = ""
-    let leastWaitTime = 0.2
-
+    let leastWaitTime = 0.15
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,29 +55,28 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         queue.async {
             self.waitAtLeast(self.leastWaitTime) {
                 let realm = try! Realm()
-                for i in (0..<self.tempRecipeBasicList.count).reversed() {
-                    let recipeList = realm.objects(Recipe.self).filter("id == %@",self.tempRecipeBasicList[i].id)
+                for i in (0..<self.recipeBasicList.count).reversed() {
+                    let recipeList = realm.objects(Recipe.self).filter("id == %@",self.recipeBasicList[i].id)
                     if recipeList.count == 0 {
-                        self.tempRecipeBasicList.remove(at: i)
+                        self.recipeBasicList.remove(at: i)
                     }else if recipeList.first!.imageData == nil{
-                        self.tempRecipeBasicList.remove(at: i)
+                        self.recipeBasicList.remove(at: i)
                     }
                 }
                 
-                let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "recipeName")
+                let recipeList = realm.objects(Recipe.self).filter("imageData != nil").sorted(byKeyPath: "japaneseDictionaryOrder")
                 for recipe in recipeList{
                     var newPhotoFlag = true
-                    for rb in self.tempRecipeBasicList{
+                    for rb in self.recipeBasicList{
                         if recipe.id == rb.id{
                             newPhotoFlag = false
                             break
                         }
                     }
-                    if newPhotoFlag && recipe.imageData != nil{
-                        self.tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+                    if newPhotoFlag{
+                        self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
                     }
                 }
-                self.recipeBasicList = self.tempRecipeBasicList
                 self.emptyDataSetStr = "写真が登録されたレシピはありません"
             }
             DispatchQueue.main.async{
@@ -113,22 +111,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func reloadRecipeList(){
-        tempRecipeBasicList.removeAll()
+        recipeBasicList.removeAll()
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self)
+        let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
         for recipe in recipeList{
-            if recipe.imageData != nil{
-                tempRecipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
-            }
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
         }
-        tempRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
     }
     
     func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
         self.reloadRecipeList()
-        self.shuffle(array: &self.tempRecipeBasicList)
-        recipeBasicList = tempRecipeBasicList
+        self.shuffle(array: &self.recipeBasicList)
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         self.collectionView!.mj_header.endRefreshing()
@@ -204,8 +199,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.queue.async {
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
-                    self.shuffle(array: &self.tempRecipeBasicList)
-                    self.recipeBasicList = self.tempRecipeBasicList
+                    self.shuffle(array: &self.recipeBasicList)
                 }
                 DispatchQueue.main.async{
                     self.collectionView!.reloadData()
@@ -225,7 +219,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.queue.async {
                 self.waitAtLeast(self.leastWaitTime) {
                     self.reloadRecipeList()
-                    self.recipeBasicList = self.tempRecipeBasicList
                 }
                 DispatchQueue.main.async{
                     self.collectionView!.reloadData()
