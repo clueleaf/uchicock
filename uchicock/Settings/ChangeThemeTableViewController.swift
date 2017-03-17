@@ -92,7 +92,7 @@ class ChangeThemeTableViewController: UITableViewController {
         case 9:
             cell.textLabel?.text = "レッドアイ - ライト"
         case 10:
-            cell.textLabel?.text = "レッドアイ - ダーク"
+            cell.textLabel?.text = "キューバリバー - ダーク"
         default: break
         }
 

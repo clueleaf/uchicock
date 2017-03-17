@@ -282,26 +282,26 @@ struct Style{
         checkboxSecondaryTintColor = FlatGray()
     }
     
-    static func redEyeDark(){
+    static func cubaLibreDark(){
         no = "10"
         isDark = true
-        primaryColor = FlatRedDark()
-        secondaryColor = FlatWatermelonDark()
+        primaryColor = FlatLimeDark()
+        secondaryColor = FlatLimeDark()
         Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
         basicBackgroundColor = FlatBlack()
         tableViewHeaderBackgroundColor = FlatGrayDark()
         labelTextColor = FlatWhite()
         labelTextColorLight = FlatGray()
-        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnBadge = FlatBlack()
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
         deleteColor = FlatRedDark()
-        tabBarTintColor = FlatRed()
+        tabBarTintColor = FlatLimeDark()
         tabBarBarTintColor = FlatBlackDark()
-        tableViewCellSelectedBackgroundColor = FlatGrayDark()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.2, green:0.25, blue:0.03, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatGrayDark()
-        tableViewCellReminderBackgroundColor = FlatWatermelonDark()
+        tableViewCellReminderBackgroundColor = FlatLimeDark()
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
@@ -330,7 +330,7 @@ struct Style{
             case "7": irishCoffeeDark()
             case "8": mojitoLight()
             case "9": redEyeLight()
-            case "10": redEyeDark()
+            case "10": cubaLibreDark()
             default: break
             }
         }
