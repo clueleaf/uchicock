@@ -190,7 +190,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             label.backgroundColor = Style.tableViewHeaderBackgroundColor
             label.textColor = Style.labelTextColorOnDisableBadge
             label.font = UIFont.boldSystemFont(ofSize: 15)
-            label.text = "  上の材料を全て使うレシピ(" + String(self.recipeBasicList.count) + ")"
+            label.text = "  上の材料をすべて使うレシピ(" + String(self.recipeBasicList.count) + ")"
             return label
         }
         return nil
