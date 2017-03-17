@@ -191,7 +191,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-            self.recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+            self.reloadRecipeList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
