@@ -19,7 +19,7 @@ class RecoverTableViewController: UITableViewController {
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     let queue = DispatchQueue(label: "queue")
     var isRecovering = false
-    let leastWaitTime = 0.2
+    let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
 
     override func viewDidLoad() {
