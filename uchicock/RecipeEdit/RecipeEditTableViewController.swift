@@ -161,6 +161,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         default:
             break
         }
+        if photo.alpha < 1.0{
+            UIView.animate(withDuration: 0.7, animations: {self.photo.alpha = 1.0}, completion: nil)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -357,6 +360,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             selectPhoto.text = "写真を変更"
             photo.isUserInteractionEnabled = true
         }
+        photo.alpha = 0.0
         ipc.dismiss(animated: true, completion: nil)
     }
     
@@ -382,6 +386,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.photo.image = image
                 self.selectPhoto.text = "写真を変更"
                 self.photo.isUserInteractionEnabled = true
+                self.photo.alpha = 0.0
+                UIView.animate(withDuration: 0.7, animations: {self.photo.alpha = 1.0}, completion: nil)
             }))
         }
         if self.photo.image != nil{
