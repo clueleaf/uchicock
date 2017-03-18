@@ -184,11 +184,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         if order.selectedSegmentIndex == 0{
-            recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+            recipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         }else if order.selectedSegmentIndex == 1{
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.japaneseDictionaryOrder < b.japaneseDictionaryOrder
+                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
                 } else {
                     return a.shortageNum < b.shortageNum
                 }

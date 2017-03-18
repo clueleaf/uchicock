@@ -85,8 +85,8 @@ class RecoverTableViewController: UITableViewController {
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
-        unrecoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        recoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+        unrecoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
     }
     
     func setNavigationTitle(){

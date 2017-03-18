@@ -162,7 +162,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
-        ingredientBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        ingredientBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         
         self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
     }

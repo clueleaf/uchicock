@@ -145,13 +145,13 @@ class IngredientDetailTableViewController: UITableViewController {
         if order.selectedSegmentIndex == 1{
             ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.japaneseDictionaryOrder < b.japaneseDictionaryOrder
+                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
             }
         }else{
-            ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+            ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         }
     }
     

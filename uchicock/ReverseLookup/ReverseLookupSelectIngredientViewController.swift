@@ -140,7 +140,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
             }
         }
         
-        suggestList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        suggestList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         suggestTableView.reloadData()
     }
     

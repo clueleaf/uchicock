@@ -126,7 +126,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
 
-        recipeBasicList.sort(by: { $0.japaneseDictionaryOrder < $1.japaneseDictionaryOrder })
+        recipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
     }
     
     func createRecipeBasicList(){
