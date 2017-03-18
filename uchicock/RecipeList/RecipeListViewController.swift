@@ -25,6 +25,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
+    var selectedIndexPath: IndexPath? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -79,7 +79,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeList()
         tableView.reloadData()
         
-        if let path = indexPathForSelectedRow {
+        if let path = selectedIndexPath {
             if tableView.numberOfRows(inSection: 0) > path.row{
                 let nowRecipeId = (tableView.cellForRow(at: path) as? RecipeListItemTableViewCell)?.recipe.id
                 if nowRecipeId != nil && selectedRecipeId != nil{
@@ -362,6 +362,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = recipeBasicList[indexPath.row].id
+                selectedIndexPath = indexPath
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         } else if segue.identifier == "PushAddRecipe" {
@@ -370,6 +371,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let evc = enc.visibleViewController as! RecipeEditTableViewController
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+                selectedRecipeId = recipeBasicList[indexPath.row].id
+                selectedIndexPath = indexPath
                 evc.recipe = recipe
             }
         }
