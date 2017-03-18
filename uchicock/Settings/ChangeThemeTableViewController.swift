@@ -44,7 +44,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 16
+        return 13
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -94,14 +94,8 @@ class ChangeThemeTableViewController: UITableViewController {
         case 10:
             cell.textLabel?.text = "キューバリバー - ダーク"
         case 11:
-            cell.textLabel?.text = "ジントニック - ライト"
-        case 12:
-            cell.textLabel?.text = "ガルフストリーム - ダーク"
-        case 13:
-            cell.textLabel?.text = "コスモポリタン - ダーク"
-        case 14:
             cell.textLabel?.text = "シルバーウィング - ライト"
-        case 15:
+        case 12:
             cell.textLabel?.text = "アメリカンレモネード - ダーク"
         default: break
         }
