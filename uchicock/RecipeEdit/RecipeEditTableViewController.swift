@@ -219,6 +219,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
+    func resizedImage(image: UIImage) -> UIImage? {
+        let maxLongSide : CGFloat = 1024
+        if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
+            return image
+        }
+        
+        let w = image.size.width / maxLongSide
+        let h = image.size.height / maxLongSide
+        let ratio = w > h ? w : h
+        let rect = CGRect(x: 0, y: 0, width: image.size.width / ratio, height: image.size.height / ratio)
+        
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
@@ -356,7 +375,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
-            photo.image = image
+            photo.image = resizedImage(image: image)
             selectPhoto.text = "写真を変更"
             photo.isUserInteractionEnabled = true
         }
@@ -383,7 +402,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if let image = pasteImage{
             alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                 action in
-                self.photo.image = image
+                self.photo.image = self.resizedImage(image: image)
                 self.selectPhoto.text = "写真を変更"
                 self.photo.isUserInteractionEnabled = true
                 self.photo.alpha = 0.0
