@@ -47,7 +47,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.delegate = self
         
         if let image = recipe.imageData{
-            photo.image = UIImage(data: image as Data)
+            if let img = UIImage(data: image as Data){
+                photo.image = resizedImage(image: img)
+            }
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
