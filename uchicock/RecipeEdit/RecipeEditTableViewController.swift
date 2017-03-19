@@ -377,9 +377,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
-            photo.image = resizedImage(image: image)
-            selectPhoto.text = "写真を変更"
-            photo.isUserInteractionEnabled = true
+            if let img = resizedImage(image: image){
+                photo.image = resizedImage(image: img)
+                selectPhoto.text = "写真を変更"
+                photo.isUserInteractionEnabled = true
+            }
         }
         photo.alpha = 0.0
         ipc.dismiss(animated: true, completion: nil)
@@ -402,14 +404,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let pasteboard: UIPasteboard = UIPasteboard.general
         let pasteImage: UIImage? = pasteboard.image
         if let image = pasteImage{
-            alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
-                action in
-                self.photo.image = self.resizedImage(image: image)
-                self.selectPhoto.text = "写真を変更"
-                self.photo.isUserInteractionEnabled = true
-                self.photo.alpha = 0.0
-                UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
-            }))
+            if let img = self.resizedImage(image: image){
+                alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
+                    action in
+                    self.photo.image = self.resizedImage(image: img)
+                    self.selectPhoto.text = "写真を変更"
+                    self.photo.isUserInteractionEnabled = true
+                    self.photo.alpha = 0.0
+                    UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
+                }))
+            }
         }
         if self.photo.image != nil{
             alert.addAction(UIAlertAction(title: "写真を削除",style: .destructive){
