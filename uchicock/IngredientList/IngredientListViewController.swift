@@ -187,7 +187,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         if let index = touchIndex {
             let realm = try! Realm()
-            let ingredient = realm.objects(Ingredient.self).filter("id == %@", ingredientBasicList[index.row].id).first!
+            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientBasicList[index.row].id)!
             if ingredient.stockFlag {
                 try! realm.write {
                     ingredient.stockFlag = false
@@ -275,8 +275,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
             let realm = try! Realm()
-            let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
-
+            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
@@ -300,7 +299,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         del.backgroundColor = Style.deleteColor
         
         let realm = try! Realm()
-        let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
         if ingredient.recipeIngredients.count == 0 {
             return [del, edit]
         }else{
@@ -320,7 +319,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             cell.stock.animationDuration = 0
             
             let realm = try! Realm()
-            let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
 
             if ingredient.stockFlag{
                 cell.stock.setCheckState(.checked, animated: true)
@@ -366,7 +365,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 let enc = segue.destination as! UINavigationController
                 let evc = enc.visibleViewController as! IngredientEditTableViewController
                 let realm = try! Realm()
-                let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.ingredientBasicList[indexPath.row].id).first!
+                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
                 selectedIngredientId = ingredientBasicList[indexPath.row].id
                 selectedIndexPath = indexPath
                 evc.ingredient = ingredient

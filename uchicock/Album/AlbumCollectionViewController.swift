@@ -52,10 +52,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         queue.async {
             let realm = try! Realm()
             for i in (0..<self.recipeBasicList.count).reversed() {
-                let recipeList = realm.objects(Recipe.self).filter("id == %@",self.recipeBasicList[i].id)
-                if recipeList.count == 0 {
-                    self.recipeBasicList.remove(at: i)
-                }else if recipeList.first!.imageData == nil{
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
+                if let r = recipe{
+                    if r.imageData == nil{
+                        self.recipeBasicList.remove(at: i)
+                    }
+                }else{
                     self.recipeBasicList.remove(at: i)
                 }
             }
@@ -139,8 +141,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let realm = try! Realm()
         if indexPath.row < recipeBasicList.count{
-            let recipeCount = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).count
-            if recipeCount > 0 {
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
+            if recipe != nil {
                 performSegue(withIdentifier: "RecipeTapped", sender: indexPath)
             }
         }
@@ -150,7 +152,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumItem", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
-        let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
+        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
 
         if let image = recipe.imageData {
             cell.photo.image = UIImage(data: image as Data)
@@ -205,7 +207,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
-                let recipe = realm.objects(Recipe.self).filter("id == %@",recipeBasicList[indexPath.row].id).first!
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
                 vc.recipeId = recipe.id
             }
         }

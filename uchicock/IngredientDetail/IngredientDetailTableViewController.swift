@@ -63,15 +63,15 @@ class IngredientDetailTableViewController: UITableViewController {
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         let realm = try! Realm()
-        let ing = realm.objects(Ingredient.self).filter("id == %@",ingredientId)
-        if ing.count < 1 {
+        let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
+        if ing == nil {
             let noIngredientAlertView = UIAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 _ = self.navigationController?.popViewController(animated: true)
             }))
             present(noIngredientAlertView, animated: true, completion: nil)
         } else {
-            ingredient = realm.objects(Ingredient.self).filter("id == %@",ingredientId).first!
+            ingredient = ing!
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
@@ -267,7 +267,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecipeList", for: indexPath) as! IngredientRecipeListTableViewCell
                     
                     let realm = try! Realm()
-                    let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId)!
                     
                     if let image = recipeIngredient.recipe.imageData {
                         cell.photo.image = UIImage(data: image as Data)
@@ -389,7 +389,7 @@ class IngredientDetailTableViewController: UITableViewController {
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 let realm = try! Realm()
-                let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId).first!
+                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId)!
                 selectedRecipeId = recipeIngredient.recipe.id
                 vc.recipeId = recipeIngredient.recipe.id
             }

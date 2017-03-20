@@ -75,15 +75,15 @@ class RecipeDetailTableViewController: UITableViewController{
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         let realm = try! Realm()
-        let rec = realm.objects(Recipe.self).filter("id == %@",recipeId)
-        if rec.count < 1 {
+        let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
+        if rec == nil {
             let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 _ = self.navigationController?.popViewController(animated: true)
             }))
             present(noRecipeAlertView, animated: true, completion: nil)
         }else{
-            recipe = realm.objects(Recipe.self).filter("id == %@",recipeId).first!
+            recipe = rec!
             self.navigationItem.title = recipe.recipeName
             
             let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
@@ -323,7 +323,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 let realm = try! Realm()
                 let deletingRecipeIngredientList = List<RecipeIngredientLink>()
                 for i in 0 ..< self.recipe.recipeIngredients.count {
-                    let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@",self.recipe.recipeIngredients[i].id).first!
+                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipe.recipeIngredients[i].id)!
                     deletingRecipeIngredientList.append(recipeIngredient)
                 }
                 try! realm.write{

@@ -548,7 +548,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     try! realm.write {
                         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
                         for ri in recipe.recipeIngredients{
-                            let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@", ri.id).first!
+                            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
                             deletingRecipeIngredientList.append(recipeIngredient)
                         }
                         
@@ -560,7 +560,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 }
                             }
                         }
-                        let editingRecipe = realm.objects(Recipe.self).filter("id == %@",recipe.id).first!
+                        let editingRecipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipe.id)!
                         editingRecipe.recipeIngredients.removeAll()
                         for ri in deletingRecipeIngredientList{
                             realm.delete(ri)

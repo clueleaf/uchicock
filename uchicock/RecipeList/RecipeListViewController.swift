@@ -115,11 +115,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func deleteRecipe(id: String) {
         let realm = try! Realm()
-        let recipe = realm.objects(Recipe.self).filter("id == %@", id).first!
+        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: id)!
         
         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
         for ri in recipe.recipeIngredients{
-            let recipeIngredient = realm.objects(RecipeIngredientLink.self).filter("id == %@", ri.id).first!
+            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
             deletingRecipeIngredientList.append(recipeIngredient)
         }
         
@@ -324,7 +324,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListItem") as! RecipeListItemTableViewCell
             let realm = try! Realm()
-            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
@@ -370,7 +370,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let enc = segue.destination as! UINavigationController
                 let evc = enc.visibleViewController as! RecipeEditTableViewController
                 let realm = try! Realm()
-                let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
                 selectedRecipeId = recipeBasicList[indexPath.row].id
                 selectedIndexPath = indexPath
                 evc.recipe = recipe

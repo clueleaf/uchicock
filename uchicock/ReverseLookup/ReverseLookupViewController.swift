@@ -157,7 +157,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         let realm = try! Realm()
         for i in (0..<recipeBasicList.count).reversed(){
             var hasIngredient = false
-            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[i].id).first!
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[i].id)!
             for ri in recipe.recipeIngredients{
                 if ri.ingredient.ingredientName == ingredientName{
                     hasIngredient = true
@@ -298,7 +298,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         }else if tableView.tag == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem", for: indexPath) as! ReverseLookupRecipeTableViewCell
             let realm = try! Realm()
-            let recipe = realm.objects(Recipe.self).filter("id == %@", recipeBasicList[indexPath.row].id).first!
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView

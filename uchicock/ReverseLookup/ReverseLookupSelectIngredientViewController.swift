@@ -197,7 +197,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
         let realm = try! Realm()
-        let ingredient = realm.objects(Ingredient.self).filter("id == %@", self.suggestList[indexPath.row].id).first!
+        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.suggestList[indexPath.row].id)!
         cell.ingredient = ingredient
         cell.backgroundColor = Style.basicBackgroundColor
         cell.selectedBackgroundView = selectedCellBackgroundView
