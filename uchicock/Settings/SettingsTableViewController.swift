@@ -51,20 +51,24 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     }
     
     func showIntroduction(){
-        let desc0 = "ダウンロードしていただき、ありがとうございます！使い方を簡単に説明します。"
+        let desc0 = "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。"
         let introductionPanel0 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
-        let desc2 = "ワンタップで材料の在庫を登録できます。在庫を登録することで、今の手持ちでつくれるレシピがわかります。\n材料からレシピを探すのもこの画面から。"
+        let desc2 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちでつくれるレシピがわかります。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
         introductionPanel2!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
-        let desc3 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
-        let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc3, image: UIImage(named: "screen-album"))
+        let desc3 = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！"
+        let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "逆引き", description: desc3, image: UIImage(named: "screen-reverse-lookup"))
         introductionPanel3!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
+
+        let desc4 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
+        let introductionPanel4 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc4, image: UIImage(named: "screen-album"))
+        introductionPanel4!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")
@@ -72,7 +76,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         introductionView.pageControl.currentPageIndicatorTintColor = FlatYellow()
         introductionView.pageControl.pageIndicatorTintColor = FlatOrange()
         introductionView.delegate = self
-        introductionView.buildIntroduction(withPanels: [introductionPanel0!,introductionPanel1!,introductionPanel2!,introductionPanel3!])
+        introductionView.buildIntroduction(withPanels: [introductionPanel0!,introductionPanel1!,introductionPanel2!,introductionPanel3!, introductionPanel4!])
         
         let window = UIApplication.shared.keyWindow!
         window.addSubview(introductionView)
