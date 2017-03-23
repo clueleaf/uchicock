@@ -51,9 +51,6 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     }
     
     func showIntroduction(){
-        let desc0 = "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。"
-        let introductionPanel0 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)
-        
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
@@ -76,7 +73,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         introductionView.pageControl.currentPageIndicatorTintColor = FlatYellow()
         introductionView.pageControl.pageIndicatorTintColor = FlatOrange()
         introductionView.delegate = self
-        introductionView.buildIntroduction(withPanels: [introductionPanel0!,introductionPanel1!,introductionPanel2!,introductionPanel3!, introductionPanel4!])
+        introductionView.buildIntroduction(withPanels: [introductionPanel1!,introductionPanel2!,introductionPanel3!, introductionPanel4!])
         
         let window = UIApplication.shared.keyWindow!
         window.addSubview(introductionView)
