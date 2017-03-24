@@ -14,6 +14,22 @@ class ChangeThemeTableViewController: UITableViewController {
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
     
+    let themeList: [String] = [
+        "テキーラサンライズ - ライト",
+        "テキーラサンライズ - ダーク",
+        "シーブリーズ - ライト",
+        "シーブリーズ - ダーク",
+        "チャイナブルー - ライト",
+        "チャイナブルー - ダーク",
+        "グラスホッパー - ライト",
+        "アイリッシュコーヒー - ダーク",
+        "モヒート - ライト",
+        "レッドアイ - ライト",
+        "キューバリバー - ダーク",
+        "シルバーウィング - ライト",
+        "アメリカンレモネード - ダーク"
+         ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,7 +60,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+        return themeList.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -70,35 +86,7 @@ class ChangeThemeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        switch indexPath.row{
-        case 0:
-            cell.textLabel?.text = "テキーラサンライズ - ライト"
-        case 1:
-            cell.textLabel?.text = "テキーラサンライズ - ダーク"
-        case 2:
-            cell.textLabel?.text = "シーブリーズ - ライト"
-        case 3:
-            cell.textLabel?.text = "シーブリーズ - ダーク"
-        case 4:
-            cell.textLabel?.text = "チャイナブルー - ライト"
-        case 5:
-            cell.textLabel?.text = "チャイナブルー - ダーク"
-        case 6:
-            cell.textLabel?.text = "グラスホッパー - ライト"
-        case 7:
-            cell.textLabel?.text = "アイリッシュコーヒー - ダーク"
-        case 8:
-            cell.textLabel?.text = "モヒート - ライト"
-        case 9:
-            cell.textLabel?.text = "レッドアイ - ライト"
-        case 10:
-            cell.textLabel?.text = "キューバリバー - ダーク"
-        case 11:
-            cell.textLabel?.text = "シルバーウィング - ライト"
-        case 12:
-            cell.textLabel?.text = "アメリカンレモネード - ダーク"
-        default: break
-        }
+        cell.textLabel?.text = themeList[indexPath.row]
 
         if String(indexPath.row) == Style.no{
             cell.accessoryType = .checkmark

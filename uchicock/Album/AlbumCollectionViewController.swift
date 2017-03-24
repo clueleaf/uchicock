@@ -14,7 +14,6 @@ import MJRefresh
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
-    var refreshControl:UIRefreshControl!
     var recipeBasicList = Array<RecipeBasic>()
     let header = MJRefreshNormalHeader()
     

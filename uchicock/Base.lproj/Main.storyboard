@@ -586,7 +586,7 @@
             </objects>
             <point key="canvasLocation" x="-1074" y="3233"/>
         </scene>
-        <!--材料選択-->
+        <!--逆引き材料選択-->
         <scene sceneID="HQc-Sv-P5o">
             <objects>
                 <viewController id="85V-Za-U46" customClass="ReverseLookupSelectIngredientViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
@@ -712,7 +712,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="材料選択" id="Xd0-WO-7Vf">
+                    <navigationItem key="navigationItem" title="逆引き材料選択" id="Xd0-WO-7Vf">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Kdy-gQ-pmz">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="85V-Za-U46" id="a5Q-Xs-T3s"/>
