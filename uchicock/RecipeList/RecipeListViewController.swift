@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StoreKit
 import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
@@ -45,8 +44,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             showIntroduction()
             defaults.set(false, forKey: "firstLaunch")
         }
-        
-        requestReview()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,42 +98,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func requestReview(){
-        let defaults = UserDefaults.standard
-        let hasReviewed = defaults.bool(forKey: "FirstRequestReview")
-        let launchDateAfterReview: NSDate? = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate
-        let launchCountAfterReview: Int? = defaults.object(forKey: "LaunchCountAfterReview") as? Int
- 
-        if launchDateAfterReview == nil{
-            defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-            defaults.set(1, forKey: "LaunchCountAfterReview")
-        }else{
-            if launchCountAfterReview == nil{
-                defaults.set(1, forKey: "LaunchCountAfterReview")
-            }else{
-                defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
-            }
-            
-            let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
-            if hasReviewed{
-                if daySpan > 180 && launchCountAfterReview! > 10{
-                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                    defaults.set(0, forKey: "LaunchCountAfterReview")
-                    defaults.set(true, forKey: "FirstRequestReview")
-//                    SKStoreReviewController.requestReview()
-                }
-            }else{
-                if daySpan > 5 && launchCountAfterReview! > 4{
-                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                    defaults.set(0, forKey: "LaunchCountAfterReview")
-                    defaults.set(true, forKey: "FirstRequestReview")
-//                    SKStoreReviewController.requestReview()
-                }
-            }
-        }
-    }
-    
+        
     func getTextFieldFromView(view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField{

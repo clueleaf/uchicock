@@ -12,6 +12,7 @@ import RealmSwift
 import ChameleonFramework
 import SVProgressHUD
 import M13Checkbox
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -63,7 +64,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         correct_v_3_2()
         fixNilImage()
         
+        requestReview()
+        
         return true
+    }
+    
+    func requestReview(){
+        let defaults = UserDefaults.standard
+        let hasReviewed = defaults.bool(forKey: "FirstRequestReview")
+        let launchDateAfterReview: NSDate? = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate
+        let launchCountAfterReview: Int? = defaults.object(forKey: "LaunchCountAfterReview") as? Int
+        
+        if launchDateAfterReview == nil{
+            defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+            defaults.set(1, forKey: "LaunchCountAfterReview")
+        }else{
+            if launchCountAfterReview == nil{
+                defaults.set(1, forKey: "LaunchCountAfterReview")
+            }else{
+                defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
+            }
+            
+            if #available(iOS 10.3, *){
+                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
+                if hasReviewed{
+                    if daySpan > 180 && launchCountAfterReview! > 10{
+                        defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+                        defaults.set(0, forKey: "LaunchCountAfterReview")
+                        defaults.set(true, forKey: "FirstRequestReview")
+                        SKStoreReviewController.requestReview()
+                    }
+                }else{
+                    if daySpan > 5 && launchCountAfterReview! > 4{
+                        defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+                        defaults.set(0, forKey: "LaunchCountAfterReview")
+                        defaults.set(true, forKey: "FirstRequestReview")
+                        SKStoreReviewController.requestReview()
+                    }
+                }
+            }
+        }
     }
     
     func correct_v_2_2(){
