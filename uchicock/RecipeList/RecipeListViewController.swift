@@ -208,6 +208,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return -self.tableView.frame.size.height/4.0
     }
     
+    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
+        tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: false)
+    }
+    
     func showIntroduction(){
         let desc0 = "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。"
         let introductionPanel0 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "Thank you for downloading!!", description: desc0)

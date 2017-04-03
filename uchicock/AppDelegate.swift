@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         SKStoreReviewController.requestReview()
                     }
                 }else{
-                    if daySpan > 5 && launchCountAfterReview! > 4{
+                    if daySpan > 3 && launchCountAfterReview! > 3{
                         defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
                         defaults.set(0, forKey: "LaunchCountAfterReview")
                         defaults.set(true, forKey: "FirstRequestReview")
