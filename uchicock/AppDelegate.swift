@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         correct_v_2_2()
         correct_v_2_3()
         correct_v_3_2()
+        correct_v_4_1()
         fixNilImage()
         
         requestReview()
@@ -175,6 +176,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             defaults.set(true, forKey: "corrected_v3.2")
+        }
+    }
+    
+    func correct_v_4_1(){
+        let defaults = UserDefaults.standard
+        let dic = ["corrected_v4.1": false]
+        defaults.register(defaults: dic)
+        if defaults.bool(forKey: "corrected_v4.1") == false {
+            let realm = try! Realm()
+            let recipeCount = realm.objects(Recipe.self).filter("favorites == 0").count
+            if recipeCount == 0{
+                let recipeList = realm.objects(Recipe.self).filter("favorites == 1")
+                for recipe in recipeList{
+                    try! realm.write{
+                        recipe.favorites = 0
+                    }
+                }
+            }
+            defaults.set(true, forKey: "corrected_v4.1")
         }
     }
 
