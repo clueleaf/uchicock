@@ -188,8 +188,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let recipeCount = realm.objects(Recipe.self).filter("favorites == 0").count
             if recipeCount == 0{
                 let recipeList = realm.objects(Recipe.self).filter("favorites == 1")
-                for recipe in recipeList{
-                    try! realm.write{
+                try! realm.write{
+                    for recipe in recipeList{
                         recipe.favorites = 0
                     }
                 }
