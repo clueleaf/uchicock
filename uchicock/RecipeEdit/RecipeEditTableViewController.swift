@@ -66,7 +66,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
-            star1.setTitle("★", for: .normal)
+            star1.setTitle("☆", for: .normal)
             star2.setTitle("☆", for: .normal)
             star3.setTitle("☆", for: .normal)
             method.selectedSegmentIndex = 0
@@ -74,6 +74,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         } else {
             self.navigationItem.title = "レシピ編集"
             switch recipe.favorites{
+            case 0:
+                star1.setTitle("☆", for: .normal)
+                star2.setTitle("☆", for: .normal)
+                star3.setTitle("☆", for: .normal)
             case 1:
                 star1.setTitle("★", for: .normal)
                 star2.setTitle("☆", for: .normal)
@@ -87,7 +91,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 star2.setTitle("★", for: .normal)
                 star3.setTitle("★", for: .normal)
             default:
-                star1.setTitle("★", for: .normal)
+                star1.setTitle("☆", for: .normal)
                 star2.setTitle("☆", for: .normal)
                 star3.setTitle("☆", for: .normal)
             }
@@ -432,21 +436,39 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     // MARK: - IBAction
     @IBAction func star1Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("☆", for: .normal)
-        star3.setTitle("☆", for: .normal)
+        if star1.currentTitle == "★" && star2.currentTitle == "☆"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+        }
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("★", for: .normal)
-        star3.setTitle("☆", for: .normal)
+        if star2.currentTitle == "★" && star3.currentTitle == "☆"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("★", for: .normal)
+            star3.setTitle("☆", for: .normal)
+        }
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("★", for: .normal)
-        star3.setTitle("★", for: .normal)
+        if star3.currentTitle == "★"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("★", for: .normal)
+            star3.setTitle("★", for: .normal)
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -509,8 +531,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             newRecipe.favorites = 3
                         }else if star2.currentTitle == "★" {
                             newRecipe.favorites = 2
-                        }else{
+                        }else if star1.currentTitle == "★"{
                             newRecipe.favorites = 1
+                        }else{
+                            newRecipe.favorites = 0
                         }
 
                         if let image = photo.image{
@@ -572,8 +596,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.favorites = 3
                         }else if star2.currentTitle == "★" {
                             recipe.favorites = 2
-                        }else{
+                        }else if star1.currentTitle == "★"{
                             recipe.favorites = 1
+                        }else{
+                            recipe.favorites = 0
                         }
                         
                         if let image = photo.image{

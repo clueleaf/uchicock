@@ -12,7 +12,7 @@ import RealmSwift
 class Recipe: Object {
     dynamic var id = NSUUID().uuidString
     dynamic var recipeName = ""
-    dynamic var favorites = 1
+    dynamic var favorites = 0
     dynamic var method = 0
     dynamic var memo = ""
     dynamic var imageData: NSData? = nil

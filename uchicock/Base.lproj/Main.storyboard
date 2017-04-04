@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -130,8 +130,9 @@
                                         </constraints>
                                         <segments>
                                             <segment title="すべて"/>
-                                            <segment title="★★以上"/>
-                                            <segment title="★★★のみ"/>
+                                            <segment title="★〜"/>
+                                            <segment title="★★〜"/>
+                                            <segment title="★★★"/>
                                         </segments>
                                         <connections>
                                             <action selector="favoriteStateTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="PB3-Z8-rRq"/>
@@ -3067,9 +3068,9 @@
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="SNB-c3-dZb"/>
         <segue reference="BF7-gd-8JQ"/>
         <segue reference="Ee4-db-L8m"/>
-        <segue reference="WL9-sL-eOj"/>
         <segue reference="rrh-vr-JPb"/>
         <segue reference="yVC-hM-JRi"/>
     </inferredMetricsTieBreakers>

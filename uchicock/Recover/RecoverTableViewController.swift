@@ -148,7 +148,7 @@ class RecoverTableViewController: UITableViewController {
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addIngredient(ingredientName: recoverIngredient.name, stockFlag: false, memo: "", category: recoverIngredient.category)
                     }
-                    addRecipe(recipeName: recoverRecipe.name, favorites: 1, memo: "", method: recoverRecipe.method)
+                    addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", method: recoverRecipe.method)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)

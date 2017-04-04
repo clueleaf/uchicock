@@ -171,10 +171,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         for i in (0..<recipeBasicList.count).reversed(){
             switch favoriteSelect.selectedSegmentIndex{
             case 1:
-                if recipeBasicList[i].favorites < 2 {
+                if recipeBasicList[i].favorites < 1 {
                     recipeBasicList.remove(at: i)
                 }
             case 2:
+                if recipeBasicList[i].favorites < 2 {
+                    recipeBasicList.remove(at: i)
+                }
+            case 3:
                 if recipeBasicList[i].favorites < 3 {
                     recipeBasicList.remove(at: i)
                 }

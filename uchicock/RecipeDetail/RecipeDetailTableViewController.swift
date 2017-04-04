@@ -127,6 +127,10 @@ class RecipeDetailTableViewController: UITableViewController{
             recipeName.textColor = Style.labelTextColor
             
             switch recipe.favorites{
+            case 0:
+                star1.setTitle("☆", for: .normal)
+                star2.setTitle("☆", for: .normal)
+                star3.setTitle("☆", for: .normal)
             case 1:
                 star1.setTitle("★", for: .normal)
                 star2.setTitle("☆", for: .normal)
@@ -140,7 +144,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 star2.setTitle("★", for: .normal)
                 star3.setTitle("★", for: .normal)
             default:
-                star1.setTitle("★", for: .normal)
+                star1.setTitle("☆", for: .normal)
                 star2.setTitle("☆", for: .normal)
                 star3.setTitle("☆", for: .normal)
             }
@@ -482,35 +486,59 @@ class RecipeDetailTableViewController: UITableViewController{
     }
     
     @IBAction func star1Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("☆", for: .normal)
-        star3.setTitle("☆", for: .normal)
-        
         let realm = try! Realm()
-        try! realm.write {
-            recipe.favorites = 1
+        if star1.currentTitle == "★" && star2.currentTitle == "☆"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+            try! realm.write {
+                recipe.favorites = 0
+            }
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+            try! realm.write {
+                recipe.favorites = 1
+            }
         }
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("★", for: .normal)
-        star3.setTitle("☆", for: .normal)
-        
         let realm = try! Realm()
-        try! realm.write {
-            recipe.favorites = 2
+        if star2.currentTitle == "★" && star3.currentTitle == "☆"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+            try! realm.write {
+                recipe.favorites = 0
+            }
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("★", for: .normal)
+            star3.setTitle("☆", for: .normal)
+            try! realm.write {
+                recipe.favorites = 2
+            }
         }
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
-        star1.setTitle("★", for: .normal)
-        star2.setTitle("★", for: .normal)
-        star3.setTitle("★", for: .normal)
-        
         let realm = try! Realm()
-        try! realm.write {
-            recipe.favorites = 3
+        if star3.currentTitle == "★"{
+            star1.setTitle("☆", for: .normal)
+            star2.setTitle("☆", for: .normal)
+            star3.setTitle("☆", for: .normal)
+            try! realm.write {
+                recipe.favorites = 0
+            }
+        }else{
+            star1.setTitle("★", for: .normal)
+            star2.setTitle("★", for: .normal)
+            star3.setTitle("★", for: .normal)
+            try! realm.write {
+                recipe.favorites = 3
+            }
         }
     }
     

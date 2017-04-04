@@ -34,7 +34,7 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         self.addSubview(recipeName)
         
         favorites = UILabel(frame: CGRect(x: width - 88, y: 8, width: 60, height: 21))
-        favorites.text = "☆☆☆"
+        favorites.text = ""
         favorites.font = UIFont.systemFont(ofSize: 20)
         favorites.textColor = Style.secondaryColor
         self.addSubview(favorites)

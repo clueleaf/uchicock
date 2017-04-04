@@ -31,14 +31,16 @@ class ReverseLookupRecipeTableViewCell: UITableViewCell {
             recipeName.textColor = Style.labelTextColor
             
             switch recipe.favorites{
+            case 0:
+                favorites.text = ""
             case 1:
-                favorites.text = "★　　"
+                favorites.text = "★"
             case 2:
-                favorites.text = "★★　"
+                favorites.text = "★★"
             case 3:
                 favorites.text = "★★★"
             default:
-                favorites.text = "★　　"
+                favorites.text = ""
             }
             favorites.textAlignment = .left
             favorites.textColor = Style.secondaryColor
