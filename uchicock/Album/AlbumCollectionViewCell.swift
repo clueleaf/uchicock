@@ -10,4 +10,5 @@ import UIKit
 
 class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var recipeName: UILabel!
 }

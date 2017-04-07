@@ -613,16 +613,29 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nzl-40-6oB">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5X-4l-Nem">
+                                            <rect key="frame" x="0.0" y="50" width="100" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="bdH-B8-uv4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstItem="Nzl-40-6oB" firstAttribute="leading" secondItem="yD1-8e-bxi" secondAttribute="leading" id="2bX-Rw-V68"/>
+                                    <constraint firstAttribute="bottom" secondItem="o5X-4l-Nem" secondAttribute="bottom" id="791-It-zZw"/>
+                                    <constraint firstItem="o5X-4l-Nem" firstAttribute="leading" secondItem="yD1-8e-bxi" secondAttribute="leading" id="EgN-Ny-F1j"/>
                                     <constraint firstAttribute="bottom" secondItem="Nzl-40-6oB" secondAttribute="bottom" id="IxU-M2-BGN"/>
                                     <constraint firstAttribute="trailing" secondItem="Nzl-40-6oB" secondAttribute="trailing" id="Pom-V9-f6z"/>
                                     <constraint firstItem="Nzl-40-6oB" firstAttribute="top" secondItem="yD1-8e-bxi" secondAttribute="top" id="W4F-4w-Pgs"/>
+                                    <constraint firstAttribute="trailing" secondItem="o5X-4l-Nem" secondAttribute="trailing" id="hgc-sR-oyY"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="photo" destination="Nzl-40-6oB" id="J5n-Rp-7gX"/>
+                                    <outlet property="recipeName" destination="o5X-4l-Nem" id="Of3-dq-5Cd"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -634,6 +647,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
                         <barButtonItem key="backBarButtonItem" title="アルバム" id="Wm3-Ba-Mrh"/>
+                        <barButtonItem key="leftBarButtonItem" image="album-name-off" id="llb-gy-qnJ">
+                            <connections>
+                                <action selector="nameButtonTapped:" destination="N5u-Pe-SYk" id="Wam-gY-Gqo"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="reload-and-shuffle" id="T3L-KT-GGi">
                                 <connections>
@@ -746,6 +764,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="album-name-off" width="24" height="24"/>
         <image name="order" width="24" height="24"/>
         <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
@@ -754,6 +773,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="S3o-3c-KvN"/>
+        <segue reference="xK4-qe-qjp"/>
     </inferredMetricsTieBreakers>
 </document>

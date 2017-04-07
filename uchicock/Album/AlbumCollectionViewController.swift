@@ -20,6 +20,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let queue = DispatchQueue(label: "queue")
     var emptyDataSetStr = ""
     let leastWaitTime = 0.15
+    var showNameFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,19 +156,35 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         if let image = recipe.imageData {
             cell.photo.image = UIImage(data: image as Data)
+            if showNameFlag{
+                cell.recipeName.text = recipe.recipeName
+                cell.recipeName.textColor = Style.labelTextColor
+                cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
+            }else{
+                cell.recipeName.text = nil
+                cell.recipeName.backgroundColor = UIColor.clear                
+            }
             //レシピ削除のバグに対するワークアラウンド
             if cell.photo.image == nil{
                 if Style.isDark{
                     cell.photo.image = UIImage(named: "no-photo-dark")
+                    cell.recipeName.text = nil
+                    cell.recipeName.backgroundColor = UIColor.clear
                 }else{
                     cell.photo.image = UIImage(named: "no-photo")
+                    cell.recipeName.text = nil
+                    cell.recipeName.backgroundColor = UIColor.clear
                 }
             }
         }else{
             if Style.isDark{
                 cell.photo.image = UIImage(named: "no-photo-dark")
+                cell.recipeName.text = nil
+                cell.recipeName.backgroundColor = UIColor.clear
             }else{
                 cell.photo.image = UIImage(named: "no-photo")
+                cell.recipeName.text = nil
+                cell.recipeName.backgroundColor = UIColor.clear
             }
         }
         return cell
@@ -198,6 +215,18 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
         self.present(alertView, animated: true, completion: nil)
+    }
+    
+    @IBAction func nameButtonTapped(_ sender: UIBarButtonItem) {
+        if showNameFlag {
+//            sender.setBackgroundImage(UIImage(named: "album-name-off"), for: .normal, barMetrics: .default)
+            showNameFlag = false
+            self.collectionView!.reloadData()
+        }else{
+//            sender.setBackgroundImage(UIImage(named: "album-name-on"), for: .normal, barMetrics: .default)
+            showNameFlag = true
+            self.collectionView!.reloadData()
+        }
     }
     
     // MARK: - Navigation

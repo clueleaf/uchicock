@@ -31,6 +31,7 @@ struct Style{
     static var badgeDisableBackgroundColor = FlatWhiteDark()
     static var memoBorderColor = FlatWhiteDark()
     static var checkboxSecondaryTintColor = FlatGray()
+    static var albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     
     static func tequilaSunriseLight(){
         no = "0"
@@ -55,6 +56,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
     static func tequilaSunriseDark(){
@@ -80,6 +82,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
     
     static func seaBreezeLight(){
@@ -105,6 +108,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
     static func seaBreezeDark(){
@@ -130,6 +134,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
 
     static func chinaBlueLight(){
@@ -155,6 +160,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
 
     static func chinaBlueDark(){
@@ -180,6 +186,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
 
     static func grasshopperLight(){
@@ -205,6 +212,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
 
     static func irishCoffeeDark(){
@@ -230,6 +238,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
     
     static func mojitoLight(){
@@ -255,6 +264,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
     static func redEyeLight(){
@@ -280,6 +290,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
     static func cubaLibreDark(){
@@ -305,6 +316,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
     
     static func silverWingLight(){
@@ -330,6 +342,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatWhiteDark()
         memoBorderColor = FlatWhiteDark()
         checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
     static func americanLemonadeDark(){
@@ -355,6 +368,7 @@ struct Style{
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
 
     static func loadTheme(){
