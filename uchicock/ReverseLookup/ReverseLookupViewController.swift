@@ -279,16 +279,16 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         if tableView.tag == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReverseLookupIngredient") as! ReverseLookupTableViewCell
             if indexPath.row == 0{
-                cell.ingredientNumberLabel.text = "材料1："
+                cell.ingredientNumberLabel.text = "材料1"
                 cell.ingredientNameLabel.text = firstIngredientLabel
             }else if indexPath.row == 1{
-                cell.ingredientNumberLabel.text = "材料2："
+                cell.ingredientNumberLabel.text = "材料2"
                 cell.ingredientNameLabel.text = secondIngredientLabel
             }else if indexPath.row == 2{
-                cell.ingredientNumberLabel.text = "材料3："
+                cell.ingredientNumberLabel.text = "材料3"
                 cell.ingredientNameLabel.text = thirdIngredientLabel
             }
-            cell.ingredientNumberLabel.textColor = Style.labelTextColor
+            cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
             cell.ingredientNameLabel.textColor = Style.labelTextColor
             cell.changeLabel.textColor = Style.labelTextColorLight
             cell.backgroundColor = Style.basicBackgroundColor
