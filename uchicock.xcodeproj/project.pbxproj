@@ -65,6 +65,13 @@
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
+		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
+		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
+		9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE19C1E979FA500546B47 /* Settings.storyboard */; };
+		9BFCE1A21E97A0CE00546B47 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */; };
+		9BFCE1A51E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */; };
+		9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */; };
+		9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +163,13 @@
 		9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
+		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
+		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
+		9BFCE19D1E979FA500546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		9BFCE1A11E97A0CE00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
+		9BFCE1A41E97A19700546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReverseLookupSelectIngredient.storyboard; sourceTree = "<group>"; };
+		9BFCE1A71E97A39400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeDetail.storyboard; sourceTree = "<group>"; };
+		9BFCE1AA1E97A41400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientDetail.storyboard; sourceTree = "<group>"; };
 		BB9BC0F119F8CAA7EABB2D48 /* Pods-uchicock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +327,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9BFCE19F1E97A05A00546B47 /* Storyboards */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
 				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
 				9B3FE5831C9EA1630061D21C /* RecipeEdit */,
@@ -327,9 +342,7 @@
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
-				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
-				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
 				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,
 				9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */,
@@ -394,6 +407,22 @@
 				9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */,
 			);
 			name = IngredientDetail;
+			sourceTree = "<group>";
+		};
+		9BFCE19F1E97A05A00546B47 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
+				9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */,
+				9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */,
+				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
+				9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */,
+				9BFCE1991E979D3100546B47 /* Reminder.storyboard */,
+				9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */,
+				9BFCE19C1E979FA500546B47 /* Settings.storyboard */,
+				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		D62374FCD504BC5EA91FCD15 /* Frameworks */ = {
@@ -522,10 +551,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */,
 				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
 				9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */,
+				9BFCE1A21E97A0CE00546B47 /* IngredientEdit.storyboard in Resources */,
+				9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */,
+				9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */,
+				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
+				9BFCE1A51E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
+				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +743,62 @@
 				9BC9A31E1C783CAA0031F631 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE1911E97999E00546B47 /* Base */,
+			);
+			name = RecipeEdit.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1991E979D3100546B47 /* Reminder.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE19A1E979D3100546B47 /* Base */,
+			);
+			name = Reminder.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE19C1E979FA500546B47 /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE19D1E979FA500546B47 /* Base */,
+			);
+			name = Settings.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE1A11E97A0CE00546B47 /* Base */,
+			);
+			name = IngredientEdit.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE1A41E97A19700546B47 /* Base */,
+			);
+			name = ReverseLookupSelectIngredient.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE1A71E97A39400546B47 /* Base */,
+			);
+			name = RecipeDetail.storyboard;
+			sourceTree = "<group>";
+		};
+		9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BFCE1AA1E97A41400546B47 /* Base */,
+			);
+			name = IngredientDetail.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
