@@ -21,6 +21,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var emptyDataSetStr = ""
     let leastWaitTime = 0.15
     var showNameFlag = false
+    var animationFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,35 +157,39 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         if let image = recipe.imageData {
             cell.photo.image = UIImage(data: image as Data)
+            cell.recipeName.text = recipe.recipeName
+            cell.recipeName.textColor = Style.labelTextColor
+            cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
             if showNameFlag{
-                cell.recipeName.text = recipe.recipeName
-                cell.recipeName.textColor = Style.labelTextColor
-                cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
+                if animationFlag{
+                    UIView.animate(withDuration: 0.3, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
+                }else{
+                    cell.recipeName.alpha = 1.0
+                }
             }else{
-                cell.recipeName.text = nil
-                cell.recipeName.backgroundColor = UIColor.clear                
+                if animationFlag{
+                    UIView.animate(withDuration: 0.3, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
+                }else{
+                    cell.recipeName.alpha = 0.0
+                }
             }
             //レシピ削除のバグに対するワークアラウンド
             if cell.photo.image == nil{
                 if Style.isDark{
                     cell.photo.image = UIImage(named: "no-photo-dark")
-                    cell.recipeName.text = nil
-                    cell.recipeName.backgroundColor = UIColor.clear
+                    cell.recipeName.alpha = 0.0
                 }else{
                     cell.photo.image = UIImage(named: "no-photo")
-                    cell.recipeName.text = nil
-                    cell.recipeName.backgroundColor = UIColor.clear
+                    cell.recipeName.alpha = 0.0
                 }
             }
         }else{
             if Style.isDark{
                 cell.photo.image = UIImage(named: "no-photo-dark")
-                cell.recipeName.text = nil
-                cell.recipeName.backgroundColor = UIColor.clear
+                cell.recipeName.alpha = 0.0
             }else{
                 cell.photo.image = UIImage(named: "no-photo")
-                cell.recipeName.text = nil
-                cell.recipeName.backgroundColor = UIColor.clear
+                cell.recipeName.alpha = 0.0
             }
         }
         return cell
@@ -221,11 +226,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if showNameFlag {
 //            sender.setBackgroundImage(UIImage(named: "album-name-off"), for: .normal, barMetrics: .default)
             showNameFlag = false
+            animationFlag = true
             self.collectionView!.reloadData()
+            self.collectionView!.layoutIfNeeded()
+            animationFlag = false
         }else{
 //            sender.setBackgroundImage(UIImage(named: "album-name-on"), for: .normal, barMetrics: .default)
             showNameFlag = true
+            animationFlag = true
             self.collectionView!.reloadData()
+            self.collectionView!.layoutIfNeeded()
+            animationFlag = false
         }
     }
     
