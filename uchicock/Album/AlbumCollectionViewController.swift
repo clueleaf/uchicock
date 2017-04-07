@@ -14,6 +14,8 @@ import MJRefresh
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
+    @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
+    
     var recipeBasicList = Array<RecipeBasic>()
     let header = MJRefreshNormalHeader()
     
@@ -32,6 +34,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         self.collectionView!.emptyDataSetSource = self
         self.collectionView!.emptyDataSetDelegate = self
+        
+        recipeNameBarButton.image = UIImage(named: "album-name-off")
         
         header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
         header.lastUpdatedTimeLabel.isHidden = true
@@ -162,13 +166,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
             if showNameFlag{
                 if animationFlag{
-                    UIView.animate(withDuration: 0.3, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
+                    UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
                 }else{
                     cell.recipeName.alpha = 1.0
                 }
             }else{
                 if animationFlag{
-                    UIView.animate(withDuration: 0.3, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
+                    UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
                 }else{
                     cell.recipeName.alpha = 0.0
                 }
@@ -224,14 +228,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     @IBAction func nameButtonTapped(_ sender: UIBarButtonItem) {
         if showNameFlag {
-//            sender.setBackgroundImage(UIImage(named: "album-name-off"), for: .normal, barMetrics: .default)
+            recipeNameBarButton.image = UIImage(named: "album-name-off")
             showNameFlag = false
             animationFlag = true
             self.collectionView!.reloadData()
             self.collectionView!.layoutIfNeeded()
             animationFlag = false
         }else{
-//            sender.setBackgroundImage(UIImage(named: "album-name-on"), for: .normal, barMetrics: .default)
+            recipeNameBarButton.image = UIImage(named: "album-name-on")
             showNameFlag = true
             animationFlag = true
             self.collectionView!.reloadData()

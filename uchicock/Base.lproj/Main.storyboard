@@ -666,6 +666,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="recipeNameBarButton" destination="llb-gy-qnJ" id="Aeb-JH-sYg"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="RecipeTapped" id="xK4-qe-qjp"/>
                     </connections>
                 </collectionViewController>
