@@ -147,8 +147,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         if indexPath.row < recipeBasicList.count{
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
-            if recipe != nil {
-                performSegue(withIdentifier: "RecipeTapped", sender: indexPath)
+            if let r = recipe {
+                performSegue(withIdentifier: "RecipeTapped", sender: r.id)
             }
         }
     }
@@ -157,28 +157,37 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumItem", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
-        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
-
-        if let image = recipe.imageData {
-            cell.photo.image = UIImage(data: image as Data)
-            cell.recipeName.text = recipe.recipeName
-            cell.recipeName.textColor = Style.labelTextColor
-            cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
-            if showNameFlag{
-                if animationFlag{
-                    UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
+        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
+        if let r = recipe{
+            if let image = r.imageData {
+                cell.photo.image = UIImage(data: image as Data)
+                cell.recipeName.text = r.recipeName
+                cell.recipeName.textColor = Style.labelTextColor
+                cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
+                if showNameFlag{
+                    if animationFlag{
+                        UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
+                    }else{
+                        cell.recipeName.alpha = 1.0
+                    }
                 }else{
-                    cell.recipeName.alpha = 1.0
+                    if animationFlag{
+                        UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
+                    }else{
+                        cell.recipeName.alpha = 0.0
+                    }
+                }
+                //レシピ削除のバグに対するワークアラウンド
+                if cell.photo.image == nil{
+                    if Style.isDark{
+                        cell.photo.image = UIImage(named: "no-photo-dark")
+                        cell.recipeName.alpha = 0.0
+                    }else{
+                        cell.photo.image = UIImage(named: "no-photo")
+                        cell.recipeName.alpha = 0.0
+                    }
                 }
             }else{
-                if animationFlag{
-                    UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
-                }else{
-                    cell.recipeName.alpha = 0.0
-                }
-            }
-            //レシピ削除のバグに対するワークアラウンド
-            if cell.photo.image == nil{
                 if Style.isDark{
                     cell.photo.image = UIImage(named: "no-photo-dark")
                     cell.recipeName.alpha = 0.0
@@ -188,13 +197,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }else{
-            if Style.isDark{
-                cell.photo.image = UIImage(named: "no-photo-dark")
-                cell.recipeName.alpha = 0.0
-            }else{
-                cell.photo.image = UIImage(named: "no-photo")
-                cell.recipeName.alpha = 0.0
-            }
+            cell.photo.image = nil
+            cell.recipeName.text = nil
+            cell.recipeName.alpha = 0.0
         }
         return cell
     }
@@ -248,10 +253,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "RecipeTapped" {
             let vc = segue.destination as! RecipeDetailTableViewController
-            if let indexPath = sender as? IndexPath{
-                let realm = try! Realm()
-                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
-                vc.recipeId = recipe.id
+            if let id = sender as? String{
+                vc.recipeId = id
             }
         }
     }
