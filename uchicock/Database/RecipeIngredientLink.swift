@@ -6,7 +6,6 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
-//import Foundation
 import RealmSwift
 
 class RecipeIngredientLink: Object {
