@@ -200,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func fixNilImage(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self)
+        let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
         for recipe in recipeList{
             try! realm.write {
                 recipe.fixNilImage()
