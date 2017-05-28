@@ -42,7 +42,11 @@ class IngredientListItemTableViewCell: UITableViewCell {
 
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
+            ingredientName.backgroundColor = Style.basicBackgroundColor
+            ingredientName.clipsToBounds = true
             stockLabel.textColor = Style.labelTextColorLight
+            stockLabel.backgroundColor = Style.basicBackgroundColor
+            stockLabel.clipsToBounds = true
             
             stock.backgroundColor = UIColor.clear
             stock.tintColor = Style.secondaryColor

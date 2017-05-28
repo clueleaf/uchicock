@@ -289,6 +289,8 @@ class IngredientDetailTableViewController: UITableViewController {
                     
                     cell.recipeId = recipeIngredient.recipe.id
                     cell.recipeName.text = recipeIngredient.recipe.recipeName
+                    cell.recipeName.backgroundColor = Style.basicBackgroundColor
+                    cell.recipeName.clipsToBounds = true
                     switch recipeIngredient.recipe.favorites{
                     case 0:
                         cell.favorites.text = ""
@@ -303,6 +305,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     }
                     cell.favorites.textAlignment = .left
                     cell.favorites.textColor = Style.secondaryColor
+                    cell.favorites.backgroundColor = Style.basicBackgroundColor
                     
                     var shortageNum = 0
                     var shortageName = ""
@@ -328,6 +331,8 @@ class IngredientDetailTableViewController: UITableViewController {
                         cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = Style.labelTextColorLight
                     }
+                    cell.shortage.backgroundColor = Style.basicBackgroundColor
+                    cell.shortage.clipsToBounds = true
                     
                     cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                     cell.selectionStyle = .default

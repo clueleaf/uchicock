@@ -289,8 +289,14 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.ingredientNameLabel.text = thirdIngredientLabel
             }
             cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
+            cell.ingredientNumberLabel.backgroundColor = Style.basicBackgroundColor
+            cell.ingredientNumberLabel.clipsToBounds = true
             cell.ingredientNameLabel.textColor = Style.labelTextColor
+            cell.ingredientNameLabel.backgroundColor = Style.basicBackgroundColor
+            cell.ingredientNameLabel.clipsToBounds = true
             cell.changeLabel.textColor = Style.labelTextColorLight
+            cell.changeLabel.backgroundColor = Style.basicBackgroundColor
+            cell.changeLabel.clipsToBounds = true
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.isUserInteractionEnabled = true

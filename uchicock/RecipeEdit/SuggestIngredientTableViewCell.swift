@@ -16,6 +16,8 @@ class SuggestIngredientTableViewCell: UITableViewCell {
         didSet{
             ingredientName.text = name
             ingredientName.textColor = Style.labelTextColor
+            ingredientName.backgroundColor = Style.basicBackgroundColor
+            ingredientName.clipsToBounds = true
         }
     }
 

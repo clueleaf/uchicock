@@ -31,12 +31,15 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         recipeName.text = ""
         recipeName.font = UIFont.systemFont(ofSize: 17)
         recipeName.textColor = Style.labelTextColor
+        recipeName.backgroundColor = Style.basicBackgroundColor
+        recipeName.clipsToBounds = true
         self.addSubview(recipeName)
         
         favorites = UILabel(frame: CGRect(x: width - 88, y: 8, width: 60, height: 21))
         favorites.text = ""
         favorites.font = UIFont.systemFont(ofSize: 20)
         favorites.textColor = Style.secondaryColor
+        favorites.backgroundColor = Style.basicBackgroundColor
         self.addSubview(favorites)
         
         shortage = UILabel(frame: CGRect(x: 77, y: 34, width: width - 105, height: 21))
@@ -44,6 +47,8 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
         shortage.font = UIFont.systemFont(ofSize: 12)
         shortage.lineBreakMode = .byTruncatingMiddle
         shortage.textColor = Style.labelTextColor
+        shortage.backgroundColor = Style.basicBackgroundColor
+        shortage.clipsToBounds = true
         self.addSubview(shortage)
     }
 

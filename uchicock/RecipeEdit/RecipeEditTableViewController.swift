@@ -341,7 +341,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.row < editingRecipeIngredientList.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeEditIngredient", for: indexPath) as! RecipeEditIngredientTableViewCell
                 cell.ingredientName.text = editingRecipeIngredientList[indexPath.row].ingredientName
+                cell.ingredientName.backgroundColor = Style.basicBackgroundColor
+                cell.ingredientName.clipsToBounds = true
                 cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
+                cell.amount.backgroundColor = Style.basicBackgroundColor
+                cell.amount.clipsToBounds = true
                 cell.option.backgroundColor = UIColor.clear
                 if editingRecipeIngredientList[indexPath.row].mustFlag{
                     cell.option.text = ""
@@ -365,7 +369,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.textColor = Style.secondaryColor
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
-                cell.textLabel?.textAlignment = .center;
+                cell.textLabel?.textAlignment = .center
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 return cell

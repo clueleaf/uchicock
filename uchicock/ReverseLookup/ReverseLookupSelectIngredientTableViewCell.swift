@@ -17,6 +17,8 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
         didSet{
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
+            ingredientName.backgroundColor = Style.basicBackgroundColor
+            ingredientName.clipsToBounds = true
             
             stockLabel.backgroundColor = UIColor.clear
             if ingredient.stockFlag{

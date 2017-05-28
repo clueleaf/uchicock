@@ -29,6 +29,8 @@ class ReverseLookupRecipeTableViewCell: UITableViewCell {
             
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
+            recipeName.backgroundColor = Style.basicBackgroundColor
+            recipeName.clipsToBounds = true
             
             switch recipe.favorites{
             case 0:
@@ -44,6 +46,7 @@ class ReverseLookupRecipeTableViewCell: UITableViewCell {
             }
             favorites.textAlignment = .left
             favorites.textColor = Style.secondaryColor
+            favorites.backgroundColor = Style.basicBackgroundColor
             
             var shortageNum = 0
             var shortageName = ""
@@ -67,6 +70,8 @@ class ReverseLookupRecipeTableViewCell: UITableViewCell {
                 shortage.textColor = Style.labelTextColorLight
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
+            shortage.backgroundColor = Style.basicBackgroundColor
+            shortage.clipsToBounds = true
         }
     }
 

@@ -25,6 +25,8 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFont(ofSize: 15)
         ingredientName.textColor = Style.labelTextColor
+        ingredientName.backgroundColor = Style.basicBackgroundColor
+        ingredientName.clipsToBounds = true
         self.addSubview(ingredientName)
         
         option = UILabel(frame: CGRect(x: 5, y: 33, width: 50, height: 21))
@@ -43,6 +45,8 @@ class RecipeIngredientListTableViewCell: UITableViewCell {
         amount.text = ""
         amount.font = UIFont.systemFont(ofSize: 12)
         amount.textColor = Style.labelTextColor
+        amount.backgroundColor = Style.basicBackgroundColor
+        amount.clipsToBounds = true
         self.addSubview(amount)
     }
     

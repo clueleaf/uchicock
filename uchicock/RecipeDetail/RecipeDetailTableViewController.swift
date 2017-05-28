@@ -373,6 +373,8 @@ class RecipeDetailTableViewController: UITableViewController{
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
             cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.ingredientName.backgroundColor = Style.basicBackgroundColor
+            cell.ingredientName.clipsToBounds = true
             cell.option.backgroundColor = UIColor.clear
             if recipe.recipeIngredients[indexPath.row].mustFlag{
                 cell.option.text = ""
@@ -404,6 +406,8 @@ class RecipeDetailTableViewController: UITableViewController{
             cell.stock.clipsToBounds = true
             cell.stock.textAlignment = NSTextAlignment.center
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
+            cell.amount.backgroundColor = Style.basicBackgroundColor
+            cell.amount.clipsToBounds = true
             
             cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             cell.selectionStyle = .default
