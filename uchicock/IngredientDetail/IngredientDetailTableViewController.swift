@@ -14,13 +14,13 @@ import M13Checkbox
 class IngredientDetailTableViewController: UITableViewController {
 
     
-    @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stock: M13Checkbox!
-    @IBOutlet weak var memo: UILabel!
+    @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var deleteLabel: UILabel!
 

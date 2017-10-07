@@ -18,7 +18,7 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
-    @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var recipeName: CopyableLabel!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
@@ -26,7 +26,7 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var method: UISegmentedControl!
-    @IBOutlet weak var memo: UILabel!
+    @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
     var headerView: UIView!
