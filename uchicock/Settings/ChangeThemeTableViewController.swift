@@ -109,7 +109,7 @@ class ChangeThemeTableViewController: UITableViewController {
 
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func saveButtonTapped() {
         Style.saveTheme(themeNo: newThemeNo)
         self.dismiss(animated: true, completion: nil)
