@@ -248,9 +248,8 @@ class RecipeDetailTableViewController: UITableViewController{
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.openURL(url as URL)
+                if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }))
             present(alertView, animated: true, completion: nil)
@@ -485,7 +484,7 @@ class RecipeDetailTableViewController: UITableViewController{
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.openURL(url!)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
     }
     
