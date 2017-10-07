@@ -90,11 +90,8 @@ class ReminderTableViewController: UITableViewController{
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
-                //openURL' was deprecated in iOS 10.0: Please use openURL:options:completionHandler: instead
-                    
                     if let url = URL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
                 self.present(alertView, animated: true, completion: nil)
@@ -121,9 +118,8 @@ class ReminderTableViewController: UITableViewController{
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
                     if let url = URL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
                 self.present(alertView, animated: true, completion: nil)
