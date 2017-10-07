@@ -24,7 +24,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     var ingredient = Ingredient()
     var isAddMode = true
-    
+    let openTime = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,12 +140,16 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
+        if Date().timeIntervalSince(openTime) < 3 {
             self.dismiss(animated: true, completion: nil)
+        }else{
+            let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
+                self.dismiss(animated: true, completion: nil)
             })
-        alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
-        present(alertView, animated: true, completion: nil)
+            alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
+            present(alertView, animated: true, completion: nil)
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
