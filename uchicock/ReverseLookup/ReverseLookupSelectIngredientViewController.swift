@@ -99,10 +99,10 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         reloadSuggestList()
     }
     
-    func textFieldDidChange(_ notification: Notification){
+    @objc func textFieldDidChange(_ notification: Notification){
         if let text = ingredientName.text {
             if text.characters.count > 30 {
-                ingredientName.text = text.substring(to: text.index(text.startIndex, offsetBy: 30))
+                ingredientName.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
             }
         }
         reloadSuggestList()
