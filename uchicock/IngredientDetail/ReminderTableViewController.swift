@@ -91,6 +91,8 @@ class ReminderTableViewController: UITableViewController{
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
                     UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                //openURL' was deprecated in iOS 10.0: Please use openURL:options:completionHandler: instead
+                    
                     if let url = URL(string:UIApplicationOpenSettingsURLString) {
                         UIApplication.shared.openURL(url)
                     }
@@ -166,7 +168,9 @@ class ReminderTableViewController: UITableViewController{
             if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
                 eventStore.requestAccess(to: .reminder, completion: {
                     granted, error in
-                    self.createReminder(eventStore: eventStore, title: self.reminderTitle.text!)
+                    DispatchQueue.main.async {
+                        self.createReminder(eventStore: eventStore, title: self.reminderTitle.text!)
+                    }
                 })
             } else {
                 createReminder(eventStore: eventStore, title: reminderTitle.text!)
