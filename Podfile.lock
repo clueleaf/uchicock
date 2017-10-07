@@ -21,7 +21,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - SVProgressHUD (2.0.3)
+  - SVProgressHUD (2.2.1)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - MJRefresh
   - MYBlurIntroductionView
   - RealmSwift
-  - SVProgressHUD (= 2.0.3)
+  - SVProgressHUD
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -56,8 +56,8 @@ SPEC CHECKSUMS:
   Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
   RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
 
-PODFILE CHECKSUM: f1e83dcbf38ba2489d4b004c0ad08cb021610c8e
+PODFILE CHECKSUM: 3bbe12c0a69e67c630ee581c1734228847de6b79
 
 COCOAPODS: 1.2.0

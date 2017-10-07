@@ -6,7 +6,7 @@ target 'uchicock' do
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
     pod 'DZNEmptyDataSet'
     pod 'IDMPhotoBrowser'
-    pod 'SVProgressHUD', '2.0.3'
+    pod 'SVProgressHUD'
     pod 'M13Checkbox'
     pod 'iVersion'
     pod 'MJRefresh'
