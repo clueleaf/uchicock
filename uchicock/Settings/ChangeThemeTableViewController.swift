@@ -14,6 +14,14 @@ class ChangeThemeTableViewController: UITableViewController {
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
+        return .slide
+    }
+
     let themeList: [String] = [
         "テキーラサンライズ - ライト",
         "テキーラサンライズ - ダーク",
