@@ -56,7 +56,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         favoriteSelect.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
-        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
@@ -204,7 +204,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     

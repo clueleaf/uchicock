@@ -101,13 +101,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         for index in 0..<array.count {
             let newIndex = Int(arc4random_uniform(UInt32(array.count - index))) + index
             if index != newIndex {
-                swap(&array[index], &array[newIndex])
+                array.swapAt(index, newIndex)
             }
         }
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: emptyDataSetStr, attributes: attrs)
     }
     
@@ -121,7 +121,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
     }
     
-    func refresh(){
+    @objc func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
         self.shuffle(array: &self.recipeBasicList)
         self.collectionView!.reloadData()

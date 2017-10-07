@@ -9,14 +9,14 @@
 import RealmSwift
 
 class Recipe: Object {
-    dynamic var id = NSUUID().uuidString
-    dynamic var recipeName = ""
-    dynamic var favorites = 0
-    dynamic var method = 0
-    dynamic var memo = ""
-    dynamic var imageData: NSData? = nil
-    dynamic var shortageNum = 0
-    dynamic var japaneseDictionaryOrder = ""
+    @objc dynamic var id = NSUUID().uuidString
+    @objc dynamic var recipeName = ""
+    @objc dynamic var favorites = 0
+    @objc dynamic var method = 0
+    @objc dynamic var memo = ""
+    @objc dynamic var imageData: NSData? = nil
+    @objc dynamic var shortageNum = 0
+    @objc dynamic var japaneseDictionaryOrder = ""
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {

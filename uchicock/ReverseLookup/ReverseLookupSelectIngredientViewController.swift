@@ -57,7 +57,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
 
         category.tintColor = Style.secondaryColor
         category.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor

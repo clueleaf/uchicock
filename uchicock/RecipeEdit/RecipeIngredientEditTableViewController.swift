@@ -131,7 +131,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    func textFieldDidChange(_ notification: Notification){
+    @objc func textFieldDidChange(_ notification: Notification){
         reloadSuggestList()
     }
     

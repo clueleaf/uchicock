@@ -99,7 +99,7 @@ class RecoverTableViewController: UITableViewController {
         self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
     }
     
-    func isTargetTapped(_ sender: M13Checkbox){
+    @objc func isTargetTapped(_ sender: M13Checkbox){
         if isRecovering == false {
             var view = sender.superview
             while (view! is RecoverTargetTableViewCell) == false{

@@ -207,7 +207,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
-    func photoTapped(){
+    @objc func photoTapped(){
         if let image = photo.image{
             if let repre = UIImagePNGRepresentation(image){
                 let browsePhoto = UIImage(data: repre)

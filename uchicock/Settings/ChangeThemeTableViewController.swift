@@ -72,7 +72,7 @@ class ChangeThemeTableViewController: UITableViewController {
         }
         UIButton.appearance().tintColor = Style.secondaryColor
 
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: ContrastColorOf(Style.primaryColor, returnFlat: true)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
         tableView.reloadData()
@@ -103,14 +103,14 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     // MARK: IBAction
-    func cancelButtonTapped() {
+    @objc func cancelButtonTapped() {
         Style.setTheme(themeNo: oldThemeNo)
         UIButton.appearance().tintColor = Style.secondaryColor
 
         self.dismiss(animated: true, completion: nil)
     }
     
-    func saveButtonTapped() {
+    @objc func saveButtonTapped() {
         Style.saveTheme(themeNo: newThemeNo)
         self.dismiss(animated: true, completion: nil)
     }

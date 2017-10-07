@@ -68,7 +68,7 @@ class RecipeDetailTableViewController: UITableViewController{
         memoLabel.textColor = Style.labelTextColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         method.setTitleTextAttributes(attribute, for: .normal)
         photoBackground.backgroundColor = Style.basicBackgroundColor
         openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
@@ -204,7 +204,7 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
 
-    func photoTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
             if let image = recipe.imageData {
                 //レシピ削除のバグに対するワークアラウンド
@@ -221,7 +221,7 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.began  {
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
@@ -240,7 +240,7 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
             SVProgressHUD.showSuccess(withStatus: "カメラロールへ保存しました")
         }else{

@@ -172,7 +172,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
 

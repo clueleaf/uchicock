@@ -47,7 +47,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         stockState.tintColor = Style.secondaryColor
         stockState.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSForegroundColorAttributeName:Style.secondaryColor]
+        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         stockState.setTitleTextAttributes(attribute, for: .normal)
         category.tintColor = Style.secondaryColor
         category.backgroundColor = Style.basicBackgroundColor
@@ -169,7 +169,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
-        let attrs = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -181,7 +181,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: false)
     }
 
-    func cellStockTapped(_ sender: M13Checkbox){
+    @objc func cellStockTapped(_ sender: M13Checkbox){
         var view = sender.superview
         while (view! is IngredientListItemTableViewCell) == false{
             view = view!.superview
