@@ -110,7 +110,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+
         focusRecipeNameFlag = true
     }
     

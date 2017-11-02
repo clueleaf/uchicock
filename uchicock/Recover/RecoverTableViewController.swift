@@ -37,6 +37,9 @@ class RecoverTableViewController: UITableViewController {
         
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

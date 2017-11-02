@@ -32,6 +32,10 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         ingredientTableView.tag = 0
         recipeTableView.tag = 1
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
+        if #available(iOS 11.0, *) {
+            ingredientTableView.contentInsetAdjustmentBehavior = .never
+            recipeTableView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

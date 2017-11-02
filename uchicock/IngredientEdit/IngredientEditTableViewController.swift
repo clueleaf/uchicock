@@ -56,6 +56,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.borderWidth = 1
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

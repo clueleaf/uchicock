@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wli-BK-85f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wli-BK-85f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,7 +91,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX">
                                                     <rect key="frame" x="8" y="14" width="42" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="1mp-Tb-sfW"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="1mp-Tb-sfW"/>
                                                         <constraint firstAttribute="height" constant="21" id="mTf-pY-r7H"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -128,7 +128,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ">
                                                     <rect key="frame" x="8" y="15" width="42" height="20.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="EGU-AA-GmH"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="EGU-AA-GmH"/>
                                                         <constraint firstAttribute="height" constant="21" id="kI9-yN-asZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -188,11 +188,11 @@
                                         <rect key="frame" x="0.0" y="432" width="375" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5GF-Oj-bYF" id="MYz-U6-TK0">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="68.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="68.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0o-aj-8xo">
-                                                    <rect key="frame" x="8" y="8" width="266" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0o-aj-8xo">
+                                                    <rect key="frame" x="8" y="8" width="263.5" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="WCJ-jY-8Ks"/>
                                                     </constraints>
@@ -201,7 +201,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RU2-dS-Cse">
-                                                    <rect key="frame" x="8" y="32.5" width="334" height="21"/>
+                                                    <rect key="frame" x="8" y="32.5" width="333" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="eFI-xn-z40"/>
                                                     </constraints>
@@ -210,9 +210,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Tp-As-sHj">
-                                                    <rect key="frame" x="282" y="8" width="60" height="21"/>
+                                                    <rect key="frame" x="279.5" y="8" width="61.5" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="fKH-Jh-vtV"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="fKH-Jh-vtV"/>
                                                         <constraint firstAttribute="height" constant="21" id="gQx-Pe-FaR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>

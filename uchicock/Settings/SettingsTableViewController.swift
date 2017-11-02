@@ -44,6 +44,9 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.reloadData()
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
     }
 
     override func didReceiveMemoryWarning() {
