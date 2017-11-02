@@ -36,7 +36,7 @@ extension String {
     }
     
     func japaneseDictionaryOrder() -> String{
-        var katakana = self.katakana()
+        let katakana = self.katakana()
         var result = ""
         var addstr = ""
         

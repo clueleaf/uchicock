@@ -10,7 +10,7 @@ PODS:
     - SDWebImage (= 4.0.0)
   - iVersion (1.11.5)
   - M13Checkbox (3.2.1)
-  - MJRefresh (3.1.14)
+  - MJRefresh (3.1.15)
   - MYBlurIntroductionView (1.0.3)
   - pop (1.0.10)
   - Realm (2.10.2):
@@ -21,7 +21,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - SVProgressHUD (2.2.1)
+  - SVProgressHUD (2.2.2)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
@@ -50,13 +50,13 @@ SPEC CHECKSUMS:
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   iVersion: 3a93a89259eb3b52b0a8ba52c46a0027fa6b4d30
   M13Checkbox: 12376f5b128189432508c240e4a36dc945ab7e4e
-  MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
+  MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
   MYBlurIntroductionView: b12651c25574580472ff34989a4c5b81c157009f
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Realm: 0ef72b837fb67e9f4b098bac771ddd72c7fdbb69
   RealmSwift: 07a9ae0505091eda6b2ee7c190c3786d6e90a7b0
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
 PODFILE CHECKSUM: 3bbe12c0a69e67c630ee581c1734228847de6b79
 
