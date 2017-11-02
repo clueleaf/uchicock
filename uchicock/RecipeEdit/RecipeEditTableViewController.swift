@@ -496,12 +496,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
-        }else if textWithoutSpace(text: recipeName.text!).characters.count > 30{
+        }else if textWithoutSpace(text: recipeName.text!).count > 30{
             //レシピ名が長すぎる
             let noNameAlertView = UIAlertController(title: "", message: "レシピ名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
-        }else if memo.text.characters.count > 1000 {
+        }else if memo.text.count > 1000 {
             //メモが長すぎる
             let noNameAlertView = UIAlertController(title: "", message: "メモを1000文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))

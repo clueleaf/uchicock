@@ -314,12 +314,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
-        }else if textWithoutSpace(text: ingredientName.text!).characters.count > 30{
+        }else if textWithoutSpace(text: ingredientName.text!).count > 30{
             //材料名が長すぎる
             let noNameAlertView = UIAlertController(title: "", message: "材料名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
-        }else if textWithoutSpace(text: amount.text!).characters.count > 30{
+        }else if textWithoutSpace(text: amount.text!).count > 30{
             //分量が長すぎる
             let noNameAlertView = UIAlertController(title: "", message: "分量を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))

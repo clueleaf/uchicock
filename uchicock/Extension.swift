@@ -47,7 +47,7 @@ extension String {
             }
         }
         
-        for i in 0..<katakana.characters.count{
+        for i in 0..<katakana.count{
             let index = katakana.index(katakana.startIndex, offsetBy: i)
             switch katakana[index]{
             case "ー":

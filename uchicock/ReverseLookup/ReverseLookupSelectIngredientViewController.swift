@@ -101,7 +101,7 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     
     @objc func textFieldDidChange(_ notification: Notification){
         if let text = ingredientName.text {
-            if text.characters.count > 30 {
+            if text.count > 30 {
                 ingredientName.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
             }
         }
