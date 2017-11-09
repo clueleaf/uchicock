@@ -19,6 +19,7 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: CopyableLabel!
+    @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
@@ -66,6 +67,7 @@ class RecipeDetailTableViewController: UITableViewController{
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
@@ -128,7 +130,9 @@ class RecipeDetailTableViewController: UITableViewController{
 
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
-            
+            lastViewDateLabel.text = "最終閲覧：xxxx/xx/xx xx:xx"
+            lastViewDateLabel.text = "最終閲覧：--"
+
             switch recipe.favorites{
             case 0:
                 star1.setTitle("☆", for: .normal)
