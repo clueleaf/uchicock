@@ -137,7 +137,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
         }
     }
 
@@ -146,7 +146,7 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: 0, favorites: ri.recipe.favorites, japaneseDictionaryOrder: ri.recipe.japaneseDictionaryOrder))
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: 0, favorites: ri.recipe.favorites, japaneseDictionaryOrder: ri.recipe.japaneseDictionaryOrder, lastViewDate: ri.recipe.lastViewDate))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(withoutUse: t2)

@@ -142,7 +142,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder))
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder, lastViewDate: recipeIngredient.recipe.lastViewDate))
         }
         
         if order.selectedSegmentIndex == 1{
@@ -154,7 +154,21 @@ class IngredientDetailTableViewController: UITableViewController {
                 }
             }
         }else if order.selectedSegmentIndex == 2{
-            // TODO: 閲覧順に並べ替え
+            ingredientRecipeBasicList.sort(by: { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    }else{
+                        return false
+                    }
+                }else{
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
+                }
+            })
         }else{
             ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         }

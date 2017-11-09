@@ -162,7 +162,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
         }
         
         for i in (0..<recipeBasicList.count).reversed(){
@@ -198,6 +198,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
                 } else {
                     return a.shortageNum < b.shortageNum
+                }
+            })
+        }else if order.selectedSegmentIndex == 2{
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    }else{
+                        return false
+                    }
+                }else{
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
                 }
             })
         }
@@ -362,8 +378,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     recipe.updateShortageNum()
                 }
             }
-        }else if order.selectedSegmentIndex == 2{
-            // TODO: 閲覧順に並べ替え
         }
         reloadRecipeBasicList()
         tableView.reloadData()

@@ -80,7 +80,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     }
                 }
                 if newPhotoFlag{
-                    self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+                    self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
                 }
             }
             self.emptyDataSetStr = "写真が登録されたレシピはありません"
@@ -119,7 +119,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
         }
         recipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
     }
