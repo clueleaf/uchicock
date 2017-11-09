@@ -133,7 +133,9 @@ class RecipeDetailTableViewController: UITableViewController{
             if recipe.lastViewDate == nil{
                 lastViewDateLabel.text = "最終閲覧：--"
             }else{
-                lastViewDateLabel.text = "最終閲覧：xxxx/xx/xx xx:xx"
+                let formatter: DateFormatter = DateFormatter()
+                formatter.dateFormat = "yyyy/MM/dd HH:mm"
+                lastViewDateLabel.text = "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
             }
 
             switch recipe.favorites{
@@ -193,7 +195,7 @@ class RecipeDetailTableViewController: UITableViewController{
             selectedIngredientId = nil
             let realm = try! Realm()
             try! realm.write {
-                    recipe.lastViewDate = Date()
+                recipe.lastViewDate = Date()
             }
         }
     }
@@ -201,6 +203,10 @@ class RecipeDetailTableViewController: UITableViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+        let realm = try! Realm()
+        try! realm.write {
+            recipe.lastViewDate = Date()
+        }
     }
     
     override func didReceiveMemoryWarning() {
