@@ -373,7 +373,7 @@ class IngredientDetailTableViewController: UITableViewController {
             }
         }
         reloadIngredientRecipeBasicList()
-        tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
+        tableView.reloadData()
     }
     
     @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
@@ -382,7 +382,7 @@ class IngredientDetailTableViewController: UITableViewController {
     
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
         reloadIngredientRecipeBasicList()
-        tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
+        tableView.reloadData()
     }
     
     func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
