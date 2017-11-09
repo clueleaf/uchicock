@@ -153,6 +153,8 @@ class IngredientDetailTableViewController: UITableViewController {
                     return a.shortageNum < b.shortageNum
                 }
             }
+        }else if order.selectedSegmentIndex == 2{
+            // TODO: 閲覧順に並べ替え
         }else{
             ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         }

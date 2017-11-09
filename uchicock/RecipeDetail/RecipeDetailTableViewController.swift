@@ -188,6 +188,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 }
             }
             selectedIngredientId = nil
+            // TODO: 閲覧時刻を更新
         }
     }
     

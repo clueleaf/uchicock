@@ -171,6 +171,7 @@
                                                     <segments>
                                                         <segment title="名前順"/>
                                                         <segment title="つくれる順"/>
+                                                        <segment title="閲覧順"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="orderTapped:" destination="wli-BK-85f" eventType="valueChanged" id="dN9-cH-WOV"/>

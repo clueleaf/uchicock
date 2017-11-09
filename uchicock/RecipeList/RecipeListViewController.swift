@@ -362,6 +362,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     recipe.updateShortageNum()
                 }
             }
+        }else if order.selectedSegmentIndex == 2{
+            // TODO: 閲覧順に並べ替え
         }
         reloadRecipeBasicList()
         tableView.reloadData()
