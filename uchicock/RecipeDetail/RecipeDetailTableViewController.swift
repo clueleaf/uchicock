@@ -130,8 +130,11 @@ class RecipeDetailTableViewController: UITableViewController{
 
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
-            lastViewDateLabel.text = "最終閲覧：xxxx/xx/xx xx:xx"
-            lastViewDateLabel.text = "最終閲覧：--"
+            if recipe.lastViewDate == nil{
+                lastViewDateLabel.text = "最終閲覧：--"
+            }else{
+                lastViewDateLabel.text = "最終閲覧：xxxx/xx/xx xx:xx"
+            }
 
             switch recipe.favorites{
             case 0:
@@ -188,7 +191,10 @@ class RecipeDetailTableViewController: UITableViewController{
                 }
             }
             selectedIngredientId = nil
-            // TODO: 閲覧時刻を更新
+            let realm = try! Realm()
+            try! realm.write {
+                    recipe.lastViewDate = Date()
+            }
         }
     }
     

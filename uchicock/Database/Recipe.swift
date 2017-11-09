@@ -17,6 +17,7 @@ class Recipe: Object {
     @objc dynamic var imageData: NSData? = nil
     @objc dynamic var shortageNum = 0
     @objc dynamic var japaneseDictionaryOrder = ""
+    @objc dynamic var lastViewDate : Date? = nil
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {

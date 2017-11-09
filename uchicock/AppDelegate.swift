@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         var config = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 4,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 2) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
