@@ -65,7 +65,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" text="最終閲覧：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fME-VJ-TZu">
-                                                    <rect key="frame" x="8" y="58" width="71.5" height="31.5"/>
+                                                    <rect key="frame" x="8" y="58" width="71.5" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -74,7 +74,7 @@
                                             <constraints>
                                                 <constraint firstItem="Jno-MQ-n7W" firstAttribute="centerY" secondItem="2c2-bY-edz" secondAttribute="centerY" id="81r-AA-pL1"/>
                                                 <constraint firstItem="2c2-bY-edz" firstAttribute="top" secondItem="Rlu-1G-Kks" secondAttribute="top" constant="20" id="CuN-x0-GN0"/>
-                                                <constraint firstAttribute="bottom" secondItem="fME-VJ-TZu" secondAttribute="bottom" constant="10" id="UrX-ST-AcI"/>
+                                                <constraint firstAttribute="bottom" secondItem="fME-VJ-TZu" secondAttribute="bottom" constant="12" id="UrX-ST-AcI"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="X4V-ks-QSk"/>
                                                 <constraint firstItem="Jno-MQ-n7W" firstAttribute="leading" secondItem="2c2-bY-edz" secondAttribute="trailing" constant="8" id="X6I-As-Mk5"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="top" secondItem="2c2-bY-edz" secondAttribute="bottom" constant="8" id="YFP-cg-V0v"/>
