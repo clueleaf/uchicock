@@ -203,9 +203,11 @@ class RecipeDetailTableViewController: UITableViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
-        let realm = try! Realm()
-        try! realm.write {
-            recipe.lastViewDate = Date()
+        if recipe.isInvalidated == false{
+            let realm = try! Realm()
+            try! realm.write {
+                recipe.lastViewDate = Date()
+            }
         }
     }
     
