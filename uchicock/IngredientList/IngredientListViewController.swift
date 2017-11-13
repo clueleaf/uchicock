@@ -275,7 +275,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
-            self.performSegue(withIdentifier: "PushAddIngredient", sender: indexPath)
+            if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
+                guard var history = self.navigationController?.viewControllers,
+                    let editVC = editNavi.visibleViewController as? IngredientEditTableViewController,
+                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as? IngredientDetailTableViewController else{
+                        return
+                }
+                let realm = try! Realm()
+                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+                self.selectedIngredientId = self.ingredientBasicList[indexPath.row].id
+                self.selectedIndexPath = indexPath
+                editVC.ingredient = ingredient
+                
+                history.append(detailVC)
+                editVC.detailVC = detailVC
+                self.present(editNavi, animated: true, completion: {
+                    self.navigationController?.setViewControllers(history, animated: false)
+                })
+            }
         }
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
@@ -345,7 +362,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "PushAddIngredient", sender: UIBarButtonItem())
+        if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
+            guard var history = self.navigationController?.viewControllers,
+                let editVC = editNavi.visibleViewController as? IngredientEditTableViewController,
+                let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as? IngredientDetailTableViewController else{
+                    return
+            }
+            
+            history.append(detailVC)
+            editVC.detailVC = detailVC
+            self.present(editNavi, animated: true, completion: {
+                self.navigationController?.setViewControllers(history, animated: false)
+            })
+        }
     }
     
     @IBAction func categoryTapped(_ sender: UISegmentedControl) {
@@ -367,16 +396,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 selectedIndexPath = indexPath
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }
-        } else if segue.identifier == "PushAddIngredient" {
-            if let indexPath = sender as? IndexPath {
-                let enc = segue.destination as! UINavigationController
-                let evc = enc.visibleViewController as! IngredientEditTableViewController
-                let realm = try! Realm()
-                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
-                selectedIngredientId = ingredientBasicList[indexPath.row].id
-                selectedIndexPath = indexPath
-                evc.ingredient = ingredient
-            }
+//        } else if segue.identifier == "PushAddIngredient" {
+//            if let indexPath = sender as? IndexPath {
+//                let enc = segue.destination as! UINavigationController
+//                let evc = enc.visibleViewController as! IngredientEditTableViewController
+//                let realm = try! Realm()
+//                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+//                selectedIngredientId = ingredientBasicList[indexPath.row].id
+//                selectedIndexPath = indexPath
+//                evc.ingredient = ingredient
+//            }
         }
     }
 }

@@ -24,6 +24,7 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var deleteLabel: UILabel!
 
+    var editVC : IngredientEditTableViewController!
     var ingredientId = String()
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<IngredientRecipeBasic>()
@@ -131,7 +132,11 @@ class IngredientDetailTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    func closeEditVC(_ editVC: IngredientEditTableViewController){
+        editVC.dismiss(animated: true, completion: nil)
+    }
+
     func reloadIngredientRecipeBasicList(){
         let realm = try! Realm()
         try! realm.write {

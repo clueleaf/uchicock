@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,10 +28,6 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="RecipeList" id="BYZ-38-t0r" customClass="RecipeListViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,17 +162,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="rev-jS-7mA" secondAttribute="trailing" id="0Bh-4h-vY7"/>
+                            <constraint firstItem="bMz-lX-NaI" firstAttribute="trailing" secondItem="rev-jS-7mA" secondAttribute="trailing" id="0Bh-4h-vY7"/>
                             <constraint firstItem="EU7-zN-cmX" firstAttribute="top" secondItem="LdP-YB-YF7" secondAttribute="bottom" id="2sd-2D-9uJ"/>
-                            <constraint firstItem="LdP-YB-YF7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BQz-AX-oit"/>
+                            <constraint firstItem="LdP-YB-YF7" firstAttribute="leading" secondItem="bMz-lX-NaI" secondAttribute="leading" id="BQz-AX-oit"/>
                             <constraint firstItem="LdP-YB-YF7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Bra-e4-3Fb"/>
-                            <constraint firstItem="rev-jS-7mA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QC7-4H-Reu"/>
-                            <constraint firstItem="EU7-zN-cmX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VZj-uE-FOc"/>
+                            <constraint firstItem="rev-jS-7mA" firstAttribute="leading" secondItem="bMz-lX-NaI" secondAttribute="leading" id="QC7-4H-Reu"/>
+                            <constraint firstItem="EU7-zN-cmX" firstAttribute="leading" secondItem="bMz-lX-NaI" secondAttribute="leading" id="VZj-uE-FOc"/>
                             <constraint firstItem="rev-jS-7mA" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="bottom" id="hvU-oG-4fX"/>
-                            <constraint firstAttribute="trailing" secondItem="EU7-zN-cmX" secondAttribute="trailing" id="iqV-dI-tiV"/>
+                            <constraint firstItem="bMz-lX-NaI" firstAttribute="trailing" secondItem="EU7-zN-cmX" secondAttribute="trailing" id="iqV-dI-tiV"/>
                             <constraint firstAttribute="bottom" secondItem="rev-jS-7mA" secondAttribute="bottom" id="njS-IZ-nGy"/>
-                            <constraint firstAttribute="trailing" secondItem="LdP-YB-YF7" secondAttribute="trailing" id="pSF-3a-SSK"/>
+                            <constraint firstItem="bMz-lX-NaI" firstAttribute="trailing" secondItem="LdP-YB-YF7" secondAttribute="trailing" id="pSF-3a-SSK"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bMz-lX-NaI"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="レシピ" id="9TF-2l-G6I">
@@ -204,10 +202,6 @@
         <scene sceneID="j5i-3t-PGe">
             <objects>
                 <viewController id="IFZ-In-CDc" userLabel="Ingredient List View Controller" customClass="IngredientListViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0dN-0c-Xp3"/>
-                        <viewControllerLayoutGuide type="bottom" id="0sX-OP-C4Q"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3Pb-wn-CyZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -341,16 +335,17 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ju1-KR-IKb" firstAttribute="top" secondItem="3Pb-wn-CyZ" secondAttribute="top" id="8nh-3k-qil"/>
-                            <constraint firstItem="KNl-GC-4Ax" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="CzN-eC-IPr"/>
-                            <constraint firstItem="Ju1-KR-IKb" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="E4M-rL-6ht"/>
-                            <constraint firstAttribute="trailing" secondItem="Ju1-KR-IKb" secondAttribute="trailing" id="M2g-2T-tmG"/>
+                            <constraint firstItem="KNl-GC-4Ax" firstAttribute="leading" secondItem="En4-S7-2iy" secondAttribute="leading" id="CzN-eC-IPr"/>
+                            <constraint firstItem="Ju1-KR-IKb" firstAttribute="leading" secondItem="En4-S7-2iy" secondAttribute="leading" id="E4M-rL-6ht"/>
+                            <constraint firstItem="En4-S7-2iy" firstAttribute="trailing" secondItem="Ju1-KR-IKb" secondAttribute="trailing" id="M2g-2T-tmG"/>
                             <constraint firstAttribute="bottom" secondItem="KNl-GC-4Ax" secondAttribute="bottom" id="Pug-Z9-8LN"/>
                             <constraint firstItem="KNl-GC-4Ax" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="bottom" id="U5n-yZ-Gzg"/>
-                            <constraint firstAttribute="trailing" secondItem="jYr-aJ-DQL" secondAttribute="trailing" id="XPg-ag-W0n"/>
-                            <constraint firstAttribute="trailing" secondItem="KNl-GC-4Ax" secondAttribute="trailing" id="hdI-Ri-zsj"/>
-                            <constraint firstItem="jYr-aJ-DQL" firstAttribute="leading" secondItem="3Pb-wn-CyZ" secondAttribute="leading" id="iDE-69-hZx"/>
+                            <constraint firstItem="En4-S7-2iy" firstAttribute="trailing" secondItem="jYr-aJ-DQL" secondAttribute="trailing" id="XPg-ag-W0n"/>
+                            <constraint firstItem="En4-S7-2iy" firstAttribute="trailing" secondItem="KNl-GC-4Ax" secondAttribute="trailing" id="hdI-Ri-zsj"/>
+                            <constraint firstItem="jYr-aJ-DQL" firstAttribute="leading" secondItem="En4-S7-2iy" secondAttribute="leading" id="iDE-69-hZx"/>
                             <constraint firstItem="jYr-aJ-DQL" firstAttribute="top" secondItem="Ju1-KR-IKb" secondAttribute="bottom" id="xg6-G3-hZk"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="En4-S7-2iy"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="材料" id="bt3-Io-nFd">
@@ -379,10 +374,6 @@
         <scene sceneID="Nt4-T2-poq">
             <objects>
                 <viewController id="a7R-b4-ro5" customClass="ReverseLookupViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SIc-Vu-sZ6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Jsz-QS-h3Z"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sph-O7-ZJT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -526,14 +517,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="W2i-5C-wrs" firstAttribute="leading" secondItem="Sph-O7-ZJT" secondAttribute="leading" id="Pqg-h0-WsV"/>
+                            <constraint firstItem="W2i-5C-wrs" firstAttribute="leading" secondItem="E7b-bb-W6N" secondAttribute="leading" id="Pqg-h0-WsV"/>
                             <constraint firstItem="W2i-5C-wrs" firstAttribute="top" secondItem="Sph-O7-ZJT" secondAttribute="top" id="btq-aR-0Gl"/>
-                            <constraint firstAttribute="trailing" secondItem="iTC-yg-pjm" secondAttribute="trailing" id="iOI-s4-Yhg"/>
-                            <constraint firstItem="iTC-yg-pjm" firstAttribute="leading" secondItem="Sph-O7-ZJT" secondAttribute="leading" id="iws-Tq-z5x"/>
-                            <constraint firstAttribute="trailing" secondItem="W2i-5C-wrs" secondAttribute="trailing" id="y4L-F4-VE9"/>
+                            <constraint firstItem="E7b-bb-W6N" firstAttribute="trailing" secondItem="iTC-yg-pjm" secondAttribute="trailing" id="iOI-s4-Yhg"/>
+                            <constraint firstItem="iTC-yg-pjm" firstAttribute="leading" secondItem="E7b-bb-W6N" secondAttribute="leading" id="iws-Tq-z5x"/>
+                            <constraint firstItem="E7b-bb-W6N" firstAttribute="trailing" secondItem="W2i-5C-wrs" secondAttribute="trailing" id="y4L-F4-VE9"/>
                             <constraint firstAttribute="bottom" secondItem="iTC-yg-pjm" secondAttribute="bottom" id="yZ0-oA-u1F"/>
                             <constraint firstItem="iTC-yg-pjm" firstAttribute="top" secondItem="W2i-5C-wrs" secondAttribute="bottom" id="z2B-iy-q5P"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="E7b-bb-W6N"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="逆引き" id="HyY-hb-zYQ">

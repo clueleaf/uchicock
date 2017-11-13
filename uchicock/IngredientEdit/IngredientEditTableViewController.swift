@@ -22,6 +22,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: UITextView!
     
+    weak var detailVC : IngredientDetailTableViewController?
     var ingredient = Ingredient()
     var isAddMode = true
     let openTime = Date()
@@ -144,10 +145,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if Date().timeIntervalSince(openTime) < 3 {
+            _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }else{
             let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
+                _ = self.detailVC?.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
@@ -194,7 +197,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     try! realm.write {
                         realm.add(newIngredient)
                     }
-                    self.dismiss(animated: true, completion: nil)
+                    detailVC?.ingredientId = newIngredient.id
+                    if detailVC == nil{
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        detailVC!.closeEditVC(self)
+                    }
                 }
             }else{
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
@@ -214,7 +222,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                         }
                         ingredient.memo = memo.text
                     }
-                    self.dismiss(animated: true, completion: nil)
+                    detailVC?.ingredientId = ingredient.id
+                    if detailVC == nil{
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        detailVC!.closeEditVC(self)
+                    }
                 }
             }
         }

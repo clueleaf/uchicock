@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GillSans.ttc">
+            <string>GillSans</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,18 +47,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1SS-av-WDw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="0Gp-qd-mCg"/>
-                            <constraint firstItem="1D2-CM-TFS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2eZ-yL-8uA"/>
+                            <constraint firstItem="1SS-av-WDw" firstAttribute="leading" secondItem="d5V-vz-Xdh" secondAttribute="leading" id="0Gp-qd-mCg"/>
+                            <constraint firstItem="1D2-CM-TFS" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="2eZ-yL-8uA"/>
                             <constraint firstAttribute="bottom" secondItem="1SS-av-WDw" secondAttribute="bottom" id="3eU-QO-Tzg"/>
-                            <constraint firstItem="DF4-0X-EkJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Xq-H0-Iui"/>
-                            <constraint firstAttribute="trailing" secondItem="1SS-av-WDw" secondAttribute="trailing" id="4fT-J2-KMV"/>
+                            <constraint firstItem="DF4-0X-EkJ" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="4Xq-H0-Iui"/>
+                            <constraint firstItem="d5V-vz-Xdh" firstAttribute="trailing" secondItem="1SS-av-WDw" secondAttribute="trailing" id="4fT-J2-KMV"/>
                             <constraint firstItem="DF4-0X-EkJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8Pe-U7-dfJ"/>
                             <constraint firstAttribute="bottom" secondItem="1D2-CM-TFS" secondAttribute="bottom" constant="30" id="EbH-f4-Cub"/>
                             <constraint firstItem="gdC-OS-tkE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xq5-Ud-cGU"/>
                             <constraint firstItem="1SS-av-WDw" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ZUt-7F-TMF"/>
                             <constraint firstItem="gdC-OS-tkE" firstAttribute="top" secondItem="DF4-0X-EkJ" secondAttribute="bottom" id="u4I-hz-saL"/>
-                            <constraint firstItem="gdC-OS-tkE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uGF-Yv-5hd"/>
+                            <constraint firstItem="gdC-OS-tkE" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="uGF-Yv-5hd"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="d5V-vz-Xdh"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8Pe-U7-dfJ"/>
