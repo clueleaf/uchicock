@@ -31,6 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: UITextView!
     
+    weak var detailVC : RecipeDetailTableViewController!
     var recipe = Recipe()
     var isAddMode = true
     var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
@@ -571,8 +572,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",newRecipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
+                        detailVC.recipeId = newRecipe.id
                     }
-                    self.dismiss(animated: true, completion: nil)
+                    detailVC.closeEditVC(self)
                 }
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
@@ -635,9 +637,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",self.recipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
-                        
+                        detailVC.recipeId = recipe.id
                     }
-                    self.dismiss(animated: true, completion: nil)
+                    detailVC.closeEditVC(self)
                 }
             }
         }

@@ -30,6 +30,7 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
+    var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
     var recipeId = String()
@@ -215,6 +216,10 @@ class RecipeDetailTableViewController: UITableViewController{
         super.didReceiveMemoryWarning()
     }
     
+    func closeEditVC(_ editVC: RecipeEditTableViewController){
+        editVC.dismiss(animated: true, completion: nil)
+    }
+
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)

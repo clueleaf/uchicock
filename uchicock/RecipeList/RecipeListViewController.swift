@@ -326,7 +326,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
-            self.performSegue(withIdentifier: "PushAddRecipe", sender: indexPath)
+            if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
+                guard var history = self.navigationController?.viewControllers,
+                    let editVC = editNavi.visibleViewController as? RecipeEditTableViewController,
+                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as? RecipeDetailTableViewController else{
+                        return
+                }
+                let realm = try! Realm()
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
+                self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
+                self.selectedIndexPath = indexPath
+                editVC.recipe = recipe
+                
+                history.append(detailVC)
+                editVC.detailVC = detailVC
+                self.present(editNavi, animated: true, completion: {
+                    self.navigationController?.setViewControllers(history, animated: false)
+                })
+            }
         }
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
@@ -384,7 +401,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "PushAddRecipe", sender: UIBarButtonItem())
+        if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
+            guard var history = self.navigationController?.viewControllers,
+                let editVC = editNavi.visibleViewController as? RecipeEditTableViewController,
+                let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as? RecipeDetailTableViewController else{
+                    return
+            }
+            
+            history.append(detailVC)
+            editVC.detailVC = detailVC
+            self.present(editNavi, animated: true, completion: {
+                self.navigationController?.setViewControllers(history, animated: false)
+            })
+        }
     }
     
     // MARK: - Navigation
@@ -395,16 +424,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 selectedRecipeId = recipeBasicList[indexPath.row].id
                 selectedIndexPath = indexPath
                 vc.recipeId = recipeBasicList[indexPath.row].id
-            }
-        } else if segue.identifier == "PushAddRecipe" {
-            if let indexPath = sender as? IndexPath{
-                let enc = segue.destination as! UINavigationController
-                let evc = enc.visibleViewController as! RecipeEditTableViewController
-                let realm = try! Realm()
-                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
-                selectedRecipeId = recipeBasicList[indexPath.row].id
-                selectedIndexPath = indexPath
-                evc.recipe = recipe
             }
         }
     }
