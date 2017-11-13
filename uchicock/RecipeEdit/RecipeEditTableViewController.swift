@@ -31,7 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: UITextView!
     
-    weak var detailVC : RecipeDetailTableViewController!
+    weak var detailVC : RecipeDetailTableViewController?
     var recipe = Recipe()
     var isAddMode = true
     var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
@@ -482,11 +482,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if Date().timeIntervalSince(openTime) < 3 {
+            _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }else{
             let alertView = UIAlertController(title: "", message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){
                 action in
+                _ = self.detailVC?.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){action in})
@@ -572,9 +574,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",newRecipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
-                        detailVC.recipeId = newRecipe.id
+                        detailVC?.recipeId = newRecipe.id
                     }
-                    detailVC.closeEditVC(self)
+                    if detailVC == nil{
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        detailVC!.closeEditVC(self)
+                    }
                 }
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
@@ -637,9 +643,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",self.recipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
-                        detailVC.recipeId = recipe.id
+                        detailVC?.recipeId = recipe.id
                     }
-                    detailVC.closeEditVC(self)
+                    if detailVC == nil{
+                        self.dismiss(animated: true, completion: nil)
+                    }else{
+                        detailVC!.closeEditVC(self)
+                    }
                 }
             }
         }
