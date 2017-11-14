@@ -413,11 +413,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="zpu-ii-g9x">
-                                        <rect key="frame" x="0.0" y="243" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="zpu-ii-g9x">
+                                        <rect key="frame" x="0.0" y="243" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zpu-ii-g9x" id="UVb-p4-hZv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imD-FZ-iht">
@@ -441,18 +441,27 @@
                                                         <outlet property="delegate" destination="W6V-Ex-Byo" id="b2R-5u-Q8h"/>
                                                     </connections>
                                                 </textField>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-ft-XUK">
+                                                    <rect key="frame" x="74" y="55" width="295" height="31"/>
+                                                    <connections>
+                                                        <action selector="amoutSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="YXL-kX-J0S"/>
+                                                    </connections>
+                                                </slider>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="imD-FZ-iht" firstAttribute="centerY" secondItem="UVb-p4-hZv" secondAttribute="centerY" id="D3M-6P-asJ"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="leading" secondItem="NyC-hv-bV8" secondAttribute="leading" id="9b9-Py-7OP"/>
                                                 <constraint firstItem="imD-FZ-iht" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="FTn-6c-H9U"/>
                                                 <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="imD-FZ-iht" secondAttribute="trailing" constant="26" id="KWE-2h-bvt"/>
+                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="top" secondItem="UVb-p4-hZv" secondAttribute="top" constant="5" id="Q5p-u4-Pt4"/>
+                                                <constraint firstItem="imD-FZ-iht" firstAttribute="centerY" secondItem="NyC-hv-bV8" secondAttribute="centerY" id="bLH-uR-r47"/>
                                                 <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="8" id="jy5-f8-ppc"/>
-                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="centerY" secondItem="UVb-p4-hZv" secondAttribute="centerY" id="zSW-FJ-bb9"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="top" secondItem="NyC-hv-bV8" secondAttribute="bottom" constant="10" id="m3j-9F-gfj"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" id="pEf-eN-WCE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Tlb-iC-CNM">
-                                        <rect key="frame" x="0.0" y="293" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="343" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tlb-iC-CNM" id="FwI-ja-QDi">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -490,7 +499,7 @@
                             <tableViewSection headerTitle="Section-2" id="chP-KN-S8n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KmQ-8j-oGd">
-                                        <rect key="frame" x="0.0" y="371" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="421" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmQ-8j-oGd" id="oHc-5U-BpI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -533,6 +542,7 @@
                     <connections>
                         <outlet property="amount" destination="NyC-hv-bV8" id="BAb-ul-eY6"/>
                         <outlet property="amountLabel" destination="imD-FZ-iht" id="HES-Br-7Wv"/>
+                        <outlet property="amountSlider" destination="CAO-ft-XUK" id="73M-yP-crl"/>
                         <outlet property="deleteLabel" destination="nmL-iq-O5X" id="lqw-vN-bYj"/>
                         <outlet property="deleteTableViewCell" destination="KmQ-8j-oGd" id="QZ0-WT-n1M"/>
                         <outlet property="ingredientName" destination="N4k-of-Pi3" id="CBO-ub-QY3"/>

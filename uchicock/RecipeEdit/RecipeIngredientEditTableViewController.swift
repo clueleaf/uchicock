@@ -20,6 +20,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var amountSlider: UISlider!
     @IBOutlet weak var option: M13Checkbox!
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
@@ -82,6 +83,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         ingredientNameLabel.textColor = Style.labelTextColor
         amountLabel.textColor = Style.labelTextColor
         amount.textColor = Style.labelTextColor
+        amountSlider.minimumTrackTintColor = Style.secondaryColor
+        amountSlider.maximumTrackTintColor = Style.labelTextColorLight
         optionLabel.textColor = Style.labelTextColor
         option.backgroundColor = UIColor.clear
         option.tintColor = Style.secondaryColor
@@ -308,6 +311,17 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     // MARK: - IBAction
+    @IBAction func amoutSliderValueChanged(_ sender: UISlider) {
+        switch floor(sender.value) {
+        case 0:
+            amount.text = "少々"
+        case 1..<13:
+            amount.text = String(Int(floor(sender.value) * 5)) + "ml"
+        default:
+            amount.text = "適量"
+        }
+    }
+    
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
