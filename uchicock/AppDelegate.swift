@@ -199,12 +199,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func fixNilImage(){
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
-        for recipe in recipeList{
-            try! realm.write {
-                recipe.fixNilImage()
+        let defaults = UserDefaults.standard
+        let dic = ["fixNilImage": false]
+        defaults.register(defaults: dic)
+        if defaults.bool(forKey: "fixNilImage") == false {
+            let realm = try! Realm()
+            let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
+            for recipe in recipeList{
+                try! realm.write {
+                    recipe.fixNilImage()
+                }
             }
+            defaults.set(true, forKey: "fixNilImage")
         }
     }
 

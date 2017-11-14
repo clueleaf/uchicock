@@ -295,14 +295,6 @@ class IngredientDetailTableViewController: UITableViewController {
                     
                     if let image = recipeIngredient.recipe.imageData {
                         cell.photo.image = UIImage(data: image as Data)
-                        //レシピ削除のバグに対するワークアラウンド
-                        if cell.photo.image == nil{
-                            if Style.isDark{
-                                cell.photo.image = UIImage(named: "no-photo-dark")
-                            }else{
-                                cell.photo.image = UIImage(named: "no-photo")
-                            }
-                        }
                     }else{
                         if Style.isDark{
                             cell.photo.image = UIImage(named: "no-photo-dark")
