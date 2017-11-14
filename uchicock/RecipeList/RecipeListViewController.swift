@@ -349,7 +349,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
-            let alertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .alert)
+            let alertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)

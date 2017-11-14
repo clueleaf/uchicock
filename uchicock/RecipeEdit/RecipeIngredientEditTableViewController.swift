@@ -328,17 +328,17 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         if textWithoutSpace(text: ingredientName.text!) == "" {
-            let noNameAlertView = UIAlertController(title: "", message: "材料名を入力してください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: ingredientName.text!).count > 30{
             //材料名が長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "材料名を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: amount.text!).count > 30{
             //分量が長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "分量を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "分量を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else{
@@ -346,7 +346,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
-                let registAlertView = UIAlertController(title: "", message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
+                let registAlertView = UIAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)

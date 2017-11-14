@@ -485,7 +485,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }else{
-            let alertView = UIAlertController(title: "", message: "編集をやめますか？", preferredStyle: .alert)
+            let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){
                 action in
                 _ = self.detailVC?.navigationController?.popViewController(animated: false)
@@ -499,32 +499,32 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if recipeName.text == nil || textWithoutSpace(text: recipeName.text!) == ""{
             //レシピ名を入れていない
-            let noNameAlertView = UIAlertController(title: "", message: "レシピ名を入力してください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "レシピ名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: recipeName.text!).count > 30{
             //レシピ名が長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "レシピ名を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "レシピ名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if memo.text.count > 1000 {
             //メモが長すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "メモを1000文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "メモを1000文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count == 0{
             //材料が一つもない
-            let noNameAlertView = UIAlertController(title: "", message: "材料を一つ以上入力してください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "材料を一つ以上入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count > 30{
             //材料数が多すぎる
-            let noNameAlertView = UIAlertController(title: "", message: "材料を30個以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "材料を30個以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         } else if isIngredientDuplicated() {
             //材料が重複している
-            let noNameAlertView = UIAlertController(title: "", message: "重複している材料があります", preferredStyle: .alert)
+            let noNameAlertView = UIAlertController(title: nil, message: "重複している材料があります", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
             present(noNameAlertView, animated: true, completion: nil)
         }else{
@@ -533,7 +533,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if isAddMode {
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0{
-                    let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
+                    let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
@@ -585,7 +585,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
-                    let sameNameAlertView = UIAlertController(title: "", message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
+                    let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{

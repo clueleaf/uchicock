@@ -302,11 +302,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
             if ingredient.recipeIngredients.count > 0 {
-                let alertView = UIAlertController(title: "", message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
+                let alertView = UIAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
                 self.present(alertView, animated: true, completion: nil)
             } else{
-                let favoriteAlertView = UIAlertController(title: "本当に削除しますか？", message: nil, preferredStyle: .alert)
+                let favoriteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
                 favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                     let realm = try! Realm()
                     try! realm.write {
