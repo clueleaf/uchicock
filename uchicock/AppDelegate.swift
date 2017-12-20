@@ -89,14 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if #available(iOS 10.3, *){
                 let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
                 if hasReviewed{
-                    if daySpan > 180 && launchCountAfterReview! > 10{
+                    if daySpan > 270 && launchCountAfterReview! > 30{
                         defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
                         defaults.set(0, forKey: "LaunchCountAfterReview")
                         defaults.set(true, forKey: "FirstRequestReview")
                         SKStoreReviewController.requestReview()
                     }
                 }else{
-                    if daySpan > 7 && launchCountAfterReview! > 5{
+                    if daySpan > 7 && launchCountAfterReview! > 7{
                         defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
                         defaults.set(0, forKey: "LaunchCountAfterReview")
                         defaults.set(true, forKey: "FirstRequestReview")
