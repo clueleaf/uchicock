@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'uchicock' do
@@ -8,7 +8,6 @@ target 'uchicock' do
     pod 'IDMPhotoBrowser'
     pod 'SVProgressHUD'
     pod 'M13Checkbox'
-    pod 'iVersion'
     pod 'MJRefresh'
     pod 'MYBlurIntroductionView'
 end
