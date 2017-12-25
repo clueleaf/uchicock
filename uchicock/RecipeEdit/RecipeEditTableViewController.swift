@@ -161,6 +161,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             memo.keyboardAppearance = .default
         }
         
+        if Style.isStatusBarLight{
+            ipc.setStatusBarStyle(.lightContent)
+        }else{
+            ipc.setStatusBarStyle(.default)
+        }
+        
         self.tableView.reloadData()
         
         switch tableView.numberOfRows(inSection: 1) - previousNumOfRowsInSection1{
@@ -451,6 +457,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:{
             action in
         }))
+        if Style.isStatusBarLight{
+            alert.setStatusBarStyle(.lightContent)
+        }else{
+            alert.setStatusBarStyle(.default)
+        }
+        alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
     }
 
@@ -504,6 +516,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){action in})
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
+            }
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
     }
@@ -513,31 +531,67 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             //レシピ名を入れていない
             let noNameAlertView = UIAlertController(title: nil, message: "レシピ名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: recipeName.text!).count > 30{
             //レシピ名が長すぎる
             let noNameAlertView = UIAlertController(title: nil, message: "レシピ名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if memo.text.count > 1000 {
             //メモが長すぎる
             let noNameAlertView = UIAlertController(title: nil, message: "メモを1000文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count == 0{
             //材料が一つもない
             let noNameAlertView = UIAlertController(title: nil, message: "材料を一つ以上入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if editingRecipeIngredientList.count > 30{
             //材料数が多すぎる
             let noNameAlertView = UIAlertController(title: nil, message: "材料を30個以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         } else if isIngredientDuplicated() {
             //材料が重複している
             let noNameAlertView = UIAlertController(title: nil, message: "重複している材料があります", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
@@ -547,6 +601,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if sameNameRecipe.count != 0{
                     let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                    if Style.isStatusBarLight{
+                        sameNameAlertView.setStatusBarStyle(.lightContent)
+                    }else{
+                        sameNameAlertView.setStatusBarStyle(.default)
+                    }
+                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     try! realm.write{
@@ -599,6 +659,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
                     let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                    if Style.isStatusBarLight{
+                        sameNameAlertView.setStatusBarStyle(.lightContent)
+                    }else{
+                        sameNameAlertView.setStatusBarStyle(.default)
+                    }
+                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     try! realm.write {

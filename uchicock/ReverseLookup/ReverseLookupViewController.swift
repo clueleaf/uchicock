@@ -344,6 +344,12 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
             self.recipeTableView.reloadData()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        if Style.isStatusBarLight{
+            alertView.setStatusBarStyle(.lightContent)
+        }else{
+            alertView.setStatusBarStyle(.default)
+        }
+        alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }
 

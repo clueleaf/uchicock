@@ -316,6 +316,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = UIAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                if Style.isStatusBarLight{
+                    alertView.setStatusBarStyle(.lightContent)
+                }else{
+                    alertView.setStatusBarStyle(.default)
+                }
+                alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             } else{
                 let favoriteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
@@ -329,6 +335,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                 }))
                 favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                if Style.isStatusBarLight{
+                    favoriteAlertView.setStatusBarStyle(.lightContent)
+                }else{
+                    favoriteAlertView.setStatusBarStyle(.default)
+                }
+                favoriteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(favoriteAlertView, animated: true, completion: nil)
             }
         }

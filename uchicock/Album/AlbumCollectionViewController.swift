@@ -232,6 +232,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        if Style.isStatusBarLight{
+            alertView.setStatusBarStyle(.lightContent)
+        }else{
+            alertView.setStatusBarStyle(.default)
+        }
+        alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }
 
@@ -243,6 +249,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        if Style.isStatusBarLight{
+            alertView.setStatusBarStyle(.lightContent)
+        }else{
+            alertView.setStatusBarStyle(.default)
+        }
+        alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }
     

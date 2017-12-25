@@ -85,6 +85,12 @@ class IngredientDetailTableViewController: UITableViewController {
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 _ = self.navigationController?.popViewController(animated: true)
             }))
+            if Style.isStatusBarLight{
+                noIngredientAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noIngredientAlertView.setStatusBarStyle(.default)
+            }
+            noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noIngredientAlertView, animated: true, completion: nil)
         } else {
             ingredient = ing!
@@ -285,6 +291,12 @@ class IngredientDetailTableViewController: UITableViewController {
                     _ = self.navigationController?.popViewController(animated: true)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                if Style.isStatusBarLight{
+                    alertView.setStatusBarStyle(.lightContent)
+                }else{
+                    alertView.setStatusBarStyle(.default)
+                }
+                alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
                 tableView.deselectRow(at: indexPath, animated: true)
             }

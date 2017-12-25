@@ -109,6 +109,12 @@ class ReminderTableViewController: UITableViewController{
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
+                if Style.isStatusBarLight{
+                    alertView.setStatusBarStyle(.lightContent)
+                }else{
+                    alertView.setStatusBarStyle(.default)
+                }
+                alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }
         }
@@ -137,6 +143,12 @@ class ReminderTableViewController: UITableViewController{
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
+                if Style.isStatusBarLight{
+                    alertView.setStatusBarStyle(.lightContent)
+                }else{
+                    alertView.setStatusBarStyle(.default)
+                }
+                alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }
         }

@@ -99,6 +99,12 @@ class RecipeDetailTableViewController: UITableViewController{
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 _ = self.navigationController?.popViewController(animated: true)
             }))
+            if Style.isStatusBarLight{
+                noRecipeAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noRecipeAlertView.setStatusBarStyle(.default)
+            }
+            noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
         }else{
             recipe = rec!
@@ -275,6 +281,12 @@ class RecipeDetailTableViewController: UITableViewController{
                 }
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
+            }
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
     }
@@ -291,6 +303,12 @@ class RecipeDetailTableViewController: UITableViewController{
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }))
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
+            }
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
     }
@@ -385,6 +403,12 @@ class RecipeDetailTableViewController: UITableViewController{
                 _ = self.navigationController?.popViewController(animated: true)
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
+            }
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
         }

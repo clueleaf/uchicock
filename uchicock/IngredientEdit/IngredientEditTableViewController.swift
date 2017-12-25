@@ -166,6 +166,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
+            }
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
     }
@@ -175,16 +181,34 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             //材料名を入れていない
             let noNameAlertView = UIAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: ingredientName.text!).count > 30{
             //材料名が長すぎる
             let noNameAlertView = UIAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if memo.text.count > 300{
             //メモが長すぎる
             let noNameAlertView = UIAlertController(title: nil, message: "メモを300文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                noNameAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                noNameAlertView.setStatusBarStyle(.default)
+            }
+            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else{
             let realm = try! Realm()
@@ -194,6 +218,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 if sameNameIngredient.count != 0{
                     let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                    if Style.isStatusBarLight{
+                        sameNameAlertView.setStatusBarStyle(.lightContent)
+                    }else{
+                        sameNameAlertView.setStatusBarStyle(.default)
+                    }
+                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     let newIngredient = Ingredient()
@@ -221,6 +251,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 if sameNameIngredient.count != 0 && ingredient.ingredientName != textWithoutSpace(text: ingredientName.text!){
                     let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                    if Style.isStatusBarLight{
+                        sameNameAlertView.setStatusBarStyle(.lightContent)
+                    }else{
+                        sameNameAlertView.setStatusBarStyle(.default)
+                    }
+                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
                     try! realm.write {
