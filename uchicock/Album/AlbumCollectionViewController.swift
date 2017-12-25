@@ -24,7 +24,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -24,4 +24,8 @@ class ReverseLookupNavigationController: UINavigationController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return self.visibleViewController
+    }
 }

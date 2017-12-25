@@ -1,20 +1,20 @@
 //
-//  AlbumNavigationController.swift
+//  RecipeIngredientEditNavigationController.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2017/02/28.
+//  Created by Kou Kinyo on 2017/12/25.
 //  Copyright © 2017年 Kou. All rights reserved.
 //
 
 import UIKit
 import ChameleonFramework
 
-class AlbumNavigationController: UINavigationController {
+class RecipeIngredientEditNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -28,4 +28,5 @@ class AlbumNavigationController: UINavigationController {
     override var childViewControllerForStatusBarStyle: UIViewController? {
         return self.visibleViewController
     }
+
 }

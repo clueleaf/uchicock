@@ -26,6 +26,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

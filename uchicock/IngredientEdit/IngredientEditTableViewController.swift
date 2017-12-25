@@ -26,6 +26,13 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var ingredient = Ingredient()
     var isAddMode = true
     let openTime = Date()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -26,6 +26,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +108,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-        
+    
     func getTextFieldFromView(view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField{

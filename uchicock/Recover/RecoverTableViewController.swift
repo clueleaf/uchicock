@@ -21,6 +21,13 @@ class RecoverTableViewController: UITableViewController {
     var isRecovering = false
     let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

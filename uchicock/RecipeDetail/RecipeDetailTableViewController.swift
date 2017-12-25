@@ -38,6 +38,13 @@ class RecipeDetailTableViewController: UITableViewController{
     var noPhotoFlag = false
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

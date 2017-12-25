@@ -23,6 +23,13 @@ class ReminderTableViewController: UITableViewController{
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredientName = ""
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

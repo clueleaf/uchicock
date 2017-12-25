@@ -39,6 +39,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var focusRecipeNameFlag = false
     let selectedCellBackgroundView = UIView()
     let openTime = Date()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

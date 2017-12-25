@@ -22,8 +22,14 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
     var ingredientList: Results<Ingredient>?
     var suggestList = Array<IngredientBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
-    
     let selectedCellBackgroundView = UIView()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

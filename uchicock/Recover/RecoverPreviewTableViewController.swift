@@ -16,6 +16,13 @@ class RecoverPreviewTableViewController: UITableViewController {
     @IBOutlet weak var method: UISegmentedControl!
     
     var recipe = Recipe()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

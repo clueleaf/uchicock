@@ -17,11 +17,15 @@ class SettingsNavigationController: UINavigationController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         navigationBar.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return self.visibleViewController
     }
 }

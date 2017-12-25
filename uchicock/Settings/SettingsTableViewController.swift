@@ -20,6 +20,13 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     @IBOutlet weak var changeThemeLabel: UILabel!
     
     let selectedCellBackgroundView = UIView()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         recoverLabel.textColor = Style.labelTextColor
         changeThemeLabel.textColor = Style.labelTextColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        self.setNeedsStatusBarAppearanceUpdate()
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.reloadData()
