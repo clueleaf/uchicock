@@ -72,6 +72,11 @@ class IngredientDetailTableViewController: UITableViewController {
         order.backgroundColor = Style.basicBackgroundColor
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
 
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)

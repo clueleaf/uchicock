@@ -53,6 +53,11 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -60,7 +60,12 @@ class ChangeThemeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
+
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
         cancelButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.leftBarButtonItem = cancelButton
@@ -93,6 +98,11 @@ class ChangeThemeTableViewController: UITableViewController {
             cell.accessoryType = .checkmark
         }
         UIButton.appearance().tintColor = Style.secondaryColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
 
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        

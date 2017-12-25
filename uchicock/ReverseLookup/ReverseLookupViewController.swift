@@ -53,6 +53,11 @@ class ReverseLookupViewController: UIViewController, UITableViewDelegate, UITabl
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         ingredientTableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.backgroundColor = Style.basicBackgroundColor
+        if Style.isBackgroundDark{
+            self.recipeTableView.indicatorStyle = .white
+        }else{
+            self.recipeTableView.indicatorStyle = .black
+        }
 
         loadIngredientsFromUserDefaults()
         ingredientTableView.reloadData()

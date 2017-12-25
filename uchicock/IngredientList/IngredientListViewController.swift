@@ -63,7 +63,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         category.backgroundColor = Style.basicBackgroundColor
         category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
+
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {

@@ -12,6 +12,7 @@ import ChameleonFramework
 struct Style{
     static var no = "0"
     static var isDark = false
+    static var isBackgroundDark = false
     static var isStatusBarLight = false
     static var primaryColor = FlatYellow()
     static var secondaryColor = FlatSkyBlueDark()
@@ -37,6 +38,7 @@ struct Style{
     static func tequilaSunriseLight(){
         no = "0"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = false
         primaryColor = FlatYellow()
         secondaryColor = FlatSkyBlueDark()
@@ -64,6 +66,7 @@ struct Style{
     static func tequilaSunriseDark(){
         no = "1"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = false
         primaryColor = FlatYellow()
         secondaryColor = FlatYellowDark()
@@ -91,6 +94,7 @@ struct Style{
     static func seaBreezeLight(){
         no = "2"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = false
         primaryColor = FlatPink()
         secondaryColor = FlatPink()
@@ -118,6 +122,7 @@ struct Style{
     static func seaBreezeDark(){
         no = "3"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatPinkDark()
         secondaryColor = FlatPinkDark()
@@ -145,6 +150,7 @@ struct Style{
     static func chinaBlueLight(){
         no = "4"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatSkyBlue()
         secondaryColor = FlatSkyBlue()
@@ -172,6 +178,7 @@ struct Style{
     static func chinaBlueDark(){
         no = "5"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatSkyBlueDark()
         secondaryColor = FlatSkyBlueDark()
@@ -199,6 +206,7 @@ struct Style{
     static func grasshopperLight(){
         no = "6"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatMint()
         secondaryColor = FlatMintDark()
@@ -226,6 +234,7 @@ struct Style{
     static func irishCoffeeDark(){
         no = "7"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatCoffeeDark()
         secondaryColor = FlatCoffee()
@@ -253,6 +262,7 @@ struct Style{
     static func mojitoLight(){
         no = "8"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = false
         primaryColor = FlatWhite()
         secondaryColor = FlatMint()
@@ -280,6 +290,7 @@ struct Style{
     static func redEyeLight(){
         no = "9"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatWatermelonDark()
         secondaryColor = FlatWatermelon()
@@ -307,6 +318,7 @@ struct Style{
     static func cubaLibreDark(){
         no = "10"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = false
         primaryColor = FlatLimeDark()
         secondaryColor = FlatLimeDark()
@@ -334,6 +346,7 @@ struct Style{
     static func silverWingLight(){
         no = "11"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatGrayDark()
         secondaryColor = FlatGrayDark()
@@ -361,6 +374,7 @@ struct Style{
     static func americanLemonadeDark(){
         no = "12"
         isDark = false
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatWatermelonDark()
         secondaryColor = FlatWatermelonDark()
@@ -388,6 +402,7 @@ struct Style{
     static func blueNewThemeLight(){
         no = "13"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatBlackDark()
         secondaryColor = FlatSkyBlueDark()
@@ -415,6 +430,7 @@ struct Style{
     static func blueNewThemeDark(){
         no = "14"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatBlackDark()
         secondaryColor = FlatSkyBlueDark()
@@ -442,6 +458,7 @@ struct Style{
     static func yellowNewThemeLight(){
         no = "15"
         isDark = false
+        isBackgroundDark = false
         isStatusBarLight = true
         primaryColor = FlatBlackDark()
         secondaryColor = FlatOrange()
@@ -469,6 +486,7 @@ struct Style{
     static func yellowNewThemeDark(){
         no = "16"
         isDark = true
+        isBackgroundDark = true
         isStatusBarLight = true
         primaryColor = FlatBlackDark()
         secondaryColor = FlatYellowDark()

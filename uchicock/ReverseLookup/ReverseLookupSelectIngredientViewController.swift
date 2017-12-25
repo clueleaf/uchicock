@@ -74,7 +74,12 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         ingredientNameLabel.textColor = Style.labelTextColor
         ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
-        
+        if Style.isBackgroundDark{
+            self.suggestTableView.indicatorStyle = .white
+        }else{
+            self.suggestTableView.indicatorStyle = .black
+        }
+
         if Style.isDark {
             ingredientName.keyboardAppearance = .dark
         }else{

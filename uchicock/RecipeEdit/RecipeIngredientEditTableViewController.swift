@@ -99,7 +99,14 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         deleteLabel.textColor = Style.deleteColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+            self.suggestTableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+            self.suggestTableView.indicatorStyle = .black
+        }
+
         if Style.isDark {
             ingredientName.keyboardAppearance = .dark
             amount.keyboardAppearance = .dark

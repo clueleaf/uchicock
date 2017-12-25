@@ -60,6 +60,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         self.collectionView!.backgroundColor = Style.basicBackgroundColor
         header.stateLabel.textColor = Style.labelTextColor
+        if Style.isBackgroundDark{
+            self.collectionView!.indicatorStyle = .white
+        }else{
+            self.collectionView!.indicatorStyle = .black
+        }
 
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""

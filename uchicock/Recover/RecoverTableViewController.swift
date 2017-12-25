@@ -54,6 +54,11 @@ class RecoverTableViewController: UITableViewController {
         
         tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

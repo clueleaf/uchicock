@@ -70,6 +70,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
         
         for view in searchBar.subviews {
             for subview in view.subviews {

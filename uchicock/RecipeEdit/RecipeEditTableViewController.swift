@@ -147,7 +147,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
+
         if Style.isDark {
             recipeName.keyboardAppearance = .dark
             memo.keyboardAppearance = .dark

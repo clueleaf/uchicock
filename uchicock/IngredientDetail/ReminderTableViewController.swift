@@ -69,6 +69,11 @@ class ReminderTableViewController: UITableViewController{
         reminderType.tintColor = Style.secondaryColor
         reminderType.backgroundColor = Style.basicBackgroundColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

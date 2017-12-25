@@ -48,7 +48,11 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         recoverLabel.textColor = Style.labelTextColor
         changeThemeLabel.textColor = Style.labelTextColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.setNeedsStatusBarAppearanceUpdate()
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.reloadData()

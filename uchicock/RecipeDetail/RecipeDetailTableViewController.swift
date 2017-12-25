@@ -86,6 +86,11 @@ class RecipeDetailTableViewController: UITableViewController{
         photoBackground.backgroundColor = Style.basicBackgroundColor
         openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
 
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)

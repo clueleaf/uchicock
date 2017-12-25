@@ -89,7 +89,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        
+        if Style.isBackgroundDark{
+            self.tableView.indicatorStyle = .white
+        }else{
+            self.tableView.indicatorStyle = .black
+        }
+
         if Style.isDark {
             ingredientName.keyboardAppearance = .dark
             memo.keyboardAppearance = .dark
