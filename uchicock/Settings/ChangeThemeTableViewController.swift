@@ -17,10 +17,17 @@ class ChangeThemeTableViewController: UITableViewController {
     override var prefersStatusBarHidden: Bool{
         return true
     }
-    
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
         return .slide
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Style.isStatusBarLight{
+            return .lightContent
+        }else{
+            return .default
+        }
+    }
+
 
     let themeList: [String] = [
         "テキーラサンライズ - ライト",

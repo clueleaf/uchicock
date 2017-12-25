@@ -684,10 +684,10 @@
             </objects>
             <point key="canvasLocation" x="-1686" y="3649"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Change Theme Navigation Controller-->
         <scene sceneID="FUS-k7-xrm">
             <objects>
-                <navigationController id="WJd-ly-HED" sceneMemberID="viewController">
+                <navigationController id="WJd-ly-HED" customClass="ChangeThemeNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eKz-e7-DAZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

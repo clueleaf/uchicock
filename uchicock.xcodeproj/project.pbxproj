@@ -44,6 +44,7 @@
 		9B8D63F21FF1429F00D2BA57 /* ReminderNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */; };
 		9B8D63F41FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */; };
 		9B8D63F61FF1432900D2BA57 /* RecoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */; };
+		9B8D63F81FF14D8500D2BA57 /* ChangeThemeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */; };
 		9B93B31B1E75437C0046687A /* ReverseLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */; };
 		9B93B31F1E754C2C0046687A /* ReverseLookupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */; };
 		9B93B3211E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */; };
@@ -137,6 +138,7 @@
 		9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderNavigationController.swift; path = NavigationControllers/ReminderNavigationController.swift; sourceTree = "<group>"; };
 		9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientNavigationController.swift; path = NavigationControllers/ReverseLookupSelectIngredientNavigationController.swift; sourceTree = "<group>"; };
 		9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecoverNavigationController.swift; path = NavigationControllers/RecoverNavigationController.swift; sourceTree = "<group>"; };
+		9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeThemeNavigationController.swift; path = NavigationControllers/ChangeThemeNavigationController.swift; sourceTree = "<group>"; };
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupViewController.swift; path = ReverseLookup/ReverseLookupViewController.swift; sourceTree = "<group>"; };
 		9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewCell.swift; path = ReverseLookup/ReverseLookupTableViewCell.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */,
 				9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */,
 				9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */,
+				9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */,
+				9B8D63F81FF14D8500D2BA57 /* ChangeThemeNavigationController.swift in Sources */,
 				9B6D67CA1CD0E8F9001E8079 /* IngredientName.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
 				9B41B2B31E659EEB00EF2CEF /* SettingsNavigationController.swift in Sources */,
