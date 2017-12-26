@@ -420,16 +420,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 selectedIndexPath = indexPath
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }
-//        } else if segue.identifier == "PushAddIngredient" {
-//            if let indexPath = sender as? IndexPath {
-//                let enc = segue.destination as! UINavigationController
-//                let evc = enc.visibleViewController as! IngredientEditTableViewController
-//                let realm = try! Realm()
-//                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
-//                selectedIngredientId = ingredientBasicList[indexPath.row].id
-//                selectedIndexPath = indexPath
-//                evc.ingredient = ingredient
-//            }
         }
     }
 }

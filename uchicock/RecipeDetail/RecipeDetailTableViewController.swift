@@ -510,10 +510,22 @@ class RecipeDetailTableViewController: UITableViewController{
         if noPhotoFlag == false, let image = photo.image {
             let activityVC = UIActivityViewController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
+            if Style.isStatusBarLight{
+                activityVC.setStatusBarStyle(.lightContent)
+            }else{
+                activityVC.setStatusBarStyle(.default)
+            }
+            activityVC.modalPresentationCapturesStatusBarAppearance = true
             self.present(activityVC, animated: true, completion: nil)
         }else{
             let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
+            if Style.isStatusBarLight{
+                activityVC.setStatusBarStyle(.lightContent)
+            }else{
+                activityVC.setStatusBarStyle(.default)
+            }
+            activityVC.modalPresentationCapturesStatusBarAppearance = true
             self.present(activityVC, animated: true, completion: nil)
         }
     }
