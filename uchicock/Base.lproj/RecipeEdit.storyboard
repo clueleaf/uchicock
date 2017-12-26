@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -284,6 +285,7 @@
                         <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
                         <outlet property="starLabel" destination="nN9-zc-48A" id="BBx-vg-2OP"/>
                         <segue destination="vKl-GP-J2s" kind="presentation" identifier="PushEditIngredient" id="PfD-nS-bh3"/>
+                        <segue destination="f6s-1V-srL" kind="presentation" identifier="ShowPhotoFilter" id="8xx-nF-xdB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKa-M5-9RW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,6 +313,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z80-mo-IEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-123" y="-417"/>
+        </scene>
+        <!--Photo Filter View Controller-->
+        <scene sceneID="fm8-va-CJ9">
+            <objects>
+                <viewController storyboardIdentifier="PhotoFilter" id="f6s-1V-srL" customClass="PhotoFilterViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pOB-g4-GEk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e6K-bF-RvO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="457"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKb-vr-eCI">
+                                <rect key="frame" x="100" y="497" width="31" height="30"/>
+                                <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="redoButtonTapped:" destination="f6s-1V-srL" eventType="touchUpInside" id="bk1-Sx-c9K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jB-Ho-KJc">
+                                <rect key="frame" x="244" y="497" width="31" height="30"/>
+                                <state key="normal" title="完了"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="f6s-1V-srL" eventType="touchUpInside" id="fI0-ua-DE3"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tR-Bd-b4u">
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="1Hz-Zf-riK"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cKb-vr-eCI" firstAttribute="leading" secondItem="UaY-1E-xuj" secondAttribute="leading" constant="100" id="4V9-XN-DAL"/>
+                            <constraint firstItem="UaY-1E-xuj" firstAttribute="trailing" secondItem="9jB-Ho-KJc" secondAttribute="trailing" constant="100" id="PZ7-pV-Cv1"/>
+                            <constraint firstItem="7tR-Bd-b4u" firstAttribute="leading" secondItem="UaY-1E-xuj" secondAttribute="leading" id="UmL-Nx-07m"/>
+                            <constraint firstItem="9jB-Ho-KJc" firstAttribute="top" secondItem="e6K-bF-RvO" secondAttribute="bottom" constant="20" id="fNQ-wT-4Xg"/>
+                            <constraint firstItem="UaY-1E-xuj" firstAttribute="bottom" secondItem="7tR-Bd-b4u" secondAttribute="bottom" id="hsc-EN-rOX"/>
+                            <constraint firstItem="e6K-bF-RvO" firstAttribute="leading" secondItem="UaY-1E-xuj" secondAttribute="leading" id="hxi-s1-Atd"/>
+                            <constraint firstItem="UaY-1E-xuj" firstAttribute="trailing" secondItem="e6K-bF-RvO" secondAttribute="trailing" id="ifS-Nl-NFn"/>
+                            <constraint firstItem="e6K-bF-RvO" firstAttribute="top" secondItem="UaY-1E-xuj" secondAttribute="top" id="mEo-et-cjz"/>
+                            <constraint firstItem="7tR-Bd-b4u" firstAttribute="top" secondItem="cKb-vr-eCI" secondAttribute="bottom" constant="20" id="pG2-HV-XW5"/>
+                            <constraint firstItem="cKb-vr-eCI" firstAttribute="top" secondItem="e6K-bF-RvO" secondAttribute="bottom" constant="20" id="vSm-PF-zo1"/>
+                            <constraint firstItem="UaY-1E-xuj" firstAttribute="trailing" secondItem="7tR-Bd-b4u" secondAttribute="trailing" id="xMA-Yq-l0p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UaY-1E-xuj"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="e6K-bF-RvO" id="njs-Oo-W9K"/>
+                        <outlet property="scrollView" destination="7tR-Bd-b4u" id="B1T-eT-SQ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CIc-tx-wOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-12" y="358.4707646176912"/>
         </scene>
         <!--Recipe Ingredient Edit Table View Controller-->
         <scene sceneID="JdS-Y5-7Lz">

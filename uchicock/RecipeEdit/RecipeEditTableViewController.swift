@@ -415,7 +415,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }
         photo.alpha = 0.0
-        ipc.dismiss(animated: true, completion: nil)
+        ipc.dismiss(animated: false, completion: nil)
+        performSegue(withIdentifier: "ShowPhotoFilter", sender: nil)
     }
     
     func addPhoto() {
@@ -806,6 +807,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     evc.isAddMode = true
                 }
             }
+        }else if segue.identifier == "ShowPhotoFilter"{
+            let vc = segue.destination as! PhotoFilterViewController
+            vc.image = self.photo.image
         }
     }
     
