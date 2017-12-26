@@ -12,7 +12,7 @@
         <!--いろいろ-->
         <scene sceneID="M1g-l9-zLm">
             <objects>
-                <navigationController id="lbf-YC-ahC" customClass="SettingsNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="lbf-YC-ahC" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="いろいろ" image="tabbar-settings" id="KDX-QE-bCf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Yxz-Tz-Giv">
@@ -381,10 +381,10 @@
             </objects>
             <point key="canvasLocation" x="-889" y="2884"/>
         </scene>
-        <!--Recover Navigation Controller-->
+        <!--Basic Navigation Controller-->
         <scene sceneID="Z69-qE-Jvf">
             <objects>
-                <navigationController id="VGI-sz-djI" customClass="RecoverNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="VGI-sz-djI" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZYV-LA-J2n">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -684,10 +684,10 @@
             </objects>
             <point key="canvasLocation" x="-1686" y="3649"/>
         </scene>
-        <!--Change Theme Navigation Controller-->
+        <!--Basic Navigation Controller-->
         <scene sceneID="FUS-k7-xrm">
             <objects>
-                <navigationController id="WJd-ly-HED" customClass="ChangeThemeNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="WJd-ly-HED" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eKz-e7-DAZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

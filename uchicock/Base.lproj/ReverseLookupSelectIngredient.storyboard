@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reverse Lookup Select Ingredient Navigation Controller-->
+        <!--Basic Navigation Controller-->
         <scene sceneID="0Hf-fw-QQN">
             <objects>
-                <navigationController id="Tx7-UM-9KE" customClass="ReverseLookupSelectIngredientNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="Tx7-UM-9KE" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fyp-Q3-GBO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

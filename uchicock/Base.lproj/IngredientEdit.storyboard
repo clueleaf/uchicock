@@ -12,7 +12,7 @@
         <!--材料編集-->
         <scene sceneID="4sd-Ou-Vxn">
             <objects>
-                <navigationController storyboardIdentifier="IngredientEditNavigation" id="UzJ-nj-IdU" userLabel="材料編集" customClass="IngredientEditNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="IngredientEditNavigation" id="UzJ-nj-IdU" userLabel="材料編集" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="cqw-Qw-O4T">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

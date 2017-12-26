@@ -557,7 +557,7 @@
         <!--レシピ-->
         <scene sceneID="yzd-U7-BFT">
             <objects>
-                <navigationController id="KKp-Zy-7zd" customClass="RecipeNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="KKp-Zy-7zd" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="レシピ" image="tabbar-recipe" id="LxU-1k-8wl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9Mv-r3-hnc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -574,7 +574,7 @@
         <!--アルバム-->
         <scene sceneID="265-63-tR4">
             <objects>
-                <navigationController id="3Ej-3Z-OyG" customClass="AlbumNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="3Ej-3Z-OyG" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="アルバム" image="tabbar-album" id="2y6-xw-CiZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s0R-RU-yzr">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -713,7 +713,7 @@
         <!--逆引き-->
         <scene sceneID="Hpa-Qg-biA">
             <objects>
-                <navigationController id="vI8-aO-1sO" customClass="ReverseLookupNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="vI8-aO-1sO" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="逆引き" image="tabbar-reverse-lookup" id="009-ru-rzW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KGg-ZN-GBX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -730,7 +730,7 @@
         <!--材料-->
         <scene sceneID="Ua0-oQ-hxo">
             <objects>
-                <navigationController id="2U6-sC-jhY" customClass="IngredientNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="2U6-sC-jhY" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="材料" image="tabbar-ingredient" id="4uJ-fe-pdf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="6sM-B0-LYW">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

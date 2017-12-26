@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reminder Navigation Controller-->
+        <!--Basic Navigation Controller-->
         <scene sceneID="2hI-M5-V7X">
             <objects>
-                <navigationController id="bjZ-zr-dNb" customClass="ReminderNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="bjZ-zr-dNb" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="niP-BU-ucX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

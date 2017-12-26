@@ -27,10 +27,6 @@
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
-		9B41B2AD1E659D9100EF2CEF /* RecipeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2AC1E659D9100EF2CEF /* RecipeNavigationController.swift */; };
-		9B41B2AF1E659EC100EF2CEF /* AlbumNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2AE1E659EC100EF2CEF /* AlbumNavigationController.swift */; };
-		9B41B2B11E659ED700EF2CEF /* IngredientNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2B01E659ED700EF2CEF /* IngredientNavigationController.swift */; };
-		9B41B2B31E659EEB00EF2CEF /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2B21E659EEB00EF2CEF /* SettingsNavigationController.swift */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B55370F1E686C3A0054D692 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1281E6867620096E9F1 /* ChameleonFramework.framework */; };
 		9B6D67C81CD0E5A4001E8079 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67C71CD0E5A4001E8079 /* Extension.swift */; };
@@ -38,19 +34,11 @@
 		9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */; };
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
 		9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */; };
-		9B8D63EC1FF141CA00D2BA57 /* RecipeEditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63EB1FF141CA00D2BA57 /* RecipeEditNavigationController.swift */; };
-		9B8D63EE1FF141DF00D2BA57 /* RecipeIngredientEditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63ED1FF141DF00D2BA57 /* RecipeIngredientEditNavigationController.swift */; };
-		9B8D63F01FF1426A00D2BA57 /* IngredientEditNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63EF1FF1426A00D2BA57 /* IngredientEditNavigationController.swift */; };
-		9B8D63F21FF1429F00D2BA57 /* ReminderNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */; };
-		9B8D63F41FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */; };
-		9B8D63F61FF1432900D2BA57 /* RecoverNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */; };
-		9B8D63F81FF14D8500D2BA57 /* ChangeThemeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */; };
 		9B93B31B1E75437C0046687A /* ReverseLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */; };
 		9B93B31F1E754C2C0046687A /* ReverseLookupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */; };
 		9B93B3211E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */; };
 		9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */; };
 		9B98A61E1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98A61D1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift */; };
-		9B98A6201E76ED2A00D49CC9 /* ReverseLookupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B98A61F1E76ED2A00D49CC9 /* ReverseLookupNavigationController.swift */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
@@ -69,6 +57,7 @@
 		9BDB393A1CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39391CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift */; };
 		9BE1C0321F88895600B8F0D8 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE1C0311F88895600B8F0D8 /* CopyableLabel.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
+		9BEF4A571FF25D3500AB615C /* BasicNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEF4A561FF25D3400AB615C /* BasicNavigationController.swift */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */; };
@@ -123,29 +112,17 @@
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
-		9B41B2AC1E659D9100EF2CEF /* RecipeNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeNavigationController.swift; path = NavigationControllers/RecipeNavigationController.swift; sourceTree = "<group>"; };
-		9B41B2AE1E659EC100EF2CEF /* AlbumNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumNavigationController.swift; path = NavigationControllers/AlbumNavigationController.swift; sourceTree = "<group>"; };
-		9B41B2B01E659ED700EF2CEF /* IngredientNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientNavigationController.swift; path = NavigationControllers/IngredientNavigationController.swift; sourceTree = "<group>"; };
-		9B41B2B21E659EEB00EF2CEF /* SettingsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsNavigationController.swift; path = NavigationControllers/SettingsNavigationController.swift; sourceTree = "<group>"; };
 		9B6D67C71CD0E5A4001E8079 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B6D67C91CD0E8F9001E8079 /* IngredientName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientName.swift; path = RecipeEdit/IngredientName.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
 		9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientRecipeBasic.swift; path = IngredientDetail/IngredientRecipeBasic.swift; sourceTree = "<group>"; };
-		9B8D63EB1FF141CA00D2BA57 /* RecipeEditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeEditNavigationController.swift; path = NavigationControllers/RecipeEditNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63ED1FF141DF00D2BA57 /* RecipeIngredientEditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditNavigationController.swift; path = NavigationControllers/RecipeIngredientEditNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63EF1FF1426A00D2BA57 /* IngredientEditNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientEditNavigationController.swift; path = NavigationControllers/IngredientEditNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderNavigationController.swift; path = NavigationControllers/ReminderNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientNavigationController.swift; path = NavigationControllers/ReverseLookupSelectIngredientNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecoverNavigationController.swift; path = NavigationControllers/RecoverNavigationController.swift; sourceTree = "<group>"; };
-		9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeThemeNavigationController.swift; path = NavigationControllers/ChangeThemeNavigationController.swift; sourceTree = "<group>"; };
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9B93B31A1E75437C0046687A /* ReverseLookupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupViewController.swift; path = ReverseLookup/ReverseLookupViewController.swift; sourceTree = "<group>"; };
 		9B93B31E1E754C2C0046687A /* ReverseLookupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewCell.swift; path = ReverseLookup/ReverseLookupTableViewCell.swift; sourceTree = "<group>"; };
 		9B93B3201E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientViewController.swift; path = ReverseLookup/ReverseLookupSelectIngredientViewController.swift; sourceTree = "<group>"; };
 		9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientTableViewCell.swift; path = ReverseLookup/ReverseLookupSelectIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B98A61D1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupRecipeTableViewCell.swift; path = ReverseLookup/ReverseLookupRecipeTableViewCell.swift; sourceTree = "<group>"; };
-		9B98A61F1E76ED2A00D49CC9 /* ReverseLookupNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupNavigationController.swift; path = NavigationControllers/ReverseLookupNavigationController.swift; sourceTree = "<group>"; };
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,6 +149,7 @@
 		9BDB39391CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPreviewIngredientTableViewCell.swift; path = Recover/RecoverPreviewIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9BE1C0311F88895600B8F0D8 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
+		9BEF4A561FF25D3400AB615C /* BasicNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicNavigationController.swift; path = NavigationControllers/BasicNavigationController.swift; sourceTree = "<group>"; };
 		9BEF8B241E68738200F32DDB /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
@@ -270,18 +248,7 @@
 		9B41B2AB1E659D5400EF2CEF /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9B41B2AC1E659D9100EF2CEF /* RecipeNavigationController.swift */,
-				9B41B2AE1E659EC100EF2CEF /* AlbumNavigationController.swift */,
-				9B41B2B01E659ED700EF2CEF /* IngredientNavigationController.swift */,
-				9B98A61F1E76ED2A00D49CC9 /* ReverseLookupNavigationController.swift */,
-				9B41B2B21E659EEB00EF2CEF /* SettingsNavigationController.swift */,
-				9B8D63EB1FF141CA00D2BA57 /* RecipeEditNavigationController.swift */,
-				9B8D63ED1FF141DF00D2BA57 /* RecipeIngredientEditNavigationController.swift */,
-				9B8D63EF1FF1426A00D2BA57 /* IngredientEditNavigationController.swift */,
-				9B8D63F11FF1429F00D2BA57 /* ReminderNavigationController.swift */,
-				9B8D63F31FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift */,
-				9B8D63F51FF1432900D2BA57 /* RecoverNavigationController.swift */,
-				9B8D63F71FF14D8500D2BA57 /* ChangeThemeNavigationController.swift */,
+				9BEF4A561FF25D3400AB615C /* BasicNavigationController.swift */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -672,11 +639,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B8D63EE1FF141DF00D2BA57 /* RecipeIngredientEditNavigationController.swift in Sources */,
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */,
-				9B41B2AD1E659D9100EF2CEF /* RecipeNavigationController.swift in Sources */,
-				9B8D63F41FF142E200D2BA57 /* ReverseLookupSelectIngredientNavigationController.swift in Sources */,
 				9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */,
 				9B98A61E1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
@@ -688,35 +652,28 @@
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B93B31B1E75437C0046687A /* ReverseLookupViewController.swift in Sources */,
 				9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */,
+				9BEF4A571FF25D3500AB615C /* BasicNavigationController.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
 				9BDB393A1CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
-				9B98A6201E76ED2A00D49CC9 /* ReverseLookupNavigationController.swift in Sources */,
-				9B41B2AF1E659EC100EF2CEF /* AlbumNavigationController.swift in Sources */,
 				9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */,
 				9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */,
 				9B93B3211E75510C0046687A /* ReverseLookupSelectIngredientViewController.swift in Sources */,
-				9B8D63F21FF1429F00D2BA57 /* ReminderNavigationController.swift in Sources */,
 				9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */,
 				9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */,
 				9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */,
-				9B8D63F01FF1426A00D2BA57 /* IngredientEditNavigationController.swift in Sources */,
 				9B93B31F1E754C2C0046687A /* ReverseLookupTableViewCell.swift in Sources */,
-				9B41B2B11E659ED700EF2CEF /* IngredientNavigationController.swift in Sources */,
 				9B3078C61CA421660014CE7E /* RecipeListItemTableViewCell.swift in Sources */,
 				9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */,
 				9BE1C0321F88895600B8F0D8 /* CopyableLabel.swift in Sources */,
-				9B8D63F61FF1432900D2BA57 /* RecoverNavigationController.swift in Sources */,
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9BB98FA81E6463BD009240FB /* TabBarController.swift in Sources */,
-				9B8D63F81FF14D8500D2BA57 /* ChangeThemeNavigationController.swift in Sources */,
 				9B6D67CA1CD0E8F9001E8079 /* IngredientName.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
-				9B41B2B31E659EEB00EF2CEF /* SettingsNavigationController.swift in Sources */,
 				9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
@@ -724,7 +681,6 @@
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
-				9B8D63EC1FF141CA00D2BA57 /* RecipeEditNavigationController.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,
 				9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */,
 			);

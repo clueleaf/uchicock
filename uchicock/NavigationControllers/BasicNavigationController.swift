@@ -1,15 +1,15 @@
 //
-//  RecipeIngredientEditNavigationController.swift
+//  BasicNavigationController.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2017/12/25.
+//  Created by Kou Kinyo on 2017/12/26.
 //  Copyright © 2017年 Kou. All rights reserved.
 //
 
 import UIKit
 import ChameleonFramework
 
-class RecipeIngredientEditNavigationController: UINavigationController {
+class BasicNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
