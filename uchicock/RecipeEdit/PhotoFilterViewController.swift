@@ -11,6 +11,7 @@ import UIKit
 class PhotoFilterViewController: UIViewController {
 
     var image : UIImage?
+    var smallImage : UIImage?
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -40,23 +41,16 @@ class PhotoFilterViewController: UIViewController {
         
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1
-        button.layer.cornerRadius = 3
+        button.layer.cornerRadius = 5
         button.tintColor = UIColor.white
 
         imageView.image = image
+        if image != nil{
+            smallImage = resizedImage(image: image!)
+        }
         setFilters()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 3
-        button.tintColor = UIColor.white
-        button.isEnabled = true
-    }
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -74,35 +68,12 @@ class PhotoFilterViewController: UIViewController {
             
             let filterButton = UIButton(type: .custom)
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
-//            filterButton.tag = itemCount
+            filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
             filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             
-            let ciContext = CIContext(options: nil)
-            let coreImage = CIImage(image: image!)
-            var filteredImageData : CIImage? = nil
-            
-            switch CIFilterNames[i]{
-            case "Original":
-                filteredImageData = coreImage
-            case "Nashville":
-                filteredImageData = applyNashvilleFilter(foregroundImage: coreImage!)
-            case "Clarendon":
-                filteredImageData = applyClarendonFilter(foregroundImage: coreImage!)
-            case "1977":
-                filteredImageData = apply1977Filter(ciImage: coreImage!)
-            case "Toaster":
-                filteredImageData = applyToasterFilter(ciImage: coreImage!)
-            default:
-                let filter = CIFilter(name: "\(CIFilterNames[i])" )
-                filter!.setDefaults()
-                filter!.setValue(coreImage, forKey: kCIInputImageKey)
-                filteredImageData = filter!.value(forKey: kCIOutputImageKey) as? CIImage
-            }
-            let filteredImageRef = ciContext.createCGImage(filteredImageData!, from: filteredImageData!.extent)
-            let imageForButton = UIImage(cgImage: filteredImageRef!)
-            filterButton.setImage(imageForButton, for: .normal)
+            filterButton.setImage(filteredImage(filterNumber: i, originalImage: CIImage(image: smallImage!)!), for: .normal)
             filterButton.imageView?.contentMode = .scaleAspectFill
             
             xCoord +=  buttonWidth + gapBetweenButtons
@@ -112,24 +83,66 @@ class PhotoFilterViewController: UIViewController {
     }
 
     @objc func filterButtonTapped(sender: UIButton){
-        let button = sender as UIButton
-        
-        if let buttonImageView = button.imageView{
-            imageView.image = buttonImageView.image
-        }
+        let button = sender as UIButton        
+        imageView.image = filteredImage(filterNumber: button.tag, originalImage: CIImage(image: self.image!)!)
     }
     
-    func getColorImage( red: Int, green: Int, blue: Int, alpha: Int = 255, rect: CGRect) -> CIImage {
-        let color = CIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
+    func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
+        let ciContext = CIContext(options: nil)
+        var filteredImageData : CIImage? = nil
+        
+        switch CIFilterNames[filterNumber]{
+        case "Original":
+            filteredImageData = originalImage
+        case "Nashville":
+            filteredImageData = applyNashvilleFilter(foregroundImage: originalImage)
+        case "Clarendon":
+            filteredImageData = applyClarendonFilter(foregroundImage: originalImage)
+        case "1977":
+            filteredImageData = apply1977Filter(ciImage: originalImage)
+        case "Toaster":
+            filteredImageData = applyToasterFilter(ciImage: originalImage)
+        default:
+            let filter = CIFilter(name: "\(CIFilterNames[filterNumber])" )
+            filter!.setDefaults()
+            filter!.setValue(originalImage, forKey: kCIInputImageKey)
+            filteredImageData = filter!.value(forKey: kCIOutputImageKey) as? CIImage
+        }
+        
+        let filteredImageRef = ciContext.createCGImage(filteredImageData!, from: filteredImageData!.extent)
+        return UIImage(cgImage: filteredImageRef!)
+    }
+    
+    func resizedImage(image: UIImage) -> UIImage? {
+        let maxLongSide : CGFloat = (scrollView.frame.height - 20) * 2
+        if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
+            return image
+        }
+        
+        let w = image.size.width / maxLongSide
+        let h = image.size.height / maxLongSide
+        let ratio = w > h ? w : h
+        let rect = CGRect(x: 0, y: 0, width: image.size.width / ratio, height: image.size.height / ratio)
+        
+        UIGraphicsBeginImageContext(rect.size)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    func getColorImage( red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1.0, rect: CGRect) -> CIImage {
+        let color = CIColor(red: red, green: green, blue: blue, alpha: alpha)
         return CIImage(color: color).cropped(to: rect)
     }
 
     // MARK: - Original Filters
     func applyNashvilleFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
-            red: 247, green: 176, blue: 153, alpha: Int(255 * 0.56), rect: foregroundImage.extent)
+            red: 0.97, green: 0.69, blue: 0.6, alpha: 0.56, rect: foregroundImage.extent)
         let backgroundImage2 = getColorImage(
-            red: 0, green: 70, blue: 150, alpha: Int(255 * 0.4), rect: foregroundImage.extent)
+            red: 0.0, green: 0.27, blue: 0.59, alpha: 0.4, rect: foregroundImage.extent)
         return foregroundImage
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
@@ -149,7 +162,7 @@ class PhotoFilterViewController: UIViewController {
     
     func applyClarendonFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
-            red: 127, green: 187, blue: 227, alpha: Int(255 * 0.2), rect: foregroundImage.extent)
+            red: 0.5, green: 0.73, blue: 0.89, alpha: 0.2, rect: foregroundImage.extent)
         return foregroundImage
             .applyingFilter("CIOverlayBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
@@ -163,7 +176,7 @@ class PhotoFilterViewController: UIViewController {
     
     func apply1977Filter(ciImage: CIImage) -> CIImage? {
         let filterImage = getColorImage(
-            red: 243, green: 106, blue: 188, alpha: Int(255 * 0.1), rect: ciImage.extent)
+            red: 0.95, green: 0.42, blue: 0.74, alpha: 0.1, rect: ciImage.extent)
         let backgroundImage = ciImage
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.3,
@@ -217,7 +230,6 @@ class PhotoFilterViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        print("aaaa")
         self.dismiss(animated: true, completion: nil)
     }
 

@@ -444,6 +444,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     self.photo.isUserInteractionEnabled = true
                     self.photo.alpha = 0.0
                     UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
+                    self.performSegue(withIdentifier: "ShowPhotoFilter", sender: nil)
                 }))
             }
         }
