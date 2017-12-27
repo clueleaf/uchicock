@@ -83,6 +83,12 @@ class PhotoFilterViewController: UIViewController {
             filterButton.imageView?.contentMode = .scaleAspectFill
             
             xCoord +=  buttonWidth + gapBetweenButtons
+            if i == 0{
+                filterButton.layer.borderColor = UIColor.white.cgColor
+                filterButton.layer.borderWidth = 2.0
+            }else{
+                filterButton.layer.borderWidth = 0
+            }
             scrollView.addSubview(filterButton)
         }
         scrollView.contentSize = CGSize(width: xCoord + 10, height: buttonHeight)
@@ -91,6 +97,15 @@ class PhotoFilterViewController: UIViewController {
     @objc func filterButtonTapped(sender: UIButton){
         let button = sender as UIButton        
         imageView.image = filteredImage(filterNumber: button.tag, originalImage: CIImage(image: self.image!)!)
+        
+        for subview in scrollView.subviews{
+            if subview is UIButton{
+                let b = subview as! UIButton
+                b.layer.borderWidth = 0
+            }
+        }
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 2.0
     }
     
     func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
