@@ -11,6 +11,7 @@ import UIKit
 class PhotoFilterViewController: UIViewController {
 
     var image : UIImage?
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -36,20 +37,34 @@ class PhotoFilterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 3
+        button.tintColor = UIColor.white
 
         imageView.image = image
         setFilters()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 3
+        button.tintColor = UIColor.white
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func setFilters(){
-        var xCoord: CGFloat = 5
-        let yCoord: CGFloat = 5
-        let buttonWidth:CGFloat = scrollView.frame.height - 10
-        let buttonHeight: CGFloat = scrollView.frame.height - 10
+        var xCoord: CGFloat = 10
+        let yCoord: CGFloat = 10
+        let buttonWidth:CGFloat = scrollView.frame.height - 20
+        let buttonHeight: CGFloat = scrollView.frame.height - 20
         let gapBetweenButtons: CGFloat = 5
         
         var itemCount = 0
@@ -58,9 +73,9 @@ class PhotoFilterViewController: UIViewController {
             
             let filterButton = UIButton(type: .custom)
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
-            filterButton.tag = itemCount
+//            filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
-            filterButton.layer.cornerRadius = 6
+            filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             
             let ciContext = CIContext(options: nil)
@@ -86,18 +101,21 @@ class PhotoFilterViewController: UIViewController {
             }
             let filteredImageRef = ciContext.createCGImage(filteredImageData!, from: filteredImageData!.extent)
             let imageForButton = UIImage(cgImage: filteredImageRef!)
-            filterButton.setBackgroundImage(imageForButton, for: .normal)
+            filterButton.setImage(imageForButton, for: .normal)
+            filterButton.imageView?.contentMode = .scaleAspectFill
             
             xCoord +=  buttonWidth + gapBetweenButtons
             scrollView.addSubview(filterButton)
         }
-        scrollView.contentSize = CGSize(width: buttonWidth * CGFloat(itemCount+2), height: yCoord)
+        scrollView.contentSize = CGSize(width: xCoord + 10, height: buttonHeight)
     }
 
     @objc func filterButtonTapped(sender: UIButton){
         let button = sender as UIButton
         
-        imageView.image = button.backgroundImage(for: UIControlState.normal)
+        if let buttonImageView = button.imageView{
+            imageView.image = buttonImageView.image
+        }
     }
     
     func getColorImage( red: Int, green: Int, blue: Int, alpha: Int = 255, rect: CGRect) -> CIImage {
@@ -198,6 +216,7 @@ class PhotoFilterViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
+        print("aaaa")
         self.dismiss(animated: true, completion: nil)
     }
 
