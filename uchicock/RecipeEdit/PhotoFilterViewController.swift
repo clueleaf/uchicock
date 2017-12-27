@@ -54,6 +54,7 @@ class PhotoFilterViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
         button.tintColor = UIColor.white
+        button.isEnabled = true
     }
     
     override func didReceiveMemoryWarning() {
