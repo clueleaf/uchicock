@@ -12,6 +12,9 @@ class PhotoFilterViewController: UIViewController {
 
     var image : UIImage?
     var smallImage : UIImage?
+    let queue = DispatchQueue(label: "queue")
+    var buttonWidth:CGFloat = 100
+    var buttonHeight: CGFloat = 100
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -54,7 +57,13 @@ class PhotoFilterViewController: UIViewController {
         if image != nil{
             smallImage = resizedImage(image: image!)
         }
-        setFilters()
+        
+        buttonWidth = scrollView.frame.height - 20
+        buttonHeight = scrollView.frame.height - 20
+
+        queue.async {
+            self.setFilters()
+        }
     }
         
     override func didReceiveMemoryWarning() {
@@ -64,8 +73,6 @@ class PhotoFilterViewController: UIViewController {
     func setFilters(){
         var xCoord: CGFloat = 10
         let yCoord: CGFloat = 10
-        let buttonWidth:CGFloat = scrollView.frame.height - 20
-        let buttonHeight: CGFloat = scrollView.frame.height - 20
         let gapBetweenButtons: CGFloat = 5
         
         var itemCount = 0
@@ -89,9 +96,13 @@ class PhotoFilterViewController: UIViewController {
             }else{
                 filterButton.layer.borderWidth = 0
             }
-            scrollView.addSubview(filterButton)
+            DispatchQueue.main.async{
+                self.scrollView.addSubview(filterButton)
+            }
         }
-        scrollView.contentSize = CGSize(width: xCoord + 10, height: buttonHeight)
+        DispatchQueue.main.async{
+            self.scrollView.contentSize = CGSize(width: xCoord + 10, height: self.buttonHeight)
+        }
     }
 
     @objc func filterButtonTapped(sender: UIButton){
