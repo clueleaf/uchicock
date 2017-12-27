@@ -409,14 +409,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
             if let img = resizedImage(image: image){
-                photo.image = resizedImage(image: img)
-                selectPhoto.text = "写真を変更"
-                photo.isUserInteractionEnabled = true
+                ipc.dismiss(animated: false, completion: nil)
+                performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
             }
         }
-        photo.alpha = 0.0
-        ipc.dismiss(animated: false, completion: nil)
-        performSegue(withIdentifier: "ShowPhotoFilter", sender: nil)
     }
     
     func addPhoto() {
@@ -439,12 +435,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if let img = self.resizedImage(image: image){
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
-                    self.photo.image = self.resizedImage(image: img)
-                    self.selectPhoto.text = "写真を変更"
-                    self.photo.isUserInteractionEnabled = true
-                    self.photo.alpha = 0.0
-                    UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
-                    self.performSegue(withIdentifier: "ShowPhotoFilter", sender: nil)
+                    self.performSegue(withIdentifier: "ShowPhotoFilter", sender: img)
                 }))
             }
         }
@@ -759,38 +750,51 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     // MARK: - Navigation
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
-        let riec = fromViewController as! RecipeIngredientEditTableViewController
-        if riec.isAddMode{
-            if riec.deleteFlag{
-            }else{
-                var editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: textWithoutSpace(text: riec.ingredientName.text!), amount: riec.amount.text!, mustFlag: true)
-                if riec.option.checkState == .checked{
-                    editingRecipeIngredient.mustFlag = false
+        if fromViewController is RecipeIngredientEditTableViewController{
+            let riec = fromViewController as! RecipeIngredientEditTableViewController
+            if riec.isAddMode{
+                if riec.deleteFlag{
                 }else{
-                    editingRecipeIngredient.mustFlag = true
-                }
-                editingRecipeIngredientList.append(editingRecipeIngredient)
-            }
-        }else{
-            if riec.deleteFlag{
-                for i in 0 ..< editingRecipeIngredientList.count where i < editingRecipeIngredientList.count {
-                    if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
-                        editingRecipeIngredientList.remove(at: i)
+                    var editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: textWithoutSpace(text: riec.ingredientName.text!), amount: riec.amount.text!, mustFlag: true)
+                    if riec.option.checkState == .checked{
+                        editingRecipeIngredient.mustFlag = false
+                    }else{
+                        editingRecipeIngredient.mustFlag = true
                     }
+                    editingRecipeIngredientList.append(editingRecipeIngredient)
                 }
             }else{
-                for i in 0 ..< editingRecipeIngredientList.count where editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
-                    editingRecipeIngredientList[i].ingredientName = textWithoutSpace(text: riec.ingredientName.text!)
-                    editingRecipeIngredientList[i].amount = textWithoutSpace(text: riec.amount.text!)
-                    if riec.option.checkState == .checked{
-                        editingRecipeIngredientList[i].mustFlag = false
-                    }else{
-                        editingRecipeIngredientList[i].mustFlag = true
+                if riec.deleteFlag{
+                    for i in 0 ..< editingRecipeIngredientList.count where i < editingRecipeIngredientList.count {
+                        if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
+                            editingRecipeIngredientList.remove(at: i)
+                        }
+                    }
+                }else{
+                    for i in 0 ..< editingRecipeIngredientList.count where editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
+                        editingRecipeIngredientList[i].ingredientName = textWithoutSpace(text: riec.ingredientName.text!)
+                        editingRecipeIngredientList[i].amount = textWithoutSpace(text: riec.amount.text!)
+                        if riec.option.checkState == .checked{
+                            editingRecipeIngredientList[i].mustFlag = false
+                        }else{
+                            editingRecipeIngredientList[i].mustFlag = true
+                        }
                     }
                 }
             }
+            return true
+        }else if fromViewController is PhotoFilterViewController{
+            let pfvc = fromViewController as! PhotoFilterViewController
+            let img = pfvc.imageView.image!
+            self.photo.image = self.resizedImage(image: img)
+            self.selectPhoto.text = "写真を変更"
+            self.photo.isUserInteractionEnabled = true
+            self.photo.alpha = 0.0
+            UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
+
+            return true
         }
-        return true
+        return false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -810,7 +814,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }else if segue.identifier == "ShowPhotoFilter"{
             let vc = segue.destination as! PhotoFilterViewController
-            vc.image = self.photo.image
+            vc.image = (sender as! UIImage)
         }
     }
     

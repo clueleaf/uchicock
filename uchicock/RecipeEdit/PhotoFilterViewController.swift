@@ -230,7 +230,7 @@ class PhotoFilterViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "FilterFinished", sender: self)
     }
 
 }

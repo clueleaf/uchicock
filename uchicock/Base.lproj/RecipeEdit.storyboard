@@ -364,9 +364,11 @@
                         <outlet property="button" destination="9jB-Ho-KJc" id="ZIW-06-yQu"/>
                         <outlet property="imageView" destination="e6K-bF-RvO" id="njs-Oo-W9K"/>
                         <outlet property="scrollView" destination="7tR-Bd-b4u" id="B1T-eT-SQ3"/>
+                        <segue destination="QNG-oZ-U6e" kind="unwind" identifier="FilterFinished" unwindAction="unwindToRecipeEdit:" id="2Cq-LU-pUF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIc-tx-wOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="QNG-oZ-U6e" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-12" y="358.4707646176912"/>
         </scene>

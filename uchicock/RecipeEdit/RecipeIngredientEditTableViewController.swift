@@ -442,10 +442,4 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.view.endEditing(true)
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "UnwindToRecipeEdit"{
-        }
-    }
-    
 }
