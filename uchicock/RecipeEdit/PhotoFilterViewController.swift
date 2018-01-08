@@ -25,16 +25,16 @@ class PhotoFilterViewController: UIViewController {
 
     var CIFilterNames = [
         "Original",
+        "Clarendon",
+        "Toaster",
+        "1977",
         "CIPhotoEffectTransfer",
         "Nashville",
         "CIPhotoEffectChrome",
-        "Clarendon",
         "CIPhotoEffectFade",
-        "Toaster",
         "CIPhotoEffectInstant",
         "CIPhotoEffectProcess",
         "CILinearToSRGBToneCurve",
-        "1977",
         ]
     
     override func viewDidLoad() {
@@ -47,9 +47,6 @@ class PhotoFilterViewController: UIViewController {
 
         titleLabel.textColor = UIColor.white
 
-        print("aaa")
-        self.dismiss(animated: true, completion: nil)
-        print("bb")
         imageView.image = image
         if let im = image{
             smallImage = resizedImage(image: im)
@@ -182,9 +179,9 @@ class PhotoFilterViewController: UIViewController {
     // MARK: - Original Filters
     func applyNashvilleFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
-            red: 0.97, green: 0.69, blue: 0.6, alpha: 0.56, rect: foregroundImage.extent)
+            red: 0.97, green: 0.77, blue: 0.72, alpha: 0.56, rect: foregroundImage.extent)
         let backgroundImage2 = getColorImage(
-            red: 0.0, green: 0.27, blue: 0.59, alpha: 0.4, rect: foregroundImage.extent)
+            red: 0.0, green: 0.12, blue: 0.27, alpha: 0.4, rect: foregroundImage.extent)
         return foregroundImage
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
@@ -204,29 +201,29 @@ class PhotoFilterViewController: UIViewController {
     
     func applyClarendonFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
-            red: 0.5, green: 0.73, blue: 0.89, alpha: 0.2, rect: foregroundImage.extent)
+            red: 0.35, green: 0.55, blue: 0.68, alpha: 0.2, rect: foregroundImage.extent)
         return foregroundImage
             .applyingFilter("CIOverlayBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
                 ])
             .applyingFilter("CIColorControls", parameters: [
-                "inputSaturation": 1.35,
+                "inputSaturation": 1.45,
                 "inputBrightness": 0.05,
-                "inputContrast": 1.1,
+                "inputContrast": 1.15,
                 ])
     }
     
     func apply1977Filter(ciImage: CIImage) -> CIImage? {
         let filterImage = getColorImage(
-            red: 0.95, green: 0.42, blue: 0.74, alpha: 0.1, rect: ciImage.extent)
+            red: 0.80, green: 0.35, blue: 0.60, alpha: 0.1, rect: ciImage.extent)
         let backgroundImage = ciImage
             .applyingFilter("CIColorControls", parameters: [
-                "inputSaturation": 1.3,
-                "inputBrightness": 0.1,
+                "inputSaturation": 1.2,
+                "inputBrightness": 0.07,
                 "inputContrast": 1.05,
                 ])
             .applyingFilter("CIHueAdjust", parameters: [
-                "inputAngle": 0.3,
+                "inputAngle": 0.2,
                 ])
         return filterImage
             .applyingFilter("CIScreenBlendMode", parameters: [
@@ -234,8 +231,8 @@ class PhotoFilterViewController: UIViewController {
                 ])
             .applyingFilter("CIToneCurve", parameters: [
                 "inputPoint0": CIVector(x: 0, y: 0),
-                "inputPoint1": CIVector(x: 0.25, y: 0.20),
-                "inputPoint2": CIVector(x: 0.5, y: 0.5),
+                "inputPoint1": CIVector(x: 0.25, y: 0.17),
+                "inputPoint2": CIVector(x: 0.5, y: 0.48),
                 "inputPoint3": CIVector(x: 0.75, y: 0.80),
                 "inputPoint4": CIVector(x: 1, y: 1),
                 ])
@@ -249,8 +246,8 @@ class PhotoFilterViewController: UIViewController {
         let radius0 = min(width / 4.0, height / 4.0)
         let radius1 = min(width / 1.5, height / 1.5)
         
-        let color0 = CIColor(red: 128.0/255.0, green: 78.0/255.0, blue: 15.0/255.0, alpha: 1.0)
-        let color1 = CIColor(red: 79.0/255.0, green: 0.0, blue: 79.0/255.0, alpha: 1.0)
+        let color0 = CIColor(red: 0.3, green: 0.17, blue: 0.03, alpha: 0.8)
+        let color1 = CIColor(red: 0.2, green: 0.0, blue: 0.2, alpha: 1.0)
         let circle = CIFilter(name: "CIRadialGradient", withInputParameters: [
             "inputCenter": CIVector(x: centerWidth, y: centerHeight),
             "inputRadius0": radius0,
@@ -263,7 +260,7 @@ class PhotoFilterViewController: UIViewController {
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.0,
                 "inputBrightness": 0.01,
-                "inputContrast": 1.1,
+                "inputContrast": 1.2,
                 ])
             .applyingFilter("CIScreenBlendMode", parameters: [
                 "inputBackgroundImage": circle!,
