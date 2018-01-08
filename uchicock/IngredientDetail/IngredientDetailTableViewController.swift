@@ -15,6 +15,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: CopyableLabel!
+    @IBOutlet weak var ingredientNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchInAmazonButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
@@ -126,10 +127,12 @@ class IngredientDetailTableViewController: UITableViewController {
                 searchInAmazonButton.isEnabled = true
                 searchInAmazonButton.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
                 searchInAmazonButton.backgroundColor = Style.secondaryColor
+                ingredientNameTrailingConstraint.constant = 76
             }else{
                 searchInAmazonButton.isEnabled = false
-                searchInAmazonButton.setTitleColor(Style.basicBackgroundColor, for: .normal)
-                searchInAmazonButton.backgroundColor = Style.basicBackgroundColor
+                searchInAmazonButton.setTitleColor(UIColor.clear, for: .normal)
+                searchInAmazonButton.backgroundColor = UIColor.clear
+                ingredientNameTrailingConstraint.constant = 8
             }
             
             reloadIngredientRecipeBasicList()
@@ -414,7 +417,11 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func searchInAmazonTapped(_ sender: UIButton) {
-        print("aaa!!!")
+        let urlStr : String = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        if UIApplication.shared.canOpenURL(url!){
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
     }
     
     @IBAction func stockTapped(_ sender: M13Checkbox) {

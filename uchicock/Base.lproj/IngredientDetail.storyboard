@@ -28,32 +28,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jhP-h8-kBt">
+                                                    <rect key="frame" x="297" y="25" width="70" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="Ec8-4J-B6n"/>
+                                                        <constraint firstAttribute="height" constant="30" id="wAO-xz-Yo5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <state key="normal">
+                                                        <string key="title">Amazon.co.jp
+で探す</string>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="searchInAmazonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="iq4-ST-ScS"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps6-U7-0aD" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="20" width="291" height="39.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhP-h8-kBt">
-                                                    <rect key="frame" x="307" y="25" width="60" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="Ec8-4J-B6n"/>
-                                                        <constraint firstAttribute="height" constant="30" id="wAO-xz-Yo5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="Amazon.co.jpで探す"/>
-                                                    <connections>
-                                                        <action selector="searchInAmazonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="iq4-ST-ScS"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ps6-U7-0aD" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3r1-c9-p54"/>
                                                 <constraint firstAttribute="bottom" secondItem="ps6-U7-0aD" secondAttribute="bottom" constant="20" id="AhX-ko-lRO"/>
+                                                <constraint firstAttribute="trailing" secondItem="ps6-U7-0aD" secondAttribute="trailing" constant="76" id="HXW-rm-x1y"/>
                                                 <constraint firstItem="ps6-U7-0aD" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="KyQ-1V-kJQ"/>
                                                 <constraint firstItem="jhP-h8-kBt" firstAttribute="centerY" secondItem="ps6-U7-0aD" secondAttribute="centerY" id="UoE-HJ-lDn"/>
                                                 <constraint firstAttribute="trailing" secondItem="jhP-h8-kBt" secondAttribute="trailing" constant="8" id="W6x-tt-bpq"/>
-                                                <constraint firstItem="jhP-h8-kBt" firstAttribute="leading" secondItem="ps6-U7-0aD" secondAttribute="trailing" constant="8" id="ZQb-2I-Top"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -296,6 +299,7 @@
                         <outlet property="categoryLabel" destination="iM9-Wc-cPe" id="Wky-AB-l9f"/>
                         <outlet property="deleteLabel" destination="cQt-Zr-U12" id="1g7-lb-5Dm"/>
                         <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
+                        <outlet property="ingredientNameTrailingConstraint" destination="HXW-rm-x1y" id="rPD-Qk-Fgx"/>
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
                         <outlet property="memoLabel" destination="ffu-Ky-BvZ" id="PkI-2d-zFI"/>
                         <outlet property="order" destination="n3x-nd-eiY" id="OoC-4k-CW7"/>
