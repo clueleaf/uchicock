@@ -15,6 +15,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: CopyableLabel!
+    @IBOutlet weak var searchInAmazonButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
@@ -41,6 +42,8 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchInAmazonButton.layer.cornerRadius = 4
+
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
@@ -118,6 +121,16 @@ class IngredientDetailTableViewController: UITableViewController {
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
             deleteLabel.textColor = Style.deleteColor
+            
+            if Amazon.product.contains(ingredient.ingredientName){
+                searchInAmazonButton.isEnabled = true
+                searchInAmazonButton.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
+                searchInAmazonButton.backgroundColor = Style.secondaryColor
+            }else{
+                searchInAmazonButton.isEnabled = false
+                searchInAmazonButton.setTitleColor(Style.basicBackgroundColor, for: .normal)
+                searchInAmazonButton.backgroundColor = Style.basicBackgroundColor
+            }
             
             reloadIngredientRecipeBasicList()
             
@@ -398,6 +411,10 @@ class IngredientDetailTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PushEditIngredient", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func searchInAmazonTapped(_ sender: UIButton) {
+        print("aaa!!!")
     }
     
     @IBAction func stockTapped(_ sender: M13Checkbox) {
