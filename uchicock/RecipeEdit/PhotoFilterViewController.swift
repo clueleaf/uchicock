@@ -25,22 +25,16 @@ class PhotoFilterViewController: UIViewController {
 
     var CIFilterNames = [
         "Original",
-        "CIPhotoEffectChrome",
-        "CIPhotoEffectFade",
-        "CIPhotoEffectInstant",
-//        "CIPhotoEffectMono",
-//        "CIPhotoEffectNoir",
-        "CIPhotoEffectProcess",
-//        "CIPhotoEffectTonal",
         "CIPhotoEffectTransfer",
-        "CILinearToSRGBToneCurve",
-//        "CISRGBToneCurveToLinear",
-//        "CISepiaTone",
-//        "CIComicEffect",
         "Nashville",
+        "CIPhotoEffectChrome",
         "Clarendon",
-        "1977",
+        "CIPhotoEffectFade",
         "Toaster",
+        "CIPhotoEffectInstant",
+        "CIPhotoEffectProcess",
+        "CILinearToSRGBToneCurve",
+        "1977",
         ]
     
     override func viewDidLoad() {
@@ -53,9 +47,12 @@ class PhotoFilterViewController: UIViewController {
 
         titleLabel.textColor = UIColor.white
 
+        print("aaa")
+        self.dismiss(animated: true, completion: nil)
+        print("bb")
         imageView.image = image
-        if image != nil{
-            smallImage = resizedImage(image: image!)
+        if let im = image{
+            smallImage = resizedImage(image: im)
         }
         
         buttonWidth = scrollView.frame.height - 20
@@ -86,18 +83,22 @@ class PhotoFilterViewController: UIViewController {
             filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             
-            filterButton.setImage(filteredImage(filterNumber: i, originalImage: CIImage(image: smallImage!)!), for: .normal)
-            filterButton.imageView?.contentMode = .scaleAspectFill
-            
-            xCoord +=  buttonWidth + gapBetweenButtons
-            if i == 0{
-                filterButton.layer.borderColor = UIColor.white.cgColor
-                filterButton.layer.borderWidth = 2.0
-            }else{
-                filterButton.layer.borderWidth = 0
-            }
-            DispatchQueue.main.async{
-                self.scrollView.addSubview(filterButton)
+            if let smim = smallImage{
+                if let ciim = CIImage(image: smim){
+                    filterButton.setImage(filteredImage(filterNumber: i, originalImage: ciim), for: .normal)
+                    filterButton.imageView?.contentMode = .scaleAspectFill
+                    
+                    xCoord +=  buttonWidth + gapBetweenButtons
+                    if i == 0{
+                        filterButton.layer.borderColor = UIColor.white.cgColor
+                        filterButton.layer.borderWidth = 2.0
+                    }else{
+                        filterButton.layer.borderWidth = 0
+                    }
+                    DispatchQueue.main.async{
+                        self.scrollView.addSubview(filterButton)
+                    }
+                }
             }
         }
         DispatchQueue.main.async{
@@ -106,8 +107,10 @@ class PhotoFilterViewController: UIViewController {
     }
 
     @objc func filterButtonTapped(sender: UIButton){
-        let button = sender as UIButton        
-        imageView.image = filteredImage(filterNumber: button.tag, originalImage: CIImage(image: self.image!)!)
+        let button = sender as UIButton
+        guard let im = self.image else{ return }
+        guard let ciim = CIImage(image: im) else{ return }
+        imageView.image = filteredImage(filterNumber: button.tag, originalImage: ciim)
         
         for subview in scrollView.subviews{
             if subview is UIButton{
@@ -136,13 +139,20 @@ class PhotoFilterViewController: UIViewController {
             filteredImageData = applyToasterFilter(ciImage: originalImage)
         default:
             let filter = CIFilter(name: "\(CIFilterNames[filterNumber])" )
-            filter!.setDefaults()
-            filter!.setValue(originalImage, forKey: kCIInputImageKey)
-            filteredImageData = filter!.value(forKey: kCIOutputImageKey) as? CIImage
+            if let fil = filter {
+                fil.setDefaults()
+                fil.setValue(originalImage, forKey: kCIInputImageKey)
+                filteredImageData = fil.value(forKey: kCIOutputImageKey) as? CIImage
+            }
         }
         
-        let filteredImageRef = ciContext.createCGImage(filteredImageData!, from: filteredImageData!.extent)
-        return UIImage(cgImage: filteredImageRef!)
+        if let fimg = filteredImageData{
+            let filteredImageRef = ciContext.createCGImage(fimg, from: fimg.extent)
+            return UIImage(cgImage: filteredImageRef!)
+        }else{
+            let filteredImageRef = ciContext.createCGImage(originalImage, from: originalImage.extent)
+            return UIImage(cgImage: filteredImageRef!)
+        }
     }
     
     func resizedImage(image: UIImage) -> UIImage? {
