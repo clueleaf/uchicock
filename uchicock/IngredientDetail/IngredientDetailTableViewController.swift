@@ -417,10 +417,17 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func searchInAmazonTapped(_ sender: UIButton) {
-        let urlStr : String = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
-        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-        if UIApplication.shared.canOpenURL(url!){
+        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+        var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+
+        if UIApplication.shared.canOpenURL(url!) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }else{
+            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+            url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            if UIApplication.shared.canOpenURL(url!){
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            }
         }
     }
     
