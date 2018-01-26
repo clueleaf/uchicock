@@ -195,7 +195,6 @@ extension String {
         case "ピーチツリー": return 0
         case "ベイリーズ": return 0
         case "マンゴヤン": return 0
-        case "マンゴーヤン": return 0
         case "ミドリ": return 0
         case "ペパーミント": return 0
         case "ペパー・ミント": return 0
