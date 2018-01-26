@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>Copyright © 2017 kou All Rights Reserved.</string>
+			<string>Copyright ©️ 2016-2018 kou All Rights Reserved.</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -30,6 +30,16 @@
 			<key>File</key>
 			<string>Acknowledgements</string>
 		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTitleValueSpecifier</string>
+            <key>DefaultValue</key>
+            <string></string>
+            <key>Title</key>
+            <string>Amazon.co.jpアソシエイト</string>
+            <key>Key</key>
+            <string>sbAmazon</string>
+        </dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>
