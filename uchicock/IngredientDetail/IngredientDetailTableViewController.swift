@@ -224,7 +224,7 @@ class IngredientDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 2{
+            if indexPath.row == 1{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
                 return UITableViewAutomaticDimension
