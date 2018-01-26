@@ -60,8 +60,45 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Kjl-Jf-p6s">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kjl-Jf-p6s" id="yJQ-2z-gnr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX">
+                                                    <rect key="frame" x="8" y="14" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="1mp-Tb-sfW"/>
+                                                        <constraint firstAttribute="height" constant="21" id="mTf-pY-r7H"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbX-in-ob8" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Vwl-49-zDc"/>
+                                                        <constraint firstAttribute="width" constant="40" id="n3w-ng-xdm"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="stockTapped:" destination="wli-BK-85f" eventType="valueChanged" id="QFV-BT-UV5"/>
+                                                    </connections>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c1v-8e-XYX" firstAttribute="leading" secondItem="yJQ-2z-gnr" secondAttribute="leading" constant="8" id="0bX-83-7e5"/>
+                                                <constraint firstItem="tbX-in-ob8" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="WRM-Cl-bJ8"/>
+                                                <constraint firstItem="c1v-8e-XYX" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="gNy-Ba-ufe"/>
+                                                <constraint firstAttribute="trailing" secondItem="tbX-in-ob8" secondAttribute="trailing" constant="8" id="jKZ-f7-x2o"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="NWc-va-JyA">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="158" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NWc-va-JyA" id="wx8-pu-png">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
@@ -95,43 +132,6 @@
                                                 <constraint firstItem="Mam-V3-t3x" firstAttribute="leading" secondItem="wx8-pu-png" secondAttribute="leading" constant="8" id="c8b-G3-TTi"/>
                                                 <constraint firstItem="Mam-V3-t3x" firstAttribute="top" secondItem="iM9-Wc-cPe" secondAttribute="bottom" constant="8" id="o8g-PQ-sG3"/>
                                                 <constraint firstItem="iM9-Wc-cPe" firstAttribute="leading" secondItem="wx8-pu-png" secondAttribute="leading" constant="8" id="r3p-zZ-MBF"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Kjl-Jf-p6s">
-                                        <rect key="frame" x="0.0" y="201" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kjl-Jf-p6s" id="yJQ-2z-gnr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX">
-                                                    <rect key="frame" x="8" y="14" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="1mp-Tb-sfW"/>
-                                                        <constraint firstAttribute="height" constant="21" id="mTf-pY-r7H"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbX-in-ob8" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="Vwl-49-zDc"/>
-                                                        <constraint firstAttribute="width" constant="40" id="n3w-ng-xdm"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="stockTapped:" destination="wli-BK-85f" eventType="valueChanged" id="QFV-BT-UV5"/>
-                                                    </connections>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="c1v-8e-XYX" firstAttribute="leading" secondItem="yJQ-2z-gnr" secondAttribute="leading" constant="8" id="0bX-83-7e5"/>
-                                                <constraint firstItem="tbX-in-ob8" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="WRM-Cl-bJ8"/>
-                                                <constraint firstItem="c1v-8e-XYX" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="gNy-Ba-ufe"/>
-                                                <constraint firstAttribute="trailing" secondItem="tbX-in-ob8" secondAttribute="trailing" constant="8" id="jKZ-f7-x2o"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

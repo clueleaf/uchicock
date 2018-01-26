@@ -69,8 +69,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="1ai-g2-u6h">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ai-g2-u6h" id="SS6-iH-8xA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-Qy-ipQ">
+                                                    <rect key="frame" x="8" y="14" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="IJm-yk-edd"/>
+                                                        <constraint firstAttribute="height" constant="21" id="dqj-iy-QOd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-JW-NMO" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="KtU-GL-7tG"/>
+                                                        <constraint firstAttribute="width" constant="40" id="pba-HN-6sV"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VgP-Qy-ipQ" firstAttribute="leading" secondItem="SS6-iH-8xA" secondAttribute="leading" constant="8" id="Ms1-vQ-r6V"/>
+                                                <constraint firstItem="VgP-Qy-ipQ" firstAttribute="centerY" secondItem="SS6-iH-8xA" secondAttribute="centerY" id="TZk-vw-rlS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nm4-JW-NMO" secondAttribute="trailing" constant="8" id="gip-oG-wYi"/>
+                                                <constraint firstItem="Nm4-JW-NMO" firstAttribute="centerY" secondItem="SS6-iH-8xA" secondAttribute="centerY" id="xda-Ke-gjb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="d3m-4K-hwY">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="110" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d3m-4K-hwY" id="pJw-sd-Rnb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
@@ -104,40 +138,6 @@
                                                 <constraint firstItem="wtc-ap-Zzt" firstAttribute="top" secondItem="pJw-sd-Rnb" secondAttribute="top" constant="15" id="jsP-MA-JHF"/>
                                                 <constraint firstAttribute="trailing" secondItem="EDC-M7-iDz" secondAttribute="trailing" constant="8" id="kKQ-pa-kh7"/>
                                                 <constraint firstItem="EDC-M7-iDz" firstAttribute="leading" secondItem="pJw-sd-Rnb" secondAttribute="leading" constant="8" id="uTV-3P-gFq"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="1ai-g2-u6h">
-                                        <rect key="frame" x="0.0" y="153" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ai-g2-u6h" id="SS6-iH-8xA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-Qy-ipQ">
-                                                    <rect key="frame" x="8" y="14" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="IJm-yk-edd"/>
-                                                        <constraint firstAttribute="height" constant="21" id="dqj-iy-QOd"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm4-JW-NMO" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="KtU-GL-7tG"/>
-                                                        <constraint firstAttribute="width" constant="40" id="pba-HN-6sV"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="VgP-Qy-ipQ" firstAttribute="leading" secondItem="SS6-iH-8xA" secondAttribute="leading" constant="8" id="Ms1-vQ-r6V"/>
-                                                <constraint firstItem="VgP-Qy-ipQ" firstAttribute="centerY" secondItem="SS6-iH-8xA" secondAttribute="centerY" id="TZk-vw-rlS"/>
-                                                <constraint firstAttribute="trailing" secondItem="Nm4-JW-NMO" secondAttribute="trailing" constant="8" id="gip-oG-wYi"/>
-                                                <constraint firstItem="Nm4-JW-NMO" firstAttribute="centerY" secondItem="SS6-iH-8xA" secondAttribute="centerY" id="xda-Ke-gjb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
