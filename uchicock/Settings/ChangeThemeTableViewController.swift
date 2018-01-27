@@ -13,6 +13,7 @@ class ChangeThemeTableViewController: UITableViewController {
 
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
+    var hasScrolled = false
     
     override var prefersStatusBarHidden: Bool{
         return true
@@ -78,14 +79,17 @@ class ChangeThemeTableViewController: UITableViewController {
         saveButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.rightBarButtonItem = saveButton
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let indexPath = IndexPath(item: Int(Style.no)!, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        if hasScrolled == false{
+            let indexPath = IndexPath(item: Int(Style.no)!, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            hasScrolled = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
