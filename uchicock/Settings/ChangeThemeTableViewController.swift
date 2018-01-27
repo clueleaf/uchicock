@@ -78,7 +78,14 @@ class ChangeThemeTableViewController: UITableViewController {
         saveButton.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
         navigationItem.rightBarButtonItem = saveButton
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.backgroundColor = Style.basicBackgroundColor        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let indexPath = IndexPath(item: Int(Style.no)!, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
