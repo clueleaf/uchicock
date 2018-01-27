@@ -103,7 +103,7 @@ struct Style{
         tableViewHeaderBackgroundColor = FlatWhite()
         labelTextColor = FlatBlack()
         labelTextColorLight = FlatGrayDark()
-        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
@@ -399,7 +399,7 @@ struct Style{
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
     
-    static func blueNewThemeLight(){
+    static func blueLagoonLight(){
         no = "13"
         isDark = false
         isBackgroundDark = false
@@ -427,7 +427,7 @@ struct Style{
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
-    static func blueNewThemeDark(){
+    static func blueLagoonDark(){
         no = "14"
         isDark = true
         isBackgroundDark = true
@@ -455,7 +455,7 @@ struct Style{
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
     }
     
-    static func yellowNewThemeLight(){
+    static func mimosaLight(){
         no = "15"
         isDark = false
         isBackgroundDark = false
@@ -483,7 +483,7 @@ struct Style{
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     }
     
-    static func yellowNewThemeDark(){
+    static func mimosaDark(){
         no = "16"
         isDark = true
         isBackgroundDark = true
@@ -505,6 +505,146 @@ struct Style{
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatGrayDark()
         tableViewCellReminderBackgroundColor = FlatYellowDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+    }
+
+    static func pinkLadyLight(){
+        no = "17"
+        isDark = false
+        isBackgroundDark = false
+        isStatusBarLight = true
+        primaryColor = FlatBlackDark()
+        secondaryColor = FlatPink()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
+        tableViewHeaderBackgroundColor = FlatWhite()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatPinkDark()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatPink()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    }
+    
+    static func pinkLadyDark(){
+        no = "18"
+        isDark = true
+        isBackgroundDark = true
+        isStatusBarLight = true
+        primaryColor = FlatBlackDark()
+        secondaryColor = FlatPinkDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatRed()
+        tabBarTintColor = FlatPinkDark()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatPinkDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+    }
+    
+    static func blackRussianDark(){
+        no = "19"
+        isDark = true
+        isBackgroundDark = true
+        isStatusBarLight = true
+        primaryColor = FlatBlackDark()
+        secondaryColor = FlatCoffee()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatWatermelonDark()
+        tabBarTintColor = FlatSandDark()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = FlatCoffeeDark()
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatCoffeeDark()
+        badgeDisableBackgroundColor = FlatGrayDark()
+        memoBorderColor = FlatGrayDark()
+        checkboxSecondaryTintColor = FlatGrayDark()
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+    }
+    
+    static func shoyoJulingLight(){
+        no = "20"
+        isDark = false
+        isBackgroundDark = false
+        isStatusBarLight = true
+        primaryColor = FlatBlackDark()
+        secondaryColor = FlatGreenDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatWhite()
+        tableViewHeaderBackgroundColor = FlatWhiteDark()
+        labelTextColor = FlatBlack()
+        labelTextColorLight = FlatGrayDark()
+        labelTextColorOnBadge = FlatWhite()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = UIColor.white
+        filterContainerBackgroundColor = FlatWhite()
+        deleteColor = FlatWatermelon()
+        tabBarTintColor = FlatGreenDark()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.9, blue:0.85, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGray()
+        tableViewCellReminderBackgroundColor = FlatGreenDark()
+        badgeDisableBackgroundColor = FlatWhiteDark()
+        memoBorderColor = FlatWhiteDark()
+        checkboxSecondaryTintColor = FlatGray()
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+    }
+    
+    static func shoyoJulingDark(){
+        no = "21"
+        isDark = true
+        isBackgroundDark = true
+        isStatusBarLight = true
+        primaryColor = FlatBlackDark()
+        secondaryColor = FlatGreenDark()
+        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        basicBackgroundColor = FlatBlack()
+        tableViewHeaderBackgroundColor = FlatGrayDark()
+        labelTextColor = FlatWhite()
+        labelTextColorLight = FlatGray()
+        labelTextColorOnBadge = FlatBlack()
+        labelTextColorOnDisableBadge = FlatBlack()
+        textFieldBackgroundColor = FlatGrayDark()
+        filterContainerBackgroundColor = FlatBlack()
+        deleteColor = FlatRedDark()
+        tabBarTintColor = FlatGreenDark()
+        tabBarBarTintColor = FlatBlackDark()
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.45, blue:0.33, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatGrayDark()
+        tableViewCellReminderBackgroundColor = FlatGreenDark()
         badgeDisableBackgroundColor = FlatGrayDark()
         memoBorderColor = FlatGrayDark()
         checkboxSecondaryTintColor = FlatGrayDark()
@@ -537,10 +677,15 @@ struct Style{
             case "10": cubaLibreDark()
             case "11": silverWingLight()
             case "12": americanLemonadeDark()
-            case "13": blueNewThemeLight()
-            case "14": blueNewThemeDark()
-            case "15": yellowNewThemeLight()
-            case "16": yellowNewThemeDark()
+            case "13": blueLagoonLight()
+            case "14": blueLagoonDark()
+            case "15": mimosaLight()
+            case "16": mimosaDark()
+            case "17": pinkLadyLight()
+            case "18": pinkLadyDark()
+            case "19": blackRussianDark()
+            case "20": shoyoJulingLight()
+            case "21": shoyoJulingDark()
             default: break
             }
         }
