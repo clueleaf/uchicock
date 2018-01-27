@@ -337,7 +337,7 @@
                                     <constraint firstAttribute="height" constant="35" id="Fv2-KZ-b86"/>
                                     <constraint firstAttribute="width" constant="100" id="mU0-rK-gLn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="これにする">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

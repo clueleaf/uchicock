@@ -41,8 +41,8 @@ class PhotoFilterViewController: UIViewController {
         super.viewDidLoad()
         
         button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 0.5
-        button.layer.cornerRadius = 3
+        button.layer.borderWidth = 1.0
+        button.layer.cornerRadius = 5
         button.tintColor = UIColor.white
 
         titleLabel.textColor = UIColor.white
