@@ -127,12 +127,15 @@ class ChangeThemeTableViewController: UITableViewController {
 
         if String(indexPath.row) == Style.no{
             cell.accessoryType = .checkmark
+            cell.textLabel?.textColor = Style.secondaryColor
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         }else{
             cell.accessoryType = .none
+            cell.textLabel?.textColor = Style.labelTextColor
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         }
         
         cell.backgroundColor = Style.basicBackgroundColor
-        cell.textLabel?.textColor = Style.labelTextColor
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
