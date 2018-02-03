@@ -78,6 +78,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             tableView.contentInsetAdjustmentBehavior = .never
         }
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        var safeAreaBottom: CGFloat = 0.0
+        if #available(iOS 11.0, *) {
+            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+        }
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {

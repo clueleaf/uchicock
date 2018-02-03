@@ -62,6 +62,12 @@ class ChangeThemeTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
+        
+        var safeAreaBottom: CGFloat = 0.0
+        if #available(iOS 11.0, *) {
+            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+        }
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
