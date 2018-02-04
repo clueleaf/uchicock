@@ -44,6 +44,7 @@ class IngredientDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         searchInAmazonButton.layer.cornerRadius = 4
+        searchInAmazonButton.titleLabel?.textAlignment = .center
 
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
