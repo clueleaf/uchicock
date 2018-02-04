@@ -319,8 +319,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh">
-                                                    <rect key="frame" x="8" y="15" width="35" height="25"/>
+                                                    <rect key="frame" x="8" y="15" width="50" height="25"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="8Ix-ZZ-sGM"/>
                                                         <constraint firstAttribute="height" constant="25" id="ygb-f3-slS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
