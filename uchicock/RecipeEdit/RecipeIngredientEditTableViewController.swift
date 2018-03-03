@@ -168,9 +168,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
         }
         
-        for i in (0..<suggestList.count).reversed() {
-            if textWithoutSpace(text: ingredientName.text!) != "" && suggestList[i].kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased()) == false{
-                suggestList.remove(at: i)
+        if textWithoutSpace(text: ingredientName.text!) != ""{
+            suggestList = suggestList.filter{
+                $0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
             }
         }
         

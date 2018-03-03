@@ -135,28 +135,15 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
             suggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
         }
         
-        for i in (0..<suggestList.count).reversed() {
-            if textWithoutSpace(text: ingredientName.text!) != "" && suggestList[i].kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased()) == false{
-                suggestList.remove(at: i)
+        if textWithoutSpace(text: ingredientName.text!) != "" {
+            suggestList = suggestList.filter{
+                $0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
             }
         }
         
-        for i in (0..<suggestList.count).reversed(){
-            switch category.selectedSegmentIndex{
-            case 1:
-                if suggestList[i].category != 0{
-                    suggestList.remove(at: i)
-                }
-            case 2:
-                if suggestList[i].category != 1{
-                    suggestList.remove(at: i)
-                }
-            case 3:
-                if suggestList[i].category != 2{
-                    suggestList.remove(at: i)
-                }
-            default:
-                break
+        if category.selectedSegmentIndex != 0{
+            suggestList = suggestList.filter{
+                $0.category == category.selectedSegmentIndex - 1
             }
         }
         
