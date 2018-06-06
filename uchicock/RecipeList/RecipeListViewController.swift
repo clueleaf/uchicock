@@ -177,29 +177,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
         }
         
-        for i in (0..<recipeBasicList.count).reversed(){
-            if searchBarTextWithoutSpace() != "" && recipeBasicList[i].kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) == false{
-                recipeBasicList.remove(at: i)
+        if searchBarTextWithoutSpace() != ""{
+            recipeBasicList = recipeBasicList.filter{
+                $0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
             }
         }
         
-        for i in (0..<recipeBasicList.count).reversed(){
-            switch favoriteSelect.selectedSegmentIndex{
-            case 1:
-                if recipeBasicList[i].favorites < 1 {
-                    recipeBasicList.remove(at: i)
-                }
-            case 2:
-                if recipeBasicList[i].favorites < 2 {
-                    recipeBasicList.remove(at: i)
-                }
-            case 3:
-                if recipeBasicList[i].favorites < 3 {
-                    recipeBasicList.remove(at: i)
-                }
-            default:
-                break
-            }
+        recipeBasicList = recipeBasicList.filter{
+            $0.favorites >= favoriteSelect.selectedSegmentIndex
         }
 
         if order.selectedSegmentIndex == 0{

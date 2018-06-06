@@ -137,9 +137,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
         }
         
-        for i in (0..<ingredientBasicList.count).reversed(){
-            if searchBarTextWithoutSpace() != "" && ingredientBasicList[i].kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) == false{
-                ingredientBasicList.remove(at: i)
+        if searchBarTextWithoutSpace() != ""{
+            ingredientBasicList = ingredientBasicList.filter{
+                $0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
             }
         }
         
@@ -158,22 +158,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
-        for i in (0..<ingredientBasicList.count).reversed(){
-            switch category.selectedSegmentIndex{
-            case 1:
-                if ingredientBasicList[i].category != 0{
-                    ingredientBasicList.remove(at: i)
-                }
-            case 2:
-                if ingredientBasicList[i].category != 1{
-                    ingredientBasicList.remove(at: i)
-                }
-            case 3:
-                if ingredientBasicList[i].category != 2{
-                    ingredientBasicList.remove(at: i)
-                }
-            default:
-                break
+        if category.selectedSegmentIndex != 0{
+            ingredientBasicList = ingredientBasicList.filter{
+                $0.category == category.selectedSegmentIndex - 1
             }
         }
 
