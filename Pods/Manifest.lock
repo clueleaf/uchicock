@@ -8,19 +8,19 @@ PODS:
     - DACircularProgress
     - pop
     - SDWebImage (= 4.0.0)
-  - M13Checkbox (3.2.1)
-  - MJRefresh (3.1.15.1)
+  - M13Checkbox (3.2.2)
+  - MJRefresh (3.1.15.3)
   - MYBlurIntroductionView (1.0.3)
   - pop (1.0.10)
-  - Realm (3.0.2):
-    - Realm/Headers (= 3.0.2)
-  - Realm/Headers (3.0.2)
-  - RealmSwift (3.0.2):
-    - Realm (= 3.0.2)
+  - Realm (3.6.0):
+    - Realm/Headers (= 3.6.0)
+  - Realm/Headers (3.6.0)
+  - RealmSwift (3.6.0):
+    - Realm (= 3.6.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - SVProgressHUD (2.2.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
@@ -31,6 +31,20 @@ DEPENDENCIES:
   - MYBlurIntroductionView
   - RealmSwift
   - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DACircularProgress
+    - DZNEmptyDataSet
+    - IDMPhotoBrowser
+    - M13Checkbox
+    - MJRefresh
+    - MYBlurIntroductionView
+    - pop
+    - Realm
+    - RealmSwift
+    - SDWebImage
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -46,15 +60,15 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
-  M13Checkbox: 12376f5b128189432508c240e4a36dc945ab7e4e
-  MJRefresh: 5f8552bc25ca8751c010f621c1098dbdaacbccd6
+  M13Checkbox: a8c2491cfbbca10797925fd0b9154a782bf40d89
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MYBlurIntroductionView: b12651c25574580472ff34989a4c5b81c157009f
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
-  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
+  RealmSwift: 973e1499c44ab571f894c2c908e2db450be280c3
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
 PODFILE CHECKSUM: ae8f23d96b12ad16b955fd0c96650635a041d59a
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.3
