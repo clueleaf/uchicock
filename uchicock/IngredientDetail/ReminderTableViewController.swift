@@ -210,7 +210,9 @@ class ReminderTableViewController: UITableViewController{
             if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
                 eventStore.requestAccess(to: .event, completion: {
                     granted, error in
-                    self.createEvent(eventStore: eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
+                    DispatchQueue.main.async {
+                        self.createEvent(eventStore: eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
+                    }
                 })
             } else {
                 createEvent(eventStore: eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
