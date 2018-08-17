@@ -23,11 +23,14 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
+    @IBOutlet var madeNumLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memo: CopyableLabel!
+    @IBOutlet var madeNum: UIStepper!
+    @IBOutlet var madeNumCountUpLabel: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
     var editVC : RecipeEditTableViewController!
@@ -83,6 +86,9 @@ class RecipeDetailTableViewController: UITableViewController{
         method.backgroundColor = Style.basicBackgroundColor
         let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         method.setTitleTextAttributes(attribute, for: .normal)
+        madeNum.tintColor = Style.secondaryColor
+        madeNumLabel.textColor = Style.labelTextColor
+        madeNumCountUpLabel.textColor = Style.labelTextColor
         photoBackground.backgroundColor = Style.basicBackgroundColor
         openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
@@ -191,6 +197,8 @@ class RecipeDetailTableViewController: UITableViewController{
 
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
+            madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
+            madeNum.value = Double(recipe.madeNum)
 
             deleteLabel.textColor = Style.deleteColor
             
@@ -352,7 +360,7 @@ class RecipeDetailTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 4
+            return 5
         }else if section == 1{
             return recipe.recipeIngredients.count
         }else if section == 2{
@@ -618,6 +626,14 @@ class RecipeDetailTableViewController: UITableViewController{
                 recipe.favorites = 3
             }
         }
+    }
+    
+    @IBAction func stepperTapped(_ sender: UIStepper) {
+        let realm = try! Realm()
+        try! realm.write {
+            recipe.madeNum = Int(madeNum.value)
+        }
+        madeNumCountUpLabel.text = String(Int(madeNum.value)) + "回"
     }
     
     // MARK: - Navigation

@@ -44,7 +44,7 @@
     [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSegmentedControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor withContentStyle:contentStyle];
-    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSwitchWithPrimaryColor:primaryColor];
     [[self class] customizeTabBarWithBarTintColor:FlatWhite andTintColor:primaryColor];
     [[self class] customizeToolbarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
@@ -81,7 +81,7 @@
     [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSegmentedControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
-    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSwitchWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
     [[self class] customizeTabBarWithBarTintColor:FlatWhite andTintColor:primaryColor];
     [[self class] customizeToolbarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
@@ -121,7 +121,7 @@
     [[self class] customizeProgressViewWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
     [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
-    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSwitchWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
     [[self class] customizeTabBarWithBarTintColor:FlatWhite andTintColor:primaryColor];
     [[self class] customizeToolbarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
@@ -268,7 +268,7 @@
     [[UIButton appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:contentColor];
     [[UIButton appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundColor:ClearColor];
     
-    [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setTintColor:primaryColor];
+//    [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setTintColor:primaryColor];
     [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setBackgroundColor:ClearColor];
     
     [[UIButton appearance] setTitleShadowColor:ClearColor forState:UIControlStateNormal];
@@ -315,7 +315,7 @@
     [[UIButton appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:contentColor];
     [[UIButton appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundColor:ClearColor];
     
-    [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setTintColor:primaryColor];
+//    [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setTintColor:primaryColor];
     [[UIButton appearanceWhenContainedIn:[UIStepper class], nil] setBackgroundColor:ClearColor];
     
     [[UIButton appearance] setTitleShadowColor:ClearColor forState:UIControlStateNormal];
@@ -710,7 +710,7 @@
         }
     }
     
-    [[UIStepper appearance] setTintColor:primaryColor];
+//    [[UIStepper appearance] setTintColor:primaryColor];
     [[UIStepper appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTintColor:contentColor];
     [[UIStepper appearanceWhenContainedIn:[UIToolbar class], nil]

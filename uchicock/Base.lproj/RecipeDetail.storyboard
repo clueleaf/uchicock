@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZVL-2s-yCx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZVL-2s-yCx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -211,12 +211,60 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Utp-kw-ek1">
+                                        <rect key="frame" x="0.0" y="464" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Utp-kw-ek1" id="PCI-4g-lQs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="つくった回数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-9k-VQl">
+                                                    <rect key="frame" x="8" y="12.5" width="104" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="9OU-Lg-YfW"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="rCp-dN-HaY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" maximumValue="999" translatesAutoresizingMaskIntoConstraints="NO" id="mKU-Wb-6n8">
+                                                    <rect key="frame" x="271" y="10.5" width="94" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="96" id="F33-GS-1Uo"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="stepperTapped:" destination="ZVL-2s-yCx" eventType="valueChanged" id="6ih-bx-xqM"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0回" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiG-Md-KeZ">
+                                                    <rect key="frame" x="221" y="12.5" width="30" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="YIG-9I-50O"/>
+                                                        <constraint firstAttribute="height" constant="25" id="rXq-BU-nJG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="mKU-Wb-6n8" secondAttribute="trailing" constant="8" id="0QI-G7-l9L"/>
+                                                <constraint firstItem="JAV-9k-VQl" firstAttribute="top" secondItem="PCI-4g-lQs" secondAttribute="top" constant="12" id="79B-pL-HBI"/>
+                                                <constraint firstItem="mKU-Wb-6n8" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="DT9-TU-Iem"/>
+                                                <constraint firstItem="fiG-Md-KeZ" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="HhP-cD-PdV"/>
+                                                <constraint firstAttribute="bottom" secondItem="JAV-9k-VQl" secondAttribute="bottom" constant="12" id="JNl-iS-Rdt"/>
+                                                <constraint firstItem="JAV-9k-VQl" firstAttribute="leading" secondItem="PCI-4g-lQs" secondAttribute="leading" constant="8" id="YR7-7S-ZrU"/>
+                                                <constraint firstItem="mKU-Wb-6n8" firstAttribute="leading" secondItem="fiG-Md-KeZ" secondAttribute="trailing" constant="20" id="jcb-3E-nst"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="W49-nK-Sr8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="jnM-hH-qrL" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="492" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="542" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jnM-hH-qrL" id="X73-0D-mYX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -228,7 +276,7 @@
                             <tableViewSection headerTitle="Section-3" id="xaO-J4-9C4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="T3w-Hh-tps">
-                                        <rect key="frame" x="0.0" y="590" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="640" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3w-Hh-tps" id="IRB-Rl-Jq8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -273,6 +321,9 @@
                     <connections>
                         <outlet property="deleteLabel" destination="L8h-Qa-Zzr" id="nuu-jM-e8W"/>
                         <outlet property="lastViewDateLabel" destination="fME-VJ-TZu" id="b9w-Gi-dLO"/>
+                        <outlet property="madeNum" destination="mKU-Wb-6n8" id="mle-eC-McR"/>
+                        <outlet property="madeNumCountUpLabel" destination="fiG-Md-KeZ" id="gC4-Da-50C"/>
+                        <outlet property="madeNumLabel" destination="JAV-9k-VQl" id="Ry3-qC-NCy"/>
                         <outlet property="memo" destination="K4S-5H-eMf" id="oS5-4q-FQ1"/>
                         <outlet property="memoLabel" destination="ePw-WK-61i" id="Qve-wb-lR0"/>
                         <outlet property="method" destination="xxD-Hq-LbS" id="wap-u0-U9n"/>
