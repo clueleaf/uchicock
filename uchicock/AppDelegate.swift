@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
             try! FileManager.default.copyItem(atPath: seedFilePath!, toPath: realmPath)
         }
-        
+
         var config = Realm.Configuration(
             schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
@@ -63,7 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["madeNum"] = 0
                     }
                 }
+            },
+            shouldCompactOnLaunch: { totalBytes, usedBytes in
+                let oneHundredMB = 100 * 1024 * 1024
+                let fiveHundredMB = 500 * 1024 * 1024
+                if (totalBytes > oneHundredMB) && (Double(usedBytes) / Double(totalBytes)) < 0.5{
+                    return true
+                }else if (totalBytes > fiveHundredMB) && (Double(usedBytes) / Double(totalBytes)) < 0.7{
+                    return true
+                }
+                return false
         })
+        
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
