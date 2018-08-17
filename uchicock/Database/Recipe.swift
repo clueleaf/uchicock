@@ -14,7 +14,7 @@ class Recipe: Object {
     @objc dynamic var favorites = 0
     @objc dynamic var method = 0
     @objc dynamic var memo = ""
-    @objc dynamic var imageData: NSData? = nil
+    @objc dynamic var imageData: Data? = nil
     @objc dynamic var shortageNum = 0
     @objc dynamic var japaneseDictionaryOrder = ""
     @objc dynamic var lastViewDate : Date? = nil

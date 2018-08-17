@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         var config = Realm.Configuration(
-            schemaVersion: 4,
+            schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 2) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
@@ -53,6 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
                         let ingredientName = oldObject!["ingredientName"] as! String
                         newObject!["category"] = ingredientName.categoryNumber()
+                    }
+                }
+                if (oldSchemaVersion < 5) {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        if oldObject!["imageData"] != nil {
+                            newObject!["imageData"] = oldObject!["imageData"] as! Data
+                        }
                     }
                 }
         })

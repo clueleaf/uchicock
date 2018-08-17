@@ -624,7 +624,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
 
                         if let image = photo.image{
-                            newRecipe.imageData = UIImagePNGRepresentation(image) as NSData?
+                            newRecipe.imageData = UIImagePNGRepresentation(image) as Data?
                         }else{
                             newRecipe.imageData = nil
                         }
@@ -700,7 +700,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         
                         if let image = photo.image{
-                            recipe.imageData = UIImagePNGRepresentation(image) as NSData?
+                            recipe.imageData = UIImagePNGRepresentation(image) as Data?
                         }else{
                             recipe.imageData = nil
                         }
