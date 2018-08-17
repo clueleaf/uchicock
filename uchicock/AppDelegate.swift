@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if oldObject!["imageData"] != nil {
                             newObject!["imageData"] = oldObject!["imageData"] as! Data
                         }
+                        newObject!["madeNum"] = 0
                     }
                 }
         })
