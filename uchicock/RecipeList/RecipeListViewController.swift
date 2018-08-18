@@ -11,6 +11,7 @@ import RealmSwift
 import ChameleonFramework
 import DZNEmptyDataSet
 import MYBlurIntroductionView
+import M13Checkbox
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MYIntroductionDelegate {
 
@@ -18,6 +19,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var favoriteSelect: UISegmentedControl!
     @IBOutlet weak var order: UISegmentedControl!
+    @IBOutlet var buildCheckbox: M13Checkbox!
+    @IBOutlet var stirCheckbox: M13Checkbox!
+    @IBOutlet var shakeCheckbox: M13Checkbox!
+    @IBOutlet var blendCheckbox: M13Checkbox!
+    @IBOutlet var othersCheckbox: M13Checkbox!
+    @IBOutlet var buildFilterLabel: UILabel!
+    @IBOutlet var stirFilterLabel: UILabel!
+    @IBOutlet var shakeFilterLabel: UILabel!
+    @IBOutlet var blendFilterLabel: UILabel!
+    @IBOutlet var othersFilterLabel: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var recipeList: Results<Recipe>?
@@ -54,6 +66,48 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             showIntroduction()
             defaults.set(false, forKey: "firstLaunch")
         }
+        
+        buildCheckbox.boxLineWidth = 1.0
+        buildCheckbox.markType = .checkmark
+        buildCheckbox.boxType = .circle
+        stirCheckbox.boxLineWidth = 1.0
+        stirCheckbox.markType = .checkmark
+        stirCheckbox.boxType = .circle
+        shakeCheckbox.boxLineWidth = 1.0
+        shakeCheckbox.markType = .checkmark
+        shakeCheckbox.boxType = .circle
+        blendCheckbox.boxLineWidth = 1.0
+        blendCheckbox.markType = .checkmark
+        blendCheckbox.boxType = .circle
+        othersCheckbox.boxLineWidth = 1.0
+        othersCheckbox.markType = .checkmark
+        othersCheckbox.boxType = .circle
+
+        buildCheckbox.stateChangeAnimation = .fade(.fill)
+        buildCheckbox.animationDuration = 0
+        buildCheckbox.setCheckState(.checked, animated: true)
+        buildCheckbox.animationDuration = 0.3
+        buildCheckbox.stateChangeAnimation = .expand(.fill)
+        stirCheckbox.stateChangeAnimation = .fade(.fill)
+        stirCheckbox.animationDuration = 0
+        stirCheckbox.setCheckState(.checked, animated: true)
+        stirCheckbox.animationDuration = 0.3
+        stirCheckbox.stateChangeAnimation = .expand(.fill)
+        shakeCheckbox.stateChangeAnimation = .fade(.fill)
+        shakeCheckbox.animationDuration = 0
+        shakeCheckbox.setCheckState(.checked, animated: true)
+        shakeCheckbox.animationDuration = 0.3
+        shakeCheckbox.stateChangeAnimation = .expand(.fill)
+        blendCheckbox.stateChangeAnimation = .fade(.fill)
+        blendCheckbox.animationDuration = 0
+        blendCheckbox.setCheckState(.checked, animated: true)
+        blendCheckbox.animationDuration = 0.3
+        blendCheckbox.stateChangeAnimation = .expand(.fill)
+        othersCheckbox.stateChangeAnimation = .fade(.fill)
+        othersCheckbox.animationDuration = 0
+        othersCheckbox.setCheckState(.checked, animated: true)
+        othersCheckbox.animationDuration = 0.3
+        othersCheckbox.stateChangeAnimation = .expand(.fill)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +123,47 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
+        buildCheckbox.backgroundColor = UIColor.clear
+        buildCheckbox.tintColor = Style.secondaryColor
+        buildCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        stirCheckbox.backgroundColor = UIColor.clear
+        stirCheckbox.tintColor = Style.secondaryColor
+        stirCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        shakeCheckbox.backgroundColor = UIColor.clear
+        shakeCheckbox.tintColor = Style.secondaryColor
+        shakeCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        blendCheckbox.backgroundColor = UIColor.clear
+        blendCheckbox.tintColor = Style.secondaryColor
+        blendCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        othersCheckbox.backgroundColor = UIColor.clear
+        othersCheckbox.tintColor = Style.secondaryColor
+        othersCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        if buildCheckbox.checkState == .checked{
+            buildFilterLabel.textColor = Style.secondaryColor
+        }else if buildCheckbox.checkState == .unchecked{
+            buildFilterLabel.textColor = Style.labelTextColorLight
+        }
+        if stirCheckbox.checkState == .checked{
+            stirFilterLabel.textColor = Style.secondaryColor
+        }else if stirCheckbox.checkState == .unchecked{
+            stirFilterLabel.textColor = Style.labelTextColorLight
+        }
+        if shakeCheckbox.checkState == .checked{
+            shakeFilterLabel.textColor = Style.secondaryColor
+        }else if shakeCheckbox.checkState == .unchecked{
+            shakeFilterLabel.textColor = Style.labelTextColorLight
+        }
+        if blendCheckbox.checkState == .checked{
+            blendFilterLabel.textColor = Style.secondaryColor
+        }else if blendCheckbox.checkState == .unchecked{
+            blendFilterLabel.textColor = Style.labelTextColorLight
+        }
+        if othersCheckbox.checkState == .checked{
+            othersFilterLabel.textColor = Style.secondaryColor
+        }else if othersCheckbox.checkState == .unchecked{
+            othersFilterLabel.textColor = Style.labelTextColorLight
+        }
+
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
@@ -425,6 +520,56 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.navigationController?.setViewControllers(history, animated: false)
             })
         }
+    }
+    
+    @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
+        if buildCheckbox.checkState == .checked{
+            buildFilterLabel.textColor = Style.secondaryColor
+        }else if buildCheckbox.checkState == .unchecked{
+            buildFilterLabel.textColor = Style.labelTextColorLight
+        }
+        reloadRecipeBasicList()
+        tableView.reloadData()
+    }
+    
+    @IBAction func stirCheckboxTapped(_ sender: M13Checkbox) {
+        if stirCheckbox.checkState == .checked{
+            stirFilterLabel.textColor = Style.secondaryColor
+        }else if stirCheckbox.checkState == .unchecked{
+            stirFilterLabel.textColor = Style.labelTextColorLight
+        }
+        reloadRecipeBasicList()
+        tableView.reloadData()
+    }
+    
+    @IBAction func shakeCheckboxTapped(_ sender: M13Checkbox) {
+        if shakeCheckbox.checkState == .checked{
+            shakeFilterLabel.textColor = Style.secondaryColor
+        }else if shakeCheckbox.checkState == .unchecked{
+            shakeFilterLabel.textColor = Style.labelTextColorLight
+        }
+        reloadRecipeBasicList()
+        tableView.reloadData()
+    }
+    
+    @IBAction func blendCheckboxTapped(_ sender: M13Checkbox) {
+        if blendCheckbox.checkState == .checked{
+            blendFilterLabel.textColor = Style.secondaryColor
+        }else if blendCheckbox.checkState == .unchecked{
+            blendFilterLabel.textColor = Style.labelTextColorLight
+        }
+        reloadRecipeBasicList()
+        tableView.reloadData()
+    }
+    
+    @IBAction func othersCheckboxTapped(_ sender: M13Checkbox) {
+        if othersCheckbox.checkState == .checked{
+            othersFilterLabel.textColor = Style.secondaryColor
+        }else if othersCheckbox.checkState == .unchecked{
+            othersFilterLabel.textColor = Style.labelTextColorLight
+        }
+        reloadRecipeBasicList()
+        tableView.reloadData()
     }
     
     // MARK: - Navigation
