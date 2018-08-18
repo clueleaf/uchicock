@@ -174,7 +174,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum))
         }
         
         if searchBarTextWithoutSpace() != ""{
@@ -211,6 +211,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }else{
                         return a.lastViewDate! > b.lastViewDate!
                     }
+                }
+            })
+        }else if order.selectedSegmentIndex == 3{
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                } else {
+                    return a.madeNum > b.madeNum
                 }
             })
         }

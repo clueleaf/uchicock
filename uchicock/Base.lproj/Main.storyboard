@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--RecipeEdit-->
         <scene sceneID="zNG-CC-jTh">
@@ -118,8 +113,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EU7-zN-cmX" userLabel="セグメントコントロールコンテナ">
                                 <rect key="frame" x="0.0" y="44" width="375" height="72"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWl-Ai-21r">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGC-mX-LWw">
                                         <rect key="frame" x="8" y="0.0" width="359" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="ZcL-g4-YzN"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="名前順"/>
+                                            <segment title="作れる順"/>
+                                            <segment title="閲覧順"/>
+                                            <segment title="作った回数"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="orderTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="fja-U9-thn"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWl-Ai-21r">
+                                        <rect key="frame" x="8" y="36" width="359" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="KQB-yF-WIB"/>
                                         </constraints>
@@ -133,30 +143,16 @@
                                             <action selector="favoriteStateTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="PB3-Z8-rRq"/>
                                         </connections>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGC-mX-LWw">
-                                        <rect key="frame" x="8" y="36" width="359" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="ZcL-g4-YzN"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="名前順"/>
-                                            <segment title="つくれる順"/>
-                                            <segment title="閲覧順"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="orderTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="fja-U9-thn"/>
-                                        </connections>
-                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="MGC-mX-LWw" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="8rL-TG-qTB"/>
-                                    <constraint firstAttribute="bottom" secondItem="MGC-mX-LWw" secondAttribute="bottom" constant="8" id="Cdn-do-czV"/>
-                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" id="CyP-HI-KjA"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZWl-Ai-21r" secondAttribute="trailing" constant="8" id="OPu-da-LCm"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZWl-Ai-21r" secondAttribute="trailing" constant="8" id="Ehr-Ku-iCl"/>
+                                    <constraint firstItem="MGC-mX-LWw" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" id="FA0-9c-Oo1"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZWl-Ai-21r" secondAttribute="bottom" constant="8" id="MVZ-PV-sqd"/>
+                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="top" secondItem="MGC-mX-LWw" secondAttribute="bottom" constant="8" id="XUi-06-vff"/>
                                     <constraint firstAttribute="trailing" secondItem="MGC-mX-LWw" secondAttribute="trailing" constant="8" id="ezH-Dd-aRE"/>
-                                    <constraint firstItem="MGC-mX-LWw" firstAttribute="top" secondItem="ZWl-Ai-21r" secondAttribute="bottom" constant="8" id="l3x-ej-gDi"/>
-                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="wHI-vb-laK"/>
+                                    <constraint firstItem="ZWl-Ai-21r" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="fC8-hZ-ik5"/>
                                 </constraints>
                             </view>
                         </subviews>
