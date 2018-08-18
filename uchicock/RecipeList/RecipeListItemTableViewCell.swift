@@ -59,7 +59,7 @@ class RecipeListItemTableViewCell: UITableViewCell {
             }
             switch shortageNum {
             case 0:
-                shortage.text = "すぐつくれる！"
+                shortage.text = "すぐ作れる！"
                 shortage.textColor = Style.secondaryColor
                 shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:

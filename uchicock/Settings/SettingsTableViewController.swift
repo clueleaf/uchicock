@@ -70,7 +70,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
         introductionPanel1!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         
-        let desc2 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちでつくれるレシピがわかります。"
+        let desc2 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
         introductionPanel2!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
         

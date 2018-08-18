@@ -15,5 +15,6 @@ struct IngredientRecipeBasic{
     var shortageNum : Int
     var japaneseDictionaryOrder : String
     var lastViewDate : Date?
+    var madeNum : Int
 }
 

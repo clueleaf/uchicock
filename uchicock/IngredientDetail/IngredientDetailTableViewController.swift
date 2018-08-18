@@ -182,7 +182,7 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder, lastViewDate: recipeIngredient.recipe.lastViewDate))
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum))
         }
         
         if order.selectedSegmentIndex == 1{
@@ -209,6 +209,14 @@ class IngredientDetailTableViewController: UITableViewController {
                     }
                 }
             })
+        }else if order.selectedSegmentIndex == 3{
+            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                }else{
+                    return a.madeNum > b.madeNum
+                }
+            }
         }else{
             ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
         }
@@ -373,7 +381,7 @@ class IngredientDetailTableViewController: UITableViewController {
                         }
                     }
                     if shortageNum == 0 {
-                        cell.shortage.text = "すぐつくれる！"
+                        cell.shortage.text = "すぐ作れる！"
                         cell.shortage.textColor = Style.secondaryColor
                         cell.shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = Style.labelTextColor
