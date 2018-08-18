@@ -17,5 +17,6 @@ struct RecipeBasic{
     var japaneseDictionaryOrder : String
     var lastViewDate : Date?
     var madeNum : Int
+    var method : Int
 }
 

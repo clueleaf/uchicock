@@ -149,7 +149,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZu-7p-3Wg">
                                                 <rect key="frame" x="0.0" y="0.0" width="119.5" height="28"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SwZ-2x-g3G" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwZ-2x-g3G" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -160,28 +160,30 @@
                                                             <action selector="buildCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="qzR-3H-ZRO"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ビルド" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu2-lm-qlY">
-                                                        <rect key="frame" x="28" y="4" width="50" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQi-vj-yhu">
+                                                        <rect key="frame" x="73" y="4" width="46" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="D5z-lL-xum"/>
+                                                            <constraint firstAttribute="width" constant="70" id="w9p-vP-hlG"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="ビルド"/>
+                                                        <connections>
+                                                            <action selector="buildFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7Y-tW-yej"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="SwZ-2x-g3G" firstAttribute="leading" secondItem="WZu-7p-3Wg" secondAttribute="leading" id="7ZA-Cb-8zD"/>
-                                                    <constraint firstItem="eu2-lm-qlY" firstAttribute="leading" secondItem="SwZ-2x-g3G" secondAttribute="trailing" constant="8" id="H9a-qN-R0e"/>
-                                                    <constraint firstItem="eu2-lm-qlY" firstAttribute="centerY" secondItem="WZu-7p-3Wg" secondAttribute="centerY" id="nSl-sP-m7a"/>
+                                                    <constraint firstItem="sQi-vj-yhu" firstAttribute="leading" secondItem="SwZ-2x-g3G" secondAttribute="trailing" constant="8" id="RtF-nz-NJN"/>
+                                                    <constraint firstItem="sQi-vj-yhu" firstAttribute="centerY" secondItem="WZu-7p-3Wg" secondAttribute="centerY" id="ma8-U2-NZU"/>
                                                     <constraint firstItem="SwZ-2x-g3G" firstAttribute="centerY" secondItem="WZu-7p-3Wg" secondAttribute="centerY" id="usF-2S-RkR"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-Kx-XXv">
                                                 <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9h-nw-nZS" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9h-nw-nZS" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="0.0" y="3" width="20" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -192,28 +194,30 @@
                                                             <action selector="stirCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="UD4-dU-JPo"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEv-ru-0ej">
-                                                        <rect key="frame" x="21" y="3" width="51" height="17"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2B-dN-7T1">
+                                                        <rect key="frame" x="36.5" y="-1" width="46" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="Wxe-t9-12j"/>
+                                                            <constraint firstAttribute="width" constant="70" id="mA0-Z2-jq7"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="ステア"/>
+                                                        <connections>
+                                                            <action selector="stirFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p7i-wF-Ubg"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="p9h-nw-nZS" firstAttribute="centerY" secondItem="Acx-Kx-XXv" secondAttribute="centerY" id="R7x-KR-wp2"/>
-                                                    <constraint firstItem="fEv-ru-0ej" firstAttribute="leading" secondItem="p9h-nw-nZS" secondAttribute="trailing" constant="8" id="bbg-9s-MQH"/>
-                                                    <constraint firstItem="fEv-ru-0ej" firstAttribute="centerY" secondItem="Acx-Kx-XXv" secondAttribute="centerY" id="sbr-wM-U6w"/>
+                                                    <constraint firstItem="h2B-dN-7T1" firstAttribute="leading" secondItem="p9h-nw-nZS" secondAttribute="trailing" constant="8" id="lfC-wW-MpC"/>
                                                     <constraint firstItem="p9h-nw-nZS" firstAttribute="leading" secondItem="Acx-Kx-XXv" secondAttribute="leading" id="wAb-ta-sgE"/>
+                                                    <constraint firstItem="h2B-dN-7T1" firstAttribute="centerY" secondItem="Acx-Kx-XXv" secondAttribute="centerY" id="wv1-Ty-6Vb"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1K-0A-LpE">
                                                 <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKO-0C-vm2" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKO-0C-vm2" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="8" y="3" width="20" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -224,22 +228,24 @@
                                                             <action selector="shakeCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Jz-gP-0oO"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQu-7I-IbH">
-                                                        <rect key="frame" x="20" y="5" width="70" height="17"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-WQ-e4H">
+                                                        <rect key="frame" x="36.5" y="-1" width="46" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="hFR-Vo-Kkw"/>
+                                                            <constraint firstAttribute="width" constant="70" id="y7U-gi-v9a"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="シェイク"/>
+                                                        <connections>
+                                                            <action selector="shakeFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4LE-Br-hTb"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="QKO-0C-vm2" firstAttribute="leading" secondItem="L1K-0A-LpE" secondAttribute="leading" id="4pk-xQ-ePz"/>
                                                     <constraint firstItem="QKO-0C-vm2" firstAttribute="centerY" secondItem="L1K-0A-LpE" secondAttribute="centerY" id="Ebf-gQ-XQD"/>
-                                                    <constraint firstItem="cQu-7I-IbH" firstAttribute="leading" secondItem="QKO-0C-vm2" secondAttribute="trailing" constant="8" id="Kwo-vQ-MZ0"/>
-                                                    <constraint firstItem="cQu-7I-IbH" firstAttribute="centerY" secondItem="L1K-0A-LpE" secondAttribute="centerY" id="b9V-6d-SbI"/>
+                                                    <constraint firstItem="Dx3-WQ-e4H" firstAttribute="leading" secondItem="QKO-0C-vm2" secondAttribute="trailing" constant="8" id="VX9-ea-Ukc"/>
+                                                    <constraint firstItem="Dx3-WQ-e4H" firstAttribute="centerY" secondItem="L1K-0A-LpE" secondAttribute="centerY" id="jFm-K4-hOI"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -253,7 +259,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNR-gA-fsb">
                                                 <rect key="frame" x="0.0" y="0.0" width="119.5" height="28"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mem-nk-nWr" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mem-nk-nWr" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -264,28 +270,30 @@
                                                             <action selector="blendCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ahu-Us-U6b"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ブレンド" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-Tw-QzW">
-                                                        <rect key="frame" x="28" y="4" width="50" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccY-Dq-jOm">
+                                                        <rect key="frame" x="36" y="-1" width="46" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="2Je-WL-gZ1"/>
+                                                            <constraint firstAttribute="width" constant="70" id="AMH-UB-G2C"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="ブレンド"/>
+                                                        <connections>
+                                                            <action selector="blendFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sIu-D6-MD9"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="c6D-Tw-QzW" firstAttribute="leading" secondItem="Mem-nk-nWr" secondAttribute="trailing" constant="8" id="2qX-9H-tdj"/>
                                                     <constraint firstItem="Mem-nk-nWr" firstAttribute="centerY" secondItem="MNR-gA-fsb" secondAttribute="centerY" id="4Vl-JM-Hyk"/>
-                                                    <constraint firstItem="c6D-Tw-QzW" firstAttribute="centerY" secondItem="MNR-gA-fsb" secondAttribute="centerY" id="UWr-VG-dGx"/>
+                                                    <constraint firstItem="ccY-Dq-jOm" firstAttribute="leading" secondItem="Mem-nk-nWr" secondAttribute="trailing" constant="8" id="OS1-39-mGp"/>
+                                                    <constraint firstItem="ccY-Dq-jOm" firstAttribute="centerY" secondItem="MNR-gA-fsb" secondAttribute="centerY" id="QYU-Bb-AaO"/>
                                                     <constraint firstItem="Mem-nk-nWr" firstAttribute="leading" secondItem="MNR-gA-fsb" secondAttribute="leading" id="v6O-H4-r4T"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jJ-bF-3Df">
                                                 <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bp-B1-CIy" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bp-B1-CIy" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="0.0" y="3" width="20" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -296,21 +304,23 @@
                                                             <action selector="othersCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="v03-bC-lPf"/>
                                                         </connections>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iym-E1-Din">
-                                                        <rect key="frame" x="21" y="3" width="51" height="17"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAb-rY-WSy">
+                                                        <rect key="frame" x="36.5" y="-1" width="46" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="Nvu-ka-dN9"/>
+                                                            <constraint firstAttribute="width" constant="70" id="J70-Oj-uih"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                        <state key="normal" title="その他"/>
+                                                        <connections>
+                                                            <action selector="othersFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qvk-q2-NBX"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="1bp-B1-CIy" firstAttribute="centerY" secondItem="6jJ-bF-3Df" secondAttribute="centerY" id="5b9-gT-H5B"/>
-                                                    <constraint firstItem="iym-E1-Din" firstAttribute="leading" secondItem="1bp-B1-CIy" secondAttribute="trailing" constant="8" id="HEE-6X-aEY"/>
-                                                    <constraint firstItem="iym-E1-Din" firstAttribute="centerY" secondItem="6jJ-bF-3Df" secondAttribute="centerY" id="TgC-Ix-jjn"/>
+                                                    <constraint firstItem="DAb-rY-WSy" firstAttribute="leading" secondItem="1bp-B1-CIy" secondAttribute="trailing" constant="8" id="AoK-ty-fIg"/>
+                                                    <constraint firstItem="DAb-rY-WSy" firstAttribute="centerY" secondItem="6jJ-bF-3Df" secondAttribute="centerY" id="KJN-Es-0SQ"/>
                                                     <constraint firstItem="1bp-B1-CIy" firstAttribute="leading" secondItem="6jJ-bF-3Df" secondAttribute="leading" id="sEp-W5-NyW"/>
                                                 </constraints>
                                             </view>
@@ -368,19 +378,19 @@
                     </navigationItem>
                     <connections>
                         <outlet property="blendCheckbox" destination="Mem-nk-nWr" id="f0R-Ko-v42"/>
-                        <outlet property="blendFilterLabel" destination="c6D-Tw-QzW" id="WLL-DQ-q2B"/>
+                        <outlet property="blendFilterButton" destination="ccY-Dq-jOm" id="lDH-po-OdH"/>
                         <outlet property="buildCheckbox" destination="SwZ-2x-g3G" id="nb2-hS-HVS"/>
-                        <outlet property="buildFilterLabel" destination="eu2-lm-qlY" id="1wg-Cv-6gn"/>
+                        <outlet property="buildFilterButton" destination="sQi-vj-yhu" id="Y25-ER-zbW"/>
                         <outlet property="favoriteSelect" destination="ZWl-Ai-21r" id="SoB-C3-Cev"/>
                         <outlet property="order" destination="MGC-mX-LWw" id="pnD-AG-KgA"/>
                         <outlet property="othersCheckbox" destination="1bp-B1-CIy" id="yhs-PF-zVl"/>
-                        <outlet property="othersFilterLabel" destination="iym-E1-Din" id="2u6-Yp-huh"/>
+                        <outlet property="othersFilterButton" destination="DAb-rY-WSy" id="bP8-zA-uJH"/>
                         <outlet property="searchBar" destination="LdP-YB-YF7" id="YO2-R7-Pfn"/>
                         <outlet property="segmentedControlContainer" destination="EU7-zN-cmX" id="nUw-rl-m4m"/>
                         <outlet property="shakeCheckbox" destination="QKO-0C-vm2" id="Ada-p3-MuK"/>
-                        <outlet property="shakeFilterLabel" destination="cQu-7I-IbH" id="lMS-SN-9QL"/>
+                        <outlet property="shakeFilterButton" destination="Dx3-WQ-e4H" id="5zw-0i-6CA"/>
                         <outlet property="stirCheckbox" destination="p9h-nw-nZS" id="yD1-uC-mZf"/>
-                        <outlet property="stirFilterLabel" destination="fEv-ru-0ej" id="6kx-nc-TK3"/>
+                        <outlet property="stirFilterButton" destination="h2B-dN-7T1" id="g5n-Uq-j7E"/>
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="jeX-PC-Dfv" kind="presentation" identifier="PushAddRecipe" id="nU1-7k-jBf"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="PushRecipeDetail" id="daG-Cs-3sj"/>
