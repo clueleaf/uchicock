@@ -13,7 +13,7 @@ class RecoverPreviewTableViewController: UITableViewController {
 
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
-    @IBOutlet weak var method: UISegmentedControl!
+    @IBOutlet weak var method: UILabel!
     
     var recipe = Recipe()
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -31,10 +31,19 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
-        if recipe.method >= 0 && recipe.method < 5 {
-            method.selectedSegmentIndex = recipe.method
-        } else {
-            method.selectedSegmentIndex = 4
+        switch recipe.method{
+        case 0:
+            method.text = "ビルド"
+        case 1:
+            method.text = "ステア"
+        case 2:
+            method.text = "シェイク"
+        case 3:
+            method.text = "ブレンド"
+        case 4:
+            method.text = "その他"
+        default:
+            method.text = "その他"
         }
 
         self.tableView.estimatedRowHeight = 70
@@ -57,8 +66,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         methodLabel.textColor = Style.labelTextColor
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        method.tintColor = Style.secondaryColor
-        method.backgroundColor = Style.basicBackgroundColor
+        method.textColor = Style.labelTextColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
         }else{

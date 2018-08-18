@@ -309,11 +309,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="jYy-Da-2cn">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="jYy-Da-2cn">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jYy-Da-2cn" id="zTd-Rb-WYv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh">
@@ -326,27 +326,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ic0-aJ-U5j">
-                                                    <rect key="frame" x="20" y="48" width="335" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="Vuh-DZ-NhN"/>
-                                                    </constraints>
-                                                    <segments>
-                                                        <segment title="ビルド" enabled="NO"/>
-                                                        <segment title="ステア" enabled="NO"/>
-                                                        <segment title="シェイク" enabled="NO"/>
-                                                        <segment title="ブレンド" enabled="NO"/>
-                                                        <segment title="その他" enabled="NO"/>
-                                                    </segments>
-                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-ye-exa">
+                                                    <rect key="frame" x="315" y="17" width="52" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ic0-aJ-U5j" firstAttribute="top" secondItem="Hde-xF-3Nh" secondAttribute="bottom" constant="8" id="1ye-Xo-Jps"/>
-                                                <constraint firstAttribute="bottom" secondItem="ic0-aJ-U5j" secondAttribute="bottom" constant="16.5" id="7Mq-vx-QLy"/>
-                                                <constraint firstItem="ic0-aJ-U5j" firstAttribute="leading" secondItem="zTd-Rb-WYv" secondAttribute="leading" constant="20" id="GMu-Qe-bbC"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hde-xF-3Nh" secondAttribute="bottom" constant="15" id="Rx8-Ru-G7M"/>
                                                 <constraint firstItem="Hde-xF-3Nh" firstAttribute="top" secondItem="zTd-Rb-WYv" secondAttribute="top" constant="15" id="Tz0-Oh-zks"/>
+                                                <constraint firstItem="kjW-ye-exa" firstAttribute="centerY" secondItem="Hde-xF-3Nh" secondAttribute="centerY" id="bDE-Qy-3hU"/>
+                                                <constraint firstAttribute="trailing" secondItem="kjW-ye-exa" secondAttribute="trailing" constant="8" id="cBk-tl-EUj"/>
                                                 <constraint firstItem="Hde-xF-3Nh" firstAttribute="leading" secondItem="zTd-Rb-WYv" secondAttribute="leading" constant="8" id="lBw-cP-8WR"/>
-                                                <constraint firstAttribute="trailing" secondItem="ic0-aJ-U5j" secondAttribute="trailing" constant="20" id="n48-tX-E4r"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -355,7 +347,7 @@
                             <tableViewSection headerTitle="Section-2" id="K7s-Te-eBa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="eUg-2A-w4n" customClass="RecoverPreviewIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="229" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="192" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eUg-2A-w4n" id="7AF-zb-etx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -371,7 +363,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="method" destination="ic0-aJ-U5j" id="tM7-CE-C7P"/>
+                        <outlet property="method" destination="kjW-ye-exa" id="o4a-U2-9Id"/>
                         <outlet property="methodLabel" destination="Hde-xF-3Nh" id="YDE-7k-U4C"/>
                         <outlet property="recipeName" destination="rnK-Ra-jad" id="zTC-0E-IBx"/>
                     </connections>

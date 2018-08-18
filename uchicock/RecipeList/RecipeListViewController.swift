@@ -19,16 +19,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var favoriteSelect: UISegmentedControl!
     @IBOutlet weak var order: UISegmentedControl!
-    @IBOutlet var buildCheckbox: M13Checkbox!
-    @IBOutlet var stirCheckbox: M13Checkbox!
-    @IBOutlet var shakeCheckbox: M13Checkbox!
-    @IBOutlet var blendCheckbox: M13Checkbox!
-    @IBOutlet var othersCheckbox: M13Checkbox!
-    @IBOutlet var buildFilterButton: UIButton!
-    @IBOutlet var stirFilterButton: UIButton!
-    @IBOutlet var shakeFilterButton: UIButton!
-    @IBOutlet var blendFilterButton: UIButton!
-    @IBOutlet var othersFilterButton: UIButton!
+    @IBOutlet weak var buildCheckbox: M13Checkbox!
+    @IBOutlet weak var stirCheckbox: M13Checkbox!
+    @IBOutlet weak var shakeCheckbox: M13Checkbox!
+    @IBOutlet weak var blendCheckbox: M13Checkbox!
+    @IBOutlet weak var othersCheckbox: M13Checkbox!
+    @IBOutlet weak var buildFilterButton: UIButton!
+    @IBOutlet weak var stirFilterButton: UIButton!
+    @IBOutlet weak var shakeFilterButton: UIButton!
+    @IBOutlet weak var blendFilterButton: UIButton!
+    @IBOutlet weak var othersFilterButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     

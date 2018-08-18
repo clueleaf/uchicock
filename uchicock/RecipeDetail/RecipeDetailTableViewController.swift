@@ -23,14 +23,14 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
-    @IBOutlet var madeNumLabel: UILabel!
+    @IBOutlet weak var madeNumLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var method: UISegmentedControl!
+    @IBOutlet weak var method: UILabel!
     @IBOutlet weak var memo: CopyableLabel!
-    @IBOutlet var madeNum: UIStepper!
-    @IBOutlet var madeNumCountUpLabel: UILabel!
+    @IBOutlet weak var madeNum: UIStepper!
+    @IBOutlet weak var madeNumCountUpLabel: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
     var editVC : RecipeEditTableViewController!
@@ -82,10 +82,7 @@ class RecipeDetailTableViewController: UITableViewController{
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
-        method.tintColor = Style.secondaryColor
-        method.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
-        method.setTitleTextAttributes(attribute, for: .normal)
+        method.textColor = Style.labelTextColor
         madeNum.tintColor = Style.secondaryColor
         madeNumLabel.textColor = Style.labelTextColor
         madeNumCountUpLabel.textColor = Style.labelTextColor
@@ -189,10 +186,19 @@ class RecipeDetailTableViewController: UITableViewController{
             star2.tintColor = Style.secondaryColor
             star3.tintColor = Style.secondaryColor
             
-            if recipe.method >= 0 && recipe.method < 5 {
-                method.selectedSegmentIndex = recipe.method
-            } else {
-                method.selectedSegmentIndex = 4
+            switch recipe.method{
+            case 0:
+                method.text = "ビルド"
+            case 1:
+                method.text = "ステア"
+            case 2:
+                method.text = "シェイク"
+            case 3:
+                method.text = "ブレンド"
+            case 4:
+                method.text = "その他"
+            default:
+                method.text = "その他"
             }
 
             memo.text = recipe.memo

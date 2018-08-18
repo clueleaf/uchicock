@@ -20,7 +20,7 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
-    @IBOutlet weak var category: UISegmentedControl!
+    @IBOutlet weak var category: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var order: UISegmentedControl!
@@ -65,16 +65,14 @@ class IngredientDetailTableViewController: UITableViewController {
         categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
-        category.tintColor = Style.secondaryColor
-        category.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
-        category.setTitleTextAttributes(attribute, for: .normal)
+        category.textColor = Style.labelTextColor
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
+        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
@@ -104,10 +102,15 @@ class IngredientDetailTableViewController: UITableViewController {
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
 
-            if ingredient.category >= 0 && ingredient.category < 3 {
-                category.selectedSegmentIndex = ingredient.category
-            } else {
-                category.selectedSegmentIndex = 2
+            switch ingredient.category{
+            case 0:
+                category.text = "アルコール"
+            case 1:
+                category.text = "ノンアルコール"
+            case 2:
+                category.text = "その他"
+            default:
+                category.text = "その他"
             }
             
             stock.stateChangeAnimation = .fade(.fill)
