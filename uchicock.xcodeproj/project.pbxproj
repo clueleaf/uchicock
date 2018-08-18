@@ -140,9 +140,7 @@
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A32B1C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A3361C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
@@ -301,8 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3131C783CAA0031F631 /* uchicock */,
-				9BC9A3281C783CAA0031F631 /* uchicockTests */,
-				9BC9A3331C783CAA0031F631 /* uchicockUITests */,
 				9BC9A3121C783CAA0031F631 /* Products */,
 				D62374FCD504BC5EA91FCD15 /* Frameworks */,
 				8AAB004EAA3CB436D4CF50BE /* Pods */,
@@ -347,22 +343,6 @@
 				9BE1C0311F88895600B8F0D8 /* CopyableLabel.swift */,
 			);
 			path = uchicock;
-			sourceTree = "<group>";
-		};
-		9BC9A3281C783CAA0031F631 /* uchicockTests */ = {
-			isa = PBXGroup;
-			children = (
-				9BC9A32B1C783CAA0031F631 /* Info.plist */,
-			);
-			path = uchicockTests;
-			sourceTree = "<group>";
-		};
-		9BC9A3331C783CAA0031F631 /* uchicockUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9BC9A3361C783CAA0031F631 /* Info.plist */,
-			);
-			path = uchicockUITests;
 			sourceTree = "<group>";
 		};
 		9BC9A3461C7856DA0031F631 /* RecipeList */ = {
