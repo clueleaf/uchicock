@@ -220,34 +220,51 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" maximumValue="999" translatesAutoresizingMaskIntoConstraints="NO" id="mKU-Wb-6n8">
-                                                    <rect key="frame" x="271" y="10.5" width="94" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="96" id="F33-GS-1Uo"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="stepperTapped:" destination="ZVL-2s-yCx" eventType="valueChanged" id="6ih-bx-xqM"/>
-                                                    </connections>
-                                                </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0回" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiG-Md-KeZ">
-                                                    <rect key="frame" x="221" y="12.5" width="30" height="25"/>
+                                                    <rect key="frame" x="252" y="12.5" width="50" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="YIG-9I-50O"/>
+                                                        <constraint firstAttribute="width" constant="50" id="YIG-9I-50O"/>
                                                         <constraint firstAttribute="height" constant="25" id="rXq-BU-nJG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-3V-dxg">
+                                                    <rect key="frame" x="337" y="10" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="LQ8-Ee-ukb"/>
+                                                        <constraint firstAttribute="width" constant="30" id="S54-aX-hAX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <state key="normal" title="＋"/>
+                                                    <connections>
+                                                        <action selector="madeNumPlusButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="IAl-59-jnt"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO">
+                                                    <rect key="frame" x="192" y="10" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="JJh-TJ-P4J"/>
+                                                        <constraint firstAttribute="width" constant="30" id="oZG-Y0-qP6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <state key="normal" title="ー"/>
+                                                    <connections>
+                                                        <action selector="madeNumMinusButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="DsC-Kb-DMq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="mKU-Wb-6n8" secondAttribute="trailing" constant="8" id="0QI-G7-l9L"/>
                                                 <constraint firstItem="JAV-9k-VQl" firstAttribute="top" secondItem="PCI-4g-lQs" secondAttribute="top" constant="12" id="79B-pL-HBI"/>
-                                                <constraint firstItem="mKU-Wb-6n8" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="DT9-TU-Iem"/>
+                                                <constraint firstItem="fiG-Md-KeZ" firstAttribute="leading" secondItem="aTA-1P-aFO" secondAttribute="trailing" constant="30" id="8JU-Ka-ZhS"/>
+                                                <constraint firstItem="XZO-3V-dxg" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="FqE-2d-DQ8"/>
                                                 <constraint firstItem="fiG-Md-KeZ" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="HhP-cD-PdV"/>
                                                 <constraint firstAttribute="bottom" secondItem="JAV-9k-VQl" secondAttribute="bottom" constant="12" id="JNl-iS-Rdt"/>
+                                                <constraint firstAttribute="trailing" secondItem="XZO-3V-dxg" secondAttribute="trailing" constant="8" id="Qct-i3-lFe"/>
                                                 <constraint firstItem="JAV-9k-VQl" firstAttribute="leading" secondItem="PCI-4g-lQs" secondAttribute="leading" constant="8" id="YR7-7S-ZrU"/>
-                                                <constraint firstItem="mKU-Wb-6n8" firstAttribute="leading" secondItem="fiG-Md-KeZ" secondAttribute="trailing" constant="20" id="jcb-3E-nst"/>
+                                                <constraint firstItem="aTA-1P-aFO" firstAttribute="centerY" secondItem="PCI-4g-lQs" secondAttribute="centerY" id="c40-fo-Uto"/>
+                                                <constraint firstItem="XZO-3V-dxg" firstAttribute="leading" secondItem="fiG-Md-KeZ" secondAttribute="trailing" constant="35" id="ezh-KO-CeG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -313,9 +330,10 @@
                     <connections>
                         <outlet property="deleteLabel" destination="L8h-Qa-Zzr" id="nuu-jM-e8W"/>
                         <outlet property="lastViewDateLabel" destination="fME-VJ-TZu" id="b9w-Gi-dLO"/>
-                        <outlet property="madeNum" destination="mKU-Wb-6n8" id="mle-eC-McR"/>
                         <outlet property="madeNumCountUpLabel" destination="fiG-Md-KeZ" id="gC4-Da-50C"/>
                         <outlet property="madeNumLabel" destination="JAV-9k-VQl" id="Ry3-qC-NCy"/>
+                        <outlet property="madeNumMinusButton" destination="aTA-1P-aFO" id="E8x-3L-4a6"/>
+                        <outlet property="madeNumPlusButton" destination="XZO-3V-dxg" id="Ieh-IX-idg"/>
                         <outlet property="memo" destination="K4S-5H-eMf" id="oS5-4q-FQ1"/>
                         <outlet property="memoLabel" destination="ePw-WK-61i" id="Qve-wb-lR0"/>
                         <outlet property="method" destination="sca-mX-RzU" id="jRK-6m-p33"/>
@@ -335,7 +353,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGb-sh-GDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="728"/>
+            <point key="canvasLocation" x="-826.39999999999998" y="727.28635682158927"/>
         </scene>
         <!--RecipeEdit-->
         <scene sceneID="fWD-Ea-qsd">

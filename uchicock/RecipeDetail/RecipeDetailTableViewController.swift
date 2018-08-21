@@ -29,7 +29,8 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var method: UILabel!
     @IBOutlet weak var memo: CopyableLabel!
-    @IBOutlet weak var madeNum: UIStepper!
+    @IBOutlet weak var madeNumPlusButton: UIButton!
+    @IBOutlet weak var madeNumMinusButton: UIButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
     @IBOutlet weak var deleteLabel: UILabel!
     
@@ -39,6 +40,7 @@ class RecipeDetailTableViewController: UITableViewController{
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
+    var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -57,7 +59,11 @@ class RecipeDetailTableViewController: UITableViewController{
         tableView.addSubview(headerView)
         
         openInSafari.layer.cornerRadius = 4
-        
+        madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
+        madeNumPlusButton.layer.borderWidth = 1.5
+        madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
+        madeNumMinusButton.layer.borderWidth = 1.5
+
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
@@ -83,7 +89,6 @@ class RecipeDetailTableViewController: UITableViewController{
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
         method.textColor = Style.labelTextColor
-        madeNum.tintColor = Style.secondaryColor
         madeNumLabel.textColor = Style.labelTextColor
         madeNumCountUpLabel.textColor = Style.labelTextColor
         photoBackground.backgroundColor = Style.basicBackgroundColor
@@ -203,8 +208,9 @@ class RecipeDetailTableViewController: UITableViewController{
 
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
-            madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
-            madeNum.value = Double(recipe.madeNum)
+            madeNum = recipe.madeNum
+            madeNumCountUpLabel.text = String(madeNum) + "回"
+            setMadeNumButton()
 
             deleteLabel.textColor = Style.deleteColor
             
@@ -246,6 +252,27 @@ class RecipeDetailTableViewController: UITableViewController{
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setMadeNumButton(){
+        if madeNum <= 0 {
+            madeNumMinusButton.isEnabled = false
+            madeNumMinusButton.tintColor = Style.labelTextColorLight
+            madeNumMinusButton.layer.borderColor = Style.labelTextColorLight.cgColor
+        } else {
+            madeNumMinusButton.isEnabled = true
+            madeNumMinusButton.tintColor = Style.secondaryColor
+            madeNumMinusButton.layer.borderColor = Style.secondaryColor.cgColor
+        }
+        if madeNum >= 999 {
+            madeNumPlusButton.isEnabled = false
+            madeNumPlusButton.tintColor = Style.labelTextColorLight
+            madeNumPlusButton.layer.borderColor = Style.labelTextColorLight.cgColor
+        } else {
+            madeNumPlusButton.isEnabled = true
+            madeNumPlusButton.tintColor = Style.secondaryColor
+            madeNumPlusButton.layer.borderColor = Style.secondaryColor.cgColor
+        }
     }
     
     func closeEditVC(_ editVC: RecipeEditTableViewController){
@@ -634,12 +661,28 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    @IBAction func stepperTapped(_ sender: UIStepper) {
-        let realm = try! Realm()
-        try! realm.write {
-            recipe.madeNum = Int(madeNum.value)
+    @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
+        if madeNum < 999 {
+            madeNum += 1
+            madeNumCountUpLabel.text = String(madeNum) + "回"
+            let realm = try! Realm()
+            try! realm.write {
+                recipe.madeNum = Int(madeNum)
+            }
         }
-        madeNumCountUpLabel.text = String(Int(madeNum.value)) + "回"
+        setMadeNumButton()
+    }
+    
+    @IBAction func madeNumMinusButtonTapped(_ sender: UIButton) {
+        if madeNum > 0 {
+            madeNum -= 1
+            madeNumCountUpLabel.text = String(madeNum) + "回"
+            let realm = try! Realm()
+            try! realm.write {
+                recipe.madeNum = Int(madeNum)
+            }
+        }
+        setMadeNumButton()
     }
     
     // MARK: - Navigation
