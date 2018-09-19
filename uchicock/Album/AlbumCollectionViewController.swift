@@ -112,15 +112,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.didReceiveMemoryWarning()
     }
     
-    func shuffle<T>( array: inout [T]) {
-        for index in 0..<array.count {
-            let newIndex = Int(arc4random_uniform(UInt32(array.count - index))) + index
-            if index != newIndex {
-                array.swapAt(index, newIndex)
-            }
-        }
-    }
-    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
         return NSAttributedString(string: emptyDataSetStr, attributes: attrs)
@@ -138,7 +129,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     @objc func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
-        self.shuffle(array: &self.recipeBasicList)
+        recipeBasicList.shuffle()
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         self.collectionView!.mj_header.endRefreshing()
@@ -227,7 +218,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-            self.shuffle(array: &self.recipeBasicList)
+            self.recipeBasicList.shuffle()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
