@@ -9,14 +9,14 @@ PODS:
     - pop
     - SDWebImage (= 4.0.0)
   - M13Checkbox (3.2.2)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.7)
   - MYBlurIntroductionView (1.0.3)
   - pop (1.0.10)
-  - Realm (3.6.0):
-    - Realm/Headers (= 3.6.0)
-  - Realm/Headers (3.6.0)
-  - RealmSwift (3.6.0):
-    - Realm (= 3.6.0)
+  - Realm (3.9.0):
+    - Realm/Headers (= 3.9.0)
+  - Realm/Headers (3.9.0)
+  - RealmSwift (3.9.0):
+    - Realm (= 3.9.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -61,11 +61,11 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   M13Checkbox: a8c2491cfbbca10797925fd0b9154a782bf40d89
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   MYBlurIntroductionView: b12651c25574580472ff34989a4c5b81c157009f
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
-  RealmSwift: 973e1499c44ab571f894c2c908e2db450be280c3
+  Realm: 3d36f208bf3aff8335dc3298742140182bde4edb
+  RealmSwift: aa4d11917bfcfaa3ed51f219102a487ecd895447
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
