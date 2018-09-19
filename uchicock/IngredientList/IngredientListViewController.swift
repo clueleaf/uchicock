@@ -138,8 +138,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if searchBarTextWithoutSpace() != ""{
-            ingredientBasicList = ingredientBasicList.filter{
-                $0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
+            ingredientBasicList.removeAll{
+                !$0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
             }
         }
         
@@ -159,8 +159,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
 
         if category.selectedSegmentIndex != 0{
-            ingredientBasicList = ingredientBasicList.filter{
-                $0.category == category.selectedSegmentIndex - 1
+            ingredientBasicList.removeAll{
+                $0.category != category.selectedSegmentIndex - 1
             }
         }
 

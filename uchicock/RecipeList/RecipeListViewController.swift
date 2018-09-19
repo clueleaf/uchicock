@@ -279,38 +279,34 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if searchBarTextWithoutSpace() != ""{
-            recipeBasicList = recipeBasicList.filter{
-                $0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
-            }
+            recipeBasicList.removeAll{ !$0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) }
         }
         
-        recipeBasicList = recipeBasicList.filter{
-            $0.favorites >= favoriteSelect.selectedSegmentIndex
-        }
+        recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
         
         if buildCheckbox.checkState == .unchecked{
-            recipeBasicList = recipeBasicList.filter{
-                $0.method != 0
+            recipeBasicList.removeAll{
+                $0.method == 0
             }
         }
         if stirCheckbox.checkState == .unchecked{
-            recipeBasicList = recipeBasicList.filter{
-                $0.method != 1
+            recipeBasicList.removeAll{
+                $0.method == 1
             }
         }
         if shakeCheckbox.checkState == .unchecked{
-            recipeBasicList = recipeBasicList.filter{
-                $0.method != 2
+            recipeBasicList.removeAll{
+                $0.method == 2
             }
         }
         if blendCheckbox.checkState == .unchecked{
-            recipeBasicList = recipeBasicList.filter{
-                $0.method != 3
+            recipeBasicList.removeAll{
+                $0.method == 3
             }
         }
         if othersCheckbox.checkState == .unchecked{
-            recipeBasicList = recipeBasicList.filter{
-                $0.method != 4
+            recipeBasicList.removeAll{
+                $0.method == 4
             }
         }
 

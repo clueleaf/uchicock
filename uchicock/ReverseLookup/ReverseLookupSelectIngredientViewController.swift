@@ -136,14 +136,14 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         }
         
         if textWithoutSpace(text: ingredientName.text!) != "" {
-            suggestList = suggestList.filter{
-                $0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
+            suggestList.removeAll{
+                !$0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
             }
         }
         
         if category.selectedSegmentIndex != 0{
-            suggestList = suggestList.filter{
-                $0.category == category.selectedSegmentIndex - 1
+            suggestList.removeAll{
+                $0.category != category.selectedSegmentIndex - 1
             }
         }
         

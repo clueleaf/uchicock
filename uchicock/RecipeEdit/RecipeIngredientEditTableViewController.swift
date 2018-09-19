@@ -169,8 +169,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
         
         if textWithoutSpace(text: ingredientName.text!) != ""{
-            suggestList = suggestList.filter{
-                $0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
+            suggestList.removeAll{
+                !$0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
             }
         }
         
