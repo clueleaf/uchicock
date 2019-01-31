@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,7 +160,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQi-vj-yhu">
-                                                        <rect key="frame" x="33" y="-0.5" width="70" height="29"/>
+                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="w9p-vP-hlG"/>
                                                         </constraints>
@@ -195,7 +194,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2B-dN-7T1">
-                                                        <rect key="frame" x="33" y="-0.5" width="70" height="29"/>
+                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="mA0-Z2-jq7"/>
                                                         </constraints>
@@ -229,7 +228,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-WQ-e4H">
-                                                        <rect key="frame" x="33.5" y="-0.5" width="70" height="29"/>
+                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="y7U-gi-v9a"/>
                                                         </constraints>
@@ -271,7 +270,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccY-Dq-jOm">
-                                                        <rect key="frame" x="33" y="-0.5" width="70" height="29"/>
+                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="AMH-UB-G2C"/>
                                                         </constraints>
@@ -305,7 +304,7 @@
                                                         </connections>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAb-rY-WSy">
-                                                        <rect key="frame" x="33" y="-0.5" width="70" height="29"/>
+                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="J70-Oj-uih"/>
                                                         </constraints>
@@ -420,7 +419,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-mV-WHi" userLabel="Ingredient Name">
-                                                    <rect key="frame" x="38" y="14" width="229" height="21"/>
+                                                    <rect key="frame" x="38" y="14.5" width="229" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="oxF-8G-BjK"/>
                                                     </constraints>
@@ -429,7 +428,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqk-Jc-SWd" userLabel="在庫">
-                                                    <rect key="frame" x="272" y="14" width="30" height="21"/>
+                                                    <rect key="frame" x="272" y="14.5" width="30" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="IXG-oG-Lya"/>
                                                         <constraint firstAttribute="width" constant="30" id="LHY-sK-GFV"/>
@@ -439,7 +438,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F97-6R-ReK" userLabel="レシピ数">
-                                                    <rect key="frame" x="8" y="14" width="25" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="25" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="npA-PR-dnb"/>
                                                         <constraint firstAttribute="height" constant="21" id="o2A-56-jrz"/>
@@ -581,21 +580,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-5C-wrs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="ZQB-Mm-Qdu"/>
+                                    <constraint firstAttribute="height" constant="150" id="ZQB-Mm-Qdu"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReverseLookupIngredient" rowHeight="50" id="Cqt-dE-utD" customClass="ReverseLookupTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReverseLookupIngredient" rowHeight="40" id="Cqt-dE-utD" customClass="ReverseLookupTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqt-dE-utD" id="mVE-AU-RaY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC3-Wa-fMk">
-                                                    <rect key="frame" x="8" y="16.5" width="45" height="17"/>
+                                                    <rect key="frame" x="8" y="11.5" width="45" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="Uxr-nZ-SiC"/>
                                                     </constraints>
@@ -604,13 +603,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMg-Yc-sdd">
-                                                    <rect key="frame" x="56" y="14.5" width="253" height="21"/>
+                                                    <rect key="frame" x="56" y="9.5" width="253" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="変更" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iff-C5-RhC">
-                                                    <rect key="frame" x="312" y="14.5" width="30" height="21"/>
+                                                    <rect key="frame" x="312" y="9.5" width="30" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="HIV-WL-2xm"/>
                                                         <constraint firstAttribute="height" constant="21" id="rZo-bY-ZpB"/>
@@ -644,7 +643,7 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-yg-pjm">
-                                <rect key="frame" x="0.0" y="180" width="375" height="374"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="404"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReverseLookupRecipeItem" rowHeight="70" id="i38-1M-Dbk" customClass="ReverseLookupRecipeTableViewCell" customModule="uchicock" customModuleProvider="target">
@@ -966,15 +965,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="album-name-off" width="24" height="24"/>
-        <image name="order" width="24" height="24"/>
-        <image name="reload-and-shuffle" width="24" height="24"/>
-        <image name="tabbar-album" width="24" height="24"/>
-        <image name="tabbar-ingredient" width="24" height="24"/>
-        <image name="tabbar-recipe" width="24" height="24"/>
-        <image name="tabbar-reverse-lookup" width="24" height="24"/>
+        <image name="album-name-off" width="48" height="48"/>
+        <image name="order" width="48" height="48"/>
+        <image name="reload-and-shuffle" width="48" height="48"/>
+        <image name="tabbar-album" width="48" height="48"/>
+        <image name="tabbar-ingredient" width="48" height="48"/>
+        <image name="tabbar-recipe" width="48" height="48"/>
+        <image name="tabbar-reverse-lookup" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="daG-Cs-3sj"/>
+        <segue reference="S3o-3c-KvN"/>
     </inferredMetricsTieBreakers>
 </document>
