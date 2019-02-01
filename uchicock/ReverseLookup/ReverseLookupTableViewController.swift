@@ -346,6 +346,17 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
 
     // MARK: - UITableView
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView.tag == 0{
+            return 2
+        }else if tableView.tag == 1{
+            return 1
+        }else if tableView.tag == 2{
+            return 1
+        }
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView.tag == 0{
             return 0
@@ -483,14 +494,12 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }else if tableView.tag == 2{
-            print(999)
             let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
             let realm = try! Realm()
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
             cell.ingredient = ingredient
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
-            print(99999999)
             return cell
         }
         return UITableViewCell()
