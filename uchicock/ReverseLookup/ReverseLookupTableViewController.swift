@@ -43,8 +43,8 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        recipeTableView.emptyDataSetSource = self
-//        recipeTableView.emptyDataSetDelegate = self
+        recipeTableView.emptyDataSetSource = self
+        recipeTableView.emptyDataSetDelegate = self
         ingredientTextField1.delegate = self
         ingredientTextField2.delegate = self
         ingredientTextField3.delegate = self
@@ -69,7 +69,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        let selectedPathForIngredientTableView = ingredientTableView.indexPathForSelectedRow
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
