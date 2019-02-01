@@ -55,15 +55,12 @@ class ReverseLookupSelectIngredientViewController: UIViewController, UITextField
         ingredientList = realm.objects(Ingredient.self)
 
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
-        if #available(iOS 11.0, *) {
-            suggestTableView.contentInsetAdjustmentBehavior = .never
-        }
+        suggestTableView.contentInsetAdjustmentBehavior = .never
         reloadSuggestList()
         
+        // ???
         var safeAreaBottom: CGFloat = 0.0
-        if #available(iOS 11.0, *) {
-            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        }
+        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         suggestTableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     

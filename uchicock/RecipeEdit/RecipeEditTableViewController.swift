@@ -118,16 +118,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
+        tableView.contentInsetAdjustmentBehavior = .never
 
         focusRecipeNameFlag = true
         
         var safeAreaBottom: CGFloat = 0.0
-        if #available(iOS 11.0, *) {
-            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        }
+        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     

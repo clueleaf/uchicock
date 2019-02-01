@@ -42,16 +42,12 @@ class RecoverTableViewController: UITableViewController {
         setNavigationTitle()
         isRecovering = false
         
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
-        if #available(iOS 11.0, *) {
-            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        }
+        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     

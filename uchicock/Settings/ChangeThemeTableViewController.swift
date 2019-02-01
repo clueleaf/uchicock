@@ -58,15 +58,11 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
-        if #available(iOS 11.0, *) {
-            safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        }
+        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }
     

@@ -49,10 +49,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         header.setTitle("引っ張ってシャッフル", for: MJRefreshState.idle)
         header.setTitle("離すとシャッフル", for: MJRefreshState.pulling)
         header.setTitle("シャッフル中...", for: MJRefreshState.refreshing)
-        self.collectionView!.mj_header = header
-        if #available(iOS 11.0, *) {
-            collectionView!.contentInsetAdjustmentBehavior = .never
-        }
+        collectionView!.mj_header = header
+        collectionView!.contentInsetAdjustmentBehavior = .never
     }
     
     override func viewWillAppear(_ animated: Bool) {
