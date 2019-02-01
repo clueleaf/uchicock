@@ -105,7 +105,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
 
         loadIngredientsFromUserDefaults()
-//        ingredientTableView.reloadData()
+//        ingredientTableView.reloadData() //???
         reloadRecipeList()
         recipeTableView.reloadData()
         
@@ -486,7 +486,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
-            let cell = recipeTableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem", for: indexPath) as! ReverseLookupRecipeTableViewCell
+            let cell = recipeTableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem") as! ReverseLookupRecipeTableViewCell
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
