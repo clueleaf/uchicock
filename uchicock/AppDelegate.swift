@@ -105,22 +105,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
             }
             
-            if #available(iOS 10.3, *){
-                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
-                if hasReviewed{
-                    if daySpan > 270 && launchCountAfterReview! > 30{
-                        defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                        defaults.set(0, forKey: "LaunchCountAfterReview")
-                        defaults.set(true, forKey: "FirstRequestReview")
-                        SKStoreReviewController.requestReview()
-                    }
-                }else{
-                    if daySpan > 7 && launchCountAfterReview! > 7{
-                        defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                        defaults.set(0, forKey: "LaunchCountAfterReview")
-                        defaults.set(true, forKey: "FirstRequestReview")
-                        SKStoreReviewController.requestReview()
-                    }
+            let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
+            if hasReviewed{
+                if daySpan > 270 && launchCountAfterReview! > 30{
+                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+                    defaults.set(0, forKey: "LaunchCountAfterReview")
+                    defaults.set(true, forKey: "FirstRequestReview")
+                    SKStoreReviewController.requestReview()
+                }
+            }else{
+                if daySpan > 7 && launchCountAfterReview! > 7{
+                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+                    defaults.set(0, forKey: "LaunchCountAfterReview")
+                    defaults.set(true, forKey: "FirstRequestReview")
+                    SKStoreReviewController.requestReview()
                 }
             }
         }
