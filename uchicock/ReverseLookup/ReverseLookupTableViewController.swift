@@ -153,6 +153,13 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
     }
     
+    func setUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: "ReverseLookupFirst")
+        defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: "ReverseLookupSecond")
+        defaults.set(textWithoutSpace(text: ingredientTextField3.text!), forKey: "ReverseLookupThird")
+    }
+    
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         
@@ -231,49 +238,26 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
     
     func showRecipeTableView(){
-        transitioning = true
-        tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .middle)
-
-        let defaults = UserDefaults.standard
-        switch editingTextField{
-        case 0:
-            defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: "ReverseLookupFirst")
-        case 1:
-            defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: "ReverseLookupSecond")
-        case 2:
-            defaults.set(textWithoutSpace(text: ingredientTextField3.text!), forKey: "ReverseLookupThirt")
-        default:
-            break
+        if editingTextField == -1{
+            setUserDefaults()
+            reloadRecipeList()
+            recipeTableView.reloadData()
+        }else{
+            transitioning = true
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .bottom)
+            
+            setUserDefaults()
+            reloadRecipeList()
+            recipeTableView.reloadData()
+            
+            ingredientTextField1.resignFirstResponder()
+            ingredientTextField2.resignFirstResponder()
+            ingredientTextField3.resignFirstResponder()
+            editingTextField = -1
+            
+            transitioning = false
+            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .top)
         }
-        reloadRecipeList()
-        recipeTableView.reloadData()
-        
-        ingredientTextField1.resignFirstResponder()
-        ingredientTextField2.resignFirstResponder()
-        ingredientTextField3.resignFirstResponder()
-        editingTextField = -1
-        
-        transitioning = false
-        tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .middle)
-    }
-    
-    func showIngredientSuggestTableView(_ textField: UITextField){
-        transitioning = true
-        tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .middle)
-
-        if textField.tag == 0, let text = ingredientTextField1.text{
-            reloadIngredientSuggestList(text: text)
-            editingTextField = 0
-        }else if textField.tag == 1, let text = ingredientTextField2.text{
-            reloadIngredientSuggestList(text: text)
-            editingTextField = 1
-        }else if textField.tag == 2, let text = ingredientTextField3.text{
-            reloadIngredientSuggestList(text: text)
-            editingTextField = 2
-        }
-
-        transitioning = false
-        tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .middle)
     }
     
     // MARK: - UITextField
@@ -283,7 +267,35 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField){
-        showIngredientSuggestTableView(textField)
+        if editingTextField == -1{
+            transitioning = true
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .top)
+            
+            reloadIngredientSuggestList(text: textField.text!)
+            editingTextField = textField.tag
+
+            transitioning = false
+            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .bottom)
+        }else{
+            reloadIngredientSuggestList(text: textField.text!)
+            editingTextField = textField.tag
+        }
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        setUserDefaults()
+        if editingTextField == 0{
+            reloadIngredientSuggestList(text: ingredientTextField1.text!)
+        }else if editingTextField == 1{
+            reloadIngredientSuggestList(text: ingredientTextField2.text!)
+        }else if editingTextField == 2{
+            reloadIngredientSuggestList(text: ingredientTextField3.text!)
+        }else{
+            reloadRecipeList()
+            recipeTableView.reloadData()
+        }
+        return false
     }
 
     @objc func textFieldDidChange1(_ notification: Notification){
@@ -380,7 +392,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if tableView.tag == 0 && section == 0{
-            return 30
+            return 20
         }
         return 0
     }
@@ -390,7 +402,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             let label : UILabel = UILabel()
             label.backgroundColor = Style.basicBackgroundColor
             label.textColor = Style.labelTextColorLight
-            label.font = UIFont.systemFont(ofSize: 15)
+            label.font = UIFont.systemFont(ofSize: 12)
             label.text = "  材料名は完全一致で検索されます"
             return label
         }
@@ -409,9 +421,19 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
-            return recipeBasicList.count
+//            return recipeBasicList.count
+            if recipeBasicList.count < 3{
+                return recipeBasicList.count
+            }else{
+                return 3
+            }
         }else if tableView.tag == 2{
-            return ingredientSuggestList.count
+//            return ingredientSuggestList.count
+            if ingredientSuggestList.count < 3{
+                return ingredientSuggestList.count
+            }else{
+                return 3
+            }
         }
         return 0
     }
@@ -424,7 +446,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             if indexPath.section == 0{
                 return 40
             }else if indexPath.section == 1{
-                return safeAreaHeight - 40 * 3 - 30
+                return safeAreaHeight - 40 * 3 - 20
             }
         }else if tableView.tag == 1{
             return 70
