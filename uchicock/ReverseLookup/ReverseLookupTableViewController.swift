@@ -13,6 +13,8 @@ import DZNEmptyDataSet
 
 class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var clearButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var recipeTableView: UITableView!
     @IBOutlet weak var ingredientSuggestTableView: UITableView!
     @IBOutlet weak var ingredientNumberLabel1: UILabel!
@@ -65,6 +67,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
+        
+        clearButton.isEnabled = true
+        cancelButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,17 +146,17 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     func loadIngredientsFromUserDefaults(){
         let defaults = UserDefaults.standard
         if let first = defaults.string(forKey: "ReverseLookupFirst"){
-            ingredientTextField1.text = first
+            ingredientTextField1.text = textWithoutSpace(text: first)
         }else{
             defaults.set("", forKey: "ReverseLookupFirst")
         }
         if let second = defaults.string(forKey: "ReverseLookupSecond"){
-            ingredientTextField2.text = second
+            ingredientTextField2.text = textWithoutSpace(text: second)
         }else{
             defaults.set("", forKey: "ReverseLookupSecond")
         }
         if let third = defaults.string(forKey: "ReverseLookupThird"){
-            ingredientTextField3.text = third
+            ingredientTextField3.text = textWithoutSpace(text: third)
         }else{
             defaults.set("", forKey: "ReverseLookupThird")
         }
@@ -167,30 +172,30 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         
-        if ingredientTextField1.text != nil && ingredientTextField1.text != ""{
-            if ingredientTextField2.text != nil && ingredientTextField2.text != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text != ""{
-                    createRecipeBasicList(text1: ingredientTextField1.text!, text2: ingredientTextField2.text!, text3: ingredientTextField3.text!)
+        if ingredientTextField1.text != nil && textWithoutSpace(text: ingredientTextField1.text!) != ""{
+            if ingredientTextField2.text != nil && textWithoutSpace(text: ingredientTextField2.text!) != ""{
+                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField2.text!), text3: textWithoutSpace(text: ingredientTextField3.text!))
                 }else{
-                    createRecipeBasicList(text1: ingredientTextField1.text!, text2: ingredientTextField2.text!, text3: nil)
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField2.text!), text3: nil)
                 }
             }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text != ""{
-                    createRecipeBasicList(text1: ingredientTextField1.text!, text2: ingredientTextField3.text!, text3: nil)
+                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField3.text!), text3: nil)
                 }else{
-                    createRecipeBasicList(text1: ingredientTextField1.text!, text2: nil, text3: nil)
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: nil, text3: nil)
                 }
             }
         }else{
-            if ingredientTextField2.text != nil && ingredientTextField2.text != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text != ""{
-                    createRecipeBasicList(text1: ingredientTextField2.text!, text2: ingredientTextField3.text!, text3: nil)
+            if ingredientTextField2.text != nil && textWithoutSpace(text: ingredientTextField2.text!) != ""{
+                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField2.text!), text2: textWithoutSpace(text: ingredientTextField3.text!), text3: nil)
                 }else{
-                    createRecipeBasicList(text1: ingredientTextField2.text!, text2: nil, text3: nil)
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField2.text!), text2: nil, text3: nil)
                 }
             }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text != ""{
-                    createRecipeBasicList(text1: ingredientTextField3.text!, text2: nil, text3: nil)
+                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
+                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField3.text!), text2: nil, text3: nil)
                 }else{
                     createRecipeBasicList()
                 }
@@ -244,6 +249,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     func showRecipeTableView(){
         if editingTextField == -1{
             setUserDefaults()
+            loadIngredientsFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
@@ -251,6 +257,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             
             setUserDefaults()
+            loadIngredientsFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
             
@@ -262,6 +269,8 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             transitioning = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
         }
+        clearButton.isEnabled = true
+        cancelButton.isEnabled = false
     }
     
     // MARK: - UITextField
@@ -284,6 +293,8 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
         }
+        clearButton.isEnabled = false
+        cancelButton.isEnabled = true
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -517,6 +528,26 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         self.present(alertView, animated: true, completion: nil)
     }
 
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        transitioning = true
+        tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
+        
+        loadIngredientsFromUserDefaults()
+        reloadRecipeList()
+        recipeTableView.reloadData()
+        
+        ingredientTextField1.resignFirstResponder()
+        ingredientTextField2.resignFirstResponder()
+        ingredientTextField3.resignFirstResponder()
+        editingTextField = -1
+        
+        transitioning = false
+        tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
+        
+        clearButton.isEnabled = true
+        cancelButton.isEnabled = false
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {

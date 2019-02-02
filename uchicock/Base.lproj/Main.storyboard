@@ -848,6 +848,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="逆引き" id="8fj-Z9-rUQ">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="Sjn-IS-Nif">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="AvE-Vu-UgF" id="7tp-g7-gEC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="クリア" id="Qfu-XE-qKZ">
                             <connections>
                                 <action selector="clearButtonTapped:" destination="AvE-Vu-UgF" id="Mto-Jm-IMj"/>
@@ -855,6 +860,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="Sjn-IS-Nif" id="I3m-Vm-207"/>
+                        <outlet property="clearButton" destination="Qfu-XE-qKZ" id="PsV-nv-GFH"/>
                         <outlet property="ingredientNumberLabel1" destination="wMT-0a-sMp" id="1uy-Ph-gDt"/>
                         <outlet property="ingredientNumberLabel2" destination="tpv-p7-PT8" id="Z2n-Ey-5zT"/>
                         <outlet property="ingredientNumberLabel3" destination="fvY-4O-ico" id="71r-sa-Yav"/>
