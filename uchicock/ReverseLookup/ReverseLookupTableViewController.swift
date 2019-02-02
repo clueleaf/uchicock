@@ -31,6 +31,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
+    var safeAreaHeight: CGFloat = 0
     var transitioning = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if Style.isStatusBarLight{
@@ -68,6 +69,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let window = UIApplication.shared.keyWindow
+        safeAreaHeight = view.frame.size.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
         
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
@@ -238,14 +242,13 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
     
     func showRecipeTableView(){
-        self.tableView.reloadData()
         if editingTextField == -1{
             setUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
             transitioning = true
-            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .bottom)
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             
             setUserDefaults()
             reloadRecipeList()
@@ -257,7 +260,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             editingTextField = -1
             
             transitioning = false
-            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .top)
+            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
         }
     }
     
@@ -270,13 +273,13 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     func textFieldDidBeginEditing(_ textField: UITextField){
         if editingTextField == -1{
             transitioning = true
-            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .top)
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
 
             transitioning = false
-            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .bottom)
+            tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .right)
         }else{
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
@@ -390,6 +393,10 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
         return nil
     }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if tableView.tag == 0{
@@ -403,21 +410,14 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
-            //TODO
-//            return recipeBasicList.count
-            return recipeBasicList.count < 3 ? recipeBasicList.count : 3
+            return recipeBasicList.count
         }else if tableView.tag == 2{
-            //TODO
-//            return ingredientSuggestList.count
-            return ingredientSuggestList.count < 3 ? ingredientSuggestList.count : 3
+            return ingredientSuggestList.count
         }
         return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let window = UIApplication.shared.keyWindow
-        let safeAreaHeight = view.frame.size.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
-
         if tableView.tag == 0{
             if indexPath.section == 0{
                 return 40
