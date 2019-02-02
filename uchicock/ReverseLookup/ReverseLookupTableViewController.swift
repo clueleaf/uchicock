@@ -383,7 +383,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         if tableView.tag == 0{
             return 0
         }
-        return 20
+        return 25
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -391,14 +391,14 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             let label : UILabel = UILabel()
             label.backgroundColor = Style.tableViewHeaderBackgroundColor
             label.textColor = Style.labelTextColorOnDisableBadge
-            label.font = UIFont.boldSystemFont(ofSize: 12)
+            label.font = UIFont.boldSystemFont(ofSize: 14)
             label.text = "  上の材料(完全一致)をすべて使うレシピ(" + String(self.recipeBasicList.count) + ")"
             return label
         }else if tableView.tag == 2{
             let label : UILabel = UILabel()
             label.backgroundColor = Style.tableViewHeaderBackgroundColor
             label.textColor = Style.labelTextColorOnDisableBadge
-            label.font = UIFont.boldSystemFont(ofSize: 12)
+            label.font = UIFont.boldSystemFont(ofSize: 14)
             label.text = "  材料候補"
             return label
         }
