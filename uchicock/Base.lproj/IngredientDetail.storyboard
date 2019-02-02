@@ -198,10 +198,8 @@
                                                                         <action selector="reminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="xLm-E8-4rx"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs">
-                                                                    <rect key="frame" x="3.5" y="61" width="86" height="29"/>
-                                                                    <string key="text">リマインダーに
-登録</string>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="リマインダー" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs">
+                                                                    <rect key="frame" x="9.5" y="61" width="74" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -392,14 +390,15 @@
                     <connections>
                         <outlet property="amazonButton" destination="Tyv-e1-O7y" id="lrK-LI-yvF"/>
                         <outlet property="amazonButtonLabel" destination="IuT-H0-mbG" id="wfc-Fq-KE2"/>
+                        <outlet property="amazonContainerView" destination="IUb-qb-HOW" id="7N9-Zt-MQe"/>
                         <outlet property="category" destination="bbv-Mt-9IU" id="i9Z-O6-rIg"/>
                         <outlet property="categoryLabel" destination="iM9-Wc-cPe" id="Wky-AB-l9f"/>
                         <outlet property="deleteButton" destination="2Oo-xf-RBe" id="UAg-2u-cvH"/>
                         <outlet property="deleteButtonLabel" destination="jqM-l2-1Yk" id="lSv-ko-xGL"/>
+                        <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
                         <outlet property="editButtonLabel" destination="Oht-Sh-YRZ" id="iXV-mo-0QH"/>
                         <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
-                        <outlet property="ingredientNameTrailingConstraint" destination="HXW-rm-x1y" id="rPD-Qk-Fgx"/>
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
                         <outlet property="memoLabel" destination="ffu-Ky-BvZ" id="PkI-2d-zFI"/>
                         <outlet property="order" destination="n3x-nd-eiY" id="OoC-4k-CW7"/>

@@ -308,8 +308,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             } else{
-                let favoriteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
-                favoriteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+                let deleteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+                deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                     let realm = try! Realm()
                     try! realm.write {
                         realm.delete(ingredient)
@@ -318,14 +318,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                 }))
-                favoriteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 if Style.isStatusBarLight{
-                    favoriteAlertView.setStatusBarStyle(.lightContent)
+                    deleteAlertView.setStatusBarStyle(.lightContent)
                 }else{
-                    favoriteAlertView.setStatusBarStyle(.default)
+                    deleteAlertView.setStatusBarStyle(.default)
                 }
-                favoriteAlertView.modalPresentationCapturesStatusBarAppearance = true
-                self.present(favoriteAlertView, animated: true, completion: nil)
+                deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
+                self.present(deleteAlertView, animated: true, completion: nil)
             }
         }
         del.backgroundColor = Style.deleteColor

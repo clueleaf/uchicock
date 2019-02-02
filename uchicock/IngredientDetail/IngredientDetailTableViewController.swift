@@ -15,7 +15,6 @@ class IngredientDetailTableViewController: UITableViewController {
 
     
     @IBOutlet weak var ingredientName: CopyableLabel!
-    @IBOutlet weak var ingredientNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
@@ -31,6 +30,8 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBOutlet weak var reminderButtonLabel: UILabel!
     @IBOutlet weak var amazonButtonLabel: UILabel!
     @IBOutlet weak var deleteButtonLabel: UILabel!
+    @IBOutlet weak var amazonContainerView: UIView!
+    @IBOutlet weak var deleteContainerView: UIView!
     
     var editVC : IngredientEditTableViewController!
     var ingredientId = String()
@@ -148,18 +149,6 @@ class IngredientDetailTableViewController: UITableViewController {
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
             
-//            if Amazon.product.contains(ingredient.ingredientName){
-//                searchInAmazonButton.isEnabled = true
-//                searchInAmazonButton.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
-//                searchInAmazonButton.backgroundColor = Style.secondaryColor
-//                ingredientNameTrailingConstraint.constant = 76
-//            }else{
-//                searchInAmazonButton.isEnabled = false
-//                searchInAmazonButton.setTitleColor(UIColor.clear, for: .normal)
-//                searchInAmazonButton.backgroundColor = UIColor.clear
-//                ingredientNameTrailingConstraint.constant = 8
-//            }
-            
             editButton.backgroundColor = Style.secondaryColor
             editButton.tintColor = Style.basicBackgroundColor
             reminderButton.backgroundColor = Style.secondaryColor
@@ -171,6 +160,18 @@ class IngredientDetailTableViewController: UITableViewController {
             
             reloadIngredientRecipeBasicList()
             
+            if Amazon.product.contains(ingredient.ingredientName){
+                amazonContainerView.isHidden = false
+            }else{
+                amazonContainerView.isHidden = true
+            }
+            
+            if ingredient.recipeIngredients.count > 0{
+                deleteContainerView.isHidden = true
+            }else{
+                deleteContainerView.isHidden = false
+            }
+
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             self.tableView.reloadData()
@@ -453,7 +454,7 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBAction func amazonButtonTapped(_ sender: UIButton) {
         var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
         var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-        
+
         if UIApplication.shared.canOpenURL(url!) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }else{
@@ -466,23 +467,34 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
-            action in
-            let realm = try! Realm()
-            try! realm.write {
-                realm.delete(self.ingredient)
+        if ingredient.recipeIngredients.count > 0 {
+            let alertView = UIAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            if Style.isStatusBarLight{
+                alertView.setStatusBarStyle(.lightContent)
+            }else{
+                alertView.setStatusBarStyle(.default)
             }
-            _ = self.navigationController?.popViewController(animated: true)
-        })
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        if Style.isStatusBarLight{
-            alertView.setStatusBarStyle(.lightContent)
-        }else{
-            alertView.setStatusBarStyle(.default)
+            alertView.modalPresentationCapturesStatusBarAppearance = true
+            self.present(alertView, animated: true, completion: nil)
+        } else{
+            let deleteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+            deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.delete(self.ingredient)
+                }
+                _ = self.navigationController?.popViewController(animated: true)
+            }))
+            deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            if Style.isStatusBarLight{
+                deleteAlertView.setStatusBarStyle(.lightContent)
+            }else{
+                deleteAlertView.setStatusBarStyle(.default)
+            }
+            deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
+            self.present(deleteAlertView, animated: true, completion: nil)
         }
-        alertView.modalPresentationCapturesStatusBarAppearance = true
-        present(alertView, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
