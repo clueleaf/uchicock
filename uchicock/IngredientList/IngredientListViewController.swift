@@ -162,8 +162,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
 
         ingredientBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
-        
-        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+
+        if let allIngredientNum = ingredientList?.count{
+            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+        }else{
+            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+        }
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -207,8 +211,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 if ingredientBasicList.count == 0{
                     tableView.reloadData()
                 }
-                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
-            }            
+                if let allIngredientNum = ingredientList?.count{
+                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+                }else{
+                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+                }
+            }
         }
     }
     
@@ -316,7 +324,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
-                    self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
+                    if let allIngredientNum = self.ingredientList?.count{
+                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+                    }else{
+                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
+                    }
                 }))
                 deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 if Style.isStatusBarLight{

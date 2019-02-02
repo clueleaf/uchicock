@@ -359,7 +359,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
         
-        self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
+        if let allRecipeNum = recipeList?.count{
+            self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(allRecipeNum) + ")"
+        }else{
+            self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
+        }
     }
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -495,7 +499,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
+                if let allRecipeNum = self.recipeList?.count{
+                    self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(allRecipeNum) + ")"
+                }else{
+                    self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
+                }
             }))
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             if Style.isStatusBarLight{
