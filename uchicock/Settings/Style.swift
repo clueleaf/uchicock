@@ -79,7 +79,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
-        deleteColor = FlatRedDark()
+        deleteColor = FlatWatermelonDark()
         tabBarTintColor = FlatOrange()
         tabBarBarTintColor = FlatBlackDark()
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.5, blue:0.0, alpha:1.0)
@@ -107,7 +107,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        deleteColor = FlatWatermelon()
+        deleteColor = FlatRed()
         tabBarTintColor = FlatPink()
         tabBarBarTintColor = FlatWhite()
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
@@ -275,7 +275,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = FlatWhite()
-        deleteColor = FlatRed()
+        deleteColor = FlatWatermelonDark()
         tabBarTintColor = FlatMint()
         tabBarBarTintColor = FlatWhite()
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
@@ -303,7 +303,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = FlatWhite()
-        deleteColor = FlatRed()
+        deleteColor = FlatRedDark()
         tabBarTintColor = FlatWatermelon()
         tabBarBarTintColor = FlatWhite()
         tableViewCellSelectedBackgroundColor = UIColor(red:1.0, green:0.7, blue:0.75, alpha:1.0)
@@ -331,7 +331,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
-        deleteColor = FlatRedDark()
+        deleteColor = FlatRed()
         tabBarTintColor = FlatLimeDark()
         tabBarBarTintColor = FlatBlackDark()
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.35, blue:0.1, alpha:1.0)
@@ -387,7 +387,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
-        deleteColor = FlatRedDark()
+        deleteColor = FlatWatermelonDark()
         tabBarTintColor = FlatWatermelonDark()
         tabBarBarTintColor = FlatWhite()
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
@@ -443,7 +443,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
-        deleteColor = FlatRedDark()
+        deleteColor = FlatWatermelonDark()
         tabBarTintColor = FlatSkyBlueDark()
         tabBarBarTintColor = UIColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
@@ -471,7 +471,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = FlatWhite()
-        deleteColor = FlatRed()
+        deleteColor = FlatRedDark()
         tabBarTintColor = FlatOrangeDark()
         tabBarBarTintColor = UIColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
@@ -527,7 +527,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = UIColor.white
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        deleteColor = FlatWatermelon()
+        deleteColor = FlatRed()
         tabBarTintColor = FlatPinkDark()
         tabBarBarTintColor = UIColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
@@ -639,7 +639,7 @@ struct Style{
         labelTextColorOnDisableBadge = FlatBlack()
         textFieldBackgroundColor = FlatGrayDark()
         filterContainerBackgroundColor = FlatBlack()
-        deleteColor = FlatRedDark()
+        deleteColor = FlatRed()
         tabBarTintColor = FlatGreenDark()
         tabBarBarTintColor = UIColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.45, blue:0.33, alpha:1.0)
