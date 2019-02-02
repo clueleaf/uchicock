@@ -17,7 +17,6 @@ class RecipeDetailTableViewController: UITableViewController{
 
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var openInSafari: UIButton!
     @IBOutlet weak var recipeName: CopyableLabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var starLabel: UILabel!
@@ -32,7 +31,14 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBOutlet weak var madeNumPlusButton: UIButton!
     @IBOutlet weak var madeNumMinusButton: UIButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
-    @IBOutlet weak var deleteLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var openInSafariButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var editButtonLabel: UILabel!
+    @IBOutlet weak var shareButtonLabel: UILabel!
+    @IBOutlet weak var openInSafariButtonLabel: UILabel!
+    @IBOutlet weak var deleteButtonLabel: UILabel!
     
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
@@ -58,11 +64,31 @@ class RecipeDetailTableViewController: UITableViewController{
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
         
-        openInSafari.layer.cornerRadius = 4
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
         madeNumMinusButton.layer.borderWidth = 1.5
+        
+        editButton.layer.cornerRadius = editButton.frame.size.width / 2
+        editButton.clipsToBounds = true
+//        editButton.layer.borderWidth = 3.0
+        let editImage = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
+        editButton.setImage(editImage, for: .normal)
+        shareButton.layer.cornerRadius = shareButton.frame.size.width / 2
+        let shareImage = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
+        shareButton.setImage(shareImage, for: .normal)
+        shareButton.clipsToBounds = true
+//        shareButton.layer.borderWidth = 3.0
+        openInSafariButton.layer.cornerRadius = openInSafariButton.frame.size.width / 2
+        let openInSafariImage = UIImage(named: "safari")?.withRenderingMode(.alwaysTemplate)
+        openInSafariButton.setImage(openInSafariImage, for: .normal)
+        openInSafariButton.clipsToBounds = true
+//        openInSafariButton.layer.borderWidth = 3.0
+        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
+        let deleteImage = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
+        deleteButton.setImage(deleteImage, for: .normal)
+        deleteButton.clipsToBounds = true
+//        deleteButton.layer.borderWidth = 3.0
 
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
@@ -89,8 +115,12 @@ class RecipeDetailTableViewController: UITableViewController{
         method.textColor = Style.labelTextColor
         madeNumLabel.textColor = Style.labelTextColor
         madeNumCountUpLabel.textColor = Style.labelTextColor
+        editButtonLabel.textColor = Style.labelTextColor
+        shareButtonLabel.textColor = Style.labelTextColor
+        openInSafariButtonLabel.textColor = Style.labelTextColor
+        deleteButtonLabel.textColor = Style.deleteColor
+
         photoBackground.backgroundColor = Style.basicBackgroundColor
-        openInSafari.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
@@ -116,15 +146,15 @@ class RecipeDetailTableViewController: UITableViewController{
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
             
-            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-            if UIApplication.shared.canOpenURL(url!) {
-                openInSafari.isEnabled = true
-                openInSafari.backgroundColor = Style.secondaryColor
-            }else{
-                openInSafari.isEnabled = false
-                openInSafari.backgroundColor = Style.badgeDisableBackgroundColor
-            }
+//            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+//            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+//            if UIApplication.shared.canOpenURL(url!) {
+//                openInSafari.isEnabled = true
+//                openInSafari.backgroundColor = Style.secondaryColor
+//            }else{
+//                openInSafari.isEnabled = false
+//                openInSafari.backgroundColor = Style.badgeDisableBackgroundColor
+//            }
             
             noPhotoFlag = false
             if let image = recipe.imageData{
@@ -210,8 +240,19 @@ class RecipeDetailTableViewController: UITableViewController{
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()
 
-            deleteLabel.textColor = Style.deleteColor
-            
+            editButton.backgroundColor = Style.secondaryColor
+            editButton.tintColor = Style.basicBackgroundColor
+//            editButton.layer.borderColor = Style.secondaryColor.cgColor
+            shareButton.backgroundColor = Style.secondaryColor
+            shareButton.tintColor = Style.basicBackgroundColor
+//            shareButton.layer.borderColor = Style.secondaryColor.cgColor
+            openInSafariButton.backgroundColor = Style.secondaryColor
+            openInSafariButton.tintColor = Style.basicBackgroundColor
+//            openInSafariButton.layer.borderColor = Style.secondaryColor.cgColor
+            deleteButton.backgroundColor = Style.deleteColor
+            deleteButton.tintColor = Style.basicBackgroundColor
+//            deleteButton.layer.borderColor = Style.deleteColor.cgColor
+
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
             tableView.reloadData()
@@ -415,41 +456,6 @@ class RecipeDetailTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
-        }else if indexPath.section == 2{
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
-                action in
-                let realm = try! Realm()
-                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for i in 0 ..< self.recipe.recipeIngredients.count {
-                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipe.recipeIngredients[i].id)!
-                    deletingRecipeIngredientList.append(recipeIngredient)
-                }
-                try! realm.write{
-                    for ri in deletingRecipeIngredientList{
-                        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                        for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
-                            if ingredient.recipeIngredients[i].id == ri.id{
-                                ingredient.recipeIngredients.remove(at: i)
-                            }
-                        }
-                    }
-                    for ri in deletingRecipeIngredientList{
-                        realm.delete(ri)
-                    }
-                    realm.delete(self.recipe)
-                }
-                _ = self.navigationController?.popViewController(animated: true)
-                })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-            if Style.isStatusBarLight{
-                alertView.setStatusBarStyle(.lightContent)
-            }else{
-                alertView.setStatusBarStyle(.default)
-            }
-            alertView.modalPresentationCapturesStatusBarAppearance = true
-            present(alertView, animated: true, completion: nil)
-            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
@@ -526,49 +532,6 @@ class RecipeDetailTableViewController: UITableViewController{
     }
 
     // MARK: - IBAction
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "PushEditRecipe", sender: UIBarButtonItem())
-    }
-    
-    @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
-        let excludedActivityTypes = [
-            UIActivityType.message,
-            UIActivityType.mail,
-            UIActivityType.print,
-            UIActivityType.assignToContact,
-            UIActivityType.addToReadingList,
-            UIActivityType.postToFlickr,
-            UIActivityType.postToVimeo,
-            UIActivityType.postToWeibo,
-            UIActivityType.postToTencentWeibo,
-            UIActivityType.airDrop,
-            UIActivityType.openInIBooks
-        ]
-        
-        let shareText = createLongMessage()
-        if noPhotoFlag == false, let image = photo.image {
-            let activityVC = UIActivityViewController(activityItems: [shareText, image], applicationActivities: nil)
-            activityVC.excludedActivityTypes = excludedActivityTypes
-            if Style.isStatusBarLight{
-                activityVC.setStatusBarStyle(.lightContent)
-            }else{
-                activityVC.setStatusBarStyle(.default)
-            }
-            activityVC.modalPresentationCapturesStatusBarAppearance = true
-            self.present(activityVC, animated: true, completion: nil)
-        }else{
-            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
-            activityVC.excludedActivityTypes = excludedActivityTypes
-            if Style.isStatusBarLight{
-                activityVC.setStatusBarStyle(.lightContent)
-            }else{
-                activityVC.setStatusBarStyle(.default)
-            }
-            activityVC.modalPresentationCapturesStatusBarAppearance = true
-            self.present(activityVC, animated: true, completion: nil)
-        }
-    }
-    
     func createLongMessage() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
         switch recipe.method{
@@ -592,14 +555,6 @@ class RecipeDetailTableViewController: UITableViewController{
             message += "\n" + recipe.memo
         }
         return message
-    }
-    
-    @IBAction func openInSafariTapped(_ sender: UIButton) {
-        let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-        if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-        }
     }
     
     @IBAction func star1Tapped(_ sender: UIButton) {
@@ -681,6 +636,93 @@ class RecipeDetailTableViewController: UITableViewController{
             }
         }
         setMadeNumButton()
+    }
+    
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "PushEditRecipe", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        let excludedActivityTypes = [
+            UIActivityType.message,
+            UIActivityType.mail,
+            UIActivityType.print,
+            UIActivityType.assignToContact,
+            UIActivityType.addToReadingList,
+            UIActivityType.postToFlickr,
+            UIActivityType.postToVimeo,
+            UIActivityType.postToWeibo,
+            UIActivityType.postToTencentWeibo,
+            UIActivityType.airDrop,
+            UIActivityType.openInIBooks
+        ]
+        
+        let shareText = createLongMessage()
+        if noPhotoFlag == false, let image = photo.image {
+            let activityVC = UIActivityViewController(activityItems: [shareText, image], applicationActivities: nil)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            if Style.isStatusBarLight{
+                activityVC.setStatusBarStyle(.lightContent)
+            }else{
+                activityVC.setStatusBarStyle(.default)
+            }
+            activityVC.modalPresentationCapturesStatusBarAppearance = true
+            self.present(activityVC, animated: true, completion: nil)
+        }else{
+            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            if Style.isStatusBarLight{
+                activityVC.setStatusBarStyle(.lightContent)
+            }else{
+                activityVC.setStatusBarStyle(.default)
+            }
+            activityVC.modalPresentationCapturesStatusBarAppearance = true
+            self.present(activityVC, animated: true, completion: nil)
+        }        
+    }
+    
+    @IBAction func openInSafariButtonTapped(_ sender: UIButton) {
+        let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+        let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        if UIApplication.shared.canOpenURL(url!){
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        let alertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
+            action in
+            let realm = try! Realm()
+            let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+            for i in 0 ..< self.recipe.recipeIngredients.count {
+                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipe.recipeIngredients[i].id)!
+                deletingRecipeIngredientList.append(recipeIngredient)
+            }
+            try! realm.write{
+                for ri in deletingRecipeIngredientList{
+                    let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                    for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
+                        if ingredient.recipeIngredients[i].id == ri.id{
+                            ingredient.recipeIngredients.remove(at: i)
+                        }
+                    }
+                }
+                for ri in deletingRecipeIngredientList{
+                    realm.delete(ri)
+                }
+                realm.delete(self.recipe)
+            }
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        if Style.isStatusBarLight{
+            alertView.setStatusBarStyle(.lightContent)
+        }else{
+            alertView.setStatusBarStyle(.default)
+        }
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
