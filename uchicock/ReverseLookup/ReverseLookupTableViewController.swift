@@ -90,9 +90,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientTextField2.textColor = Style.labelTextColor
         ingredientTextField3.textColor = Style.labelTextColor
         
-//        cell.ingredientNumberLabel.backgroundColor = Style.basicBackgroundColor
-//        cell.ingredientNumberLabel.clipsToBounds = true
-
         if Style.isDark {
             ingredientTextField1.keyboardAppearance = .dark
             ingredientTextField2.keyboardAppearance = .dark
@@ -104,7 +101,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
 
         loadIngredientsFromUserDefaults()
-//        ingredientTableView.reloadData() //???
+//        ingredientTableView.reloadData()
         reloadRecipeList()
         recipeTableView.reloadData()
         
@@ -261,7 +258,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
     
     func showIngredientSuggestTableView(_ textField: UITextField){
-        print("================")
         transitioning = true
         tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .middle)
 
@@ -402,10 +398,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        print("-----")
         if tableView.tag == 0{
-            print("tableView.tag: ")
-            print(tableView.tag)
             if section == 0{
                 return 3
             }else if section == 1{
@@ -416,14 +409,8 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
-            print("tableView.tag: ")
-            print(tableView.tag)
-            print(recipeBasicList.count)
             return recipeBasicList.count
         }else if tableView.tag == 2{
-            print("tableView.tag: ")
-            print(tableView.tag)
-            print(ingredientSuggestList.count)
             return ingredientSuggestList.count
         }
         return 0

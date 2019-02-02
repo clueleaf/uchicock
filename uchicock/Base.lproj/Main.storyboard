@@ -16,7 +16,7 @@
                 <viewControllerPlaceholder storyboardName="RecipeEdit" id="jeX-PC-Dfv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUG-vh-mn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1390" y="-293"/>
+            <point key="canvasLocation" x="-1175" y="345"/>
         </scene>
         <!--レシピ-->
         <scene sceneID="tne-QT-ifu">
@@ -995,7 +995,7 @@
                 <viewControllerPlaceholder storyboardName="RecipeDetail" id="l9T-EK-sHg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ZQ-PX-xJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-469" y="1009"/>
+            <point key="canvasLocation" x="-320" y="1174"/>
         </scene>
         <!--IngredientDetail-->
         <scene sceneID="RHx-MA-SH4">
@@ -1024,7 +1024,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leN-k5-xmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4209" y="1559"/>
+            <point key="canvasLocation" x="-4276" y="1847"/>
         </scene>
         <!--逆引き-->
         <scene sceneID="Hpa-Qg-biA">
@@ -1066,7 +1066,7 @@
                 <viewControllerPlaceholder storyboardName="IngredientEdit" id="jN4-8a-vgU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVp-iq-n4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1020" y="3088"/>
+            <point key="canvasLocation" x="-1020" y="2750"/>
         </scene>
         <!--Settings-->
         <scene sceneID="9Gz-xq-ByZ">

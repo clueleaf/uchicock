@@ -67,7 +67,6 @@
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
 		9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE19C1E979FA500546B47 /* Settings.storyboard */; };
 		9BFCE1A21E97A0CE00546B47 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */; };
-		9BFCE1A51E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */; };
 		9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */; };
 		9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */; };
 /* End PBXBuildFile section */
@@ -161,7 +160,6 @@
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
 		9BFCE19D1E979FA500546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		9BFCE1A11E97A0CE00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
-		9BFCE1A41E97A19700546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReverseLookupSelectIngredient.storyboard; sourceTree = "<group>"; };
 		9BFCE1A71E97A39400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeDetail.storyboard; sourceTree = "<group>"; };
 		9BFCE1AA1E97A41400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientDetail.storyboard; sourceTree = "<group>"; };
 		BB9BC0F119F8CAA7EABB2D48 /* Pods-uchicock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
 				9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */,
 				9BFCE1991E979D3100546B47 /* Reminder.storyboard */,
-				9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */,
 				9BFCE19C1E979FA500546B47 /* Settings.storyboard */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 			);
@@ -532,7 +529,6 @@
 				9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */,
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
-				9BFCE1A51E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
@@ -759,14 +755,6 @@
 				9BFCE1A11E97A0CE00546B47 /* Base */,
 			);
 			name = IngredientEdit.storyboard;
-			sourceTree = "<group>";
-		};
-		9BFCE1A31E97A19700546B47 /* ReverseLookupSelectIngredient.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9BFCE1A41E97A19700546B47 /* Base */,
-			);
-			name = ReverseLookupSelectIngredient.storyboard;
 			sourceTree = "<group>";
 		};
 		9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */ = {
