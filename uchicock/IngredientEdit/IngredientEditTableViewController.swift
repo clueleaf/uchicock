@@ -66,7 +66,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInsetAdjustmentBehavior = .never
 
-        var safeAreaBottom: CGFloat = 0.0
+        let safeAreaBottom: CGFloat = 0.0
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
     }

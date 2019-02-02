@@ -49,16 +49,16 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientTextField2.delegate = self
         ingredientTextField3.delegate = self
         ingredientTextField1.tag = 0
-        ingredientTextField1.tag = 1
-        ingredientTextField1.tag = 2
+        ingredientTextField2.tag = 1
+        ingredientTextField3.tag = 2
 
-        tableView.tag = 0
+        self.tableView.tag = 0
         recipeTableView.tag = 1
         ingredientSuggestTableView.tag = 2
 
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
+        self.tableView.contentInsetAdjustmentBehavior = .never
         recipeTableView.contentInsetAdjustmentBehavior = .never
         ingredientSuggestTableView.contentInsetAdjustmentBehavior = .never
         
@@ -402,7 +402,10 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        print("-----")
         if tableView.tag == 0{
+            print("tableView.tag: ")
+            print(tableView.tag)
             if section == 0{
                 return 3
             }else if section == 1{
@@ -413,8 +416,14 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
+            print("tableView.tag: ")
+            print(tableView.tag)
+            print(recipeBasicList.count)
             return recipeBasicList.count
         }else if tableView.tag == 2{
+            print("tableView.tag: ")
+            print(tableView.tag)
+            print(ingredientSuggestList.count)
             return ingredientSuggestList.count
         }
         return 0

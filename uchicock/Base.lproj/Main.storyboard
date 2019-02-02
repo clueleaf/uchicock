@@ -762,7 +762,7 @@
                                                     </prototypes>
                                                     <connections>
                                                         <outlet property="dataSource" destination="AvE-Vu-UgF" id="kWa-Xf-lc3"/>
-                                                        <outlet property="delegate" destination="AvE-Vu-UgF" id="DXL-Wt-Uxh"/>
+                                                        <outlet property="delegate" destination="AvE-Vu-UgF" id="3kF-5F-OT2"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
