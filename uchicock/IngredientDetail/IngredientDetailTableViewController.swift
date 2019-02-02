@@ -16,7 +16,6 @@ class IngredientDetailTableViewController: UITableViewController {
     
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var ingredientNameTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var searchInAmazonButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
@@ -24,8 +23,15 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var order: UISegmentedControl!
-    @IBOutlet weak var deleteLabel: UILabel!
-
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var reminderButton: UIButton!
+    @IBOutlet weak var amazonButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var editButtonLabel: UILabel!
+    @IBOutlet weak var reminderButtonLabel: UILabel!
+    @IBOutlet weak var amazonButtonLabel: UILabel!
+    @IBOutlet weak var deleteButtonLabel: UILabel!
+    
     var editVC : IngredientEditTableViewController!
     var ingredientId = String()
     var ingredient = Ingredient()
@@ -43,13 +49,27 @@ class IngredientDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchInAmazonButton.layer.cornerRadius = 4
-        searchInAmazonButton.titleLabel?.textAlignment = .center
-
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
         stock.boxType = .circle
         
+        editButton.layer.cornerRadius = editButton.frame.size.width / 2
+        editButton.clipsToBounds = true
+        let editImage = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
+        editButton.setImage(editImage, for: .normal)
+        reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
+        let reminderImage = UIImage(named: "reminder")?.withRenderingMode(.alwaysTemplate)
+        reminderButton.setImage(reminderImage, for: .normal)
+        reminderButton.clipsToBounds = true
+        amazonButton.layer.cornerRadius = amazonButton.frame.size.width / 2
+        let amazonImage = UIImage(named: "amazon")?.withRenderingMode(.alwaysTemplate)
+        amazonButton.setImage(amazonImage, for: .normal)
+        amazonButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
+        let deleteImage = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
+        deleteButton.setImage(deleteImage, for: .normal)
+        deleteButton.clipsToBounds = true
+
         tableView.register(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -67,6 +87,10 @@ class IngredientDetailTableViewController: UITableViewController {
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+        editButtonLabel.textColor = Style.labelTextColor
+        reminderButtonLabel.textColor = Style.labelTextColor
+        amazonButtonLabel.textColor = Style.labelTextColor
+        deleteButtonLabel.textColor = Style.deleteColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
@@ -123,19 +147,27 @@ class IngredientDetailTableViewController: UITableViewController {
 
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
-            deleteLabel.textColor = Style.deleteColor
             
-            if Amazon.product.contains(ingredient.ingredientName){
-                searchInAmazonButton.isEnabled = true
-                searchInAmazonButton.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
-                searchInAmazonButton.backgroundColor = Style.secondaryColor
-                ingredientNameTrailingConstraint.constant = 76
-            }else{
-                searchInAmazonButton.isEnabled = false
-                searchInAmazonButton.setTitleColor(UIColor.clear, for: .normal)
-                searchInAmazonButton.backgroundColor = UIColor.clear
-                ingredientNameTrailingConstraint.constant = 8
-            }
+//            if Amazon.product.contains(ingredient.ingredientName){
+//                searchInAmazonButton.isEnabled = true
+//                searchInAmazonButton.setTitleColor(Style.labelTextColorOnBadge, for: .normal)
+//                searchInAmazonButton.backgroundColor = Style.secondaryColor
+//                ingredientNameTrailingConstraint.constant = 76
+//            }else{
+//                searchInAmazonButton.isEnabled = false
+//                searchInAmazonButton.setTitleColor(UIColor.clear, for: .normal)
+//                searchInAmazonButton.backgroundColor = UIColor.clear
+//                ingredientNameTrailingConstraint.constant = 8
+//            }
+            
+            editButton.backgroundColor = Style.secondaryColor
+            editButton.tintColor = Style.basicBackgroundColor
+            reminderButton.backgroundColor = Style.secondaryColor
+            reminderButton.tintColor = Style.basicBackgroundColor
+            amazonButton.backgroundColor = Style.secondaryColor
+            amazonButton.tintColor = Style.basicBackgroundColor
+            deleteButton.backgroundColor = Style.deleteColor
+            deleteButton.tintColor = Style.basicBackgroundColor
             
             reloadIngredientRecipeBasicList()
             
@@ -234,7 +266,7 @@ class IngredientDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 1{
+            if indexPath.row == 1 || indexPath.row == 4{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
                 return UITableViewAutomaticDimension
@@ -246,8 +278,6 @@ class IngredientDetailTableViewController: UITableViewController {
                 }else{
                     return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
                 }
-            } else{
-                return super.tableView(tableView, heightForRowAt: IndexPath(row: 2, section: 1))
             }
         }
         return 0
@@ -272,12 +302,10 @@ class IngredientDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 4
+            return 5
         }else if section == 1 {
             if ingredient.recipeIngredients.count > 0{
                 return ingredient.recipeIngredients.count + 1
-            }else{
-                return 1
             }
         }
         return 0
@@ -293,8 +321,6 @@ class IngredientDetailTableViewController: UITableViewController {
                 }else{
                     return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 1, section: 1))
                 }
-            }else{
-                return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 2, section: 1))
             }
         }
         return 0
@@ -306,25 +332,6 @@ class IngredientDetailTableViewController: UITableViewController {
                 if indexPath.row > 0 {
                     performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
                 }
-            }else{
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
-                    action in
-                    let realm = try! Realm()
-                    try! realm.write {
-                        realm.delete(self.ingredient)
-                    }
-                    _ = self.navigationController?.popViewController(animated: true)
-                    })
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
-                alertView.modalPresentationCapturesStatusBarAppearance = true
-                present(alertView, animated: true, completion: nil)
-                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
@@ -411,36 +418,12 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell
                 }
-            }else{
-                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 2, section: 1))
-                cell.backgroundColor = Style.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
-                return cell
             }
         }
         return UITableViewCell()
     }
 
     // MARK: - IBAction
-    @IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "PushEditIngredient", sender: UIBarButtonItem())
-    }
-    
-    @IBAction func searchInAmazonTapped(_ sender: UIButton) {
-        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
-        var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-
-        if UIApplication.shared.canOpenURL(url!) {
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-        }else{
-            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
-            url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-            if UIApplication.shared.canOpenURL(url!){
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    
     @IBAction func stockTapped(_ sender: M13Checkbox) {
         let realm = try! Realm()
         try! realm.write {
@@ -454,13 +437,52 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "CreateEvent", sender: UIBarButtonItem())
-    }
-    
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
         reloadIngredientRecipeBasicList()
         tableView.reloadData()
+    }
+    
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "PushEditIngredient", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func reminderButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "CreateEvent", sender: UIBarButtonItem())
+    }
+    
+    @IBAction func amazonButtonTapped(_ sender: UIButton) {
+        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+        var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        
+        if UIApplication.shared.canOpenURL(url!) {
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }else{
+            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+            url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            if UIApplication.shared.canOpenURL(url!){
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
+            action in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(self.ingredient)
+            }
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        if Style.isStatusBarLight{
+            alertView.setStatusBarStyle(.lightContent)
+        }else{
+            alertView.setStatusBarStyle(.default)
+        }
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {

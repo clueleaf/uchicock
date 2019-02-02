@@ -71,24 +71,20 @@ class RecipeDetailTableViewController: UITableViewController{
         
         editButton.layer.cornerRadius = editButton.frame.size.width / 2
         editButton.clipsToBounds = true
-//        editButton.layer.borderWidth = 3.0
         let editImage = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
         editButton.setImage(editImage, for: .normal)
         shareButton.layer.cornerRadius = shareButton.frame.size.width / 2
         let shareImage = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
         shareButton.setImage(shareImage, for: .normal)
         shareButton.clipsToBounds = true
-//        shareButton.layer.borderWidth = 3.0
         openInSafariButton.layer.cornerRadius = openInSafariButton.frame.size.width / 2
         let openInSafariImage = UIImage(named: "safari")?.withRenderingMode(.alwaysTemplate)
         openInSafariButton.setImage(openInSafariImage, for: .normal)
         openInSafariButton.clipsToBounds = true
-//        openInSafariButton.layer.borderWidth = 3.0
         deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
         let deleteImage = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
         deleteButton.setImage(deleteImage, for: .normal)
         deleteButton.clipsToBounds = true
-//        deleteButton.layer.borderWidth = 3.0
 
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
@@ -145,16 +141,6 @@ class RecipeDetailTableViewController: UITableViewController{
         }else{
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
-            
-//            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-//            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-//            if UIApplication.shared.canOpenURL(url!) {
-//                openInSafari.isEnabled = true
-//                openInSafari.backgroundColor = Style.secondaryColor
-//            }else{
-//                openInSafari.isEnabled = false
-//                openInSafari.backgroundColor = Style.badgeDisableBackgroundColor
-//            }
             
             noPhotoFlag = false
             if let image = recipe.imageData{
@@ -242,16 +228,21 @@ class RecipeDetailTableViewController: UITableViewController{
 
             editButton.backgroundColor = Style.secondaryColor
             editButton.tintColor = Style.basicBackgroundColor
-//            editButton.layer.borderColor = Style.secondaryColor.cgColor
             shareButton.backgroundColor = Style.secondaryColor
             shareButton.tintColor = Style.basicBackgroundColor
-//            shareButton.layer.borderColor = Style.secondaryColor.cgColor
             openInSafariButton.backgroundColor = Style.secondaryColor
             openInSafariButton.tintColor = Style.basicBackgroundColor
-//            openInSafariButton.layer.borderColor = Style.secondaryColor.cgColor
             deleteButton.backgroundColor = Style.deleteColor
             deleteButton.tintColor = Style.basicBackgroundColor
-//            deleteButton.layer.borderColor = Style.deleteColor.cgColor
+            
+            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
+            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            if UIApplication.shared.canOpenURL(url!) {
+                openInSafariButton.isEnabled = true
+            }else{
+                openInSafariButton.isEnabled = false
+                openInSafariButton.backgroundColor = Style.badgeDisableBackgroundColor
+            }
 
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableViewAutomaticDimension
