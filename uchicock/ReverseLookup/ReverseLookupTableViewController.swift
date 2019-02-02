@@ -72,7 +72,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.backgroundColor = Style.basicBackgroundColor
         ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
         if Style.isBackgroundDark{
@@ -101,9 +101,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
 
         loadIngredientsFromUserDefaults()
-//        ingredientTableView.reloadData()
         reloadRecipeList()
         recipeTableView.reloadData()
+        self.tableView.reloadData()
         
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientTextField2)
@@ -238,6 +238,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
     
     func showRecipeTableView(){
+        self.tableView.reloadData()
         if editingTextField == -1{
             setUserDefaults()
             reloadRecipeList()
@@ -377,7 +378,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             label.backgroundColor = Style.tableViewHeaderBackgroundColor
             label.textColor = Style.labelTextColorOnDisableBadge
             label.font = UIFont.boldSystemFont(ofSize: 15)
-            label.text = "  上の材料をすべて使うレシピ(" + String(self.recipeBasicList.count) + ")"
+            label.text = "  上の材料(完全一致)をすべて使うレシピ(" + String(self.recipeBasicList.count) + ")"
             return label
         }else if tableView.tag == 2{
             let label : UILabel = UILabel()
@@ -385,25 +386,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             label.textColor = Style.labelTextColorOnDisableBadge
             label.font = UIFont.boldSystemFont(ofSize: 15)
             label.text = "  材料候補"
-            return label
-        }
-        return nil
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if tableView.tag == 0 && section == 0{
-            return 20
-        }
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if tableView.tag == 0 && section == 0{
-            let label : UILabel = UILabel()
-            label.backgroundColor = Style.basicBackgroundColor
-            label.textColor = Style.labelTextColorLight
-            label.font = UIFont.systemFont(ofSize: 12)
-            label.text = "  材料名は完全一致で検索されます"
             return label
         }
         return nil
@@ -421,19 +403,13 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
                 }
             }
         }else if tableView.tag == 1{
+            //TODO
 //            return recipeBasicList.count
-            if recipeBasicList.count < 3{
-                return recipeBasicList.count
-            }else{
-                return 3
-            }
+            return recipeBasicList.count < 3 ? recipeBasicList.count : 3
         }else if tableView.tag == 2{
+            //TODO
 //            return ingredientSuggestList.count
-            if ingredientSuggestList.count < 3{
-                return ingredientSuggestList.count
-            }else{
-                return 3
-            }
+            return ingredientSuggestList.count < 3 ? ingredientSuggestList.count : 3
         }
         return 0
     }
@@ -446,7 +422,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             if indexPath.section == 0{
                 return 40
             }else if indexPath.section == 1{
-                return safeAreaHeight - 40 * 3 - 20
+                return safeAreaHeight - 40 * 3
             }
         }else if tableView.tag == 1{
             return 70
@@ -526,15 +502,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = UIAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
-            let defaults = UserDefaults.standard
-            defaults.set("", forKey: "ReverseLookupFirst")
-            defaults.set("", forKey: "ReverseLookupSecond")
-            defaults.set("", forKey: "ReverseLookupThird")
-            self.loadIngredientsFromUserDefaults()
-            self.tableView.reloadData()
-            self.ingredientSuggestTableView.reloadData()
-            self.reloadRecipeList()
-            self.recipeTableView.reloadData()
+            self.ingredientTextField1.text = ""
+            self.ingredientTextField2.text = ""
+            self.ingredientTextField3.text = ""
             self.showRecipeTableView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
