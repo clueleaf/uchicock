@@ -191,7 +191,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         _isdraggingPhoto = NO;
         
         _doneButtonRightInset = 20.f;
-        _doneButtonTopInset = 30.f;
+        _doneButtonTopInset = 10.f;
         UIWindow *window = UIApplication.sharedApplication.keyWindow;
         if (@available(iOS 11.0, *)) {
             _doneButtonTopInset += window.safeAreaInsets.top;
