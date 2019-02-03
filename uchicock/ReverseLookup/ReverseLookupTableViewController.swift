@@ -308,7 +308,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text = ""
-        setUserDefaults()
         if editingTextField == 0{
             reloadIngredientSuggestList(text: ingredientTextField1.text!)
         }else if editingTextField == 1{
@@ -316,6 +315,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }else if editingTextField == 2{
             reloadIngredientSuggestList(text: ingredientTextField3.text!)
         }else{
+            setUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }
@@ -350,6 +350,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     }
 
     func reloadIngredientSuggestList(text: String){
+        ingredientSuggestTableView.reloadData()
         ingredientSuggestList.removeAll()
         
         for ingredient in ingredientList! {
