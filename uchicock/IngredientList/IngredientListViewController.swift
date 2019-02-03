@@ -80,12 +80,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }else{
                         textField.keyboardAppearance = .default
                     }
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColor
-                        }
-                    }
                 }
             }
         }
@@ -107,6 +101,22 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         selectedIngredientId = nil
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    for subsubview in subview.subviews{
+                        if subsubview is UILabel{
+                            let placeholderLabel = subsubview as! UILabel
+                            placeholderLabel.textColor = Style.labelTextColor
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -204,16 +204,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }else{
                         textField.keyboardAppearance = .default
                     }
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColor
-                        }
-                    }
                 }
             }
         }
-        
+
         reloadRecipeList()
         tableView.reloadData()
         
@@ -231,6 +225,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         selectedRecipeId = nil
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    for subsubview in subview.subviews{
+                        if subsubview is UILabel{
+                            let placeholderLabel = subsubview as! UILabel
+                            placeholderLabel.textColor = Style.labelTextColor
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
