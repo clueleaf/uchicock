@@ -28,6 +28,7 @@
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
+		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B55370F1E686C3A0054D692 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1281E6867620096E9F1 /* ChameleonFramework.framework */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
@@ -94,6 +95,7 @@
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
+		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67C71CD0E5A4001E8079 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B6D67C91CD0E8F9001E8079 /* IngredientName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientName.swift; path = RecipeEdit/IngredientName.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */,
 				9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */,
 				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
+				9B5473E3220680E500E53719 /* IngredientEdit.storyboard */,
 				9BFCE1991E979D3100546B47 /* Reminder.storyboard */,
 				9BFCE19C1E979FA500546B47 /* Settings.storyboard */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
@@ -440,6 +443,7 @@
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
+				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
 			);
@@ -576,6 +580,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		9B5473E3220680E500E53719 /* IngredientEdit.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B5473E4220680E500E53719 /* Base */,
+			);
+			name = IngredientEdit.storyboard;
+			sourceTree = "<group>";
+		};
 		9BC9A3181C783CAA0031F631 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
