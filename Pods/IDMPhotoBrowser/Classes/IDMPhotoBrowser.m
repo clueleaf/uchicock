@@ -192,6 +192,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         
         _doneButtonRightInset = 20.f;
         _doneButtonTopInset = 30.f;
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        if (@available(iOS 11.0, *)) {
+            _doneButtonTopInset += window.safeAreaInsets.top;
+        }
         _doneButtonSize = CGSizeMake(55.f, 26.f);
 
 		if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
