@@ -81,6 +81,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }else{
                         textField.keyboardAppearance = .default
                     }
+                    for subsubview in subview.subviews{
+                        if subsubview is UILabel{
+                            let placeholderLabel = subsubview as! UILabel
+                            placeholderLabel.textColor = Style.labelTextColor
+                        }
+                    }
                 }
             }
         }
