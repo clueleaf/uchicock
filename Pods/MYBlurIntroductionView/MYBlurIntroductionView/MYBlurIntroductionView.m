@@ -47,7 +47,12 @@
     [self addSubview:self.MasterScrollView];
     
     //Page Control
-    self.PageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.frame.size.width - kPageControlWidth)/2, self.frame.size.height - 48, kPageControlWidth, 37)];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    if (@available(iOS 11.0, *)) {
+        self.PageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.frame.size.width - kPageControlWidth)/2, self.frame.size.height - 48 - window.safeAreaInsets.bottom, kPageControlWidth, 37)];
+    }else{
+        self.PageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.frame.size.width - kPageControlWidth)/2, self.frame.size.height - 48, kPageControlWidth, 37)];
+    }
     self.PageControl.currentPage = 0;
     self.PageControl.enabled = NO;
     [self addSubview:self.PageControl];
@@ -77,7 +82,11 @@
     
     //Right Skip Button
     self.RightSkipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.RightSkipButton.frame = CGRectMake(self.frame.size.width - skipStringWidth - kLeftRightSkipPadding, self.frame.size.height - 48, skipStringWidth, 37);
+    if (@available(iOS 11.0, *)) {
+        self.RightSkipButton.frame = CGRectMake(self.frame.size.width - skipStringWidth - kLeftRightSkipPadding, self.frame.size.height - 48 - window.safeAreaInsets.bottom, skipStringWidth, 37);
+    }else{
+        self.RightSkipButton.frame = CGRectMake(self.frame.size.width - skipStringWidth - kLeftRightSkipPadding, self.frame.size.height - 48, skipStringWidth, 37);
+    }
     [self.RightSkipButton.titleLabel setFont:kSkipButtonFont];
     [self.RightSkipButton setTitle:skipString forState:UIControlStateNormal];
     [self.RightSkipButton addTarget:self action:@selector(didPressSkipButton) forControlEvents:UIControlEventTouchUpInside];
@@ -136,8 +145,13 @@
 
 -(void)buildScrollViewLeftToRight{
     CGFloat panelXOffset = 0;
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
     for (MYIntroductionPanel *panelView in Panels) {
-        panelView.frame = CGRectMake(panelXOffset, 0, self.frame.size.width, self.frame.size.height);
+        if (@available(iOS 11.0, *)) {
+            panelView.frame = CGRectMake(panelXOffset, window.safeAreaInsets.top, self.frame.size.width, self.frame.size.height - window.safeAreaInsets.top - window.safeAreaInsets.bottom);
+        }else{
+            panelView.frame = CGRectMake(panelXOffset, 0, self.frame.size.width, self.frame.size.height);
+        }
         [self.MasterScrollView addSubview:panelView];
         
         //Update panelXOffset to next view origin location
