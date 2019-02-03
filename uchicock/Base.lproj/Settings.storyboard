@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,7 +44,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-7L-6je">
-                                            <rect key="frame" x="8" y="8" width="359" height="86"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="86.5"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="サンプルレシピを">
                                                     <attributes>
@@ -81,7 +81,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cs4-5p-Ebu" customClass="M13Checkbox" customModule="M13Checkbox">
-                                            <rect key="frame" x="8" y="114" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="114.5" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="6NU-eV-PwY"/>
@@ -89,7 +89,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR7-hQ-11P" customClass="M13Checkbox" customModule="M13Checkbox">
-                                            <rect key="frame" x="8" y="162" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="162.5" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="8e3-ut-YK2"/>
@@ -97,7 +97,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erc-ho-g6I" customClass="M13Checkbox" customModule="M13Checkbox">
-                                            <rect key="frame" x="8" y="210" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="210.5" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="FL6-6f-eiC"/>
@@ -123,13 +123,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-f8-qUN">
-                                            <rect key="frame" x="56" y="212" width="311" height="36"/>
+                                            <rect key="frame" x="56" y="212.5" width="311" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x64-ZE-bWW">
-                                            <rect key="frame" x="8" y="270" width="359" height="21"/>
+                                            <rect key="frame" x="8" y="270.5" width="359" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="mBH-B8-Xjh"/>
                                             </constraints>
@@ -213,7 +213,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMc-1b-qWg">
-                                            <rect key="frame" x="281" y="14" width="60" height="21"/>
+                                            <rect key="frame" x="281" y="14.5" width="60" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="BrF-SZ-4YN"/>
                                                 <constraint firstAttribute="width" constant="60" id="fmH-o9-GLs"/>
@@ -223,7 +223,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNF-ud-0Jq">
-                                            <rect key="frame" x="56" y="15" width="217" height="21"/>
+                                            <rect key="frame" x="56" y="14.5" width="217" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="HR1-3v-EX6"/>
                                             </constraints>
@@ -312,7 +312,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="jYy-Da-2cn">
                                         <rect key="frame" x="0.0" y="108" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jYy-Da-2cn" id="zTd-Rb-WYv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="jYy-Da-2cn" id="zTd-Rb-WYv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -327,7 +327,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-ye-exa">
-                                                    <rect key="frame" x="315" y="17" width="52" height="21"/>
+                                                    <rect key="frame" x="267" y="17" width="100" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="aHN-aQ-Zrq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -733,9 +736,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="settings-info" width="24" height="24"/>
-        <image name="settings-recover" width="24" height="24"/>
-        <image name="settings-theme" width="24" height="24"/>
-        <image name="tabbar-settings" width="24" height="24"/>
+        <image name="settings-info" width="48" height="48"/>
+        <image name="settings-recover" width="48" height="48"/>
+        <image name="settings-theme" width="48" height="48"/>
+        <image name="tabbar-settings" width="48" height="48"/>
     </resources>
 </document>

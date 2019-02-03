@@ -65,7 +65,6 @@
 		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
 		9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE19C1E979FA500546B47 /* Settings.storyboard */; };
-		9BFCE1A21E97A0CE00546B47 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */; };
 		9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */; };
 		9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */; };
 /* End PBXBuildFile section */
@@ -117,7 +116,6 @@
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD8A70A1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
 		9BFCE19D1E979FA500546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
-		9BFCE1A11E97A0CE00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE1A71E97A39400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeDetail.storyboard; sourceTree = "<group>"; };
 		9BFCE1AA1E97A41400546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientDetail.storyboard; sourceTree = "<group>"; };
 		BB9BC0F119F8CAA7EABB2D48 /* Pods-uchicock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.debug.xcconfig"; sourceTree = "<group>"; };
@@ -350,7 +347,6 @@
 				9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */,
 				9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */,
 				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
-				9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */,
 				9BFCE1991E979D3100546B47 /* Reminder.storyboard */,
 				9BFCE19C1E979FA500546B47 /* Settings.storyboard */,
 				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
@@ -419,6 +415,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				ja,
 			);
 			mainGroup = 9BC9A3081C783CAA0031F631;
 			productRefGroup = 9BC9A3121C783CAA0031F631 /* Products */;
@@ -438,7 +435,6 @@
 				9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */,
 				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
 				9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */,
-				9BFCE1A21E97A0CE00546B47 /* IngredientEdit.storyboard in Resources */,
 				9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */,
 				9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */,
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
@@ -584,7 +580,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				9BC9A3191C783CAA0031F631 /* Base */,
-				9BC9A3421C7849F80031F631 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -619,14 +614,6 @@
 				9BFCE19D1E979FA500546B47 /* Base */,
 			);
 			name = Settings.storyboard;
-			sourceTree = "<group>";
-		};
-		9BFCE1A01E97A0CE00546B47 /* IngredientEdit.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9BFCE1A11E97A0CE00546B47 /* Base */,
-			);
-			name = IngredientEdit.storyboard;
 			sourceTree = "<group>";
 		};
 		9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */ = {

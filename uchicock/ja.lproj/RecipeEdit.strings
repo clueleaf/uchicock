@@ -1,0 +1,72 @@
+
+/* Class = "UISegmentedControl"; 2cE-h1-JB3.segmentTitles[0] = "ビルド"; ObjectID = "2cE-h1-JB3"; */
+"2cE-h1-JB3.segmentTitles[0]" = "ビルド";
+
+/* Class = "UISegmentedControl"; 2cE-h1-JB3.segmentTitles[1] = "ステア"; ObjectID = "2cE-h1-JB3"; */
+"2cE-h1-JB3.segmentTitles[1]" = "ステア";
+
+/* Class = "UISegmentedControl"; 2cE-h1-JB3.segmentTitles[2] = "シェイク"; ObjectID = "2cE-h1-JB3"; */
+"2cE-h1-JB3.segmentTitles[2]" = "シェイク";
+
+/* Class = "UISegmentedControl"; 2cE-h1-JB3.segmentTitles[3] = "ブレンド"; ObjectID = "2cE-h1-JB3"; */
+"2cE-h1-JB3.segmentTitles[3]" = "ブレンド";
+
+/* Class = "UISegmentedControl"; 2cE-h1-JB3.segmentTitles[4] = "その他"; ObjectID = "2cE-h1-JB3"; */
+"2cE-h1-JB3.segmentTitles[4]" = "その他";
+
+/* Class = "UILabel"; text = "フィルター選択"; ObjectID = "4gK-hl-DoA"; */
+"4gK-hl-DoA.text" = "フィルター選択";
+
+/* Class = "UIButton"; normalTitle = "これにする"; ObjectID = "9jB-Ho-KJc"; */
+"9jB-Ho-KJc.normalTitle" = "これにする";
+
+/* Class = "UILabel"; text = "写真を変更"; ObjectID = "Blz-bY-xlm"; */
+"Blz-bY-xlm.text" = "写真を変更";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Knd-PS-dyK"; */
+"Knd-PS-dyK.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "O9N-kp-DjR"; */
+"O9N-kp-DjR.normalTitle" = "☆";
+
+/* Class = "UILabel"; text = "レシピ名"; ObjectID = "Rfi-Cb-jv5"; */
+"Rfi-Cb-jv5.text" = "レシピ名";
+
+/* Class = "UILabel"; text = "メモ"; ObjectID = "auN-Kp-oTE"; */
+"auN-Kp-oTE.text" = "メモ";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-2"; ObjectID = "chP-KN-S8n"; */
+"chP-KN-S8n.headerTitle" = "Section-2";
+
+/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "eb6-1r-5Pc"; */
+"eb6-1r-5Pc.normalTitle" = "☆";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-1"; ObjectID = "fKg-hD-5Bv"; */
+"fKg-hD-5Bv.headerTitle" = "Section-1";
+
+/* Class = "UIButton"; normalTitle = "☆"; ObjectID = "ffj-8v-9XM"; */
+"ffj-8v-9XM.normalTitle" = "☆";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-1"; ObjectID = "gmT-ZQ-MLH"; */
+"gmT-ZQ-MLH.headerTitle" = "Section-1";
+
+/* Class = "UITableViewSection"; headerTitle = "材料編集"; ObjectID = "hWp-Q1-VAd"; */
+"hWp-Q1-VAd.headerTitle" = "材料編集";
+
+/* Class = "UILabel"; text = "分量"; ObjectID = "imD-FZ-iht"; */
+"imD-FZ-iht.text" = "分量";
+
+/* Class = "UILabel"; text = "お気に入り"; ObjectID = "nN9-zc-48A"; */
+"nN9-zc-48A.text" = "お気に入り";
+
+/* Class = "UILabel"; text = "材料の追加をやめる"; ObjectID = "nmL-iq-O5X"; */
+"nmL-iq-O5X.text" = "材料の追加をやめる";
+
+/* Class = "UILabel"; text = "オプション"; ObjectID = "uyA-Yn-meJ"; */
+"uyA-Yn-meJ.text" = "オプション";
+
+/* Class = "UILabel"; text = "材料名"; ObjectID = "vLz-uO-3NT"; */
+"vLz-uO-3NT.text" = "材料名";
+
+/* Class = "UILabel"; text = "技法"; ObjectID = "wqK-pv-E79"; */
+"wqK-pv-E79.text" = "技法";

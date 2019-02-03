@@ -803,7 +803,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-52-RaS">
-                                                                        <rect key="frame" x="66" y="4.5" width="38" height="21"/>
+                                                                        <rect key="frame" x="66" y="4.5" width="301" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="oGd-cN-4no"/>
                                                                         </constraints>
@@ -814,6 +814,7 @@
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="R6S-v7-MRn" firstAttribute="leading" secondItem="K79-BA-21D" secondAttribute="leading" constant="8" id="QO2-Pe-pHq"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="9UO-52-RaS" secondAttribute="trailing" constant="8" id="Vd0-Ns-ueJ"/>
                                                                     <constraint firstItem="R6S-v7-MRn" firstAttribute="centerY" secondItem="K79-BA-21D" secondAttribute="centerY" id="s7J-gV-DnG"/>
                                                                     <constraint firstItem="9UO-52-RaS" firstAttribute="leading" secondItem="R6S-v7-MRn" secondAttribute="trailing" constant="8" id="tPp-oj-Gdy"/>
                                                                     <constraint firstItem="9UO-52-RaS" firstAttribute="centerY" secondItem="K79-BA-21D" secondAttribute="centerY" id="xC5-eM-IpI"/>
@@ -1096,6 +1097,6 @@
         <image name="tabbar-reverse-lookup" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>

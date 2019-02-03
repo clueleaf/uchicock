@@ -1,0 +1,72 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2Oo-xf-RBe"; */
+"2Oo-xf-RBe.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "☆☆☆"; ObjectID = "4Tp-As-sHj"; */
+"4Tp-As-sHj.text" = "☆☆☆";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "D0o-aj-8xo"; */
+"D0o-aj-8xo.text" = "Label";
+
+/* Class = "UILabel"; text = "リマインダー"; ObjectID = "EIc-ed-ecs"; */
+"EIc-ed-ecs.text" = "リマインダー";
+
+/* Class = "UILabel"; text = "Amazon.co.jp\nで探す"; ObjectID = "IuT-H0-mbG"; */
+"IuT-H0-mbG.text" = "Amazon.co.jp\nで探す";
+
+/* Class = "UILabel"; text = "編集"; ObjectID = "Oht-Sh-YRZ"; */
+"Oht-Sh-YRZ.text" = "編集";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RU2-dS-Cse"; */
+"RU2-dS-Cse.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tyv-e1-O7y"; */
+"Tyv-e1-O7y.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "アルコール"; ObjectID = "bbv-Mt-9IU"; */
+"bbv-Mt-9IU.text" = "アルコール";
+
+/* Class = "UILabel"; text = "在庫"; ObjectID = "c1v-8e-XYX"; */
+"c1v-8e-XYX.text" = "在庫";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cPs-GH-jRH"; */
+"cPs-GH-jRH.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eYC-Ar-0sn"; */
+"eYC-Ar-0sn.text" = "Label";
+
+/* Class = "UILabel"; text = "メモ"; ObjectID = "ffu-Ky-BvZ"; */
+"ffu-Ky-BvZ.text" = "メモ";
+
+/* Class = "UILabel"; text = "カテゴリー"; ObjectID = "iM9-Wc-cPe"; */
+"iM9-Wc-cPe.text" = "カテゴリー";
+
+/* Class = "UILabel"; text = "材料削除"; ObjectID = "jqM-l2-1Yk"; */
+"jqM-l2-1Yk.text" = "材料削除";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "lS3-q2-ds8"; */
+"lS3-q2-ds8.normalTitle" = "Button";
+
+/* Class = "UISegmentedControl"; n3x-nd-eiY.segmentTitles[0] = "名前順"; ObjectID = "n3x-nd-eiY"; */
+"n3x-nd-eiY.segmentTitles[0]" = "名前順";
+
+/* Class = "UISegmentedControl"; n3x-nd-eiY.segmentTitles[1] = "作れる順"; ObjectID = "n3x-nd-eiY"; */
+"n3x-nd-eiY.segmentTitles[1]" = "作れる順";
+
+/* Class = "UISegmentedControl"; n3x-nd-eiY.segmentTitles[2] = "閲覧順"; ObjectID = "n3x-nd-eiY"; */
+"n3x-nd-eiY.segmentTitles[2]" = "閲覧順";
+
+/* Class = "UISegmentedControl"; n3x-nd-eiY.segmentTitles[3] = "作った回数"; ObjectID = "n3x-nd-eiY"; */
+"n3x-nd-eiY.segmentTitles[3]" = "作った回数";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ps6-U7-0aD"; */
+"ps6-U7-0aD.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-2"; ObjectID = "tBY-75-L8T"; */
+"tBY-75-L8T.headerTitle" = "Section-2";
+
+/* Class = "UITableViewSection"; headerTitle = "Section-1"; ObjectID = "y1T-XT-XVf"; */
+"y1T-XT-XVf.headerTitle" = "Section-1";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "yNe-Yi-aiI"; */
+"yNe-Yi-aiI.title" = "Title";
