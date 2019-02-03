@@ -54,6 +54,12 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientTextField1.tag = 0
         ingredientTextField2.tag = 1
         ingredientTextField3.tag = 2
+        ingredientTextField1.layer.cornerRadius = 5.0
+        ingredientTextField2.layer.cornerRadius = 5.0
+        ingredientTextField3.layer.cornerRadius = 5.0
+        ingredientTextField1.layer.borderWidth = 1
+        ingredientTextField2.layer.borderWidth = 1
+        ingredientTextField3.layer.borderWidth = 1
 
         self.tableView.tag = 0
         recipeTableView.tag = 1
@@ -98,7 +104,10 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientTextField1.textColor = Style.labelTextColor
         ingredientTextField2.textColor = Style.labelTextColor
         ingredientTextField3.textColor = Style.labelTextColor
-        
+        ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
+        ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
+        ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
+
         if Style.isDark {
             ingredientTextField1.keyboardAppearance = .dark
             ingredientTextField2.keyboardAppearance = .dark

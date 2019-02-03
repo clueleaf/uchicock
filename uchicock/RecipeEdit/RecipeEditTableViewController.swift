@@ -112,7 +112,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        
+        recipeName.layer.cornerRadius = 5.0
+        recipeName.layer.borderWidth = 1
+
         for ri in recipe.recipeIngredients {
             editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
         }
@@ -139,6 +141,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memoLabel.textColor = Style.labelTextColor
         recipeName.backgroundColor = Style.textFieldBackgroundColor
         recipeName.textColor = Style.labelTextColor
+        recipeName.layer.borderColor = Style.memoBorderColor.cgColor
         method.tintColor = Style.secondaryColor
         method.backgroundColor = Style.basicBackgroundColor
         star1.tintColor = Style.secondaryColor

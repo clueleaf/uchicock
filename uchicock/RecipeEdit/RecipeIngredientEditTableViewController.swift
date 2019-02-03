@@ -52,6 +52,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
+        ingredientName.layer.cornerRadius = 5.0
+        ingredientName.layer.borderWidth = 1
+        amount.layer.cornerRadius = 5.0
+        amount.layer.borderWidth = 1
+        
         option.boxLineWidth = 1.0
         option.markType = .checkmark
         option.boxType = .circle
@@ -88,7 +93,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.backgroundColor = Style.basicBackgroundColor
         ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
+        ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         amount.backgroundColor = Style.textFieldBackgroundColor
+        amount.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientNameLabel.textColor = Style.labelTextColor
         amountLabel.textColor = Style.labelTextColor
         amount.textColor = Style.labelTextColor

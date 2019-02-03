@@ -19,6 +19,7 @@ class TabBarController: UITabBarController {
         
         tabBar.tintColor = Style.tabBarTintColor
         tabBar.barTintColor = Style.tabBarBarTintColor
+        tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
     }
 
     override func didReceiveMemoryWarning() {

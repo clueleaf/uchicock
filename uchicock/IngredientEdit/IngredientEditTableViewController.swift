@@ -47,6 +47,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientName.text = ingredient.ingredientName
         ingredientName.delegate = self
+        ingredientName.layer.cornerRadius = 5.0
+        ingredientName.layer.borderWidth = 1
 
         stock.boxLineWidth = 1.0
         stock.markType = .checkmark
@@ -76,6 +78,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         
         ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
+        ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientNameLabel.textColor = Style.labelTextColor
         categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
