@@ -47,13 +47,13 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
 
         tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +104,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 0{
-                return UITableViewAutomaticDimension
+                return UITableView.automaticDimension
             }else{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }

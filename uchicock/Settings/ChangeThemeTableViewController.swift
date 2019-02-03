@@ -63,7 +63,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +122,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tableView.indicatorStyle = .black
         }
 
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(Style.primaryColor, returnFlat: true)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
         tableView.reloadData()
@@ -150,7 +150,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         cell.backgroundColor = Style.basicBackgroundColor
         cell.tintColor = Style.labelTextColor
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
     }

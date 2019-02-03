@@ -17,12 +17,12 @@ class IngredientRecipeListTableViewCell: UITableViewCell {
     var favorites = UILabel()
     var shortage = UILabel()
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!){
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = UIScreen.main.bounds.size.width
         
         photo = UIImageView(frame: CGRect(x: 0, y: 0, width: 69, height: 69))
-        photo.contentMode = UIViewContentMode.scaleAspectFill
+        photo.contentMode = UIView.ContentMode.scaleAspectFill
         photo.image = nil
         photo.clipsToBounds = true
         self.addSubview(photo)

@@ -124,7 +124,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         favoriteSelect.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
+        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
         buildCheckbox.backgroundColor = UIColor.clear
@@ -368,7 +368,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -386,19 +386,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
         let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
-        introductionPanel1!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel1!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         let desc2 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。"
         let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
-        introductionPanel2!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel2!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         let desc3 = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！"
         let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "逆引き", description: desc3, image: UIImage(named: "screen-reverse-lookup"))
-        introductionPanel3!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel3!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         let desc4 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
         let introductionPanel4 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc4, image: UIImage(named: "screen-album"))
-        introductionPanel4!.panelImageView.contentMode = UIViewContentMode.scaleAspectFit
+        introductionPanel4!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")

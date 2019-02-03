@@ -154,7 +154,7 @@ class RecipeDetailTableViewController: UITableViewController{
                     }
                     photo.clipsToBounds = true
                     tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-                    self.view.bringSubview(toFront: photoBackground)
+                    self.view.bringSubviewToFront(photoBackground)
                 }else{
                     tableView.tableHeaderView = nil
                     noPhotoFlag = true
@@ -245,7 +245,7 @@ class RecipeDetailTableViewController: UITableViewController{
             }
 
             self.tableView.estimatedRowHeight = 70
-            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
             
             if let index = indexPathForSelectedRow {
@@ -338,7 +338,7 @@ class RecipeDetailTableViewController: UITableViewController{
     }
     
     @objc func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
-        if noPhotoFlag == false && recognizer.state == UIGestureRecognizerState.began  {
+        if noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
                 if let image = self.photo.image {
@@ -370,8 +370,8 @@ class RecipeDetailTableViewController: UITableViewController{
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                if let url = URL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                if let url = URL(string:UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 }
             }))
             if Style.isStatusBarLight{
@@ -399,7 +399,7 @@ class RecipeDetailTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }else if indexPath.section == 1{
             return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
         }else if indexPath.section == 2{
@@ -507,7 +507,7 @@ class RecipeDetailTableViewController: UITableViewController{
             cell.amount.backgroundColor = Style.basicBackgroundColor
             cell.amount.clipsToBounds = true
             
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.selectionStyle = .default
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
@@ -635,17 +635,17 @@ class RecipeDetailTableViewController: UITableViewController{
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         let excludedActivityTypes = [
-            UIActivityType.message,
-            UIActivityType.mail,
-            UIActivityType.print,
-            UIActivityType.assignToContact,
-            UIActivityType.addToReadingList,
-            UIActivityType.postToFlickr,
-            UIActivityType.postToVimeo,
-            UIActivityType.postToWeibo,
-            UIActivityType.postToTencentWeibo,
-            UIActivityType.airDrop,
-            UIActivityType.openInIBooks
+            UIActivity.ActivityType.message,
+            UIActivity.ActivityType.mail,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.assignToContact,
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToVimeo,
+            UIActivity.ActivityType.postToWeibo,
+            UIActivity.ActivityType.postToTencentWeibo,
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.openInIBooks
         ]
         
         let shareText = createLongMessage()
@@ -676,7 +676,7 @@ class RecipeDetailTableViewController: UITableViewController{
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
@@ -737,4 +737,9 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

@@ -47,14 +47,14 @@ class ReminderTableViewController: UITableViewController{
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
         self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.contentInsetAdjustmentBehavior = .never
 
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,8 +107,8 @@ class ReminderTableViewController: UITableViewController{
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    if let url = URL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    if let url = URL(string:UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                     }
                 }))
                 if Style.isStatusBarLight{
@@ -141,8 +141,8 @@ class ReminderTableViewController: UITableViewController{
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    if let url = URL(string:UIApplicationOpenSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    if let url = URL(string:UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                     }
                 }))
                 if Style.isStatusBarLight{
@@ -159,7 +159,7 @@ class ReminderTableViewController: UITableViewController{
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
@@ -238,4 +238,9 @@ class ReminderTableViewController: UITableViewController{
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

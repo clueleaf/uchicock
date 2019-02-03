@@ -114,9 +114,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         recipeTableView.reloadData()
         self.tableView.reloadData()
         
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientTextField1)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientTextField2)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientTextField3)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField1)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField2)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
 
         if let path = selectedPathForRecipeTableView {
             if recipeTableView.numberOfRows(inSection: 0) > path.row{
@@ -363,7 +363,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
 

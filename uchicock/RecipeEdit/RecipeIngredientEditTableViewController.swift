@@ -79,7 +79,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +117,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             amount.keyboardAppearance = .default
         }
 
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     
     override func viewDidAppear(_ animated: Bool) {

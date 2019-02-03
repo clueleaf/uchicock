@@ -43,12 +43,12 @@ class RecoverTableViewController: UITableViewController {
         isRecovering = false
         
         tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -238,7 +238,7 @@ class RecoverTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }else{
             return 50
         }
@@ -360,7 +360,7 @@ class RecoverTableViewController: UITableViewController {
                         cell.isTarget.setCheckState(.unchecked, animated: true)
                     }
                     cell.isRecoverable = true
-                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControlEvents.valueChanged)
+                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false

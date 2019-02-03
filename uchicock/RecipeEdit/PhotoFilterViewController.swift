@@ -248,7 +248,7 @@ class PhotoFilterViewController: UIViewController {
         
         let color0 = CIColor(red: 0.3, green: 0.17, blue: 0.03, alpha: 0.8)
         let color1 = CIColor(red: 0.2, green: 0.0, blue: 0.2, alpha: 1.0)
-        let circle = CIFilter(name: "CIRadialGradient", withInputParameters: [
+        let circle = CIFilter(name: "CIRadialGradient", parameters: [
             "inputCenter": CIVector(x: centerWidth, y: centerHeight),
             "inputRadius0": radius0,
             "inputRadius1": radius1,

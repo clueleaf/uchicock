@@ -54,7 +54,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         stockState.tintColor = Style.secondaryColor
         stockState.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
+        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         stockState.setTitleTextAttributes(attribute, for: .normal)
         category.tintColor = Style.secondaryColor
         category.backgroundColor = Style.basicBackgroundColor
@@ -172,7 +172,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "条件にあてはまる材料はありません"
-        let attrs = [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)]
+        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
@@ -372,7 +372,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             cell.ingredient = ingredient
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControlEvents.valueChanged)
+            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
             
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell

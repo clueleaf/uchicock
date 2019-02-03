@@ -70,23 +70,6 @@
 		9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9BC9A3261C783CAA0031F631 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9BC9A3091C783CAA0031F631 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BC9A3101C783CAA0031F631;
-			remoteInfo = uchicock;
-		};
-		9BC9A3311C783CAA0031F631 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9BC9A3091C783CAA0031F631 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9BC9A3101C783CAA0031F631;
-			remoteInfo = uchicock;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,8 +117,6 @@
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uchicockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC9A3421C7849F80031F631 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
@@ -174,20 +155,6 @@
 				9B55370F1E686C3A0054D692 /* ChameleonFramework.framework in Frameworks */,
 				9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */,
 				257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BC9A3221C783CAA0031F631 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BC9A32D1C783CAA0031F631 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,8 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3111C783CAA0031F631 /* uchicock.app */,
-				9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */,
-				9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -431,42 +396,6 @@
 			productReference = 9BC9A3111C783CAA0031F631 /* uchicock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9BC9A3241C783CAA0031F631 /* uchicockTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9BC9A33C1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockTests" */;
-			buildPhases = (
-				9BC9A3211C783CAA0031F631 /* Sources */,
-				9BC9A3221C783CAA0031F631 /* Frameworks */,
-				9BC9A3231C783CAA0031F631 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9BC9A3271C783CAA0031F631 /* PBXTargetDependency */,
-			);
-			name = uchicockTests;
-			productName = uchicockTests;
-			productReference = 9BC9A3251C783CAA0031F631 /* uchicockTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		9BC9A32F1C783CAA0031F631 /* uchicockUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9BC9A33F1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockUITests" */;
-			buildPhases = (
-				9BC9A32C1C783CAA0031F631 /* Sources */,
-				9BC9A32D1C783CAA0031F631 /* Frameworks */,
-				9BC9A32E1C783CAA0031F631 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9BC9A3321C783CAA0031F631 /* PBXTargetDependency */,
-			);
-			name = uchicockUITests;
-			productName = uchicockUITests;
-			productReference = 9BC9A3301C783CAA0031F631 /* uchicockUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -480,17 +409,7 @@
 					9BC9A3101C783CAA0031F631 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 98478E5868;
-						LastSwiftMigration = 0800;
-					};
-					9BC9A3241C783CAA0031F631 = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0820;
-						TestTargetID = 9BC9A3101C783CAA0031F631;
-					};
-					9BC9A32F1C783CAA0031F631 = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0820;
-						TestTargetID = 9BC9A3101C783CAA0031F631;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -507,8 +426,6 @@
 			projectRoot = "";
 			targets = (
 				9BC9A3101C783CAA0031F631 /* uchicock */,
-				9BC9A3241C783CAA0031F631 /* uchicockTests */,
-				9BC9A32F1C783CAA0031F631 /* uchicockUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -529,20 +446,6 @@
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BC9A3231C783CAA0031F631 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BC9A32E1C783CAA0031F631 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,34 +577,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BC9A3211C783CAA0031F631 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9BC9A32C1C783CAA0031F631 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9BC9A3271C783CAA0031F631 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9BC9A3101C783CAA0031F631 /* uchicock */;
-			targetProxy = 9BC9A3261C783CAA0031F631 /* PBXContainerItemProxy */;
-		};
-		9BC9A3321C783CAA0031F631 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9BC9A3101C783CAA0031F631 /* uchicock */;
-			targetProxy = 9BC9A3311C783CAA0031F631 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9BC9A3181C783CAA0031F631 /* Main.storyboard */ = {
@@ -896,7 +772,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -918,73 +794,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		9BC9A33D1C783CAA0031F631 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = uchicockTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
-			};
-			name = Debug;
-		};
-		9BC9A33E1C783CAA0031F631 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = uchicockTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uchicock.app/uchicock";
-			};
-			name = Release;
-		};
-		9BC9A3401C783CAA0031F631 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = uchicockUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = uchicock;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		9BC9A3411C783CAA0031F631 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = uchicockUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicockUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicockUITests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = uchicock;
-				USES_XCTRUNNER = YES;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1005,24 +815,6 @@
 			buildConfigurations = (
 				9BC9A33A1C783CAA0031F631 /* Debug */,
 				9BC9A33B1C783CAA0031F631 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9BC9A33C1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9BC9A33D1C783CAA0031F631 /* Debug */,
-				9BC9A33E1C783CAA0031F631 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9BC9A33F1C783CAA0031F631 /* Build configuration list for PBXNativeTarget "uchicockUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9BC9A3401C783CAA0031F631 /* Debug */,
-				9BC9A3411C783CAA0031F631 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

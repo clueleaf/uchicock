@@ -95,7 +95,7 @@ class IngredientDetailTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
+        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
@@ -173,7 +173,7 @@ class IngredientDetailTableViewController: UITableViewController {
             }
 
             self.tableView.estimatedRowHeight = 70
-            self.tableView.rowHeight = UITableViewAutomaticDimension
+            self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
             
             if let index = indexPathForSelectedRow {
@@ -270,7 +270,7 @@ class IngredientDetailTableViewController: UITableViewController {
             if indexPath.row == 1 || indexPath.row == 4{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
-                return UITableViewAutomaticDimension
+                return UITableView.automaticDimension
             }
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
@@ -408,7 +408,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.shortage.backgroundColor = Style.basicBackgroundColor
                     cell.shortage.clipsToBounds = true
                     
-                    cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+                    cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                     cell.selectionStyle = .default
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
@@ -456,12 +456,12 @@ class IngredientDetailTableViewController: UITableViewController {
         var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
 
         if UIApplication.shared.canOpenURL(url!) {
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }else{
             urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
             url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
             if UIApplication.shared.canOpenURL(url!){
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -522,4 +522,9 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

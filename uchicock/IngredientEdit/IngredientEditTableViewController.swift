@@ -68,7 +68,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         let safeAreaBottom: CGFloat = 0.0
         tableView.contentInsetAdjustmentBehavior = .never
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +82,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memoLabel.textColor = Style.labelTextColor
         category.tintColor = Style.secondaryColor
         category.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedStringKey.foregroundColor:Style.secondaryColor]
+        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         category.setTitleTextAttributes(attribute, for: .normal)
         stock.backgroundColor = UIColor.clear
         stock.tintColor = Style.secondaryColor

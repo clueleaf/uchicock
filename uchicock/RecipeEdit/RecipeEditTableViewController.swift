@@ -124,7 +124,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, safeAreaBottom, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,7 +233,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @objc func photoTapped(){
         if let image = photo.image{
-            if let repre = UIImagePNGRepresentation(image){
+            if let repre = image.pngData(){
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
@@ -384,7 +384,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.option.clipsToBounds = true
                 cell.option.textAlignment = NSTextAlignment.center
 
-                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+                cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
@@ -408,8 +408,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         ipc.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage{
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
                 performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
@@ -620,7 +623,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
 
                         if let image = photo.image{
-                            newRecipe.imageData = UIImagePNGRepresentation(image) as Data?
+                            newRecipe.imageData = image.pngData() as Data?
                         }else{
                             newRecipe.imageData = nil
                         }
@@ -696,7 +699,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         
                         if let image = photo.image{
-                            recipe.imageData = UIImagePNGRepresentation(image) as Data?
+                            recipe.imageData = image.pngData() as Data?
                         }else{
                             recipe.imageData = nil
                         }
@@ -820,4 +823,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }
