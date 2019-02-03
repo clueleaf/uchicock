@@ -323,21 +323,21 @@
         
         //Animate title and header
         [UIView animateWithDuration:0.3 animations:^{
-            [[Panels[index] PanelTitleLabel] setAlpha:1];
-            [[Panels[index] PanelTitleLabel] setFrame:initialTitleFrame];
-            [[Panels[index] PanelSeparatorLine] setAlpha:1];
+            [[self->Panels[index] PanelTitleLabel] setAlpha:1];
+            [[self->Panels[index] PanelTitleLabel] setFrame:initialTitleFrame];
+            [[self->Panels[index] PanelSeparatorLine] setAlpha:1];
             
-            if ([Panels[index] PanelHeaderView]) {
-                [[Panels[index] PanelHeaderView] setAlpha:1];
-                [[Panels[index] PanelHeaderView] setFrame:initialHeaderFrame];
+            if ([self->Panels[index] PanelHeaderView]) {
+                [[self->Panels[index] PanelHeaderView] setAlpha:1];
+                [[self->Panels[index] PanelHeaderView] setFrame:initialHeaderFrame];
             }
         } completion:^(BOOL finished) {
             //Animate description
             [UIView animateWithDuration:0.3 animations:^{
-                [[Panels[index] PanelDescriptionLabel] setAlpha:1];
-                [[Panels[index] PanelDescriptionLabel] setFrame:initialDescriptionFrame];
-                [[Panels[index] PanelImageView] setAlpha:1];
-                [[Panels[index] PanelImageView] setFrame:initialImageFrame];
+                [[self->Panels[index] PanelDescriptionLabel] setAlpha:1];
+                [[self->Panels[index] PanelDescriptionLabel] setFrame:initialDescriptionFrame];
+                [[self->Panels[index] PanelImageView] setAlpha:1];
+                [[self->Panels[index] PanelImageView] setFrame:initialImageFrame];
             }];
         }];
     }
@@ -373,9 +373,9 @@
 }
 
 -(void)changeToPanelAtIndex:(NSInteger)index{
-    int currentIndex = self.CurrentPanelIndex;
+    int currentIndex = (int)self.CurrentPanelIndex;
     if (self.LanguageDirection == MYLanguageDirectionRightToLeft)
-        currentIndex = (Panels.count-1)-self.CurrentPanelIndex;
+        currentIndex = (int)(Panels.count-1)-(int)self.CurrentPanelIndex;
     
     if (Panels && index < Panels.count && currentIndex != index)
     {
@@ -405,7 +405,7 @@
         }
     }
     else {
-        NSLog(@"The index: %d is out of range for Panels array[0...%d]", index, Panels.count-1);
+        NSLog(@"The index: %ld is out of range for Panels array[0...%lu]", (long)index, Panels.count-1);
     }
 }
 
