@@ -49,7 +49,6 @@ class RecoverPreviewTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom

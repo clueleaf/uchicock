@@ -79,7 +79,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         var safeAreaBottom: CGFloat = 0.0

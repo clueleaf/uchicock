@@ -56,7 +56,6 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         
         tableView.backgroundColor = Style.basicBackgroundColor
         tableView.reloadData()
-        tableView.contentInsetAdjustmentBehavior = .never
     }
 
     override func didReceiveMemoryWarning() {

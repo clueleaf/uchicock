@@ -74,7 +74,6 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.register(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     override func viewWillAppear(_ animated: Bool) {

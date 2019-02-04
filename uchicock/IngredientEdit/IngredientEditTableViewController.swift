@@ -66,10 +66,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.borderWidth = 1
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
 
         let safeAreaBottom: CGFloat = 0.0
-        tableView.contentInsetAdjustmentBehavior = .never
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     

@@ -54,7 +54,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
-        tableView.contentInsetAdjustmentBehavior = .never
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         let defaults = UserDefaults.standard

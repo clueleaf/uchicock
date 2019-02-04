@@ -96,7 +96,6 @@ class RecipeDetailTableViewController: UITableViewController{
         photoBackground.addGestureRecognizer(longPressRecognizer)
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
     }
 
     override func viewWillAppear(_ animated: Bool) {

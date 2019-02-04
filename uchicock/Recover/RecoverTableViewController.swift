@@ -44,7 +44,6 @@ class RecoverTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.contentInsetAdjustmentBehavior = .never
         
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom

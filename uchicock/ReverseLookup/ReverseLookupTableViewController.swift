@@ -67,9 +67,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
 
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.contentInsetAdjustmentBehavior = .never
-        recipeTableView.contentInsetAdjustmentBehavior = .never
-        ingredientSuggestTableView.contentInsetAdjustmentBehavior = .never
         
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)

@@ -120,7 +120,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.contentInsetAdjustmentBehavior = .never
 
         focusRecipeNameFlag = true
         
