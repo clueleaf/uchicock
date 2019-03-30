@@ -341,6 +341,7 @@ class IngredientDetailTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
@@ -411,11 +412,13 @@ class IngredientDetailTableViewController: UITableViewController {
                     cell.selectionStyle = .default
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
                     return cell
                 }
             }

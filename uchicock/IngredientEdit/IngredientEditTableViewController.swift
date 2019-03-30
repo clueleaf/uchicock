@@ -154,6 +154,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = Style.basicBackgroundColor
+        if indexPath.row < 3{
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        }else{
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        }
         return cell
     }
 

@@ -336,6 +336,7 @@ class RecoverTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
@@ -371,6 +372,7 @@ class RecoverTableViewController: UITableViewController {
                 }
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
                 return cell
             }
         default:

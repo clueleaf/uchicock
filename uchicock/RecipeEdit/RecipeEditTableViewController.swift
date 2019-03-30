@@ -363,6 +363,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
+            if indexPath.row < 2{
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }else{
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            }
             return cell
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
@@ -390,6 +395,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.selectionStyle = .default
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
+                if indexPath.row == editingRecipeIngredientList.count - 1{
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }else{
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+                }
                 return cell
             }else if indexPath.row == editingRecipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
@@ -399,6 +409,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.textAlignment = .center
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
             }
         }

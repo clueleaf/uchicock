@@ -309,17 +309,28 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
+                if indexPath.section == 0{
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                }else{
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
                 return cell
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
+                    if indexPath.section == 0{
+                        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                    }else{
+                        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                    }
                     return cell
                 }
             }
