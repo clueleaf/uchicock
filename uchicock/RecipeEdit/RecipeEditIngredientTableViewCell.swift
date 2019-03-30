@@ -19,7 +19,7 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let width = UIScreen.main.bounds.size.width
 
-        ingredientName = UILabel(frame: CGRect(x: 8, y: 8, width: width - 43, height: 21))
+        ingredientName = UILabel(frame: CGRect(x: 66, y: 8, width: width - 103, height: 21))
         ingredientName.text = ""
         ingredientName.font = UIFont.systemFont(ofSize: 15)
         ingredientName.textColor = Style.labelTextColor
@@ -27,13 +27,13 @@ class RecipeEditIngredientTableViewCell: UITableViewCell {
         ingredientName.clipsToBounds = true
         self.addSubview(ingredientName)
         
-        option = UILabel(frame: CGRect(x: 5, y: 33, width: 50, height: 21))
+        option = UILabel(frame: CGRect(x: 8, y: 37, width: 50, height: 21))
         option.text = ""
         option.font = UIFont.systemFont(ofSize: 10)
         option.textColor = Style.labelTextColorOnDisableBadge
         self.addSubview(option)
 
-        amount = UILabel(frame: CGRect(x: 60, y: 33, width: width - 95, height: 21))
+        amount = UILabel(frame: CGRect(x: 66, y: 37, width: width - 103, height: 21))
         amount.text = ""
         amount.font = UIFont.systemFont(ofSize: 12)
         amount.textColor = Style.labelTextColor

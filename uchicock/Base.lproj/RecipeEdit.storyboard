@@ -233,16 +233,16 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="60" id="jyH-pc-vUs" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="549" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="549" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lFs-ko-xD7">
-                                        <rect key="frame" x="0.0" y="609" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="619" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -517,7 +517,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-ft-XUK">
                                                     <rect key="frame" x="74" y="55" width="295" height="31"/>
                                                     <connections>
-                                                        <action selector="amoutSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="YXL-kX-J0S"/>
+                                                        <action selector="amountSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="Zeg-T3-gEP"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
@@ -533,15 +533,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Tlb-iC-CNM">
-                                        <rect key="frame" x="0.0" y="343" width="375" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="90" id="Tlb-iC-CNM">
+                                        <rect key="frame" x="0.0" y="343" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tlb-iC-CNM" id="FwI-ja-QDi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Yn-meJ">
-                                                    <rect key="frame" x="8" y="14.5" width="90" height="21"/>
+                                                    <rect key="frame" x="8" y="16" width="90" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="UB3-bM-6ba"/>
                                                         <constraint firstAttribute="height" constant="21" id="pLQ-3q-rM3"/>
@@ -551,19 +551,30 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-L3-ZDg" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                    <rect key="frame" x="327" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="327" y="6.5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="5I3-Lr-AME"/>
                                                         <constraint firstAttribute="width" constant="40" id="H4l-bu-Yoz"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thm-mY-qsP">
+                                                    <rect key="frame" x="8" y="49" width="359" height="29"/>
+                                                    <string key="text">「オプション」の材料は在庫がなくても、
+レシピはつくれるものとして見なされます</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="centerY" secondItem="FwI-ja-QDi" secondAttribute="centerY" id="5Mz-SS-ecW"/>
-                                                <constraint firstItem="pM3-L3-ZDg" firstAttribute="centerY" secondItem="FwI-ja-QDi" secondAttribute="centerY" id="IID-H7-eRg"/>
+                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="top" secondItem="FwI-ja-QDi" secondAttribute="top" constant="16" id="7bW-aP-0aR"/>
                                                 <constraint firstItem="uyA-Yn-meJ" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="bnL-o9-Zmt"/>
+                                                <constraint firstAttribute="trailing" secondItem="Thm-mY-qsP" secondAttribute="trailing" constant="8" id="p7y-09-NMd"/>
                                                 <constraint firstAttribute="trailing" secondItem="pM3-L3-ZDg" secondAttribute="trailing" constant="8" id="vfD-Ql-9eQ"/>
+                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="vsf-zF-EU8"/>
+                                                <constraint firstItem="pM3-L3-ZDg" firstAttribute="centerY" secondItem="uyA-Yn-meJ" secondAttribute="centerY" id="weG-d9-qh7"/>
+                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="top" secondItem="uyA-Yn-meJ" secondAttribute="bottom" constant="12" id="ynk-SE-YcY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -572,7 +583,7 @@
                             <tableViewSection headerTitle="Section-2" id="chP-KN-S8n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KmQ-8j-oGd">
-                                        <rect key="frame" x="0.0" y="421" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="461" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmQ-8j-oGd" id="oHc-5U-BpI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -621,6 +632,7 @@
                         <outlet property="ingredientName" destination="N4k-of-Pi3" id="CBO-ub-QY3"/>
                         <outlet property="ingredientNameLabel" destination="vLz-uO-3NT" id="VTN-rz-Yqd"/>
                         <outlet property="option" destination="pM3-L3-ZDg" id="tcw-1i-WbT"/>
+                        <outlet property="optionDescriptionLabel" destination="Thm-mY-qsP" id="sWr-yQ-YzJ"/>
                         <outlet property="optionLabel" destination="uyA-Yn-meJ" id="PgZ-oK-HgQ"/>
                         <outlet property="suggestTableView" destination="FJi-BL-oF3" id="kFe-ft-pFh"/>
                         <outlet property="suggestTableViewCell" destination="z24-ua-voM" id="oxb-nl-XtG"/>

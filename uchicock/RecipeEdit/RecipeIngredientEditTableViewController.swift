@@ -22,6 +22,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var amount: UITextField!
     @IBOutlet weak var amountSlider: UISlider!
     @IBOutlet weak var option: M13Checkbox!
+    @IBOutlet weak var optionDescriptionLabel: UILabel!
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
@@ -104,6 +105,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         option.backgroundColor = UIColor.clear
         option.tintColor = Style.secondaryColor
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
+        optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor
         suggestTableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
@@ -356,7 +358,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     // MARK: - IBAction
-    @IBAction func amoutSliderValueChanged(_ sender: UISlider) {
+    @IBAction func amountSliderValueChanged(_ sender: UISlider) {
         switch floor(sender.value) {
         case 0:
             amount.text = "少々"
