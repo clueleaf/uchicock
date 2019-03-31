@@ -126,10 +126,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
         return true

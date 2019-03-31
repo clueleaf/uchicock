@@ -125,10 +125,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField {

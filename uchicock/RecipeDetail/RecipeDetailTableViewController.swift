@@ -279,10 +279,6 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func setMadeNumButton(){
         if madeNum <= 0 {
             madeNumMinusButton.isEnabled = false

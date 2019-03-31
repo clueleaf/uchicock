@@ -21,10 +21,6 @@ class BasicNavigationController: UINavigationController {
         navigationBar.tintColor = ContrastColorOf(Style.primaryColor, returnFlat: true)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override var childForStatusBarStyle: UIViewController? {
         return self.visibleViewController
     }

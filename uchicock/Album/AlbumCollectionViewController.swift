@@ -105,10 +105,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         collectionView!.setContentOffset(collectionView!.contentOffset, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: emptyDataSetStr, attributes: attrs)

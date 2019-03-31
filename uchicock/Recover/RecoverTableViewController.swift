@@ -70,10 +70,6 @@ class RecoverTableViewController: UITableViewController {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func loadUserRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "japaneseDictionaryOrder")

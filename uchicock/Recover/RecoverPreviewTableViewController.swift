@@ -74,10 +74,6 @@ class RecoverPreviewTableViewController: UITableViewController {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{

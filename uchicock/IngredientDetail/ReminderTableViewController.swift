@@ -82,10 +82,6 @@ class ReminderTableViewController: UITableViewController{
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func createReminder(eventStore: EKEventStore, title: String) {
         let reminder = EKReminder(eventStore: eventStore)
         

@@ -197,10 +197,6 @@ class IngredientDetailTableViewController: UITableViewController {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func closeEditVC(_ editVC: IngredientEditTableViewController){
         editVC.dismiss(animated: true, completion: nil)
     }

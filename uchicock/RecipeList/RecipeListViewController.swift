@@ -249,10 +249,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func getTextFieldFromView(view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField{

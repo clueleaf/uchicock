@@ -145,10 +145,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         NotificationCenter.default.removeObserver(self)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func loadIngredientsFromUserDefaults(){
         let defaults = UserDefaults.standard
         if let first = defaults.string(forKey: "ReverseLookupFirst"){

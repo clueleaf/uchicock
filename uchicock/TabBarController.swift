@@ -21,8 +21,4 @@ class TabBarController: UITabBarController {
         tabBar.barTintColor = Style.tabBarBarTintColor
         tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }    
 }

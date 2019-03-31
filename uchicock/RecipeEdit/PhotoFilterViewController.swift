@@ -60,10 +60,6 @@ class PhotoFilterViewController: UIViewController {
         }
     }
         
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func setFilters(){
         var xCoord: CGFloat = 10
         let yCoord: CGFloat = 10
