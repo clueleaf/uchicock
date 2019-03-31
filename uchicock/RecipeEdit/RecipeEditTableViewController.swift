@@ -418,10 +418,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        let infoDic = Dictionary(uniqueKeysWithValues: info.map {key, value in (key.rawValue, value)})
 
-        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage{
+        if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
                 performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
@@ -832,14 +831,4 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

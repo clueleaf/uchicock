@@ -366,7 +366,7 @@ class RecipeDetailTableViewController: UITableViewController{
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
                 if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }))
             if Style.isStatusBarLight{
@@ -675,7 +675,7 @@ class RecipeDetailTableViewController: UITableViewController{
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
     }
     
@@ -736,9 +736,4 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
