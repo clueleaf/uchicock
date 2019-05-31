@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -83,22 +83,22 @@
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="NWc-va-JyA">
                                         <rect key="frame" x="0.0" y="158" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="NWc-va-JyA" id="wx8-pu-png">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NWc-va-JyA" id="wx8-pu-png">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe">
-                                                    <rect key="frame" x="8" y="15" width="100" height="25"/>
+                                                    <rect key="frame" x="8" y="15" width="100" height="25.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="S0Z-Cd-YST"/>
-                                                        <constraint firstAttribute="height" constant="25" id="UnF-Cf-vuK"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="25" id="UnF-Cf-vuK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU">
-                                                    <rect key="frame" x="167" y="17" width="200" height="21"/>
+                                                    <rect key="frame" x="167" y="17.5" width="200" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="Ocm-Nq-vek"/>
                                                     </constraints>
@@ -128,7 +128,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="EGU-AA-GmH"/>
                                                         <constraint firstAttribute="width" constant="50" id="Z36-kk-fcN"/>
-                                                        <constraint firstAttribute="height" constant="21" id="kI9-yN-asZ"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="21" id="kI9-yN-asZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -447,9 +447,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="amazon" width="72" height="72"/>
-        <image name="delete" width="72" height="72"/>
-        <image name="edit" width="72" height="72"/>
-        <image name="reminder" width="72" height="72"/>
+        <image name="amazon" width="48" height="48"/>
+        <image name="delete" width="48" height="48"/>
+        <image name="edit" width="48" height="48"/>
+        <image name="reminder" width="48" height="48"/>
     </resources>
 </document>

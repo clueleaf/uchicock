@@ -313,12 +313,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="jYy-Da-2cn">
                                         <rect key="frame" x="0.0" y="108" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="jYy-Da-2cn" id="zTd-Rb-WYv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jYy-Da-2cn" id="zTd-Rb-WYv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh">
-                                                    <rect key="frame" x="8" y="15" width="50" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="50" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="8Ix-ZZ-sGM"/>
                                                         <constraint firstAttribute="height" constant="25" id="ygb-f3-slS"/>
@@ -328,7 +328,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-ye-exa">
-                                                    <rect key="frame" x="267" y="17" width="100" height="21"/>
+                                                    <rect key="frame" x="267" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="aHN-aQ-Zrq"/>
                                                     </constraints>
@@ -338,13 +338,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Hde-xF-3Nh" secondAttribute="bottom" constant="15" id="Rx8-Ru-G7M"/>
-                                                <constraint firstItem="Hde-xF-3Nh" firstAttribute="top" secondItem="zTd-Rb-WYv" secondAttribute="top" constant="15" id="Tz0-Oh-zks"/>
                                                 <constraint firstItem="kjW-ye-exa" firstAttribute="centerY" secondItem="Hde-xF-3Nh" secondAttribute="centerY" id="bDE-Qy-3hU"/>
                                                 <constraint firstAttribute="trailing" secondItem="kjW-ye-exa" secondAttribute="trailing" constant="8" id="cBk-tl-EUj"/>
                                                 <constraint firstItem="Hde-xF-3Nh" firstAttribute="leading" secondItem="zTd-Rb-WYv" secondAttribute="leading" constant="8" id="lBw-cP-8WR"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="Hde-xF-3Nh" firstAttribute="centerY" secondItem="jYy-Da-2cn" secondAttribute="centerY" id="A0v-rt-8at"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
