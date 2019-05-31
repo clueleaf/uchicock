@@ -8,7 +8,6 @@
 
 import UIKit
 import MYBlurIntroductionView
-import ChameleonFramework
 
 class SettingsTableViewController: UITableViewController, MYIntroductionDelegate {
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import DZNEmptyDataSet
 import MYBlurIntroductionView
 import M13Checkbox
