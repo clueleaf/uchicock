@@ -832,3 +832,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
 }
+
+extension UIImagePickerController {
+    open override var childForStatusBarHidden: UIViewController? {
+        return nil
+    }
+    
+    open override var prefersStatusBarHidden: Bool {
+        return true
+    }
+}
