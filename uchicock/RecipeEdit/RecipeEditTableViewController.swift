@@ -206,6 +206,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             recipeName.becomeFirstResponder()
             focusRecipeNameFlag = false
         }
+        
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
