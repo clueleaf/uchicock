@@ -15,12 +15,6 @@ class ChangeThemeTableViewController: UITableViewController {
     var newThemeNo = Style.no
     var hasScrolled = false
     
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
-        return .slide
-    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if Style.isStatusBarLight{
             return .lightContent
@@ -28,7 +22,6 @@ class ChangeThemeTableViewController: UITableViewController {
             return .default
         }
     }
-
 
     let themeList: [String] = [
         "テキーラサンライズ - ライト",
@@ -120,6 +113,7 @@ class ChangeThemeTableViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ContrastColorOf(Style.primaryColor, returnFlat: true)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
+        self.setNeedsStatusBarAppearanceUpdate()
         tableView.reloadData()
     }
     
