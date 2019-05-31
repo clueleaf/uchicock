@@ -55,9 +55,7 @@ class PhotoFilterViewController: UIViewController {
         buttonWidth = scrollView.frame.height - 20
         buttonHeight = scrollView.frame.height - 20
 
-        queue.async {
-            self.setFilters()
-        }
+        self.setFilters()
     }
         
     func setFilters(){
@@ -70,33 +68,34 @@ class PhotoFilterViewController: UIViewController {
             itemCount = i
             
             let filterButton = UIButton(type: .custom)
-            filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
+                filterButton.frame = CGRect(x: xCoord, y: yCoord, width: self.buttonWidth, height: self.buttonHeight)
             filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
             filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             
-            if let smim = smallImage{
+            if let smim = self.smallImage{
                 if let ciim = CIImage(image: smim){
-                    filterButton.setImage(filteredImage(filterNumber: i, originalImage: ciim), for: .normal)
-                    filterButton.imageView?.contentMode = .scaleAspectFill
-                    
-                    xCoord +=  buttonWidth + gapBetweenButtons
+                    queue.async {
+                        let filteredImage = self.filteredImage(filterNumber: i, originalImage: ciim)
+                        DispatchQueue.main.async{
+                            filterButton.setImage(filteredImage, for: .normal)
+                            filterButton.imageView?.contentMode = .scaleAspectFill
+                        }
+                    }
+
+                    xCoord +=  self.buttonWidth + gapBetweenButtons
                     if i == 0{
                         filterButton.layer.borderColor = UIColor.white.cgColor
                         filterButton.layer.borderWidth = 2.0
                     }else{
                         filterButton.layer.borderWidth = 0
                     }
-                    DispatchQueue.main.async{
-                        self.scrollView.addSubview(filterButton)
-                    }
+                    self.scrollView.addSubview(filterButton)
                 }
             }
         }
-        DispatchQueue.main.async{
-            self.scrollView.contentSize = CGSize(width: xCoord + 10, height: self.buttonHeight)
-        }
+        self.scrollView.contentSize = CGSize(width: xCoord + 10, height: self.buttonHeight)
     }
 
     @objc func filterButtonTapped(sender: UIButton){
