@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UILabel.appearance().textColor = FlatBlack() // ActivityViewControllerのボタンの色のために必要
         Style.loadTheme()
         UIButton.appearance(whenContainedInInstancesOf: [UITableView.self]).backgroundColor = UIColor.clear
         UIButton.appearance().tintColor = Style.secondaryColor // テーマ変更画面のCheckboxの色のために必要
