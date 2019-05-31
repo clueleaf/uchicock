@@ -41,7 +41,7 @@
     [[self class] customizeNavigationBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizePageControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeProgressViewWithPrimaryColor:primaryColor withContentStyle:contentStyle];
-    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSegmentedControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor withContentStyle:contentStyle];
 //    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
@@ -78,7 +78,7 @@
     [[self class] customizeNavigationBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizePageControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeProgressViewWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
-    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSegmentedControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
 //    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
@@ -119,7 +119,7 @@
     [[self class] customizeButtonWithPrimaryColor:primaryColor secondaryColor:secondaryColor withContentStyle:contentStyle];
     [[self class] customizePageControlWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeProgressViewWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
-    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
+//    [[self class] customizeSearchBarWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSliderWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
 //    [[self class] customizeStepperWithPrimaryColor:primaryColor withContentStyle:contentStyle];
     [[self class] customizeSwitchWithPrimaryColor:primaryColor andSecondaryColor:secondaryColor];
