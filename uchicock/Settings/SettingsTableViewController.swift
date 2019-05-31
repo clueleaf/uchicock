@@ -78,8 +78,8 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         introductionView.backgroundImageView.image = UIImage(named: "launch-background")
         introductionView.rightSkipButton.backgroundColor = UIColor.clear
-        introductionView.pageControl.currentPageIndicatorTintColor = FlatYellow()
-        introductionView.pageControl.pageIndicatorTintColor = FlatOrange()
+        introductionView.pageControl.currentPageIndicatorTintColor = FlatColor.yellow
+        introductionView.pageControl.pageIndicatorTintColor = FlatColor.orange
         introductionView.delegate = self
         introductionView.buildIntroduction(withPanels: [introductionPanel1!,introductionPanel2!,introductionPanel3!, introductionPanel4!])
         
