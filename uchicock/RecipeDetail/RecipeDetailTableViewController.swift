@@ -667,6 +667,9 @@ class RecipeDetailTableViewController: UITableViewController{
                 activityVC.setStatusBarStyle(.default)
             }
             activityVC.modalPresentationCapturesStatusBarAppearance = true
+            activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
             self.present(activityVC, animated: true, completion: nil)
         }        
     }
