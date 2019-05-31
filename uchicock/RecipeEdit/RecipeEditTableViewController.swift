@@ -71,7 +71,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.photo.addGestureRecognizer(photoTapGestureRecognizer)
         
         ipc.delegate = self
-        ipc.allowsEditing = true
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
@@ -163,12 +162,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else{
             recipeName.keyboardAppearance = .default
             memo.keyboardAppearance = .default
-        }
-        
-        if Style.isStatusBarLight{
-            ipc.setStatusBarStyle(.lightContent)
-        }else{
-            ipc.setStatusBarStyle(.default)
         }
         
         self.tableView.reloadData()
@@ -427,6 +420,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 ipc.dismiss(animated: false, completion: nil)
                 performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
             }
+        }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
+            if let img = resizedImage(image: image){
+                ipc.dismiss(animated: false, completion: nil)
+                performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
+            }
         }
     }
     
@@ -436,12 +434,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             alert.addAction(UIAlertAction(title: "写真を撮る", style: .default,handler:{
                 action in
                 self.ipc.sourceType = .camera
+                self.ipc.allowsEditing = false
                 self.present(self.ipc, animated: true, completion: nil)
             }))
         }
         alert.addAction(UIAlertAction(title: "写真を選択",style: .default, handler:{
             action in
             self.ipc.sourceType = .photoLibrary
+            self.ipc.allowsEditing = true
             self.present(self.ipc, animated: true, completion: nil)
         }))
         let pasteboard: UIPasteboard = UIPasteboard.general
