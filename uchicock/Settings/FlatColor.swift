@@ -56,4 +56,18 @@ struct FlatColor{
     static let watermelonDark = UIColor(hue: 358/360, saturation: 61/100, brightness: 85/100, alpha: 1)
     static let whiteDark = UIColor(hue: 204/360, saturation: 5/100, brightness: 78/100, alpha: 1)
     static let yellowDark = UIColor(hue: 40/360, saturation: 100/100, brightness: 100/100, alpha: 1)
+    
+    static func ContrastColorOf(_ primeColor: UIColor) -> UIColor{
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        primeColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)        
+        red *= 0.2126
+        green *= 0.7152
+        blue *= 0.0722
+        let luminance = red + green + blue
+        return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
+    }
 }
