@@ -57,7 +57,7 @@ struct FlatColor{
     static let whiteDark = UIColor(hue: 204/360, saturation: 5/100, brightness: 78/100, alpha: 1)
     static let yellowDark = UIColor(hue: 40/360, saturation: 100/100, brightness: 100/100, alpha: 1)
     
-    static func ContrastColorOf(_ primeColor: UIColor) -> UIColor{
+    static func contrastColorOf(_ primeColor: UIColor) -> UIColor{
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -70,4 +70,97 @@ struct FlatColor{
         let luminance = red + green + blue
         return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
     }
+    
+    static func setGlobalThemeUsing(_ primaryColor: UIColor, with secondaryColor: UIColor){
+//        if ContrastColorOf(primaryColor).isEqual(self.white){
+//            UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+//        }else{
+//            UIApplication.shared.setStatusBarStyle(.default, animated: true)
+//        }
+        
+        customizeBarButtonItemWith(primaryColor)
+        customizeButtonWith(primaryColor, and: secondaryColor)
+        customizeNavigationBarWith(primaryColor)
+        customizePageControlWith(primaryColor)
+        customizeProgressViewWith(primaryColor, and: secondaryColor)
+        customizeSegmentedControlWith(primaryColor)
+        customizeSliderWith(primaryColor, and: secondaryColor)
+        customizeSwitchWith(primaryColor, and: secondaryColor)
+        customizeTabBarWith(primaryColor)
+        customizeToolbarWith(primaryColor)
+        customizeImagePickerControllerWith(primaryColor)
+    }
+    
+    static private func customizeBarButtonItemWith(_ primaryColor: UIColor){
+        //    + (void)customizeBarButtonItemWithPrimaryColor:(UIColor *)primaryColor
+        //    contentStyle:(UIContentStyle)contentStyle {
+        //
+        //    UIColor *contentColor;
+        //    switch (contentStyle) {
+        //    case UIContentStyleContrast: {
+        //    contentColor = ContrastColor(primaryColor, NO);
+        //    break;
+        //    }
+        //    case UIContentStyleLight: {
+        //    contentColor = [UIColor whiteColor];
+        //    break;
+        //    }
+        //    case UIContentStyleDark: {
+        //    contentColor = FlatBlackDark;
+        //    break;
+        //    }
+        //    default: {
+        //    contentColor = ContrastColor(primaryColor, NO);
+        //    break;
+        //    }
+        //    }
+        //
+        //    [[UIBarButtonItem appearance] setTintColor:primaryColor];
+        //    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:contentColor];
+        //    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:contentColor];
+        //    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:contentColor];
+        //    }
+        
+    }
+    
+    static private func customizeButtonWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
+        
+    }
+    
+    static private func customizeNavigationBarWith(_ primaryColor: UIColor){
+        
+    }
+    
+    static private func customizePageControlWith(_ primaryColor: UIColor){
+        
+    }
+    
+    static private func customizeProgressViewWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
+        
+    }
+    
+    static private func customizeSegmentedControlWith(_ primaryColor: UIColor){
+        
+    }
+    
+    static private func customizeSliderWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
+        
+    }
+    
+    static private func customizeSwitchWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
+        
+    }
+    
+    static private func customizeTabBarWith(_ primaryColor: UIColor){
+        
+    }
+    
+    static private func customizeToolbarWith(_ primaryColor: UIColor){
+        
+    }
+    
+    static private func customizeImagePickerControllerWith(_ primaryColor: UIColor){
+        
+    }
+    
 }

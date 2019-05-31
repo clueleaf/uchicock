@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ChameleonFramework
 
 struct Style{
     static var no = "0"
@@ -43,7 +42,7 @@ struct Style{
         isStatusBarLight = false
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.skyBlueDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -72,7 +71,7 @@ struct Style{
         isStatusBarLight = false
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.yellowDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -101,7 +100,7 @@ struct Style{
         isStatusBarLight = false
         primaryColor = FlatColor.pink
         secondaryColor = FlatColor.pink
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         labelTextColor = FlatColor.black
@@ -130,7 +129,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.pinkDark
         secondaryColor = FlatColor.pinkDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.blackDark
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -159,7 +158,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.skyBlue
         secondaryColor = FlatColor.skyBlue
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -188,7 +187,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.skyBlueDark
         secondaryColor = FlatColor.skyBlueDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -217,7 +216,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.mint
         secondaryColor = FlatColor.mintDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -246,7 +245,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.coffeeDark
         secondaryColor = FlatColor.coffee
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -275,7 +274,7 @@ struct Style{
         isStatusBarLight = false
         primaryColor = FlatColor.white
         secondaryColor = FlatColor.mint
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -304,7 +303,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelon
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -333,7 +332,7 @@ struct Style{
         isStatusBarLight = false
         primaryColor = FlatColor.limeDark
         secondaryColor = FlatColor.limeDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -362,7 +361,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.grayDark
         secondaryColor = FlatColor.grayDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -391,7 +390,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelonDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -420,7 +419,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -449,7 +448,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -478,7 +477,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.orange
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -507,7 +506,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.yellowDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -536,7 +535,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pink
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         labelTextColor = FlatColor.black
@@ -565,7 +564,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pinkDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -594,7 +593,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.coffee
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -623,7 +622,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -652,7 +651,7 @@ struct Style{
         isStatusBarLight = true
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
-        Chameleon.setGlobalThemeUsingPrimaryColor(Style.primaryColor, withSecondaryColor: Style.secondaryColor, andContentStyle: UIContentStyle.contrast)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white

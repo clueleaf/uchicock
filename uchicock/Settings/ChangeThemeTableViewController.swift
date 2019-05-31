@@ -66,10 +66,10 @@ class ChangeThemeTableViewController: UITableViewController {
         }
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
-        cancelButton.tintColor = FlatColor.ContrastColorOf(Style.primaryColor)
+        cancelButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor)
         navigationItem.leftBarButtonItem = cancelButton
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
-        saveButton.tintColor = FlatColor.ContrastColorOf(Style.primaryColor)
+        saveButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor)
         navigationItem.rightBarButtonItem = saveButton
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -109,7 +109,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tableView.indicatorStyle = .black
         }
 
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.ContrastColorOf(Style.primaryColor)]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.primaryColor)]
         navigationController?.navigationBar.barTintColor = Style.primaryColor        
         navigationController?.loadView()
         self.setNeedsStatusBarAppearanceUpdate()
