@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 import M13Checkbox
-import IDMPhotoBrowser
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -225,9 +224,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
-                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p!], animatedFrom: photo)
+                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
+                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                     self.present(browser, animated: true, completion: nil)
                 }
             }

@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 import SVProgressHUD
-import IDMPhotoBrowser
 import Accounts
 
 class RecipeDetailTableViewController: UITableViewController{
@@ -314,9 +313,10 @@ class RecipeDetailTableViewController: UITableViewController{
                 if browsePhoto != nil{
                     let p = IDMPhoto(image: browsePhoto)
                     p!.caption = self.recipe.recipeName
-                    let browser: IDMPhotoBrowser! = IDMPhotoBrowser(photos: [p!], animatedFrom: photo)
+                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
                     browser.displayActionButton = false
                     browser.displayArrowButton = false
+                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                     self.present(browser, animated: true, completion: nil)
                 }
             }

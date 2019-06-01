@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IDMPhotoBrowser
 
 class CustomAlertController: UIAlertController {
     var alertStatusBarStyle: UIStatusBarStyle = .default
@@ -21,5 +22,13 @@ class CustomActivityController: UIActivityViewController{
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return activityStatusBarStyle
+    }
+}
+
+class CustomPhotoBrowser: IDMPhotoBrowser{
+    var photoBrowserStatusBarStyle: UIStatusBarStyle = .default
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return photoBrowserStatusBarStyle
     }
 }
