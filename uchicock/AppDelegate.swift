@@ -94,28 +94,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let launchDateAfterReview: NSDate? = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate
         let launchCountAfterReview: Int? = defaults.object(forKey: "LaunchCountAfterReview") as? Int
         
-        if launchDateAfterReview == nil{
-            defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-            defaults.set(1, forKey: "LaunchCountAfterReview")
-        }else{
-            if launchCountAfterReview == nil{
+        if hasReviewed == false{
+            if launchDateAfterReview == nil{
+                defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
                 defaults.set(1, forKey: "LaunchCountAfterReview")
             }else{
-                defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
-            }
-            
-            let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
-            if hasReviewed{
-                if daySpan > 270 && launchCountAfterReview! > 30{
-                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                    defaults.set(0, forKey: "LaunchCountAfterReview")
-                    defaults.set(true, forKey: "FirstRequestReview")
-                    SKStoreReviewController.requestReview()
+                if launchCountAfterReview == nil{
+                    defaults.set(1, forKey: "LaunchCountAfterReview")
+                }else{
+                    defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
                 }
-            }else{
-                if daySpan > 7 && launchCountAfterReview! > 7{
-                    defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                    defaults.set(0, forKey: "LaunchCountAfterReview")
+                
+                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
+                if daySpan > 14 && launchCountAfterReview! > 10{
                     defaults.set(true, forKey: "FirstRequestReview")
                     SKStoreReviewController.requestReview()
                 }
