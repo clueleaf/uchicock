@@ -85,13 +85,6 @@ struct FlatColor{
         customizeBarButtonItemWith(primaryColor)
         customizeButtonWith(primaryColor, and: secondaryColor)
         customizeNavigationBarWith(primaryColor)
-        customizePageControlWith(primaryColor)
-        customizeProgressViewWith(primaryColor, and: secondaryColor)
-        customizeSegmentedControlWith(primaryColor)
-        customizeSliderWith(primaryColor, and: secondaryColor)
-        customizeSwitchWith(primaryColor, and: secondaryColor)
-        customizeTabBarWith(primaryColor)
-        customizeToolbarWith(primaryColor)
     }
     
     static private func customizeBarButtonItemWith(_ primaryColor: UIColor){
@@ -108,7 +101,7 @@ struct FlatColor{
         UIButton.appearance().tintColor = secondaryContentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
-        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor //
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
@@ -120,29 +113,11 @@ struct FlatColor{
         let contentColor = contrastColorOf(primaryColor, isFlat: false)
         UINavigationBar.appearance().barTintColor = primaryColor
         UINavigationBar.appearance().tintColor = contentColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor] //
         UINavigationBar.appearance().shadowImage = UIImage()
-    }
-    
-    static private func customizePageControlWith(_ primaryColor: UIColor){
-    }
-    
-    static private func customizeProgressViewWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-    }
-    
-    static private func customizeSegmentedControlWith(_ primaryColor: UIColor){
-    }
-    
-    static private func customizeSliderWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-    }
-    
-    static private func customizeSwitchWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-    }
-    
-    static private func customizeTabBarWith(_ primaryColor: UIColor){
-    }
-    
-    static private func customizeToolbarWith(_ primaryColor: UIColor){
+        
+        //    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:contentColor}];
+        
     }
     
 }
