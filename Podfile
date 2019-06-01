@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'uchicock' do
     pod 'RealmSwift'
-    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
     pod 'DZNEmptyDataSet'
     pod 'IDMPhotoBrowser'
     pod 'SVProgressHUD'
