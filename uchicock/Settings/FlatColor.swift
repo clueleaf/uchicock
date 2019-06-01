@@ -71,17 +71,11 @@ struct FlatColor{
         if isFlat{
             return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
         }else{
-            return (luminance > 0.6) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+            return (luminance > 0.6) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         }
     }
     
     static func setGlobalThemeUsing(_ primaryColor: UIColor, with secondaryColor: UIColor){
-//        if contrastColorOf(primaryColor, isFlat: true).isEqual(self.white){
-//            UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
-//        }else{
-//            UIApplication.shared.setStatusBarStyle(.default, animated: true)
-//        }
-        
         customizeBarButtonItemWith(primaryColor)
         customizeButtonWith(primaryColor, and: secondaryColor)
         customizeNavigationBarWith(primaryColor)
@@ -101,7 +95,7 @@ struct FlatColor{
         UIButton.appearance().tintColor = secondaryContentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
-        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor //
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
@@ -113,9 +107,8 @@ struct FlatColor{
         let contentColor = contrastColorOf(primaryColor, isFlat: false)
         UINavigationBar.appearance().barTintColor = primaryColor
         UINavigationBar.appearance().tintColor = contentColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor] //
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
         UINavigationBar.appearance().shadowImage = UIImage()
-        
     }
     
 }
