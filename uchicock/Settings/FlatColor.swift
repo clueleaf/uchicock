@@ -57,7 +57,7 @@ struct FlatColor{
     static let whiteDark = UIColor(hue: 204/360, saturation: 5/100, brightness: 78/100, alpha: 1)
     static let yellowDark = UIColor(hue: 40/360, saturation: 100/100, brightness: 100/100, alpha: 1)
     
-    static func contrastColorOf(_ primeColor: UIColor) -> UIColor{
+    static func contrastColorOf(_ primeColor: UIColor, isFlat: Bool) -> UIColor{
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -68,11 +68,15 @@ struct FlatColor{
         green *= 0.7152
         blue *= 0.0722
         let luminance = red + green + blue
-        return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
+        if isFlat{
+            return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
+        }else{
+            return (luminance > 0.6) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        }
     }
     
     static func setGlobalThemeUsing(_ primaryColor: UIColor, with secondaryColor: UIColor){
-//        if ContrastColorOf(primaryColor).isEqual(self.white){
+//        if contrastColorOf(primaryColor, isFlat: true).isEqual(self.white){
 //            UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
 //        }else{
 //            UIApplication.shared.setStatusBarStyle(.default, animated: true)
@@ -88,79 +92,57 @@ struct FlatColor{
         customizeSwitchWith(primaryColor, and: secondaryColor)
         customizeTabBarWith(primaryColor)
         customizeToolbarWith(primaryColor)
-        customizeImagePickerControllerWith(primaryColor)
     }
     
     static private func customizeBarButtonItemWith(_ primaryColor: UIColor){
-        //    + (void)customizeBarButtonItemWithPrimaryColor:(UIColor *)primaryColor
-        //    contentStyle:(UIContentStyle)contentStyle {
-        //
-        //    UIColor *contentColor;
-        //    switch (contentStyle) {
-        //    case UIContentStyleContrast: {
-        //    contentColor = ContrastColor(primaryColor, NO);
-        //    break;
-        //    }
-        //    case UIContentStyleLight: {
-        //    contentColor = [UIColor whiteColor];
-        //    break;
-        //    }
-        //    case UIContentStyleDark: {
-        //    contentColor = FlatBlackDark;
-        //    break;
-        //    }
-        //    default: {
-        //    contentColor = ContrastColor(primaryColor, NO);
-        //    break;
-        //    }
-        //    }
-        //
-        //    [[UIBarButtonItem appearance] setTintColor:primaryColor];
-        //    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:contentColor];
-        //    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:contentColor];
-        //    [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:contentColor];
-        //    }
-        
+        let contentColor = contrastColorOf(primaryColor, isFlat: false)
+        UIBarButtonItem.appearance().tintColor = primaryColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
     }
     
     static private func customizeButtonWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-        
+        let contentColor = contrastColorOf(primaryColor, isFlat: false)
+        let secondaryContentColor = contrastColorOf(secondaryColor, isFlat: false)
+        UIButton.appearance().tintColor = secondaryContentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UIStepper.self]).backgroundColor = UIColor.clear
+        UIButton.appearance().setTitleShadowColor(UIColor.clear, for: UIControl.State.normal)
     }
     
     static private func customizeNavigationBarWith(_ primaryColor: UIColor){
-        
+        let contentColor = contrastColorOf(primaryColor, isFlat: false)
+        UINavigationBar.appearance().barTintColor = primaryColor
+        UINavigationBar.appearance().tintColor = contentColor
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     static private func customizePageControlWith(_ primaryColor: UIColor){
-        
     }
     
     static private func customizeProgressViewWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-        
     }
     
     static private func customizeSegmentedControlWith(_ primaryColor: UIColor){
-        
     }
     
     static private func customizeSliderWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-        
     }
     
     static private func customizeSwitchWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-        
     }
     
     static private func customizeTabBarWith(_ primaryColor: UIColor){
-        
     }
     
     static private func customizeToolbarWith(_ primaryColor: UIColor){
-        
-    }
-    
-    static private func customizeImagePickerControllerWith(_ primaryColor: UIColor){
-        
     }
     
 }
