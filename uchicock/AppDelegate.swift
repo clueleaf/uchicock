@@ -9,7 +9,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import SVProgressHUD
 import M13Checkbox
 import StoreKit

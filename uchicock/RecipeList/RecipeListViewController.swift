@@ -38,11 +38,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
     
     override func viewDidLoad() {
@@ -516,7 +512,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
-            let alertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
@@ -528,12 +524,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }))
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-            if Style.isStatusBarLight{
-                alertView.setStatusBarStyle(.lightContent)
-            }else{
-                alertView.setStatusBarStyle(.default)
-            }
-            alertView.modalPresentationCapturesStatusBarAppearance = true
+            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.modalPresentationCapturesStatusBarAppearance = true            
             self.present(alertView, animated: true, completion: nil)
         }
         del.backgroundColor = Style.deleteColor

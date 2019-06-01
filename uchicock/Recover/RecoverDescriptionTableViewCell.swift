@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 import M13Checkbox
 
 class RecoverDescriptionTableViewCell: UITableViewCell {

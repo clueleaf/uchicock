@@ -116,8 +116,6 @@ struct FlatColor{
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor] //
         UINavigationBar.appearance().shadowImage = UIImage()
         
-        //    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:contentColor}];
-        
     }
     
 }

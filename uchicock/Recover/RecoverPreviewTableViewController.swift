@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 
 class RecoverPreviewTableViewController: UITableViewController {
 
@@ -17,11 +16,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     var recipe = Recipe()
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {

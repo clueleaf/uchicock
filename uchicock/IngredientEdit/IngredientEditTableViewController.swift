@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import M13Checkbox
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
@@ -27,11 +26,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var isAddMode = true
     let openTime = Date()
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -164,17 +159,13 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }else{
-            let alertView = UIAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
                 _ = self.detailVC?.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
-            if Style.isStatusBarLight{
-                alertView.setStatusBarStyle(.lightContent)
-            }else{
-                alertView.setStatusBarStyle(.default)
-            }
+            alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
@@ -183,35 +174,23 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if ingredientName.text == nil || textWithoutSpace(text: ingredientName.text!) == ""{
             //材料名を入れていない
-            let noNameAlertView = UIAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: ingredientName.text!).count > 30{
             //材料名が長すぎる
-            let noNameAlertView = UIAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if memo.text.count > 300{
             //メモが長すぎる
-            let noNameAlertView = UIAlertController(title: nil, message: "メモを300文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "メモを300文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else{
@@ -220,13 +199,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             if isAddMode {
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", textWithoutSpace(text: ingredientName.text!))
                 if sameNameIngredient.count != 0{
-                    let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
+                    let sameNameAlertView = CustomAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                    if Style.isStatusBarLight{
-                        sameNameAlertView.setStatusBarStyle(.lightContent)
-                    }else{
-                        sameNameAlertView.setStatusBarStyle(.default)
-                    }
+                    sameNameAlertView.alertStatusBarStyle = Style.statusBarStyle
                     sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{
@@ -253,13 +228,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             }else{
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
                 if sameNameIngredient.count != 0 && ingredient.ingredientName != textWithoutSpace(text: ingredientName.text!){
-                    let sameNameAlertView = UIAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
+                    let sameNameAlertView = CustomAlertController(title: nil, message: "同じ名前の材料が既に登録されています", preferredStyle: .alert)
                     sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                    if Style.isStatusBarLight{
-                        sameNameAlertView.setStatusBarStyle(.lightContent)
-                    }else{
-                        sameNameAlertView.setStatusBarStyle(.default)
-                    }
+                    sameNameAlertView.alertStatusBarStyle = Style.statusBarStyle
                     sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
                     present(sameNameAlertView, animated: true, completion: nil)
                 }else{

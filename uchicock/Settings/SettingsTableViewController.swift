@@ -20,11 +20,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     
     let selectedCellBackgroundView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {

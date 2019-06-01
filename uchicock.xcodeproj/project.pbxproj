@@ -32,6 +32,7 @@
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B55370F1E686C3A0054D692 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1281E6867620096E9F1 /* ChameleonFramework.framework */; };
+		9B68E7B722A2CFF6000BFFA8 /* CustomStatusBarStyleControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B68E7B622A2CFF6000BFFA8 /* CustomStatusBarStyleControllers.swift */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
 		9B6D67C81CD0E5A4001E8079 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67C71CD0E5A4001E8079 /* Extension.swift */; };
 		9B6D67CA1CD0E8F9001E8079 /* IngredientName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67C91CD0E8F9001E8079 /* IngredientName.swift */; };
@@ -98,6 +99,7 @@
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
+		9B68E7B622A2CFF6000BFFA8 /* CustomStatusBarStyleControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatusBarStyleControllers.swift; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67C71CD0E5A4001E8079 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B6D67C91CD0E8F9001E8079 /* IngredientName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientName.swift; path = RecipeEdit/IngredientName.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				9B6D67C71CD0E5A4001E8079 /* Extension.swift */,
 				9BB98FA71E6463BD009240FB /* TabBarController.swift */,
 				9BE1C0311F88895600B8F0D8 /* CopyableLabel.swift */,
+				9B68E7B622A2CFF6000BFFA8 /* CustomStatusBarStyleControllers.swift */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */,
 				9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */,
 				9B98A61E1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift in Sources */,
+				9B68E7B722A2CFF6000BFFA8 /* CustomStatusBarStyleControllers.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */,

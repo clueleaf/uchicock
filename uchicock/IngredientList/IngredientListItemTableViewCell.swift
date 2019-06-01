@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import M13Checkbox
 
 class IngredientListItemTableViewCell: UITableViewCell {

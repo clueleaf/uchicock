@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import DZNEmptyDataSet
 import M13Checkbox
 
@@ -27,11 +26,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -329,17 +324,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
             if ingredient.recipeIngredients.count > 0 {
-                let alertView = UIAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
+                let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             } else{
-                let deleteAlertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+                let deleteAlertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
                 deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                     let realm = try! Realm()
                     try! realm.write {
@@ -354,11 +345,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }
                 }))
                 deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    deleteAlertView.setStatusBarStyle(.lightContent)
-                }else{
-                    deleteAlertView.setStatusBarStyle(.default)
-                }
+                deleteAlertView.alertStatusBarStyle = Style.statusBarStyle
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
             }

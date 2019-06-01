@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import DZNEmptyDataSet
 
 class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UITextFieldDelegate {
@@ -36,11 +35,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     var safeAreaHeight: CGFloat = 0
     var transitioning = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -514,7 +509,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     
     // MARK: - IBAction
     @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
             self.ingredientTextField1.text = ""
             self.ingredientTextField2.text = ""
@@ -522,11 +517,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             self.showRecipeTableView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        if Style.isStatusBarLight{
-            alertView.setStatusBarStyle(.lightContent)
-        }else{
-            alertView.setStatusBarStyle(.default)
-        }
+        alertView.alertStatusBarStyle = Style.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }

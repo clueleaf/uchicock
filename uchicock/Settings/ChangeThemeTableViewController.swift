@@ -15,11 +15,7 @@ class ChangeThemeTableViewController: UITableViewController {
     var hasScrolled = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     let themeList: [String] = [

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import M13Checkbox
 import SVProgressHUD
 
@@ -22,11 +21,7 @@ class RecoverTableViewController: UITableViewController {
     let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -245,18 +240,14 @@ class RecoverTableViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
                 if isRecovering == false {
                     if recoverableSampleRecipeList.count == 0{
-                        let alertView = UIAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
+                        let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                         }))
-                        if Style.isStatusBarLight{
-                            alertView.setStatusBarStyle(.lightContent)
-                        }else{
-                            alertView.setStatusBarStyle(.default)
-                        }
+                        alertView.alertStatusBarStyle = Style.statusBarStyle
                         alertView.modalPresentationCapturesStatusBarAppearance = true
                         self.present(alertView, animated: true, completion: nil)
                     }else{
-                        let alertView = UIAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                        let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
                             SVProgressHUD.show(withStatus: "復元中...")
@@ -274,11 +265,7 @@ class RecoverTableViewController: UITableViewController {
                             }
                         }))
                         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                        if Style.isStatusBarLight{
-                            alertView.setStatusBarStyle(.lightContent)
-                        }else{
-                            alertView.setStatusBarStyle(.default)
-                        }
+                        alertView.alertStatusBarStyle = Style.statusBarStyle
                         alertView.modalPresentationCapturesStatusBarAppearance = true
                         self.present(alertView, animated: true, completion: nil)
                     }
@@ -402,7 +389,7 @@ class RecoverTableViewController: UITableViewController {
                 Realm.Configuration.defaultConfiguration = config
                 self.dismiss(animated: true, completion: nil)
             }else{
-                let alertView = UIAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
                     SVProgressHUD.show(withStatus: "復元中...")
@@ -417,11 +404,7 @@ class RecoverTableViewController: UITableViewController {
                     }
                 }))
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }

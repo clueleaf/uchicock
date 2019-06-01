@@ -8,7 +8,6 @@
 
 import UIKit
 import EventKit
-import ChameleonFramework
 import SVProgressHUD
 import M13Checkbox
 
@@ -24,11 +23,7 @@ class ReminderTableViewController: UITableViewController{
     
     var ingredientName = ""
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -98,7 +93,7 @@ class ReminderTableViewController: UITableViewController{
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async {
-                let alertView = UIAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .alert)
+                let alertView = CustomAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
@@ -106,11 +101,7 @@ class ReminderTableViewController: UITableViewController{
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }
@@ -132,7 +123,7 @@ class ReminderTableViewController: UITableViewController{
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async{
-                let alertView = UIAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .alert)
+                let alertView = CustomAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
                 }))
                 alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
@@ -140,11 +131,7 @@ class ReminderTableViewController: UITableViewController{
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 }))
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }

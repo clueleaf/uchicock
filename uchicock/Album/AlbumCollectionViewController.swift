@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import DZNEmptyDataSet
 import MJRefresh
 
@@ -25,11 +24,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var showNameFlag = false
     var animationFlag = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -209,35 +204,27 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - IBAction
     @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             self.recipeBasicList.shuffle()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        if Style.isStatusBarLight{
-            alertView.setStatusBarStyle(.lightContent)
-        }else{
-            alertView.setStatusBarStyle(.default)
-        }
+        alertView.alertStatusBarStyle = Style.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }
 
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = UIAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             self.reloadRecipeList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        if Style.isStatusBarLight{
-            alertView.setStatusBarStyle(.lightContent)
-        }else{
-            alertView.setStatusBarStyle(.default)
-        }
+        alertView.alertStatusBarStyle = Style.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }

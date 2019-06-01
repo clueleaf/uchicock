@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import M13Checkbox
 
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
@@ -35,11 +34,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     var suggestList = Array<IngredientName>()
     let selectedCellBackgroundView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -264,33 +259,25 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 0 && indexPath.section == 1 && indexPath.row == 0{
             if isAddMode{
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .destructive){
                     action in
                     self.deleteFlag = true
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
             }else{
-                let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alertView.addAction(UIAlertAction(title: "外す",style: .destructive){
                     action in
                     self.deleteFlag = true
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    alertView.setStatusBarStyle(.lightContent)
-                }else{
-                    alertView.setStatusBarStyle(.default)
-                }
+                alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
             }
@@ -371,35 +358,23 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         if textWithoutSpace(text: ingredientName.text!) == "" {
-            let noNameAlertView = UIAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: ingredientName.text!).count > 30{
             //材料名が長すぎる
-            let noNameAlertView = UIAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else if textWithoutSpace(text: amount.text!).count > 30{
             //分量が長すぎる
-            let noNameAlertView = UIAlertController(title: nil, message: "分量を30文字以下にしてください", preferredStyle: .alert)
+            let noNameAlertView = CustomAlertController(title: nil, message: "分量を30文字以下にしてください", preferredStyle: .alert)
             noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            if Style.isStatusBarLight{
-                noNameAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noNameAlertView.setStatusBarStyle(.default)
-            }
+            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
             noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noNameAlertView, animated: true, completion: nil)
         }else{
@@ -407,7 +382,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
-                let registAlertView = UIAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
+                let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
@@ -442,11 +417,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     }
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
                 registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                if Style.isStatusBarLight{
-                    registAlertView.setStatusBarStyle(.lightContent)
-                }else{
-                    registAlertView.setStatusBarStyle(.default)
-                }
+                registAlertView.alertStatusBarStyle = Style.statusBarStyle
                 registAlertView.modalPresentationCapturesStatusBarAppearance = true
                 present(registAlertView, animated: true, completion: nil)
             }else{

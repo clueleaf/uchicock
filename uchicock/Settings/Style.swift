@@ -12,7 +12,7 @@ struct Style{
     static var no = "0"
     static var isDark = false
     static var isBackgroundDark = false
-    static var isStatusBarLight = false
+    static var statusBarStyle: UIStatusBarStyle = .default
     static var primaryColor = FlatColor.yellow
     static var secondaryColor = FlatColor.skyBlueDark
     static var basicBackgroundColor = FlatColor.white
@@ -39,7 +39,7 @@ struct Style{
         no = "0"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = false
+        statusBarStyle = .default
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.skyBlueDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -68,7 +68,7 @@ struct Style{
         no = "1"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = false
+        statusBarStyle = .default
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.yellowDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -97,7 +97,7 @@ struct Style{
         no = "2"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = false
+        statusBarStyle = .default
         primaryColor = FlatColor.pink
         secondaryColor = FlatColor.pink
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -126,7 +126,7 @@ struct Style{
         no = "3"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.pinkDark
         secondaryColor = FlatColor.pinkDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -155,7 +155,7 @@ struct Style{
         no = "4"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.skyBlue
         secondaryColor = FlatColor.skyBlue
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -184,7 +184,7 @@ struct Style{
         no = "5"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.skyBlueDark
         secondaryColor = FlatColor.skyBlueDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -213,7 +213,7 @@ struct Style{
         no = "6"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.mint
         secondaryColor = FlatColor.mintDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -242,7 +242,7 @@ struct Style{
         no = "7"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.coffeeDark
         secondaryColor = FlatColor.coffee
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -271,7 +271,7 @@ struct Style{
         no = "8"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = false
+        statusBarStyle = .default
         primaryColor = FlatColor.white
         secondaryColor = FlatColor.mint
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -300,7 +300,7 @@ struct Style{
         no = "9"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelon
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -329,7 +329,7 @@ struct Style{
         no = "10"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = false
+        statusBarStyle = .default
         primaryColor = FlatColor.limeDark
         secondaryColor = FlatColor.limeDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -358,7 +358,8 @@ struct Style{
         no = "11"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.grayDark
         secondaryColor = FlatColor.grayDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -387,7 +388,7 @@ struct Style{
         no = "12"
         isDark = false
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelonDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -416,7 +417,7 @@ struct Style{
         no = "13"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -445,7 +446,7 @@ struct Style{
         no = "14"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -474,7 +475,7 @@ struct Style{
         no = "15"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.orange
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -503,7 +504,7 @@ struct Style{
         no = "16"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.yellowDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -532,7 +533,7 @@ struct Style{
         no = "17"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pink
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -561,7 +562,7 @@ struct Style{
         no = "18"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pinkDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -590,7 +591,7 @@ struct Style{
         no = "19"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.coffee
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -619,7 +620,7 @@ struct Style{
         no = "20"
         isDark = false
         isBackgroundDark = false
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
@@ -648,7 +649,7 @@ struct Style{
         no = "21"
         isDark = true
         isBackgroundDark = true
-        isStatusBarLight = true
+        statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
         FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)

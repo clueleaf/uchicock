@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 import SVProgressHUD
 import IDMPhotoBrowser
 import Accounts
@@ -50,11 +49,7 @@ class RecipeDetailTableViewController: UITableViewController{
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if Style.isStatusBarLight{
-            return .lightContent
-        }else{
-            return .default
-        }
+        return Style.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -126,15 +121,11 @@ class RecipeDetailTableViewController: UITableViewController{
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
-            let noRecipeAlertView = UIAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
+            let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 _ = self.navigationController?.popViewController(animated: true)
             }))
-            if Style.isStatusBarLight{
-                noRecipeAlertView.setStatusBarStyle(.lightContent)
-            }else{
-                noRecipeAlertView.setStatusBarStyle(.default)
-            }
+            noRecipeAlertView.alertStatusBarStyle = Style.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
         }else{
@@ -334,7 +325,7 @@ class RecipeDetailTableViewController: UITableViewController{
     
     @objc func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         if noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
-            let alertView = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
                 if let image = self.photo.image {
                     UIImageWriteToSavedPhotosAlbum(image, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -347,11 +338,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 }
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-            if Style.isStatusBarLight{
-                alertView.setStatusBarStyle(.lightContent)
-            }else{
-                alertView.setStatusBarStyle(.default)
-            }
+            alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
@@ -361,7 +348,7 @@ class RecipeDetailTableViewController: UITableViewController{
         if error == nil{
             SVProgressHUD.showSuccess(withStatus: "カメラロールへ保存しました")
         }else{
-            let alertView = UIAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
@@ -369,11 +356,7 @@ class RecipeDetailTableViewController: UITableViewController{
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }))
-            if Style.isStatusBarLight{
-                alertView.setStatusBarStyle(.lightContent)
-            }else{
-                alertView.setStatusBarStyle(.default)
-            }
+            alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
@@ -649,23 +632,15 @@ class RecipeDetailTableViewController: UITableViewController{
         
         let shareText = createLongMessage()
         if noPhotoFlag == false, let image = photo.image {
-            let activityVC = UIActivityViewController(activityItems: [shareText, image], applicationActivities: nil)
+            let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            if Style.isStatusBarLight{
-                activityVC.setStatusBarStyle(.lightContent)
-            }else{
-                activityVC.setStatusBarStyle(.default)
-            }
+            activityVC.activityStatusBarStyle = Style.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             self.present(activityVC, animated: true, completion: nil)
         }else{
-            let activityVC = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+            let activityVC = CustomActivityController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            if Style.isStatusBarLight{
-                activityVC.setStatusBarStyle(.lightContent)
-            }else{
-                activityVC.setStatusBarStyle(.default)
-            }
+            activityVC.activityStatusBarStyle = Style.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
                 self.setNeedsStatusBarAppearanceUpdate()
@@ -683,7 +658,7 @@ class RecipeDetailTableViewController: UITableViewController{
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        let alertView = UIAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
             action in
             let realm = try! Realm()
@@ -709,11 +684,7 @@ class RecipeDetailTableViewController: UITableViewController{
             _ = self.navigationController?.popViewController(animated: true)
         })
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        if Style.isStatusBarLight{
-            alertView.setStatusBarStyle(.lightContent)
-        }else{
-            alertView.setStatusBarStyle(.default)
-        }
+        alertView.alertStatusBarStyle = Style.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
