@@ -521,60 +521,34 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    func presentAlert(_ message: String){
+        let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
+    }
+    
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if recipeName.text == nil || textWithoutSpace(text: recipeName.text!) == ""{
-            //レシピ名を入れていない
-            let noNameAlertView = CustomAlertController(title: nil, message: "レシピ名を入力してください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("レシピ名を入力してください")
         }else if textWithoutSpace(text: recipeName.text!).count > 30{
-            //レシピ名が長すぎる
-            let noNameAlertView = CustomAlertController(title: nil, message: "レシピ名を30文字以下にしてください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("レシピ名を30文字以下にしてください")
         }else if memo.text.count > 1000 {
-            //メモが長すぎる
-            let noNameAlertView = CustomAlertController(title: nil, message: "メモを1000文字以下にしてください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("メモを1000文字以下にしてください")
         }else if editingRecipeIngredientList.count == 0{
-            //材料が一つもない
-            let noNameAlertView = CustomAlertController(title: nil, message: "材料を一つ以上入力してください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("材料を一つ以上入力してください")
         }else if editingRecipeIngredientList.count > 30{
-            //材料数が多すぎる
-            let noNameAlertView = CustomAlertController(title: nil, message: "材料を30個以下にしてください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("材料を30個以下にしてください")
         } else if isIngredientDuplicated() {
-            //材料が重複している
-            let noNameAlertView = CustomAlertController(title: nil, message: "重複している材料があります", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("重複している材料があります")
         }else{
             let realm = try! Realm()
             
             if isAddMode {
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0{
-                    let sameNameAlertView = CustomAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
-                    sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                    sameNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-                    present(sameNameAlertView, animated: true, completion: nil)
+                    presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
                     try! realm.write{
                         let newRecipe = Recipe()
@@ -624,11 +598,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
                 if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
-                    let sameNameAlertView = CustomAlertController(title: nil, message: "同じ名前のレシピが既に登録されています", preferredStyle: .alert)
-                    sameNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                    sameNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-                    sameNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-                    present(sameNameAlertView, animated: true, completion: nil)
+                    presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
                     try! realm.write {
                         let deletingRecipeIngredientList = List<RecipeIngredientLink>()

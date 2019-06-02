@@ -356,27 +356,21 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.dismiss(animated: true, completion: nil)
     }
     
+    func presentAlert(_ message: String){
+        let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
+    }
+
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         if textWithoutSpace(text: ingredientName.text!) == "" {
-            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を入力してください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("材料名を入力してください")
         }else if textWithoutSpace(text: ingredientName.text!).count > 30{
-            //材料名が長すぎる
-            let noNameAlertView = CustomAlertController(title: nil, message: "材料名を30文字以下にしてください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("材料名を30文字以下にしてください")
         }else if textWithoutSpace(text: amount.text!).count > 30{
-            //分量が長すぎる
-            let noNameAlertView = CustomAlertController(title: nil, message: "分量を30文字以下にしてください", preferredStyle: .alert)
-            noNameAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            noNameAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noNameAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noNameAlertView, animated: true, completion: nil)
+            presentAlert("分量を30文字以下にしてください")
         }else{
             let realm = try! Realm()
             let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
