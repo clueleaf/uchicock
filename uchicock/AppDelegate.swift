@@ -89,27 +89,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func requestReview(){
         let defaults = UserDefaults.standard
+        defaults.register(defaults: ["FirstRequestReview" : false, "LaunchCountAfterReview" : 0])
+
         let hasReviewed = defaults.bool(forKey: "FirstRequestReview")
-        let launchDateAfterReview: NSDate? = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate
-        let launchCountAfterReview: Int? = defaults.object(forKey: "LaunchCountAfterReview") as? Int
+        let launchCountAfterReview = defaults.integer(forKey: "LaunchCountAfterReview")
         
-        if hasReviewed == false{
-            if launchDateAfterReview == nil{
-                defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
-                defaults.set(1, forKey: "LaunchCountAfterReview")
-            }else{
-                if launchCountAfterReview == nil{
-                    defaults.set(1, forKey: "LaunchCountAfterReview")
-                }else{
-                    defaults.set(launchCountAfterReview! + 1, forKey: "LaunchCountAfterReview")
-                }
-                
-                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview! as Date) / 60 / 60 / 24
-                if daySpan > 14 && launchCountAfterReview! > 10{
+        if let launchDateAfterReview = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate {
+            if hasReviewed == false{
+                defaults.set(launchCountAfterReview + 1, forKey: "LaunchCountAfterReview")
+
+                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview as Date) / 60 / 60 / 24
+                if daySpan > 10 && launchCountAfterReview > 7{
                     defaults.set(true, forKey: "FirstRequestReview")
                     SKStoreReviewController.requestReview()
                 }
             }
+        } else {
+            defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
         }
     }
     
