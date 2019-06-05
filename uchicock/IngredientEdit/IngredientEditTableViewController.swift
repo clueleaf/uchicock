@@ -196,7 +196,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 }else{
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = textWithoutSpace(text: ingredientName.text!)
-                    newIngredient.japaneseDictionaryOrder = textWithoutSpace(text: ingredientName.text!).japaneseDictionaryOrder()
                     newIngredient.category = category.selectedSegmentIndex
                     if stock.checkState == .checked{
                         newIngredient.stockFlag = true
@@ -221,7 +220,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 }else{
                     try! realm.write {
                         ingredient.ingredientName = textWithoutSpace(text: ingredientName.text!)
-                        ingredient.japaneseDictionaryOrder = textWithoutSpace(text: ingredientName.text!).japaneseDictionaryOrder()
                         ingredient.category = category.selectedSegmentIndex
                         if stock.checkState == .checked{
                             ingredient.stockFlag = true

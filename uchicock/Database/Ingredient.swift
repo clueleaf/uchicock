@@ -13,7 +13,6 @@ class Ingredient: Object {
     @objc dynamic var ingredientName = ""
     @objc dynamic var stockFlag = false
     @objc dynamic var memo = ""
-    @objc dynamic var japaneseDictionaryOrder = ""
     @objc dynamic var category = 2
     var recipeIngredients = List<RecipeIngredientLink>()
     

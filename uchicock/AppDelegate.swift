@@ -35,18 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         var config = Realm.Configuration(
-            schemaVersion: 5,
+            schemaVersion: 6,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 2) {
-                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
-                        let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["japaneseDictionaryOrder"] = "\(recipeName.japaneseDictionaryOrder())"
-                    }
-                    migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
-                        let ingredientName = oldObject!["ingredientName"] as! String
-                        newObject!["japaneseDictionaryOrder"] = "\(ingredientName.japaneseDictionaryOrder())"
-                    }
-                }
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
                         let ingredientName = oldObject!["ingredientName"] as! String
@@ -122,7 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let recipe = realm.objects(Recipe.self).filter("recipeName == %@", "ハバナピーチ").first!
                     try! realm.write{
                         recipe.recipeName = "ハバナビーチ"
-                        recipe.japaneseDictionaryOrder = "ハバナビーチ".japaneseDictionaryOrder()
                     }
                 }
             }

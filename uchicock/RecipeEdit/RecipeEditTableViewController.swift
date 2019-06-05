@@ -553,7 +553,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     try! realm.write{
                         let newRecipe = Recipe()
                         newRecipe.recipeName = textWithoutSpace(text: recipeName.text!)
-                        newRecipe.japaneseDictionaryOrder = textWithoutSpace(text: recipeName.text!).japaneseDictionaryOrder()
 
                         if star3.currentTitle == "★" {
                             newRecipe.favorites = 3
@@ -622,7 +621,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
 
                         recipe.recipeName = textWithoutSpace(text: recipeName.text!)
-                        recipe.japaneseDictionaryOrder = textWithoutSpace(text: recipeName.text!).japaneseDictionaryOrder()
                         if star3.currentTitle == "★" {
                             recipe.favorites = 3
                         }else if star2.currentTitle == "★" {

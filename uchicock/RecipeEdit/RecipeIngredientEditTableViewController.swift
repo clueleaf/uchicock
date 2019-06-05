@@ -380,7 +380,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
                     ingredient.stockFlag = false
                     ingredient.memo = ""
                     ingredient.category = 0
@@ -391,7 +390,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
                     ingredient.stockFlag = false
                     ingredient.memo = ""
                     ingredient.category = 1
@@ -402,7 +400,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
                     let ingredient = Ingredient()
                     ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.japaneseDictionaryOrder = self.textWithoutSpace(text: self.ingredientName.text!).japaneseDictionaryOrder()
                     ingredient.stockFlag = false
                     ingredient.memo = ""
                     ingredient.category = 2
