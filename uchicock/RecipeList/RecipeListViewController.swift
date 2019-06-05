@@ -310,7 +310,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if searchBarTextWithoutSpace() != ""{
-            recipeBasicList.removeAll{ !$0.name.localizedLowercase.contains(searchBarTextWithoutSpace().katakana().lowercased()) }
+            recipeBasicList.removeAll{ !$0.name.katakana().lowercased().contains(searchBarTextWithoutSpace().katakana().lowercased()) }
         }
         
         recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
