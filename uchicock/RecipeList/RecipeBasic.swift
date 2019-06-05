@@ -9,12 +9,8 @@
 struct RecipeBasic{
     var id : String
     var name : String
-    var kanaName : String {
-        return name.katakana().lowercased()
-    }
     var shortageNum : Int
     var favorites: Int
-    var japaneseDictionaryOrder : String
     var lastViewDate : Date?
     var madeNum : Int
     var method : Int

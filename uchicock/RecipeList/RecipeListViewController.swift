@@ -306,11 +306,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, japaneseDictionaryOrder: recipe.japaneseDictionaryOrder, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
         }
         
         if searchBarTextWithoutSpace() != ""{
-            recipeBasicList.removeAll{ !$0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased()) }
+            recipeBasicList.removeAll{ !$0.name.localizedLowercase.contains(searchBarTextWithoutSpace().katakana().lowercased()) }
         }
         
         recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
@@ -342,11 +342,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         if order.selectedSegmentIndex == 0{
-            recipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
         }else if order.selectedSegmentIndex == 1{
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
                 } else {
                     return a.shortageNum < b.shortageNum
                 }
@@ -355,7 +355,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
                     }else{
                         return false
                     }
@@ -370,7 +370,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }else if order.selectedSegmentIndex == 3{
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
-                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
                 } else {
                     return a.madeNum > b.madeNum
                 }
