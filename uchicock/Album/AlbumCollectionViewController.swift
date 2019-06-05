@@ -75,7 +75,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
             
-            let recipeList = realm.objects(Recipe.self).filter("imageData != nil").sorted(byKeyPath: "japaneseDictionaryOrder")
+            let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
             for recipe in recipeList{
                 var newPhotoFlag = true
                 for rb in self.recipeBasicList{

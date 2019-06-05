@@ -149,12 +149,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category))
         }
         
         if searchBarTextWithoutSpace() != ""{
             ingredientBasicList.removeAll{
-                !$0.kanaName.contains(searchBarTextWithoutSpace().katakana().lowercased())
+                !$0.name.localizedLowercase.contains(searchBarTextWithoutSpace().katakana().lowercased())
             }
         }
         
@@ -179,7 +179,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
-        ingredientBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+        ingredientBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
 
         if let allIngredientNum = ingredientList?.count{
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"

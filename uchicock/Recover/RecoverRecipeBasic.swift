@@ -10,7 +10,6 @@ struct SampleRecipeBasic{
     var name : String
     var recoverable : Bool
     var recoverTarget : Bool
-    var japaneseDictionaryOrder : String
 }
 
 struct RecoverIngredient{

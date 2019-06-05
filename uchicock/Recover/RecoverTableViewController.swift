@@ -67,7 +67,7 @@ class RecoverTableViewController: UITableViewController {
 
     func loadUserRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "japaneseDictionaryOrder")
+        let recipeList = realm.objects(Recipe.self)
         for ur in recipeList{
             userRecipeNameList.append(ur.recipeName)
         }
@@ -75,7 +75,7 @@ class RecoverTableViewController: UITableViewController {
     
     func loadSampleRecipe(){
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).sorted(byKeyPath: "japaneseDictionaryOrder")
+        let recipeList = realm.objects(Recipe.self)
         for sr in recipeList{
             var isRecoverable = true
             for ur in userRecipeNameList{
@@ -85,15 +85,15 @@ class RecoverTableViewController: UITableViewController {
                 }
             }
 
-            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false, japaneseDictionaryOrder: sr.japaneseDictionaryOrder)
+            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
-        unrecoverableSampleRecipeList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+        recoverableSampleRecipeList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        unrecoverableSampleRecipeList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
     
     func setNavigationTitle(){

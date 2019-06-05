@@ -342,16 +342,16 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientSuggestList.removeAll()
         
         for ingredient in ingredientList! {
-            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder, category: ingredient.category))
+            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category))
         }
         
         if textWithoutSpace(text: text) != "" {
             ingredientSuggestList.removeAll{
-                !$0.kanaName.contains(textWithoutSpace(text: text).katakana().lowercased())
+                !$0.name.localizedLowercase.contains(textWithoutSpace(text: text).katakana().lowercased())
             }
         }
         
-        ingredientSuggestList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+        ingredientSuggestList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
         ingredientSuggestTableView.reloadData()
     }
     

@@ -31,7 +31,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     var isAddMode = false
     var deleteFlag = false
     var isTypingName = false
-    var suggestList = Array<IngredientName>()
+    var suggestList = Array<String>()
     let selectedCellBackgroundView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -160,16 +160,16 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            suggestList.append(IngredientName(name: ingredient.ingredientName, japaneseDictionaryOrder: ingredient.japaneseDictionaryOrder))
+            suggestList.append(ingredient.ingredientName)
         }
         
         if textWithoutSpace(text: ingredientName.text!) != ""{
             suggestList.removeAll{
-                !$0.kanaName.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
+                !$0.localizedLowercase.contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased())
             }
         }
         
-        suggestList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+        suggestList.sort(by: { $0.localizedStandardCompare($1) == .orderedAscending })
         suggestTableView.reloadData()
     }
     
@@ -284,7 +284,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             tableView.deselectRow(at: indexPath, animated: true)
         }else if tableView.tag == 1{
             tableView.deselectRow(at: indexPath, animated: true)
-            ingredientName.text = suggestList[indexPath.row].name
+            ingredientName.text = suggestList[indexPath.row]
         }
     }
     
@@ -321,7 +321,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
-            cell.name = suggestList[indexPath.row].name
+            cell.name = suggestList[indexPath.row]
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell

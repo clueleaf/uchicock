@@ -9,11 +9,7 @@
 struct IngredientBasic{
     var id : String
     var name : String
-    var kanaName : String {
-        return name.katakana().lowercased()
-    }
     var stockFlag : Bool
-    var japaneseDictionaryOrder : String
     var category : Int
 }
 

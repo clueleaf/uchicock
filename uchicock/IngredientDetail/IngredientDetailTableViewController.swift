@@ -202,13 +202,13 @@ class IngredientDetailTableViewController: UITableViewController {
 
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, japaneseDictionaryOrder: recipeIngredient.recipe.japaneseDictionaryOrder, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum))
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum))
         }
         
         if order.selectedSegmentIndex == 1{
             ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
@@ -217,7 +217,7 @@ class IngredientDetailTableViewController: UITableViewController {
             ingredientRecipeBasicList.sort(by: { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                        return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
                     }else{
                         return false
                     }
@@ -232,13 +232,13 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if order.selectedSegmentIndex == 3{
             ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
-                    return a.japaneseDictionaryOrder.lowercased() < b.japaneseDictionaryOrder.lowercased()
+                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
             }
         }else{
-            ingredientRecipeBasicList.sort(by: { $0.japaneseDictionaryOrder.lowercased() < $1.japaneseDictionaryOrder.lowercased() })
+            ingredientRecipeBasicList.sort(by: { $0.recipeName.localizedStandardCompare($1.recipeName) == .orderedAscending })
         }
     }
     
