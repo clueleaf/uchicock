@@ -44,9 +44,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        searchBar.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.barTintColor = Style.filterContainerBackgroundColor
-        searchBar.tintColor = Style.labelTextColor
         searchBar.backgroundImage = UIImage()
         stockState.tintColor = Style.secondaryColor
         stockState.backgroundColor = Style.basicBackgroundColor

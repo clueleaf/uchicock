@@ -75,24 +75,25 @@ struct FlatColor{
     }
     
     static func setGlobalTheme(){
-        customizeBarButtonItemWith(Style.primaryColor)
-        customizeButtonWith(Style.primaryColor, and: Style.secondaryColor)
-        customizeNavigationBarWith(Style.primaryColor)
-        customizeTableViewWith(Style.basicBackgroundColor)
+        customizeBarButtonItem()
+        customizeButton()
+        customizeNavigationBar()
+        customizeTableView()
+        customizeSearchBar()
         UIActivityIndicatorView.appearance().color = Style.labelTextColor
     }
     
-    static private func customizeBarButtonItemWith(_ primaryColor: UIColor){
-        let contentColor = contrastColorOf(primaryColor, isFlat: false)
-        UIBarButtonItem.appearance().tintColor = primaryColor
+    static private func customizeBarButtonItem(){
+        let contentColor = contrastColorOf(Style.primaryColor, isFlat: false)
+        UIBarButtonItem.appearance().tintColor = Style.primaryColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
     }
     
-    static private func customizeButtonWith(_ primaryColor: UIColor, and secondaryColor: UIColor){
-        let contentColor = contrastColorOf(primaryColor, isFlat: false)
-        let secondaryContentColor = contrastColorOf(secondaryColor, isFlat: false)
+    static private func customizeButton(){
+        let contentColor = contrastColorOf(Style.primaryColor, isFlat: false)
+        let secondaryContentColor = contrastColorOf(Style.secondaryColor, isFlat: false)
         UIButton.appearance().tintColor = secondaryContentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
@@ -104,17 +105,22 @@ struct FlatColor{
         UIButton.appearance().setTitleShadowColor(UIColor.clear, for: UIControl.State.normal)
     }
     
-    static private func customizeNavigationBarWith(_ primaryColor: UIColor){
-        let contentColor = contrastColorOf(primaryColor, isFlat: false)
-        UINavigationBar.appearance().barTintColor = primaryColor
+    static private func customizeNavigationBar(){
+        let contentColor = contrastColorOf(Style.primaryColor, isFlat: false)
+        UINavigationBar.appearance().barTintColor = Style.primaryColor
         UINavigationBar.appearance().tintColor = contentColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
-    static private func customizeTableViewWith(_ backgroundColor: UIColor){
-        UITableView.appearance().backgroundColor = backgroundColor
-        UITableViewCell.appearance().backgroundColor = backgroundColor
+    static private func customizeTableView(){
+        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
+        UITableViewCell.appearance().backgroundColor = Style.basicBackgroundColor
+    }
+    
+    static private func customizeSearchBar(){
+        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
+        UISearchBar.appearance().tintColor = Style.labelTextColor
     }
     
 }

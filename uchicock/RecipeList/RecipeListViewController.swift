@@ -112,9 +112,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        searchBar.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.barTintColor = Style.filterContainerBackgroundColor
-        searchBar.tintColor = Style.labelTextColor
         searchBar.backgroundImage = UIImage()
         favoriteSelect.backgroundColor = Style.basicBackgroundColor
         favoriteSelect.tintColor = Style.secondaryColor
