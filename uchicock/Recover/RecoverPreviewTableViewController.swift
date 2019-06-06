@@ -55,7 +55,6 @@ class RecoverPreviewTableViewController: UITableViewController {
         recipeName.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         method.textColor = Style.labelTextColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
@@ -130,7 +129,6 @@ class RecoverPreviewTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverPreviewIngredient", for: indexPath) as! RecoverPreviewIngredientTableViewCell
@@ -151,7 +149,6 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.amount.textColor = Style.labelTextColor
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
             cell.selectionStyle = .none
-            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         default:
             return UITableViewCell()

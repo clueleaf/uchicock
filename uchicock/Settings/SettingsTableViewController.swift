@@ -49,7 +49,6 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
             self.tableView.indicatorStyle = .black
         }
         
-        tableView.backgroundColor = Style.basicBackgroundColor
         tableView.reloadData()
     }
 
@@ -112,7 +111,6 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.accessoryType = .disclosureIndicator
-        cell.backgroundColor = Style.basicBackgroundColor
         cell.selectedBackgroundView = selectedCellBackgroundView
         return cell
     }

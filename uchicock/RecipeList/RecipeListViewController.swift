@@ -112,7 +112,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.barTintColor = Style.filterContainerBackgroundColor
         searchBar.tintColor = Style.labelTextColor
@@ -543,7 +542,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

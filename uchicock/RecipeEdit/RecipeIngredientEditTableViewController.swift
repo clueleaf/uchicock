@@ -85,7 +85,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
@@ -102,7 +101,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor
-        suggestTableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
@@ -292,7 +290,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if tableView.tag == 0{
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.section == 0{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -303,13 +300,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
-                    cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                    cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     if indexPath.section == 0{
                         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -322,7 +317,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.name = suggestList[indexPath.row]
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

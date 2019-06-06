@@ -74,10 +74,11 @@ struct FlatColor{
         }
     }
     
-    static func setGlobalThemeUsing(_ primaryColor: UIColor, with secondaryColor: UIColor){
-        customizeBarButtonItemWith(primaryColor)
-        customizeButtonWith(primaryColor, and: secondaryColor)
-        customizeNavigationBarWith(primaryColor)
+    static func setGlobalTheme(){
+        customizeBarButtonItemWith(Style.primaryColor)
+        customizeButtonWith(Style.primaryColor, and: Style.secondaryColor)
+        customizeNavigationBarWith(Style.primaryColor)
+        customizeTableViewWith(Style.basicBackgroundColor)
         UIActivityIndicatorView.appearance().color = Style.labelTextColor
     }
     
@@ -109,6 +110,11 @@ struct FlatColor{
         UINavigationBar.appearance().tintColor = contentColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
         UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
+    static private func customizeTableViewWith(_ backgroundColor: UIColor){
+        UITableView.appearance().backgroundColor = backgroundColor
+        UITableViewCell.appearance().backgroundColor = backgroundColor
     }
     
 }

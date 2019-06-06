@@ -86,7 +86,6 @@ class IngredientDetailTableViewController: UITableViewController {
         reminderButtonLabel.textColor = Style.labelTextColor
         amazonButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         order.tintColor = Style.secondaryColor
         order.backgroundColor = Style.basicBackgroundColor
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
@@ -326,7 +325,6 @@ class IngredientDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
@@ -397,14 +395,11 @@ class IngredientDetailTableViewController: UITableViewController {
                     
                     cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                     cell.selectionStyle = .default
-                    cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                    cell.backgroundColor = Style.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
                     return cell
                 }

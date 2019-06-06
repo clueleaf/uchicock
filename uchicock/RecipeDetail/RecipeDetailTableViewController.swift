@@ -96,7 +96,6 @@ class RecipeDetailTableViewController: UITableViewController{
         let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
@@ -442,7 +441,6 @@ class RecipeDetailTableViewController: UITableViewController{
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
@@ -488,14 +486,12 @@ class RecipeDetailTableViewController: UITableViewController{
             
             cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.selectionStyle = .default
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell

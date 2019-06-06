@@ -66,9 +66,7 @@ class ChangeThemeTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = cancelButton
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
         saveButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
-        navigationItem.rightBarButtonItem = saveButton
-        
-        self.tableView.backgroundColor = Style.basicBackgroundColor
+        navigationItem.rightBarButtonItem = saveButton        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,7 +135,6 @@ class ChangeThemeTableViewController: UITableViewController {
             cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         }
         
-        cell.backgroundColor = Style.basicBackgroundColor
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         

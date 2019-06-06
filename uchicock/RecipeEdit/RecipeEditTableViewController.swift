@@ -126,7 +126,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         super.viewWillAppear(animated)
         let previousNumOfRowsInSection1 = tableView.numberOfRows(inSection: 1)
 
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeNameLabel.textColor = Style.labelTextColor
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
@@ -347,7 +346,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -379,7 +377,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
-                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.row == editingRecipeIngredientList.count - 1{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -393,7 +390,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
                 cell.textLabel?.textAlignment = .center
-                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell

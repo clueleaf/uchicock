@@ -44,7 +44,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.barTintColor = Style.filterContainerBackgroundColor
         searchBar.tintColor = Style.labelTextColor
@@ -381,7 +380,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
-            cell.backgroundColor = Style.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
             
             cell.selectedBackgroundView = selectedCellBackgroundView

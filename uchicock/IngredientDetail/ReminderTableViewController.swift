@@ -61,7 +61,6 @@ class ReminderTableViewController: UITableViewController{
         dateFlag.tintColor = Style.secondaryColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         reminderTitle.textColor = Style.labelTextColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         reminderType.tintColor = Style.secondaryColor
         reminderType.backgroundColor = Style.basicBackgroundColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
@@ -157,7 +156,6 @@ class ReminderTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
     
