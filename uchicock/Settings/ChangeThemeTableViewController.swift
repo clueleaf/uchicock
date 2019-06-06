@@ -80,9 +80,14 @@ class ChangeThemeTableViewController: UITableViewController {
             hasScrolled = true
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Style.setTheme(themeNo: oldThemeNo)
+        UIButton.appearance().tintColor = Style.secondaryColor
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -141,14 +146,12 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: IBAction
     @objc func cancelButtonTapped() {
-        Style.setTheme(themeNo: oldThemeNo)
-        UIButton.appearance().tintColor = Style.secondaryColor
-
         self.dismiss(animated: true, completion: nil)
     }
 
     @objc func saveButtonTapped() {
         Style.saveTheme(themeNo: newThemeNo)
+        oldThemeNo = newThemeNo
         self.dismiss(animated: true, completion: nil)
     }
 }
