@@ -133,8 +133,6 @@
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
-		9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uchicockUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
 		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
@@ -296,8 +294,6 @@
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
 				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,
-				9BF93F651CCB123D0000F7F8 /* uchicockTests-Bridging-Header.h */,
-				9BF93F661CCB12450000F7F8 /* uchicockUITests-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";

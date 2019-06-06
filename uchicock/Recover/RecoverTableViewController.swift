@@ -61,8 +61,15 @@ class RecoverTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
-
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+        // iOS 13のCard表示へのワークアラウンド
+        changeToUserDb()
+    }
+    
+    func changeToUserDb(){
+        var config = Realm.Configuration(schemaVersion: 6)
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
     }
 
     func loadUserRecipe(){
@@ -143,9 +150,7 @@ class RecoverTableViewController: UITableViewController {
             }
         }
         
-        var config = Realm.Configuration(schemaVersion: 6)
-        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = config
+        changeToUserDb()
         
         for recoverRecipe in recoverRecipeList{
             let realm = try! Realm()
@@ -364,10 +369,7 @@ class RecoverTableViewController: UITableViewController {
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if isRecovering == false {
-            var config = Realm.Configuration(schemaVersion: 6)
-            config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
-            Realm.Configuration.defaultConfiguration = config
-            
+            changeToUserDb()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -382,9 +384,7 @@ class RecoverTableViewController: UITableViewController {
             }
             
             if recoverCount == 0{
-                var config = Realm.Configuration(schemaVersion: 6)
-                config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
-                Realm.Configuration.defaultConfiguration = config
+                changeToUserDb()
                 self.dismiss(animated: true, completion: nil)
             }else{
                 let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
