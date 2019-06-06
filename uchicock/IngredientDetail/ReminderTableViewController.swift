@@ -61,8 +61,6 @@ class ReminderTableViewController: UITableViewController{
         dateFlag.tintColor = Style.secondaryColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         reminderTitle.textColor = Style.labelTextColor
-        reminderType.tintColor = Style.secondaryColor
-        reminderType.backgroundColor = Style.basicBackgroundColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white

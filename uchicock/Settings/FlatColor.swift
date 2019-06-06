@@ -80,6 +80,7 @@ struct FlatColor{
         customizeNavigationBar()
         customizeTableView()
         customizeSearchBar()
+        customizeSegmentedControl()
         UIActivityIndicatorView.appearance().color = Style.labelTextColor
     }
     
@@ -121,6 +122,11 @@ struct FlatColor{
     static private func customizeSearchBar(){
         UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
         UISearchBar.appearance().tintColor = Style.labelTextColor
+    }
+    
+    static private func customizeSegmentedControl(){
+        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
+        UISegmentedControl.appearance().tintColor = Style.secondaryColor
     }
     
 }

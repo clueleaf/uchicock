@@ -86,8 +86,6 @@ class IngredientDetailTableViewController: UITableViewController {
         reminderButtonLabel.textColor = Style.labelTextColor
         amazonButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
-        order.tintColor = Style.secondaryColor
-        order.backgroundColor = Style.basicBackgroundColor
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

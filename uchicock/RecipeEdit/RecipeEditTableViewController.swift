@@ -133,8 +133,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.backgroundColor = Style.textFieldBackgroundColor
         recipeName.textColor = Style.labelTextColor
         recipeName.layer.borderColor = Style.memoBorderColor.cgColor
-        method.tintColor = Style.secondaryColor
-        method.backgroundColor = Style.basicBackgroundColor
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor

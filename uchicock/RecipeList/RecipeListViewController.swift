@@ -114,10 +114,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.barTintColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
-        favoriteSelect.backgroundColor = Style.basicBackgroundColor
-        favoriteSelect.tintColor = Style.secondaryColor
-        order.backgroundColor = Style.basicBackgroundColor
-        order.tintColor = Style.secondaryColor
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
