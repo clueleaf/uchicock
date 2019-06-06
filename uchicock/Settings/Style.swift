@@ -42,7 +42,6 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.skyBlueDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -62,6 +61,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func tequilaSunriseDark(){
@@ -71,7 +71,6 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.yellow
         secondaryColor = FlatColor.yellowDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -91,6 +90,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func seaBreezeLight(){
@@ -100,7 +100,6 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.pink
         secondaryColor = FlatColor.pink
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         labelTextColor = FlatColor.black
@@ -120,6 +119,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func seaBreezeDark(){
@@ -129,7 +129,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.pinkDark
         secondaryColor = FlatColor.pinkDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.blackDark
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -149,6 +148,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func chinaBlueLight(){
@@ -158,7 +158,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.skyBlue
         secondaryColor = FlatColor.skyBlue
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -178,6 +177,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func chinaBlueDark(){
@@ -187,7 +187,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.skyBlueDark
         secondaryColor = FlatColor.skyBlueDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -207,6 +206,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func grasshopperLight(){
@@ -216,7 +216,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.mint
         secondaryColor = FlatColor.mintDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -236,6 +235,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func irishCoffeeDark(){
@@ -245,7 +245,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.coffeeDark
         secondaryColor = FlatColor.coffee
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -265,6 +264,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func mojitoLight(){
@@ -274,7 +274,6 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.white
         secondaryColor = FlatColor.mint
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -294,6 +293,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func redEyeLight(){
@@ -303,7 +303,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelon
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -323,6 +322,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func cubaLibreDark(){
@@ -332,7 +332,6 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.limeDark
         secondaryColor = FlatColor.limeDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -352,6 +351,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func silverWingLight(){
@@ -362,7 +362,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.grayDark
         secondaryColor = FlatColor.grayDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -382,6 +381,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func americanLemonadeDark(){
@@ -391,7 +391,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = FlatColor.watermelonDark
         secondaryColor = FlatColor.watermelonDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -411,6 +410,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func blueLagoonLight(){
@@ -420,7 +420,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -440,6 +439,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func blueLagoonDark(){
@@ -449,7 +449,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.skyBlueDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -469,6 +468,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func mimosaLight(){
@@ -478,7 +478,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.orange
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -498,6 +497,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func mimosaDark(){
@@ -507,7 +507,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.yellowDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -527,6 +526,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func pinkLadyLight(){
@@ -536,7 +536,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pink
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         labelTextColor = FlatColor.black
@@ -556,6 +555,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func pinkLadyDark(){
@@ -565,7 +565,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.pinkDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -585,6 +584,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func blackRussianDark(){
@@ -594,7 +594,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.coffee
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -614,6 +613,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func shoyoJulingLight(){
@@ -623,7 +623,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
@@ -643,6 +642,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
     
     static func shoyoJulingDark(){
@@ -652,7 +652,6 @@ struct Style{
         statusBarStyle = .lightContent
         primaryColor = UIColor.black
         secondaryColor = FlatColor.greenDark
-        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
@@ -672,6 +671,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        FlatColor.setGlobalThemeUsing(Style.primaryColor, with: Style.secondaryColor)
     }
 
     static func loadTheme(){

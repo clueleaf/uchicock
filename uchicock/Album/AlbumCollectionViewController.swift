@@ -57,7 +57,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }else{
             self.collectionView!.indicatorStyle = .black
         }
-        UIActivityIndicatorView.appearance().color = Style.labelTextColor
 
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
         emptyDataSetStr = ""

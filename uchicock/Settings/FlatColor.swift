@@ -78,6 +78,7 @@ struct FlatColor{
         customizeBarButtonItemWith(primaryColor)
         customizeButtonWith(primaryColor, and: secondaryColor)
         customizeNavigationBarWith(primaryColor)
+        UIActivityIndicatorView.appearance().color = Style.labelTextColor
     }
     
     static private func customizeBarButtonItemWith(_ primaryColor: UIColor){
