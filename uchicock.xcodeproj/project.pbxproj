@@ -15,7 +15,6 @@
 		9B1638C222A7E17100B7C3A7 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */; };
 		9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* Extension.swift */; };
 		9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */; };
-		9B1638C522A7E17100B7C3A7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638C022A7E17000B7C3A7 /* TabBarController.swift */; };
 		9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */; };
 		9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */; };
 		9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22FEAB22A1872100D716E3 /* FlatColor.swift */; };
@@ -80,7 +79,6 @@
 		9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		9B1638BE22A7E17000B7C3A7 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNavigationController.swift; sourceTree = "<group>"; };
-		9B1638C022A7E17000B7C3A7 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTableViewController.swift; path = Recover/RecoverTableViewController.swift; sourceTree = "<group>"; };
 		9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTargetTableViewCell.swift; path = Recover/RecoverTargetTableViewCell.swift; sourceTree = "<group>"; };
 		9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/M13Checkbox/M13Checkbox.framework"; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */,
 				9B1638BE22A7E17000B7C3A7 /* Extension.swift */,
 				9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */,
-				9B1638C022A7E17000B7C3A7 /* TabBarController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -561,7 +558,6 @@
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */,
 				9BD8A70B1CC8F52E001EB1A9 /* AlbumCollectionViewCell.swift in Sources */,
-				9B1638C522A7E17100B7C3A7 /* TabBarController.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomStatusBarStyleControllers.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,

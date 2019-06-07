@@ -48,12 +48,9 @@ class RecoverTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -311,11 +308,13 @@ class RecoverTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 1:
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
+                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
@@ -351,6 +350,7 @@ class RecoverTableViewController: UITableViewController {
                     cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }
+                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
                 return cell

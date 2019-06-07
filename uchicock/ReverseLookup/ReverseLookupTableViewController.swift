@@ -79,11 +79,10 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.recipeTableView.indicatorStyle = .white
-        }else{
-            self.recipeTableView.indicatorStyle = .black
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        recipeTableView.backgroundColor = Style.basicBackgroundColor
+        ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
         ingredientNumberLabel1.textColor = Style.labelTextColorLight
         ingredientNumberLabel2.textColor = Style.labelTextColorLight
         ingredientNumberLabel3.textColor = Style.labelTextColorLight
@@ -449,17 +448,20 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         if tableView.tag == 0{
             if indexPath.section == 0{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
+                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.isUserInteractionEnabled = true
                 return cell
             }else if indexPath.section == 1{
                 if editingTextField == -1{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+                    cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
+                    cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
@@ -467,6 +469,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             }
         }else if tableView.tag == 1{
             let cell = recipeTableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem") as! ReverseLookupRecipeTableViewCell
+            cell.backgroundColor = Style.basicBackgroundColor
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
@@ -474,6 +477,7 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
             return cell
         }else if tableView.tag == 2{
             let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
+            cell.backgroundColor = Style.basicBackgroundColor
             let realm = try! Realm()
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
             cell.ingredient = ingredient

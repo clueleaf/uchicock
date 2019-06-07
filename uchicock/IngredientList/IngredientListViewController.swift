@@ -44,18 +44,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        searchBar.barTintColor = Style.filterContainerBackgroundColor
+        tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         stockState.setTitleTextAttributes(attribute, for: .normal)
         category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
-
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
@@ -367,6 +363,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
             
             cell.selectedBackgroundView = selectedCellBackgroundView

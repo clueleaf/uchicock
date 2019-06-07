@@ -63,22 +63,10 @@ class RecipeDetailTableViewController: UITableViewController{
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
         madeNumMinusButton.layer.borderWidth = 1.5
         
-        editButton.layer.cornerRadius = editButton.frame.size.width / 2
-        editButton.clipsToBounds = true
-        let editImage = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
-        editButton.setImage(editImage, for: .normal)
-        shareButton.layer.cornerRadius = shareButton.frame.size.width / 2
-        let shareImage = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
-        shareButton.setImage(shareImage, for: .normal)
-        shareButton.clipsToBounds = true
-        openInSafariButton.layer.cornerRadius = openInSafariButton.frame.size.width / 2
-        let openInSafariImage = UIImage(named: "safari")?.withRenderingMode(.alwaysTemplate)
-        openInSafariButton.setImage(openInSafariImage, for: .normal)
-        openInSafariButton.clipsToBounds = true
-        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
-        let deleteImage = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
-        deleteButton.setImage(deleteImage, for: .normal)
-        deleteButton.clipsToBounds = true
+        initActionButtonStyleOf(editButton, with: "edit")
+        initActionButtonStyleOf(shareButton, with: "share")
+        initActionButtonStyleOf(openInSafariButton, with: "safari")
+        initActionButtonStyleOf(deleteButton, with: "delete")
 
         tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
         
@@ -96,6 +84,7 @@ class RecipeDetailTableViewController: UITableViewController{
         let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
 
+        self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
@@ -110,12 +99,8 @@ class RecipeDetailTableViewController: UITableViewController{
 
         photoBackground.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
-
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
@@ -159,35 +144,21 @@ class RecipeDetailTableViewController: UITableViewController{
 
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
-            if recipe.lastViewDate == nil{
-                lastViewDateLabel.text = "最終閲覧：--"
-            }else{
-                let formatter: DateFormatter = DateFormatter()
-                formatter.dateFormat = "yyyy/MM/dd HH:mm"
-                lastViewDateLabel.text = "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
-            }
+            let formatter: DateFormatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd HH:mm"
+            lastViewDateLabel.text = recipe.lastViewDate == nil ? "最終閲覧：--" : "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
 
             switch recipe.favorites{
             case 0:
-                star1.setTitle("☆", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             case 1:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
             case 2:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("★", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
             case 3:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("★", for: .normal)
-                star3.setTitle("★", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
             default:
-                star1.setTitle("☆", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             }
             star1.tintColor = Style.secondaryColor
             star2.tintColor = Style.secondaryColor
@@ -268,7 +239,21 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    func setMadeNumButton(){
+    // MARK: - Set Style
+    private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
+        button.layer.cornerRadius = editButton.frame.size.width / 2
+        button.clipsToBounds = true
+        let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+    }
+    
+    private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
+        star1.setTitle(star1title, for: .normal)
+        star2.setTitle(star2title, for: .normal)
+        star3.setTitle(star3title, for: .normal)
+    }
+
+    private func setMadeNumButton(){
         if madeNum <= 0 {
             madeNumMinusButton.isEnabled = false
             madeNumMinusButton.tintColor = Style.labelTextColorLight
@@ -289,10 +274,7 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
-    func closeEditVC(_ editVC: RecipeEditTableViewController){
-        editVC.dismiss(animated: true, completion: nil)
-    }
-    
+    // MARK: - Photo Header
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
@@ -441,6 +423,7 @@ class RecipeDetailTableViewController: UITableViewController{
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
@@ -486,12 +469,14 @@ class RecipeDetailTableViewController: UITableViewController{
             
             cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.selectionStyle = .default
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
@@ -529,16 +514,12 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBAction func star1Tapped(_ sender: UIButton) {
         let realm = try! Realm()
         if star1.currentTitle == "★" && star2.currentTitle == "☆"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             try! realm.write {
                 recipe.favorites = 0
             }
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
             try! realm.write {
                 recipe.favorites = 1
             }
@@ -548,16 +529,12 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBAction func star2Tapped(_ sender: UIButton) {
         let realm = try! Realm()
         if star2.currentTitle == "★" && star3.currentTitle == "☆"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             try! realm.write {
                 recipe.favorites = 0
             }
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("★", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
             try! realm.write {
                 recipe.favorites = 2
             }
@@ -567,16 +544,12 @@ class RecipeDetailTableViewController: UITableViewController{
     @IBAction func star3Tapped(_ sender: UIButton) {
         let realm = try! Realm()
         if star3.currentTitle == "★"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             try! realm.write {
                 recipe.favorites = 0
             }
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("★", for: .normal)
-            star3.setTitle("★", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
             try! realm.write {
                 recipe.favorites = 3
             }
@@ -706,4 +679,7 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
+    func closeEditVC(_ editVC: RecipeEditTableViewController){
+        editVC.dismiss(animated: true, completion: nil)
+    }    
 }

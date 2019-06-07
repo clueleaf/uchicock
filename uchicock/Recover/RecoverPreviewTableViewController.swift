@@ -23,6 +23,8 @@ class RecoverPreviewTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(RecoverPreviewIngredientTableViewCell.self, forCellReuseIdentifier: "RecoverPreviewIngredient")
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
@@ -129,6 +131,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverPreviewIngredient", for: indexPath) as! RecoverPreviewIngredientTableViewCell
@@ -149,6 +152,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.amount.textColor = Style.labelTextColor
             cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
             cell.selectionStyle = .none
+            cell.backgroundColor = Style.basicBackgroundColor
             return cell
         default:
             return UITableViewCell()

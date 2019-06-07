@@ -76,7 +76,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewWillAppear(animated)
         
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        searchBar.barTintColor = Style.filterContainerBackgroundColor
+        self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
@@ -88,11 +88,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
 
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -486,6 +482,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

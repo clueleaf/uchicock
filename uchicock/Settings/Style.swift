@@ -729,11 +729,12 @@ struct Style{
         customizeBarButtonItem()
         customizeButton()
         customizeNavigationBar()
-        customizeTableView()
         customizeSearchBar()
         customizeSegmentedControl()
         customizeM13Checkbox()
-        customTextField()
+        customizeTextField()
+        customizeTextView()
+        customizeTabBar()
         UIActivityIndicatorView.appearance().color = labelTextColor
     }
     
@@ -767,14 +768,10 @@ struct Style{
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
-    static private func customizeTableView(){
-        UITableView.appearance().backgroundColor = basicBackgroundColor
-        UITableViewCell.appearance().backgroundColor = basicBackgroundColor
-    }
-    
     static private func customizeSearchBar(){
         UISearchBar.appearance().backgroundColor = filterContainerBackgroundColor
         UISearchBar.appearance().tintColor = labelTextColor
+        UISearchBar.appearance().barTintColor = filterContainerBackgroundColor        
     }
     
     static private func customizeSegmentedControl(){
@@ -787,7 +784,7 @@ struct Style{
         M13Checkbox.appearance().tintColor = secondaryColor
     }
     
-    static private func customTextField(){
+    static private func customizeTextField(){
         UITextField.appearance().backgroundColor = Style.textFieldBackgroundColor
         UITextField.appearance().tintColor = Style.labelTextColor
         UITextField.appearance().textColor = Style.labelTextColor
@@ -800,5 +797,16 @@ struct Style{
             UITextField.appearance().keyboardAppearance = .default
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .default
         }
+    }
+    
+    static private func customizeTextView(){
+        UITextView.appearance().backgroundColor = Style.textFieldBackgroundColor
+        UITextView.appearance().textColor = Style.labelTextColor
+    }
+    
+    static private func customizeTabBar(){
+        UITabBar.appearance().tintColor = Style.tabBarTintColor
+        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
+        UITabBar.appearance().unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
     }
 }

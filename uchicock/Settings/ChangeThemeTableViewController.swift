@@ -55,18 +55,15 @@ class ChangeThemeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
         cancelButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
         navigationItem.leftBarButtonItem = cancelButton
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
         saveButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
-        navigationItem.rightBarButtonItem = saveButton        
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,7 +134,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        
+        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
     

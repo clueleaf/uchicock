@@ -54,17 +54,14 @@ class ReminderTableViewController: UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.tableView.backgroundColor = Style.basicBackgroundColor
         reminderTitleLabel.textColor = Style.labelTextColor
         reminderTypeLabel.textColor = Style.labelTextColor
         dateLabel.textColor = Style.labelTextColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         reminderTitle.textColor = Style.labelTextColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -152,6 +149,7 @@ class ReminderTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
     

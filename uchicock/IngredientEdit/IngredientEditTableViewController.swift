@@ -77,20 +77,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         category.setTitleTextAttributes(attribute, for: .normal)
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
-        memo.backgroundColor = Style.textFieldBackgroundColor
-        memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
-        if Style.isDark {
-            memo.keyboardAppearance = .dark
-        }else{
-            memo.keyboardAppearance = .default
-        }
+        memo.keyboardAppearance = Style.isDark ? .dark : .default
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             category.selectedSegmentIndex = ingredient.category
@@ -135,6 +126,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = Style.basicBackgroundColor
         if indexPath.row < 3{
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         }else{

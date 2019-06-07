@@ -67,34 +67,22 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             method.selectedSegmentIndex = 0
             isAddMode = true
         } else {
             self.navigationItem.title = "レシピ編集"
             switch recipe.favorites{
             case 0:
-                star1.setTitle("☆", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             case 1:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
             case 2:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("★", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
             case 3:
-                star1.setTitle("★", for: .normal)
-                star2.setTitle("★", for: .normal)
-                star3.setTitle("★", for: .normal)
+                setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
             default:
-                star1.setTitle("☆", for: .normal)
-                star2.setTitle("☆", for: .normal)
-                star3.setTitle("☆", for: .normal)
+                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             }
             method.selectedSegmentIndex = recipe.method
             isAddMode = false
@@ -125,6 +113,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         super.viewWillAppear(animated)
         let previousNumOfRowsInSection1 = tableView.numberOfRows(inSection: 1)
 
+        self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeNameLabel.textColor = Style.labelTextColor
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
@@ -134,21 +123,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor
         selectPhoto.textColor = Style.secondaryColor
-        memo.backgroundColor = Style.textFieldBackgroundColor
-        memo.textColor = Style.labelTextColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
-
-        if Style.isDark {
-            memo.keyboardAppearance = .dark
-        }else{
-            memo.keyboardAppearance = .default
-        }
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        memo.keyboardAppearance = Style.isDark ? .dark : .default
         
         self.tableView.reloadData()
         
@@ -192,6 +170,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+    }
+    
+    // MARK: - Set Style
+    private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
+        star1.setTitle(star1title, for: .normal)
+        star2.setTitle(star2title, for: .normal)
+        star3.setTitle(star3title, for: .normal)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -339,6 +324,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -370,6 +356,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
+                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.row == editingRecipeIngredientList.count - 1{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -383,6 +370,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
                 cell.textLabel?.textAlignment = .center
+                cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
@@ -458,37 +446,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     // MARK: - IBAction
     @IBAction func star1Tapped(_ sender: UIButton) {
         if star1.currentTitle == "★" && star2.currentTitle == "☆"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
         }
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
         if star2.currentTitle == "★" && star3.currentTitle == "☆"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("★", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
         }
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
         if star3.currentTitle == "★"{
-            star1.setTitle("☆", for: .normal)
-            star2.setTitle("☆", for: .normal)
-            star3.setTitle("☆", for: .normal)
+            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
-            star1.setTitle("★", for: .normal)
-            star2.setTitle("★", for: .normal)
-            star3.setTitle("★", for: .normal)
+            setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
         }
     }
     
@@ -717,8 +693,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.selectPhoto.text = "写真を変更"
             self.photo.isUserInteractionEnabled = true
             self.photo.alpha = 0.0
-            UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
-
             return true
         }
         return false

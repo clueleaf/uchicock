@@ -1020,7 +1020,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="W8I-U9-Q9L">
             <objects>
-                <tabBarController id="w1V-m1-dXG" customClass="TabBarController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="w1V-m1-dXG" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ZnX-ix-bqW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -43,12 +43,9 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         recoverLabel.textColor = Style.labelTextColor
         changeThemeLabel.textColor = Style.labelTextColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        if Style.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
-        }else{
-            self.tableView.indicatorStyle = .black
-        }
-        
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = Style.basicBackgroundColor
+
         tableView.reloadData()
     }
 
@@ -112,6 +109,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.accessoryType = .disclosureIndicator
         cell.selectedBackgroundView = selectedCellBackgroundView
+        cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }
 
