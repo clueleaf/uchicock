@@ -57,7 +57,6 @@ class RecoverTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
     
     func changeToUserDb(){

@@ -98,11 +98,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
         return true

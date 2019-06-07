@@ -90,11 +90,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        collectionView!.setContentOffset(collectionView!.contentOffset, animated: false)
-    }
-
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
         return NSAttributedString(string: emptyDataSetStr, attributes: attrs)

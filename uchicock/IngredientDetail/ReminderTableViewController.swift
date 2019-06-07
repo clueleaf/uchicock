@@ -64,11 +64,6 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-    }
-    
     func createReminder(eventStore: EKEventStore, title: String) {
         let reminder = EKReminder(eventStore: eventStore)
         

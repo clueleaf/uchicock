@@ -116,7 +116,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         super.viewWillDisappear(animated)
 
         NotificationCenter.default.removeObserver(self)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{

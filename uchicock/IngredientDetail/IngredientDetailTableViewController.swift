@@ -175,11 +175,6 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-    }
-    
     func closeEditVC(_ editVC: IngredientEditTableViewController){
         editVC.dismiss(animated: true, completion: nil)
     }

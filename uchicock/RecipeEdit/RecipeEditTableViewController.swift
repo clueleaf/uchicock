@@ -167,11 +167,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tableView.setContentOffset(tableView.contentOffset, animated: false)
-    }
-    
     // MARK: - Set Style
     private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
         star1.setTitle(star1title, for: .normal)
