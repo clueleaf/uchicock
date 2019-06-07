@@ -83,6 +83,8 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.backgroundColor = Style.basicBackgroundColor
         ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
+        recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         ingredientNumberLabel1.textColor = Style.labelTextColorLight
         ingredientNumberLabel2.textColor = Style.labelTextColorLight
         ingredientNumberLabel3.textColor = Style.labelTextColorLight
