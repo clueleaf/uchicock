@@ -174,6 +174,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star3.setTitle(star3title, for: .normal)
     }
 
+    func textWithoutSpace(text: String) -> String{
+        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         recipeName.resignFirstResponder()
         return true
@@ -204,10 +208,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
             }
         }
-    }
-    
-    func textWithoutSpace(text: String) -> String{
-        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     func resizedImage(image: UIImage) -> UIImage? {
@@ -243,11 +243,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
         label.textColor = Style.labelTextColorOnDisableBadge
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        if section == 1 {
-            label.text = "  材料編集"
-        }else{
-            label.text = nil
-        }
+        label.text = section == 1 ? "  材料編集" : nil
         return label
     }
     
@@ -309,11 +305,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count{
-            return true
-        }else{
-            return false
-        }
+        return indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -716,6 +708,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
 }
 
+// ImagePicker終了時にStatus Barの色が黒になる問題へのワークアラウンド
 extension UIImagePickerController {
     open override var childForStatusBarHidden: UIViewController? {
         return nil
