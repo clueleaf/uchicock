@@ -87,22 +87,9 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientNumberLabel1.textColor = Style.labelTextColorLight
         ingredientNumberLabel2.textColor = Style.labelTextColorLight
         ingredientNumberLabel3.textColor = Style.labelTextColorLight
-        ingredientTextField1.textColor = Style.labelTextColor
-        ingredientTextField2.textColor = Style.labelTextColor
-        ingredientTextField3.textColor = Style.labelTextColor
         ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
-
-        if Style.isDark {
-            ingredientTextField1.keyboardAppearance = .dark
-            ingredientTextField2.keyboardAppearance = .dark
-            ingredientTextField3.keyboardAppearance = .dark
-        }else{
-            ingredientTextField1.keyboardAppearance = .default
-            ingredientTextField2.keyboardAppearance = .default
-            ingredientTextField3.keyboardAppearance = .default
-        }
 
         loadIngredientsFromUserDefaults()
         reloadRecipeList()

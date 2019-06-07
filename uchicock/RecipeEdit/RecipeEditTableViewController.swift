@@ -129,7 +129,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         starLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
-        recipeName.textColor = Style.labelTextColor
         recipeName.layer.borderColor = Style.memoBorderColor.cgColor
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor
@@ -146,10 +145,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
 
         if Style.isDark {
-            recipeName.keyboardAppearance = .dark
             memo.keyboardAppearance = .dark
         }else{
-            recipeName.keyboardAppearance = .default
             memo.keyboardAppearance = .default
         }
         

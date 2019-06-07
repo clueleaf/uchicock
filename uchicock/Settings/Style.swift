@@ -790,7 +790,15 @@ struct Style{
     static private func customTextField(){
         UITextField.appearance().backgroundColor = Style.textFieldBackgroundColor
         UITextField.appearance().tintColor = Style.labelTextColor
+        UITextField.appearance().textColor = Style.labelTextColor
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = Style.textFieldBackgroundColor
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Style.labelTextColor
+        if isDark{
+            UITextField.appearance().keyboardAppearance = .dark
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .dark
+        }else{
+            UITextField.appearance().keyboardAppearance = .default
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .default
+        }
     }
 }

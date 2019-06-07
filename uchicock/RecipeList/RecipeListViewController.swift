@@ -98,15 +98,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             for subview in view.subviews {
                 if subview is UITextField {
                     let textField: UITextField = subview as! UITextField
-                    textField.textColor = Style.labelTextColor
                     textField.layer.borderColor = Style.memoBorderColor.cgColor
                     textField.layer.borderWidth = 1.0
                     textField.layer.cornerRadius = 5.0
-                    if Style.isDark{
-                        textField.keyboardAppearance = .dark
-                    }else{
-                        textField.keyboardAppearance = .default
-                    }
                     for subsubview in subview.subviews{
                         if subsubview is UILabel{
                             let placeholderLabel = subsubview as! UILabel

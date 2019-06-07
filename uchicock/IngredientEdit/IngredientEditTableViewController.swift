@@ -69,7 +69,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ingredientName.textColor = Style.labelTextColor
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientNameLabel.textColor = Style.labelTextColor
         categoryLabel.textColor = Style.labelTextColor
@@ -88,10 +87,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         if Style.isDark {
-            ingredientName.keyboardAppearance = .dark
             memo.keyboardAppearance = .dark
         }else{
-            ingredientName.keyboardAppearance = .default
             memo.keyboardAppearance = .default
         }
         

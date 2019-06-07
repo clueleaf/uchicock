@@ -85,12 +85,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        ingredientName.textColor = Style.labelTextColor
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         amount.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientNameLabel.textColor = Style.labelTextColor
         amountLabel.textColor = Style.labelTextColor
-        amount.textColor = Style.labelTextColor
         amountSlider.minimumTrackTintColor = Style.secondaryColor
         amountSlider.maximumTrackTintColor = Style.labelTextColorLight
         optionLabel.textColor = Style.labelTextColor
@@ -104,14 +102,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }else{
             self.tableView.indicatorStyle = .black
             self.suggestTableView.indicatorStyle = .black
-        }
-
-        if Style.isDark {
-            ingredientName.keyboardAppearance = .dark
-            amount.keyboardAppearance = .dark
-        }else{
-            ingredientName.keyboardAppearance = .default
-            amount.keyboardAppearance = .default
         }
 
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
