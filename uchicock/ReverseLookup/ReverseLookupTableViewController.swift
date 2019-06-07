@@ -87,9 +87,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         ingredientNumberLabel1.textColor = Style.labelTextColorLight
         ingredientNumberLabel2.textColor = Style.labelTextColorLight
         ingredientNumberLabel3.textColor = Style.labelTextColorLight
-        ingredientTextField1.backgroundColor = Style.textFieldBackgroundColor
-        ingredientTextField2.backgroundColor = Style.textFieldBackgroundColor
-        ingredientTextField3.backgroundColor = Style.textFieldBackgroundColor
         ingredientTextField1.textColor = Style.labelTextColor
         ingredientTextField2.textColor = Style.labelTextColor
         ingredientTextField3.textColor = Style.labelTextColor

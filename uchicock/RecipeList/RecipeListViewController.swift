@@ -98,7 +98,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             for subview in view.subviews {
                 if subview is UITextField {
                     let textField: UITextField = subview as! UITextField
-                    textField.backgroundColor = Style.textFieldBackgroundColor
                     textField.textColor = Style.labelTextColor
                     textField.layer.borderColor = Style.memoBorderColor.cgColor
                     textField.layer.borderWidth = 1.0

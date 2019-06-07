@@ -732,9 +732,8 @@ struct Style{
         customizeTableView()
         customizeSearchBar()
         customizeSegmentedControl()
-        M13Checkbox.appearance().backgroundColor = UIColor.clear
-        M13Checkbox.appearance().tintColor = secondaryColor
-
+        customizeM13Checkbox()
+        customTextField()
         UIActivityIndicatorView.appearance().color = labelTextColor
     }
     
@@ -781,5 +780,17 @@ struct Style{
     static private func customizeSegmentedControl(){
         UISegmentedControl.appearance().backgroundColor = basicBackgroundColor
         UISegmentedControl.appearance().tintColor = secondaryColor
+    }
+    
+    static private func customizeM13Checkbox(){
+        M13Checkbox.appearance().backgroundColor = UIColor.clear
+        M13Checkbox.appearance().tintColor = secondaryColor
+    }
+    
+    static private func customTextField(){
+        UITextField.appearance().backgroundColor = Style.textFieldBackgroundColor
+        UITextField.appearance().tintColor = Style.labelTextColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = Style.textFieldBackgroundColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Style.labelTextColor
     }
 }

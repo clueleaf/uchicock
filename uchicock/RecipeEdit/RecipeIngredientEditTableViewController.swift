@@ -85,10 +85,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        ingredientName.backgroundColor = Style.textFieldBackgroundColor
         ingredientName.textColor = Style.labelTextColor
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
-        amount.backgroundColor = Style.textFieldBackgroundColor
         amount.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientNameLabel.textColor = Style.labelTextColor
         amountLabel.textColor = Style.labelTextColor
