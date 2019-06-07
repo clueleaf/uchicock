@@ -59,53 +59,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(false, forKey: "firstLaunch")
         }
         
-        buildCheckbox.boxLineWidth = 1.0
-        buildCheckbox.markType = .checkmark
-        buildCheckbox.boxType = .circle
-        stirCheckbox.boxLineWidth = 1.0
-        stirCheckbox.markType = .checkmark
-        stirCheckbox.boxType = .circle
-        shakeCheckbox.boxLineWidth = 1.0
-        shakeCheckbox.markType = .checkmark
-        shakeCheckbox.boxType = .circle
-        blendCheckbox.boxLineWidth = 1.0
-        blendCheckbox.markType = .checkmark
-        blendCheckbox.boxType = .circle
-        othersCheckbox.boxLineWidth = 1.0
-        othersCheckbox.markType = .checkmark
-        othersCheckbox.boxType = .circle
-
-        buildCheckbox.stateChangeAnimation = .fade(.fill)
-        buildCheckbox.animationDuration = 0
-        buildCheckbox.setCheckState(.checked, animated: true)
-        buildCheckbox.animationDuration = 0.3
-        buildCheckbox.stateChangeAnimation = .expand(.fill)
-        stirCheckbox.stateChangeAnimation = .fade(.fill)
-        stirCheckbox.animationDuration = 0
-        stirCheckbox.setCheckState(.checked, animated: true)
-        stirCheckbox.animationDuration = 0.3
-        stirCheckbox.stateChangeAnimation = .expand(.fill)
-        shakeCheckbox.stateChangeAnimation = .fade(.fill)
-        shakeCheckbox.animationDuration = 0
-        shakeCheckbox.setCheckState(.checked, animated: true)
-        shakeCheckbox.animationDuration = 0.3
-        shakeCheckbox.stateChangeAnimation = .expand(.fill)
-        blendCheckbox.stateChangeAnimation = .fade(.fill)
-        blendCheckbox.animationDuration = 0
-        blendCheckbox.setCheckState(.checked, animated: true)
-        blendCheckbox.animationDuration = 0.3
-        blendCheckbox.stateChangeAnimation = .expand(.fill)
-        othersCheckbox.stateChangeAnimation = .fade(.fill)
-        othersCheckbox.animationDuration = 0
-        othersCheckbox.setCheckState(.checked, animated: true)
-        othersCheckbox.animationDuration = 0.3
-        othersCheckbox.stateChangeAnimation = .expand(.fill)
+        setM13Checkbox(buildCheckbox)
+        setM13Checkbox(stirCheckbox)
+        setM13Checkbox(shakeCheckbox)
+        setM13Checkbox(blendCheckbox)
+        setM13Checkbox(othersCheckbox)
         
         buildFilterButton.contentHorizontalAlignment = .left
         stirFilterButton.contentHorizontalAlignment = .left
         shakeFilterButton.contentHorizontalAlignment = .left
         blendFilterButton.contentHorizontalAlignment = .left
         othersFilterButton.contentHorizontalAlignment = .left
+    }
+    
+    func setM13Checkbox(_ checkbox: M13Checkbox){
+        checkbox.boxLineWidth = 1.0
+        checkbox.markType = .checkmark
+        checkbox.boxType = .circle
+        checkbox.stateChangeAnimation = .fade(.fill)
+        checkbox.animationDuration = 0
+        checkbox.setCheckState(.checked, animated: true)
+        checkbox.animationDuration = 0.3
+        checkbox.stateChangeAnimation = .expand(.fill)
     }
     
     override func viewWillAppear(_ animated: Bool) {
