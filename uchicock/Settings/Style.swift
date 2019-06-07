@@ -735,6 +735,7 @@ struct Style{
         customizeTextField()
         customizeTextView()
         customizeTabBar()
+        customizeSlider()
         UIActivityIndicatorView.appearance().color = labelTextColor
     }
     
@@ -809,4 +810,10 @@ struct Style{
         UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
         UITabBar.appearance().unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
     }
+        
+    static private func customizeSlider(){
+        UISlider.appearance().minimumTrackTintColor = Style.secondaryColor
+        UISlider.appearance().maximumTrackTintColor = Style.labelTextColorLight
+    }
+
 }
