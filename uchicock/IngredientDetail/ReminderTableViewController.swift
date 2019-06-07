@@ -64,6 +64,20 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
+    private func showError(_ type: String){
+        let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
+        }))
+        alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+            if let url = URL(string:UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }))
+        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
     func createReminder(eventStore: EKEventStore, title: String) {
         let reminder = EKReminder(eventStore: eventStore)
         
@@ -80,17 +94,7 @@ class ReminderTableViewController: UITableViewController{
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async {
-                let alertView = CustomAlertController(title: "リマインダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてリマインダーへのアクセス許可を確認してください", preferredStyle: .alert)
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
-                }))
-                alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    if let url = URL(string:UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }))
-                alertView.alertStatusBarStyle = Style.statusBarStyle
-                alertView.modalPresentationCapturesStatusBarAppearance = true
-                self.present(alertView, animated: true, completion: nil)
+                self.showError("リマインダー")
             }
         }
     }
@@ -110,17 +114,7 @@ class ReminderTableViewController: UITableViewController{
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async{
-                let alertView = CustomAlertController(title: "カレンダーへの登録に失敗しました", message: "「設定」→「うちカク！」にてカレンダーへのアクセス許可を確認してください", preferredStyle: .alert)
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
-                }))
-                alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
-                    if let url = URL(string:UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }))
-                alertView.alertStatusBarStyle = Style.statusBarStyle
-                alertView.modalPresentationCapturesStatusBarAppearance = true
-                self.present(alertView, animated: true, completion: nil)
+                self.showError("カレンダー")
             }
         }
     }

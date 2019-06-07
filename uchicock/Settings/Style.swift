@@ -726,6 +726,7 @@ struct Style{
     
     // MARK: - Set Global Theme
     static private func setGlobalTheme(){
+        // 注意：UILabel, TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
         customizeBarButtonItem()
         customizeButton()
         customizeNavigationBar()

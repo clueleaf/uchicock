@@ -49,22 +49,10 @@ class IngredientDetailTableViewController: UITableViewController {
         stock.markType = .checkmark
         stock.boxType = .circle
         
-        editButton.layer.cornerRadius = editButton.frame.size.width / 2
-        editButton.clipsToBounds = true
-        let editImage = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
-        editButton.setImage(editImage, for: .normal)
-        reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
-        let reminderImage = UIImage(named: "reminder")?.withRenderingMode(.alwaysTemplate)
-        reminderButton.setImage(reminderImage, for: .normal)
-        reminderButton.clipsToBounds = true
-        amazonButton.layer.cornerRadius = amazonButton.frame.size.width / 2
-        let amazonImage = UIImage(named: "amazon")?.withRenderingMode(.alwaysTemplate)
-        amazonButton.setImage(amazonImage, for: .normal)
-        amazonButton.clipsToBounds = true
-        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
-        let deleteImage = UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate)
-        deleteButton.setImage(deleteImage, for: .normal)
-        deleteButton.clipsToBounds = true
+        initActionButtonStyleOf(editButton, with: "edit")
+        initActionButtonStyleOf(reminderButton, with: "reminder")
+        initActionButtonStyleOf(amazonButton, with: "amazon")
+        initActionButtonStyleOf(deleteButton, with: "delete")
 
         tableView.register(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
 
@@ -175,8 +163,12 @@ class IngredientDetailTableViewController: UITableViewController {
         }
     }
     
-    func closeEditVC(_ editVC: IngredientEditTableViewController){
-        editVC.dismiss(animated: true, completion: nil)
+    // MARK: - Set Style
+    private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
+        button.layer.cornerRadius = editButton.frame.size.width / 2
+        button.clipsToBounds = true
+        let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
     }
 
     func reloadIngredientRecipeBasicList(){
@@ -404,11 +396,7 @@ class IngredientDetailTableViewController: UITableViewController {
     @IBAction func stockTapped(_ sender: M13Checkbox) {
         let realm = try! Realm()
         try! realm.write {
-            if stock.checkState == .checked{
-                ingredient.stockFlag = true
-            }else{
-                ingredient.stockFlag = false
-            }
+            ingredient.stockFlag = stock.checkState == .checked ? true : false
         }
         reloadIngredientRecipeBasicList()
         tableView.reloadData()
@@ -488,6 +476,10 @@ class IngredientDetailTableViewController: UITableViewController {
             let evc = enc.visibleViewController as! ReminderTableViewController
             evc.ingredientName = self.ingredient.ingredientName
         }
+    }
+    
+    func closeEditVC(_ editVC: IngredientEditTableViewController){
+        editVC.dismiss(animated: true, completion: nil)
     }
 
 }
