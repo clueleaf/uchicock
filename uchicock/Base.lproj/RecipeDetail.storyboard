@@ -461,8 +461,8 @@
                         <outlet property="star2" destination="gxL-Nl-qZ9" id="uje-HJ-ILt"/>
                         <outlet property="star3" destination="7hI-6j-UuT" id="dC4-ka-KWF"/>
                         <outlet property="starLabel" destination="nKc-u7-kAR" id="9B3-kG-xbj"/>
-                        <segue destination="pbh-1D-LNW" kind="presentation" identifier="PushEditRecipe" id="lgY-f5-jox"/>
-                        <segue destination="bRw-Lt-ksr" kind="presentation" identifier="PushReminder" id="m0y-qe-rS0"/>
+                        <segue destination="pbh-1D-LNW" kind="presentation" identifier="PushEditRecipe" modalPresentationStyle="fullScreen" id="lgY-f5-jox"/>
+                        <segue destination="bRw-Lt-ksr" kind="presentation" identifier="PushReminder" modalPresentationStyle="pageSheet" id="m0y-qe-rS0"/>
                         <segue destination="jwj-FT-ox5" kind="show" identifier="PushIngredientDetail" id="tjp-CU-ZRC"/>
                     </connections>
                 </tableViewController>

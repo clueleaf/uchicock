@@ -61,8 +61,6 @@ class RecoverTableViewController: UITableViewController {
         
         self.tableView.backgroundColor = Style.basicBackgroundColor
         tableView.setContentOffset(tableView.contentOffset, animated: false)
-        // iOS 13のCard表示へのワークアラウンド
-        changeToUserDb()
     }
     
     func changeToUserDb(){

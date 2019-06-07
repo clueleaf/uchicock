@@ -512,8 +512,8 @@
                         <outlet property="introductionLabel" destination="whL-dn-v14" id="uyC-q6-vVm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
                         <outlet property="recoverLabel" destination="9wL-Bg-17W" id="3jh-pb-uqF"/>
-                        <segue destination="WJd-ly-HED" kind="presentation" identifier="ChangeTheme" id="Nab-pk-LRY"/>
-                        <segue destination="VGI-sz-djI" kind="presentation" identifier="PushRecoverRecipe" id="mMP-wU-Khq"/>
+                        <segue destination="WJd-ly-HED" kind="presentation" identifier="ChangeTheme" modalPresentationStyle="fullScreen" id="Nab-pk-LRY"/>
+                        <segue destination="VGI-sz-djI" kind="presentation" identifier="PushRecoverRecipe" modalPresentationStyle="fullScreen" id="mMP-wU-Khq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4X-xo-Jul" userLabel="First Responder" sceneMemberID="firstResponder"/>

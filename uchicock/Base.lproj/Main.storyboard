@@ -392,7 +392,7 @@
                         <outlet property="stirCheckbox" destination="p9h-nw-nZS" id="yD1-uC-mZf"/>
                         <outlet property="stirFilterButton" destination="h2B-dN-7T1" id="g5n-Uq-j7E"/>
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
-                        <segue destination="jeX-PC-Dfv" kind="presentation" identifier="PushAddRecipe" id="nU1-7k-jBf"/>
+                        <segue destination="jeX-PC-Dfv" kind="presentation" identifier="PushAddRecipe" modalPresentationStyle="fullScreen" id="nU1-7k-jBf"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="PushRecipeDetail" id="daG-Cs-3sj"/>
                     </connections>
                 </viewController>
@@ -565,7 +565,7 @@
                         <outlet property="segmentedControlContainer" destination="jYr-aJ-DQL" id="Pim-f2-nxm"/>
                         <outlet property="stockState" destination="wmB-he-16M" id="1tT-Xf-o9f"/>
                         <outlet property="tableView" destination="KNl-GC-4Ax" id="yp8-EL-s8S"/>
-                        <segue destination="jN4-8a-vgU" kind="presentation" identifier="PushAddIngredient" id="Mgn-8C-Ydk"/>
+                        <segue destination="jN4-8a-vgU" kind="presentation" identifier="PushAddIngredient" modalPresentationStyle="fullScreen" id="Mgn-8C-Ydk"/>
                         <segue destination="GxT-ck-hvN" kind="show" identifier="PushIngredientDetail" id="niO-YQ-zOd"/>
                     </connections>
                 </viewController>

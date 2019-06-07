@@ -287,8 +287,8 @@
                         <outlet property="star2" destination="ffj-8v-9XM" id="pmP-02-DcC"/>
                         <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
                         <outlet property="starLabel" destination="nN9-zc-48A" id="BBx-vg-2OP"/>
-                        <segue destination="vKl-GP-J2s" kind="presentation" identifier="PushEditIngredient" id="PfD-nS-bh3"/>
-                        <segue destination="f6s-1V-srL" kind="presentation" identifier="ShowPhotoFilter" id="8xx-nF-xdB"/>
+                        <segue destination="vKl-GP-J2s" kind="presentation" identifier="PushEditIngredient" modalPresentationStyle="pageSheet" id="PfD-nS-bh3"/>
+                        <segue destination="f6s-1V-srL" kind="presentation" identifier="ShowPhotoFilter" modalPresentationStyle="fullScreen" id="8xx-nF-xdB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKa-M5-9RW" userLabel="First Responder" sceneMemberID="firstResponder"/>
