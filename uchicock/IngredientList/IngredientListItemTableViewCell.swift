@@ -47,8 +47,6 @@ class IngredientListItemTableViewCell: UITableViewCell {
             stockLabel.backgroundColor = Style.basicBackgroundColor
             stockLabel.clipsToBounds = true
             
-            stock.backgroundColor = UIColor.clear
-            stock.tintColor = Style.secondaryColor
             stock.secondaryTintColor = Style.checkboxSecondaryTintColor
             stock.boxLineWidth = 1.0
             stock.markType = .checkmark

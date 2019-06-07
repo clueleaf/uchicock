@@ -96,8 +96,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         amountSlider.minimumTrackTintColor = Style.secondaryColor
         amountSlider.maximumTrackTintColor = Style.labelTextColorLight
         optionLabel.textColor = Style.labelTextColor
-        option.backgroundColor = UIColor.clear
-        option.tintColor = Style.secondaryColor
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor

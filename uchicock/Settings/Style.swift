@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import M13Checkbox
 
 struct Style{
     static var no = "0"
@@ -731,20 +732,23 @@ struct Style{
         customizeTableView()
         customizeSearchBar()
         customizeSegmentedControl()
-        UIActivityIndicatorView.appearance().color = Style.labelTextColor
+        M13Checkbox.appearance().backgroundColor = UIColor.clear
+        M13Checkbox.appearance().tintColor = secondaryColor
+
+        UIActivityIndicatorView.appearance().color = labelTextColor
     }
     
     static private func customizeBarButtonItem(){
-        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
-        UIBarButtonItem.appearance().tintColor = Style.primaryColor
+        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
+        UIBarButtonItem.appearance().tintColor = primaryColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
     }
     
     static private func customizeButton(){
-        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
-        let secondaryContentColor = FlatColor.contrastColorOf(Style.secondaryColor, isFlat: false)
+        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
+        let secondaryContentColor = FlatColor.contrastColorOf(secondaryColor, isFlat: false)
         UIButton.appearance().tintColor = secondaryContentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
@@ -757,25 +761,25 @@ struct Style{
     }
     
     static private func customizeNavigationBar(){
-        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
-        UINavigationBar.appearance().barTintColor = Style.primaryColor
+        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
+        UINavigationBar.appearance().barTintColor = primaryColor
         UINavigationBar.appearance().tintColor = contentColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     static private func customizeTableView(){
-        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
-        UITableViewCell.appearance().backgroundColor = Style.basicBackgroundColor
+        UITableView.appearance().backgroundColor = basicBackgroundColor
+        UITableViewCell.appearance().backgroundColor = basicBackgroundColor
     }
     
     static private func customizeSearchBar(){
-        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
-        UISearchBar.appearance().tintColor = Style.labelTextColor
+        UISearchBar.appearance().backgroundColor = filterContainerBackgroundColor
+        UISearchBar.appearance().tintColor = labelTextColor
     }
     
     static private func customizeSegmentedControl(){
-        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
-        UISegmentedControl.appearance().tintColor = Style.secondaryColor
+        UISegmentedControl.appearance().backgroundColor = basicBackgroundColor
+        UISegmentedControl.appearance().tintColor = secondaryColor
     }
 }

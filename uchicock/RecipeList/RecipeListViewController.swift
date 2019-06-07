@@ -72,7 +72,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         othersFilterButton.contentHorizontalAlignment = .left
     }
     
-    func setM13Checkbox(_ checkbox: M13Checkbox){
+    private func setM13Checkbox(_ checkbox: M13Checkbox){
         checkbox.boxLineWidth = 1.0
         checkbox.markType = .checkmark
         checkbox.boxType = .circle
@@ -92,20 +92,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
-        buildCheckbox.backgroundColor = UIColor.clear
-        buildCheckbox.tintColor = Style.secondaryColor
         buildCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        stirCheckbox.backgroundColor = UIColor.clear
-        stirCheckbox.tintColor = Style.secondaryColor
         stirCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        shakeCheckbox.backgroundColor = UIColor.clear
-        shakeCheckbox.tintColor = Style.secondaryColor
         shakeCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        blendCheckbox.backgroundColor = UIColor.clear
-        blendCheckbox.tintColor = Style.secondaryColor
         blendCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        othersCheckbox.backgroundColor = UIColor.clear
-        othersCheckbox.tintColor = Style.secondaryColor
         othersCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
         if buildCheckbox.checkState == .checked{
             buildFilterButton.tintColor = Style.secondaryColor

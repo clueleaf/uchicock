@@ -78,8 +78,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memoLabel.textColor = Style.labelTextColor
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         category.setTitleTextAttributes(attribute, for: .normal)
-        stock.backgroundColor = UIColor.clear
-        stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         memo.backgroundColor = Style.textFieldBackgroundColor
         memo.textColor = Style.labelTextColor

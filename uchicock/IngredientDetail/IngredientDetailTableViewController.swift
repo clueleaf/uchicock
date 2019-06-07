@@ -79,8 +79,6 @@ class IngredientDetailTableViewController: UITableViewController {
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
         category.textColor = Style.labelTextColor
-        stock.backgroundColor = UIColor.clear
-        stock.tintColor = Style.secondaryColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         editButtonLabel.textColor = Style.labelTextColor
         reminderButtonLabel.textColor = Style.labelTextColor

@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 

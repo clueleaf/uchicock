@@ -10,7 +10,6 @@
 import UIKit
 import RealmSwift
 import SVProgressHUD
-import M13Checkbox
 import StoreKit
 
 @UIApplicationMain

@@ -39,8 +39,6 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         recoverTarget.stateChangeAnimation = .expand(.fill)
         recoverTarget.isEnabled = false
         recoverTarget.setCheckState(.checked, animated: true)
-        recoverTarget.backgroundColor = UIColor.clear
-        recoverTarget.tintColor = Style.secondaryColor
         recoverTarget.boxLineWidth = 1.0
         recoverTarget.markType = .checkmark
         recoverTarget.boxType = .circle
@@ -48,8 +46,6 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         nonRecoverTarget.stateChangeAnimation = .expand(.fill)
         nonRecoverTarget.isEnabled = false
         nonRecoverTarget.setCheckState(.unchecked, animated: true)
-        nonRecoverTarget.backgroundColor = UIColor.clear
-        nonRecoverTarget.tintColor = Style.secondaryColor
         nonRecoverTarget.boxLineWidth = 1.0
         nonRecoverTarget.markType = .checkmark
         nonRecoverTarget.boxType = .circle
@@ -57,7 +53,6 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         unableRecover.stateChangeAnimation = .expand(.fill)
         unableRecover.isEnabled = false
         unableRecover.setCheckState(.mixed, animated: true)
-        unableRecover.backgroundColor = UIColor.clear
         unableRecover.tintColor = Style.badgeDisableBackgroundColor
         unableRecover.boxLineWidth = 1.0
         unableRecover.markType = .checkmark
