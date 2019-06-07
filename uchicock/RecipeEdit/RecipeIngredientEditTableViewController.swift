@@ -341,6 +341,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
+    
+    private func setIngredient(_ categoryNum: Int) -> Ingredient{
+        let ingredient = Ingredient()
+        ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
+        ingredient.stockFlag = false
+        ingredient.memo = ""
+        ingredient.category = categoryNum
+        return ingredient
+    }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         if textWithoutSpace(text: ingredientName.text!) == "" {
@@ -356,33 +365,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
-                    let ingredient = Ingredient()
-                    ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.stockFlag = false
-                    ingredient.memo = ""
-                    ingredient.category = 0
                     try! realm.write {
-                        realm.add(ingredient)
+                        realm.add(self.setIngredient(0))
                     }
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
                 registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
-                    let ingredient = Ingredient()
-                    ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.stockFlag = false
-                    ingredient.memo = ""
-                    ingredient.category = 1
                     try! realm.write {
-                        realm.add(ingredient)
+                        realm.add(self.setIngredient(1))
                     }
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
                 registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
-                    let ingredient = Ingredient()
-                    ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
-                    ingredient.stockFlag = false
-                    ingredient.memo = ""
-                    ingredient.category = 2
                     try! realm.write {
-                        realm.add(ingredient)
+                        realm.add(self.setIngredient(2))
                     }
                     self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
                 registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})

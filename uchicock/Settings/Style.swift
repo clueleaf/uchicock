@@ -786,11 +786,11 @@ struct Style{
     }
     
     static private func customizeTextField(){
-        UITextField.appearance().backgroundColor = Style.textFieldBackgroundColor
-        UITextField.appearance().tintColor = Style.labelTextColor
-        UITextField.appearance().textColor = Style.labelTextColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = Style.textFieldBackgroundColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Style.labelTextColor
+        UITextField.appearance().backgroundColor = textFieldBackgroundColor
+        UITextField.appearance().tintColor = labelTextColor
+        UITextField.appearance().textColor = labelTextColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = textFieldBackgroundColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = labelTextColor
         if isDark{
             UITextField.appearance().keyboardAppearance = .dark
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .dark
@@ -801,19 +801,19 @@ struct Style{
     }
     
     static private func customizeTextView(){
-        UITextView.appearance().backgroundColor = Style.textFieldBackgroundColor
-        UITextView.appearance().textColor = Style.labelTextColor
+        UITextView.appearance().backgroundColor = textFieldBackgroundColor
+        UITextView.appearance().textColor = labelTextColor
     }
     
     static private func customizeTabBar(){
-        UITabBar.appearance().tintColor = Style.tabBarTintColor
-        UITabBar.appearance().barTintColor = Style.tabBarBarTintColor
-        UITabBar.appearance().unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
+        UITabBar.appearance().tintColor = tabBarTintColor
+        UITabBar.appearance().barTintColor = tabBarBarTintColor
+        UITabBar.appearance().unselectedItemTintColor = tabBarUnselectedItemTintColor
     }
         
     static private func customizeSlider(){
-        UISlider.appearance().minimumTrackTintColor = Style.secondaryColor
-        UISlider.appearance().maximumTrackTintColor = Style.labelTextColorLight
+        UISlider.appearance().minimumTrackTintColor = secondaryColor
+        UISlider.appearance().maximumTrackTintColor = labelTextColorLight
     }
 
 }
