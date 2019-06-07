@@ -35,6 +35,7 @@ struct Style{
     static var checkboxSecondaryTintColor = FlatColor.gray
     static var albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
     
+    // MARK: - Define Theme
     static func tequilaSunriseLight(){
         no = "0"
         isDark = false
@@ -61,7 +62,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func tequilaSunriseDark(){
@@ -90,7 +91,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func seaBreezeLight(){
@@ -119,7 +120,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func seaBreezeDark(){
@@ -148,7 +149,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
     static func chinaBlueLight(){
@@ -177,7 +178,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
     static func chinaBlueDark(){
@@ -206,7 +207,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
     static func grasshopperLight(){
@@ -235,7 +236,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
     static func irishCoffeeDark(){
@@ -264,7 +265,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func mojitoLight(){
@@ -293,7 +294,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func redEyeLight(){
@@ -322,7 +323,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func cubaLibreDark(){
@@ -351,7 +352,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func silverWingLight(){
@@ -381,7 +382,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func americanLemonadeDark(){
@@ -410,7 +411,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func blueLagoonLight(){
@@ -439,7 +440,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func blueLagoonDark(){
@@ -468,7 +469,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func mimosaLight(){
@@ -497,7 +498,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func mimosaDark(){
@@ -526,7 +527,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
     static func pinkLadyLight(){
@@ -555,7 +556,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func pinkLadyDark(){
@@ -584,7 +585,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func blackRussianDark(){
@@ -613,7 +614,7 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func shoyoJulingLight(){
@@ -642,7 +643,7 @@ struct Style{
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
         albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
     
     static func shoyoJulingDark(){
@@ -671,9 +672,17 @@ struct Style{
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
         albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        FlatColor.setGlobalTheme()
+        setGlobalTheme()
     }
 
+    // MARK: - Manage Theme
+    static func saveTheme(themeNo: String?){
+        if let no = themeNo{
+            let defaults = UserDefaults.standard
+            defaults.set(no, forKey: "Theme")
+        }
+    }
+    
     static func loadTheme(){
         let defaults = UserDefaults.standard
         if let themeNo = defaults.string(forKey: "Theme"){
@@ -714,10 +723,59 @@ struct Style{
         }
     }
     
-    static func saveTheme(themeNo: String?){
-        if let no = themeNo{
-            let defaults = UserDefaults.standard
-            defaults.set(no, forKey: "Theme")
-        }
+    // MARK: - Set Global Theme
+    static private func setGlobalTheme(){
+        customizeBarButtonItem()
+        customizeButton()
+        customizeNavigationBar()
+        customizeTableView()
+        customizeSearchBar()
+        customizeSegmentedControl()
+        UIActivityIndicatorView.appearance().color = Style.labelTextColor
+    }
+    
+    static private func customizeBarButtonItem(){
+        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
+        UIBarButtonItem.appearance().tintColor = Style.primaryColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
+    }
+    
+    static private func customizeButton(){
+        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
+        let secondaryContentColor = FlatColor.contrastColorOf(Style.secondaryColor, isFlat: false)
+        UIButton.appearance().tintColor = secondaryContentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [UIStepper.self]).backgroundColor = UIColor.clear
+        UIButton.appearance().setTitleShadowColor(UIColor.clear, for: UIControl.State.normal)
+    }
+    
+    static private func customizeNavigationBar(){
+        let contentColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: false)
+        UINavigationBar.appearance().barTintColor = Style.primaryColor
+        UINavigationBar.appearance().tintColor = contentColor
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
+        UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
+    static private func customizeTableView(){
+        UITableView.appearance().backgroundColor = Style.basicBackgroundColor
+        UITableViewCell.appearance().backgroundColor = Style.basicBackgroundColor
+    }
+    
+    static private func customizeSearchBar(){
+        UISearchBar.appearance().backgroundColor = Style.filterContainerBackgroundColor
+        UISearchBar.appearance().tintColor = Style.labelTextColor
+    }
+    
+    static private func customizeSegmentedControl(){
+        UISegmentedControl.appearance().backgroundColor = Style.basicBackgroundColor
+        UISegmentedControl.appearance().tintColor = Style.secondaryColor
     }
 }
