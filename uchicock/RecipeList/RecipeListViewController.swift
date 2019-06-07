@@ -59,28 +59,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(false, forKey: "firstLaunch")
         }
         
-        setM13Checkbox(buildCheckbox)
-        setM13Checkbox(stirCheckbox)
-        setM13Checkbox(shakeCheckbox)
-        setM13Checkbox(blendCheckbox)
-        setM13Checkbox(othersCheckbox)
+        initM13CheckboxStyle(buildCheckbox)
+        initM13CheckboxStyle(stirCheckbox)
+        initM13CheckboxStyle(shakeCheckbox)
+        initM13CheckboxStyle(blendCheckbox)
+        initM13CheckboxStyle(othersCheckbox)
         
         buildFilterButton.contentHorizontalAlignment = .left
         stirFilterButton.contentHorizontalAlignment = .left
         shakeFilterButton.contentHorizontalAlignment = .left
         blendFilterButton.contentHorizontalAlignment = .left
         othersFilterButton.contentHorizontalAlignment = .left
-    }
-    
-    private func setM13Checkbox(_ checkbox: M13Checkbox){
-        checkbox.boxLineWidth = 1.0
-        checkbox.markType = .checkmark
-        checkbox.boxType = .circle
-        checkbox.stateChangeAnimation = .fade(.fill)
-        checkbox.animationDuration = 0
-        checkbox.setCheckState(.checked, animated: true)
-        checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand(.fill)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,51 +81,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
         favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
         order.setTitleTextAttributes(attribute, for: .normal)
-        buildCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        stirCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        shakeCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        blendCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        othersCheckbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        if buildCheckbox.checkState == .checked{
-            buildFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                buildFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if buildCheckbox.checkState == .unchecked{
-            buildFilterButton.tintColor = Style.labelTextColorLight
-        }
-        if stirCheckbox.checkState == .checked{
-            stirFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                stirFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if stirCheckbox.checkState == .unchecked{
-            stirFilterButton.tintColor = Style.labelTextColorLight
-        }
-        if shakeCheckbox.checkState == .checked{
-            shakeFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                shakeFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if shakeCheckbox.checkState == .unchecked{
-            shakeFilterButton.tintColor = Style.labelTextColorLight
-        }
-        if blendCheckbox.checkState == .checked{
-            blendFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                blendFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if blendCheckbox.checkState == .unchecked{
-            blendFilterButton.tintColor = Style.labelTextColorLight
-        }
-        if othersCheckbox.checkState == .checked{
-            othersFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                othersFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if othersCheckbox.checkState == .unchecked{
-            othersFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
+        updateMethodFilterColorOf(stirCheckbox, and: stirFilterButton)
+        updateMethodFilterColorOf(shakeCheckbox, and: shakeFilterButton)
+        updateMethodFilterColorOf(blendCheckbox, and: blendFilterButton)
+        updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
 
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         if Style.isBackgroundDark{
@@ -200,6 +149,49 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    // MARK: - Set Color
+    private func initM13CheckboxStyle(_ checkbox: M13Checkbox){
+        checkbox.boxLineWidth = 1.0
+        checkbox.markType = .checkmark
+        checkbox.boxType = .circle
+        checkbox.stateChangeAnimation = .fade(.fill)
+        checkbox.animationDuration = 0
+        checkbox.setCheckState(.checked, animated: true)
+        checkbox.animationDuration = 0.3
+        checkbox.stateChangeAnimation = .expand(.fill)
+    }
+    
+    private func updateMethodFilterColorOf(_ checkbox: M13Checkbox, and button: UIButton){
+        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        if checkbox.checkState == .checked{
+            button.tintColor = Style.secondaryColor
+            if Style.no == "6" {
+                button.tintColor = Style.labelTextColor
+            }
+        }else if checkbox.checkState == .unchecked{
+            button.tintColor = Style.labelTextColorLight
+            if Style.no == "6" {
+                button.tintColor = FlatColor.white
+            }
+        }
+    }
+    
+    private func updateMethodFilterColorWhenButtonTappedOf(_ checkbox: M13Checkbox, and button: UIButton){
+        if checkbox.checkState == .checked{
+            checkbox.setCheckState(.unchecked, animated: true)
+            button.tintColor = Style.labelTextColorLight
+            if Style.no == "6" {
+                button.tintColor = FlatColor.white
+            }
+        }else if checkbox.checkState == .unchecked{
+            checkbox.setCheckState(.checked, animated: true)
+            button.tintColor = Style.secondaryColor
+            if Style.no == "6" {
+                button.tintColor = Style.labelTextColor
             }
         }
     }
@@ -543,141 +535,61 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
-        if buildCheckbox.checkState == .checked{
-            buildFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                buildFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if buildCheckbox.checkState == .unchecked{
-            buildFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func stirCheckboxTapped(_ sender: M13Checkbox) {
-        if stirCheckbox.checkState == .checked{
-            stirFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                stirFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if stirCheckbox.checkState == .unchecked{
-            stirFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(stirCheckbox, and: stirFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func shakeCheckboxTapped(_ sender: M13Checkbox) {
-        if shakeCheckbox.checkState == .checked{
-            shakeFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                shakeFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if shakeCheckbox.checkState == .unchecked{
-            shakeFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(shakeCheckbox, and: shakeFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func blendCheckboxTapped(_ sender: M13Checkbox) {
-        if blendCheckbox.checkState == .checked{
-            blendFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                blendFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if blendCheckbox.checkState == .unchecked{
-            blendFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(blendCheckbox, and: blendFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func othersCheckboxTapped(_ sender: M13Checkbox) {
-        if othersCheckbox.checkState == .checked{
-            othersFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                othersFilterButton.tintColor = Style.labelTextColor
-            }
-        }else if othersCheckbox.checkState == .unchecked{
-            othersFilterButton.tintColor = Style.labelTextColorLight
-        }
+        updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func buildFilterButtonTapped(_ sender: UIButton) {
-        if buildCheckbox.checkState == .checked{
-            buildCheckbox.setCheckState(.unchecked, animated: true)
-            buildFilterButton.tintColor = Style.labelTextColorLight
-        }else if buildCheckbox.checkState == .unchecked{
-            buildCheckbox.setCheckState(.checked, animated: true)
-            buildFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                buildFilterButton.tintColor = Style.labelTextColor
-            }
-        }
+        updateMethodFilterColorWhenButtonTappedOf(buildCheckbox, and: buildFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func stirFilterButtonTapped(_ sender: UIButton) {
-        if stirCheckbox.checkState == .checked{
-            stirCheckbox.setCheckState(.unchecked, animated: true)
-            stirFilterButton.tintColor = Style.labelTextColorLight
-        }else if stirCheckbox.checkState == .unchecked{
-            stirCheckbox.setCheckState(.checked, animated: true)
-            stirFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                stirFilterButton.tintColor = Style.labelTextColor
-            }
-        }
+        updateMethodFilterColorWhenButtonTappedOf(stirCheckbox, and: stirFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func shakeFilterButtonTapped(_ sender: UIButton) {
-        if shakeCheckbox.checkState == .checked{
-            shakeCheckbox.setCheckState(.unchecked, animated: true)
-            shakeFilterButton.tintColor = Style.labelTextColorLight
-        }else if shakeCheckbox.checkState == .unchecked{
-            shakeCheckbox.setCheckState(.checked, animated: true)
-            shakeFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                shakeFilterButton.tintColor = Style.labelTextColor
-            }
-        }
+        updateMethodFilterColorWhenButtonTappedOf(shakeCheckbox, and: shakeFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func blendFilterButtonTapped(_ sender: UIButton) {
-        if blendCheckbox.checkState == .checked{
-            blendCheckbox.setCheckState(.unchecked, animated: true)
-            blendFilterButton.tintColor = Style.labelTextColorLight
-        }else if blendCheckbox.checkState == .unchecked{
-            blendCheckbox.setCheckState(.checked, animated: true)
-            blendFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                blendFilterButton.tintColor = Style.labelTextColor
-            }
-        }
+        updateMethodFilterColorWhenButtonTappedOf(blendCheckbox, and: blendFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
     
     @IBAction func othersFilterButtonTapped(_ sender: UIButton) {
-        if othersCheckbox.checkState == .checked{
-            othersCheckbox.setCheckState(.unchecked, animated: true)
-            othersFilterButton.tintColor = Style.labelTextColorLight
-        }else if othersCheckbox.checkState == .unchecked{
-            othersCheckbox.setCheckState(.checked, animated: true)
-            othersFilterButton.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                othersFilterButton.tintColor = Style.labelTextColor
-            }
-        }
+        updateMethodFilterColorWhenButtonTappedOf(othersCheckbox, and: othersFilterButton)
         reloadRecipeBasicList()
         tableView.reloadData()
     }
