@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'uchicock' do
     pod 'RealmSwift'
-    pod 'DZNEmptyDataSet'
     pod 'IDMPhotoBrowser'
     pod 'SVProgressHUD'
     pod 'M13Checkbox'

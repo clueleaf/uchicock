@@ -1,6 +1,5 @@
 PODS:
   - DACircularProgress (2.3.1)
-  - DZNEmptyDataSet (1.8.1)
   - IDMPhotoBrowser (1.11.3):
     - DACircularProgress
     - pop
@@ -20,7 +19,6 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - DZNEmptyDataSet
   - IDMPhotoBrowser
   - M13Checkbox
   - MJRefresh
@@ -31,7 +29,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - DACircularProgress
-    - DZNEmptyDataSet
     - IDMPhotoBrowser
     - M13Checkbox
     - MJRefresh
@@ -44,7 +41,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
@@ -55,6 +51,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 5c5818ece7d0fc86be7b41f8b3b1136622d277bf
+PODFILE CHECKSUM: 2826bf631e031be3b5524d53c39e463301b77734
 
 COCOAPODS: 1.5.3

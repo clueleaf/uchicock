@@ -60,7 +60,6 @@
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
-		9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
@@ -145,7 +144,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BEF8B2B1E68739B00F32DDB /* DZNEmptyDataSet.framework in Frameworks */,
 				9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */,
 				9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */,
 				9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */,
@@ -486,7 +484,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-uchicock/Pods-uchicock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/IDMPhotoBrowser/IDMPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -500,7 +497,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IDMPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -687,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -737,7 +733,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
