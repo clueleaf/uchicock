@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Introduction-->
+        <scene sceneID="Tot-ug-t6d">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Introduction" id="7bJ-No-Jck" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d6W-GZ-Teh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1175" y="178"/>
+        </scene>
         <!--RecipeEdit-->
         <scene sceneID="zNG-CC-jTh">
             <objects>
@@ -394,6 +402,7 @@
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="jeX-PC-Dfv" kind="presentation" identifier="PushAddRecipe" modalPresentationStyle="fullScreen" id="nU1-7k-jBf"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="PushRecipeDetail" id="daG-Cs-3sj"/>
+                        <segue destination="7bJ-No-Jck" kind="presentation" identifier="usage" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="aU3-fO-Whq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1101,6 +1110,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>

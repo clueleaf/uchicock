@@ -7,7 +7,6 @@ target 'uchicock' do
     pod 'SVProgressHUD'
     pod 'M13Checkbox'
     pod 'MJRefresh'
-    pod 'MYBlurIntroductionView'
 end
 
 post_install do | installer |

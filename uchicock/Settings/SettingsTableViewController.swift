@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import MYBlurIntroductionView
 
-class SettingsTableViewController: UITableViewController, MYIntroductionDelegate {
+class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!
@@ -49,37 +48,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
         tableView.reloadData()
     }
 
-    func showIntroduction(){
-        let desc1 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
-        let introductionPanel1 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "レシピ", description: desc1, image: UIImage(named: "screen-recipe"))
-        introductionPanel1!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        let desc2 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。"
-        let introductionPanel2 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "材料", description: desc2, image: UIImage(named: "screen-ingredient"))
-        introductionPanel2!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        let desc3 = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！"
-        let introductionPanel3 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "逆引き", description: desc3, image: UIImage(named: "screen-reverse-lookup"))
-        introductionPanel3!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
-
-        let desc4 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
-        let introductionPanel4 = MYIntroductionPanel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), title: "アルバム", description: desc4, image: UIImage(named: "screen-album"))
-        introductionPanel4!.panelImageView.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        let introductionView = MYBlurIntroductionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        introductionView.backgroundImageView.image = UIImage(named: "launch-background")
-        introductionView.rightSkipButton.backgroundColor = UIColor.clear
-        introductionView.pageControl.currentPageIndicatorTintColor = FlatColor.yellow
-        introductionView.pageControl.pageIndicatorTintColor = FlatColor.orange
-        introductionView.delegate = self
-        introductionView.buildIntroduction(withPanels: [introductionPanel1!,introductionPanel2!,introductionPanel3!, introductionPanel4!])
-        
-        let window = UIApplication.shared.keyWindow!
-        window.addSubview(introductionView)
-    }
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -95,8 +64,7 @@ class SettingsTableViewController: UITableViewController, MYIntroductionDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
-            tableView.deselectRow(at: indexPath, animated: true)
-            showIntroduction()
+            performSegue(withIdentifier: "usage", sender: indexPath)
         case 1:
             performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
         case 2:
