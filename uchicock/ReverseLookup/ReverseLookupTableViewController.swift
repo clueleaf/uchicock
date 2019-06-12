@@ -8,9 +8,8 @@
 
 import UIKit
 import RealmSwift
-import DZNEmptyDataSet
 
-class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UITextFieldDelegate {
+class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -41,8 +40,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recipeTableView.emptyDataSetSource = self
-        recipeTableView.emptyDataSetDelegate = self
         ingredientTextField1.delegate = self
         ingredientTextField2.delegate = self
         ingredientTextField3.delegate = self
@@ -182,6 +179,22 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         }
         
         recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        
+        setTableBackgroundView()
+    }
+    
+    func setTableBackgroundView(){
+        if recipeBasicList.count == 0{
+            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.recipeTableView.bounds.size.width, height: self.recipeTableView.bounds.size.height))
+            noDataLabel.text          = "条件にあてはまるレシピはありません"
+            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            self.recipeTableView.backgroundView  = UIView()
+            self.recipeTableView.backgroundView?.addSubview(noDataLabel)
+        }else{
+            self.recipeTableView.backgroundView = nil
+        }
     }
     
     func createRecipeBasicList(){
@@ -341,12 +354,6 @@ class ReverseLookupTableViewController: UITableViewController, DZNEmptyDataSetSo
         return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
-        return NSAttributedString(string: str, attributes: attrs)
-    }
-
     // MARK: - UITableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         if tableView.tag == 0{

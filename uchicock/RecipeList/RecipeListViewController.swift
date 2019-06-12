@@ -8,11 +8,10 @@
 
 import UIKit
 import RealmSwift
-import DZNEmptyDataSet
 import MYBlurIntroductionView
 import M13Checkbox
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MYIntroductionDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, MYIntroductionDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -47,8 +46,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
         
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         let defaults = UserDefaults.standard
@@ -321,20 +318,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }else{
             self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
         }
+        
+        setTableBackgroundView()
     }
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "条件にあてはまるレシピはありません"
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
-        return NSAttributedString(string: str, attributes: attrs)
-    }
-    
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return -self.tableView.frame.size.height/4.0
-    }
-    
-    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
-        tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: false)
+    func setTableBackgroundView(){
+        if recipeBasicList.count == 0{
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
+            noDataLabel.text = "条件にあてはまるレシピはありません"
+            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            self.tableView.backgroundView = UIView()
+            self.tableView.backgroundView?.addSubview(noDataLabel)
+        }else{
+            self.tableView.backgroundView = nil
+        }
     }
     
     func showIntroduction(){
@@ -455,6 +454,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
+                self.setTableBackgroundView()
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 if let allRecipeNum = self.recipeList?.count{
                     self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(allRecipeNum) + ")"

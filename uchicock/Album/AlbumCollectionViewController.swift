@@ -8,10 +8,9 @@
 
 import UIKit
 import RealmSwift
-import DZNEmptyDataSet
 import MJRefresh
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     
@@ -34,9 +33,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.reloadRecipeList()
         }
         
-        self.collectionView!.emptyDataSetSource = self
-        self.collectionView!.emptyDataSetDelegate = self
-        
         recipeNameBarButton.image = UIImage(named: "album-name-off")
         
         header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
@@ -54,6 +50,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         header.stateLabel.textColor = Style.labelTextColor
         self.collectionView!.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        setCollectionBackgroundView()
         emptyDataSetStr = ""
 
         queue.async {
@@ -86,13 +83,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             DispatchQueue.main.async{
                 self.collectionView!.reloadData()
                 self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+                self.setCollectionBackgroundView()
             }
         }
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
-        return NSAttributedString(string: emptyDataSetStr, attributes: attrs)
     }
     
     func reloadRecipeList(){
@@ -105,11 +98,26 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
     
+    func setCollectionBackgroundView(){
+        if self.recipeBasicList.count == 0{
+            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
+            noDataLabel.text          = "写真が登録されたレシピはありません"
+            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            self.collectionView.backgroundView  = UIView()
+            self.collectionView.backgroundView?.addSubview(noDataLabel)
+        }else{
+            self.collectionView.backgroundView = nil
+        }
+    }
+    
     @objc func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
         recipeBasicList.shuffle()
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        self.setCollectionBackgroundView()
         self.collectionView!.mj_header.endRefreshing()
     }
     
@@ -199,6 +207,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.recipeBasicList.shuffle()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+            self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
         alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -212,6 +221,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.reloadRecipeList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+            self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
         alertView.alertStatusBarStyle = Style.statusBarStyle

@@ -8,10 +8,9 @@
 
 import UIKit
 import RealmSwift
-import DZNEmptyDataSet
 import M13Checkbox
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -35,8 +34,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
 
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -168,22 +165,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }else{
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
         }
+        
+        setTableBackgroundView()
     }
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "条件にあてはまる材料はありません"
-        let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)]
-        return NSAttributedString(string: str, attributes: attrs)
+    func setTableBackgroundView(){
+        if ingredientBasicList.count == 0{
+            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
+            noDataLabel.text          = "条件にあてはまる材料はありません"
+            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            self.tableView.backgroundView  = UIView()
+            self.tableView.backgroundView?.addSubview(noDataLabel)
+        }else{
+            self.tableView.backgroundView = nil
+        }
     }
     
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return -self.tableView.frame.size.height/4.0
-    }
-    
-    func emptyDataSetWillAppear(_ scrollView: UIScrollView!) {
-        tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.contentInset.top), animated: false)
-    }
-
     @objc func cellStockTapped(_ sender: M13Checkbox){
         var view = sender.superview
         while (view! is IngredientListItemTableViewCell) == false{
@@ -209,6 +208,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 ingredientBasicList.remove(at: index.row)
                 tableView.deleteRows(at: [index], with: .automatic)
                 if ingredientBasicList.count == 0{
+                    setTableBackgroundView()
                     tableView.reloadData()
                 }
                 if let allIngredientNum = ingredientList?.count{
@@ -319,6 +319,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         realm.delete(ingredient)
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
+                    self.setTableBackgroundView()
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                     if let allIngredientNum = self.ingredientList?.count{
                         self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
