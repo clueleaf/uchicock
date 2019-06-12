@@ -6,7 +6,6 @@ PODS:
     - SDWebImage (= 4.0.0)
   - M13Checkbox (3.4.0)
   - MJRefresh (3.2.0)
-  - MYBlurIntroductionView (1.0.3)
   - pop (1.0.12)
   - Realm (3.16.1):
     - Realm/Headers (= 3.16.1)
@@ -22,7 +21,6 @@ DEPENDENCIES:
   - IDMPhotoBrowser
   - M13Checkbox
   - MJRefresh
-  - MYBlurIntroductionView
   - RealmSwift
   - SVProgressHUD
 
@@ -32,7 +30,6 @@ SPEC REPOS:
     - IDMPhotoBrowser
     - M13Checkbox
     - MJRefresh
-    - MYBlurIntroductionView
     - pop
     - Realm
     - RealmSwift
@@ -44,13 +41,12 @@ SPEC CHECKSUMS:
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  MYBlurIntroductionView: b12651c25574580472ff34989a4c5b81c157009f
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
   RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 2826bf631e031be3b5524d53c39e463301b77734
+PODFILE CHECKSUM: 0fb39b9948b4e17ff24bf4c520dd65259d6198af
 
 COCOAPODS: 1.5.3
