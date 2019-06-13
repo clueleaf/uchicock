@@ -434,7 +434,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-mV-WHi" userLabel="Ingredient Name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-mV-WHi" userLabel="Ingredient Name">
                                                     <rect key="frame" x="38" y="14.5" width="229" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="oxF-8G-BjK"/>
@@ -447,7 +447,7 @@
                                                     <rect key="frame" x="272" y="14.5" width="30" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="IXG-oG-Lya"/>
-                                                        <constraint firstAttribute="width" constant="30" id="LHY-sK-GFV"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LHY-sK-GFV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -456,7 +456,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F97-6R-ReK" userLabel="レシピ数">
                                                     <rect key="frame" x="8" y="14.5" width="25" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="npA-PR-dnb"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="npA-PR-dnb"/>
                                                         <constraint firstAttribute="height" constant="21" id="o2A-56-jrz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
