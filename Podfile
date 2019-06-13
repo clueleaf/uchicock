@@ -1,9 +1,8 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target 'uchicock' do
     pod 'RealmSwift'
-    pod 'IDMPhotoBrowser'
     pod 'SVProgressHUD'
     pod 'M13Checkbox'
     pod 'MJRefresh'
