@@ -213,17 +213,17 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMc-1b-qWg">
-                                            <rect key="frame" x="281" y="14.5" width="60" height="21"/>
+                                            <rect key="frame" x="279.5" y="14.5" width="61.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="BrF-SZ-4YN"/>
-                                                <constraint firstAttribute="width" constant="60" id="fmH-o9-GLs"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="fmH-o9-GLs"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNF-ud-0Jq">
-                                            <rect key="frame" x="56" y="14.5" width="217" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNF-ud-0Jq">
+                                            <rect key="frame" x="56" y="14.5" width="215.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="HR1-3v-EX6"/>
                                             </constraints>
@@ -317,10 +317,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh">
-                                                    <rect key="frame" x="8" y="15.5" width="50" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh">
+                                                    <rect key="frame" x="8" y="15.5" width="239" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="8Ix-ZZ-sGM"/>
                                                         <constraint firstAttribute="height" constant="25" id="ygb-f3-slS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -330,7 +329,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-ye-exa">
                                                     <rect key="frame" x="267" y="17.5" width="100" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="aHN-aQ-Zrq"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="aHN-aQ-Zrq"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -338,6 +337,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="kjW-ye-exa" firstAttribute="leading" secondItem="Hde-xF-3Nh" secondAttribute="trailing" constant="20" id="E2k-jk-LyW"/>
                                                 <constraint firstItem="kjW-ye-exa" firstAttribute="centerY" secondItem="Hde-xF-3Nh" secondAttribute="centerY" id="bDE-Qy-3hU"/>
                                                 <constraint firstAttribute="trailing" secondItem="kjW-ye-exa" secondAttribute="trailing" constant="8" id="cBk-tl-EUj"/>
                                                 <constraint firstItem="Hde-xF-3Nh" firstAttribute="leading" secondItem="zTd-Rb-WYv" secondAttribute="leading" constant="8" id="lBw-cP-8WR"/>
