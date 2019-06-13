@@ -392,8 +392,8 @@
 				9B5473E3220680E500E53719 /* IngredientEdit.storyboard */,
 				9BFCE1991E979D3100546B47 /* Reminder.storyboard */,
 				9BFCE19C1E979FA500546B47 /* Settings.storyboard */,
-				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 				9B8A34AC22B15E300085B1EC /* Introduction.storyboard */,
+				9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
