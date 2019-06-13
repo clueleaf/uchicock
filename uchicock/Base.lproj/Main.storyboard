@@ -59,7 +59,7 @@
                                                     <rect key="frame" x="282" y="8" width="60" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="j9A-rU-xze"/>
-                                                        <constraint firstAttribute="width" constant="60" id="tLt-e5-uKd"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="tLt-e5-uKd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,7 +71,7 @@
                                                         <constraint firstAttribute="width" constant="69" id="9NN-35-qEC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VU-6n-xbT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VU-6n-xbT">
                                                     <rect key="frame" x="77" y="8" width="197" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="SsC-6m-lPC"/>
@@ -168,13 +168,13 @@
                                                             <action selector="buildCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="qzR-3H-ZRO"/>
                                                         </connections>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQi-vj-yhu">
-                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQi-vj-yhu">
+                                                        <rect key="frame" x="25" y="-0.5" width="94.5" height="29"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="w9p-vP-hlG"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="w9p-vP-hlG"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="  ビルド"/>
+                                                        <state key="normal" title="   ビルド"/>
                                                         <connections>
                                                             <action selector="buildFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7Y-tW-yej"/>
                                                         </connections>
@@ -186,6 +186,7 @@
                                                     <constraint firstItem="sQi-vj-yhu" firstAttribute="leading" secondItem="SwZ-2x-g3G" secondAttribute="trailing" id="RtF-nz-NJN"/>
                                                     <constraint firstItem="sQi-vj-yhu" firstAttribute="centerY" secondItem="WZu-7p-3Wg" secondAttribute="centerY" id="ma8-U2-NZU"/>
                                                     <constraint firstItem="SwZ-2x-g3G" firstAttribute="centerY" secondItem="WZu-7p-3Wg" secondAttribute="centerY" id="usF-2S-RkR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sQi-vj-yhu" secondAttribute="trailing" id="zZP-DX-Dr1"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Acx-Kx-XXv">
@@ -202,13 +203,13 @@
                                                             <action selector="stirCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="UD4-dU-JPo"/>
                                                         </connections>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2B-dN-7T1">
-                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2B-dN-7T1">
+                                                        <rect key="frame" x="25" y="-0.5" width="95" height="29"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="mA0-Z2-jq7"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="mA0-Z2-jq7"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="  ステア"/>
+                                                        <state key="normal" title="   ステア"/>
                                                         <connections>
                                                             <action selector="stirFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p7i-wF-Ubg"/>
                                                         </connections>
@@ -216,6 +217,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="h2B-dN-7T1" secondAttribute="trailing" id="6r8-B0-Gt0"/>
                                                     <constraint firstItem="p9h-nw-nZS" firstAttribute="centerY" secondItem="Acx-Kx-XXv" secondAttribute="centerY" id="R7x-KR-wp2"/>
                                                     <constraint firstItem="h2B-dN-7T1" firstAttribute="leading" secondItem="p9h-nw-nZS" secondAttribute="trailing" id="lfC-wW-MpC"/>
                                                     <constraint firstItem="p9h-nw-nZS" firstAttribute="leading" secondItem="Acx-Kx-XXv" secondAttribute="leading" id="wAb-ta-sgE"/>
@@ -236,13 +238,13 @@
                                                             <action selector="shakeCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Jz-gP-0oO"/>
                                                         </connections>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-WQ-e4H">
-                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-WQ-e4H">
+                                                        <rect key="frame" x="25" y="-0.5" width="94.5" height="29"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="y7U-gi-v9a"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="y7U-gi-v9a"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="  シェイク"/>
+                                                        <state key="normal" title="   シェイク"/>
                                                         <connections>
                                                             <action selector="shakeFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4LE-Br-hTb"/>
                                                         </connections>
@@ -250,6 +252,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Dx3-WQ-e4H" secondAttribute="trailing" id="4YZ-rm-TMe"/>
                                                     <constraint firstItem="QKO-0C-vm2" firstAttribute="leading" secondItem="L1K-0A-LpE" secondAttribute="leading" id="4pk-xQ-ePz"/>
                                                     <constraint firstItem="QKO-0C-vm2" firstAttribute="centerY" secondItem="L1K-0A-LpE" secondAttribute="centerY" id="Ebf-gQ-XQD"/>
                                                     <constraint firstItem="Dx3-WQ-e4H" firstAttribute="leading" secondItem="QKO-0C-vm2" secondAttribute="trailing" id="VX9-ea-Ukc"/>
@@ -278,13 +281,13 @@
                                                             <action selector="blendCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ahu-Us-U6b"/>
                                                         </connections>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccY-Dq-jOm">
-                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccY-Dq-jOm">
+                                                        <rect key="frame" x="25" y="-0.5" width="94.5" height="29"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="AMH-UB-G2C"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="AMH-UB-G2C"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="  ブレンド"/>
+                                                        <state key="normal" title="   ブレンド"/>
                                                         <connections>
                                                             <action selector="blendFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sIu-D6-MD9"/>
                                                         </connections>
@@ -293,6 +296,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Mem-nk-nWr" firstAttribute="centerY" secondItem="MNR-gA-fsb" secondAttribute="centerY" id="4Vl-JM-Hyk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ccY-Dq-jOm" secondAttribute="trailing" id="BIk-e1-H0r"/>
                                                     <constraint firstItem="ccY-Dq-jOm" firstAttribute="leading" secondItem="Mem-nk-nWr" secondAttribute="trailing" id="OS1-39-mGp"/>
                                                     <constraint firstItem="ccY-Dq-jOm" firstAttribute="centerY" secondItem="MNR-gA-fsb" secondAttribute="centerY" id="QYU-Bb-AaO"/>
                                                     <constraint firstItem="Mem-nk-nWr" firstAttribute="leading" secondItem="MNR-gA-fsb" secondAttribute="leading" id="v6O-H4-r4T"/>
@@ -312,13 +316,13 @@
                                                             <action selector="othersCheckboxTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="v03-bC-lPf"/>
                                                         </connections>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAb-rY-WSy">
-                                                        <rect key="frame" x="25" y="-0.5" width="70" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAb-rY-WSy">
+                                                        <rect key="frame" x="25" y="-0.5" width="95" height="29"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="J70-Oj-uih"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="J70-Oj-uih"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="  その他"/>
+                                                        <state key="normal" title="   その他"/>
                                                         <connections>
                                                             <action selector="othersFilterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qvk-q2-NBX"/>
                                                         </connections>
@@ -329,6 +333,7 @@
                                                     <constraint firstItem="1bp-B1-CIy" firstAttribute="centerY" secondItem="6jJ-bF-3Df" secondAttribute="centerY" id="5b9-gT-H5B"/>
                                                     <constraint firstItem="DAb-rY-WSy" firstAttribute="leading" secondItem="1bp-B1-CIy" secondAttribute="trailing" id="AoK-ty-fIg"/>
                                                     <constraint firstItem="DAb-rY-WSy" firstAttribute="centerY" secondItem="6jJ-bF-3Df" secondAttribute="centerY" id="KJN-Es-0SQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DAb-rY-WSy" secondAttribute="trailing" id="q68-Ci-a8a"/>
                                                     <constraint firstItem="1bp-B1-CIy" firstAttribute="leading" secondItem="6jJ-bF-3Df" secondAttribute="leading" id="sEp-W5-NyW"/>
                                                 </constraints>
                                             </view>
@@ -1110,6 +1115,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>
