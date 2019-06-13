@@ -35,7 +35,7 @@ class IntroductionDetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        animateViews(withDuration: 0.2)
+        animateViews(withDuration: 0.3)
     }
     
     func animateViews(withDuration duration: Double){

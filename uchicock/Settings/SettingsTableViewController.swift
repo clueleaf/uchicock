@@ -64,7 +64,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
-            performSegue(withIdentifier: "usage", sender: indexPath)
+            performSegue(withIdentifier: "usage", sender: nil)
         case 1:
             performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
         case 2:
@@ -79,6 +79,37 @@ class SettingsTableViewController: UITableViewController {
         cell.selectedBackgroundView = selectedCellBackgroundView
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "usage" {
+            let vc = segue.destination as! IntroductionPageViewController
+            vc.introductions = introductions()
+            vc.backgroundImage = UIImage(named:"launch-background")
+        }
+    }
+    
+    func introductions() -> [introductionInfo]{
+        let info1 = introductionInfo(title: "レシピ",
+                                     description: "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！",
+                                     image: UIImage(named:"screen-recipe"))
+        let info2 = introductionInfo(title: "材料",
+                                     description: "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。",
+                                     image: UIImage(named:"screen-ingredient"))
+        let info3 = introductionInfo(title: "逆引き",
+                                     description: "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！",
+                                     image: UIImage(named:"screen-reverse-lookup"))
+        let info4 = introductionInfo(title: "アルバム",
+                                     description: "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？",
+                                     image: UIImage(named:"screen-album"))
+        
+        var infos: [introductionInfo] = []
+        infos.append(info1)
+        infos.append(info2)
+        infos.append(info3)
+        infos.append(info4)
+        return infos
     }
 
 }

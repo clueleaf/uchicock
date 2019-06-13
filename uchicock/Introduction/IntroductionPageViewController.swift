@@ -13,24 +13,16 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var sb: UIStoryboard!
     let screenWidth = UIScreen.main.bounds.size.width
 
-    let description1 = "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。"
-    let description2 = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！"
-    let description3 = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。"
-    let description4 = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！"
-    let description5 = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
-    var VC1: IntroductionDetailViewController!
-    var VC2: IntroductionDetailViewController!
-    var VC3: IntroductionDetailViewController!
-    var VC4: IntroductionDetailViewController!
-    var VC5: IntroductionDetailViewController!
-
     var isEnd = false
+    var introductions: [introductionInfo] = []
+    var VCs: [IntroductionDetailViewController] = []
+    var backgroundImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "launch-background")!.draw(in: self.view.bounds)
+        backgroundImage.draw(in: self.view.bounds)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -38,12 +30,12 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.dataSource = self
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
-        VC1 = setVC(number: 1, infoTitle: "Thank you for downloading!!", description: description1, image: nil)
-        VC2 = setVC(number: 2, infoTitle: "レシピ", description: description2, image: UIImage(named:"screen-recipe"))
-        VC3 = setVC(number: 3, infoTitle: "材料", description: description3, image: UIImage(named:"screen-ingredient"))
-        VC4 = setVC(number: 4, infoTitle: "逆引き", description: description4, image: UIImage(named:"screen-reverse-lookup"))
-        VC5 = setVC(number: 5, infoTitle: "アルバム", description: description5, image: UIImage(named:"screen-album"))
-        self.setViewControllers([VC1], direction: .forward, animated: true, completion: nil)
+        for (index, introduction) in introductions.enumerated(){
+            let VC = setVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image)
+            VCs.append(VC)
+        }
+        
+        self.setViewControllers([VCs[0]], direction: .forward, animated: true, completion: nil)
         
         for v in self.view.subviews{
             if v.isKind(of: UIScrollView.self){
@@ -74,50 +66,38 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
-        if vc.number == 2 {
+        if vc.number! > 0{
             isEnd = false
-            return VC1
-        } else if vc.number == 3 {
-            isEnd = false
-            return VC2
-        } else if vc.number == 4 {
-            isEnd = false
-            return VC3
-        } else if vc.number == 5 {
-            isEnd = false
-            return VC4
-        } else {
+            return VCs[vc.number! - 1]
+        }else{
             return nil
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
-        if vc.number == 1 {
+        if vc.number! < VCs.count - 1{
             isEnd = false
-            return VC2
-        } else if vc.number == 2 {
-            isEnd = false
-            return VC3
-        } else if vc.number == 3 {
-            isEnd = false
-            return VC4
-        } else if vc.number == 4 {
-            isEnd = false
-            return VC5
-        } else if vc.number == 5 {
+            return VCs[vc.number! + 1]
+        }else if vc.number! == VCs.count - 1{
             isEnd = true
             return nil
-        } else {
+        }else{
             return nil
         }
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return 5
+        return VCs.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
+}
+
+struct introductionInfo{
+    var title: String
+    var description: String
+    var image: UIImage?
 }
