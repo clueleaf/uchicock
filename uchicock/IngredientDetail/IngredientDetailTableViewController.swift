@@ -130,7 +130,7 @@ class IngredientDetailTableViewController: UITableViewController {
             
             reloadIngredientRecipeBasicList()
             
-            if Amazon.product.contains(ingredient.ingredientName){
+            if Amazon.product.contains(ingredient.ingredientName.withoutMiddleDot()){
                 amazonContainerView.isHidden = false
             }else{
                 amazonContainerView.isHidden = true
@@ -416,13 +416,13 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func amazonButtonTapped(_ sender: UIButton) {
-        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
         var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
 
         if UIApplication.shared.canOpenURL(url!) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }else{
-            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName + "&linkCode=sl2&tag=uchicock-22"
+            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
             url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
             if UIApplication.shared.canOpenURL(url!){
                 UIApplication.shared.open(url!, options: [:], completionHandler: nil)

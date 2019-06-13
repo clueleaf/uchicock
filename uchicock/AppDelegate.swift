@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
                         let ingredientName = oldObject!["ingredientName"] as! String
-                        newObject!["category"] = ingredientName.categoryNumber()
+                        newObject!["category"] = ingredientName.withoutMiddleDot().categoryNumber()
                     }
                 }
                 if (oldSchemaVersion < 5) {
