@@ -82,7 +82,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登録先" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsr-kw-RUy">
                                                     <rect key="frame" x="8" y="19.5" width="60" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="2mb-fo-yXh"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="2mb-fo-yXh"/>
                                                         <constraint firstAttribute="height" constant="21" id="oQk-eQ-9v2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -120,9 +120,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日時指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-b0-CT4">
-                                                    <rect key="frame" x="8" y="14.5" width="70" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="299" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="63l-3l-QyQ"/>
                                                         <constraint firstAttribute="height" constant="21" id="kte-qw-u0y"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -143,6 +142,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Dw4-QV-nhR" firstAttribute="centerY" secondItem="xAB-GX-c4J" secondAttribute="centerY" id="B2w-04-NjP"/>
+                                                <constraint firstItem="Dw4-QV-nhR" firstAttribute="leading" secondItem="Xku-b0-CT4" secondAttribute="trailing" constant="20" id="ChY-Sl-675"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dw4-QV-nhR" secondAttribute="trailing" constant="8" id="oJ0-uK-yQZ"/>
                                                 <constraint firstItem="Xku-b0-CT4" firstAttribute="centerY" secondItem="xAB-GX-c4J" secondAttribute="centerY" id="sgj-jg-cmW"/>
                                                 <constraint firstItem="Xku-b0-CT4" firstAttribute="leading" secondItem="xAB-GX-c4J" secondAttribute="leading" constant="8" id="zOk-sa-XAn"/>
