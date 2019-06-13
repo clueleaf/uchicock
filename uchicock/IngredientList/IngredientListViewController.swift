@@ -133,7 +133,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         if searchBarTextWithoutSpace() != ""{
             ingredientBasicList.removeAll{
-                !$0.name.katakana().lowercased().contains(searchBarTextWithoutSpace().katakana().lowercased())
+                !$0.name.katakana().lowercased().withoutMiddleDot().contains(searchBarTextWithoutSpace().katakana().lowercased().withoutMiddleDot())
             }
         }
         

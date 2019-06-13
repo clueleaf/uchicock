@@ -344,7 +344,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         if textWithoutSpace(text: text) != "" {
             ingredientSuggestList.removeAll{
-                !$0.name.katakana().lowercased().contains(textWithoutSpace(text: text).katakana().lowercased())
+                !$0.name.katakana().lowercased().withoutMiddleDot().contains(textWithoutSpace(text: text).katakana().lowercased().withoutMiddleDot())
             }
         }
         
