@@ -18,6 +18,10 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var VCs: [IntroductionDetailViewController] = []
     var backgroundImage: UIImage!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Style.statusBarStyle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
