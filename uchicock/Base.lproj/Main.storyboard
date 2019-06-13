@@ -603,7 +603,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMT-0a-sMp">
                                                     <rect key="frame" x="8" y="9" width="45" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="4J5-E1-MXK"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="4J5-E1-MXK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -642,7 +642,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpv-p7-PT8">
                                                     <rect key="frame" x="8" y="9" width="45" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="oz7-ZT-aJ8"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="oz7-ZT-aJ8"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -675,7 +675,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvY-4O-ico">
                                                     <rect key="frame" x="8" y="9" width="45" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="GYU-uy-TQF"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="GYU-uy-TQF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.4013573232" green="0.4013573232" blue="0.4013573232" alpha="1" colorSpace="calibratedRGB"/>
@@ -727,7 +727,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyJ-FI-wSC" userLabel="Favorites">
                                                                         <rect key="frame" x="289" y="8" width="60" height="21"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="60" id="VVm-3h-Oam"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="VVm-3h-Oam"/>
                                                                             <constraint firstAttribute="height" constant="21" id="sYS-57-Iut"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -740,7 +740,7 @@
                                                                             <constraint firstAttribute="width" constant="69" id="EuH-Fs-IeW"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-UY-uLO">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNM-UY-uLO">
                                                                         <rect key="frame" x="77" y="8" width="204" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="Wmo-bC-mLD"/>
@@ -808,14 +808,14 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6S-v7-MRn">
                                                                         <rect key="frame" x="8" y="4.5" width="50" height="21"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="50" id="BDC-wP-b18"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="BDC-wP-b18"/>
                                                                             <constraint firstAttribute="height" constant="21" id="jfx-1G-5wx"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-52-RaS">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-52-RaS">
                                                                         <rect key="frame" x="66" y="4.5" width="301" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="oGd-cN-4no"/>
@@ -1110,6 +1110,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="daG-Cs-3sj"/>
+        <segue reference="e9K-u4-h0j"/>
     </inferredMetricsTieBreakers>
 </document>
