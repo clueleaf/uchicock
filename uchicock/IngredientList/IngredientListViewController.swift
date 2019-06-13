@@ -178,8 +178,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             noDataLabel.textAlignment = .center
             self.tableView.backgroundView  = UIView()
             self.tableView.backgroundView?.addSubview(noDataLabel)
+            self.tableView.isScrollEnabled = false
         }else{
             self.tableView.backgroundView = nil
+            self.tableView.isScrollEnabled = true
         }
     }
     

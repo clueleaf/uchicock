@@ -107,8 +107,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             noDataLabel.textAlignment = .center
             self.collectionView.backgroundView  = UIView()
             self.collectionView.backgroundView?.addSubview(noDataLabel)
+            self.collectionView.isScrollEnabled = false
         }else{
             self.collectionView.backgroundView = nil
+            self.collectionView.isScrollEnabled = true
         }
     }
     

@@ -192,8 +192,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             noDataLabel.textAlignment = .center
             self.recipeTableView.backgroundView  = UIView()
             self.recipeTableView.backgroundView?.addSubview(noDataLabel)
+            self.recipeTableView.isScrollEnabled = false
         }else{
             self.recipeTableView.backgroundView = nil
+            self.recipeTableView.isScrollEnabled = true
         }
     }
     
