@@ -46,14 +46,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-80-LE4">
-                                                    <rect key="frame" x="84" y="8" width="283" height="43.5"/>
+                                                    <rect key="frame" x="85.5" y="8" width="281.5" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfi-Cb-jv5">
-                                                    <rect key="frame" x="8" y="19.5" width="68" height="20.5"/>
+                                                    <rect key="frame" x="8" y="19.5" width="69.5" height="20.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="YQn-Su-gEb"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="YQn-Su-gEb"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -106,11 +106,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-zc-48A">
-                                                    <rect key="frame" x="8" y="14.5" width="100" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-zc-48A">
+                                                    <rect key="frame" x="8" y="14.5" width="219" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="5p3-FS-was"/>
-                                                        <constraint firstAttribute="width" constant="100" id="bTd-Aw-EIj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,6 +117,9 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-kp-DjR" userLabel="星3">
                                                     <rect key="frame" x="337" y="1" width="30" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="FWG-K5-iJi"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆"/>
                                                     <connections>
@@ -126,6 +128,9 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-8v-9XM" userLabel="星2">
                                                     <rect key="frame" x="292" y="1" width="30" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Nt8-wR-NjH"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆"/>
                                                     <connections>
@@ -134,6 +139,9 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb6-1r-5Pc" userLabel="星1">
                                                     <rect key="frame" x="247" y="1" width="30" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="rYN-b9-e2h"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <state key="normal" title="☆"/>
                                                     <connections>
@@ -142,6 +150,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="eb6-1r-5Pc" firstAttribute="leading" secondItem="nN9-zc-48A" secondAttribute="trailing" constant="20" id="5BG-ew-KMy"/>
                                                 <constraint firstItem="O9N-kp-DjR" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="710-N5-cqT"/>
                                                 <constraint firstItem="ffj-8v-9XM" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="CTZ-KZ-ihP"/>
                                                 <constraint firstItem="nN9-zc-48A" firstAttribute="leading" secondItem="WCO-BJ-OEb" secondAttribute="leading" constant="8" id="LPc-Bv-okt"/>
@@ -161,10 +170,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-pv-E79">
-                                                    <rect key="frame" x="8" y="15" width="50" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AQU-4Y-sN6"/>
-                                                        <constraint firstAttribute="width" constant="50" id="c8Y-y7-nyQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -189,6 +197,7 @@
                                                 <constraint firstItem="wqK-pv-E79" firstAttribute="top" secondItem="JIA-DC-9WT" secondAttribute="top" constant="15" id="fTO-lu-CJm"/>
                                                 <constraint firstItem="2cE-h1-JB3" firstAttribute="top" secondItem="wqK-pv-E79" secondAttribute="bottom" constant="8" id="g0y-Om-PTg"/>
                                                 <constraint firstItem="wqK-pv-E79" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="i3D-mx-Ja2"/>
+                                                <constraint firstAttribute="trailing" secondItem="wqK-pv-E79" secondAttribute="trailing" constant="8" id="paP-oS-nXY"/>
                                                 <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="8" id="svM-mx-utc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -201,10 +210,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auN-Kp-oTE">
-                                                    <rect key="frame" x="8" y="15" width="50" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="hVU-F8-AZw"/>
-                                                        <constraint firstAttribute="width" constant="50" id="mAT-Rv-oO5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -225,6 +233,7 @@
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="El4-gg-rub"/>
                                                 <constraint firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="8" id="Vy5-v3-QCe"/>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="Zif-Qa-d7I"/>
+                                                <constraint firstAttribute="trailing" secondItem="auN-Kp-oTE" secondAttribute="trailing" constant="8" id="fRj-XN-6C3"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="top" secondItem="auN-Kp-oTE" secondAttribute="bottom" constant="8" id="uHX-sk-9OG"/>
                                             </constraints>
                                         </tableViewCellContentView>
