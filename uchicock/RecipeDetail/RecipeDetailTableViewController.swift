@@ -291,13 +291,10 @@ class RecipeDetailTableViewController: UITableViewController{
                 //レシピ削除のバグに対するワークアラウンド
                 let browsePhoto = UIImage(data: image as Data)
                 if browsePhoto != nil{
-                    let p = IDMPhoto(image: browsePhoto)
-                    p!.caption = self.recipe.recipeName
-                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
-                    browser.displayActionButton = false
-                    browser.displayArrowButton = false
-                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
-                    self.present(browser, animated: true, completion: nil)
+                    let imageViewerController = ImageViewerController(originalImageView: photo, captionText: self.recipe.recipeName)
+                    self.present(imageViewerController, animated: true)
+//                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
+//                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                 }
             }
         }

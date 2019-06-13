@@ -33,6 +33,14 @@
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
+		9B43305022B29B8B0010C89B /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */; };
+		9B43305122B29B8B0010C89B /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43304F22B29B8B0010C89B /* ImageViewerController.swift */; };
+		9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */; };
+		9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */; };
+		9B43305922B29C070010C89B /* ImageViewerPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */; };
+		9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */; };
+		9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */; };
+		9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B43306022B29C8B0010C89B /* ImageViewerController.xib */; };
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
@@ -101,6 +109,14 @@
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
+		9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatableImageView.swift; path = ImageViewer/AnimatableImageView.swift; sourceTree = "<group>"; };
+		9B43304F22B29B8B0010C89B /* ImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerController.swift; path = ImageViewer/ImageViewerController.swift; sourceTree = "<group>"; };
+		9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerTransitioningHandler.swift; path = ImageViewer/ImageViewerTransitioningHandler.swift; sourceTree = "<group>"; };
+		9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalTransition.swift; path = ImageViewer/ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
+		9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerPresentationTransition.swift; path = ImageViewer/ImageViewerPresentationTransition.swift; sourceTree = "<group>"; };
+		9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalInteractor.swift; path = ImageViewer/ImageViewerDismissalInteractor.swift; sourceTree = "<group>"; };
+		9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerUtil.swift; sourceTree = "<group>"; };
+		9B43306022B29C8B0010C89B /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
@@ -218,6 +234,21 @@
 			name = RecipeEdit;
 			sourceTree = "<group>";
 		};
+		9B43304922B29AF70010C89B /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				9B43306022B29C8B0010C89B /* ImageViewerController.xib */,
+				9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */,
+				9B43304F22B29B8B0010C89B /* ImageViewerController.swift */,
+				9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */,
+				9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */,
+				9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */,
+				9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */,
+				9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */,
+			);
+			name = ImageViewer;
+			sourceTree = "<group>";
+		};
 		9B8772851C9D4BA80065A816 /* IngredientEdit */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +330,7 @@
 				9B18128C1CD3BBD600717E4F /* Recover */,
 				9B1638BB22A7E17000B7C3A7 /* Custom */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
+				9B43304922B29AF70010C89B /* ImageViewer */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
@@ -456,6 +488,7 @@
 				9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */,
 				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
+				9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,6 +576,9 @@
 				9B98A61E1E76D35C00D49CC9 /* ReverseLookupRecipeTableViewCell.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9B1638C222A7E17100B7C3A7 /* CopyableLabel.swift in Sources */,
+				9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */,
+				9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */,
+				9B43305922B29C070010C89B /* ImageViewerPresentationTransition.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
@@ -552,6 +588,7 @@
 				9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */,
 				9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
+				9B43305022B29B8B0010C89B /* AnimatableImageView.swift in Sources */,
 				9BDB393A1CD4615500CE3175 /* RecoverPreviewIngredientTableViewCell.swift in Sources */,
 				9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
@@ -562,6 +599,7 @@
 				9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */,
 				9B3078C61CA421660014CE7E /* RecipeListItemTableViewCell.swift in Sources */,
 				9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */,
+				9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */,
 				9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */,
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
@@ -575,12 +613,14 @@
 				9B1638C122A7E17100B7C3A7 /* CustomStatusBarStyleControllers.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
 				9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */,
+				9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */,
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,
 				9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */,
+				9B43305122B29B8B0010C89B /* ImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

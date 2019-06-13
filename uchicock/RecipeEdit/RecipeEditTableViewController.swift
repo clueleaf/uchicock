@@ -199,12 +199,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if let repre = image.pngData(){
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
-                    let p = IDMPhoto(image: browsePhoto)
-                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
-                    browser.displayActionButton = false
-                    browser.displayArrowButton = false
-                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
-                    self.present(browser, animated: true, completion: nil)
+                    let imageViewerController = ImageViewerController(originalImageView: photo, captionText: nil)
+                    self.present(imageViewerController, animated: true)
+//                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
+//                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                 }
             }
         }
