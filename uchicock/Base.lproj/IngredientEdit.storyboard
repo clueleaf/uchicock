@@ -53,7 +53,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgk-Yn-qtQ">
                                                     <rect key="frame" x="8" y="19.5" width="60" height="20.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="GSA-r8-Ydm"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="GSA-r8-Ydm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,9 +78,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgP-Qy-ipQ">
-                                                    <rect key="frame" x="8" y="14.5" width="42" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="299" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="IJm-yk-edd"/>
                                                         <constraint firstAttribute="height" constant="21" id="dqj-iy-QOd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -97,6 +96,7 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Nm4-JW-NMO" firstAttribute="leading" secondItem="VgP-Qy-ipQ" secondAttribute="trailing" constant="20" id="Lo3-q1-hXV"/>
                                                 <constraint firstItem="VgP-Qy-ipQ" firstAttribute="leading" secondItem="SS6-iH-8xA" secondAttribute="leading" constant="8" id="Ms1-vQ-r6V"/>
                                                 <constraint firstItem="VgP-Qy-ipQ" firstAttribute="centerY" secondItem="SS6-iH-8xA" secondAttribute="centerY" id="TZk-vw-rlS"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nm4-JW-NMO" secondAttribute="trailing" constant="8" id="gip-oG-wYi"/>
@@ -112,10 +112,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtc-ap-Zzt">
-                                                    <rect key="frame" x="8" y="15" width="100" height="25"/>
+                                                    <rect key="frame" x="8" y="15" width="359" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="SnX-ef-RqD"/>
-                                                        <constraint firstAttribute="width" constant="100" id="yoo-Ad-bf1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -134,6 +133,7 @@
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="wtc-ap-Zzt" secondAttribute="trailing" constant="8" id="1eJ-XZ-BZ3"/>
                                                 <constraint firstAttribute="bottom" secondItem="EDC-M7-iDz" secondAttribute="bottom" constant="16.5" id="DtW-1Q-uHJ"/>
                                                 <constraint firstItem="EDC-M7-iDz" firstAttribute="top" secondItem="wtc-ap-Zzt" secondAttribute="bottom" constant="8" id="ERY-k4-Ucy"/>
                                                 <constraint firstItem="wtc-ap-Zzt" firstAttribute="leading" secondItem="pJw-sd-Rnb" secondAttribute="leading" constant="8" id="aqK-94-pHr"/>
@@ -151,9 +151,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dif-6D-K8y">
-                                                    <rect key="frame" x="8" y="15" width="42" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="9wz-Xp-lcM"/>
                                                         <constraint firstAttribute="height" constant="21" id="zeO-aG-ov5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -174,6 +173,7 @@
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="2RT-Ja-du1"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="top" secondItem="Dif-6D-K8y" secondAttribute="bottom" constant="8" id="9Vq-IC-P7m"/>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="top" secondItem="axd-0N-ETE" secondAttribute="top" constant="15" id="Mtl-Ju-Vum"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dif-6D-K8y" secondAttribute="trailing" constant="8" id="m0a-6E-eNT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="8" id="qnn-Yy-TW7"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="xj7-Ry-Lgh"/>
                                             </constraints>
