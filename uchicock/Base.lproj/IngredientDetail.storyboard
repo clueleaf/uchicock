@@ -50,10 +50,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX">
-                                                    <rect key="frame" x="8" y="14.5" width="50" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="299" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="1mp-Tb-sfW"/>
-                                                        <constraint firstAttribute="width" constant="50" id="O2w-LR-H48"/>
                                                         <constraint firstAttribute="height" constant="21" id="mTf-pY-r7H"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -77,6 +75,7 @@
                                                 <constraint firstItem="tbX-in-ob8" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="WRM-Cl-bJ8"/>
                                                 <constraint firstItem="c1v-8e-XYX" firstAttribute="centerY" secondItem="yJQ-2z-gnr" secondAttribute="centerY" id="gNy-Ba-ufe"/>
                                                 <constraint firstAttribute="trailing" secondItem="tbX-in-ob8" secondAttribute="trailing" constant="8" id="jKZ-f7-x2o"/>
+                                                <constraint firstItem="tbX-in-ob8" firstAttribute="leading" secondItem="c1v-8e-XYX" secondAttribute="trailing" constant="20" id="uIF-44-jj6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -87,10 +86,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe">
-                                                    <rect key="frame" x="8" y="15" width="100" height="25.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe">
+                                                    <rect key="frame" x="8" y="15" width="189" height="25.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="S0Z-Cd-YST"/>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="UnF-Cf-vuK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -98,9 +96,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU">
-                                                    <rect key="frame" x="167" y="17.5" width="200" height="21"/>
+                                                    <rect key="frame" x="217" y="17.5" width="150" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="Ocm-Nq-vek"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ocm-Nq-vek"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -111,6 +109,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bbv-Mt-9IU" secondAttribute="trailing" constant="8" id="HKG-Gd-o8j"/>
                                                 <constraint firstItem="iM9-Wc-cPe" firstAttribute="top" secondItem="wx8-pu-png" secondAttribute="top" constant="15" id="Ikg-pL-OUT"/>
                                                 <constraint firstAttribute="bottom" secondItem="iM9-Wc-cPe" secondAttribute="bottom" constant="15" id="QEq-rU-2aE"/>
+                                                <constraint firstItem="bbv-Mt-9IU" firstAttribute="leading" secondItem="iM9-Wc-cPe" secondAttribute="trailing" constant="20" id="euU-Py-Uq9"/>
                                                 <constraint firstItem="bbv-Mt-9IU" firstAttribute="centerY" secondItem="iM9-Wc-cPe" secondAttribute="centerY" id="pR4-Jz-E1N"/>
                                                 <constraint firstItem="iM9-Wc-cPe" firstAttribute="leading" secondItem="wx8-pu-png" secondAttribute="leading" constant="8" id="r3p-zZ-MBF"/>
                                             </constraints>
@@ -124,10 +123,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ">
-                                                    <rect key="frame" x="8" y="15" width="50" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="EGU-AA-GmH"/>
-                                                        <constraint firstAttribute="width" constant="50" id="Z36-kk-fcN"/>
                                                         <constraint firstAttribute="height" priority="750" constant="21" id="kI9-yN-asZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -143,6 +140,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eYC-Ar-0sn" firstAttribute="top" secondItem="ffu-Ky-BvZ" secondAttribute="bottom" constant="8" id="1JL-9v-Q09"/>
+                                                <constraint firstAttribute="trailing" secondItem="ffu-Ky-BvZ" secondAttribute="trailing" constant="8" id="U9e-Sa-626"/>
                                                 <constraint firstItem="ffu-Ky-BvZ" firstAttribute="leading" secondItem="QhB-zD-uPo" secondAttribute="leading" constant="8" id="cOl-85-nKL"/>
                                                 <constraint firstItem="ffu-Ky-BvZ" firstAttribute="top" secondItem="QhB-zD-uPo" secondAttribute="top" constant="15" id="eUP-pf-a6f"/>
                                                 <constraint firstAttribute="trailing" secondItem="eYC-Ar-0sn" secondAttribute="trailing" constant="8" id="g7r-AJ-ji5"/>
@@ -170,7 +168,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="3z5-jd-2nN"/>
                                                                         <constraint firstAttribute="height" constant="48" id="8Kz-jV-vn7"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button" image="edit"/>
+                                                                    <state key="normal" image="edit"/>
                                                                     <connections>
                                                                         <action selector="editButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="GRu-aq-ls8"/>
                                                                     </connections>
@@ -199,7 +197,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="0Nu-hF-6KM"/>
                                                                         <constraint firstAttribute="width" constant="48" id="9ip-to-Q04"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button" image="reminder"/>
+                                                                    <state key="normal" image="reminder"/>
                                                                     <connections>
                                                                         <action selector="reminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="xLm-E8-4rx"/>
                                                                     </connections>
@@ -228,7 +226,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="M74-GS-iVG"/>
                                                                         <constraint firstAttribute="width" constant="48" id="egL-Yq-Sqj"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button" image="amazon"/>
+                                                                    <state key="normal" image="amazon"/>
                                                                     <connections>
                                                                         <action selector="amazonButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="zFL-qs-uZt"/>
                                                                     </connections>
@@ -265,7 +263,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="bye-T7-Crj"/>
                                                                         <constraint firstAttribute="height" constant="48" id="kxH-6D-M4l"/>
                                                                     </constraints>
-                                                                    <state key="normal" title="Button" image="delete"/>
+                                                                    <state key="normal" image="delete"/>
                                                                     <connections>
                                                                         <action selector="deleteButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="sS6-7d-FNN"/>
                                                                     </connections>
