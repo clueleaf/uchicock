@@ -176,9 +176,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 let gradient = CustomCAGradientLayer()
                 gradient.frame = cell.recipeNameBackgroundView.bounds
                 if Style.isBackgroundDark{
-                    gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8)]
+                    gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
                 }else{
-                    gradient.colors = [UIColor(white: 1.0, alpha: 0.0).cgColor, UIColor(white: 1.0, alpha: 0.8)]
+                    gradient.colors = [UIColor(white: 1.0, alpha: 0.0).cgColor, UIColor(white: 1.0, alpha: 0.8).cgColor]
                 }
                 cell.recipeNameBackgroundView.layer.insertSublayer(gradient, at: 0)
 
