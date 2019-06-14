@@ -34,8 +34,9 @@ struct Style{
     static var badgeDisableBackgroundColor = FlatColor.whiteDark
     static var memoBorderColor = FlatColor.whiteDark
     static var checkboxSecondaryTintColor = FlatColor.gray
-    static var albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-    
+    static var albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+    static var albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
+
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
         no = "0"
@@ -62,7 +63,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -91,7 +93,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -120,7 +123,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -149,7 +153,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 
@@ -178,7 +183,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 
@@ -207,7 +213,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 
@@ -236,7 +243,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 
@@ -265,7 +273,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -294,7 +303,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -323,7 +333,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -352,7 +363,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -382,7 +394,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -411,7 +424,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -440,7 +454,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -469,7 +484,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -498,7 +514,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -527,7 +544,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 
@@ -556,7 +574,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -585,7 +604,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -614,7 +634,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -643,7 +664,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
         checkboxSecondaryTintColor = FlatColor.gray
-        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
     
@@ -672,7 +694,8 @@ struct Style{
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
         checkboxSecondaryTintColor = FlatColor.grayDark
-        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.5)
+        albumRecipeNameBackgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8).cgColor
+        albumRecipeNameBackgroundClearColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
         setGlobalTheme()
     }
 

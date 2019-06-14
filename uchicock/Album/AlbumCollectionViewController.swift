@@ -88,6 +88,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // CAGradientLayerのframeはAutolayout後でないと正確に決まらないので、ここでもう一度ロードする（特に新しく写真を追加したときに必要）
+        self.collectionView!.reloadData()
+        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        self.setCollectionBackgroundView()
+    }
+    
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         let realm = try! Realm()
@@ -157,18 +165,38 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 cell.photo.image = UIImage(data: image as Data)
                 cell.recipeName.text = r.recipeName
                 cell.recipeName.textColor = Style.labelTextColor
-                cell.recipeName.backgroundColor = Style.albumRecipeNameBackgroundColor
+                cell.recipeName.backgroundColor = UIColor.clear
+                
+                // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
+                cell.recipeNameBackgroundView.layer.sublayers?.forEach {
+                    if $0.isKind(of: CustomCAGradientLayer.self){
+                        $0.removeFromSuperlayer()
+                    }
+                }
+                let gradient = CustomCAGradientLayer()
+                gradient.frame = cell.recipeNameBackgroundView.bounds
+                gradient.colors = [Style.albumRecipeNameBackgroundClearColor, Style.albumRecipeNameBackgroundColor]
+                cell.recipeNameBackgroundView.layer.insertSublayer(gradient, at: 0)
+
                 if showNameFlag{
                     if animationFlag{
-                        UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 1.0}, completion: nil)
+                        UIView.animate(withDuration: 0.2, animations: {
+                            cell.recipeName.alpha = 1.0
+                            cell.recipeNameBackgroundView.alpha = 1.0
+                        }, completion: nil)
                     }else{
                         cell.recipeName.alpha = 1.0
+                        cell.recipeNameBackgroundView.alpha = 1.0
                     }
                 }else{
                     if animationFlag{
-                        UIView.animate(withDuration: 0.2, animations: {cell.recipeName.alpha = 0.0}, completion: nil)
+                        UIView.animate(withDuration: 0.2, animations: {
+                            cell.recipeName.alpha = 0.0
+                            cell.recipeNameBackgroundView.alpha = 0.0
+                        }, completion: nil)
                     }else{
                         cell.recipeName.alpha = 0.0
+                        cell.recipeNameBackgroundView.alpha = 0.0
                     }
                 }
                 //レシピ削除のバグに対するワークアラウンド
@@ -259,4 +287,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+}
+
+class CustomCAGradientLayer: CAGradientLayer{
 }
