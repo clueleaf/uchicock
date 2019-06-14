@@ -140,6 +140,7 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: IBAction
     @objc func cancelButtonTapped() {
+        Style.setTheme(themeNo: oldThemeNo)
         self.dismiss(animated: true, completion: nil)
     }
 
