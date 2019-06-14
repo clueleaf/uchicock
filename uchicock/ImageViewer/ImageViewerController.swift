@@ -119,7 +119,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         if isBrowsingMode{
             self.isStatusBarHidden = true
             self.setNeedsStatusBarAppearanceUpdate()
-            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, animations: {
                 self.doneButton.alpha = 0.0
                 if self.captionText != nil{
                     self.captionLabel.alpha = 0.0
@@ -134,19 +134,20 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
             })
         }else{
             self.doneButton.isHidden = false
-            self.isStatusBarHidden = false
-            self.setNeedsStatusBarAppearanceUpdate()
             if self.captionText != nil{
                 self.captionLabel.isHidden = false
                 self.captionBackgroundView.isHidden = false
             }
-            UIView.animate(withDuration: 0.1, delay: 0, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, animations: {
                 self.doneButton.alpha = 1.0
                 if self.captionText != nil{
                     self.captionLabel.alpha = 1.0
                     self.captionBackgroundView.alpha = 1.0
                 }
-            }, completion: nil)
+            }, completion: { _ in
+                self.isStatusBarHidden = false
+                self.setNeedsStatusBarAppearanceUpdate()
+            })
         }
     }
     
