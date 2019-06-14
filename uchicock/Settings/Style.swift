@@ -737,7 +737,12 @@ struct Style{
         customizeTextView()
         customizeTabBar()
         customizeSlider()
-        UIActivityIndicatorView.appearance().color = labelTextColor
+        customizeActivityIndicatorView()
+        if isDark{
+            SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.light)
+        }else{
+            SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+        }
     }
     
     static private func customizeBarButtonItem(){
@@ -815,6 +820,10 @@ struct Style{
     static private func customizeSlider(){
         UISlider.appearance().minimumTrackTintColor = secondaryColor
         UISlider.appearance().maximumTrackTintColor = labelTextColorLight
+    }
+    
+    static private func customizeActivityIndicatorView(){
+        UIActivityIndicatorView.appearance().color = labelTextColor
     }
 
 }
