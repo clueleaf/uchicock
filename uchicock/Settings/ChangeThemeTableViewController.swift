@@ -147,6 +147,9 @@ class ChangeThemeTableViewController: UITableViewController {
     @objc func saveButtonTapped() {
         Style.saveTheme(themeNo: newThemeNo)
         oldThemeNo = newThemeNo
+        Style.setTheme(themeNo: oldThemeNo)
+        SVProgressHUD.showSuccess(withStatus: "テーマカラーを変更しました")
+
         self.dismiss(animated: true, completion: nil)
     }
 }

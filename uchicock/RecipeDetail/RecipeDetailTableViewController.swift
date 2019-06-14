@@ -309,6 +309,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 if let image = self.photo.image {
                     let pasteboard: UIPasteboard = UIPasteboard.general
                     pasteboard.image = image
+                    SVProgressHUD.showSuccess(withStatus: "クリップボードへコピーしました")
                 }
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})

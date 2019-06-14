@@ -182,6 +182,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     newIngredient.memo = memo.text
                     try! realm.write {
                         realm.add(newIngredient)
+                        SVProgressHUD.showSuccess(withStatus: "材料を登録しました")
                     }
                     detailVC?.ingredientId = newIngredient.id
                     if detailVC == nil{
@@ -204,6 +205,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                             ingredient.stockFlag = false
                         }
                         ingredient.memo = memo.text
+                        SVProgressHUD.showSuccess(withStatus: "材料を保存しました")
                     }
                     detailVC?.ingredientId = ingredient.id
                     if detailVC == nil{

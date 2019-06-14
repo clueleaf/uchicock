@@ -535,6 +535,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
                         detailVC?.recipeId = newRecipe.id
+                        SVProgressHUD.showSuccess(withStatus: "レシピを登録しました")
                     }
                     if detailVC == nil{
                         self.dismiss(animated: true, completion: nil)
@@ -601,6 +602,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
                         detailVC?.recipeId = recipe.id
+                        SVProgressHUD.showSuccess(withStatus: "レシピを保存しました")
                     }
                     if detailVC == nil{
                         self.dismiss(animated: true, completion: nil)

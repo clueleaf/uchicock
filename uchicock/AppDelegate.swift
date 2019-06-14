@@ -204,6 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setSVProgressHUD(){
+        SVProgressHUD.setGraceTimeInterval(0.1)
         SVProgressHUD.setMinimumDismissTimeInterval(2.0)
         SVProgressHUD.setMinimumSize(CGSize(width: 150, height: 100))
     }
