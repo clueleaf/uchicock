@@ -293,8 +293,6 @@ class RecipeDetailTableViewController: UITableViewController{
                 if browsePhoto != nil{
                     let imageViewerController = ImageViewerController(originalImageView: photo, captionText: self.recipe.recipeName)
                     self.present(imageViewerController, animated: true)
-//                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
-//                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                 }
             }
         }

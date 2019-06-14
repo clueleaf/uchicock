@@ -201,8 +201,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if browsePhoto != nil{
                     let imageViewerController = ImageViewerController(originalImageView: photo, captionText: nil)
                     self.present(imageViewerController, animated: true)
-//                    let browser: CustomPhotoBrowser! = CustomPhotoBrowser(photos: [p!], animatedFrom: photo)
-//                    browser.photoBrowserStatusBarStyle = Style.statusBarStyle
                 }
             }
         }
