@@ -240,7 +240,7 @@ class RecipeDetailTableViewController: UITableViewController{
     
     // MARK: - Set Style
     private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
-        button.layer.cornerRadius = editButton.frame.size.width / 2
+        button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
         let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)

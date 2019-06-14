@@ -68,7 +68,7 @@ class PhotoFilterViewController: UIViewController {
             itemCount = i
             
             let filterButton = UIButton(type: .custom)
-                filterButton.frame = CGRect(x: xCoord, y: yCoord, width: self.buttonWidth, height: self.buttonHeight)
+            filterButton.frame = CGRect(x: xCoord, y: yCoord, width: self.buttonWidth, height: self.buttonHeight)
             filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
             filterButton.layer.cornerRadius = 10

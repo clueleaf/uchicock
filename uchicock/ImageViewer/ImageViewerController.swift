@@ -20,9 +20,8 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var captionText: String? = nil
     var isBrowsingMode = false
     
-    var isStatusBarHidden = false
     override var prefersStatusBarHidden: Bool {
-        return isStatusBarHidden
+        return true
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -117,8 +116,6 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     @objc func imageViewSingleTapped() {
         isBrowsingMode.toggle()
         if isBrowsingMode{
-            self.isStatusBarHidden = true
-            self.setNeedsStatusBarAppearanceUpdate()
             UIView.animate(withDuration: 0.2, delay: 0, animations: {
                 self.doneButton.alpha = 0.0
                 if self.captionText != nil{
@@ -144,10 +141,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
                     self.captionLabel.alpha = 1.0
                     self.captionBackgroundView.alpha = 1.0
                 }
-            }, completion: { _ in
-                self.isStatusBarHidden = false
-                self.setNeedsStatusBarAppearanceUpdate()
-            })
+            }, completion: nil)
         }
     }
     
