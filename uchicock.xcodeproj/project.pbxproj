@@ -43,6 +43,7 @@
 		9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B43306022B29C8B0010C89B /* ImageViewerController.xib */; };
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
+		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
 		9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */; };
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
@@ -118,6 +119,7 @@
 		9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerUtil.swift; sourceTree = "<group>"; };
 		9B43306022B29C8B0010C89B /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
+		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		9BC9A3131C783CAA0031F631 /* uchicock */ = {
 			isa = PBXGroup;
 			children = (
+				9B59FFA722B409CA00FB6F44 /* README.md */,
 				9BFCE19F1E97A05A00546B47 /* Storyboards */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
 				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
@@ -487,6 +490,7 @@
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
 				9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */,
 				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,
+				9B59FFA822B409CB00FB6F44 /* README.md in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
 				9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
