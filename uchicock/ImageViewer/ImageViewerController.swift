@@ -170,8 +170,8 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
             transitionHandler?.dismissalInteractor.update(transform: CGAffineTransform(translationX: translation.x, y: translation.y))
         case .ended, .cancelled:
             transitionHandler?.dismissInteractively = false
-            let percentage = abs(translation.y + velocity.y) / imageView.bounds.height
-            if percentage > 0.8 {
+            let percentage = abs(3 * translation.y + velocity.y) / imageView.bounds.height
+            if percentage > 0.5 {
                 transitionHandler?.dismissalInteractor.finish()
             } else {
                 transitionHandler?.dismissalInteractor.cancel()
