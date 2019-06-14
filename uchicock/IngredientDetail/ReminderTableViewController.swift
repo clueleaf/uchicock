@@ -8,7 +8,6 @@
 
 import UIKit
 import EventKit
-import SVProgressHUD
 import M13Checkbox
 
 class ReminderTableViewController: UITableViewController{

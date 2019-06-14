@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import SVProgressHUD
 import Accounts
 
 class RecipeDetailTableViewController: UITableViewController{

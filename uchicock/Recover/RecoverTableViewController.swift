@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 import M13Checkbox
-import SVProgressHUD
 
 class RecoverTableViewController: UITableViewController {
 
