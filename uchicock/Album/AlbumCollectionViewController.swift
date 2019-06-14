@@ -22,6 +22,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
+    var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -86,14 +87,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 self.setCollectionBackgroundView()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // CAGradientLayerのframeはAutolayout後でないと正確に決まらないので、ここでもう一度ロードする（特に新しく写真を追加したときに必要）
-        self.collectionView!.reloadData()
-        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
-        self.setCollectionBackgroundView()
     }
     
     func reloadRecipeList(){
@@ -173,8 +166,18 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                         $0.removeFromSuperlayer()
                     }
                 }
+                
+                // 新規にアルバム画面を開き、すぐに名前を表示した状態で下にスクロールするとグラデーションがずれている問題への対応
+                // CAGradientLayerのframeはAutolayout後でないと正確に決まらないため
+                if cell.recipeNameBackgroundView.bounds.width > gradationFrame.width{
+                    gradationFrame = CGRect(x: 0, y: 0, width: cell.recipeNameBackgroundView.bounds.width, height: gradationFrame.height)
+                }
+                if cell.recipeNameBackgroundView.bounds.height > gradationFrame.height{
+                    gradationFrame = CGRect(x: 0, y: 0, width: gradationFrame.width, height: cell.recipeNameBackgroundView.bounds.height)
+                }
+
                 let gradient = CustomCAGradientLayer()
-                gradient.frame = cell.recipeNameBackgroundView.bounds
+                gradient.frame = gradationFrame
                 if Style.isBackgroundDark{
                     gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
                 }else{
