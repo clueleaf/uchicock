@@ -18,8 +18,9 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var VCs: [IntroductionDetailViewController] = []
     var backgroundImage: UIImage!
     
+    var currentStatusBarStyle: UIStatusBarStyle = .lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return currentStatusBarStyle
     }
 
     override func viewDidLoad() {
@@ -46,6 +47,14 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
                 (v as! UIScrollView).delegate = self
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 元のVCに戻るときにStatus Barの色をテーマに合わせるために必要
+        currentStatusBarStyle = Style.statusBarStyle
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func setVC(number: Int, infoTitle: String, description: String, image: UIImage?) -> IntroductionDetailViewController{
