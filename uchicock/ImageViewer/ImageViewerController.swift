@@ -57,6 +57,10 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setupCaptionBackground()
     }
     

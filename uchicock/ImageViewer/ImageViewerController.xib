@@ -44,10 +44,10 @@
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFc-g8-tyX">
-                    <rect key="frame" x="-200" y="487" width="775" height="180"/>
+                    <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xth-Ar-jlT">
-                            <rect key="frame" x="210" y="110" width="355" height="60"/>
+                            <rect key="frame" x="10" y="110" width="355" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="y9b-wq-nfO"/>
                             </constraints>
@@ -79,9 +79,9 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="xgq-sN-fu7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="8xq-Sv-4J2"/>
-                <constraint firstItem="NFc-g8-tyX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-200" id="DaN-n2-Eym"/>
+                <constraint firstItem="NFc-g8-tyX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DaN-n2-Eym"/>
                 <constraint firstItem="Xth-Ar-jlT" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-10" id="E96-SR-4nc"/>
-                <constraint firstAttribute="trailing" secondItem="NFc-g8-tyX" secondAttribute="trailing" constant="-200" id="EZV-SZ-CKE"/>
+                <constraint firstAttribute="trailing" secondItem="NFc-g8-tyX" secondAttribute="trailing" id="EZV-SZ-CKE"/>
                 <constraint firstItem="Fpr-ep-zCo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Hbv-GY-XCD"/>
                 <constraint firstItem="Xth-Ar-jlT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="OiY-VZ-mAa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="hqk-jr-4za" secondAttribute="top" constant="-10" id="SUU-bo-6Jx"/>
