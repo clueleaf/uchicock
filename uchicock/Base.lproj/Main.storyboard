@@ -955,10 +955,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="0.0"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-f0-nTb">
-                                            <rect key="frame" x="0.0" y="-70" width="100" height="70"/>
+                                            <rect key="frame" x="0.0" y="-85" width="100" height="85"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5X-4l-Nem">
-                                                    <rect key="frame" x="0.0" y="20" width="100" height="50"/>
+                                                    <rect key="frame" x="0.0" y="35" width="100" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -968,9 +968,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="o5X-4l-Nem" secondAttribute="bottom" id="6oU-Wm-vWQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="o5X-4l-Nem" secondAttribute="trailing" id="LIt-m9-QKg"/>
-                                                <constraint firstAttribute="height" constant="70" id="bBD-kd-e2U"/>
+                                                <constraint firstAttribute="height" constant="85" id="bBD-kd-e2U"/>
                                                 <constraint firstItem="o5X-4l-Nem" firstAttribute="leading" secondItem="ffu-f0-nTb" secondAttribute="leading" id="lAp-Ni-6En"/>
-                                                <constraint firstItem="o5X-4l-Nem" firstAttribute="top" secondItem="ffu-f0-nTb" secondAttribute="top" constant="20" id="wwR-mL-KNe"/>
+                                                <constraint firstItem="o5X-4l-Nem" firstAttribute="top" secondItem="ffu-f0-nTb" secondAttribute="top" constant="35" id="wwR-mL-KNe"/>
                                             </constraints>
                                         </view>
                                     </subviews>
