@@ -403,6 +403,10 @@ class RecipeDetailTableViewController: UITableViewController{
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
             (action, indexPath) in
