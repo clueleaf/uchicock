@@ -366,28 +366,28 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="IRF-ok-sOt"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2jq-B9-kXv">
-                                    <size key="itemSize" width="110" height="120"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="2jq-B9-kXv">
+                                    <size key="itemSize" width="106" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoFilterCell" id="tuR-gl-Qq7" customClass="PhotoFilterCollectionViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="120"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSB-fc-Gnm">
-                                                    <rect key="frame" x="5" y="10" width="100" height="100"/>
+                                                    <rect key="frame" x="3" y="10" width="100" height="100"/>
                                                 </button>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="oSB-fc-Gnm" firstAttribute="leading" secondItem="tuR-gl-Qq7" secondAttribute="leading" constant="5" id="1T2-DA-f55"/>
-                                            <constraint firstAttribute="trailing" secondItem="oSB-fc-Gnm" secondAttribute="trailing" constant="5" id="GlK-G6-yZG"/>
+                                            <constraint firstItem="oSB-fc-Gnm" firstAttribute="leading" secondItem="tuR-gl-Qq7" secondAttribute="leading" constant="3" id="1T2-DA-f55"/>
+                                            <constraint firstAttribute="trailing" secondItem="oSB-fc-Gnm" secondAttribute="trailing" constant="3" id="GlK-G6-yZG"/>
                                             <constraint firstAttribute="bottom" secondItem="oSB-fc-Gnm" secondAttribute="bottom" constant="10" id="op2-hX-xE6"/>
                                             <constraint firstItem="oSB-fc-Gnm" firstAttribute="top" secondItem="tuR-gl-Qq7" secondAttribute="top" constant="10" id="zRH-PP-MeT"/>
                                         </constraints>

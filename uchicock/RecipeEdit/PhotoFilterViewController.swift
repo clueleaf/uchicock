@@ -101,6 +101,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         return cell
     }
 
+    // MARK: - Process Image
     func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
         let ciContext = CIContext(options: nil)
         var filteredImageData : CIImage? = nil
