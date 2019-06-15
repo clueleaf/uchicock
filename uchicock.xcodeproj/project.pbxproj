@@ -49,6 +49,7 @@
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
 		9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */; };
 		9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */; };
+		9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */; };
 		9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */; };
 		9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A34AC22B15E300085B1EC /* Introduction.storyboard */; };
 		9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */; };
@@ -126,6 +127,7 @@
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
 		9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlbumCollectionViewCell.xib; path = Album/AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
+		9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterCollectionViewCell.swift; path = RecipeEdit/PhotoFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientRecipeBasic.swift; path = IngredientDetail/IngredientRecipeBasic.swift; sourceTree = "<group>"; };
 		9B8A34AD22B15E300085B1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Introduction.storyboard; sourceTree = "<group>"; };
 		9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */,
 				9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */,
 				9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */,
+				9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */,
 			);
 			name = RecipeEdit;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,
+				9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */,
 				9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */,
 				9B43305122B29B8B0010C89B /* ImageViewerController.swift in Sources */,
 			);

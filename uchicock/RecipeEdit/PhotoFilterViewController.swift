@@ -8,17 +8,18 @@
 
 import UIKit
 
-class PhotoFilterViewController: UIViewController {
+class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    var selectingImageIndex = 0
     var image : UIImage?
     var smallImage : UIImage?
     let queue = DispatchQueue(label: "queue")
-    var buttonWidth:CGFloat = 100
-    var buttonHeight: CGFloat = 100
+    var filterImages : [UIImage?] = []
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -46,74 +47,60 @@ class PhotoFilterViewController: UIViewController {
         button.tintColor = UIColor.white
 
         titleLabel.textColor = UIColor.white
-
+        
+        filterImages = [UIImage?](repeating: nil, count: CIFilterNames.count)
+        
         imageView.image = image
         if let im = image{
             smallImage = resizedImage(image: im)
         }
-        
-        buttonWidth = scrollView.frame.height - 20
-        buttonHeight = scrollView.frame.height - 20
-
-        self.setFilters()
     }
-        
-    func setFilters(){
-        var xCoord: CGFloat = 10
-        let yCoord: CGFloat = 10
-        let gapBetweenButtons: CGFloat = 5
-        
-        var itemCount = 0
-        for i in 0..<CIFilterNames.count {
-            itemCount = i
-            
-            let filterButton = UIButton(type: .custom)
-            filterButton.frame = CGRect(x: xCoord, y: yCoord, width: self.buttonWidth, height: self.buttonHeight)
-            filterButton.tag = itemCount
-            filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
-            filterButton.layer.cornerRadius = 10
-            filterButton.clipsToBounds = true
-            
+    
+    // MARK: - Collection View
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+        guard let im = self.image else{ return }
+        guard let ciim = CIImage(image: im) else{ return }
+        imageView.image = filteredImage(filterNumber: indexPath.row, originalImage: ciim)
+        selectingImageIndex = indexPath.row
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return CIFilterNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFilterCell", for: indexPath) as! PhotoFilterCollectionViewCell
+        cell.filterButton.layer.cornerRadius = 10
+        cell.filterButton.clipsToBounds = true
+        cell.filterButton.imageView?.contentMode = .scaleAspectFill
+
+        if filterImages[indexPath.row] != nil{
+            cell.filterButton.setImage(filterImages[indexPath.row], for: .normal)
+        }else{
+            cell.filterButton.setImage(nil, for: .normal)
             if let smim = self.smallImage{
                 if let ciim = CIImage(image: smim){
                     queue.async {
-                        let filteredImage = self.filteredImage(filterNumber: i, originalImage: ciim)
+                        let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
+                        self.filterImages[indexPath.row] = filteredImage
                         DispatchQueue.main.async{
-                            filterButton.setImage(filteredImage, for: .normal)
-                            filterButton.imageView?.contentMode = .scaleAspectFill
+                            cell.filterButton.setImage(filteredImage, for: .normal)
                         }
                     }
-
-                    xCoord +=  self.buttonWidth + gapBetweenButtons
-                    if i == 0{
-                        filterButton.layer.borderColor = UIColor.white.cgColor
-                        filterButton.layer.borderWidth = 2.0
-                    }else{
-                        filterButton.layer.borderWidth = 0
-                    }
-                    self.scrollView.addSubview(filterButton)
                 }
             }
         }
-        self.scrollView.contentSize = CGSize(width: xCoord + 10, height: self.buttonHeight)
+        if indexPath.row == selectingImageIndex{
+            cell.filterButton.layer.borderColor = UIColor.white.cgColor
+            cell.filterButton.layer.borderWidth = 2.0
+        }else{
+            cell.filterButton.layer.borderWidth = 0
+        }
+
+        return cell
     }
 
-    @objc func filterButtonTapped(sender: UIButton){
-        let button = sender as UIButton
-        guard let im = self.image else{ return }
-        guard let ciim = CIImage(image: im) else{ return }
-        imageView.image = filteredImage(filterNumber: button.tag, originalImage: ciim)
-        
-        for subview in scrollView.subviews{
-            if subview is UIButton{
-                let b = subview as! UIButton
-                b.layer.borderWidth = 0
-            }
-        }
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 2.0
-    }
-    
     func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
         let ciContext = CIContext(options: nil)
         var filteredImageData : CIImage? = nil
@@ -148,7 +135,7 @@ class PhotoFilterViewController: UIViewController {
     }
     
     func resizedImage(image: UIImage) -> UIImage? {
-        let maxLongSide : CGFloat = (scrollView.frame.height - 20) * 2
+        let maxLongSide : CGFloat = (collectionView.frame.height - 20) * 2
         if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
             return image
         }
