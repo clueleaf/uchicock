@@ -34,6 +34,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.reloadRecipeList()
         }
         
+        collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
+
         recipeNameBarButton.image = UIImage(named: "album-name-off")
         
         header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
@@ -149,7 +151,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumItem", for: indexPath as IndexPath) as! AlbumCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
