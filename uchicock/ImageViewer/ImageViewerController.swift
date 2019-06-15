@@ -79,13 +79,30 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.addTarget(self, action: #selector(imageViewDoubleTapped))
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
-        
+
         let panGestureRecognizer = UIPanGestureRecognizer()
         panGestureRecognizer.addTarget(self, action: #selector(imageViewPanned(_:)))
         panGestureRecognizer.delegate = self
         imageView.addGestureRecognizer(panGestureRecognizer)
-        
+
         singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        
+        let singleTapGestureRecognizer2 = UITapGestureRecognizer()
+        singleTapGestureRecognizer2.numberOfTapsRequired = 1
+        singleTapGestureRecognizer2.addTarget(self, action: #selector(imageViewSingleTapped))
+        captionBackgroundView.addGestureRecognizer(singleTapGestureRecognizer2)
+
+        let doubleTapGestureRecognizer2 = UITapGestureRecognizer()
+        doubleTapGestureRecognizer2.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer2.addTarget(self, action: #selector(imageViewDoubleTapped))
+        captionBackgroundView.addGestureRecognizer(doubleTapGestureRecognizer2)
+
+        let panGestureRecognizer2 = UIPanGestureRecognizer()
+        panGestureRecognizer2.addTarget(self, action: #selector(imageViewPanned(_:)))
+        panGestureRecognizer2.delegate = self
+        captionBackgroundView.addGestureRecognizer(panGestureRecognizer2)
+
+        singleTapGestureRecognizer2.require(toFail: doubleTapGestureRecognizer2)
     }
     
     func setupTransitions() {
