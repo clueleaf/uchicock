@@ -46,7 +46,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFc-g8-tyX">
                     <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xth-Ar-jlT">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xth-Ar-jlT">
                             <rect key="frame" x="10" y="110" width="355" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="y9b-wq-nfO"/>

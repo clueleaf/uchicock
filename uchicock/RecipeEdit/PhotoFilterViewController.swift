@@ -49,7 +49,8 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         titleLabel.textColor = UIColor.white
         
         filterImages = [UIImage?](repeating: nil, count: CIFilterNames.count)
-        
+        self.collectionView.indicatorStyle = .white
+
         imageView.image = image
         if let im = image{
             smallImage = resizedImage(image: im)
