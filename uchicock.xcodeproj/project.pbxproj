@@ -325,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				9B59FFA722B409CA00FB6F44 /* README.md */,
+				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
 				9BFCE19F1E97A05A00546B47 /* Storyboards */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
 				9BAAFB6F1C99953400E67791 /* RecipeDetail */,
@@ -341,7 +342,6 @@
 				9B43304922B29AF70010C89B /* ImageViewer */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
-				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
 				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,

@@ -58,11 +58,13 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     
     // MARK: - Collection View
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
         guard let im = self.image else{ return }
         guard let ciim = CIImage(image: im) else{ return }
-        imageView.image = filteredImage(filterNumber: indexPath.row, originalImage: ciim)
+        DispatchQueue.main.async {
+            self.imageView.image = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
+        }
         selectingImageIndex = indexPath.row
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,31 +73,27 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFilterCell", for: indexPath) as! PhotoFilterCollectionViewCell
-        cell.filterButton.layer.cornerRadius = 10
-        cell.filterButton.clipsToBounds = true
-        cell.filterButton.imageView?.contentMode = .scaleAspectFill
+        cell.imageView.layer.cornerRadius = 10
 
-        if filterImages[indexPath.row] != nil{
-            cell.filterButton.setImage(filterImages[indexPath.row], for: .normal)
-        }else{
-            cell.filterButton.setImage(nil, for: .normal)
+        cell.imageView.image = filterImages[indexPath.row]
+        if filterImages[indexPath.row] == nil{
             if let smim = self.smallImage{
                 if let ciim = CIImage(image: smim){
                     queue.async {
                         let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
                         self.filterImages[indexPath.row] = filteredImage
                         DispatchQueue.main.async{
-                            cell.filterButton.setImage(filteredImage, for: .normal)
+                            cell.imageView.image = filteredImage
                         }
                     }
                 }
             }
         }
         if indexPath.row == selectingImageIndex{
-            cell.filterButton.layer.borderColor = UIColor.white.cgColor
-            cell.filterButton.layer.borderWidth = 2.0
+            cell.imageView.layer.borderColor = UIColor.white.cgColor
+            cell.imageView.layer.borderWidth = 2.0
         }else{
-            cell.filterButton.layer.borderWidth = 0
+            cell.imageView.layer.borderWidth = 0
         }
 
         return cell

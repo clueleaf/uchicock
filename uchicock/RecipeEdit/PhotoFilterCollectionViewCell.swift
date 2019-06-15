@@ -9,5 +9,5 @@
 import UIKit
 
 class PhotoFilterCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
 }
