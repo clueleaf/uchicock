@@ -347,7 +347,7 @@
                                 <rect key="frame" x="137.5" y="492" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Fv2-KZ-b86"/>
-                                    <constraint firstAttribute="width" constant="100" id="mU0-rK-gLn"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mU0-rK-gLn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="これにする">
