@@ -7,10 +7,11 @@
 //
 
 struct IngredientRecipeBasic{
-    var recipeIngredientLinkId : String
+    var recipeId: String
     var recipeName : String
     var shortageNum : Int
     var lastViewDate : Date?
     var madeNum : Int
+    var favorites: Int
 }
 
