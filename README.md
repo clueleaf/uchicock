@@ -26,7 +26,7 @@
 * App Store： https://appsto.re/jp/l7pCbb
 
 #### バージョン履歴
-###### 2019-06-16 v5.4
+###### 2019-06-17 v5.4
 * リファクタリング、処理の効率化など
 * フレームワークの内製化（ImageViewer, Introduction, EmptyData）
 * アルバムのレシピ名の背景をグラデーションに変更
