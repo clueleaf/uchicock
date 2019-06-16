@@ -172,13 +172,6 @@ class IngredientDetailTableViewController: UITableViewController {
     }
 
     func reloadIngredientRecipeBasicList(){
-        let realm = try! Realm()
-        try! realm.write {
-            for ri in ingredient.recipeIngredients{
-                ri.recipe.updateShortageNum()
-            }
-        }
-
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
             ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum))
@@ -397,6 +390,9 @@ class IngredientDetailTableViewController: UITableViewController {
         let realm = try! Realm()
         try! realm.write {
             ingredient.stockFlag = stock.checkState == .checked ? true : false
+            for ri in ingredient.recipeIngredients{
+                ri.recipe.updateShortageNum()
+            }
         }
         reloadIngredientRecipeBasicList()
         tableView.reloadData()

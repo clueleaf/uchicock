@@ -206,6 +206,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
             
+            try! realm.write {
+                for ri in ingredient.recipeIngredients{
+                    ri.recipe.updateShortageNum()
+                }
+            }
+            
             if stockState.selectedSegmentIndex != 0{
                 ingredientBasicList.remove(at: index.row)
                 tableView.deleteRows(at: [index], with: .automatic)
