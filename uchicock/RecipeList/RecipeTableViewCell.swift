@@ -48,25 +48,24 @@ class RecipeTableViewCell: UITableViewCell {
             favorites.textColor = Style.secondaryColor
             favorites.backgroundColor = Style.basicBackgroundColor
             
-            var shortageNum = 0
-            var shortageName = ""
-            for recipeIngredient in recipe.recipeIngredients{
-                if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
-                    shortageNum += 1
-                    shortageName = recipeIngredient.ingredient.ingredientName
-                }
-            }
-            switch shortageNum {
+            switch recipe.shortageNum {
             case 0:
                 shortage.text = "すぐ作れる！"
                 shortage.textColor = Style.secondaryColor
                 shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
+                var shortageName = ""
+                for recipeIngredient in recipe.recipeIngredients{
+                    if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
+                        shortageName = recipeIngredient.ingredient.ingredientName
+                        break
+                    }
+                }
                 shortage.text = shortageName + "が足りません"
                 shortage.textColor = Style.labelTextColorLight
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             default:
-                shortage.text = "材料が" + String(shortageNum) + "個足りません"
+                shortage.text = "材料が" + String(recipe.shortageNum) + "個足りません"
                 shortage.textColor = Style.labelTextColorLight
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             }

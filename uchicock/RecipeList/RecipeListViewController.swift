@@ -469,8 +469,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
-        let format = DateFormatter()
-        format.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
         reloadRecipeBasicList()
         tableView.reloadData()
     }

@@ -205,6 +205,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                             ingredient.stockFlag = false
                         }
                         ingredient.memo = memo.text
+                        for ri in ingredient.recipeIngredients{
+                            ri.recipe.updateShortageNum()
+                        }
                         SVProgressHUD.showSuccess(withStatus: "材料を保存しました")
                     }
                     detailVC?.ingredientId = ingredient.id
