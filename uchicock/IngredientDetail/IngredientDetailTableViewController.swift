@@ -146,19 +146,20 @@ class IngredientDetailTableViewController: UITableViewController {
             self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
             
-            if let index = indexPathForSelectedRow {
-                if tableView.numberOfRows(inSection: 1) > index.row{
-                    let nowRecipeId = (tableView.cellForRow(at: index) as? IngredientRecipeListTableViewCell)?.recipeId
-                    if nowRecipeId != nil && selectedRecipeId != nil{
-                        if nowRecipeId! == selectedRecipeId!{
-                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: index, animated: true)
-                            }
-                        }
-                    }
-                }
-            }
+//            if let index = indexPathForSelectedRow {
+//                if tableView.numberOfRows(inSection: 1) > index.row{
+//                    let nowRecipeId = (tableView.cellForRow(at: index) as? IngredientRecipeListTableViewCell)?.recipeId
+//                    if nowRecipeId != nil && selectedRecipeId != nil{
+//                        if nowRecipeId! == selectedRecipeId!{
+//                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                                self.tableView.deselectRow(at: index, animated: true)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+
             selectedRecipeId = nil
         }
     }
@@ -320,7 +321,6 @@ class IngredientDetailTableViewController: UITableViewController {
                         }
                     }
                     
-                    cell.recipeId = recipe.id
                     cell.recipeName.text = recipe.recipeName
                     cell.recipeName.backgroundColor = Style.basicBackgroundColor
                     cell.recipeName.clipsToBounds = true

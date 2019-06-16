@@ -67,6 +67,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         blendFilterButton.contentHorizontalAlignment = .left
         othersFilterButton.contentHorizontalAlignment = .left
         
+        self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self)
         try! realm.write {
@@ -116,7 +118,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if let path = selectedIndexPath {
             if tableView.numberOfRows(inSection: 0) > path.row{
-                let nowRecipeId = (tableView.cellForRow(at: path) as? RecipeListItemTableViewCell)?.recipe.id
+                let nowRecipeId = (tableView.cellForRow(at: path) as? RecipeTableViewCell)?.recipe.id
                 if nowRecipeId != nil && selectedRecipeId != nil{
                     if nowRecipeId! == selectedRecipeId!{
                         tableView.selectRow(at: path, animated: false, scrollPosition: .none)
@@ -449,7 +451,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListItem") as! RecipeListItemTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
