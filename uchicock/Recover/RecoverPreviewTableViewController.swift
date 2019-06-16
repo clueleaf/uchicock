@@ -110,11 +110,6 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
-        }else if indexPath.section == 1{
-            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
-        }
         return 0
     }
 

@@ -266,15 +266,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
-        }else if indexPath.section == 1{
-            if indexPath.row < editingRecipeIngredientList.count{
-                return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
-            }else if indexPath.row == editingRecipeIngredientList.count{
-                return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 1, section: 1))
-            }
-        }
         return 0
     }
     

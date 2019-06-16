@@ -25,7 +25,6 @@
 		9B3078DB1CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078D41CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift */; };
 		9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078DC1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift */; };
 		9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078DD1CA4220C0014CE7E /* IngredientListViewController.swift */; };
-		9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */; };
 		9B3078F01CA422630014CE7E /* EditingRecipeIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */; };
 		9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */; };
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
@@ -104,7 +103,6 @@
 		9B3078D41CA421DD0014CE7E /* RecipeIngredientListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientListTableViewCell.swift; path = RecipeDetail/RecipeIngredientListTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078DC1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientListItemTableViewCell.swift; path = IngredientList/IngredientListItemTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078DD1CA4220C0014CE7E /* IngredientListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientListViewController.swift; path = IngredientList/IngredientListViewController.swift; sourceTree = "<group>"; };
-		9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientRecipeListTableViewCell.swift; path = IngredientDetail/IngredientRecipeListTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078EC1CA422630014CE7E /* EditingRecipeIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditingRecipeIngredient.swift; path = RecipeEdit/EditingRecipeIngredient.swift; sourceTree = "<group>"; };
 		9B3078ED1CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditIngredientTableViewCell.swift; path = RecipeEdit/RecipeEditIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
@@ -383,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */,
-				9B3078E51CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift */,
 				9B865C341CBBC9C70022477B /* IngredientRecipeBasic.swift */,
 				9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */,
 				9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */,
@@ -585,7 +582,6 @@
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
-				9B3078EB1CA4223D0014CE7E /* IngredientRecipeListTableViewCell.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */,
