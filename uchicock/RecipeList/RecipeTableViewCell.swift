@@ -72,6 +72,8 @@ class RecipeTableViewCell: UITableViewCell {
             }
             shortage.backgroundColor = Style.basicBackgroundColor
             shortage.clipsToBounds = true
+            
+            self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
         }
     }
     
