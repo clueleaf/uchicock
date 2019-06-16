@@ -54,7 +54,7 @@ class IngredientDetailTableViewController: UITableViewController {
         initActionButtonStyleOf(amazonButton, with: "amazon")
         initActionButtonStyleOf(deleteButton, with: "delete")
 
-        tableView.register(IngredientRecipeListTableViewCell.self, forCellReuseIdentifier: "IngredientRecipeList")
+        self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -146,19 +146,19 @@ class IngredientDetailTableViewController: UITableViewController {
             self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
             
-//            if let index = indexPathForSelectedRow {
-//                if tableView.numberOfRows(inSection: 1) > index.row{
-//                    let nowRecipeId = (tableView.cellForRow(at: index) as? IngredientRecipeListTableViewCell)?.recipeId
-//                    if nowRecipeId != nil && selectedRecipeId != nil{
-//                        if nowRecipeId! == selectedRecipeId!{
-//                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                                self.tableView.deselectRow(at: index, animated: true)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            if let index = indexPathForSelectedRow {
+                if tableView.numberOfRows(inSection: 1) > index.row{
+                    let nowRecipeId = (tableView.cellForRow(at: index) as? RecipeTableViewCell)?.recipe.id
+                    if nowRecipeId != nil && selectedRecipeId != nil{
+                        if nowRecipeId! == selectedRecipeId!{
+                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: index, animated: true)
+                            }
+                        }
+                    }
+                }
+            }
 
             selectedRecipeId = nil
         }
@@ -236,7 +236,7 @@ class IngredientDetailTableViewController: UITableViewController {
                 if indexPath.row == 0{
                     return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
                 }else{
-                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
+                    return 70
                 }
             }
         }
@@ -272,17 +272,6 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        if indexPath.section == 0 {
-            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
-        }else if indexPath.section == 1{
-            if ingredient.recipeIngredients.count > 0{
-                if indexPath.row == 0{
-                    return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: 1))
-                }else{
-                    return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 1, section: 1))
-                }
-            }
-        }
         return 0
     }
     
@@ -306,72 +295,17 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecipeList", for: indexPath) as! IngredientRecipeListTableViewCell
-                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
                     let realm = try! Realm()
                     let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeId)!
-
-                    if let image = recipe.imageData {
-                        cell.photo.image = UIImage(data: image as Data)
-                    }else{
-                        if Style.isDark{
-                            cell.photo.image = UIImage(named: "no-photo-dark")
-                        }else{
-                            cell.photo.image = UIImage(named: "no-photo")
-                        }
-                    }
-                    
-                    cell.recipeName.text = recipe.recipeName
-                    cell.recipeName.backgroundColor = Style.basicBackgroundColor
-                    cell.recipeName.clipsToBounds = true
-                    switch recipe.favorites{
-                    case 0:
-                        cell.favorites.text = ""
-                    case 1:
-                        cell.favorites.text = "★"
-                    case 2:
-                        cell.favorites.text = "★★"
-                    case 3:
-                        cell.favorites.text = "★★★"
-                    default:
-                        cell.favorites.text = ""
-                    }
-                    cell.favorites.textAlignment = .left
-                    cell.favorites.textColor = Style.secondaryColor
-                    cell.favorites.backgroundColor = Style.basicBackgroundColor
-                    
-                    var shortageNum = 0
-                    var shortageName = ""
-                    for ri in recipe.recipeIngredients{
-                        if ri.mustFlag && ri.ingredient.stockFlag == false{
-                            shortageNum += 1
-                            shortageName = ri.ingredient.ingredientName
-                        }
-                    }
-                    if shortageNum == 0 {
-                        cell.shortage.text = "すぐ作れる！"
-                        cell.shortage.textColor = Style.secondaryColor
-                        cell.shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
+                    cell.recipe = recipe
+                    if recipe.shortageNum == 0{
                         cell.recipeName.textColor = Style.labelTextColor
-                    }else if shortageNum == 1{
-                        cell.shortage.text = shortageName + "が足りません"
-                        cell.shortage.textColor = Style.labelTextColorLight
-                        cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
-                        cell.recipeName.textColor = Style.labelTextColorLight
                     }else{
-                        cell.shortage.text = "材料が" + String(shortageNum) + "個足りません"
-                        cell.shortage.textColor = Style.labelTextColorLight
-                        cell.shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
                         cell.recipeName.textColor = Style.labelTextColorLight
                     }
-                    cell.shortage.backgroundColor = Style.basicBackgroundColor
-                    cell.shortage.clipsToBounds = true
-                    
-                    cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-                    cell.selectionStyle = .default
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
