@@ -157,6 +157,7 @@ class RecoverTableViewController: UITableViewController {
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)
                     }
+                    updateRecipeShortageNum(recipeName: recoverRecipe.name)
                 }
             }
         }
@@ -200,6 +201,16 @@ class RecoverTableViewController: UITableViewController {
         
         let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
         recipe.recipeIngredients.append(recipeIngredientLink)
+    }
+    
+    func updateRecipeShortageNum(recipeName: String){
+        let realm = try! Realm()
+        let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
+        if rec.count > 0 {
+            let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
+            recipe.updateShortageNum()
+        }
+
     }
     
     func waitAtLeast(_ time : TimeInterval, _ block: () -> Void) {

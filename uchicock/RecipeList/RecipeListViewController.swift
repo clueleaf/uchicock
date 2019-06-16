@@ -66,6 +66,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         shakeFilterButton.contentHorizontalAlignment = .left
         blendFilterButton.contentHorizontalAlignment = .left
         othersFilterButton.contentHorizontalAlignment = .left
+        
+        let realm = try! Realm()
+        recipeList = realm.objects(Recipe.self)
+        try! realm.write {
+            for recipe in recipeList!{
+                recipe.updateShortageNum()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -228,13 +236,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self)
-        if order.selectedSegmentIndex == 1{
-            try! realm.write {
-                for recipe in recipeList!{
-                    recipe.updateShortageNum()
-                }
-            }
-        }
         reloadRecipeBasicList()
     }
     
@@ -466,14 +467,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func orderTapped(_ sender: UISegmentedControl) {
-        if order.selectedSegmentIndex == 1{
-            let realm = try! Realm()
-            try! realm.write {
-                for recipe in recipeList!{
-                    recipe.updateShortageNum()
-                }
-            }
-        }
+        let format = DateFormatter()
+        format.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
         reloadRecipeBasicList()
         tableView.reloadData()
     }
