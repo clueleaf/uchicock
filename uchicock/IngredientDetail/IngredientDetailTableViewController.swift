@@ -174,7 +174,7 @@ class IngredientDetailTableViewController: UITableViewController {
     func reloadIngredientRecipeBasicList(){
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeIngredientLinkId: recipeIngredient.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum))
+            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeId: recipeIngredient.recipe.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, favorites: recipeIngredient.recipe.favorites))
         }
         
         if order.selectedSegmentIndex == 1{
@@ -308,9 +308,9 @@ class IngredientDetailTableViewController: UITableViewController {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecipeList", for: indexPath) as! IngredientRecipeListTableViewCell
                     
                     let realm = try! Realm()
-                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId)!
-                    
-                    if let image = recipeIngredient.recipe.imageData {
+                    let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeId)!
+
+                    if let image = recipe.imageData {
                         cell.photo.image = UIImage(data: image as Data)
                     }else{
                         if Style.isDark{
@@ -320,11 +320,11 @@ class IngredientDetailTableViewController: UITableViewController {
                         }
                     }
                     
-                    cell.recipeId = recipeIngredient.recipe.id
-                    cell.recipeName.text = recipeIngredient.recipe.recipeName
+                    cell.recipeId = recipe.id
+                    cell.recipeName.text = recipe.recipeName
                     cell.recipeName.backgroundColor = Style.basicBackgroundColor
                     cell.recipeName.clipsToBounds = true
-                    switch recipeIngredient.recipe.favorites{
+                    switch recipe.favorites{
                     case 0:
                         cell.favorites.text = ""
                     case 1:
@@ -342,7 +342,7 @@ class IngredientDetailTableViewController: UITableViewController {
                     
                     var shortageNum = 0
                     var shortageName = ""
-                    for ri in recipeIngredient.recipe.recipeIngredients{
+                    for ri in recipe.recipeIngredients{
                         if ri.mustFlag && ri.ingredient.stockFlag == false{
                             shortageNum += 1
                             shortageName = ri.ingredient.ingredientName
@@ -462,10 +462,8 @@ class IngredientDetailTableViewController: UITableViewController {
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
-                let realm = try! Realm()
-                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeIngredientLinkId)!
-                selectedRecipeId = recipeIngredient.recipe.id
-                vc.recipeId = recipeIngredient.recipe.id
+                selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
+                vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
             }
         }else if segue.identifier == "CreateEvent" {
             let enc = segue.destination as! UINavigationController
