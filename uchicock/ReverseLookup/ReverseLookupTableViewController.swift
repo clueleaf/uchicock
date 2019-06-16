@@ -60,6 +60,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
         
@@ -100,7 +102,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
         if let path = selectedPathForRecipeTableView {
             if recipeTableView.numberOfRows(inSection: 0) > path.row{
-                let nowRecipeId = (recipeTableView.cellForRow(at: path) as? ReverseLookupRecipeTableViewCell)?.recipe.id
+                let nowRecipeId = (recipeTableView.cellForRow(at: path) as? RecipeTableViewCell)?.recipe.id
                 if nowRecipeId != nil && selectedRecipeId != nil{
                     if nowRecipeId! == selectedRecipeId!{
                         recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
@@ -479,11 +481,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         }else if tableView.tag == 1{
-            let cell = recipeTableView.dequeueReusableCell(withIdentifier: "ReverseLookupRecipeItem") as! ReverseLookupRecipeTableViewCell
-            cell.backgroundColor = Style.basicBackgroundColor
+            let cell = recipeTableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             cell.recipe = recipe
+            cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }else if tableView.tag == 2{
