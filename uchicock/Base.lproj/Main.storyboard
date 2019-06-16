@@ -38,71 +38,6 @@
                                 <rect key="frame" x="0.0" y="176" width="375" height="378"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="77" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeListItem" rowHeight="70" id="HXx-Bk-ylr" customClass="RecipeListItemTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HXx-Bk-ylr" id="ngc-17-ztm">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxF-Fn-k8s">
-                                                    <rect key="frame" x="77" y="33.5" width="265" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Kr4-lt-Ll3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.4013573232323232" green="0.4013573232323232" blue="0.4013573232323232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agH-FO-X73" userLabel="Favorites">
-                                                    <rect key="frame" x="282" y="8" width="60" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="j9A-rU-xze"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="tLt-e5-uKd"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tdE-27-bi7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="69.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="69" id="9NN-35-qEC"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VU-6n-xbT">
-                                                    <rect key="frame" x="77" y="8" width="197" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="SsC-6m-lPC"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="wxF-Fn-k8s" secondAttribute="bottom" constant="15" id="2In-Cd-VQJ"/>
-                                                <constraint firstItem="6VU-6n-xbT" firstAttribute="leading" secondItem="tdE-27-bi7" secondAttribute="trailing" constant="8" id="FJZ-cV-bck"/>
-                                                <constraint firstItem="agH-FO-X73" firstAttribute="centerY" secondItem="6VU-6n-xbT" secondAttribute="centerY" id="Gnv-kj-k11"/>
-                                                <constraint firstAttribute="bottom" secondItem="tdE-27-bi7" secondAttribute="bottom" id="JHO-O9-1xR"/>
-                                                <constraint firstItem="wxF-Fn-k8s" firstAttribute="leading" secondItem="6VU-6n-xbT" secondAttribute="leading" id="TuU-cQ-5uF"/>
-                                                <constraint firstItem="tdE-27-bi7" firstAttribute="leading" secondItem="ngc-17-ztm" secondAttribute="leading" id="cl1-Sr-ved"/>
-                                                <constraint firstItem="tdE-27-bi7" firstAttribute="top" secondItem="ngc-17-ztm" secondAttribute="top" id="hb0-7e-vsh"/>
-                                                <constraint firstItem="6VU-6n-xbT" firstAttribute="top" secondItem="ngc-17-ztm" secondAttribute="top" constant="8" id="llG-be-YNn"/>
-                                                <constraint firstAttribute="trailing" secondItem="wxF-Fn-k8s" secondAttribute="trailing" id="pXl-71-fay"/>
-                                                <constraint firstAttribute="trailing" secondItem="agH-FO-X73" secondAttribute="trailing" id="xWc-rL-7wL"/>
-                                                <constraint firstItem="agH-FO-X73" firstAttribute="leading" secondItem="6VU-6n-xbT" secondAttribute="trailing" constant="8" id="xro-o6-TK3"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="favorites" destination="agH-FO-X73" id="C6B-j5-9kL"/>
-                                            <outlet property="photo" destination="tdE-27-bi7" id="cBT-Qq-qlQ"/>
-                                            <outlet property="recipeName" destination="6VU-6n-xbT" id="cy6-Gs-Ao2"/>
-                                            <outlet property="shortage" destination="wxF-Fn-k8s" id="y97-pQ-1rc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="f4E-0Q-uV8"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mFV-ja-vjq"/>
@@ -1079,6 +1014,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xK4-qe-qjp"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>

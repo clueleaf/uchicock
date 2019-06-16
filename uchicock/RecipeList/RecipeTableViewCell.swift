@@ -1,14 +1,14 @@
 //
-//  RecipeListItemTableViewCell.swift
+//  RecipeTableViewCell.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2016/02/20.
-//  Copyright © 2016年 Kou. All rights reserved.
+//  Created by Kou Kinyo on 2019/06/16.
+//  Copyright © 2019 Kou. All rights reserved.
 //
 
 import UIKit
 
-class RecipeListItemTableViewCell: UITableViewCell {
+class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
@@ -26,12 +26,12 @@ class RecipeListItemTableViewCell: UITableViewCell {
                     photo.image = UIImage(named: "no-photo")
                 }
             }
-
+            
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
             recipeName.backgroundColor = Style.basicBackgroundColor
             recipeName.clipsToBounds = true
-
+            
             switch recipe.favorites{
             case 0:
                 favorites.text = ""
@@ -82,5 +82,5 @@ class RecipeListItemTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
