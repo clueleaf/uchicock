@@ -296,7 +296,6 @@
                         <outlet property="star2" destination="ffj-8v-9XM" id="pmP-02-DcC"/>
                         <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
                         <outlet property="starLabel" destination="nN9-zc-48A" id="BBx-vg-2OP"/>
-                        <segue destination="vKl-GP-J2s" kind="presentation" identifier="PushEditIngredient" modalPresentationStyle="pageSheet" id="PfD-nS-bh3"/>
                         <segue destination="f6s-1V-srL" kind="presentation" identifier="ShowPhotoFilter" modalPresentationStyle="fullScreen" id="8xx-nF-xdB"/>
                     </connections>
                 </tableViewController>
@@ -313,7 +312,7 @@
         <!--Basic Navigation Controller-->
         <scene sceneID="mY5-Nz-QL4">
             <objects>
-                <navigationController id="vKl-GP-J2s" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RecipeIngredientEditNavigationController" id="vKl-GP-J2s" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DGI-4p-LHC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -684,11 +683,9 @@
                         <outlet property="optionLabel" destination="uyA-Yn-meJ" id="PgZ-oK-HgQ"/>
                         <outlet property="suggestTableView" destination="FJi-BL-oF3" id="kFe-ft-pFh"/>
                         <outlet property="suggestTableViewCell" destination="z24-ua-voM" id="oxb-nl-XtG"/>
-                        <segue destination="1Lh-BF-RrK" kind="unwind" identifier="UnwindToRecipeEdit" unwindAction="unwindToRecipeEdit:" id="3Gn-kk-rGO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFa-FU-DFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="1Lh-BF-RrK" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="GsF-Jb-P3H">
                     <connections>
                         <action selector="screenTapped:" destination="W6V-Ex-Byo" id="zJS-dj-orR"/>

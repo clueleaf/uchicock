@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeNameLabel: UILabel!
@@ -109,10 +109,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
-        let previousNumOfRowsInSection1 = tableView.numberOfRows(inSection: 1)
-
+        setupVC()
+    }
+    
+    private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeNameLabel.textColor = Style.labelTextColor
         starLabel.textColor = Style.labelTextColor
@@ -130,29 +131,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         self.tableView.reloadData()
         
-        switch tableView.numberOfRows(inSection: 1) - previousNumOfRowsInSection1{
-        case 0:
-            if let index = indexPathForSelectedRow{
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.tableView.deselectRow(at: index, animated: true)
-                    }
-                }
-            }
-        case 1:
-            let indexPathForAddedRow = IndexPath(row: previousNumOfRowsInSection1 - 1, section: 1)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.selectRow(at: indexPathForAddedRow, animated: false, scrollPosition: .middle)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    self.tableView.deselectRow(at: indexPathForAddedRow, animated: true)
-                }
-            }
-        default:
-            break
-        }
         if photo.alpha < 1.0{
             UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
+        }
+
+        if let index = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
         }
     }
     
@@ -274,7 +258,46 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
-            performSegue(withIdentifier: "PushEditIngredient", sender: indexPath)
+            let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
+            let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
+            vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, mustFlag, recipeIngredientId in
+                if isCancel == false{
+                    if isAddMode{
+                        if deleteFlag == false{
+                            let editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag)
+                            self.editingRecipeIngredientList.append(editingRecipeIngredient)
+                        }
+                    }else{
+                        if deleteFlag{
+                            for i in 0 ..< self.editingRecipeIngredientList.count where i < self.editingRecipeIngredientList.count {
+                                if self.editingRecipeIngredientList[i].id == recipeIngredientId{
+                                    self.editingRecipeIngredientList.remove(at: i)
+                                }
+                            }
+                        }else{
+                            for i in 0 ..< self.editingRecipeIngredientList.count where self.editingRecipeIngredientList[i].id == recipeIngredientId{
+                                self.editingRecipeIngredientList[i].ingredientName = ingredientName
+                                self.editingRecipeIngredientList[i].amount = amount
+                                self.editingRecipeIngredientList[i].mustFlag = mustFlag
+                            }
+                        }
+                    }
+                }
+                self.setupVC()
+            }
+            if indexPath.row < editingRecipeIngredientList.count{
+                if self.editingRecipeIngredientList[indexPath.row].id == ""{
+                    self.editingRecipeIngredientList[indexPath.row].id = NSUUID().uuidString
+                }
+                vc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
+                vc.isAddMode = false
+            }else if indexPath.row == editingRecipeIngredientList.count{
+                vc.isAddMode = true
+            }
+            present(nvc, animated: true)
         }
     }
     
@@ -611,9 +634,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.view.endEditing(true)
     }
     
-    @IBAction func unwindToRecipeEdit(_ segue: UIStoryboardSegue) {
-    }
-    
     // MARK: - GestureRecognizer
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
     {
@@ -631,40 +651,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     // MARK: - Navigation
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
-        if fromViewController is RecipeIngredientEditTableViewController{
-            let riec = fromViewController as! RecipeIngredientEditTableViewController
-            if riec.isAddMode{
-                if riec.deleteFlag{
-                }else{
-                    var editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: textWithoutSpace(text: riec.ingredientName.text!), amount: riec.amount.text!, mustFlag: true)
-                    if riec.option.checkState == .checked{
-                        editingRecipeIngredient.mustFlag = false
-                    }else{
-                        editingRecipeIngredient.mustFlag = true
-                    }
-                    editingRecipeIngredientList.append(editingRecipeIngredient)
-                }
-            }else{
-                if riec.deleteFlag{
-                    for i in 0 ..< editingRecipeIngredientList.count where i < editingRecipeIngredientList.count {
-                        if editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
-                            editingRecipeIngredientList.remove(at: i)
-                        }
-                    }
-                }else{
-                    for i in 0 ..< editingRecipeIngredientList.count where editingRecipeIngredientList[i].id == riec.recipeIngredient.id{
-                        editingRecipeIngredientList[i].ingredientName = textWithoutSpace(text: riec.ingredientName.text!)
-                        editingRecipeIngredientList[i].amount = textWithoutSpace(text: riec.amount.text!)
-                        if riec.option.checkState == .checked{
-                            editingRecipeIngredientList[i].mustFlag = false
-                        }else{
-                            editingRecipeIngredientList[i].mustFlag = true
-                        }
-                    }
-                }
-            }
-            return true
-        }else if fromViewController is PhotoFilterViewController{
+        if fromViewController is PhotoFilterViewController{
             let pfvc = fromViewController as! PhotoFilterViewController
             let img = pfvc.imageView.image!
             self.photo.image = self.resizedImage(image: img)
@@ -675,23 +662,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         return false
     }
-
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
+    }
+    
+    // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PushEditIngredient" {
-            let enc = segue.destination as! UINavigationController
-            let evc = enc.visibleViewController as! RecipeIngredientEditTableViewController
-            if let indexPath = sender as? IndexPath{
-                if indexPath.row < editingRecipeIngredientList.count{
-                    if self.editingRecipeIngredientList[indexPath.row].id == ""{
-                        self.editingRecipeIngredientList[indexPath.row].id = NSUUID().uuidString
-                    }
-                    evc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
-                    evc.isAddMode = false
-                }else if indexPath.row == editingRecipeIngredientList.count{
-                    evc.isAddMode = true
-                }
-            }
-        }else if segue.identifier == "ShowPhotoFilter"{
+        if segue.identifier == "ShowPhotoFilter"{
             let vc = segue.destination as! PhotoFilterViewController
             vc.image = (sender as! UIImage)
         }

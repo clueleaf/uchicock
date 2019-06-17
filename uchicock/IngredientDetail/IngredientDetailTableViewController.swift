@@ -60,13 +60,27 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
+
         setupVC()
+        if let index = indexPathForSelectedRow {
+            if tableView.numberOfRows(inSection: 1) > index.row{
+                let nowRecipeId = (tableView.cellForRow(at: index) as? RecipeTableViewCell)?.recipe.id
+                if nowRecipeId != nil && selectedRecipeId != nil{
+                    if nowRecipeId! == selectedRecipeId!{
+                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.tableView.deselectRow(at: index, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        selectedRecipeId = nil
     }
     
     private func setupVC(){
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
-
         categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
@@ -149,21 +163,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
-            
-            if let index = indexPathForSelectedRow {
-                if tableView.numberOfRows(inSection: 1) > index.row{
-                    let nowRecipeId = (tableView.cellForRow(at: index) as? RecipeTableViewCell)?.recipe.id
-                    if nowRecipeId != nil && selectedRecipeId != nil{
-                        if nowRecipeId! == selectedRecipeId!{
-                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: index, animated: true)
-                            }
-                        }
-                    }
-                }
-            }
-            selectedRecipeId = nil
         }
     }
     

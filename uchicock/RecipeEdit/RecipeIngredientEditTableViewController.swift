@@ -36,6 +36,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
+    
+    var onDoneBlock: ((Bool, Bool, Bool, String, String, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, mustFlag, recipeIngredientId  in }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -241,7 +243,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .destructive){
                     action in
                     self.deleteFlag = true
-                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)
+                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -252,7 +255,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "外す",style: .destructive){
                     action in
                     self.deleteFlag = true
-                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)
+                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -331,6 +335,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        self.onDoneBlock(true, self.deleteFlag, self.isAddMode, "", "", true, "")
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -368,23 +373,30 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     try! realm.write {
                         realm.add(self.setIngredient(0))
                     }
-                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
+                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(1))
                     }
-                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
+                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(2))
                     }
-                    self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)}))
+                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.dismiss(animated: true, completion: nil)
+                }))
                 registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 registAlertView.alertStatusBarStyle = Style.statusBarStyle
                 registAlertView.modalPresentationCapturesStatusBarAppearance = true
                 present(registAlertView, animated: true, completion: nil)
             }else{
-                self.performSegue(withIdentifier: "UnwindToRecipeEdit", sender: self)
+                self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

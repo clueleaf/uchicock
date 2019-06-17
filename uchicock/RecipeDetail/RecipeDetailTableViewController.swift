@@ -80,12 +80,27 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
+
         setupVC()
+        if let index = indexPathForSelectedRow {
+            if tableView.numberOfRows(inSection: 1) > index.row{
+                let nowIngredientId = (tableView.cellForRow(at: index) as? RecipeIngredientListTableViewCell)?.ingredientId
+                if nowIngredientId != nil && selectedIngredientId != nil{
+                    if nowIngredientId! == selectedIngredientId!{
+                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.tableView.deselectRow(at: index, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        selectedIngredientId = nil
     }
     
     private func setupVC(){
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
@@ -209,20 +224,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
             
-            if let index = indexPathForSelectedRow {
-                if tableView.numberOfRows(inSection: 1) > index.row{
-                    let nowIngredientId = (tableView.cellForRow(at: index) as? RecipeIngredientListTableViewCell)?.ingredientId
-                    if nowIngredientId != nil && selectedIngredientId != nil{
-                        if nowIngredientId! == selectedIngredientId!{
-                            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: index, animated: true)
-                            }
-                        }
-                    }
-                }
-            }
-            selectedIngredientId = nil
             let realm = try! Realm()
             try! realm.write {
                 recipe.lastViewDate = Date()
