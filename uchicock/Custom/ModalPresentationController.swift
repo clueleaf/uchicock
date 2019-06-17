@@ -34,6 +34,7 @@ class ModalPresentationController: UIPresentationController {
         containerView.insertSubview(overlayView, at: 0)
         
         // トランジションを実行
+        presentedViewController.modalPresentationCapturesStatusBarAppearance = true
         presentedViewController.transitionCoordinator?.animate(alongsideTransition: {[weak self] context in
             self?.overlayView.alpha = self!.overlayAlpha
             }, completion:nil)
