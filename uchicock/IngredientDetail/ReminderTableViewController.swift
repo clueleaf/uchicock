@@ -30,7 +30,7 @@ class ReminderTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "リマインダーへ登録"
+        self.navigationItem.title = "リマインダー"
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.setCheckState(.unchecked, animated: true)
         dateFlag.boxLineWidth = 1.0

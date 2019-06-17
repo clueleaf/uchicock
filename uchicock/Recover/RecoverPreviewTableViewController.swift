@@ -18,6 +18,8 @@ class RecoverPreviewTableViewController: UITableViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
+    
+    var onDoneBlock = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,4 +150,11 @@ class RecoverPreviewTableViewController: UITableViewController {
             return UITableViewCell()
         }
     }
+    
+    // MARK: - IBAction
+    @IBAction func returnButtonTapped(_ sender: UIButton) {
+        self.onDoneBlock()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

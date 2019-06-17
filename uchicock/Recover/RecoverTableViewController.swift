@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import M13Checkbox
 
-class RecoverTableViewController: UITableViewController {
+class RecoverTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
@@ -42,14 +42,16 @@ class RecoverTableViewController: UITableViewController {
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+
         tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+    }
+    
+    private func cellDeselectAnimation(){
+        if let index = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -278,7 +280,23 @@ class RecoverTableViewController: UITableViewController {
                 }
             }else{
                 if isRecovering == false {
-                    performSegue(withIdentifier: "PushPreview", sender: indexPath)
+                    let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                    let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
+                    nvc.modalPresentationStyle = .custom
+                    nvc.transitioningDelegate = self
+                    let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
+                    let realm = try! Realm()
+                    if indexPath.row - 1 < recoverableSampleRecipeList.count{
+                        let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
+                        vc.recipe = recipe
+                    }else{
+                        let recipe = realm.objects(Recipe.self).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
+                        vc.recipe = recipe
+                    }
+                    vc.onDoneBlock = {
+                        self.cellDeselectAnimation()
+                    }
+                    present(nvc, animated: true)
                 }
             }
         }
@@ -412,21 +430,10 @@ class RecoverTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PushPreview" {
-            let vc = segue.destination as! RecoverPreviewTableViewController
-            if let indexPath = sender as? IndexPath{
-                let realm = try! Realm()
-                if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
-                    vc.recipe = recipe
-                }else{
-                    let recipe = realm.objects(Recipe.self).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
-                    vc.recipe = recipe
-                }
-            }
-        }
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
     }
 
 }
