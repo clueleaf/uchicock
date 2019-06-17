@@ -362,21 +362,12 @@
                         <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>
                         <outlet property="stockLabel" destination="c1v-8e-XYX" id="L0B-ig-fa4"/>
                         <segue destination="Q8M-CT-PU2" kind="show" identifier="PushRecipeDetail" id="1g7-6l-jO6"/>
-                        <segue destination="ApZ-Qb-Pdj" kind="presentation" identifier="CreateEvent" modalPresentationStyle="pageSheet" id="3q6-Rc-fsQ"/>
                         <segue destination="WkO-TB-fBh" kind="presentation" identifier="PushEditIngredient" modalPresentationStyle="fullScreen" id="dSa-zg-Pbu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njQ-9w-Jog" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-826.39999999999998" y="1782.4587706146929"/>
-        </scene>
-        <!--Reminder-->
-        <scene sceneID="lR2-YB-JcF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Reminder" id="ApZ-Qb-Pdj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dXO-oX-f7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-74" y="1801"/>
         </scene>
         <!--IngredientEdit-->
         <scene sceneID="hDv-8D-eZJ">

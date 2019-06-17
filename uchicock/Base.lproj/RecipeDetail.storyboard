@@ -471,7 +471,6 @@
                         <outlet property="star3" destination="7hI-6j-UuT" id="dC4-ka-KWF"/>
                         <outlet property="starLabel" destination="nKc-u7-kAR" id="9B3-kG-xbj"/>
                         <segue destination="pbh-1D-LNW" kind="presentation" identifier="PushEditRecipe" modalPresentationStyle="fullScreen" id="lgY-f5-jox"/>
-                        <segue destination="bRw-Lt-ksr" kind="presentation" identifier="PushReminder" modalPresentationStyle="pageSheet" id="m0y-qe-rS0"/>
                         <segue destination="jwj-FT-ox5" kind="show" identifier="PushIngredientDetail" id="tjp-CU-ZRC"/>
                     </connections>
                 </tableViewController>
@@ -486,14 +485,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zb-Z1-coU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-63" y="489"/>
-        </scene>
-        <!--Reminder-->
-        <scene sceneID="n0r-EA-uKU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Reminder" id="bRw-Lt-ksr" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pek-Us-3En" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-63" y="704"/>
         </scene>
         <!--IngredientDetail-->
         <scene sceneID="f9p-hB-VXa">

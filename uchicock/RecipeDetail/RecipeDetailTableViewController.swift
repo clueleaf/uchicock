@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController{
+class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
@@ -80,9 +80,12 @@ class RecipeDetailTableViewController: UITableViewController{
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
-
+        setupVC()
+    }
+    
+    private func setupVC(){
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
@@ -95,7 +98,7 @@ class RecipeDetailTableViewController: UITableViewController{
         shareButtonLabel.textColor = Style.labelTextColor
         openInSafariButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
-
+        
         photoBackground.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -140,13 +143,13 @@ class RecipeDetailTableViewController: UITableViewController{
                 photoHeight = 0.0
             }
             updateHeaderView()
-
+            
             recipeName.text = recipe.recipeName
             recipeName.textColor = Style.labelTextColor
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm"
             lastViewDateLabel.text = recipe.lastViewDate == nil ? "最終閲覧：--" : "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
-
+            
             switch recipe.favorites{
             case 0:
                 setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
@@ -177,13 +180,13 @@ class RecipeDetailTableViewController: UITableViewController{
             default:
                 method.text = "その他"
             }
-
+            
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
             madeNum = recipe.madeNum
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()
-
+            
             editButton.backgroundColor = Style.secondaryColor
             editButton.tintColor = Style.basicBackgroundColor
             shareButton.backgroundColor = Style.secondaryColor
@@ -201,7 +204,7 @@ class RecipeDetailTableViewController: UITableViewController{
                 openInSafariButton.isEnabled = false
                 openInSafariButton.backgroundColor = Style.badgeDisableBackgroundColor
             }
-
+            
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
@@ -403,7 +406,20 @@ class RecipeDetailTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
             (action, indexPath) in
-            self.performSegue(withIdentifier: "PushReminder", sender: indexPath)
+            let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
+            guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
+                return
+            }
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
+                return
+            }
+            vc.ingredientName = self.recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            vc.onDoneBlock = {
+                self.setupVC()
+            }
+            self.present(nvc, animated: true)
         }
         reminder.backgroundColor = Style.tableViewCellReminderBackgroundColor
         
@@ -649,6 +665,12 @@ class RecipeDetailTableViewController: UITableViewController{
         present(alertView, animated: true, completion: nil)
     }
     
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushIngredientDetail" {
@@ -661,12 +683,6 @@ class RecipeDetailTableViewController: UITableViewController{
             let enc = segue.destination as! UINavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
-        }else if segue.identifier == "PushReminder" {
-            let enc = segue.destination as! UINavigationController
-            let evc = enc.visibleViewController as! ReminderTableViewController
-            if let indexPath = sender as? IndexPath{
-                evc.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
-            }
         }
     }
     

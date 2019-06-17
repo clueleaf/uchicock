@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import M13Checkbox
 
-class IngredientDetailTableViewController: UITableViewController {
+class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
     
     @IBOutlet weak var ingredientName: CopyableLabel!
@@ -60,9 +60,13 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
-        
+        setupVC()
+    }
+    
+    private func setupVC(){
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
+
         categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
@@ -94,7 +98,7 @@ class IngredientDetailTableViewController: UITableViewController {
             
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
-
+            
             switch ingredient.category{
             case 0:
                 category.text = "アルコール"
@@ -115,7 +119,7 @@ class IngredientDetailTableViewController: UITableViewController {
             }
             stock.animationDuration = 0.3
             stock.stateChangeAnimation = .expand(.fill)
-
+            
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
             
@@ -141,7 +145,7 @@ class IngredientDetailTableViewController: UITableViewController {
             }else{
                 deleteContainerView.isHidden = false
             }
-
+            
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
@@ -159,7 +163,6 @@ class IngredientDetailTableViewController: UITableViewController {
                     }
                 }
             }
-
             selectedRecipeId = nil
         }
     }
@@ -342,7 +345,20 @@ class IngredientDetailTableViewController: UITableViewController {
     }
     
     @IBAction func reminderButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "CreateEvent", sender: UIBarButtonItem())
+        let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
+        guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
+            return
+        }
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
+            return
+        }
+        vc.ingredientName = self.ingredient.ingredientName
+        vc.onDoneBlock = {
+            self.setupVC()
+        }
+        present(nvc, animated: true)
     }
     
     @IBAction func amazonButtonTapped(_ sender: UIButton) {
@@ -386,6 +402,12 @@ class IngredientDetailTableViewController: UITableViewController {
     func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
+    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -399,10 +421,6 @@ class IngredientDetailTableViewController: UITableViewController {
                 selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
                 vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
             }
-        }else if segue.identifier == "CreateEvent" {
-            let enc = segue.destination as! UINavigationController
-            let evc = enc.visibleViewController as! ReminderTableViewController
-            evc.ingredientName = self.ingredient.ingredientName
         }
     }
     

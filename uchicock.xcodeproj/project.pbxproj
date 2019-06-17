@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */; };
+		9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */; };
 		9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.release.xcconfig"; sourceTree = "<group>"; };
+		9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
 		9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderTableViewController.swift; path = IngredientDetail/ReminderTableViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */,
 				9B1638BE22A7E17000B7C3A7 /* Extension.swift */,
 				9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */,
+				9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */,
 				9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */,
 				9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */,
+				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9B1638C222A7E17100B7C3A7 /* CopyableLabel.swift in Sources */,
 				9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */,
