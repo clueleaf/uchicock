@@ -36,6 +36,8 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var lastViewedOrderPrimaryCheckbox: M13Checkbox!
     @IBOutlet weak var lastViewedOrderSecondaryCheckbox: M13Checkbox!
     
+    @IBOutlet weak var firstSeparator: UIView!
+    
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var filterExplanationLabel: UILabel!
     @IBOutlet weak var selectAllButton: UIButton!
@@ -74,6 +76,8 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var methodOthersCheckbox: M13Checkbox!
     @IBOutlet weak var methodWarningImage: UIImageView!
     @IBOutlet weak var methodWarningLabel: UILabel!
+    
+    @IBOutlet weak var secondSeparator: UIView!
     
     @IBOutlet weak var searchButton: UIButton!
     
@@ -202,6 +206,8 @@ class RecipeSearchViewController: UIViewController {
         favoriteOrderLabel.textColor = Style.labelTextColor
         lastViewedOrderLabel.textColor = Style.labelTextColor
         
+        firstSeparator.backgroundColor = Style.labelTextColor
+        
         filterLabel.textColor = Style.labelTextColor
         filterExplanationLabel.textColor = Style.labelTextColorLight
         selectAllButton.tintColor = Style.secondaryColor
@@ -235,6 +241,13 @@ class RecipeSearchViewController: UIViewController {
         methodWarningImage.tintColor = Style.secondaryColor
         methodWarningLabel.textColor = Style.secondaryColor
         setMethodWarningVisibility()
+        
+        secondSeparator.backgroundColor = Style.labelTextColor
+        
+        searchButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchButton.layer.borderWidth = 1.0
+        searchButton.layer.cornerRadius = 5
+        searchButton.tintColor = Style.secondaryColor
     }
     
     private func setFavoriteWarningVisibility(){
