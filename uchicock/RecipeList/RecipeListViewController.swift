@@ -10,22 +10,12 @@ import UIKit
 import RealmSwift
 import M13Checkbox
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var segmentedControlContainer: UIView!
-    @IBOutlet weak var favoriteSelect: UISegmentedControl!
-    @IBOutlet weak var order: UISegmentedControl!
-    @IBOutlet weak var buildCheckbox: M13Checkbox!
-    @IBOutlet weak var stirCheckbox: M13Checkbox!
-    @IBOutlet weak var shakeCheckbox: M13Checkbox!
-    @IBOutlet weak var blendCheckbox: M13Checkbox!
-    @IBOutlet weak var othersCheckbox: M13Checkbox!
-    @IBOutlet weak var buildFilterButton: UIButton!
-    @IBOutlet weak var stirFilterButton: UIButton!
-    @IBOutlet weak var shakeFilterButton: UIButton!
-    @IBOutlet weak var blendFilterButton: UIButton!
-    @IBOutlet weak var othersFilterButton: UIButton!
+    @IBOutlet weak var searchContainer: UIView!
+    @IBOutlet weak var searchConditionLabel: UILabel!
+    @IBOutlet weak var searchConditionModifyButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,17 +45,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(false, forKey: "firstLaunch")
         }
         
-        initM13CheckboxStyle(buildCheckbox)
-        initM13CheckboxStyle(stirCheckbox)
-        initM13CheckboxStyle(shakeCheckbox)
-        initM13CheckboxStyle(blendCheckbox)
-        initM13CheckboxStyle(othersCheckbox)
+//        initM13CheckboxStyle(buildCheckbox)
+//        initM13CheckboxStyle(stirCheckbox)
+//        initM13CheckboxStyle(shakeCheckbox)
+//        initM13CheckboxStyle(blendCheckbox)
+//        initM13CheckboxStyle(othersCheckbox)
         
-        buildFilterButton.contentHorizontalAlignment = .left
-        stirFilterButton.contentHorizontalAlignment = .left
-        shakeFilterButton.contentHorizontalAlignment = .left
-        blendFilterButton.contentHorizontalAlignment = .left
-        othersFilterButton.contentHorizontalAlignment = .left
+//        buildFilterButton.contentHorizontalAlignment = .left
+//        stirFilterButton.contentHorizontalAlignment = .left
+//        shakeFilterButton.contentHorizontalAlignment = .left
+//        blendFilterButton.contentHorizontalAlignment = .left
+//        othersFilterButton.contentHorizontalAlignment = .left
         
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         
@@ -81,18 +71,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
+        setVC()
+    }
+    
+    private func setVC(){
+        searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
-        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
-        favoriteSelect.setTitleTextAttributes(attribute, for: .normal)
-        order.setTitleTextAttributes(attribute, for: .normal)
-        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
-        updateMethodFilterColorOf(stirCheckbox, and: stirFilterButton)
-        updateMethodFilterColorOf(shakeCheckbox, and: shakeFilterButton)
-        updateMethodFilterColorOf(blendCheckbox, and: blendFilterButton)
-        updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
+        
+        searchConditionLabel.textColor = Style.labelTextColor
 
+        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchConditionModifyButton.layer.borderWidth = 1.0
+        searchConditionModifyButton.layer.cornerRadius = 5
+        searchConditionModifyButton.tintColor = Style.secondaryColor
+        
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         
@@ -112,7 +105,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-
+        
         reloadRecipeList()
         tableView.reloadData()
         
@@ -149,47 +142,47 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - Set Color
-    private func initM13CheckboxStyle(_ checkbox: M13Checkbox){
-        checkbox.boxLineWidth = 1.0
-        checkbox.markType = .checkmark
-        checkbox.boxType = .circle
-        checkbox.stateChangeAnimation = .fade(.fill)
-        checkbox.animationDuration = 0
-        checkbox.setCheckState(.checked, animated: true)
-        checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand(.fill)
-    }
+//    private func initM13CheckboxStyle(_ checkbox: M13Checkbox){
+//        checkbox.boxLineWidth = 1.0
+//        checkbox.markType = .checkmark
+//        checkbox.boxType = .circle
+//        checkbox.stateChangeAnimation = .fade(.fill)
+//        checkbox.animationDuration = 0
+//        checkbox.setCheckState(.checked, animated: true)
+//        checkbox.animationDuration = 0.3
+//        checkbox.stateChangeAnimation = .expand(.fill)
+//    }
     
-    private func updateMethodFilterColorOf(_ checkbox: M13Checkbox, and button: UIButton){
-        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-        if checkbox.checkState == .checked{
-            button.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                button.tintColor = Style.labelTextColor
-            }
-        }else if checkbox.checkState == .unchecked{
-            button.tintColor = Style.labelTextColorLight
-            if Style.no == "6" {
-                button.tintColor = FlatColor.white
-            }
-        }
-    }
+//    private func updateMethodFilterColorOf(_ checkbox: M13Checkbox, and button: UIButton){
+//        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+//        if checkbox.checkState == .checked{
+//            button.tintColor = Style.secondaryColor
+//            if Style.no == "6" {
+//                button.tintColor = Style.labelTextColor
+//            }
+//        }else if checkbox.checkState == .unchecked{
+//            button.tintColor = Style.labelTextColorLight
+//            if Style.no == "6" {
+//                button.tintColor = FlatColor.white
+//            }
+//        }
+//    }
     
-    private func updateMethodFilterColorWhenButtonTappedOf(_ checkbox: M13Checkbox, and button: UIButton){
-        if checkbox.checkState == .checked{
-            checkbox.setCheckState(.unchecked, animated: true)
-            button.tintColor = Style.labelTextColorLight
-            if Style.no == "6" {
-                button.tintColor = FlatColor.white
-            }
-        }else if checkbox.checkState == .unchecked{
-            checkbox.setCheckState(.checked, animated: true)
-            button.tintColor = Style.secondaryColor
-            if Style.no == "6" {
-                button.tintColor = Style.labelTextColor
-            }
-        }
-    }
+//    private func updateMethodFilterColorWhenButtonTappedOf(_ checkbox: M13Checkbox, and button: UIButton){
+//        if checkbox.checkState == .checked{
+//            checkbox.setCheckState(.unchecked, animated: true)
+//            button.tintColor = Style.labelTextColorLight
+//            if Style.no == "6" {
+//                button.tintColor = FlatColor.white
+//            }
+//        }else if checkbox.checkState == .unchecked{
+//            checkbox.setCheckState(.checked, animated: true)
+//            button.tintColor = Style.secondaryColor
+//            if Style.no == "6" {
+//                button.tintColor = Style.labelTextColor
+//            }
+//        }
+//    }
     
     func getTextFieldFromView(view: UIView) -> UITextField?{
         for subview in view.subviews{
@@ -251,69 +244,69 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.removeAll{ !$0.name.katakana().lowercased().withoutMiddleDot().contains(searchBarTextWithoutSpace().katakana().lowercased().withoutMiddleDot()) }
         }
         
-        recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
-        
-        if buildCheckbox.checkState == .unchecked{
-            recipeBasicList.removeAll{
-                $0.method == 0
-            }
-        }
-        if stirCheckbox.checkState == .unchecked{
-            recipeBasicList.removeAll{
-                $0.method == 1
-            }
-        }
-        if shakeCheckbox.checkState == .unchecked{
-            recipeBasicList.removeAll{
-                $0.method == 2
-            }
-        }
-        if blendCheckbox.checkState == .unchecked{
-            recipeBasicList.removeAll{
-                $0.method == 3
-            }
-        }
-        if othersCheckbox.checkState == .unchecked{
-            recipeBasicList.removeAll{
-                $0.method == 4
-            }
-        }
+//        recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
+//
+//        if buildCheckbox.checkState == .unchecked{
+//            recipeBasicList.removeAll{
+//                $0.method == 0
+//            }
+//        }
+//        if stirCheckbox.checkState == .unchecked{
+//            recipeBasicList.removeAll{
+//                $0.method == 1
+//            }
+//        }
+//        if shakeCheckbox.checkState == .unchecked{
+//            recipeBasicList.removeAll{
+//                $0.method == 2
+//            }
+//        }
+//        if blendCheckbox.checkState == .unchecked{
+//            recipeBasicList.removeAll{
+//                $0.method == 3
+//            }
+//        }
+//        if othersCheckbox.checkState == .unchecked{
+//            recipeBasicList.removeAll{
+//                $0.method == 4
+//            }
+//        }
 
-        if order.selectedSegmentIndex == 0{
-            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-        }else if order.selectedSegmentIndex == 1{
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                if a.shortageNum == b.shortageNum {
-                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                } else {
-                    return a.shortageNum < b.shortageNum
-                }
-            })
-        }else if order.selectedSegmentIndex == 2{
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                if a.lastViewDate == nil{
-                    if b.lastViewDate == nil{
-                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                    }else{
-                        return false
-                    }
-                }else{
-                    if b.lastViewDate == nil{
-                        return true
-                    }else{
-                        return a.lastViewDate! > b.lastViewDate!
-                    }
-                }
-            })
-        }else if order.selectedSegmentIndex == 3{
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                if a.madeNum == b.madeNum {
-                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                } else {
-                    return a.madeNum > b.madeNum
-                }
-            })
-        }
+//        if order.selectedSegmentIndex == 0{
+//            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+//        }else if order.selectedSegmentIndex == 1{
+//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+//                if a.shortageNum == b.shortageNum {
+//                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
+//                } else {
+//                    return a.shortageNum < b.shortageNum
+//                }
+//            })
+//        }else if order.selectedSegmentIndex == 2{
+//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+//                if a.lastViewDate == nil{
+//                    if b.lastViewDate == nil{
+//                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+//                    }else{
+//                        return false
+//                    }
+//                }else{
+//                    if b.lastViewDate == nil{
+//                        return true
+//                    }else{
+//                        return a.lastViewDate! > b.lastViewDate!
+//                    }
+//                }
+//            })
+//        }else if order.selectedSegmentIndex == 3{
+//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+//                if a.madeNum == b.madeNum {
+//                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
+//                } else {
+//                    return a.madeNum > b.madeNum
+//                }
+//            })
+//        }
         
         if let allRecipeNum = recipeList?.count{
             self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(allRecipeNum) + ")"
@@ -463,15 +456,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - IBAction
-    @IBAction func favoriteStateTapped(_ sender: UISegmentedControl) {
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func orderTapped(_ sender: UISegmentedControl) {
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
+//    @IBAction func favoriteStateTapped(_ sender: UISegmentedControl) {
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func orderTapped(_ sender: UISegmentedControl) {
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
@@ -489,66 +482,84 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
-        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
+    @IBAction func searchConditionModifyButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        let vc = nvc.visibleViewController as! RecipeSearchViewController
+        vc.onDoneBlock = {
+            self.setVC()
+        }
+        present(nvc, animated: true)
     }
     
-    @IBAction func stirCheckboxTapped(_ sender: M13Checkbox) {
-        updateMethodFilterColorOf(stirCheckbox, and: stirFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
+//    @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
+//        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func stirCheckboxTapped(_ sender: M13Checkbox) {
+//        updateMethodFilterColorOf(stirCheckbox, and: stirFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func shakeCheckboxTapped(_ sender: M13Checkbox) {
+//        updateMethodFilterColorOf(shakeCheckbox, and: shakeFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func blendCheckboxTapped(_ sender: M13Checkbox) {
+//        updateMethodFilterColorOf(blendCheckbox, and: blendFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func othersCheckboxTapped(_ sender: M13Checkbox) {
+//        updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func buildFilterButtonTapped(_ sender: UIButton) {
+//        updateMethodFilterColorWhenButtonTappedOf(buildCheckbox, and: buildFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func stirFilterButtonTapped(_ sender: UIButton) {
+//        updateMethodFilterColorWhenButtonTappedOf(stirCheckbox, and: stirFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func shakeFilterButtonTapped(_ sender: UIButton) {
+//        updateMethodFilterColorWhenButtonTappedOf(shakeCheckbox, and: shakeFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func blendFilterButtonTapped(_ sender: UIButton) {
+//        updateMethodFilterColorWhenButtonTappedOf(blendCheckbox, and: blendFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
+//
+//    @IBAction func othersFilterButtonTapped(_ sender: UIButton) {
+//        updateMethodFilterColorWhenButtonTappedOf(othersCheckbox, and: othersFilterButton)
+//        reloadRecipeBasicList()
+//        tableView.reloadData()
+//    }
     
-    @IBAction func shakeCheckboxTapped(_ sender: M13Checkbox) {
-        updateMethodFilterColorOf(shakeCheckbox, and: shakeFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
     }
-    
-    @IBAction func blendCheckboxTapped(_ sender: M13Checkbox) {
-        updateMethodFilterColorOf(blendCheckbox, and: blendFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func othersCheckboxTapped(_ sender: M13Checkbox) {
-        updateMethodFilterColorOf(othersCheckbox, and: othersFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func buildFilterButtonTapped(_ sender: UIButton) {
-        updateMethodFilterColorWhenButtonTappedOf(buildCheckbox, and: buildFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func stirFilterButtonTapped(_ sender: UIButton) {
-        updateMethodFilterColorWhenButtonTappedOf(stirCheckbox, and: stirFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func shakeFilterButtonTapped(_ sender: UIButton) {
-        updateMethodFilterColorWhenButtonTappedOf(shakeCheckbox, and: shakeFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func blendFilterButtonTapped(_ sender: UIButton) {
-        updateMethodFilterColorWhenButtonTappedOf(blendCheckbox, and: blendFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func othersFilterButtonTapped(_ sender: UIButton) {
-        updateMethodFilterColorWhenButtonTappedOf(othersCheckbox, and: othersFilterButton)
-        reloadRecipeBasicList()
-        tableView.reloadData()
-    }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {
