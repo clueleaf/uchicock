@@ -70,7 +70,6 @@ class RecipeSearchViewController: UIViewController {
         madeNumOrderLabel.textColor = Style.labelTextColor
         favoriteOrderLabel.textColor = Style.labelTextColor
         lastViewedOrderLabel.textColor = Style.labelTextColor
-        
     }
     
     // MARK: - M13Checkbox
@@ -81,27 +80,18 @@ class RecipeSearchViewController: UIViewController {
         checkbox.stateChangeAnimation = .fade(.fill)
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)
+        if checkState == .mixed{
+            checkbox.isEnabled = false
+            checkbox.tintColor = Style.badgeDisableBackgroundColor
+        }else{
+            checkbox.isEnabled = true
+            checkbox.tintColor = Style.secondaryColor
+        }
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand(.fill)
-//        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
         checkbox.contentHorizontalAlignment = .center
     }
-    
-//    private func updateMethodFilterColorOf(_ checkbox: M13Checkbox, and button: UIButton){
-//        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
-//        if checkbox.checkState == .checked{
-//            button.tintColor = Style.secondaryColor
-//            if Style.no == "6" {
-//                button.tintColor = Style.labelTextColor
-//            }
-//        }else if checkbox.checkState == .unchecked{
-//            button.tintColor = Style.labelTextColorLight
-//            if Style.no == "6" {
-//                button.tintColor = FlatColor.white
-//            }
-//        }
-//    }
-    
     
     // MARK: - IBAction
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -115,35 +105,137 @@ class RecipeSearchViewController: UIViewController {
     }
     
     @IBAction func nameOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxChecked(nameOrderPrimaryCheckbox)
+        setCheckboxMixed(nameOrderSecondaryCheckbox)
+        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
+        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
+        setCheckboxMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
+        setCheckboxMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
+        setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func nameOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxChecked(nameOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func shortageOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUnchecked(nameOrderPrimaryCheckbox)
+        setCheckboxChecked(nameOrderSecondaryCheckbox)
+        setCheckboxChecked(shortageOrderPrimaryCheckbox)
+        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderSecondaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderSecondaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func shortageOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
+        setCheckboxChecked(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func madeNumOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUnchecked(nameOrderPrimaryCheckbox)
+        setCheckboxChecked(nameOrderSecondaryCheckbox)
+        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
+        setCheckboxUnchecked(shortageOrderSecondaryCheckbox)
+        setCheckboxChecked(madeNumOrderPrimaryCheckbox)
+        setCheckboxMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderSecondaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func madeNumOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxChecked(madeNumOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func favoriteOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUnchecked(nameOrderPrimaryCheckbox)
+        setCheckboxChecked(nameOrderSecondaryCheckbox)
+        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
+        setCheckboxUnchecked(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderSecondaryCheckbox)
+        setCheckboxChecked(favoriteOrderPrimaryCheckbox)
+        setCheckboxMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func favoriteOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxChecked(favoriteOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func lastViewedOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUnchecked(nameOrderPrimaryCheckbox)
+        setCheckboxMixed(nameOrderSecondaryCheckbox)
+        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
+        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
+        setCheckboxMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
+        setCheckboxMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxChecked(lastViewedOrderPrimaryCheckbox)
+        setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
     }
     
     @IBAction func lastViewedOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+        setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
+        setCheckboxChecked(lastViewedOrderSecondaryCheckbox)
     }
     
+    private func setCheckboxChecked(_ checkbox: M13Checkbox){
+        checkbox.setCheckState(.checked, animated: true)
+        checkbox.isEnabled = true
+        checkbox.tintColor = Style.secondaryColor
+    }
+
+    private func setCheckboxUnchecked(_ checkbox: M13Checkbox){
+        checkbox.setCheckState(.unchecked, animated: true)
+        checkbox.isEnabled = true
+        checkbox.tintColor = Style.secondaryColor
+    }
+
+    
+    private func setCheckboxUncheckedIfNotMixed(_ checkbox: M13Checkbox){
+        if checkbox.checkState != .mixed{
+            checkbox.setCheckState(.unchecked, animated: true)
+            checkbox.isEnabled = true
+            checkbox.tintColor = Style.secondaryColor
+        }
+    }
+    
+    private func setCheckboxMixed(_ checkbox: M13Checkbox){
+        checkbox.setCheckState(.mixed, animated: true)
+        checkbox.isEnabled = false
+        checkbox.tintColor = Style.badgeDisableBackgroundColor
+    }
+
     
 //    @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
 //        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
