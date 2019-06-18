@@ -279,37 +279,37 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
         }
         
-        if recipeFilterStar0{
+        if recipeFilterStar0 == false{
             recipeBasicList.removeAll{ $0.favorites == 0 }
         }
-        if recipeFilterStar1{
+        if recipeFilterStar1 == false{
             recipeBasicList.removeAll{ $0.favorites == 1 }
         }
-        if recipeFilterStar2{
+        if recipeFilterStar2 == false{
             recipeBasicList.removeAll{ $0.favorites == 2 }
         }
-        if recipeFilterStar3{
+        if recipeFilterStar3 == false{
             recipeBasicList.removeAll{ $0.favorites == 3 }
         }
-        if recipeFilterLong{
+        if recipeFilterLong == false{
             // TODO
         }
-        if recipeFilterShort{
+        if recipeFilterShort == false{
             // TODO
         }
-        if recipeFilterBuild{
+        if recipeFilterBuild == false{
             recipeBasicList.removeAll{ $0.method == 0 }
         }
-        if recipeFilterStir{
+        if recipeFilterStir == false{
             recipeBasicList.removeAll{ $0.method == 1 }
         }
-        if recipeFilterShake{
+        if recipeFilterShake == false{
             recipeBasicList.removeAll{ $0.method == 2 }
         }
-        if recipeFilterBlend{
+        if recipeFilterBlend == false{
             recipeBasicList.removeAll{ $0.method == 3 }
         }
-        if recipeFilterOthers{
+        if recipeFilterOthers == false{
             recipeBasicList.removeAll{ $0.method == 4 }
         }
 
