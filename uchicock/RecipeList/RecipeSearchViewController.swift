@@ -35,6 +35,11 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var lastViewedOrderSecondaryCheckbox: M13Checkbox!
     
     
+    
+    
+    var recipeSortPrimary = 1
+    var recipeSortSecondary = 0
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -44,18 +49,90 @@ class RecipeSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initCheckbox(nameOrderPrimaryCheckbox, with: .checked)
-        initCheckbox(nameOrderSecondaryCheckbox, with: .mixed)
-        initCheckbox(shortageOrderPrimaryCheckbox, with: .unchecked)
-        initCheckbox(shortageOrderSecondaryCheckbox, with: .mixed)
-        initCheckbox(madeNumOrderPrimaryCheckbox, with: .unchecked)
-        initCheckbox(madeNumOrderSecondaryCheckbox, with: .mixed)
-        initCheckbox(favoriteOrderPrimaryCheckbox, with: .unchecked)
-        initCheckbox(favoriteOrderSecondaryCheckbox, with: .mixed)
-        initCheckbox(lastViewedOrderPrimaryCheckbox, with: .unchecked)
-        initCheckbox(lastViewedOrderSecondaryCheckbox, with: .mixed)
+        readUserDefaults()
+        
+        switch recipeSortPrimary{
+        case 1:
+            initPrimaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
+        case 2:
+            initPrimaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            case 3:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .checked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            case 4:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .checked, lastViewedState: .unchecked)
+            case 5:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .checked)
+            default:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            }
+        case 3:
+            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .checked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
+            case 2:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
+            case 4:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .checked, lastViewedState: .unchecked)
+            case 5:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .checked)
+            default:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
+            }
+        case 4:
+            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .checked, lastViewedState: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
+            case 2:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
+            case 3:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .checked, favoriteState: .mixed, lastViewedState: .unchecked)
+            case 5:
+                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .checked)
+            default:
+                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
+            }
+        case 5:
+            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .checked)
+            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
+        default:
+            initPrimaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
+            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
+        }
     }
     
+    private func readUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: ["recipe-sort-primary" : 1])
+        defaults.register(defaults: ["recipe-sort-secondary" : 0])
+
+        recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
+        recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
+    }
+    
+    private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
+                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+        initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
+        initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
+        initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
+        initCheckbox(favoriteOrderPrimaryCheckbox, with: favoriteState)
+        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
+    }
+    
+    private func initSecondaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
+                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+        initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
+        initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
+        initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)
+        initCheckbox(favoriteOrderSecondaryCheckbox, with: favoriteState)
+        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewedState)
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -95,8 +172,42 @@ class RecipeSearchViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.saveUserDefaults()
         self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func saveUserDefaults(){
+        let defaults = UserDefaults.standard
+        var primarySort = 1
+        var secondarySort = 0
+        
+        if nameOrderPrimaryCheckbox.checkState == .checked{
+            primarySort = 1
+        }else if shortageOrderPrimaryCheckbox.checkState == .checked{
+            primarySort = 2
+        }else if madeNumOrderPrimaryCheckbox.checkState == .checked{
+            primarySort = 3
+        }else if favoriteOrderPrimaryCheckbox.checkState == .checked{
+            primarySort = 4
+        }else if lastViewedOrderPrimaryCheckbox.checkState == .checked{
+            primarySort = 5
+        }
+        
+        if nameOrderSecondaryCheckbox.checkState == .checked {
+            secondarySort = 1
+        }else if shortageOrderSecondaryCheckbox.checkState == .checked{
+            secondarySort = 2
+        }else if madeNumOrderSecondaryCheckbox.checkState == .checked{
+            secondarySort = 3
+        }else if favoriteOrderSecondaryCheckbox.checkState == .checked{
+            secondarySort = 4
+        }else if lastViewedOrderSecondaryCheckbox.checkState == .checked{
+            secondarySort = 5
+        }
+        
+        defaults.set(primarySort, forKey: "recipe-sort-primary")
+        defaults.set(secondarySort, forKey: "recipe-sort-secondary")
     }
     
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -235,13 +346,4 @@ class RecipeSearchViewController: UIViewController {
         checkbox.isEnabled = false
         checkbox.tintColor = Style.badgeDisableBackgroundColor
     }
-
-    
-//    @IBAction func buildCheckboxTapped(_ sender: M13Checkbox) {
-//        updateMethodFilterColorOf(buildCheckbox, and: buildFilterButton)
-//        reloadRecipeBasicList()
-//        tableView.reloadData()
-//    }
-
-    
 }
