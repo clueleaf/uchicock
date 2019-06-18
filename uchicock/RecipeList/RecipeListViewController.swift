@@ -26,6 +26,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    
+    var recipeSortPrimary = 1
+    var recipeSortSecondary = 0
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -77,6 +81,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         
+        readUserDefaults()
+        setSearchConditionLabel()
         reloadRecipeList()
         tableView.reloadData()
 
@@ -111,6 +117,55 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         selectedRecipeId = nil
+    }
+    
+    private func readUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: ["recipe-sort-primary" : 1])
+        defaults.register(defaults: ["recipe-sort-secondary" : 0])
+        
+        recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
+        recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
+    }
+    
+    private func setSearchConditionLabel(){
+        var conditionText = ""
+        
+        switch recipeSortPrimary{
+        case 1:
+            conditionText = "名前順"
+        case 2:
+            conditionText = "作れる順"
+        case 3:
+            conditionText = "作った回数順"
+        case 4:
+            conditionText = "お気に入り順"
+        case 5:
+            conditionText = "最近見た順"
+        default:
+            conditionText = "名前順"
+        }
+        
+        if recipeSortPrimary > 1 && recipeSortPrimary < 5{
+            switch recipeSortSecondary{
+            case 1:
+                conditionText += " > 名前順"
+            case 2:
+                conditionText += " > 作れる順"
+            case 3:
+                conditionText += " > 作った回数順"
+            case 4:
+                conditionText += " > お気に入り順"
+            case 5:
+                conditionText += " > 最近見た順"
+            default:
+                conditionText += " > 名前順"
+            }
+        }
+        
+        conditionText += "、全レシピを表示"
+
+        searchConditionLabel.text = conditionText
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -214,41 +269,217 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 //            }
 //        }
 
-//        if order.selectedSegmentIndex == 0{
-//            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-//        }else if order.selectedSegmentIndex == 1{
-//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-//                if a.shortageNum == b.shortageNum {
-//                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-//                } else {
-//                    return a.shortageNum < b.shortageNum
-//                }
-//            })
-//        }else if order.selectedSegmentIndex == 2{
-//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-//                if a.lastViewDate == nil{
-//                    if b.lastViewDate == nil{
-//                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
-//                    }else{
-//                        return false
-//                    }
-//                }else{
-//                    if b.lastViewDate == nil{
-//                        return true
-//                    }else{
-//                        return a.lastViewDate! > b.lastViewDate!
-//                    }
-//                }
-//            })
-//        }else if order.selectedSegmentIndex == 3{
-//            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-//                if a.madeNum == b.madeNum {
-//                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-//                } else {
-//                    return a.madeNum > b.madeNum
-//                }
-//            })
-//        }
+        switch recipeSortPrimary{
+        case 1: // 名前順
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        case 2:
+            switch recipeSortSecondary{
+            case 1: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 3: // 作れる順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.madeNum == b.madeNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 4: // 作れる順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 5: // 作れる順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            default: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            }
+        case 3:
+            switch recipeSortSecondary{
+            case 1: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 2: // 作った回数順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 4: // 作った回数順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 5: // 作った回数順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            default: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            }
+        case 4:
+            switch recipeSortSecondary{
+            case 1: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 2: // お気に入り順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 3: // お気に入り順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.madeNum == b.madeNum {
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 5: // お気に入り順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            default: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            }
+        case 5: // 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    }else{
+                        return false
+                    }
+                }else{
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
+                }
+            })
+        default: // 名前順OK
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        }
         
         reloadRecipeResultList()
     }

@@ -108,8 +108,6 @@ class RecipeSearchViewController: UIViewController {
     
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: ["recipe-sort-primary" : 1])
-        defaults.register(defaults: ["recipe-sort-secondary" : 0])
 
         recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
         recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
