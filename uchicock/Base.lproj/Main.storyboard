@@ -35,10 +35,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3G-qs-jjB">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="701"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd5-gU-QZK">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="691.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="並べ替え" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-0D-VSL">
                                                 <rect key="frame" x="8" y="8" width="398" height="26"/>
@@ -52,7 +52,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONn-ps-mhv">
                                                 <rect key="frame" x="8" y="42" width="398" height="50.333333333333343"/>
                                                 <string key="text">レシピを指定した順で並べ替えます。
-第1優先が「作れる順」「作った回数順」「お気に入り順」の場合は、第2優先も指定できます。</string>
+第1優先順が「作れる順」「作った回数順」「お気に入り順」の場合は、第2優先順も指定できます。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -246,6 +246,17 @@
                                                 <state key="normal" title="全て解除"/>
                                                 <connections>
                                                     <action selector="deselectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="Igg-Dx-hWv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTO-p2-UZZ">
+                                                <rect key="frame" x="344" y="339.33333333333331" width="62" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="gVM-VU-NYd"/>
+                                                    <constraint firstAttribute="height" constant="30" id="iXx-g0-Mo6"/>
+                                                </constraints>
+                                                <state key="normal" title="全て選択"/>
+                                                <connections>
+                                                    <action selector="selectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="aNb-II-0wc"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するレシピを絞り込みます。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-DN-me2">
@@ -705,41 +716,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0in-CL-bNf">
-                                                <rect key="frame" x="30" y="700.33333333333337" width="354" height="36"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="36" id="dB0-VN-Ype"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="検索実行"/>
-                                                <connections>
-                                                    <action selector="searchButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="UAG-UG-pWU"/>
-                                                </connections>
-                                            </button>
-                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sO2-7u-HHG">
-                                                <rect key="frame" x="8" y="691.33333333333337" width="398" height="1"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="GsC-mO-xf4"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTO-p2-UZZ">
-                                                <rect key="frame" x="344" y="339.33333333333331" width="62" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="gVM-VU-NYd"/>
-                                                    <constraint firstAttribute="height" constant="30" id="iXx-g0-Mo6"/>
-                                                </constraints>
-                                                <state key="normal" title="全て選択"/>
-                                                <connections>
-                                                    <action selector="selectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="aNb-II-0wc"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="HyV-wW-FmF" firstAttribute="top" secondItem="eii-dt-XEv" secondAttribute="bottom" constant="16" id="0cM-gC-xE3"/>
                                             <constraint firstItem="Igk-pZ-bYC" firstAttribute="centerY" secondItem="93d-ih-tEA" secondAttribute="centerY" id="2qm-ZF-3XD"/>
-                                            <constraint firstItem="sO2-7u-HHG" firstAttribute="top" secondItem="RAT-ZJ-eeo" secondAttribute="bottom" constant="8" id="3Ac-lG-GhD"/>
                                             <constraint firstItem="ONn-ps-mhv" firstAttribute="top" secondItem="O2p-0D-VSL" secondAttribute="bottom" constant="8" id="4yu-XG-q1O"/>
                                             <constraint firstAttribute="trailing" secondItem="ONn-ps-mhv" secondAttribute="trailing" constant="8" id="5d5-jV-bt1"/>
                                             <constraint firstAttribute="trailing" secondItem="50x-T5-pXZ" secondAttribute="trailing" constant="8" id="5fz-nx-cK4"/>
@@ -756,9 +737,7 @@
                                             <constraint firstItem="1bW-bc-lux" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="Ffb-hg-m3b"/>
                                             <constraint firstAttribute="trailing" secondItem="nV3-Ov-07g" secondAttribute="trailing" constant="8" id="GY5-2q-7VC"/>
                                             <constraint firstItem="tWt-cp-KW6" firstAttribute="top" secondItem="ogS-f1-tDi" secondAttribute="bottom" constant="8" id="H1a-Ve-d08"/>
-                                            <constraint firstItem="sO2-7u-HHG" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="H1d-ey-sqF"/>
                                             <constraint firstItem="ogS-f1-tDi" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="HAn-Wb-6Mt"/>
-                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="0in-CL-bNf" secondAttribute="trailing" constant="30" id="Hfx-ZE-5Pb"/>
                                             <constraint firstItem="niH-Hf-Tm5" firstAttribute="top" secondItem="tWt-cp-KW6" secondAttribute="bottom" constant="8" id="ImG-w5-4pW"/>
                                             <constraint firstItem="mjO-Xo-Bwq" firstAttribute="centerY" secondItem="p8c-vx-Y0s" secondAttribute="centerY" id="JOU-IK-IM7"/>
                                             <constraint firstAttribute="trailing" secondItem="tWt-cp-KW6" secondAttribute="trailing" constant="8" id="L6S-G4-2Ji"/>
@@ -773,10 +752,8 @@
                                             <constraint firstItem="udC-NR-vnz" firstAttribute="leading" secondItem="eii-dt-XEv" secondAttribute="trailing" constant="8" id="Sfc-o2-cJP"/>
                                             <constraint firstItem="CNd-bb-exK" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="SkN-60-7zt"/>
                                             <constraint firstAttribute="trailing" secondItem="tj0-DN-me2" secondAttribute="trailing" constant="8" id="WDx-MJ-rHk"/>
-                                            <constraint firstItem="0in-CL-bNf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="30" id="WkV-SB-b7q"/>
                                             <constraint firstItem="mjO-Xo-Bwq" firstAttribute="leading" secondItem="p8c-vx-Y0s" secondAttribute="trailing" constant="8" id="Xlb-AP-hc8"/>
-                                            <constraint firstAttribute="bottom" secondItem="0in-CL-bNf" secondAttribute="bottom" constant="32" id="ZTn-uW-k69"/>
-                                            <constraint firstItem="0in-CL-bNf" firstAttribute="top" secondItem="sO2-7u-HHG" secondAttribute="bottom" constant="8" id="Zrv-Oo-r59"/>
+                                            <constraint firstAttribute="bottom" secondItem="RAT-ZJ-eeo" secondAttribute="bottom" constant="8" id="aVu-fQ-ebp"/>
                                             <constraint firstAttribute="trailing" secondItem="O2p-0D-VSL" secondAttribute="trailing" constant="8" id="aZR-qd-HYb"/>
                                             <constraint firstItem="RAT-ZJ-eeo" firstAttribute="top" secondItem="KmX-3K-PEi" secondAttribute="bottom" constant="8" id="cu3-TX-xbm"/>
                                             <constraint firstItem="O2p-0D-VSL" firstAttribute="top" secondItem="sd5-gU-QZK" secondAttribute="top" constant="8" id="djv-JM-nnV"/>
@@ -796,7 +773,6 @@
                                             <constraint firstItem="nV3-Ov-07g" firstAttribute="top" secondItem="2hc-L0-ivb" secondAttribute="bottom" constant="8" id="uUJ-Me-Uc2"/>
                                             <constraint firstItem="QTO-p2-UZZ" firstAttribute="leading" secondItem="Igk-pZ-bYC" secondAttribute="trailing" constant="24" id="upY-eE-ipz"/>
                                             <constraint firstItem="eii-dt-XEv" firstAttribute="top" secondItem="nV3-Ov-07g" secondAttribute="bottom" constant="8" id="uq8-iP-Xh1"/>
-                                            <constraint firstAttribute="trailing" secondItem="sO2-7u-HHG" secondAttribute="trailing" constant="8" id="uxL-p2-4wm"/>
                                             <constraint firstAttribute="trailing" secondItem="QTO-p2-UZZ" secondAttribute="trailing" constant="8" id="v7Q-YB-Qcs"/>
                                             <constraint firstItem="udC-NR-vnz" firstAttribute="centerY" secondItem="eii-dt-XEv" secondAttribute="centerY" id="vKX-gD-Vgb"/>
                                             <constraint firstAttribute="trailing" secondItem="CNd-bb-exK" secondAttribute="trailing" constant="8" id="wXP-yA-xcl"/>
@@ -819,14 +795,50 @@
                                     <constraint firstAttribute="trailing" secondItem="sd5-gU-QZK" secondAttribute="trailing" id="Yy3-hs-vwP"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGq-aM-eAv">
+                                <rect key="frame" x="0.0" y="789" width="414" height="73"/>
+                                <subviews>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZl-Nb-gYM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="K0L-gE-SaZ"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAW-sg-ptc">
+                                        <rect key="frame" x="30" y="17" width="354" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="T68-R4-NKI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="検索実行"/>
+                                        <connections>
+                                            <action selector="searchButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="c0b-sL-Uf3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="AAW-sg-ptc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="aGq-aM-eAv" secondAttribute="leading" constant="30" id="2c4-Nz-QFA"/>
+                                    <constraint firstItem="rZl-Nb-gYM" firstAttribute="top" secondItem="aGq-aM-eAv" secondAttribute="top" id="6XZ-Y7-yDY"/>
+                                    <constraint firstAttribute="trailing" secondItem="rZl-Nb-gYM" secondAttribute="trailing" id="N6c-92-B7d"/>
+                                    <constraint firstAttribute="bottom" secondItem="AAW-sg-ptc" secondAttribute="bottom" constant="16" id="aFt-oL-R4S"/>
+                                    <constraint firstItem="AAW-sg-ptc" firstAttribute="top" secondItem="rZl-Nb-gYM" secondAttribute="bottom" constant="16" id="djg-AH-x62"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="AAW-sg-ptc" secondAttribute="trailing" constant="30" id="mdm-wF-pox"/>
+                                    <constraint firstItem="rZl-Nb-gYM" firstAttribute="leading" secondItem="aGq-aM-eAv" secondAttribute="leading" id="swG-my-qL2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Mxc-Qo-5Y4" firstAttribute="trailing" secondItem="z3G-qs-jjB" secondAttribute="trailing" id="3fM-z6-xfD"/>
                             <constraint firstItem="z3G-qs-jjB" firstAttribute="leading" secondItem="Mxc-Qo-5Y4" secondAttribute="leading" id="Awh-Nb-KRx"/>
+                            <constraint firstItem="aGq-aM-eAv" firstAttribute="top" secondItem="z3G-qs-jjB" secondAttribute="bottom" id="Dgj-5m-uyR"/>
                             <constraint firstItem="sd5-gU-QZK" firstAttribute="width" secondItem="rCe-O2-uY0" secondAttribute="width" id="R0Y-Ae-qzF"/>
+                            <constraint firstItem="aGq-aM-eAv" firstAttribute="leading" secondItem="Mxc-Qo-5Y4" secondAttribute="leading" id="bE9-p9-abt"/>
+                            <constraint firstItem="Mxc-Qo-5Y4" firstAttribute="trailing" secondItem="aGq-aM-eAv" secondAttribute="trailing" id="dMW-Hw-QTf"/>
                             <constraint firstItem="z3G-qs-jjB" firstAttribute="top" secondItem="Mxc-Qo-5Y4" secondAttribute="top" id="rDP-bj-agw"/>
-                            <constraint firstItem="Mxc-Qo-5Y4" firstAttribute="bottom" secondItem="z3G-qs-jjB" secondAttribute="bottom" id="sHz-S8-9FY"/>
+                            <constraint firstItem="Mxc-Qo-5Y4" firstAttribute="bottom" secondItem="aGq-aM-eAv" secondAttribute="bottom" id="uQJ-qz-QmW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mxc-Qo-5Y4"/>
                     </view>
@@ -834,11 +846,6 @@
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="0w9-9p-Lvl">
                             <connections>
                                 <action selector="cancelBarButtonTapped:" destination="eNM-48-8KR" id="kSf-dv-haJ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="検索実行" id="e8a-18-BSs">
-                            <connections>
-                                <action selector="searchBarButtonTapped:" destination="eNM-48-8KR" id="uCT-eg-zjD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -886,8 +893,9 @@
                         <outlet property="primaryLabel" destination="1nn-FJ-Jve" id="1So-9U-D7f"/>
                         <outlet property="scrollBackgroundView" destination="sd5-gU-QZK" id="1NO-id-fIP"/>
                         <outlet property="scrollView" destination="z3G-qs-jjB" id="U09-13-6Jm"/>
-                        <outlet property="searchButton" destination="0in-CL-bNf" id="x7I-kA-OWl"/>
-                        <outlet property="secondSeparator" destination="sO2-7u-HHG" id="Byq-6L-oJy"/>
+                        <outlet property="searchButton" destination="AAW-sg-ptc" id="xF1-Kd-oxL"/>
+                        <outlet property="searchButtonBackgroundView" destination="aGq-aM-eAv" id="uNq-dX-qcm"/>
+                        <outlet property="secondSeparator" destination="rZl-Nb-gYM" id="xWx-ti-m3x"/>
                         <outlet property="secondaryLabel" destination="bSH-9r-2nB" id="PzI-tD-pxo"/>
                         <outlet property="selectAllButton" destination="QTO-p2-UZZ" id="p4U-WM-syT"/>
                         <outlet property="shortageOrderLabel" destination="f5w-q3-1KN" id="nYt-h0-ivL"/>

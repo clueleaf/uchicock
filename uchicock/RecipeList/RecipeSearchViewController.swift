@@ -78,7 +78,7 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var methodWarningLabel: UILabel!
     
     @IBOutlet weak var secondSeparator: UIView!
-    
+    @IBOutlet weak var searchButtonBackgroundView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
     var recipeSortPrimary = 1
@@ -195,6 +195,7 @@ class RecipeSearchViewController: UIViewController {
         super.viewWillAppear(animated)
         
         scrollView.backgroundColor = Style.basicBackgroundColor
+        scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         scrollBackgroundView.backgroundColor = Style.basicBackgroundColor
         sortLabel.textColor = Style.labelTextColor
         sortExplanationLabel.textColor = Style.labelTextColorLight
@@ -243,7 +244,7 @@ class RecipeSearchViewController: UIViewController {
         setMethodWarningVisibility()
         
         secondSeparator.backgroundColor = Style.labelTextColor
-        
+        searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
         searchButton.layer.borderColor = Style.secondaryColor.cgColor
         searchButton.layer.borderWidth = 1.0
         searchButton.layer.cornerRadius = 5
@@ -336,18 +337,12 @@ class RecipeSearchViewController: UIViewController {
     }
     
     // MARK: - IBAction
-    @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.saveUserDefaults()
-        self.onDoneBlock()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
         self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     private func saveUserDefaults(){
         let defaults = UserDefaults.standard
         var primarySort = 1
