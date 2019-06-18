@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XdH-p7-mWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2750" y="-618"/>
+            <point key="canvasLocation" x="-2751" y="-397"/>
         </scene>
         <!--条件指定-->
         <scene sceneID="Iou-hO-vhw">
@@ -259,7 +259,7 @@
                                                     <action selector="selectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="aNb-II-0wc"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するレシピを絞り込みます。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-DN-me2">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するレシピを条件に合うもののみに限定します。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-DN-me2">
                                                 <rect key="frame" x="8" y="375.33333333333331" width="398" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -914,7 +914,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7r-SK-kNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1959.4202898550727" y="-618.08035714285711"/>
+            <point key="canvasLocation" x="-1959" y="-397"/>
         </scene>
         <!--Introduction-->
         <scene sceneID="Tot-ug-t6d">
