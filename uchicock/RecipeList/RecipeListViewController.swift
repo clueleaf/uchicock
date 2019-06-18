@@ -29,7 +29,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
-
+    var recipeFilterStar0 = true
+    var recipeFilterStar1 = true
+    var recipeFilterStar2 = true
+    var recipeFilterStar3 = true
+    var recipeFilterLong = true
+    var recipeFilterShort = true
+    var recipeFilterBuild = true
+    var recipeFilterStir = true
+    var recipeFilterShake = true
+    var recipeFilterBlend = true
+    var recipeFilterOthers = true
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -123,9 +134,31 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let defaults = UserDefaults.standard
         defaults.register(defaults: ["recipe-sort-primary" : 1])
         defaults.register(defaults: ["recipe-sort-secondary" : 0])
-        
+        defaults.register(defaults: ["recipe-filter-star0" : true])
+        defaults.register(defaults: ["recipe-filter-star1" : true])
+        defaults.register(defaults: ["recipe-filter-star2" : true])
+        defaults.register(defaults: ["recipe-filter-star3" : true])
+        defaults.register(defaults: ["recipe-filter-long" : true])
+        defaults.register(defaults: ["recipe-filter-short" : true])
+        defaults.register(defaults: ["recipe-filter-build" : true])
+        defaults.register(defaults: ["recipe-filter-stir" : true])
+        defaults.register(defaults: ["recipe-filter-shake" : true])
+        defaults.register(defaults: ["recipe-filter-blend" : true])
+        defaults.register(defaults: ["recipe-filter-others" : true])
+
         recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
         recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
+        recipeFilterStar0 = defaults.bool(forKey: "recipe-filter-star0")
+        recipeFilterStar1 = defaults.bool(forKey: "recipe-filter-star1")
+        recipeFilterStar2 = defaults.bool(forKey: "recipe-filter-star2")
+        recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
+        recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
+        recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
+        recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
+        recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
+        recipeFilterShake = defaults.bool(forKey: "recipe-filter-shake")
+        recipeFilterBlend = defaults.bool(forKey: "recipe-filter-blend")
+        recipeFilterOthers = defaults.bool(forKey: "recipe-filter-others")
     }
     
     private func setSearchConditionLabel(){
@@ -163,7 +196,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        conditionText += "、全レシピを表示"
+        if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
+            recipeFilterLong && recipeFilterShort && recipeFilterBuild && recipeFilterStir &&
+            recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            conditionText += "、全レシピを表示"
+        }else{
+            conditionText += "、絞り込みあり"
+        }
 
         searchConditionLabel.text = conditionText
     }

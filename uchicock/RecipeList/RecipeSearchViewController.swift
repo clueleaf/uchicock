@@ -79,7 +79,18 @@ class RecipeSearchViewController: UIViewController {
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
-    
+    var recipeFilterStar0 = true
+    var recipeFilterStar1 = true
+    var recipeFilterStar2 = true
+    var recipeFilterStar3 = true
+    var recipeFilterLong = true
+    var recipeFilterShort = true
+    var recipeFilterBuild = true
+    var recipeFilterStir = true
+    var recipeFilterShake = true
+    var recipeFilterBlend = true
+    var recipeFilterOthers = true
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -144,6 +155,18 @@ class RecipeSearchViewController: UIViewController {
             initPrimaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
             initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
         }
+        
+        initFilterCheckbox(favorite0Checkbox, shouldBeChecked: recipeFilterStar0)
+        initFilterCheckbox(favorite1Checkbox, shouldBeChecked: recipeFilterStar1)
+        initFilterCheckbox(favorite2Checkbox, shouldBeChecked: recipeFilterStar2)
+        initFilterCheckbox(favorite3Checkbox, shouldBeChecked: recipeFilterStar3)
+        initFilterCheckbox(typeLongCheckbox, shouldBeChecked: recipeFilterLong)
+        initFilterCheckbox(typeShortCheckbox, shouldBeChecked: recipeFilterShort)
+        initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: recipeFilterBuild)
+        initFilterCheckbox(methodStirCheckbox, shouldBeChecked: recipeFilterStir)
+        initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: recipeFilterShake)
+        initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: recipeFilterBlend)
+        initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: recipeFilterOthers)
     }
     
     private func readUserDefaults(){
@@ -151,26 +174,19 @@ class RecipeSearchViewController: UIViewController {
 
         recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
         recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
+        recipeFilterStar0 = defaults.bool(forKey: "recipe-filter-star0")
+        recipeFilterStar1 = defaults.bool(forKey: "recipe-filter-star1")
+        recipeFilterStar2 = defaults.bool(forKey: "recipe-filter-star2")
+        recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
+        recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
+        recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
+        recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
+        recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
+        recipeFilterShake = defaults.bool(forKey: "recipe-filter-shake")
+        recipeFilterBlend = defaults.bool(forKey: "recipe-filter-blend")
+        recipeFilterOthers = defaults.bool(forKey: "recipe-filter-others")
     }
     
-    private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
-                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
-        initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
-        initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
-        initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
-        initCheckbox(favoriteOrderPrimaryCheckbox, with: favoriteState)
-        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
-    }
-    
-    private func initSecondaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
-                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
-        initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
-        initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
-        initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)
-        initCheckbox(favoriteOrderSecondaryCheckbox, with: favoriteState)
-        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewedState)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -185,9 +201,107 @@ class RecipeSearchViewController: UIViewController {
         madeNumOrderLabel.textColor = Style.labelTextColor
         favoriteOrderLabel.textColor = Style.labelTextColor
         lastViewedOrderLabel.textColor = Style.labelTextColor
+        
+        filterLabel.textColor = Style.labelTextColor
+        filterExplanationLabel.textColor = Style.labelTextColorLight
+        selectAllButton.tintColor = Style.secondaryColor
+        deselectAllButton.tintColor = Style.secondaryColor
+
+        favoriteFilterLabel.textColor = Style.labelTextColor
+        favorite0Label.textColor = Style.labelTextColor
+        favorite1Label.textColor = Style.labelTextColor
+        favorite2Label.textColor = Style.labelTextColor
+        favorite3Label.textColor = Style.labelTextColor
+        favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
+        favoriteWarningImage.tintColor = Style.secondaryColor
+        favoriteWarningLabel.textColor = Style.secondaryColor
+        setFavoriteWarningVisibility()
+
+        typeFilterLabel.textColor = Style.labelTextColor
+        typeLongLabel.textColor = Style.labelTextColor
+        typeShortLabel.textColor = Style.labelTextColor
+        typeWarningImage.image = typeWarningImage.image!.withRenderingMode(.alwaysTemplate)
+        typeWarningImage.tintColor = Style.secondaryColor
+        typeWarningLabel.textColor = Style.secondaryColor
+        setTypeWarningVisibility()
+
+        methodFilterLabel.textColor = Style.labelTextColor
+        methodBuildLabel.textColor = Style.labelTextColor
+        methodStirLabel.textColor = Style.labelTextColor
+        methodShakeLabel.textColor = Style.labelTextColor
+        methodBlendLabel.textColor = Style.labelTextColor
+        methodOthersLabel.textColor = Style.labelTextColor
+        methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
+        methodWarningImage.tintColor = Style.secondaryColor
+        methodWarningLabel.textColor = Style.secondaryColor
+        setMethodWarningVisibility()
     }
     
+    private func setFavoriteWarningVisibility(){
+        if favorite0Checkbox.checkState == .unchecked &&
+           favorite1Checkbox.checkState == .unchecked &&
+           favorite2Checkbox.checkState == .unchecked &&
+            favorite3Checkbox.checkState == .unchecked {
+            favoriteWarningImage.isHidden = false
+            favoriteWarningLabel.isHidden = false
+        }else{
+            favoriteWarningImage.isHidden = true
+            favoriteWarningLabel.isHidden = true
+        }
+    }
+    
+    private func setTypeWarningVisibility(){
+        if typeLongCheckbox.checkState == .unchecked &&
+            typeShortCheckbox.checkState == .unchecked{
+            typeWarningImage.isHidden = false
+            typeWarningLabel.isHidden = false
+        }else{
+            typeWarningImage.isHidden = true
+            typeWarningLabel.isHidden = true
+        }
+    }
+    
+    private func setMethodWarningVisibility(){
+        if methodBuildCheckbox.checkState == .unchecked &&
+           methodStirCheckbox.checkState == .unchecked &&
+           methodShakeCheckbox.checkState == .unchecked &&
+           methodBlendCheckbox.checkState == .unchecked &&
+            methodOthersCheckbox.checkState == .unchecked {
+            methodWarningImage.isHidden = false
+            methodWarningLabel.isHidden = false
+        }else{
+            methodWarningImage.isHidden = true
+            methodWarningLabel.isHidden = true
+        }
+    }
+
     // MARK: - M13Checkbox
+    private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
+                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+        initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
+        initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
+        initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
+        initCheckbox(favoriteOrderPrimaryCheckbox, with: favoriteState)
+        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
+    }
+    
+    private func initSecondaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
+                                       madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+        initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
+        initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
+        initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)
+        initCheckbox(favoriteOrderSecondaryCheckbox, with: favoriteState)
+        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewedState)
+    }
+    
+    private func initFilterCheckbox(_ checkbox: M13Checkbox, shouldBeChecked: Bool){
+        if shouldBeChecked{
+            initCheckbox(checkbox, with: .checked)
+        }else{
+            initCheckbox(checkbox, with: .unchecked)
+        }
+    }
+    
     private func initCheckbox(_ checkbox: M13Checkbox, with checkState: M13Checkbox.CheckState){
         checkbox.boxLineWidth = 1.0
         checkbox.markType = .checkmark
@@ -252,6 +366,27 @@ class RecipeSearchViewController: UIViewController {
         
         defaults.set(primarySort, forKey: "recipe-sort-primary")
         defaults.set(secondarySort, forKey: "recipe-sort-secondary")
+        
+        setFilterUserDefaults(with: favorite0Checkbox, forKey: "recipe-filter-star0")
+        setFilterUserDefaults(with: favorite1Checkbox, forKey: "recipe-filter-star1")
+        setFilterUserDefaults(with: favorite2Checkbox, forKey: "recipe-filter-star2")
+        setFilterUserDefaults(with: favorite3Checkbox, forKey: "recipe-filter-star3")
+        setFilterUserDefaults(with: typeLongCheckbox, forKey: "recipe-filter-long")
+        setFilterUserDefaults(with: typeShortCheckbox, forKey: "recipe-filter-short")
+        setFilterUserDefaults(with: methodBuildCheckbox, forKey: "recipe-filter-build")
+        setFilterUserDefaults(with: methodStirCheckbox, forKey: "recipe-filter-stir")
+        setFilterUserDefaults(with: methodShakeCheckbox, forKey: "recipe-filter-shake")
+        setFilterUserDefaults(with: methodBlendCheckbox, forKey: "recipe-filter-blend")
+        setFilterUserDefaults(with: methodOthersCheckbox, forKey: "recipe-filter-others")
+    }
+    
+    private func setFilterUserDefaults(with checkbox: M13Checkbox, forKey key: String){
+        let defaults = UserDefaults.standard
+        if checkbox.checkState == .checked{
+            defaults.set(true, forKey: key)
+        }else{
+            defaults.set(false, forKey: key)
+        }
     }
     
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -392,42 +527,81 @@ class RecipeSearchViewController: UIViewController {
     }
     
     @IBAction func selectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(favorite0Checkbox)
+        setCheckboxChecked(favorite1Checkbox)
+        setCheckboxChecked(favorite2Checkbox)
+        setCheckboxChecked(favorite3Checkbox)
+        setCheckboxChecked(typeLongCheckbox)
+        setCheckboxChecked(typeShortCheckbox)
+        setCheckboxChecked(methodBuildCheckbox)
+        setCheckboxChecked(methodStirCheckbox)
+        setCheckboxChecked(methodShakeCheckbox)
+        setCheckboxChecked(methodBlendCheckbox)
+        setCheckboxChecked(methodOthersCheckbox)
+        setFavoriteWarningVisibility()
+        setTypeWarningVisibility()
+        setMethodWarningVisibility()
     }
     
     @IBAction func deselectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxUnchecked(favorite0Checkbox)
+        setCheckboxUnchecked(favorite1Checkbox)
+        setCheckboxUnchecked(favorite2Checkbox)
+        setCheckboxUnchecked(favorite3Checkbox)
+        setCheckboxUnchecked(typeLongCheckbox)
+        setCheckboxUnchecked(typeShortCheckbox)
+        setCheckboxUnchecked(methodBuildCheckbox)
+        setCheckboxUnchecked(methodStirCheckbox)
+        setCheckboxUnchecked(methodShakeCheckbox)
+        setCheckboxUnchecked(methodBlendCheckbox)
+        setCheckboxUnchecked(methodOthersCheckbox)
+        setFavoriteWarningVisibility()
+        setTypeWarningVisibility()
+        setMethodWarningVisibility()
     }
     
     @IBAction func favorite0CheckboxTapped(_ sender: M13Checkbox) {
+        setFavoriteWarningVisibility()
     }
     
     @IBAction func favorite1CheckboxTapped(_ sender: M13Checkbox) {
+        setFavoriteWarningVisibility()
     }
     
     @IBAction func favorite2CheckboxTapped(_ sender: M13Checkbox) {
+        setFavoriteWarningVisibility()
     }
     
     @IBAction func favorite3CheckboxTapped(_ sender: M13Checkbox) {
+        setFavoriteWarningVisibility()
     }
     
     @IBAction func typeLongCheckboxTapped(_ sender: M13Checkbox) {
+        setTypeWarningVisibility()
     }
     
     @IBAction func typeShortCheckboxTapped(_ sender: M13Checkbox) {
+        setTypeWarningVisibility()
     }
     
     @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {
+        setMethodWarningVisibility()
     }
     
     @IBAction func methodStirCheckboxTapped(_ sender: M13Checkbox) {
+        setMethodWarningVisibility()
     }
     
     @IBAction func methodShakeCheckboxTapped(_ sender: M13Checkbox) {
+        setMethodWarningVisibility()
     }
     
     @IBAction func methodBlendCheckboxTapped(_ sender: M13Checkbox) {
+        setMethodWarningVisibility()
     }
     
     @IBAction func methodOthersCheckboxTapped(_ sender: M13Checkbox) {
+        setMethodWarningVisibility()
     }
     
 }
