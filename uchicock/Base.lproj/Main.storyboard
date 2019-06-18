@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd5-gU-QZK">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="689.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="698.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="並べ替え" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-0D-VSL">
                                                 <rect key="frame" x="8" y="8" width="398" height="26"/>
@@ -244,6 +244,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="iXx-g0-Mo6"/>
                                                 </constraints>
                                                 <state key="normal" title="全て選択"/>
+                                                <connections>
+                                                    <action selector="selectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="aNb-II-0wc"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igk-pZ-bYC">
                                                 <rect key="frame" x="344" y="303.33333333333331" width="62" height="30"/>
@@ -252,6 +255,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="zWz-An-Ore"/>
                                                 </constraints>
                                                 <state key="normal" title="全て解除"/>
+                                                <connections>
+                                                    <action selector="deselectAllButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="Igg-Dx-hWv"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するレシピを絞り込みます。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-DN-me2">
                                                 <rect key="frame" x="8" y="339.33333333333331" width="398" height="17"/>
@@ -277,6 +283,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="dA4-48-ZZF"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="favorite0CheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="hQk-Oz-4Os"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未評価" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5y-3D-nLA">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -305,6 +314,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="UYd-KR-TMi"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="favorite1CheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="nDK-TZ-Vn3"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ya2-fw-0gK">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -345,6 +357,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="hxK-bp-sTJ"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="favorite2CheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="YD8-fL-lna"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOv-he-nlQ">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -373,6 +388,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="KW0-MQ-im2"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="favorite3CheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="mIp-f1-9HF"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwu-7m-Mlf">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -431,6 +449,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="TYs-Fr-B0I"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="typeLongCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="yME-vl-nX5"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcN-hi-LFu">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -459,6 +480,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="03C-lr-V1K"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="typeShortCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="wWQ-CT-0ZC"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgo-id-OC6">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -517,6 +541,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="VAT-Uv-EJB"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="methodBuildCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="TNb-bF-cU6"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gc1-mr-NUK">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -545,6 +572,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="nPA-pH-Thp"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="methodStirCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="Pod-3u-qB0"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoP-h7-iyI">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -581,6 +611,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="gi2-7Q-KSO"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="methodShakeCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="ZPi-xg-9Bi"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPR-oL-Ca6">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -609,6 +642,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="8g1-pC-J51"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="methodBlendCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="SRo-qB-WMQ"/>
+                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxz-CQ-bFw">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
@@ -637,8 +673,11 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="uFL-nz-m12"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <action selector="methodOthersCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="IFe-3M-cCv"/>
+                                                                </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn7-yt-ir2">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn7-yt-ir2">
                                                                 <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -678,15 +717,26 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0in-CL-bNf">
-                                                <rect key="frame" x="164" y="643.33333333333337" width="86" height="38"/>
+                                                <rect key="frame" x="164" y="652.33333333333337" width="86" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <state key="normal" title="検索実行"/>
+                                                <connections>
+                                                    <action selector="searchButtonTapped:" destination="eNM-48-8KR" eventType="touchUpInside" id="UAG-UG-pWU"/>
+                                                </connections>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sO2-7u-HHG">
+                                                <rect key="frame" x="8" y="639.33333333333337" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="GsC-mO-xf4"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="HyV-wW-FmF" firstAttribute="top" secondItem="eii-dt-XEv" secondAttribute="bottom" constant="16" id="0cM-gC-xE3"/>
                                             <constraint firstItem="Igk-pZ-bYC" firstAttribute="centerY" secondItem="93d-ih-tEA" secondAttribute="centerY" id="2qm-ZF-3XD"/>
+                                            <constraint firstItem="sO2-7u-HHG" firstAttribute="top" secondItem="RAT-ZJ-eeo" secondAttribute="bottom" constant="12" id="3Ac-lG-GhD"/>
                                             <constraint firstItem="ONn-ps-mhv" firstAttribute="top" secondItem="O2p-0D-VSL" secondAttribute="bottom" constant="8" id="4yu-XG-q1O"/>
                                             <constraint firstAttribute="trailing" secondItem="ONn-ps-mhv" secondAttribute="trailing" constant="8" id="5d5-jV-bt1"/>
                                             <constraint firstAttribute="trailing" secondItem="50x-T5-pXZ" secondAttribute="trailing" constant="8" id="5fz-nx-cK4"/>
@@ -699,12 +749,12 @@
                                             <constraint firstAttribute="trailing" secondItem="1ev-Rt-SSx" secondAttribute="trailing" constant="8" id="Brr-D9-UVn"/>
                                             <constraint firstItem="QTO-p2-UZZ" firstAttribute="leading" secondItem="93d-ih-tEA" secondAttribute="trailing" constant="8" id="CVD-Pq-JTd"/>
                                             <constraint firstAttribute="trailing" secondItem="1bW-bc-lux" secondAttribute="trailing" constant="8" id="Cbm-wQ-EMX"/>
-                                            <constraint firstItem="0in-CL-bNf" firstAttribute="top" secondItem="RAT-ZJ-eeo" secondAttribute="bottom" constant="16" id="Dmc-JF-EK7"/>
                                             <constraint firstAttribute="trailing" secondItem="niH-Hf-Tm5" secondAttribute="trailing" constant="8" id="DrS-Le-Xip"/>
                                             <constraint firstItem="mjO-Xo-Bwq" firstAttribute="centerX" secondItem="sd5-gU-QZK" secondAttribute="centerX" id="Dyu-uP-oEN"/>
                                             <constraint firstItem="1bW-bc-lux" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="Ffb-hg-m3b"/>
                                             <constraint firstAttribute="trailing" secondItem="nV3-Ov-07g" secondAttribute="trailing" constant="8" id="GY5-2q-7VC"/>
                                             <constraint firstItem="tWt-cp-KW6" firstAttribute="top" secondItem="ogS-f1-tDi" secondAttribute="bottom" constant="8" id="H1a-Ve-d08"/>
+                                            <constraint firstItem="sO2-7u-HHG" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="H1d-ey-sqF"/>
                                             <constraint firstItem="ogS-f1-tDi" firstAttribute="leading" secondItem="sd5-gU-QZK" secondAttribute="leading" constant="8" id="HAn-Wb-6Mt"/>
                                             <constraint firstItem="niH-Hf-Tm5" firstAttribute="top" secondItem="tWt-cp-KW6" secondAttribute="bottom" constant="8" id="ImG-w5-4pW"/>
                                             <constraint firstItem="mjO-Xo-Bwq" firstAttribute="centerY" secondItem="p8c-vx-Y0s" secondAttribute="centerY" id="JOU-IK-IM7"/>
@@ -723,7 +773,9 @@
                                             <constraint firstAttribute="trailing" secondItem="tj0-DN-me2" secondAttribute="trailing" constant="8" id="WDx-MJ-rHk"/>
                                             <constraint firstItem="mjO-Xo-Bwq" firstAttribute="leading" secondItem="p8c-vx-Y0s" secondAttribute="trailing" constant="8" id="Xlb-AP-hc8"/>
                                             <constraint firstAttribute="bottom" secondItem="0in-CL-bNf" secondAttribute="bottom" constant="8" id="ZTn-uW-k69"/>
+                                            <constraint firstItem="0in-CL-bNf" firstAttribute="top" secondItem="sO2-7u-HHG" secondAttribute="bottom" constant="12" id="Zrv-Oo-r59"/>
                                             <constraint firstAttribute="trailing" secondItem="O2p-0D-VSL" secondAttribute="trailing" constant="8" id="aZR-qd-HYb"/>
+                                            <constraint firstItem="RAT-ZJ-eeo" firstAttribute="top" secondItem="KmX-3K-PEi" secondAttribute="bottom" constant="8" id="cu3-TX-xbm"/>
                                             <constraint firstItem="O2p-0D-VSL" firstAttribute="top" secondItem="sd5-gU-QZK" secondAttribute="top" constant="8" id="djv-JM-nnV"/>
                                             <constraint firstItem="KmX-3K-PEi" firstAttribute="top" secondItem="yi7-Km-yXQ" secondAttribute="bottom" constant="8" id="gYz-wT-24M"/>
                                             <constraint firstItem="50x-T5-pXZ" firstAttribute="top" secondItem="1ev-Rt-SSx" secondAttribute="bottom" constant="8" id="hWj-Us-P7p"/>
@@ -740,6 +792,7 @@
                                             <constraint firstItem="RAT-ZJ-eeo" firstAttribute="centerY" secondItem="2C7-mQ-yyv" secondAttribute="centerY" id="sXj-S1-EUZ"/>
                                             <constraint firstItem="nV3-Ov-07g" firstAttribute="top" secondItem="2hc-L0-ivb" secondAttribute="bottom" constant="8" id="uUJ-Me-Uc2"/>
                                             <constraint firstItem="eii-dt-XEv" firstAttribute="top" secondItem="nV3-Ov-07g" secondAttribute="bottom" constant="8" id="uq8-iP-Xh1"/>
+                                            <constraint firstAttribute="trailing" secondItem="sO2-7u-HHG" secondAttribute="trailing" constant="8" id="uxL-p2-4wm"/>
                                             <constraint firstItem="udC-NR-vnz" firstAttribute="centerY" secondItem="eii-dt-XEv" secondAttribute="centerY" id="vKX-gD-Vgb"/>
                                             <constraint firstAttribute="trailing" secondItem="CNd-bb-exK" secondAttribute="trailing" constant="8" id="wXP-yA-xcl"/>
                                             <constraint firstItem="QTO-p2-UZZ" firstAttribute="centerY" secondItem="93d-ih-tEA" secondAttribute="centerY" id="wki-N7-hlL"/>
@@ -786,27 +839,63 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deselectAllButton" destination="Igk-pZ-bYC" id="pLk-X4-AAf"/>
+                        <outlet property="favorite0Checkbox" destination="cbZ-G9-vmI" id="byf-k6-cuL"/>
+                        <outlet property="favorite0Label" destination="q5y-3D-nLA" id="PBA-WX-h0D"/>
+                        <outlet property="favorite1Checkbox" destination="arY-29-AEY" id="3oq-Ej-RzO"/>
+                        <outlet property="favorite1Label" destination="ya2-fw-0gK" id="p1T-40-ej5"/>
+                        <outlet property="favorite2Checkbox" destination="ybC-MN-SNy" id="8pw-GW-u4H"/>
+                        <outlet property="favorite2Label" destination="EOv-he-nlQ" id="033-B6-0HG"/>
+                        <outlet property="favorite3Checkbox" destination="kG0-9y-hep" id="MVu-8r-ZMp"/>
+                        <outlet property="favorite3Label" destination="cwu-7m-Mlf" id="BDs-WH-z6t"/>
+                        <outlet property="favoriteFilterLabel" destination="0Bx-44-QYQ" id="8An-IY-9vM"/>
                         <outlet property="favoriteOrderLabel" destination="aAo-80-kBZ" id="65e-bl-vQm"/>
                         <outlet property="favoriteOrderPrimaryCheckbox" destination="T4B-C0-kKu" id="dFa-bs-lPD"/>
                         <outlet property="favoriteOrderSecondaryCheckbox" destination="Ipx-Hi-7kW" id="ILE-Ud-vwp"/>
+                        <outlet property="favoriteWarningImage" destination="eii-dt-XEv" id="WM6-Ij-3uE"/>
+                        <outlet property="favoriteWarningLabel" destination="udC-NR-vnz" id="4UA-uc-RlC"/>
+                        <outlet property="filterExplanationLabel" destination="tj0-DN-me2" id="2Ta-W5-cto"/>
+                        <outlet property="filterLabel" destination="93d-ih-tEA" id="ydo-Oq-Oxt"/>
                         <outlet property="lastViewedOrderLabel" destination="np7-9j-oGv" id="Feg-Vm-2ZA"/>
                         <outlet property="lastViewedOrderPrimaryCheckbox" destination="Qgz-vr-uT1" id="Hzo-zl-uZc"/>
                         <outlet property="lastViewedOrderSecondaryCheckbox" destination="09K-bm-6eA" id="8kx-4z-FPU"/>
                         <outlet property="madeNumOrderLabel" destination="8Mf-j6-78k" id="mOu-Af-qnC"/>
                         <outlet property="madeNumOrderPrimaryCheckbox" destination="tep-pa-5sQ" id="cdV-LC-Bel"/>
                         <outlet property="madeNumOrderSecondaryCheckbox" destination="tFM-ft-EB2" id="q9C-oP-Zq6"/>
+                        <outlet property="methodBlendCheckbox" destination="h9c-eK-1CJ" id="KE5-Q2-ceH"/>
+                        <outlet property="methodBlendLabel" destination="rxz-CQ-bFw" id="qSC-iS-zxy"/>
+                        <outlet property="methodBuildCheckbox" destination="mkh-Sk-59q" id="hPP-yI-my5"/>
+                        <outlet property="methodBuildLabel" destination="Gc1-mr-NUK" id="uBj-Tc-8SE"/>
+                        <outlet property="methodFilterLabel" destination="XK6-uF-8CC" id="Qys-4t-3CN"/>
+                        <outlet property="methodOthersCheckbox" destination="GOC-76-Zil" id="afd-mN-ODe"/>
+                        <outlet property="methodOthersLabel" destination="Gn7-yt-ir2" id="1ir-Kv-VW7"/>
+                        <outlet property="methodShakeCheckbox" destination="q32-LC-kLy" id="IfN-1U-bSB"/>
+                        <outlet property="methodShakeLabel" destination="CPR-oL-Ca6" id="ehV-w5-FCx"/>
+                        <outlet property="methodStirCheckbox" destination="JEf-7B-vIH" id="uSQ-ZX-4HW"/>
+                        <outlet property="methodStirLabel" destination="YoP-h7-iyI" id="OJ9-Ye-pmL"/>
+                        <outlet property="methodWarningImage" destination="2C7-mQ-yyv" id="w2g-nv-FP2"/>
+                        <outlet property="methodWarningLabel" destination="RAT-ZJ-eeo" id="VKO-b4-cdK"/>
                         <outlet property="nameOrderLabel" destination="IRH-dA-Fcu" id="5F4-my-beU"/>
                         <outlet property="nameOrderPrimaryCheckbox" destination="eav-4b-1q5" id="PXE-jP-u7h"/>
                         <outlet property="nameOrderSecondaryCheckbox" destination="kBh-s6-nSg" id="tQL-E1-f3m"/>
                         <outlet property="primaryLabel" destination="1nn-FJ-Jve" id="1So-9U-D7f"/>
                         <outlet property="scrollBackgroundView" destination="sd5-gU-QZK" id="1NO-id-fIP"/>
                         <outlet property="scrollView" destination="z3G-qs-jjB" id="U09-13-6Jm"/>
+                        <outlet property="searchButton" destination="0in-CL-bNf" id="x7I-kA-OWl"/>
                         <outlet property="secondaryLabel" destination="bSH-9r-2nB" id="PzI-tD-pxo"/>
+                        <outlet property="selectAllButton" destination="QTO-p2-UZZ" id="p4U-WM-syT"/>
                         <outlet property="shortageOrderLabel" destination="f5w-q3-1KN" id="nYt-h0-ivL"/>
                         <outlet property="shortageOrderPrimaryCheckbox" destination="Pq5-NO-o6d" id="iKE-SA-cRa"/>
                         <outlet property="shortageOrderSecondaryCheckbox" destination="Vdr-ek-Tx2" id="DxU-wm-Rnj"/>
                         <outlet property="sortExplanationLabel" destination="ONn-ps-mhv" id="gWU-W2-42N"/>
                         <outlet property="sortLabel" destination="O2p-0D-VSL" id="cV2-vd-NJ9"/>
+                        <outlet property="typeFilterLabel" destination="AOL-7A-p0k" id="lLb-P4-K5Y"/>
+                        <outlet property="typeLongCheckbox" destination="jH0-Jf-VkC" id="7Qd-ZG-FK5"/>
+                        <outlet property="typeLongLabel" destination="RcN-hi-LFu" id="SCI-4C-09a"/>
+                        <outlet property="typeShortCheckbox" destination="qzI-Pu-EiR" id="Ii5-TI-ve0"/>
+                        <outlet property="typeShortLabel" destination="Sgo-id-OC6" id="gab-Lm-Oao"/>
+                        <outlet property="typeWarningImage" destination="p8c-vx-Y0s" id="DCw-1L-yxZ"/>
+                        <outlet property="typeWarningLabel" destination="mjO-Xo-Bwq" id="6mL-hm-KZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7r-SK-kNr" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,8 +13,10 @@ class RecipeSearchViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollBackgroundView: UIView!
+
     @IBOutlet weak var sortLabel: UILabel!
     @IBOutlet weak var sortExplanationLabel: UILabel!
+    
     @IBOutlet weak var primaryLabel: UILabel!
     @IBOutlet weak var secondaryLabel: UILabel!
     @IBOutlet weak var nameOrderLabel: UILabel!
@@ -34,8 +36,46 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var lastViewedOrderPrimaryCheckbox: M13Checkbox!
     @IBOutlet weak var lastViewedOrderSecondaryCheckbox: M13Checkbox!
     
+    @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var filterExplanationLabel: UILabel!
+    @IBOutlet weak var selectAllButton: UIButton!
+    @IBOutlet weak var deselectAllButton: UIButton!
     
+    @IBOutlet weak var favoriteFilterLabel: UILabel!
+    @IBOutlet weak var favorite0Label: UILabel!
+    @IBOutlet weak var favorite1Label: UILabel!
+    @IBOutlet weak var favorite2Label: UILabel!
+    @IBOutlet weak var favorite3Label: UILabel!
+    @IBOutlet weak var favorite0Checkbox: M13Checkbox!
+    @IBOutlet weak var favorite1Checkbox: M13Checkbox!
+    @IBOutlet weak var favorite2Checkbox: M13Checkbox!
+    @IBOutlet weak var favorite3Checkbox: M13Checkbox!
+    @IBOutlet weak var favoriteWarningImage: UIImageView!
+    @IBOutlet weak var favoriteWarningLabel: UILabel!
     
+    @IBOutlet weak var typeFilterLabel: UILabel!
+    @IBOutlet weak var typeLongLabel: UILabel!
+    @IBOutlet weak var typeShortLabel: UILabel!
+    @IBOutlet weak var typeLongCheckbox: M13Checkbox!
+    @IBOutlet weak var typeShortCheckbox: M13Checkbox!
+    @IBOutlet weak var typeWarningImage: UIImageView!
+    @IBOutlet weak var typeWarningLabel: UILabel!
+    
+    @IBOutlet weak var methodFilterLabel: UILabel!
+    @IBOutlet weak var methodBuildLabel: UILabel!
+    @IBOutlet weak var methodStirLabel: UILabel!
+    @IBOutlet weak var methodShakeLabel: UILabel!
+    @IBOutlet weak var methodBlendLabel: UILabel!
+    @IBOutlet weak var methodOthersLabel: UILabel!
+    @IBOutlet weak var methodBuildCheckbox: M13Checkbox!
+    @IBOutlet weak var methodStirCheckbox: M13Checkbox!
+    @IBOutlet weak var methodShakeCheckbox: M13Checkbox!
+    @IBOutlet weak var methodBlendCheckbox: M13Checkbox!
+    @IBOutlet weak var methodOthersCheckbox: M13Checkbox!
+    @IBOutlet weak var methodWarningImage: UIImageView!
+    @IBOutlet weak var methodWarningLabel: UILabel!
+    
+    @IBOutlet weak var searchButton: UIButton!
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -170,6 +210,12 @@ class RecipeSearchViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func searchBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.saveUserDefaults()
+        self.onDoneBlock()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
         self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
@@ -344,4 +390,44 @@ class RecipeSearchViewController: UIViewController {
         checkbox.isEnabled = false
         checkbox.tintColor = Style.badgeDisableBackgroundColor
     }
+    
+    @IBAction func selectAllButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func deselectAllButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func favorite0CheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func favorite1CheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func favorite2CheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func favorite3CheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func typeLongCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func typeShortCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func methodStirCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func methodShakeCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func methodBlendCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
+    @IBAction func methodOthersCheckboxTapped(_ sender: M13Checkbox) {
+    }
+    
 }
