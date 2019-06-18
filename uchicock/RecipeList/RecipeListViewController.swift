@@ -279,34 +279,39 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
         }
         
-        
-//        recipeBasicList.removeAll{ $0.favorites < favoriteSelect.selectedSegmentIndex }
-//
-//        if buildCheckbox.checkState == .unchecked{
-//            recipeBasicList.removeAll{
-//                $0.method == 0
-//            }
-//        }
-//        if stirCheckbox.checkState == .unchecked{
-//            recipeBasicList.removeAll{
-//                $0.method == 1
-//            }
-//        }
-//        if shakeCheckbox.checkState == .unchecked{
-//            recipeBasicList.removeAll{
-//                $0.method == 2
-//            }
-//        }
-//        if blendCheckbox.checkState == .unchecked{
-//            recipeBasicList.removeAll{
-//                $0.method == 3
-//            }
-//        }
-//        if othersCheckbox.checkState == .unchecked{
-//            recipeBasicList.removeAll{
-//                $0.method == 4
-//            }
-//        }
+        if recipeFilterStar0{
+            recipeBasicList.removeAll{ $0.favorites == 0 }
+        }
+        if recipeFilterStar1{
+            recipeBasicList.removeAll{ $0.favorites == 1 }
+        }
+        if recipeFilterStar2{
+            recipeBasicList.removeAll{ $0.favorites == 2 }
+        }
+        if recipeFilterStar3{
+            recipeBasicList.removeAll{ $0.favorites == 3 }
+        }
+        if recipeFilterLong{
+            // TODO
+        }
+        if recipeFilterShort{
+            // TODO
+        }
+        if recipeFilterBuild{
+            recipeBasicList.removeAll{ $0.method == 0 }
+        }
+        if recipeFilterStir{
+            recipeBasicList.removeAll{ $0.method == 1 }
+        }
+        if recipeFilterShake{
+            recipeBasicList.removeAll{ $0.method == 2 }
+        }
+        if recipeFilterBlend{
+            recipeBasicList.removeAll{ $0.method == 3 }
+        }
+        if recipeFilterOthers{
+            recipeBasicList.removeAll{ $0.method == 4 }
+        }
 
         switch recipeSortPrimary{
         case 1: // 名前順
