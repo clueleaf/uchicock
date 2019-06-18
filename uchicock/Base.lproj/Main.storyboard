@@ -62,7 +62,7 @@
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ry-zL-2Yc">
                                                         <rect key="frame" x="0.0" y="0.0" width="119.5" height="28"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1優先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nn-FJ-Jve">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
@@ -93,10 +93,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eav-4b-1q5" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="nameOrderPrimaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="Rjb-Mi-R9q"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBh-s6-nSg" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="nameOrderSecondaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="R0H-pP-fpc"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -115,10 +121,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pq5-NO-o6d" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="shortageOrderPrimaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="dhX-1f-0an"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdr-ek-Tx2" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="shortageOrderSecondaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="SJT-ES-LMX"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -137,10 +149,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tep-pa-5sQ" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="madeNumOrderPrimaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="mQq-wd-UPw"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFM-ft-EB2" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="madeNumOrderSecondaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="gIg-kU-fJI"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -159,10 +177,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4B-C0-kKu" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="favoriteOrderPrimaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="7Df-78-vdM"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ipx-Hi-7kW" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="favoriteOrderSecondaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="SWx-C6-eV9"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -181,10 +205,16 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgz-vr-uT1" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="119.5" y="0.0" width="120" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="lastViewedOrderPrimaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="Nv9-SA-5yo"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09K-bm-6eA" customClass="M13Checkbox" customModule="M13Checkbox">
                                                         <rect key="frame" x="239.5" y="0.0" width="119.5" height="28"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <connections>
+                                                            <action selector="lastViewedOrderSecondaryCheckboxTapped:" destination="eNM-48-8KR" eventType="valueChanged" id="h2I-7f-Ec1"/>
+                                                        </connections>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -252,6 +282,29 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="favoriteOrderLabel" destination="aAo-80-kBZ" id="65e-bl-vQm"/>
+                        <outlet property="favoriteOrderPrimaryCheckbox" destination="T4B-C0-kKu" id="dFa-bs-lPD"/>
+                        <outlet property="favoriteOrderSecondaryCheckbox" destination="Ipx-Hi-7kW" id="ILE-Ud-vwp"/>
+                        <outlet property="lastViewedOrderLabel" destination="np7-9j-oGv" id="Feg-Vm-2ZA"/>
+                        <outlet property="lastViewedOrderPrimaryCheckbox" destination="Qgz-vr-uT1" id="Hzo-zl-uZc"/>
+                        <outlet property="lastViewedOrderSecondaryCheckbox" destination="09K-bm-6eA" id="8kx-4z-FPU"/>
+                        <outlet property="madeNumOrderLabel" destination="8Mf-j6-78k" id="mOu-Af-qnC"/>
+                        <outlet property="madeNumOrderPrimaryCheckbox" destination="tep-pa-5sQ" id="cdV-LC-Bel"/>
+                        <outlet property="madeNumOrderSecondaryCheckbox" destination="tFM-ft-EB2" id="q9C-oP-Zq6"/>
+                        <outlet property="nameOrderLabel" destination="IRH-dA-Fcu" id="5F4-my-beU"/>
+                        <outlet property="nameOrderPrimaryCheckbox" destination="eav-4b-1q5" id="PXE-jP-u7h"/>
+                        <outlet property="nameOrderSecondaryCheckbox" destination="kBh-s6-nSg" id="tQL-E1-f3m"/>
+                        <outlet property="primaryLabel" destination="1nn-FJ-Jve" id="1So-9U-D7f"/>
+                        <outlet property="scrollBackgroundView" destination="sd5-gU-QZK" id="1NO-id-fIP"/>
+                        <outlet property="scrollView" destination="z3G-qs-jjB" id="U09-13-6Jm"/>
+                        <outlet property="secondaryLabel" destination="bSH-9r-2nB" id="PzI-tD-pxo"/>
+                        <outlet property="shortageOrderLabel" destination="f5w-q3-1KN" id="nYt-h0-ivL"/>
+                        <outlet property="shortageOrderPrimaryCheckbox" destination="Pq5-NO-o6d" id="iKE-SA-cRa"/>
+                        <outlet property="shortageOrderSecondaryCheckbox" destination="Vdr-ek-Tx2" id="DxU-wm-Rnj"/>
+                        <outlet property="sortExplanationLabel" destination="ONn-ps-mhv" id="gWU-W2-42N"/>
+                        <outlet property="sortLabel" destination="O2p-0D-VSL" id="cV2-vd-NJ9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C7r-SK-kNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
