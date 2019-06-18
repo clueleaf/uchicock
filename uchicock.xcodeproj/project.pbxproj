@@ -75,6 +75,7 @@
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
+		9BF53ECF22B9458400BF22D5 /* RecipeSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
@@ -160,6 +161,7 @@
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
+		9BF53ECE22B9458400BF22D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeSearch.storyboard; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
 		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
+				9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */,
 				9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */,
 				9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */,
 				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
@@ -489,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF53ECF22B9458400BF22D5 /* RecipeSearch.storyboard in Resources */,
 				9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */,
 				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
 				9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */,
@@ -665,6 +669,14 @@
 				9BC9A31E1C783CAA0031F631 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BF53ECE22B9458400BF22D5 /* Base */,
+			);
+			name = RecipeSearch.storyboard;
 			sourceTree = "<group>";
 		};
 		9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */ = {
