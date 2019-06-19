@@ -302,34 +302,12 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="tBY-75-L8T">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="9Hb-rp-acT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="60" id="9Hb-rp-acT">
                                         <rect key="frame" x="0.0" y="430" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hb-rp-acT" id="jGP-L0-puF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n3x-nd-eiY">
-                                                    <rect key="frame" x="8" y="16" width="359" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="WU5-Gb-j5K"/>
-                                                    </constraints>
-                                                    <segments>
-                                                        <segment title="名前順"/>
-                                                        <segment title="作れる順"/>
-                                                        <segment title="閲覧順"/>
-                                                        <segment title="作った回数"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="orderTapped:" destination="wli-BK-85f" eventType="valueChanged" id="dN9-cH-WOV"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="n3x-nd-eiY" firstAttribute="leading" secondItem="jGP-L0-puF" secondAttribute="leading" constant="8" id="Arj-wt-eQ3"/>
-                                                <constraint firstAttribute="trailing" secondItem="n3x-nd-eiY" secondAttribute="trailing" constant="8" id="OI3-Vu-equ"/>
-                                                <constraint firstItem="n3x-nd-eiY" firstAttribute="centerY" secondItem="jGP-L0-puF" secondAttribute="centerY" id="VpF-QN-w8Q"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -356,7 +334,6 @@
                         <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
                         <outlet property="memoLabel" destination="ffu-Ky-BvZ" id="PkI-2d-zFI"/>
-                        <outlet property="order" destination="n3x-nd-eiY" id="OoC-4k-CW7"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
                         <outlet property="reminderButtonLabel" destination="EIc-ed-ecs" id="MMn-Gt-pIG"/>
                         <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>

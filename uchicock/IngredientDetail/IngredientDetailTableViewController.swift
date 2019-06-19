@@ -20,7 +20,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: CopyableLabel!
-    @IBOutlet weak var order: UISegmentedControl!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
     @IBOutlet weak var amazonButton: UIButton!
@@ -37,6 +36,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<IngredientRecipeBasic>()
     let selectedCellBackgroundView = UIView()
+    var recipeOrder = 2
     var selectedRecipeId: String? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -91,8 +91,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         amazonButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
-        order.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         
@@ -180,7 +178,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeId: recipeIngredient.recipe.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, favorites: recipeIngredient.recipe.favorites))
         }
         
-        if order.selectedSegmentIndex == 1{
+        switch  recipeOrder {
+        case 1:
+            ingredientRecipeBasicList.sort(by: { $0.recipeName.localizedStandardCompare($1.recipeName) == .orderedAscending })
+        case 2:
             ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
@@ -188,7 +189,23 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return a.shortageNum < b.shortageNum
                 }
             }
-        }else if order.selectedSegmentIndex == 2{
+        case 3:
+            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                }else{
+                    return a.madeNum > b.madeNum
+                }
+            }
+        case 4:
+            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+                if a.favorites == b.favorites {
+                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                }else{
+                    return a.favorites > b.favorites
+                }
+            }
+        case 5:
             ingredientRecipeBasicList.sort(by: { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
@@ -204,15 +221,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     }
                 }
             })
-        }else if order.selectedSegmentIndex == 3{
-            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
-                if a.madeNum == b.madeNum {
-                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
-                }else{
-                    return a.madeNum > b.madeNum
-                }
-            }
-        }else{
+        default:
             ingredientRecipeBasicList.sort(by: { $0.recipeName.localizedStandardCompare($1.recipeName) == .orderedAscending })
         }
     }
@@ -282,6 +291,43 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0 {
                     performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+                }else{
+                    let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                    alertView.addAction(UIAlertAction(title: "名前順",style: .default){
+                        action in
+                        self.recipeOrder = 1
+                        self.reloadIngredientRecipeBasicList()
+                        self.tableView.reloadData()
+                    })
+                    alertView.addAction(UIAlertAction(title: "作れる順",style: .default){
+                        action in
+                        self.recipeOrder = 2
+                        self.reloadIngredientRecipeBasicList()
+                        self.tableView.reloadData()
+                    })
+                    alertView.addAction(UIAlertAction(title: "作った回数順",style: .default){
+                        action in
+                        self.recipeOrder = 3
+                        self.reloadIngredientRecipeBasicList()
+                        self.tableView.reloadData()
+                    })
+                    alertView.addAction(UIAlertAction(title: "お気に入り順",style: .default){
+                        action in
+                        self.recipeOrder = 4
+                        self.reloadIngredientRecipeBasicList()
+                        self.tableView.reloadData()
+                    })
+                    alertView.addAction(UIAlertAction(title: "最近見た順",style: .default){
+                        action in
+                        self.recipeOrder = 5
+                        self.reloadIngredientRecipeBasicList()
+                        self.tableView.reloadData()
+                    })
+                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    alertView.alertStatusBarStyle = Style.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    present(alertView, animated: true, completion: nil)
+                    tableView.deselectRow(at: indexPath, animated: true)
                 }
             }
         }
@@ -311,6 +357,23 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+                    cell.textLabel?.textColor = Style.secondaryColor
+                    switch recipeOrder{
+                    case 1:
+                        cell.textLabel?.text = "名前順"
+                    case 2:
+                        cell.textLabel?.text = "作れる順"
+                    case 3:
+                        cell.textLabel?.text = "作った回数順"
+                    case 4:
+                        cell.textLabel?.text = "お気に入り順"
+                    case 5:
+                        cell.textLabel?.text = "最近見た順"
+                    default:
+                        cell.textLabel?.text = "作れる順"
+                    }
+                    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+                    cell.textLabel?.textAlignment = .center
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
@@ -330,11 +393,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 ri.recipe.updateShortageNum()
             }
         }
-        reloadIngredientRecipeBasicList()
-        tableView.reloadData()
-    }
-    
-    @IBAction func orderTapped(_ sender: UISegmentedControl) {
         reloadIngredientRecipeBasicList()
         tableView.reloadData()
     }
