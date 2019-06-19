@@ -346,6 +346,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
                     let realm = try! Realm()
                     let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeId)!
+                    if recipeOrder == 3{
+                        cell.subInfoType = 1
+                    }else if recipeOrder == 5{
+                        cell.subInfoType = 2
+                    }else{
+                        cell.subInfoType = 0
+                    }
                     cell.recipe = recipe
                     if recipe.shortageNum == 0{
                         cell.recipeName.textColor = Style.labelTextColor

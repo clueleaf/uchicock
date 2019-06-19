@@ -12,8 +12,10 @@ class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var favorites: UILabel!
+    @IBOutlet weak var subInfoLabel: UILabel!
     @IBOutlet weak var shortage: UILabel!
+    
+    var subInfoType = 0
     
     var recipe: Recipe = Recipe(){
         didSet{
@@ -32,21 +34,47 @@ class RecipeTableViewCell: UITableViewCell {
             recipeName.backgroundColor = Style.basicBackgroundColor
             recipeName.clipsToBounds = true
             
-            switch recipe.favorites{
-            case 0:
-                favorites.text = ""
-            case 1:
-                favorites.text = "★"
-            case 2:
-                favorites.text = "★★"
-            case 3:
-                favorites.text = "★★★"
-            default:
-                favorites.text = ""
+            switch subInfoType{
+            case 0: // お気に入り
+                switch recipe.favorites{
+                case 0:
+                    subInfoLabel.text = ""
+                case 1:
+                    subInfoLabel.text = "★"
+                case 2:
+                    subInfoLabel.text = "★★"
+                case 3:
+                    subInfoLabel.text = "★★★"
+                default:
+                    subInfoLabel.text = ""
+                }
+                subInfoLabel.textColor = Style.secondaryColor
+            case 1: // 作った回数
+                subInfoLabel.text = String(recipe.madeNum) + "回"
+                subInfoLabel.textColor = Style.secondaryColor
+            case 2: // 最近見た
+                let formatter: DateFormatter = DateFormatter()
+                formatter.dateFormat = "yy/MM/dd"
+                subInfoLabel.text = recipe.lastViewDate == nil ? "--" : formatter.string(from: recipe.lastViewDate!)
+                subInfoLabel.textColor = Style.labelTextColorLight
+            default: // お気に入り
+                switch recipe.favorites{
+                case 0:
+                    subInfoLabel.text = ""
+                case 1:
+                    subInfoLabel.text = "★"
+                case 2:
+                    subInfoLabel.text = "★★"
+                case 3:
+                    subInfoLabel.text = "★★★"
+                default:
+                    subInfoLabel.text = ""
+                }
+                subInfoLabel.textColor = Style.secondaryColor
             }
-            favorites.textAlignment = .left
-            favorites.textColor = Style.secondaryColor
-            favorites.backgroundColor = Style.basicBackgroundColor
+
+            subInfoLabel.textAlignment = .right
+            subInfoLabel.backgroundColor = Style.basicBackgroundColor
             
             switch recipe.shortageNum {
             case 0:

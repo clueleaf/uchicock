@@ -40,13 +40,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
                         <rect key="frame" x="226" y="8" width="60" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9vy-6M-Nyt"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ecC-sA-Jy9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -67,10 +67,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="favorites" destination="Ja5-zr-t38" id="BWC-Ch-8Oz"/>
                 <outlet property="photo" destination="nIA-Y5-AVb" id="HGT-tu-G3u"/>
                 <outlet property="recipeName" destination="W2V-21-ykG" id="fSF-KH-KA4"/>
                 <outlet property="shortage" destination="Ehs-ln-8g3" id="dZg-td-qsS"/>
+                <outlet property="subInfoLabel" destination="Ja5-zr-t38" id="fm0-xo-fCk"/>
             </connections>
         </tableViewCell>
     </objects>
