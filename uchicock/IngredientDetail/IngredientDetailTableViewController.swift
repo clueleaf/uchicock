@@ -360,19 +360,19 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     cell.textLabel?.textColor = Style.secondaryColor
                     switch recipeOrder{
                     case 1:
-                        cell.textLabel?.text = "名前順"
+                        cell.textLabel?.text = "名前順（タップで変更）"
                     case 2:
-                        cell.textLabel?.text = "作れる順"
+                        cell.textLabel?.text = "作れる順（タップで変更）"
                     case 3:
-                        cell.textLabel?.text = "作った回数順"
+                        cell.textLabel?.text = "作った回数順（タップで変更）"
                     case 4:
-                        cell.textLabel?.text = "お気に入り順"
+                        cell.textLabel?.text = "お気に入り順（タップで変更）"
                     case 5:
-                        cell.textLabel?.text = "最近見た順"
+                        cell.textLabel?.text = "最近見た順（タップで変更）"
                     default:
-                        cell.textLabel?.text = "作れる順"
+                        cell.textLabel?.text = "作れる順（タップで変更）"
                     }
-                    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+                    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
                     cell.textLabel?.textAlignment = .center
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
