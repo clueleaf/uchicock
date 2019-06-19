@@ -87,6 +87,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchConditionModifyButton.layer.borderWidth = 1.0
         searchConditionModifyButton.layer.cornerRadius = 5
         searchConditionModifyButton.tintColor = Style.secondaryColor
+        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -198,7 +199,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
             recipeFilterLong && recipeFilterShort && recipeFilterBuild && recipeFilterStir &&
             recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
-            conditionText += "、全レシピを表示"
         }else{
             conditionText += "、絞り込みあり"
         }
