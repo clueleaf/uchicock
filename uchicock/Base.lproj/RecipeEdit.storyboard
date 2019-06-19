@@ -348,7 +348,6 @@
                                 </state>
                                 <connections>
                                     <action selector="doneButtonTapped:" destination="f6s-1V-srL" eventType="touchUpInside" id="fI0-ua-DE3"/>
-                                    <segue destination="QNG-oZ-U6e" kind="unwind" identifier="FilterFinished" unwindAction="unwindToRecipeEdit:" id="L5h-UD-lEC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="フィルター選択" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-hl-DoA">
@@ -423,6 +422,7 @@
                         <outlet property="collectionView" destination="e6l-P5-bvZ" id="Vgf-Up-2yx"/>
                         <outlet property="imageView" destination="e6K-bF-RvO" id="njs-Oo-W9K"/>
                         <outlet property="titleLabel" destination="4gK-hl-DoA" id="EgR-tc-ltI"/>
+                        <segue destination="QNG-oZ-U6e" kind="unwind" identifier="FilterFinished" unwindAction="unwindToRecipeEdit:" id="Ukx-sN-yul"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIc-tx-wOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
