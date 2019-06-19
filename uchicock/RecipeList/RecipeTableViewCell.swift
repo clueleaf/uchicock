@@ -51,7 +51,11 @@ class RecipeTableViewCell: UITableViewCell {
                 subInfoLabel.textColor = Style.secondaryColor
             case 1: // 作った回数
                 subInfoLabel.text = String(recipe.madeNum) + "回"
-                subInfoLabel.textColor = Style.secondaryColor
+                if recipe.madeNum < 1{
+                    subInfoLabel.textColor = Style.labelTextColorLight
+                }else{
+                    subInfoLabel.textColor = Style.secondaryColor
+                }
             case 2: // 最近見た
                 let formatter: DateFormatter = DateFormatter()
                 formatter.dateFormat = "yy/MM/dd"

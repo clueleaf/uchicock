@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZS-AX-OZb">
-                                        <rect key="frame" x="8" y="8" width="398" height="17"/>
+                                        <rect key="frame" x="30" y="8" width="354" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="jiS-fM-jcO"/>
                                         </constraints>
@@ -79,10 +79,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dZS-AX-OZb" secondAttribute="trailing" constant="8" id="6xz-sz-480"/>
+                                    <constraint firstItem="dZS-AX-OZb" firstAttribute="leading" secondItem="wNL-zJ-Sp0" secondAttribute="leading" id="AGv-oU-Jg0"/>
                                     <constraint firstAttribute="bottom" secondItem="wNL-zJ-Sp0" secondAttribute="bottom" constant="8" id="Nfz-rq-GVe"/>
+                                    <constraint firstItem="dZS-AX-OZb" firstAttribute="trailing" secondItem="wNL-zJ-Sp0" secondAttribute="trailing" id="SXV-jb-Wsl"/>
                                     <constraint firstItem="wNL-zJ-Sp0" firstAttribute="top" secondItem="dZS-AX-OZb" secondAttribute="bottom" constant="8" id="WL1-pe-Jrb"/>
-                                    <constraint firstItem="dZS-AX-OZb" firstAttribute="leading" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="8" id="cv0-jb-YgQ"/>
                                     <constraint firstItem="wNL-zJ-Sp0" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="30" id="gsT-tp-vFR"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="wNL-zJ-Sp0" secondAttribute="trailing" constant="30" id="hfz-Mk-bBF"/>
                                     <constraint firstItem="dZS-AX-OZb" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" constant="8" id="zge-Zb-4Ad"/>
@@ -419,7 +419,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFg-iR-foa">
-                                                    <rect key="frame" x="8" y="8" width="398" height="17"/>
+                                                    <rect key="frame" x="30" y="8" width="354" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="sQa-TD-6ig"/>
                                                     </constraints>
@@ -438,11 +438,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eVd-h0-UvW" secondAttribute="trailing" constant="30" id="EFl-aa-bre"/>
+                                                <constraint firstItem="kFg-iR-foa" firstAttribute="trailing" secondItem="eVd-h0-UvW" secondAttribute="trailing" id="IVW-ne-od3"/>
                                                 <constraint firstItem="eVd-h0-UvW" firstAttribute="top" secondItem="kFg-iR-foa" secondAttribute="bottom" constant="8" id="MzG-PD-nWK"/>
                                                 <constraint firstItem="kFg-iR-foa" firstAttribute="top" secondItem="hLU-dF-PaL" secondAttribute="top" constant="8" id="Tfm-uj-CMp"/>
                                                 <constraint firstItem="eVd-h0-UvW" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hLU-dF-PaL" secondAttribute="leading" constant="30" id="W3m-mh-ihy"/>
-                                                <constraint firstItem="kFg-iR-foa" firstAttribute="leading" secondItem="hLU-dF-PaL" secondAttribute="leading" constant="8" id="dFn-Ba-7Ay"/>
-                                                <constraint firstAttribute="trailing" secondItem="kFg-iR-foa" secondAttribute="trailing" constant="8" id="oU8-Ew-ygL"/>
+                                                <constraint firstItem="kFg-iR-foa" firstAttribute="leading" secondItem="eVd-h0-UvW" secondAttribute="leading" id="lTv-l1-eeN"/>
                                                 <constraint firstAttribute="bottom" secondItem="eVd-h0-UvW" secondAttribute="bottom" constant="8" id="tjT-Xw-oKT"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -767,6 +767,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xK4-qe-qjp"/>
+        <segue reference="e9K-u4-h0j"/>
     </inferredMetricsTieBreakers>
 </document>
