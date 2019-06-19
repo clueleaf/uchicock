@@ -92,7 +92,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         
-        readUserDefaults()
+        loadSearchUserDefaults()
         setSearchConditionLabel()
         reloadRecipeList()
         tableView.reloadData()
@@ -130,7 +130,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         selectedRecipeId = nil
     }
     
-    private func readUserDefaults(){
+    private func loadSearchUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: ["recipe-sort-primary" : 1])
         defaults.register(defaults: ["recipe-sort-secondary" : 0])

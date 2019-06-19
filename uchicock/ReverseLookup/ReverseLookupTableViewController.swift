@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate {
+class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -21,6 +21,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var ingredientTextField1: UITextField!
     @IBOutlet weak var ingredientTextField2: UITextField!
     @IBOutlet weak var ingredientTextField3: UITextField!
+    @IBOutlet weak var searchConditionLabel: UILabel!
+    @IBOutlet weak var searchConditionModifyButton: UIButton!
     
     var firstIngredientName = ""
     var secondIngredientName = ""
@@ -32,7 +34,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var ingredientSuggestList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
     var safeAreaHeight: CGFloat = 0
-    var transitioning = false
+    var transitioningSection1 = false
+    var shoudlHideSearchCell = false
+    
+    var recipeSortPrimary = 1
+    var recipeSortSecondary = 0
+    var recipeFilterStar0 = true
+    var recipeFilterStar1 = true
+    var recipeFilterStar2 = true
+    var recipeFilterStar3 = true
+    var recipeFilterLong = true
+    var recipeFilterShort = true
+    var recipeFilterBuild = true
+    var recipeFilterStir = true
+    var recipeFilterShake = true
+    var recipeFilterBlend = true
+    var recipeFilterOthers = true
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -71,7 +88,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setVC()
+    }
+    
+    private func setVC(){
         let window = UIApplication.shared.keyWindow
         safeAreaHeight = view.frame.size.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
         
@@ -90,8 +110,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
-
+        
+        searchConditionLabel.textColor = Style.labelTextColor
+        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchConditionModifyButton.layer.borderWidth = 1.0
+        searchConditionModifyButton.layer.cornerRadius = 5
+        searchConditionModifyButton.tintColor = Style.secondaryColor
+        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
+        
         loadIngredientsFromUserDefaults()
+        loadSearchUserDefaults()
+        setSearchConditionLabel()
         reloadRecipeList()
         recipeTableView.reloadData()
         self.tableView.reloadData()
@@ -99,7 +128,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
-
+        
         if let path = selectedPathForRecipeTableView {
             if recipeTableView.numberOfRows(inSection: 0) > path.row{
                 let nowRecipeId = (recipeTableView.cellForRow(at: path) as? RecipeTableViewCell)?.recipe.id
@@ -114,6 +143,82 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }
         selectedRecipeId = nil
+    }
+    
+    private func loadSearchUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: ["reverse-lookup-sort-primary" : 1])
+        defaults.register(defaults: ["reverse-lookup-sort-secondary" : 0])
+        defaults.register(defaults: ["reverse-lookup-filter-star0" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-star1" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-star2" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-star3" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-long" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-short" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-build" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-stir" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-shake" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-blend" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-others" : true])
+        
+        recipeSortPrimary = defaults.integer(forKey: "reverse-lookup-sort-primary")
+        recipeSortSecondary = defaults.integer(forKey: "reverse-lookup-sort-secondary")
+        recipeFilterStar0 = defaults.bool(forKey: "reverse-lookup-filter-star0")
+        recipeFilterStar1 = defaults.bool(forKey: "reverse-lookup-filter-star1")
+        recipeFilterStar2 = defaults.bool(forKey: "reverse-lookup-filter-star2")
+        recipeFilterStar3 = defaults.bool(forKey: "reverse-lookup-filter-star3")
+        recipeFilterLong = defaults.bool(forKey: "reverse-lookup-filter-long")
+        recipeFilterShort = defaults.bool(forKey: "reverse-lookup-filter-short")
+        recipeFilterBuild = defaults.bool(forKey: "reverse-lookup-filter-build")
+        recipeFilterStir = defaults.bool(forKey: "reverse-lookup-filter-stir")
+        recipeFilterShake = defaults.bool(forKey: "reverse-lookup-filter-shake")
+        recipeFilterBlend = defaults.bool(forKey: "reverse-lookup-filter-blend")
+        recipeFilterOthers = defaults.bool(forKey: "reverse-lookup-filter-others")
+    }
+    
+    private func setSearchConditionLabel(){
+        var conditionText = ""
+        
+        switch recipeSortPrimary{
+        case 1:
+            conditionText = "名前順"
+        case 2:
+            conditionText = "作れる順"
+        case 3:
+            conditionText = "作った回数順"
+        case 4:
+            conditionText = "お気に入り順"
+        case 5:
+            conditionText = "最近見た順"
+        default:
+            conditionText = "名前順"
+        }
+        
+        if recipeSortPrimary > 1 && recipeSortPrimary < 5{
+            switch recipeSortSecondary{
+            case 1:
+                conditionText += " > 名前順"
+            case 2:
+                conditionText += " > 作れる順"
+            case 3:
+                conditionText += " > 作った回数順"
+            case 4:
+                conditionText += " > お気に入り順"
+            case 5:
+                conditionText += " > 最近見た順"
+            default:
+                conditionText += " > 名前順"
+            }
+        }
+        
+        if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
+            recipeFilterLong && recipeFilterShort && recipeFilterBuild && recipeFilterStir &&
+            recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+        }else{
+            conditionText += "、絞り込みあり"
+        }
+        
+        searchConditionLabel.text = conditionText
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -145,7 +250,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    func setUserDefaults(){
+    func setUserDefaultsSearchText(){
         let defaults = UserDefaults.standard
         defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: "ReverseLookupFirst")
         defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: "ReverseLookupSecond")
@@ -185,16 +290,260 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }
         
-        recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        if recipeFilterStar0 == false{
+            recipeBasicList.removeAll{ $0.favorites == 0 }
+        }
+        if recipeFilterStar1 == false{
+            recipeBasicList.removeAll{ $0.favorites == 1 }
+        }
+        if recipeFilterStar2 == false{
+            recipeBasicList.removeAll{ $0.favorites == 2 }
+        }
+        if recipeFilterStar3 == false{
+            recipeBasicList.removeAll{ $0.favorites == 3 }
+        }
+        if recipeFilterLong == false{
+            // TODO
+        }
+        if recipeFilterShort == false{
+            // TODO
+        }
+        if recipeFilterBuild == false{
+            recipeBasicList.removeAll{ $0.method == 0 }
+        }
+        if recipeFilterStir == false{
+            recipeBasicList.removeAll{ $0.method == 1 }
+        }
+        if recipeFilterShake == false{
+            recipeBasicList.removeAll{ $0.method == 2 }
+        }
+        if recipeFilterBlend == false{
+            recipeBasicList.removeAll{ $0.method == 3 }
+        }
+        if recipeFilterOthers == false{
+            recipeBasicList.removeAll{ $0.method == 4 }
+        }
+        
+        switch recipeSortPrimary{
+        case 1: // 名前順
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        case 2:
+            switch recipeSortSecondary{
+            case 1: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 3: // 作れる順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.madeNum == b.madeNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 4: // 作れる順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 5: // 作れる順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            default: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            }
+        case 3:
+            switch recipeSortSecondary{
+            case 1: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 2: // 作った回数順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 4: // 作った回数順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 5: // 作った回数順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            default: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            }
+        case 4:
+            switch recipeSortSecondary{
+            case 1: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 2: // お気に入り順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 3: // お気に入り順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.madeNum == b.madeNum {
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 5: // お気に入り順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            default: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            }
+        case 5: // 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    }else{
+                        return false
+                    }
+                }else{
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
+                }
+            })
+        default: // 名前順
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        }
         
         setTableBackgroundView()
     }
     
-    func setTableBackgroundView(){
+    private func setTableBackgroundView(){
         if recipeBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.recipeTableView.bounds.size.width, height: self.recipeTableView.bounds.size.height))
-            noDataLabel.text          = "条件にあてはまるレシピはありません"
-            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.text = "条件にあてはまるレシピはありません"
+            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.recipeTableView.backgroundView  = UIView()
@@ -206,20 +555,20 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    func createRecipeBasicList(){
+    private func createRecipeBasicList(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: 0, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
         }
     }
     
-    func createRecipeBasicList(text1: String, text2: String?, text3: String?){
+    private func createRecipeBasicList(text1: String, text2: String?, text3: String?){
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: 0, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method))
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(withoutUse: t2)
@@ -230,7 +579,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    func deleteFromRecipeBasicList(withoutUse ingredientName: String){
+    private func deleteFromRecipeBasicList(withoutUse ingredientName: String){
         let realm = try! Realm()
         for i in (0..<recipeBasicList.count).reversed(){
             var hasIngredient = false
@@ -249,15 +598,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     func showRecipeTableView(){
         if editingTextField == -1{
-            setUserDefaults()
+            setUserDefaultsSearchText()
             loadIngredientsFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
-            transitioning = true
+            transitioningSection1 = true
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             
-            setUserDefaults()
+            setUserDefaultsSearchText()
             loadIngredientsFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
@@ -267,7 +616,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             ingredientTextField3.resignFirstResponder()
             editingTextField = -1
             
-            transitioning = false
+            shoudlHideSearchCell = false
+            tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+            transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             self.recipeTableView.flashScrollIndicators()
         }
@@ -283,13 +634,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         if editingTextField == -1{
-            transitioning = true
+            shoudlHideSearchCell = true
+            tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+            transitioningSection1 = true
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
 
-            transitioning = false
+            transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             self.ingredientSuggestTableView.flashScrollIndicators()
         }else{
@@ -309,7 +662,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else if editingTextField == 2{
             reloadIngredientSuggestList(text: ingredientTextField3.text!)
         }else{
-            setUserDefaults()
+            setUserDefaultsSearchText()
             reloadRecipeList()
             recipeTableView.reloadData()
         }
@@ -410,9 +763,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if tableView.tag == 0{
             if section == 0{
-                return 3
+                if shoudlHideSearchCell{
+                    return 3
+                }else{
+                    return 4
+                }
             }else if section == 1{
-                if transitioning{
+                if transitioningSection1{
                     return 0
                 }else{
                     return 1
@@ -429,7 +786,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == 0{
             if indexPath.section == 0{
-                return 35
+                if indexPath.row < 3{
+                    return 35
+                }else{
+                    return 72
+                }
             }else if indexPath.section == 1{
                 return safeAreaHeight - 35 * 3
             }
@@ -523,7 +884,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        transitioning = true
+        transitioningSection1 = true
         tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
         
         loadIngredientsFromUserDefaults()
@@ -535,12 +896,33 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField3.resignFirstResponder()
         editingTextField = -1
         
-        transitioning = false
+        shoudlHideSearchCell = false
+        tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+        transitioningSection1 = false
         tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
         
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
         self.recipeTableView.flashScrollIndicators()
+    }
+    
+    @IBAction func searchConditionModifyButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "RecipeSearch", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        let vc = nvc.visibleViewController as! RecipeSearchViewController
+        vc.onDoneBlock = {
+            self.setVC()
+        }
+        vc.userDefaultsPrefix = "reverse-lookup-"
+        present(nvc, animated: true)
+    }
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
     }
     
     // MARK: - Navigation
