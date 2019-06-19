@@ -289,6 +289,11 @@ class RecipeSearchViewController: UIViewController {
             methodWarningLabel.isHidden = true
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.flashScrollIndicators()
+    }
 
     // MARK: - M13Checkbox
     private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,

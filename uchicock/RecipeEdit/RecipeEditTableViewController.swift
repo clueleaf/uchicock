@@ -649,6 +649,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
+    @IBAction func unwindToRecipeEdit(_ segue: UIStoryboardSegue) {
+    }
+    
     // MARK: - Navigation
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         if fromViewController is PhotoFilterViewController{

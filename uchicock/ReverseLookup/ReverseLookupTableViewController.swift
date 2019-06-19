@@ -115,6 +115,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         selectedRecipeId = nil
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.recipeTableView.flashScrollIndicators()
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -264,6 +269,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             
             transitioning = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
+            self.recipeTableView.flashScrollIndicators()
         }
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
@@ -285,6 +291,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
             transitioning = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .right)
+            self.ingredientSuggestTableView.flashScrollIndicators()
         }else{
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
@@ -533,6 +540,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
+        self.recipeTableView.flashScrollIndicators()
     }
     
     // MARK: - Navigation

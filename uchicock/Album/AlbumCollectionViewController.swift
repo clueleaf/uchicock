@@ -91,6 +91,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collectionView.flashScrollIndicators()
+    }
+    
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         let realm = try! Realm()

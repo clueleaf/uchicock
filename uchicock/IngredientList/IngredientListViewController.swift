@@ -99,6 +99,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
+        self.tableView.flashScrollIndicators()
     }
     
     func getTextFieldFromView(_ view: UIView) -> UITextField?{

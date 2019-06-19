@@ -220,6 +220,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+        self.tableView.flashScrollIndicators()
     }
         
     func getTextFieldFromView(view: UIView) -> UITextField?{
