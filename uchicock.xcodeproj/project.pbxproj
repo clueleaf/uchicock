@@ -62,6 +62,8 @@
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
 		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
 		9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */; };
+		9BBCF41D22BA83710020B286 /* AlbumFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BBCF41B22BA83710020B286 /* AlbumFilter.storyboard */; };
+		9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBCF41E22BA839D0020B286 /* AlbumFilterViewController.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
 		9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A3181C783CAA0031F631 /* Main.storyboard */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
@@ -143,6 +145,8 @@
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
 		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeThemeTableViewController.swift; path = Settings/ChangeThemeTableViewController.swift; sourceTree = "<group>"; };
+		9BBCF41C22BA83710020B286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AlbumFilter.storyboard; sourceTree = "<group>"; };
+		9BBCF41E22BA839D0020B286 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = Album/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BC9A3111C783CAA0031F631 /* uchicock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchicock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC9A3141C783CAA0031F631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC9A3191C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */,
+				9BBCF41E22BA839D0020B286 /* AlbumFilterViewController.swift */,
 				9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */,
 				9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */,
 			);
@@ -401,6 +406,7 @@
 			children = (
 				9BC9A3181C783CAA0031F631 /* Main.storyboard */,
 				9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */,
+				9BBCF41B22BA83710020B286 /* AlbumFilter.storyboard */,
 				9BFCE1A61E97A39400546B47 /* RecipeDetail.storyboard */,
 				9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */,
 				9BFCE1A91E97A41400546B47 /* IngredientDetail.storyboard */,
@@ -502,6 +508,7 @@
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
 				9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */,
+				9BBCF41D22BA83710020B286 /* AlbumFilter.storyboard in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
 				9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */,
 				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,
@@ -583,6 +590,7 @@
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
 				9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */,
 				9B3078F11CA422630014CE7E /* RecipeEditIngredientTableViewCell.swift in Sources */,
+				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B865C351CBBC9C70022477B /* IngredientRecipeBasic.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
@@ -653,6 +661,14 @@
 				9B8A34AD22B15E300085B1EC /* Base */,
 			);
 			name = Introduction.storyboard;
+			sourceTree = "<group>";
+		};
+		9BBCF41B22BA83710020B286 /* AlbumFilter.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BBCF41C22BA83710020B286 /* Base */,
+			);
+			name = AlbumFilter.storyboard;
 			sourceTree = "<group>";
 		};
 		9BC9A3181C783CAA0031F631 /* Main.storyboard */ = {

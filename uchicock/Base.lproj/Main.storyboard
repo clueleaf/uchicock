@@ -639,25 +639,26 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
                         <barButtonItem key="backBarButtonItem" title="アルバム" id="Wm3-Ba-Mrh"/>
-                        <barButtonItem key="leftBarButtonItem" image="album-name-off" id="llb-gy-qnJ">
+                        <leftBarButtonItems>
+                            <barButtonItem image="album-name-off" id="llb-gy-qnJ">
+                                <connections>
+                                    <action selector="nameButtonTapped:" destination="N5u-Pe-SYk" id="Wam-gY-Gqo"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="album-filter-off" id="b74-vW-dMn">
+                                <connections>
+                                    <action selector="filterButtonTapped:" destination="N5u-Pe-SYk" id="VR1-hG-XQ5"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="order" id="cid-ka-mKY">
                             <connections>
-                                <action selector="nameButtonTapped:" destination="N5u-Pe-SYk" id="Wam-gY-Gqo"/>
+                                <action selector="orderButtonTapped:" destination="N5u-Pe-SYk" id="swB-cs-JPf"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="reload-and-shuffle" id="T3L-KT-GGi">
-                                <connections>
-                                    <action selector="reloadButtonTapped:" destination="N5u-Pe-SYk" id="u40-0D-8P5"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="order" id="cid-ka-mKY">
-                                <connections>
-                                    <action selector="orderButtonTapped:" destination="N5u-Pe-SYk" id="swB-cs-JPf"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="albumFilterBarButton" destination="b74-vW-dMn" id="Yjk-LS-KWz"/>
                         <outlet property="recipeNameBarButton" destination="llb-gy-qnJ" id="Aeb-JH-sYg"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="RecipeTapped" id="xK4-qe-qjp"/>
                     </connections>
@@ -757,15 +758,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="album-filter-off" width="24" height="24"/>
         <image name="album-name-off" width="24" height="24"/>
         <image name="order" width="24" height="24"/>
-        <image name="reload-and-shuffle" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="xK4-qe-qjp"/>
     </inferredMetricsTieBreakers>
 </document>

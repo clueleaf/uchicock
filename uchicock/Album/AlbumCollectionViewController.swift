@@ -10,19 +10,32 @@ import UIKit
 import RealmSwift
 import MJRefresh
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
+    @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
     
     var recipeBasicList = Array<RecipeBasic>()
+    var filteredRecipeBasicList = Array<RecipeBasic>()
     let header = MJRefreshNormalHeader()
     
     let queue = DispatchQueue(label: "queue")
-    var emptyDataSetStr = ""
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
+    
+    var albumFilterStar0 = true
+    var albumFilterStar1 = true
+    var albumFilterStar2 = true
+    var albumFilterStar3 = true
+    var albumFilterLong = true
+    var albumFilterShort = true
+    var albumFilterBuild = true
+    var albumFilterStir = true
+    var albumFilterShake = true
+    var albumFilterBlend = true
+    var albumFilterOthers = true
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -31,12 +44,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewDidLoad()
         
         queue.async {
+            self.setFilterUserDefaults()
             self.reloadRecipeList()
         }
         
         collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
 
         recipeNameBarButton.image = UIImage(named: "album-name-off")
+        albumFilterBarButton.image = UIImage(named: "album-filter-off")
         
         header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
         header.lastUpdatedTimeLabel.isHidden = true
@@ -46,15 +61,25 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         collectionView!.mj_header = header
     }
     
+    private func setFilterUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "album-filter-star0")
+        defaults.set(true, forKey: "album-filter-star1")
+        defaults.set(true, forKey: "album-filter-star2")
+        defaults.set(true, forKey: "album-filter-star3")
+        defaults.set(true, forKey: "album-filter-long")
+        defaults.set(true, forKey: "album-filter-short")
+        defaults.set(true, forKey: "album-filter-build")
+        defaults.set(true, forKey: "album-filter-stir")
+        defaults.set(true, forKey: "album-filter-shake")
+        defaults.set(true, forKey: "album-filter-blend")
+        defaults.set(true, forKey: "album-filter-others")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.collectionView!.backgroundColor = Style.basicBackgroundColor
-        header.stateLabel.textColor = Style.labelTextColor
-        self.collectionView!.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         setCollectionBackgroundView()
-        emptyDataSetStr = ""
 
         queue.async {
             let realm = try! Realm()
@@ -82,13 +107,43 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
                 }
             }
-            self.emptyDataSetStr = "写真が登録されたレシピはありません"
+        }
+        
+        setVC()
+    }
+    
+    private func setVC(){
+        self.collectionView!.backgroundColor = Style.basicBackgroundColor
+        header.stateLabel.textColor = Style.labelTextColor
+        self.collectionView!.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        
+        queue.async {
+            self.loadFilterUserDefaults()
+            DispatchQueue.main.async{
+                self.setFilterImageState()
+            }
+            self.filterRecipeBasicList()
             DispatchQueue.main.async{
                 self.collectionView!.reloadData()
-                self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+                self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
                 self.setCollectionBackgroundView()
             }
         }
+    }
+    
+    private func loadFilterUserDefaults(){
+        let defaults = UserDefaults.standard
+        albumFilterStar0 = defaults.bool(forKey: "album-filter-star0")
+        albumFilterStar1 = defaults.bool(forKey: "album-filter-star1")
+        albumFilterStar2 = defaults.bool(forKey: "album-filter-star2")
+        albumFilterStar3 = defaults.bool(forKey: "album-filter-star3")
+        albumFilterLong = defaults.bool(forKey: "album-filter-long")
+        albumFilterShort = defaults.bool(forKey: "album-filter-short")
+        albumFilterBuild = defaults.bool(forKey: "album-filter-build")
+        albumFilterStir = defaults.bool(forKey: "album-filter-stir")
+        albumFilterShake = defaults.bool(forKey: "album-filter-shake")
+        albumFilterBlend = defaults.bool(forKey: "album-filter-blend")
+        albumFilterOthers = defaults.bool(forKey: "album-filter-others")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,10 +162,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func setCollectionBackgroundView(){
-        if self.recipeBasicList.count == 0{
+        if self.filteredRecipeBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
-            noDataLabel.text          = "写真が登録されたレシピはありません"
-            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            if self.recipeBasicList.count == 0{
+                noDataLabel.text = "写真が登録されたレシピはありません"
+            }else{
+                noDataLabel.text = "条件にあてはまるレシピはありません"
+            }
+            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.collectionView.backgroundView  = UIView()
@@ -122,11 +181,60 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
+    private func setFilterImageState(){
+        if albumFilterStar0 && albumFilterStar1 && albumFilterStar2 && albumFilterStar3 &&
+            albumFilterLong && albumFilterShort && albumFilterBuild && albumFilterStir &&
+            albumFilterShake && albumFilterBlend && albumFilterOthers {
+            albumFilterBarButton.image = UIImage(named: "album-filter-off")
+        }else{
+            albumFilterBarButton.image = UIImage(named: "album-filter-on")
+        }
+    }
+    
+    private func filterRecipeBasicList(){
+        filteredRecipeBasicList = recipeBasicList
+        
+        if albumFilterStar0 == false{
+            filteredRecipeBasicList.removeAll{ $0.favorites == 0 }
+        }
+        if albumFilterStar1 == false{
+            filteredRecipeBasicList.removeAll{ $0.favorites == 1 }
+        }
+        if albumFilterStar2 == false{
+            filteredRecipeBasicList.removeAll{ $0.favorites == 2 }
+        }
+        if albumFilterStar3 == false{
+            filteredRecipeBasicList.removeAll{ $0.favorites == 3 }
+        }
+        if albumFilterLong == false{
+            // TODO
+        }
+        if albumFilterShort == false{
+            // TODO
+        }
+        if albumFilterBuild == false{
+            filteredRecipeBasicList.removeAll{ $0.method == 0 }
+        }
+        if albumFilterStir == false{
+            filteredRecipeBasicList.removeAll{ $0.method == 1 }
+        }
+        if albumFilterShake == false{
+            filteredRecipeBasicList.removeAll{ $0.method == 2 }
+        }
+        if albumFilterBlend == false{
+            filteredRecipeBasicList.removeAll{ $0.method == 3 }
+        }
+        if albumFilterOthers == false{
+            filteredRecipeBasicList.removeAll{ $0.method == 4 }
+        }
+    }
+    
     @objc func refresh(){
         self.collectionView!.mj_header.beginRefreshing()
         recipeBasicList.shuffle()
+        filterRecipeBasicList()
         self.collectionView!.reloadData()
-        self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
+        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         self.setCollectionBackgroundView()
         self.collectionView!.mj_header.endRefreshing()
     }
@@ -142,13 +250,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipeBasicList.count
+        return filteredRecipeBasicList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let realm = try! Realm()
-        if indexPath.row < recipeBasicList.count{
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
+        if indexPath.row < filteredRecipeBasicList.count{
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: filteredRecipeBasicList[indexPath.row].id)
             if let r = recipe {
                 performSegue(withIdentifier: "RecipeTapped", sender: r.id)
             }
@@ -159,7 +267,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
         let realm = try! Realm()
-        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)
+        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: filteredRecipeBasicList[indexPath.row].id)
         if let r = recipe{
             if let image = r.imageData {
                 cell.photo.image = UIImage(data: image as Data)
@@ -245,34 +353,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     // MARK: - IBAction
-    @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: "シャッフル", message: "表示順をシャッフルします", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-            self.recipeBasicList.shuffle()
-            self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
-            self.setCollectionBackgroundView()
-        }))
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = Style.statusBarStyle
-        alertView.modalPresentationCapturesStatusBarAppearance = true
-        self.present(alertView, animated: true, completion: nil)
-    }
-
-    @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: "名前順", message: "レシピを名前順に並べ替えます", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-            self.reloadRecipeList()
-            self.collectionView!.reloadData()
-            self.navigationItem.title = "アルバム(" + String(self.recipeBasicList.count) + ")"
-            self.setCollectionBackgroundView()
-        }))
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = Style.statusBarStyle
-        alertView.modalPresentationCapturesStatusBarAppearance = true
-        self.present(alertView, animated: true, completion: nil)
-    }
-    
     @IBAction func nameButtonTapped(_ sender: UIBarButtonItem) {
         if showNameFlag {
             recipeNameBarButton.image = UIImage(named: "album-name-off")
@@ -289,6 +369,46 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView!.layoutIfNeeded()
             animationFlag = false
         }
+    }
+    
+    @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "AlbumFilter", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "AlbumFilterModalNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        let vc = nvc.visibleViewController as! AlbumFilterViewController
+        vc.onDoneBlock = {
+            self.setVC()
+        }
+        vc.userDefaultsPrefix = "album-"
+        present(nvc, animated: true)
+    }
+    
+    @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
+            self.reloadRecipeList()
+            self.collectionView!.reloadData()
+            self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+            self.setCollectionBackgroundView()
+        }))
+        alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
+            self.recipeBasicList.shuffle()
+            self.filterRecipeBasicList()
+            self.collectionView!.reloadData()
+            self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+            self.setCollectionBackgroundView()
+        }))
+        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
+    }
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
     }
     
     // MARK: - Navigation

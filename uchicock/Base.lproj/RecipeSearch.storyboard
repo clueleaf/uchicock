@@ -919,6 +919,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="warning" width="120" height="120"/>
+        <image name="warning" width="24" height="24"/>
     </resources>
 </document>
