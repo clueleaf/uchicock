@@ -25,8 +25,8 @@
                             <constraint firstAttribute="width" constant="69" id="VEd-YU-XaW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2V-21-ykG">
-                        <rect key="frame" x="77" y="8" width="141" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2V-21-ykG">
+                        <rect key="frame" x="77" y="8" width="69.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sXD-ZD-mtG"/>
                         </constraints>
@@ -40,11 +40,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
-                        <rect key="frame" x="226" y="8" width="60" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="☆☆☆" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
+                        <rect key="frame" x="154.5" y="8" width="131.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9vy-6M-Nyt"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="ecC-sA-Jy9"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="ecC-sA-Jy9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
