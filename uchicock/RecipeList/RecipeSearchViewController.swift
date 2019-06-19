@@ -81,6 +81,7 @@ class RecipeSearchViewController: UIViewController {
     @IBOutlet weak var searchButtonBackgroundView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
+    var userDefaultsPrefix = "recipe-"
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
     var recipeFilterStar0 = true
@@ -176,19 +177,19 @@ class RecipeSearchViewController: UIViewController {
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
 
-        recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
-        recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
-        recipeFilterStar0 = defaults.bool(forKey: "recipe-filter-star0")
-        recipeFilterStar1 = defaults.bool(forKey: "recipe-filter-star1")
-        recipeFilterStar2 = defaults.bool(forKey: "recipe-filter-star2")
-        recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
-        recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
-        recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
-        recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
-        recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
-        recipeFilterShake = defaults.bool(forKey: "recipe-filter-shake")
-        recipeFilterBlend = defaults.bool(forKey: "recipe-filter-blend")
-        recipeFilterOthers = defaults.bool(forKey: "recipe-filter-others")
+        recipeSortPrimary = defaults.integer(forKey: userDefaultsPrefix + "sort-primary")
+        recipeSortSecondary = defaults.integer(forKey: userDefaultsPrefix + "sort-secondary")
+        recipeFilterStar0 = defaults.bool(forKey: userDefaultsPrefix + "filter-star0")
+        recipeFilterStar1 = defaults.bool(forKey: userDefaultsPrefix + "filter-star1")
+        recipeFilterStar2 = defaults.bool(forKey: userDefaultsPrefix + "filter-star2")
+        recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + "filter-star3")
+        recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + "filter-long")
+        recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + "filter-short")
+        recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + "filter-build")
+        recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + "filter-stir")
+        recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + "filter-shake")
+        recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + "filter-blend")
+        recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + "filter-others")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -372,20 +373,20 @@ class RecipeSearchViewController: UIViewController {
             secondarySort = 5
         }
         
-        defaults.set(primarySort, forKey: "recipe-sort-primary")
-        defaults.set(secondarySort, forKey: "recipe-sort-secondary")
+        defaults.set(primarySort, forKey: userDefaultsPrefix + "sort-primary")
+        defaults.set(secondarySort, forKey: userDefaultsPrefix + "sort-secondary")
         
-        setFilterUserDefaults(with: favorite0Checkbox, forKey: "recipe-filter-star0")
-        setFilterUserDefaults(with: favorite1Checkbox, forKey: "recipe-filter-star1")
-        setFilterUserDefaults(with: favorite2Checkbox, forKey: "recipe-filter-star2")
-        setFilterUserDefaults(with: favorite3Checkbox, forKey: "recipe-filter-star3")
-        setFilterUserDefaults(with: typeLongCheckbox, forKey: "recipe-filter-long")
-        setFilterUserDefaults(with: typeShortCheckbox, forKey: "recipe-filter-short")
-        setFilterUserDefaults(with: methodBuildCheckbox, forKey: "recipe-filter-build")
-        setFilterUserDefaults(with: methodStirCheckbox, forKey: "recipe-filter-stir")
-        setFilterUserDefaults(with: methodShakeCheckbox, forKey: "recipe-filter-shake")
-        setFilterUserDefaults(with: methodBlendCheckbox, forKey: "recipe-filter-blend")
-        setFilterUserDefaults(with: methodOthersCheckbox, forKey: "recipe-filter-others")
+        setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + "filter-star0")
+        setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + "filter-star1")
+        setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + "filter-star2")
+        setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + "filter-star3")
+        setFilterUserDefaults(with: typeLongCheckbox, forKey: userDefaultsPrefix + "filter-long")
+        setFilterUserDefaults(with: typeShortCheckbox, forKey: userDefaultsPrefix + "filter-short")
+        setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + "filter-build")
+        setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + "filter-stir")
+        setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + "filter-shake")
+        setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + "filter-blend")
+        setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + "filter-others")
     }
     
     private func setFilterUserDefaults(with checkbox: M13Checkbox, forKey key: String){

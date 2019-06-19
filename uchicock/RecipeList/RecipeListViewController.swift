@@ -698,6 +698,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         vc.onDoneBlock = {
             self.setVC()
         }
+        vc.userDefaultsPrefix = "recipe-"
         present(nvc, animated: true)
     }
     
