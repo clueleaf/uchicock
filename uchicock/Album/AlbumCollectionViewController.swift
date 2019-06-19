@@ -97,9 +97,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
             for recipe in recipeList{
                 var newPhotoFlag = true
-                for rb in self.recipeBasicList{
-                    if recipe.id == rb.id{
+                for i in (0..<self.recipeBasicList.count).reversed() {
+                    if recipe.id == self.recipeBasicList[i].id{
                         newPhotoFlag = false
+                        self.recipeBasicList.remove(at: i)
+                        self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method), at: i)
                         break
                     }
                 }
@@ -388,6 +390,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
             self.reloadRecipeList()
+            self.filterRecipeBasicList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             self.setCollectionBackgroundView()
