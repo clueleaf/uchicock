@@ -118,8 +118,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         searchConditionModifyButton.tintColor = Style.secondaryColor
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
-        loadIngredientsFromUserDefaults()
-        loadSearchUserDefaults()
+        loadFromUserDefaults()
         setSearchConditionLabel()
         reloadRecipeList()
         recipeTableView.reloadData()
@@ -145,7 +144,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         selectedRecipeId = nil
     }
     
-    private func loadSearchUserDefaults(){
+    private func loadFromUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: ["reverse-lookup-sort-primary" : 1])
         defaults.register(defaults: ["reverse-lookup-sort-secondary" : 0])
@@ -174,6 +173,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterShake = defaults.bool(forKey: "reverse-lookup-filter-shake")
         recipeFilterBlend = defaults.bool(forKey: "reverse-lookup-filter-blend")
         recipeFilterOthers = defaults.bool(forKey: "reverse-lookup-filter-others")
+
+        if let first = defaults.string(forKey: "ReverseLookupFirst"){
+            ingredientTextField1.text = textWithoutSpace(text: first)
+        }else{
+            defaults.set("", forKey: "ReverseLookupFirst")
+        }
+        if let second = defaults.string(forKey: "ReverseLookupSecond"){
+            ingredientTextField2.text = textWithoutSpace(text: second)
+        }else{
+            defaults.set("", forKey: "ReverseLookupSecond")
+        }
+        if let third = defaults.string(forKey: "ReverseLookupThird"){
+            ingredientTextField3.text = textWithoutSpace(text: third)
+        }else{
+            defaults.set("", forKey: "ReverseLookupThird")
+        }
     }
     
     private func setSearchConditionLabel(){
@@ -231,26 +246,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.removeObserver(self)
     }
 
-    func loadIngredientsFromUserDefaults(){
-        let defaults = UserDefaults.standard
-        if let first = defaults.string(forKey: "ReverseLookupFirst"){
-            ingredientTextField1.text = textWithoutSpace(text: first)
-        }else{
-            defaults.set("", forKey: "ReverseLookupFirst")
-        }
-        if let second = defaults.string(forKey: "ReverseLookupSecond"){
-            ingredientTextField2.text = textWithoutSpace(text: second)
-        }else{
-            defaults.set("", forKey: "ReverseLookupSecond")
-        }
-        if let third = defaults.string(forKey: "ReverseLookupThird"){
-            ingredientTextField3.text = textWithoutSpace(text: third)
-        }else{
-            defaults.set("", forKey: "ReverseLookupThird")
-        }
-    }
-    
-    func setUserDefaultsSearchText(){
+    func setSearchTextToUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: "ReverseLookupFirst")
         defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: "ReverseLookupSecond")
@@ -598,16 +594,16 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     func showRecipeTableView(){
         if editingTextField == -1{
-            setUserDefaultsSearchText()
-            loadIngredientsFromUserDefaults()
+            setSearchTextToUserDefaults()
+            loadFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
             transitioningSection1 = true
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             
-            setUserDefaultsSearchText()
-            loadIngredientsFromUserDefaults()
+            setSearchTextToUserDefaults()
+            loadFromUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
             
@@ -662,7 +658,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else if editingTextField == 2{
             reloadIngredientSuggestList(text: ingredientTextField3.text!)
         }else{
-            setUserDefaultsSearchText()
+            setSearchTextToUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }
@@ -887,7 +883,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         transitioningSection1 = true
         tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
         
-        loadIngredientsFromUserDefaults()
+        loadFromUserDefaults()
         reloadRecipeList()
         recipeTableView.reloadData()
         
