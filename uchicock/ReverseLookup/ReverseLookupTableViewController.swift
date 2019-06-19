@@ -866,7 +866,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: - IBAction
     @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: nil, message: "逆引き検索条件をクリアします", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: nil, message: "入力した材料名をクリアします", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
             self.ingredientTextField1.text = ""
             self.ingredientTextField2.text = ""

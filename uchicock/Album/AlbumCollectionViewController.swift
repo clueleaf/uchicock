@@ -169,8 +169,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             if self.recipeBasicList.count == 0{
                 noDataLabel.text = "写真が登録されたレシピはありません"
             }else{
-                noDataLabel.text = "条件にあてはまるレシピはありません"
+                noDataLabel.text = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
             }
+            noDataLabel.numberOfLines = 0
             noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
