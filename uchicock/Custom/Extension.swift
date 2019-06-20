@@ -132,7 +132,7 @@ extension String {
         }
     }
     
-    func cocktailTypeNumber() -> Int {
+    func cocktailStyleNumber() -> Int {
         switch self{
         case "ウォッカ": return 1
         default: return 0
