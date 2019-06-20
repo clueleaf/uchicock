@@ -671,9 +671,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }else if recipeSortPrimary == 5{
                 cell.subInfoType = 2
             }else if recipeSortPrimary == 2{
-                if recipeSortSecondary == 2{
+                if recipeSortSecondary == 3{
                     cell.subInfoType = 1
-                }else if recipeSortSecondary == 4{
+                }else if recipeSortSecondary == 5{
                     cell.subInfoType = 2
                 }else{
                     cell.subInfoType = 0
