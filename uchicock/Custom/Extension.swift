@@ -136,5 +136,6 @@ extension String {
         switch self{
         case "ウォッカ": return 1
         default: return 0
+        }
     }
 }
