@@ -24,7 +24,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(RecoverPreviewIngredientTableViewCell.self, forCellReuseIdentifier: "RecoverPreviewIngredient")
+        tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
@@ -97,7 +97,7 @@ class RecoverPreviewTableViewController: UITableViewController {
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }
         }else if indexPath.section == 1{
-            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
+            return 70
         }
         return 0
     }
@@ -126,23 +126,12 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.backgroundColor = Style.basicBackgroundColor
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverPreviewIngredient", for: indexPath) as! RecoverPreviewIngredientTableViewCell
-            cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
-            if recipe.recipeIngredients[indexPath.row].mustFlag{
-                cell.option.text = ""
-                cell.option.backgroundColor = UIColor.clear
-            }else{
-                cell.option.text = "オプション"
-                cell.option.backgroundColor = Style.badgeDisableBackgroundColor
-            }
-            cell.option.textColor = Style.labelTextColorOnDisableBadge
-            cell.option.layer.cornerRadius = 4
-            cell.option.clipsToBounds = true
-            cell.option.textAlignment = NSTextAlignment.center
-            
-            cell.ingredientName.textColor = Style.labelTextColor
-            cell.amount.textColor = Style.labelTextColor
-            cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
+            cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
+            cell.amountText = recipe.recipeIngredients[indexPath.row].amount
+            cell.stock = nil
+
             cell.selectionStyle = .none
             cell.backgroundColor = Style.basicBackgroundColor
             return cell

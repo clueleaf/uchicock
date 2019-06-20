@@ -67,8 +67,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         initActionButtonStyleOf(openInSafariButton, with: "safari")
         initActionButtonStyleOf(deleteButton, with: "delete")
 
-        tableView.register(RecipeIngredientListTableViewCell.self, forCellReuseIdentifier: "RecipeIngredientList")
-        
+        tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
+
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
         photoBackground.addGestureRecognizer(tapRecognizer)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoLongPressed(_:)))
@@ -86,7 +86,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         setupVC()
         if let index = indexPathForSelectedRow {
             if tableView.numberOfRows(inSection: 1) > index.row{
-                let nowIngredientId = (tableView.cellForRow(at: index) as? RecipeIngredientListTableViewCell)?.ingredientId
+                let nowIngredientId = (tableView.cellForRow(at: index) as? RecipeIngredientTableViewCell)?.ingredientId
                 if nowIngredientId != nil && selectedIngredientId != nil{
                     if nowIngredientId! == selectedIngredientId!{
                         tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
@@ -358,7 +358,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if indexPath.section == 0 {
             return UITableView.automaticDimension
         }else if indexPath.section == 1{
-            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
+            return 70
         }else if indexPath.section == 2{
             return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 2))
         }
@@ -436,45 +436,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientList", for: indexPath) as! RecipeIngredientListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-            cell.ingredientName.text = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
-            cell.ingredientName.backgroundColor = Style.basicBackgroundColor
-            cell.ingredientName.clipsToBounds = true
-            cell.option.backgroundColor = UIColor.clear
-            if recipe.recipeIngredients[indexPath.row].mustFlag{
-                cell.option.text = ""
-                cell.option.layer.backgroundColor = UIColor.clear.cgColor
-            }else{
-                cell.option.text = "オプション"
-                cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-            }
-            cell.option.textColor = Style.labelTextColorOnDisableBadge
-            cell.option.layer.cornerRadius = 4
-            cell.option.clipsToBounds = true
-            cell.option.textAlignment = NSTextAlignment.center
-
-            cell.stock.backgroundColor = UIColor.clear
-            if recipe.recipeIngredients[indexPath.row].ingredient.stockFlag {
-                cell.stock.text = "在庫あり"
-                cell.stock.textColor = Style.labelTextColorOnBadge
-                cell.stock.layer.backgroundColor = Style.secondaryColor.cgColor
-                cell.ingredientName.textColor = Style.labelTextColor
-                cell.amount.textColor = Style.labelTextColor
-            }else{
-                cell.stock.text = "在庫なし"
-                cell.stock.textColor = Style.labelTextColorOnDisableBadge
-                cell.stock.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-                cell.ingredientName.textColor = Style.labelTextColorLight
-                cell.amount.textColor = Style.labelTextColorLight
-            }
-            cell.stock.layer.cornerRadius = 4
-            cell.stock.clipsToBounds = true
-            cell.stock.textAlignment = NSTextAlignment.center
-            cell.amount.text = recipe.recipeIngredients[indexPath.row].amount
-            cell.amount.backgroundColor = Style.basicBackgroundColor
-            cell.amount.clipsToBounds = true
-            
+            cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
+            cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
+            cell.amountText = recipe.recipeIngredients[indexPath.row].amount
             cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.selectionStyle = .default
             cell.backgroundColor = Style.basicBackgroundColor

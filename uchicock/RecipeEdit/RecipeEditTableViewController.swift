@@ -43,8 +43,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(RecipeEditIngredientTableViewCell.self, forCellReuseIdentifier: "RecipeEditIngredient")
-        
+        tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
+
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
@@ -232,7 +232,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             return super.tableView(tableView, heightForRowAt: indexPath)
         }else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
-                return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
+                return 70
             } else if indexPath.row == editingRecipeIngredientList.count{
                 return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
             }
@@ -331,25 +331,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             return cell
         } else if indexPath.section == 1{
             if indexPath.row < editingRecipeIngredientList.count{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeEditIngredient", for: indexPath) as! RecipeEditIngredientTableViewCell
-                cell.ingredientName.text = editingRecipeIngredientList[indexPath.row].ingredientName
-                cell.ingredientName.backgroundColor = Style.basicBackgroundColor
-                cell.ingredientName.clipsToBounds = true
-                cell.amount.text = editingRecipeIngredientList[indexPath.row].amount
-                cell.amount.backgroundColor = Style.basicBackgroundColor
-                cell.amount.clipsToBounds = true
-                cell.option.backgroundColor = UIColor.clear
-                if editingRecipeIngredientList[indexPath.row].mustFlag{
-                    cell.option.text = ""
-                    cell.option.layer.backgroundColor = UIColor.clear.cgColor
-                }else{
-                    cell.option.text = "オプション"
-                    cell.option.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-                }
-                cell.option.textColor = Style.labelTextColorOnDisableBadge
-                cell.option.layer.cornerRadius = 4
-                cell.option.clipsToBounds = true
-                cell.option.textAlignment = NSTextAlignment.center
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
+                cell.ingredientName = editingRecipeIngredientList[indexPath.row].ingredientName
+                cell.amountText = editingRecipeIngredientList[indexPath.row].amount
+                cell.isOption = !editingRecipeIngredientList[indexPath.row].mustFlag
+                cell.stock = nil
 
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
