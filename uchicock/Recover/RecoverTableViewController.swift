@@ -138,7 +138,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName, method: recipe.method, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecoverIngredient(name: ri.ingredient.ingredientName, amount: ri.amount, mustflag: ri.mustFlag, category: ri.ingredient.category))
+                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(id: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
@@ -152,12 +152,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             if rec.count < 1 {
                 try! realm.write {
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addIngredient(ingredientName: recoverIngredient.name, stockFlag: false, memo: "", category: recoverIngredient.category)
+                        addIngredient(ingredientName: recoverIngredient.ingredientName, stockFlag: false, memo: "", category: recoverIngredient.category)
                     }
                     addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", method: recoverRecipe.method)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.name, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustflag)
+                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag)
                     }
                     updateRecipeShortageNum(recipeName: recoverRecipe.name)
                 }

@@ -31,7 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     weak var detailVC : RecipeDetailTableViewController?
     var recipe = Recipe()
     var isAddMode = true
-    var editingRecipeIngredientList = Array<EditingRecipeIngredient>()
+    var recipeIngredientList = Array<RecipeIngredientBasic>()
     var ipc = UIImagePickerController()
     var focusRecipeNameFlag = false
     let selectedCellBackgroundView = UIView()
@@ -96,7 +96,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.borderWidth = 1
 
         for ri in recipe.recipeIngredients {
-            editingRecipeIngredientList.append(EditingRecipeIngredient(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: -1))
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -168,9 +168,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func isIngredientDuplicated() -> Bool {
-        for i in 0 ..< editingRecipeIngredientList.count - 1{
-            for j in i+1 ..< editingRecipeIngredientList.count{
-                if editingRecipeIngredientList[i].ingredientName == editingRecipeIngredientList[j].ingredientName{
+        for i in 0 ..< recipeIngredientList.count - 1{
+            for j in i+1 ..< recipeIngredientList.count{
+                if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
                     return true
                 }
             }
@@ -231,9 +231,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if indexPath.section == 0 {
             return super.tableView(tableView, heightForRowAt: indexPath)
         }else if indexPath.section == 1{
-            if indexPath.row < editingRecipeIngredientList.count{
+            if indexPath.row < recipeIngredientList.count{
                 return 70
-            } else if indexPath.row == editingRecipeIngredientList.count{
+            } else if indexPath.row == recipeIngredientList.count{
                 return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
             }
         }
@@ -244,7 +244,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if section == 0 {
             return super.tableView(tableView, numberOfRowsInSection: 0)
         } else if section == 1{
-            return editingRecipeIngredientList.count + 1
+            return recipeIngredientList.count + 1
         }
         return 0
     }
@@ -267,34 +267,34 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
-                            let editingRecipeIngredient = EditingRecipeIngredient(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag)
-                            self.editingRecipeIngredientList.append(editingRecipeIngredient)
+                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: -1)
+                            self.recipeIngredientList.append(recipeIngredient)
                         }
                     }else{
                         if deleteFlag{
-                            for i in 0 ..< self.editingRecipeIngredientList.count where i < self.editingRecipeIngredientList.count {
-                                if self.editingRecipeIngredientList[i].id == recipeIngredientId{
-                                    self.editingRecipeIngredientList.remove(at: i)
+                            for i in 0 ..< self.recipeIngredientList.count where i < self.recipeIngredientList.count {
+                                if self.recipeIngredientList[i].id == recipeIngredientId{
+                                    self.recipeIngredientList.remove(at: i)
                                 }
                             }
                         }else{
-                            for i in 0 ..< self.editingRecipeIngredientList.count where self.editingRecipeIngredientList[i].id == recipeIngredientId{
-                                self.editingRecipeIngredientList[i].ingredientName = ingredientName
-                                self.editingRecipeIngredientList[i].amount = amount
-                                self.editingRecipeIngredientList[i].mustFlag = mustFlag
+                            for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].id == recipeIngredientId{
+                                self.recipeIngredientList[i].ingredientName = ingredientName
+                                self.recipeIngredientList[i].amount = amount
+                                self.recipeIngredientList[i].mustFlag = mustFlag
                             }
                         }
                     }
                 }
                 self.setupVC()
             }
-            if indexPath.row < editingRecipeIngredientList.count{
-                if self.editingRecipeIngredientList[indexPath.row].id == ""{
-                    self.editingRecipeIngredientList[indexPath.row].id = NSUUID().uuidString
+            if indexPath.row < recipeIngredientList.count{
+                if self.recipeIngredientList[indexPath.row].id == ""{
+                    self.recipeIngredientList[indexPath.row].id = NSUUID().uuidString
                 }
-                vc.recipeIngredient = self.editingRecipeIngredientList[indexPath.row]
+                vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
                 vc.isAddMode = false
-            }else if indexPath.row == editingRecipeIngredientList.count{
+            }else if indexPath.row == recipeIngredientList.count{
                 vc.isAddMode = true
             }
             present(nvc, animated: true)
@@ -304,8 +304,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
-            if indexPath.section == 1 && indexPath.row < self.editingRecipeIngredientList.count{
-                self.editingRecipeIngredientList.remove(at: indexPath.row)
+            if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
+                self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }
@@ -315,7 +315,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 1 && indexPath.row < editingRecipeIngredientList.count
+        return indexPath.section == 1 && indexPath.row < recipeIngredientList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -330,24 +330,24 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
             return cell
         } else if indexPath.section == 1{
-            if indexPath.row < editingRecipeIngredientList.count{
+            if indexPath.row < recipeIngredientList.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
-                cell.ingredientName = editingRecipeIngredientList[indexPath.row].ingredientName
-                cell.amountText = editingRecipeIngredientList[indexPath.row].amount
-                cell.isOption = !editingRecipeIngredientList[indexPath.row].mustFlag
+                cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
+                cell.amountText = recipeIngredientList[indexPath.row].amount
+                cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = nil
 
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
                 cell.selectionStyle = .default
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
-                if indexPath.row == editingRecipeIngredientList.count - 1{
+                if indexPath.row == recipeIngredientList.count - 1{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 }else{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
                 }
                 return cell
-            }else if indexPath.row == editingRecipeIngredientList.count{
+            }else if indexPath.row == recipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
                 cell.textLabel?.textColor = Style.secondaryColor
                 cell.textLabel?.text = "材料を追加"
@@ -484,9 +484,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             presentAlert("レシピ名を30文字以下にしてください")
         }else if memo.text.count > 1000 {
             presentAlert("メモを1000文字以下にしてください")
-        }else if editingRecipeIngredientList.count == 0{
+        }else if recipeIngredientList.count == 0{
             presentAlert("材料を一つ以上入力してください")
-        }else if editingRecipeIngredientList.count > 30{
+        }else if recipeIngredientList.count > 30{
             presentAlert("材料を30個以下にしてください")
         } else if isIngredientDuplicated() {
             presentAlert("重複している材料があります")
@@ -522,7 +522,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         newRecipe.memo = memo.text
                         realm.add(newRecipe)
                         
-                        for editingRecipeIngredient in editingRecipeIngredientList{
+                        for editingRecipeIngredient in recipeIngredientList{
                             let recipeIngredientLink = RecipeIngredientLink()
                             recipeIngredientLink.amount = editingRecipeIngredient.amount
                             recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag
@@ -590,7 +590,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text
                         
-                        for editingRecipeIngredient in editingRecipeIngredientList{
+                        for editingRecipeIngredient in recipeIngredientList{
                             let recipeIngredientLink = RecipeIngredientLink()
                             recipeIngredientLink.amount = editingRecipeIngredient.amount
                             recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag

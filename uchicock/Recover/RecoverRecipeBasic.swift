@@ -12,15 +12,8 @@ struct SampleRecipeBasic{
     var recoverTarget : Bool
 }
 
-struct RecoverIngredient{
-    var name : String
-    var amount : String
-    var mustflag : Bool
-    var category : Int
-}
-
 struct RecoverRecipe{
     var name : String
     var method : Int
-    var ingredientList = Array<RecoverIngredient>()
+    var ingredientList = Array<RecipeIngredientBasic>()
 }

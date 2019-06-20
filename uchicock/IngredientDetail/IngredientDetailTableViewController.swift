@@ -34,7 +34,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     var editVC : IngredientEditTableViewController!
     var ingredientId = String()
     var ingredient = Ingredient()
-    var ingredientRecipeBasicList = Array<IngredientRecipeBasic>()
+    var ingredientRecipeBasicList = Array<RecipeBasic>()
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
@@ -175,41 +175,41 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     func reloadIngredientRecipeBasicList(){
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(IngredientRecipeBasic(recipeId: recipeIngredient.recipe.id, recipeName: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, favorites: recipeIngredient.recipe.favorites))
+            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method))
         }
         
         switch  recipeOrder {
         case 1:
-            ingredientRecipeBasicList.sort(by: { $0.recipeName.localizedStandardCompare($1.recipeName) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
         case 2:
-            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
             }
         case 3:
-            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
-                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
             }
         case 4:
-            ingredientRecipeBasicList.sort { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
-                    return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
                 }else{
                     return a.favorites > b.favorites
                 }
             }
         case 5:
-            ingredientRecipeBasicList.sort(by: { (a:IngredientRecipeBasic, b:IngredientRecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.recipeName.localizedStandardCompare(b.recipeName) == .orderedAscending
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
                     }else{
                         return false
                     }
@@ -222,7 +222,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 }
             })
         default:
-            ingredientRecipeBasicList.sort(by: { $0.recipeName.localizedStandardCompare($1.recipeName) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
         }
     }
     
@@ -345,7 +345,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 if indexPath.row > 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
                     let realm = try! Realm()
-                    let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].recipeId)!
+                    let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].id)!
                     if recipeOrder == 3{
                         cell.subInfoType = 1
                     }else if recipeOrder == 5{
@@ -478,8 +478,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }else if segue.identifier == "PushRecipeDetail"{
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
-                selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
-                vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].recipeId
+                selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].id
+                vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].id
             }
         }
     }
