@@ -18,6 +18,7 @@ class Recipe: Object {
     @objc dynamic var shortageNum = 0
     @objc dynamic var lastViewDate : Date? = nil
     @objc dynamic var madeNum = 0
+    @objc dynamic var type = 0
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
@@ -40,5 +41,9 @@ class Recipe: Object {
                 self.imageData = nil
             }
         }
+    }
+    
+    func assumeType(){
+        
     }
 }
