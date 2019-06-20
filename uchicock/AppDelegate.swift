@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 if (oldSchemaVersion < 7) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
-                        newObject!["type"] = (oldObject as! Recipe).assumeType()
+                        let recipeName = oldObject!["recipeName"] as! String
+                        newObject!["type"] = recipeName.withoutMiddleDot().cocktailTypeNumber()
                     }
                 }
             },

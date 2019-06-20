@@ -131,4 +131,10 @@ extension String {
         default: return 2
         }
     }
+    
+    func cocktailTypeNumber() -> Int {
+        switch self{
+        case "ウォッカ": return 1
+        default: return 0
+    }
 }
