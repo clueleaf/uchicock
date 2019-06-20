@@ -104,9 +104,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        ingredientNumberLabel1.textColor = Style.labelTextColorLight
-        ingredientNumberLabel2.textColor = Style.labelTextColorLight
-        ingredientNumberLabel3.textColor = Style.labelTextColorLight
+        ingredientNumberLabel1.textColor = Style.labelTextColor
+        ingredientNumberLabel2.textColor = Style.labelTextColor
+        ingredientNumberLabel3.textColor = Style.labelTextColor
         ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
@@ -852,6 +852,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 cell.subInfoType = 1
             }else if recipeSortPrimary == 5{
                 cell.subInfoType = 2
+            }else if recipeSortPrimary == 2{
+                if recipeSortSecondary == 2{
+                    cell.subInfoType = 1
+                }else if recipeSortSecondary == 4{
+                    cell.subInfoType = 2
+                }else{
+                    cell.subInfoType = 0
+                }
             }else{
                 cell.subInfoType = 0
             }

@@ -353,12 +353,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     }else{
                         cell.subInfoType = 0
                     }
+                    cell.hightlightRecipeNameOnlyAvailable = true
                     cell.recipe = recipe
-                    if recipe.shortageNum == 0{
-                        cell.recipeName.textColor = Style.labelTextColor
-                    }else{
-                        cell.recipeName.textColor = Style.labelTextColorLight
-                    }
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell

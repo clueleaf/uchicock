@@ -15,6 +15,7 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var subInfoLabel: UILabel!
     @IBOutlet weak var shortage: UILabel!
     
+    var hightlightRecipeNameOnlyAvailable = false
     var subInfoType = 0
     
     var recipe: Recipe = Recipe(){
@@ -30,10 +31,18 @@ class RecipeTableViewCell: UITableViewCell {
             }
             
             recipeName.text = recipe.recipeName
-            recipeName.textColor = Style.labelTextColor
             recipeName.backgroundColor = Style.basicBackgroundColor
             recipeName.clipsToBounds = true
-            
+            if hightlightRecipeNameOnlyAvailable {
+                if recipe.shortageNum == 0{
+                    recipeName.textColor = Style.labelTextColor
+                }else{
+                    recipeName.textColor = Style.labelTextColorLight
+                }
+            }else{
+                recipeName.textColor = Style.labelTextColor
+            }
+
             switch subInfoType{
             case 0: // お気に入り
                 switch recipe.favorites{
@@ -50,7 +59,7 @@ class RecipeTableViewCell: UITableViewCell {
                 }
                 subInfoLabel.textColor = Style.secondaryColor
             case 1: // 作った回数
-                subInfoLabel.text = String(recipe.madeNum) + "回"
+                subInfoLabel.text = String(recipe.madeNum) + "回作った"
                 if recipe.madeNum < 1{
                     subInfoLabel.textColor = Style.labelTextColorLight
                 }else{

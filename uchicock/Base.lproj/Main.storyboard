@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="71"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZS-AX-OZb">
-                                        <rect key="frame" x="30" y="8" width="354" height="17"/>
+                                        <rect key="frame" x="30" y="46" width="354" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="jiS-fM-jcO"/>
                                         </constraints>
@@ -66,7 +66,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNL-zJ-Sp0">
-                                        <rect key="frame" x="30" y="33" width="354" height="30"/>
+                                        <rect key="frame" x="30" y="8" width="354" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="l34-V5-eE6"/>
                                         </constraints>
@@ -80,12 +80,12 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="dZS-AX-OZb" firstAttribute="leading" secondItem="wNL-zJ-Sp0" secondAttribute="leading" id="AGv-oU-Jg0"/>
-                                    <constraint firstAttribute="bottom" secondItem="wNL-zJ-Sp0" secondAttribute="bottom" constant="8" id="Nfz-rq-GVe"/>
+                                    <constraint firstItem="dZS-AX-OZb" firstAttribute="top" secondItem="wNL-zJ-Sp0" secondAttribute="bottom" constant="8" id="JW1-fG-9hH"/>
+                                    <constraint firstAttribute="bottom" secondItem="dZS-AX-OZb" secondAttribute="bottom" constant="8" id="NLY-wh-GNe"/>
                                     <constraint firstItem="dZS-AX-OZb" firstAttribute="trailing" secondItem="wNL-zJ-Sp0" secondAttribute="trailing" id="SXV-jb-Wsl"/>
-                                    <constraint firstItem="wNL-zJ-Sp0" firstAttribute="top" secondItem="dZS-AX-OZb" secondAttribute="bottom" constant="8" id="WL1-pe-Jrb"/>
                                     <constraint firstItem="wNL-zJ-Sp0" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EU7-zN-cmX" secondAttribute="leading" constant="30" id="gsT-tp-vFR"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="wNL-zJ-Sp0" secondAttribute="trailing" constant="30" id="hfz-Mk-bBF"/>
-                                    <constraint firstItem="dZS-AX-OZb" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" constant="8" id="zge-Zb-4Ad"/>
+                                    <constraint firstItem="wNL-zJ-Sp0" firstAttribute="top" secondItem="EU7-zN-cmX" secondAttribute="top" constant="8" id="wRM-Yw-dWZ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -419,7 +419,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFg-iR-foa">
-                                                    <rect key="frame" x="30" y="8" width="354" height="17"/>
+                                                    <rect key="frame" x="30" y="47" width="354" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="sQa-TD-6ig"/>
                                                     </constraints>
@@ -428,7 +428,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVd-h0-UvW">
-                                                    <rect key="frame" x="30" y="33" width="354" height="31"/>
+                                                    <rect key="frame" x="30" y="8" width="354" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="条件指定"/>
                                                     <connections>
@@ -437,13 +437,13 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="kFg-iR-foa" secondAttribute="bottom" constant="8" id="9aZ-mg-fvY"/>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eVd-h0-UvW" secondAttribute="trailing" constant="30" id="EFl-aa-bre"/>
                                                 <constraint firstItem="kFg-iR-foa" firstAttribute="trailing" secondItem="eVd-h0-UvW" secondAttribute="trailing" id="IVW-ne-od3"/>
-                                                <constraint firstItem="eVd-h0-UvW" firstAttribute="top" secondItem="kFg-iR-foa" secondAttribute="bottom" constant="8" id="MzG-PD-nWK"/>
-                                                <constraint firstItem="kFg-iR-foa" firstAttribute="top" secondItem="hLU-dF-PaL" secondAttribute="top" constant="8" id="Tfm-uj-CMp"/>
                                                 <constraint firstItem="eVd-h0-UvW" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hLU-dF-PaL" secondAttribute="leading" constant="30" id="W3m-mh-ihy"/>
+                                                <constraint firstItem="eVd-h0-UvW" firstAttribute="top" secondItem="hLU-dF-PaL" secondAttribute="top" constant="8" id="fQJ-yO-Utg"/>
+                                                <constraint firstItem="kFg-iR-foa" firstAttribute="top" secondItem="eVd-h0-UvW" secondAttribute="bottom" constant="8" id="kb9-I7-Knz"/>
                                                 <constraint firstItem="kFg-iR-foa" firstAttribute="leading" secondItem="eVd-h0-UvW" secondAttribute="leading" id="lTv-l1-eeN"/>
-                                                <constraint firstAttribute="bottom" secondItem="eVd-h0-UvW" secondAttribute="bottom" constant="8" id="tjT-Xw-oKT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -767,6 +767,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>
