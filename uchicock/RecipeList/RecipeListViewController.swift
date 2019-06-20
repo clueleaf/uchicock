@@ -279,7 +279,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
         }
         
         if searchBarTextWithoutSpace() != ""{
@@ -299,13 +299,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.removeAll{ $0.favorites == 3 }
         }
         if recipeFilterLong == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 0 }
         }
         if recipeFilterShort == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 1 }
         }
         if recipeFilterStyleNone == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 2 }
         }
         if recipeFilterBuild == false{
             recipeBasicList.removeAll{ $0.method == 0 }

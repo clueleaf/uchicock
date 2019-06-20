@@ -302,13 +302,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             recipeBasicList.removeAll{ $0.favorites == 3 }
         }
         if recipeFilterLong == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 0 }
         }
         if recipeFilterShort == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 1 }
         }
         if recipeFilterStyleNone == false{
-            // TODO
+            recipeBasicList.removeAll{ $0.style == 2 }
         }
         if recipeFilterBuild == false{
             recipeBasicList.removeAll{ $0.method == 0 }
@@ -561,7 +561,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
         }
     }
     
@@ -570,7 +570,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method))
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(withoutUse: t2)

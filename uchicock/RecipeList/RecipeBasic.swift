@@ -14,5 +14,6 @@ struct RecipeBasic{
     var lastViewDate : Date?
     var madeNum : Int
     var method : Int
+    var style : Int
 }
 

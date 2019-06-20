@@ -103,12 +103,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     if recipe.id == self.recipeBasicList[i].id{
                         newPhotoFlag = false
                         self.recipeBasicList.remove(at: i)
-                        self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method), at: i)
+                        self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style), at: i)
                         break
                     }
                 }
                 if newPhotoFlag{
-                    self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+                    self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
                 }
             }
         }
@@ -161,7 +161,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
         }
         recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
@@ -213,13 +213,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             filteredRecipeBasicList.removeAll{ $0.favorites == 3 }
         }
         if albumFilterLong == false{
-            // TODO
+            filteredRecipeBasicList.removeAll{ $0.style == 0 }
         }
         if albumFilterShort == false{
-            // TODO
+            filteredRecipeBasicList.removeAll{ $0.style == 1 }
         }
         if albumFilterStyleNone == false{
-            // TODO
+            filteredRecipeBasicList.removeAll{ $0.style == 2 }
         }
         if albumFilterBuild == false{
             filteredRecipeBasicList.removeAll{ $0.method == 0 }
