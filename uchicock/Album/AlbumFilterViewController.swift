@@ -338,7 +338,7 @@ class AlbumFilterViewController: UIViewController {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleLongCheckboxTapped(_ sender: M13Checkbox) {
         setStyleWarningVisibility()
     }
     

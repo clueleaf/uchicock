@@ -280,7 +280,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="PNe-HI-wxY"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="EF1-0M-VAn"/>
+                                                                    <action selector="styleLongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Sp4-X9-WRL"/>
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJB-0g-twZ">
@@ -342,7 +342,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="MOj-jv-7eX"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="TD6-IG-YXb"/>
+                                                                    <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="GWM-1k-wGD"/>
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-5E-Oft">
