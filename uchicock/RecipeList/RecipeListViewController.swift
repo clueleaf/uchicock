@@ -34,6 +34,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
     var recipeFilterShake = true
@@ -140,6 +141,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         defaults.register(defaults: ["recipe-filter-star3" : true])
         defaults.register(defaults: ["recipe-filter-long" : true])
         defaults.register(defaults: ["recipe-filter-short" : true])
+        defaults.register(defaults: ["recipe-filter-stylenone" : true])
         defaults.register(defaults: ["recipe-filter-build" : true])
         defaults.register(defaults: ["recipe-filter-stir" : true])
         defaults.register(defaults: ["recipe-filter-shake" : true])
@@ -154,6 +156,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
         recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
         recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
+        recipeFilterStyleNone = defaults.bool(forKey: "recipe-filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
         recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
         recipeFilterShake = defaults.bool(forKey: "recipe-filter-shake")
@@ -299,6 +302,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             // TODO
         }
         if recipeFilterShort == false{
+            // TODO
+        }
+        if recipeFilterStyleNone == false{
             // TODO
         }
         if recipeFilterBuild == false{

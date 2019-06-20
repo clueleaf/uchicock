@@ -31,6 +31,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var albumFilterStar3 = true
     var albumFilterLong = true
     var albumFilterShort = true
+    var albumFilterStyleNone = true
     var albumFilterBuild = true
     var albumFilterStir = true
     var albumFilterShake = true
@@ -69,6 +70,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         defaults.set(true, forKey: "album-filter-star3")
         defaults.set(true, forKey: "album-filter-long")
         defaults.set(true, forKey: "album-filter-short")
+        defaults.set(true, forKey: "album-filter-stylenone")
         defaults.set(true, forKey: "album-filter-build")
         defaults.set(true, forKey: "album-filter-stir")
         defaults.set(true, forKey: "album-filter-shake")
@@ -141,6 +143,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         albumFilterStar3 = defaults.bool(forKey: "album-filter-star3")
         albumFilterLong = defaults.bool(forKey: "album-filter-long")
         albumFilterShort = defaults.bool(forKey: "album-filter-short")
+        albumFilterStyleNone = defaults.bool(forKey: "album-filter-stylenone")
         albumFilterBuild = defaults.bool(forKey: "album-filter-build")
         albumFilterStir = defaults.bool(forKey: "album-filter-stir")
         albumFilterShake = defaults.bool(forKey: "album-filter-shake")
@@ -213,6 +216,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             // TODO
         }
         if albumFilterShort == false{
+            // TODO
+        }
+        if albumFilterStyleNone == false{
             // TODO
         }
         if albumFilterBuild == false{

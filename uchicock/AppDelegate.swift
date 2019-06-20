@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if (oldSchemaVersion < 7) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
                         let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["type"] = recipeName.withoutMiddleDot().cocktailTypeNumber()
+                        newObject!["type"] = recipeName.withoutMiddleDot().cocktailStyleNumber()
                     }
                 }
             },

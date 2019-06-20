@@ -31,13 +31,15 @@ class AlbumFilterViewController: UIViewController {
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
-    @IBOutlet weak var typeFilterLabel: UILabel!
-    @IBOutlet weak var typeLongLabel: UILabel!
-    @IBOutlet weak var typeShortLabel: UILabel!
-    @IBOutlet weak var typeLongCheckbox: M13Checkbox!
-    @IBOutlet weak var typeShortCheckbox: M13Checkbox!
-    @IBOutlet weak var typeWarningImage: UIImageView!
-    @IBOutlet weak var typeWarningLabel: UILabel!
+    @IBOutlet weak var styleFilterLabel: UILabel!
+    @IBOutlet weak var styleLongLabel: UILabel!
+    @IBOutlet weak var styleShortLabel: UILabel!
+    @IBOutlet weak var styleNoneLabel: UILabel!
+    @IBOutlet weak var styleLongCheckbox: M13Checkbox!
+    @IBOutlet weak var styleShortCheckbox: M13Checkbox!
+    @IBOutlet weak var styleNoneCheckbox: M13Checkbox!
+    @IBOutlet weak var styleWarningImage: UIImageView!
+    @IBOutlet weak var styleWarningLabel: UILabel!
     
     @IBOutlet weak var methodFilterLabel: UILabel!
     @IBOutlet weak var methodBuildLabel: UILabel!
@@ -64,6 +66,7 @@ class AlbumFilterViewController: UIViewController {
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
     var recipeFilterShake = true
@@ -85,8 +88,9 @@ class AlbumFilterViewController: UIViewController {
         initFilterCheckbox(favorite1Checkbox, shouldBeChecked: recipeFilterStar1)
         initFilterCheckbox(favorite2Checkbox, shouldBeChecked: recipeFilterStar2)
         initFilterCheckbox(favorite3Checkbox, shouldBeChecked: recipeFilterStar3)
-        initFilterCheckbox(typeLongCheckbox, shouldBeChecked: recipeFilterLong)
-        initFilterCheckbox(typeShortCheckbox, shouldBeChecked: recipeFilterShort)
+        initFilterCheckbox(styleLongCheckbox, shouldBeChecked: recipeFilterLong)
+        initFilterCheckbox(styleShortCheckbox, shouldBeChecked: recipeFilterShort)
+        initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: recipeFilterStyleNone)
         initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: recipeFilterBuild)
         initFilterCheckbox(methodStirCheckbox, shouldBeChecked: recipeFilterStir)
         initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: recipeFilterShake)
@@ -103,6 +107,7 @@ class AlbumFilterViewController: UIViewController {
         recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + "filter-star3")
         recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + "filter-long")
         recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + "filter-short")
+        recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + "filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + "filter-build")
         recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + "filter-stir")
         recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + "filter-shake")
@@ -132,13 +137,14 @@ class AlbumFilterViewController: UIViewController {
         favoriteWarningLabel.textColor = Style.secondaryColor
         setFavoriteWarningVisibility()
         
-        typeFilterLabel.textColor = Style.labelTextColor
-        typeLongLabel.textColor = Style.labelTextColor
-        typeShortLabel.textColor = Style.labelTextColor
-        typeWarningImage.image = typeWarningImage.image!.withRenderingMode(.alwaysTemplate)
-        typeWarningImage.tintColor = Style.secondaryColor
-        typeWarningLabel.textColor = Style.secondaryColor
-        setTypeWarningVisibility()
+        styleFilterLabel.textColor = Style.labelTextColor
+        styleLongLabel.textColor = Style.labelTextColor
+        styleShortLabel.textColor = Style.labelTextColor
+        styleNoneLabel.textColor = Style.labelTextColor
+        styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
+        styleWarningImage.tintColor = Style.secondaryColor
+        styleWarningLabel.textColor = Style.secondaryColor
+        setStyleWarningVisibility()
         
         methodFilterLabel.textColor = Style.labelTextColor
         methodBuildLabel.textColor = Style.labelTextColor
@@ -172,14 +178,15 @@ class AlbumFilterViewController: UIViewController {
         }
     }
     
-    private func setTypeWarningVisibility(){
-        if typeLongCheckbox.checkState == .unchecked &&
-            typeShortCheckbox.checkState == .unchecked{
-            typeWarningImage.isHidden = false
-            typeWarningLabel.isHidden = false
+    private func setStyleWarningVisibility(){
+        if styleLongCheckbox.checkState == .unchecked &&
+            styleShortCheckbox.checkState == .unchecked &&
+            styleNoneCheckbox.checkState == .unchecked{
+            styleWarningImage.isHidden = false
+            styleWarningLabel.isHidden = false
         }else{
-            typeWarningImage.isHidden = true
-            typeWarningLabel.isHidden = true
+            styleWarningImage.isHidden = true
+            styleWarningLabel.isHidden = true
         }
     }
     
@@ -243,8 +250,9 @@ class AlbumFilterViewController: UIViewController {
         setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + "filter-star1")
         setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + "filter-star2")
         setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + "filter-star3")
-        setFilterUserDefaults(with: typeLongCheckbox, forKey: userDefaultsPrefix + "filter-long")
-        setFilterUserDefaults(with: typeShortCheckbox, forKey: userDefaultsPrefix + "filter-short")
+        setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + "filter-long")
+        setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + "filter-short")
+        setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + "filter-stylenone")
         setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + "filter-build")
         setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + "filter-stir")
         setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + "filter-shake")
@@ -283,15 +291,16 @@ class AlbumFilterViewController: UIViewController {
         setCheckboxChecked(favorite1Checkbox)
         setCheckboxChecked(favorite2Checkbox)
         setCheckboxChecked(favorite3Checkbox)
-        setCheckboxChecked(typeLongCheckbox)
-        setCheckboxChecked(typeShortCheckbox)
+        setCheckboxChecked(styleLongCheckbox)
+        setCheckboxChecked(styleShortCheckbox)
+        setCheckboxChecked(styleNoneCheckbox)
         setCheckboxChecked(methodBuildCheckbox)
         setCheckboxChecked(methodStirCheckbox)
         setCheckboxChecked(methodShakeCheckbox)
         setCheckboxChecked(methodBlendCheckbox)
         setCheckboxChecked(methodOthersCheckbox)
         setFavoriteWarningVisibility()
-        setTypeWarningVisibility()
+        setStyleWarningVisibility()
         setMethodWarningVisibility()
     }
     
@@ -300,15 +309,16 @@ class AlbumFilterViewController: UIViewController {
         setCheckboxUnchecked(favorite1Checkbox)
         setCheckboxUnchecked(favorite2Checkbox)
         setCheckboxUnchecked(favorite3Checkbox)
-        setCheckboxUnchecked(typeLongCheckbox)
-        setCheckboxUnchecked(typeShortCheckbox)
+        setCheckboxUnchecked(styleLongCheckbox)
+        setCheckboxUnchecked(styleShortCheckbox)
+        setCheckboxUnchecked(styleNoneCheckbox)
         setCheckboxUnchecked(methodBuildCheckbox)
         setCheckboxUnchecked(methodStirCheckbox)
         setCheckboxUnchecked(methodShakeCheckbox)
         setCheckboxUnchecked(methodBlendCheckbox)
         setCheckboxUnchecked(methodOthersCheckbox)
         setFavoriteWarningVisibility()
-        setTypeWarningVisibility()
+        setStyleWarningVisibility()
         setMethodWarningVisibility()
     }
     
@@ -328,12 +338,16 @@ class AlbumFilterViewController: UIViewController {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func typeLongCheckboxTapped(_ sender: M13Checkbox) {
-        setTypeWarningVisibility()
+    @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
+        setStyleWarningVisibility()
     }
     
-    @IBAction func typeShortCheckboxTapped(_ sender: M13Checkbox) {
-        setTypeWarningVisibility()
+    @IBAction func styleShortCheckboxTapped(_ sender: M13Checkbox) {
+        setStyleWarningVisibility()
+    }
+
+    @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
+        setStyleWarningVisibility()
     }
     
     @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {

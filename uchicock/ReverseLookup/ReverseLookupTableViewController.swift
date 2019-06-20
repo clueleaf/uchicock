@@ -45,6 +45,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
     var recipeFilterShake = true
@@ -154,6 +155,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         defaults.register(defaults: ["reverse-lookup-filter-star3" : true])
         defaults.register(defaults: ["reverse-lookup-filter-long" : true])
         defaults.register(defaults: ["reverse-lookup-filter-short" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-stylenone" : true])
         defaults.register(defaults: ["reverse-lookup-filter-build" : true])
         defaults.register(defaults: ["reverse-lookup-filter-stir" : true])
         defaults.register(defaults: ["reverse-lookup-filter-shake" : true])
@@ -168,6 +170,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterStar3 = defaults.bool(forKey: "reverse-lookup-filter-star3")
         recipeFilterLong = defaults.bool(forKey: "reverse-lookup-filter-long")
         recipeFilterShort = defaults.bool(forKey: "reverse-lookup-filter-short")
+        recipeFilterStyleNone = defaults.bool(forKey: "reverse-lookup-filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: "reverse-lookup-filter-build")
         recipeFilterStir = defaults.bool(forKey: "reverse-lookup-filter-stir")
         recipeFilterShake = defaults.bool(forKey: "reverse-lookup-filter-shake")
@@ -302,6 +305,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             // TODO
         }
         if recipeFilterShort == false{
+            // TODO
+        }
+        if recipeFilterStyleNone == false{
             // TODO
         }
         if recipeFilterBuild == false{
