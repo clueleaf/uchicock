@@ -34,6 +34,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterHot = true
     var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
@@ -141,6 +142,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         defaults.register(defaults: ["recipe-filter-star3" : true])
         defaults.register(defaults: ["recipe-filter-long" : true])
         defaults.register(defaults: ["recipe-filter-short" : true])
+        defaults.register(defaults: ["recipe-filter-hot" : true])
         defaults.register(defaults: ["recipe-filter-stylenone" : true])
         defaults.register(defaults: ["recipe-filter-build" : true])
         defaults.register(defaults: ["recipe-filter-stir" : true])
@@ -156,6 +158,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
         recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
         recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
+        recipeFilterHot = defaults.bool(forKey: "recipe-filter-hot")
         recipeFilterStyleNone = defaults.bool(forKey: "recipe-filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
         recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
@@ -200,8 +203,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-            recipeFilterLong && recipeFilterShort && recipeFilterBuild && recipeFilterStir &&
-            recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
+            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
         }else{
             conditionText += "、絞り込みあり"
         }
@@ -304,8 +307,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if recipeFilterShort == false{
             recipeBasicList.removeAll{ $0.style == 1 }
         }
-        if recipeFilterStyleNone == false{
+        if recipeFilterHot == false{
             recipeBasicList.removeAll{ $0.style == 2 }
+        }
+        if recipeFilterStyleNone == false{
+            recipeBasicList.removeAll{ $0.style == 3 }
         }
         if recipeFilterBuild == false{
             recipeBasicList.removeAll{ $0.method == 0 }

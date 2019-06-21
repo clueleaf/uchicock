@@ -45,6 +45,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterHot = true
     var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
@@ -155,6 +156,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         defaults.register(defaults: ["reverse-lookup-filter-star3" : true])
         defaults.register(defaults: ["reverse-lookup-filter-long" : true])
         defaults.register(defaults: ["reverse-lookup-filter-short" : true])
+        defaults.register(defaults: ["reverse-lookup-filter-hot" : true])
         defaults.register(defaults: ["reverse-lookup-filter-stylenone" : true])
         defaults.register(defaults: ["reverse-lookup-filter-build" : true])
         defaults.register(defaults: ["reverse-lookup-filter-stir" : true])
@@ -170,6 +172,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterStar3 = defaults.bool(forKey: "reverse-lookup-filter-star3")
         recipeFilterLong = defaults.bool(forKey: "reverse-lookup-filter-long")
         recipeFilterShort = defaults.bool(forKey: "reverse-lookup-filter-short")
+        recipeFilterHot = defaults.bool(forKey: "reverse-lookup-filter-hot")
         recipeFilterStyleNone = defaults.bool(forKey: "reverse-lookup-filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: "reverse-lookup-filter-build")
         recipeFilterStir = defaults.bool(forKey: "reverse-lookup-filter-stir")
@@ -230,8 +233,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         
         if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-            recipeFilterLong && recipeFilterShort && recipeFilterBuild && recipeFilterStir &&
-            recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
+            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
         }else{
             conditionText += "、絞り込みあり"
         }
@@ -307,8 +310,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if recipeFilterShort == false{
             recipeBasicList.removeAll{ $0.style == 1 }
         }
-        if recipeFilterStyleNone == false{
+        if recipeFilterHot == false{
             recipeBasicList.removeAll{ $0.style == 2 }
+        }
+        if recipeFilterStyleNone == false{
+            recipeBasicList.removeAll{ $0.style == 3 }
         }
         if recipeFilterBuild == false{
             recipeBasicList.removeAll{ $0.method == 0 }

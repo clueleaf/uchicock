@@ -34,9 +34,11 @@ class AlbumFilterViewController: UIViewController {
     @IBOutlet weak var styleFilterLabel: UILabel!
     @IBOutlet weak var styleLongLabel: UILabel!
     @IBOutlet weak var styleShortLabel: UILabel!
+    @IBOutlet weak var styleHotLabel: UILabel!
     @IBOutlet weak var styleNoneLabel: UILabel!
     @IBOutlet weak var styleLongCheckbox: M13Checkbox!
     @IBOutlet weak var styleShortCheckbox: M13Checkbox!
+    @IBOutlet weak var styleHotCheckbox: M13Checkbox!
     @IBOutlet weak var styleNoneCheckbox: M13Checkbox!
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
@@ -66,6 +68,7 @@ class AlbumFilterViewController: UIViewController {
     var recipeFilterStar3 = true
     var recipeFilterLong = true
     var recipeFilterShort = true
+    var recipeFilterHot = true
     var recipeFilterStyleNone = true
     var recipeFilterBuild = true
     var recipeFilterStir = true
@@ -90,6 +93,7 @@ class AlbumFilterViewController: UIViewController {
         initFilterCheckbox(favorite3Checkbox, shouldBeChecked: recipeFilterStar3)
         initFilterCheckbox(styleLongCheckbox, shouldBeChecked: recipeFilterLong)
         initFilterCheckbox(styleShortCheckbox, shouldBeChecked: recipeFilterShort)
+        initFilterCheckbox(styleHotCheckbox, shouldBeChecked: recipeFilterHot)
         initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: recipeFilterStyleNone)
         initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: recipeFilterBuild)
         initFilterCheckbox(methodStirCheckbox, shouldBeChecked: recipeFilterStir)
@@ -107,6 +111,7 @@ class AlbumFilterViewController: UIViewController {
         recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + "filter-star3")
         recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + "filter-long")
         recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + "filter-short")
+        recipeFilterHot = defaults.bool(forKey: userDefaultsPrefix + "filter-hot")
         recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + "filter-stylenone")
         recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + "filter-build")
         recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + "filter-stir")
@@ -140,6 +145,7 @@ class AlbumFilterViewController: UIViewController {
         styleFilterLabel.textColor = Style.labelTextColor
         styleLongLabel.textColor = Style.labelTextColor
         styleShortLabel.textColor = Style.labelTextColor
+        styleHotLabel.textColor = Style.labelTextColor
         styleNoneLabel.textColor = Style.labelTextColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.secondaryColor
@@ -181,6 +187,7 @@ class AlbumFilterViewController: UIViewController {
     private func setStyleWarningVisibility(){
         if styleLongCheckbox.checkState == .unchecked &&
             styleShortCheckbox.checkState == .unchecked &&
+            styleHotCheckbox.checkState == .unchecked &&
             styleNoneCheckbox.checkState == .unchecked{
             styleWarningImage.isHidden = false
             styleWarningLabel.isHidden = false
@@ -252,6 +259,7 @@ class AlbumFilterViewController: UIViewController {
         setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + "filter-star3")
         setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + "filter-long")
         setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + "filter-short")
+        setFilterUserDefaults(with: styleHotCheckbox, forKey: userDefaultsPrefix + "filter-hot")
         setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + "filter-stylenone")
         setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + "filter-build")
         setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + "filter-stir")
@@ -293,6 +301,7 @@ class AlbumFilterViewController: UIViewController {
         setCheckboxChecked(favorite3Checkbox)
         setCheckboxChecked(styleLongCheckbox)
         setCheckboxChecked(styleShortCheckbox)
+        setCheckboxChecked(styleHotCheckbox)
         setCheckboxChecked(styleNoneCheckbox)
         setCheckboxChecked(methodBuildCheckbox)
         setCheckboxChecked(methodStirCheckbox)
@@ -311,6 +320,7 @@ class AlbumFilterViewController: UIViewController {
         setCheckboxUnchecked(favorite3Checkbox)
         setCheckboxUnchecked(styleLongCheckbox)
         setCheckboxUnchecked(styleShortCheckbox)
+        setCheckboxUnchecked(styleHotCheckbox)
         setCheckboxUnchecked(styleNoneCheckbox)
         setCheckboxUnchecked(methodBuildCheckbox)
         setCheckboxUnchecked(methodStirCheckbox)
@@ -346,6 +356,10 @@ class AlbumFilterViewController: UIViewController {
         setStyleWarningVisibility()
     }
 
+    @IBAction func styleHotCheckboxTapped(_ sender: M13Checkbox) {
+        setStyleWarningVisibility()
+    }
+    
     @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
         setStyleWarningVisibility()
     }

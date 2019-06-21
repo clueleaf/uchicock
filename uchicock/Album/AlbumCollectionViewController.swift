@@ -31,6 +31,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var albumFilterStar3 = true
     var albumFilterLong = true
     var albumFilterShort = true
+    var albumFilterHot = true
     var albumFilterStyleNone = true
     var albumFilterBuild = true
     var albumFilterStir = true
@@ -70,6 +71,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         defaults.set(true, forKey: "album-filter-star3")
         defaults.set(true, forKey: "album-filter-long")
         defaults.set(true, forKey: "album-filter-short")
+        defaults.set(true, forKey: "album-filter-hot")
         defaults.set(true, forKey: "album-filter-stylenone")
         defaults.set(true, forKey: "album-filter-build")
         defaults.set(true, forKey: "album-filter-stir")
@@ -143,6 +145,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         albumFilterStar3 = defaults.bool(forKey: "album-filter-star3")
         albumFilterLong = defaults.bool(forKey: "album-filter-long")
         albumFilterShort = defaults.bool(forKey: "album-filter-short")
+        albumFilterHot = defaults.bool(forKey: "album-filter-hot")
         albumFilterStyleNone = defaults.bool(forKey: "album-filter-stylenone")
         albumFilterBuild = defaults.bool(forKey: "album-filter-build")
         albumFilterStir = defaults.bool(forKey: "album-filter-stir")
@@ -189,8 +192,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     private func setFilterImageState(){
         if albumFilterStar0 && albumFilterStar1 && albumFilterStar2 && albumFilterStar3 &&
-            albumFilterLong && albumFilterShort && albumFilterBuild && albumFilterStir &&
-            albumFilterShake && albumFilterBlend && albumFilterOthers {
+            albumFilterLong && albumFilterShort && albumFilterHot && albumFilterStyleNone &&
+            albumFilterBuild && albumFilterStir && albumFilterShake && albumFilterBlend && albumFilterOthers {
             albumFilterBarButton.image = UIImage(named: "album-filter-off")
         }else{
             albumFilterBarButton.image = UIImage(named: "album-filter-on")
@@ -218,8 +221,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if albumFilterShort == false{
             filteredRecipeBasicList.removeAll{ $0.style == 1 }
         }
-        if albumFilterStyleNone == false{
+        if albumFilterHot == false{
             filteredRecipeBasicList.removeAll{ $0.style == 2 }
+        }
+        if albumFilterStyleNone == false{
+            filteredRecipeBasicList.removeAll{ $0.style == 3 }
         }
         if albumFilterBuild == false{
             filteredRecipeBasicList.removeAll{ $0.method == 0 }

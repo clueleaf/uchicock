@@ -135,7 +135,6 @@ extension String {
     func cocktailStyleNumber() -> Int {
         switch self{
         case "アイスブレーカー": return 0
-        case "アイリッシュコーヒー": return 0
         case "アクア": return 0
         case "アップタウン": return 0
         case "アフターミッドナイト": return 0
@@ -184,7 +183,6 @@ extension String {
         case "グリーンアイズ": return 0
         case "グリーンスパイダー": return 0
         case "クリス": return 0
-        case "グロッグ": return 0
         case "ケープコッダー": return 0
         case "ケーブルグラム": return 0
         case "コークハイ": return 0
@@ -241,7 +239,6 @@ extension String {
         case "テキサスフィズ": return 0
         case "デザートヒーラー": return 0
         case "ドッグズノーズ": return 0
-        case "トムアンドジェリー": return 0
         case "ドラゴンウォーター": return 0
         case "ドラゴンフライ": return 0
         case "ドランブイトニック": return 0
@@ -278,10 +275,6 @@ extension String {
         case "ホーセズネック": return 0
         case "ボストンクーラー": return 0
         case "ボッチボール": return 0
-        case "ホットイタリアン": return 0
-        case "ホットウィスキートディ": return 0
-        case "ホットカンパリ": return 0
-        case "ホットドラム": return 0
         case "ホワイトルシアン": return 0
         case "ポンセデレオン": return 0
         case "ポンピエ": return 0
@@ -501,7 +494,15 @@ extension String {
         case "青い珊瑚礁": return 1
         case "雪国": return 1
             
-        default: return 2
+        case "アイリッシュコーヒー": return 2
+        case "グロッグ": return 2
+        case "トムアンドジェリー": return 2
+        case "ホットイタリアン": return 2
+        case "ホットウィスキートディ": return 2
+        case "ホットカンパリ": return 2
+        case "ホットドラム": return 2
+
+        default: return 3
         }
     }
 }

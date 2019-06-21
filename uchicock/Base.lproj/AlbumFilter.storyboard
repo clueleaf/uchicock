@@ -254,24 +254,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-tT-iie">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDk-TO-DWP">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="u2j-AW-yDu"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-Bl-ZWZ">
-                                                <rect key="frame" x="8" y="203" width="398" height="28"/>
-                                                <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiI-7z-Yeg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uG-DB-Puv" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -284,7 +268,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJB-0g-twZ">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -302,7 +286,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMx-6C-x9N">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-Dx-y1W" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -315,7 +299,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnU-HU-DwO">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -330,6 +314,49 @@
                                                             <constraint firstItem="tnU-HU-DwO" firstAttribute="top" secondItem="jMx-6C-x9N" secondAttribute="top" id="SAw-MS-gFH"/>
                                                             <constraint firstItem="ipc-Dx-y1W" firstAttribute="top" secondItem="jMx-6C-x9N" secondAttribute="top" id="fvj-RU-Djf"/>
                                                             <constraint firstAttribute="bottom" secondItem="ipc-Dx-y1W" secondAttribute="bottom" id="plT-Ro-aQ9"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="u2j-AW-yDu"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-Bl-ZWZ">
+                                                <rect key="frame" x="8" y="203" width="398" height="28"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDk-TO-DWP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-tT-iie">
+                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33G-ax-QzN" customClass="M13Checkbox" customModule="M13Checkbox">
+                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="28" id="4Iv-i8-VVW"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="styleHotCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="fBI-HE-sRR"/>
+                                                                </connections>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIm-JV-lWx">
+                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="XIm-JV-lWx" secondAttribute="bottom" id="0Lz-i7-c7B"/>
+                                                            <constraint firstItem="33G-ax-QzN" firstAttribute="top" secondItem="zWh-tT-iie" secondAttribute="top" id="II0-w2-WO6"/>
+                                                            <constraint firstAttribute="bottom" secondItem="33G-ax-QzN" secondAttribute="bottom" id="RbG-3N-6dA"/>
+                                                            <constraint firstItem="XIm-JV-lWx" firstAttribute="leading" secondItem="33G-ax-QzN" secondAttribute="trailing" constant="4" id="TC3-ZQ-Qta"/>
+                                                            <constraint firstAttribute="trailing" secondItem="XIm-JV-lWx" secondAttribute="trailing" id="US4-Mb-zq6"/>
+                                                            <constraint firstItem="XIm-JV-lWx" firstAttribute="top" secondItem="zWh-tT-iie" secondAttribute="top" id="qBF-8O-fBy"/>
+                                                            <constraint firstItem="33G-ax-QzN" firstAttribute="leading" secondItem="zWh-tT-iie" secondAttribute="leading" id="zbX-oM-3NC"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEI-ux-pQb">
@@ -720,6 +747,8 @@
                         <outlet property="secondSeparator" destination="hmp-Z0-khX" id="zd6-Ip-Fq9"/>
                         <outlet property="selectAllButton" destination="ohL-L5-oAY" id="2HZ-Zi-jzZ"/>
                         <outlet property="styleFilterLabel" destination="Gh1-PH-S6d" id="456-V1-TXN"/>
+                        <outlet property="styleHotCheckbox" destination="33G-ax-QzN" id="sL5-rW-iYC"/>
+                        <outlet property="styleHotLabel" destination="XIm-JV-lWx" id="8ca-uj-Wob"/>
                         <outlet property="styleLongCheckbox" destination="9uG-DB-Puv" id="fp8-iw-jYF"/>
                         <outlet property="styleLongLabel" destination="TJB-0g-twZ" id="uSR-Je-VaS"/>
                         <outlet property="styleNoneCheckbox" destination="h4h-AI-RrY" id="Qwx-Z7-fwc"/>
