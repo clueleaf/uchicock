@@ -15,7 +15,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var recipeName: UITextField!
     @IBOutlet weak var starLabel: UILabel!
+    @IBOutlet weak var styleLabel: UILabel!
+    @IBOutlet weak var styleTipButton: UIButton!
     @IBOutlet weak var methodLabel: UILabel!
+    @IBOutlet weak var methodTipButton: UIButton!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
@@ -23,7 +26,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
+    @IBOutlet weak var styleTableViewCell: UITableViewCell!
     @IBOutlet weak var methodTableViewCell: UITableViewCell!
+    @IBOutlet weak var style: UISegmentedControl!
     @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: UITextView!
@@ -68,6 +73,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+            style.selectedSegmentIndex = 3
             method.selectedSegmentIndex = 0
             isAddMode = true
         } else {
@@ -84,6 +90,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             default:
                 setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             }
+            style.selectedSegmentIndex = recipe.style
             method.selectedSegmentIndex = recipe.method
             isAddMode = false
         }
@@ -117,6 +124,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.tableView.backgroundColor = Style.basicBackgroundColor
         recipeNameLabel.textColor = Style.labelTextColor
         starLabel.textColor = Style.labelTextColor
+        styleLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
         recipeName.layer.borderColor = Style.memoBorderColor.cgColor
@@ -129,6 +137,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         memo.keyboardAppearance = Style.isDark ? .dark : .default
         
+        let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
+        styleTipButton.setImage(tipImage, for: .normal)
+        styleTipButton.tintColor = Style.secondaryColor
+        methodTipButton.setImage(tipImage, for: .normal)
+        methodTipButton.tintColor = Style.secondaryColor
+
         self.tableView.reloadData()
         
         if photo.alpha < 1.0{
@@ -518,6 +532,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             newRecipe.imageData = nil
                         }
                         
+                        newRecipe.style = style.selectedSegmentIndex
                         newRecipe.method = method.selectedSegmentIndex
                         newRecipe.memo = memo.text
                         realm.add(newRecipe)
@@ -587,6 +602,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.imageData = nil
                         }
                         
+                        recipe.style = style.selectedSegmentIndex
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text
                         
@@ -616,6 +632,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    @IBAction func styleTipButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func methodTipButtonTapped(_ sender: UIButton) {
+    }
+    
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -626,6 +648,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if touch.view!.isDescendant(of: recipeNameTableViewCell) {
             return true
         }else if touch.view!.isDescendant(of: favoriteTableViewCell){
+            return true
+        }else if touch.view!.isDescendant(of: styleTableViewCell){
             return true
         }else if touch.view!.isDescendant(of: methodTableViewCell){
             return true

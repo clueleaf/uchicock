@@ -162,17 +162,70 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="gBu-Lw-r60">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="ZYb-eu-9eu">
                                         <rect key="frame" x="0.0" y="228" width="375" height="93"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZYb-eu-9eu" id="Q9C-bv-kv8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スタイル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpP-fg-gGd">
+                                                    <rect key="frame" x="8" y="15" width="69.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="25p-t1-FeK"/>
+                                                        <constraint firstAttribute="height" constant="21" id="aRB-tE-jfk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWg-5g-35g">
+                                                    <rect key="frame" x="81.5" y="17.5" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="IU5-P2-mmg"/>
+                                                        <constraint firstAttribute="height" constant="16" id="N3f-YY-Zra"/>
+                                                    </constraints>
+                                                    <state key="normal" image="tip"/>
+                                                    <connections>
+                                                        <action selector="styleTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="jO0-dj-PL3"/>
+                                                    </connections>
+                                                </button>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d1R-hF-4x3">
+                                                    <rect key="frame" x="8" y="44" width="359" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="PXo-90-WFR"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="ロング"/>
+                                                        <segment title="ショート"/>
+                                                        <segment title="ホット"/>
+                                                        <segment title="未指定"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="top" secondItem="fpP-fg-gGd" secondAttribute="bottom" constant="8" id="JZE-OD-iRl"/>
+                                                <constraint firstAttribute="trailing" secondItem="d1R-hF-4x3" secondAttribute="trailing" constant="8" id="PCy-26-RmW"/>
+                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="top" secondItem="Q9C-bv-kv8" secondAttribute="top" constant="15" id="UyF-Je-M4J"/>
+                                                <constraint firstItem="xWg-5g-35g" firstAttribute="centerY" secondItem="fpP-fg-gGd" secondAttribute="centerY" id="Ygc-vw-GcS"/>
+                                                <constraint firstItem="xWg-5g-35g" firstAttribute="leading" secondItem="fpP-fg-gGd" secondAttribute="trailing" constant="4" id="kAn-wM-c1x"/>
+                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="ldV-kd-dck"/>
+                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="oRQ-WL-ihT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="gBu-Lw-r60">
+                                        <rect key="frame" x="0.0" y="321" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gBu-Lw-r60" id="JIA-DC-9WT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-pv-E79">
-                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="35" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AQU-4Y-sN6"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="h0Z-b7-x8B"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -191,19 +244,31 @@
                                                         <segment title="その他"/>
                                                     </segments>
                                                 </segmentedControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ">
+                                                    <rect key="frame" x="47" y="17.5" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="Uxh-hE-Xna"/>
+                                                        <constraint firstAttribute="height" constant="16" id="wgo-Oh-8WM"/>
+                                                    </constraints>
+                                                    <state key="normal" image="tip"/>
+                                                    <connections>
+                                                        <action selector="methodTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="eLt-mm-4gn"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2cE-h1-JB3" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="LY6-oK-mvh"/>
+                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="leading" secondItem="wqK-pv-E79" secondAttribute="trailing" constant="4" id="aRb-cF-SHd"/>
                                                 <constraint firstItem="wqK-pv-E79" firstAttribute="top" secondItem="JIA-DC-9WT" secondAttribute="top" constant="15" id="fTO-lu-CJm"/>
                                                 <constraint firstItem="2cE-h1-JB3" firstAttribute="top" secondItem="wqK-pv-E79" secondAttribute="bottom" constant="8" id="g0y-Om-PTg"/>
                                                 <constraint firstItem="wqK-pv-E79" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="i3D-mx-Ja2"/>
-                                                <constraint firstAttribute="trailing" secondItem="wqK-pv-E79" secondAttribute="trailing" constant="8" id="paP-oS-nXY"/>
+                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="centerY" secondItem="wqK-pv-E79" secondAttribute="centerY" id="lTr-N6-9Be"/>
                                                 <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="8" id="svM-mx-utc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="ZcH-ur-jk9">
-                                        <rect key="frame" x="0.0" y="321" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="414" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZcH-ur-jk9" id="eA2-mF-Eye">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
@@ -243,7 +308,7 @@
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="549" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="642" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
@@ -251,7 +316,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lFs-ko-xD7">
-                                        <rect key="frame" x="0.0" y="619" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="712" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -287,6 +352,7 @@
                         <outlet property="method" destination="2cE-h1-JB3" id="Zqd-c9-zKn"/>
                         <outlet property="methodLabel" destination="wqK-pv-E79" id="ar3-EF-rML"/>
                         <outlet property="methodTableViewCell" destination="gBu-Lw-r60" id="cgy-hq-hO1"/>
+                        <outlet property="methodTipButton" destination="yBA-Ab-QPQ" id="QjA-nN-yLf"/>
                         <outlet property="photo" destination="han-eW-fb2" id="ltT-OZ-iSA"/>
                         <outlet property="recipeName" destination="4d9-80-LE4" id="KLA-dZ-D0c"/>
                         <outlet property="recipeNameLabel" destination="Rfi-Cb-jv5" id="C8F-1v-mKQ"/>
@@ -296,6 +362,10 @@
                         <outlet property="star2" destination="ffj-8v-9XM" id="pmP-02-DcC"/>
                         <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
                         <outlet property="starLabel" destination="nN9-zc-48A" id="BBx-vg-2OP"/>
+                        <outlet property="style" destination="d1R-hF-4x3" id="aFa-uC-u5P"/>
+                        <outlet property="styleLabel" destination="fpP-fg-gGd" id="7QJ-IC-eWH"/>
+                        <outlet property="styleTableViewCell" destination="ZYb-eu-9eu" id="v3a-a9-FjO"/>
+                        <outlet property="styleTipButton" destination="xWg-5g-35g" id="BXm-es-6h0"/>
                         <segue destination="f6s-1V-srL" kind="presentation" identifier="ShowPhotoFilter" modalPresentationStyle="fullScreen" id="8xx-nF-xdB"/>
                     </connections>
                 </tableViewController>
@@ -696,4 +766,7 @@
             <point key="canvasLocation" x="562" y="-417"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tip" width="24" height="24"/>
+    </resources>
 </document>
