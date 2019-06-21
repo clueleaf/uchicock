@@ -41,7 +41,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var focusRecipeNameFlag = false
     let selectedCellBackgroundView = UIView()
     let openTime = Date()
-    
+    var selectedIndexPath: IndexPath? = nil
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -152,8 +153,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
         }
 
-        if let index = tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: index, animated: true)
+        if let path = selectedIndexPath {
+            if tableView.numberOfRows(inSection: 1) > path.row{
+                tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.tableView.deselectRow(at: path, animated: true)
+                }
+            }
         }
     }
     
@@ -286,6 +292,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         if deleteFlag == false{
                             let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: -1)
                             self.recipeIngredientList.append(recipeIngredient)
+                            self.selectedIndexPath = nil
                         }
                     }else{
                         if deleteFlag{
@@ -294,6 +301,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                     self.recipeIngredientList.remove(at: i)
                                 }
                             }
+                            self.selectedIndexPath = nil
                         }else{
                             for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].id == recipeIngredientId{
                                 self.recipeIngredientList[i].ingredientName = ingredientName
@@ -317,6 +325,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             vc.interactor = interactor
             recipeName.resignFirstResponder()
             memo.resignFirstResponder()
+            self.selectedIndexPath = indexPath
             present(nvc, animated: true)
         }
     }

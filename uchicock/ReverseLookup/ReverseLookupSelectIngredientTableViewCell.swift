@@ -30,7 +30,7 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             }else{
                 stockLabel.text = "在庫なし"
                 stockLabel.textColor = Style.secondaryColor
-                stockLabel.layer.backgroundColor = Style.basicBackgroundColor.cgColor
+                stockLabel.layer.backgroundColor = UIColor.clear.cgColor
                 stockLabel.layer.borderColor = Style.secondaryColor.cgColor
             }
             stockLabel.layer.cornerRadius = 4

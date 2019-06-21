@@ -37,7 +37,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     stockLabel.isHidden = false
                     stockLabel.text = "在庫なし"
                     stockLabel.textColor = Style.secondaryColor
-                    stockLabel.layer.backgroundColor = Style.basicBackgroundColor.cgColor
+                    stockLabel.layer.backgroundColor = UIColor.clear.cgColor
                     stockLabel.layer.borderColor = Style.secondaryColor.cgColor
                     ingredientNameLabel.textColor = Style.labelTextColorLight
                     amountLabel.textColor = Style.labelTextColorLight
@@ -68,7 +68,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             optionLabel.layer.borderWidth = 1
             if isOption{
                 optionLabel.text = "オプション"
-                optionLabel.layer.backgroundColor = Style.basicBackgroundColor.cgColor
+                optionLabel.layer.backgroundColor = UIColor.clear.cgColor
                 optionLabel.layer.borderColor = Style.secondaryColor.cgColor
             }else{
                 optionLabel.text = ""

@@ -25,7 +25,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             recipeNum.layer.borderWidth = 1
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.layer.backgroundColor = Style.basicBackgroundColor.cgColor
+                recipeNum.layer.backgroundColor = UIColor.clear.cgColor
                 recipeNum.layer.borderColor = Style.secondaryColor.cgColor
                 recipeNum.textColor = Style.secondaryColor
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
