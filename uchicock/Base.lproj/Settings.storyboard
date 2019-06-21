@@ -365,11 +365,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Vn3-ZE-Igm">
-                        <barButtonItem key="leftBarButtonItem" id="D0P-Tw-vSv">
+                        <barButtonItem key="rightBarButtonItem" id="D0P-Tw-vSv">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BVt-Pt-mFn">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="戻る"/>
+                                <state key="normal" title="閉じる"/>
                                 <connections>
                                     <action selector="returnButtonTapped:" destination="wIa-Ti-KB5" eventType="touchUpInside" id="EEy-Ze-3gJ"/>
                                 </connections>
