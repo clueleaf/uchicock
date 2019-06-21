@@ -28,6 +28,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     var recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: "", amount: "", mustFlag: true, category: -1)
     var ingredientList: Results<Ingredient>?
 
+    var isCancel = true
     var isAddMode = false
     var deleteFlag = false
     var isTypingName = false
@@ -114,7 +115,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -243,7 +244,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .destructive){
                     action in
                     self.deleteFlag = true
-                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
@@ -255,7 +256,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "外す",style: .destructive){
                     action in
                     self.deleteFlag = true
-                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
@@ -335,7 +336,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        self.onDoneBlock(true, self.deleteFlag, self.isAddMode, "", "", true, "")
+        self.isCancel = true
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -373,21 +374,21 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     try! realm.write {
                         realm.add(self.setIngredient(0))
                     }
-                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
                 registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(1))
                     }
-                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
                 registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(2))
                     }
-                    self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                    self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
                 registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
@@ -395,7 +396,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.modalPresentationCapturesStatusBarAppearance = true
                 present(registAlertView, animated: true, completion: nil)
             }else{
-                self.onDoneBlock(false, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+                self.isCancel = false
                 self.dismiss(animated: true, completion: nil)
             }
         }
