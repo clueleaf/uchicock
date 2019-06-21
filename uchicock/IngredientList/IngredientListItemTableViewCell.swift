@@ -22,17 +22,21 @@ class IngredientListItemTableViewCell: UITableViewCell {
     var ingredient: Ingredient = Ingredient(){
         didSet{
             recipeNum.backgroundColor = UIColor.clear
+            recipeNum.layer.borderWidth = 1
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.layer.backgroundColor = Style.badgeDisableBackgroundColor.cgColor
-                recipeNum.textColor = Style.labelTextColorOnDisableBadge
+                recipeNum.layer.backgroundColor = Style.basicBackgroundColor.cgColor
+                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
+                recipeNum.textColor = Style.secondaryColor
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
+                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }else{
                 recipeNum.text = "99+"
                 recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
+                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }
             recipeNum.layer.cornerRadius = 10

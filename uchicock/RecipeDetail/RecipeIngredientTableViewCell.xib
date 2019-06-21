@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n6-Ph-gt1">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n6-Ph-gt1">
                         <rect key="frame" x="8" y="8" width="50" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="oZ7-8M-cQP"/>
@@ -38,13 +38,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7H-l3-AhO">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7H-l3-AhO">
                         <rect key="frame" x="8" y="37" width="50" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="ddk-GY-DDQ"/>
                             <constraint firstAttribute="height" constant="21" id="m7L-Ok-zuc"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
