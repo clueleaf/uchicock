@@ -137,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-GC-4Ax">
-                                <rect key="frame" x="0.0" y="108" width="414" height="617"/>
+                                <rect key="frame" x="0.0" y="153" width="414" height="572"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="38" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -222,7 +222,7 @@
                                 </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-aJ-DQL" userLabel="Container">
-                                <rect key="frame" x="0.0" y="44" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="109"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M">
                                         <rect key="frame" x="8" y="32" width="398" height="29"/>
@@ -250,13 +250,24 @@
                                             <action selector="categoryTapped:" destination="IFZ-In-CDc" eventType="valueChanged" id="M3D-cG-kUg"/>
                                         </connections>
                                     </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-1v-o1f">
+                                        <rect key="frame" x="30" y="68" width="354" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="おすすめ材料"/>
+                                        <connections>
+                                            <action selector="ingredientRecommendButtonTapped:" destination="IFZ-In-CDc" eventType="touchUpInside" id="6ri-JB-M1N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="top" secondItem="wmB-he-16M" secondAttribute="bottom" constant="8" id="561-ff-brm"/>
                                     <constraint firstItem="wmB-he-16M" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="5Jk-2q-NEK"/>
-                                    <constraint firstAttribute="bottom" secondItem="wmB-he-16M" secondAttribute="bottom" constant="4" id="Bxn-yd-T4g"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="mG1-1v-o1f" secondAttribute="trailing" constant="30" id="8t4-XW-ID8"/>
+                                    <constraint firstAttribute="bottom" secondItem="mG1-1v-o1f" secondAttribute="bottom" constant="8" id="A2F-99-oPz"/>
                                     <constraint firstItem="wmB-he-16M" firstAttribute="top" secondItem="FWr-nR-chO" secondAttribute="bottom" constant="4" id="Fy1-rg-cCF"/>
                                     <constraint firstAttribute="trailing" secondItem="FWr-nR-chO" secondAttribute="trailing" constant="8" id="QD9-kL-pUF"/>
+                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="30" id="SBN-yq-s8B"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="top" id="dg6-d1-YJj"/>
                                     <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="jTc-Oi-VTd"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="z2Q-kG-vzj"/>
@@ -289,6 +300,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="category" destination="FWr-nR-chO" id="43V-MO-Asd"/>
+                        <outlet property="ingredientRecommendButton" destination="mG1-1v-o1f" id="bvm-4Y-dXD"/>
                         <outlet property="searchBar" destination="Ju1-KR-IKb" id="qxQ-UW-cCB"/>
                         <outlet property="segmentedControlContainer" destination="jYr-aJ-DQL" id="Pim-f2-nxm"/>
                         <outlet property="stockState" destination="wmB-he-16M" id="1tT-Xf-o9f"/>
@@ -299,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cuj-Hp-3HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1959" y="2632"/>
+            <point key="canvasLocation" x="-1959.4202898550727" y="2631.6964285714284"/>
         </scene>
         <!--逆引き-->
         <scene sceneID="A7f-62-Xaa">

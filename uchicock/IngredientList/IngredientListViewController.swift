@@ -10,12 +10,13 @@ import UIKit
 import RealmSwift
 import M13Checkbox
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stockState: UISegmentedControl!
+    @IBOutlet weak var ingredientRecommendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var ingredientList: Results<Ingredient>?
@@ -24,6 +25,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -39,7 +43,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        setVC()
+    }
+    
+    private func setVC(){
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
@@ -48,6 +55,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         category.setTitleTextAttributes(attribute, for: .normal)
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        
+        ingredientRecommendButton.layer.borderColor = Style.secondaryColor.cgColor
+        ingredientRecommendButton.layer.borderWidth = 1.0
+        ingredientRecommendButton.layer.cornerRadius = 5
+        ingredientRecommendButton.tintColor = Style.secondaryColor
+        ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
         
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -65,7 +78,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
-
+        
         reloadIngredientList()
         tableView.reloadData()
         
@@ -407,6 +420,35 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func stockStateTapped(_ sender: UISegmentedControl) {
         reloadIngredientBasicList()
         tableView.reloadData()
+    }
+    
+    @IBAction func ingredientRecommendButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "IngredientRecommend", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        
+        let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
+        vc.onDoneBlock = {
+            self.closeCallback()
+        }
+        vc.interactor = interactor
+        
+        present(nvc, animated: true)
+    }
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        return pc
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
     
     // MARK: - Navigation
