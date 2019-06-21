@@ -11,6 +11,8 @@ import UIKit
 class RecoverPreviewTableViewController: UITableViewController {
 
     @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var styleLabel: UILabel!
+    @IBOutlet weak var style: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var method: UILabel!
     
@@ -30,6 +32,18 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
+        switch recipe.style{
+        case 0:
+            style.text = "ロング"
+        case 1:
+            style.text = "ショート"
+        case 2:
+            style.text = "ホット"
+        case 3:
+            style.text = "未指定"
+        default:
+            style.text = "未指定"
+        }
         switch recipe.method{
         case 0:
             method.text = "ビルド"
@@ -57,9 +71,11 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         recipeName.textColor = Style.labelTextColor
+        styleLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
-        
+        style.textColor = Style.labelTextColor
         method.textColor = Style.labelTextColor
+
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
         }else{
@@ -104,7 +120,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 2
+            return 3
         }else if section == 1{
             return recipe.recipeIngredients.count
         }

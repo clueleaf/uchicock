@@ -14,6 +14,7 @@ struct SampleRecipeBasic{
 
 struct RecoverRecipe{
     var name : String
+    var style: Int
     var method : Int
     var ingredientList = Array<RecipeIngredientBasic>()
 }
