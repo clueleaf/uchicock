@@ -38,6 +38,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var albumFilterShake = true
     var albumFilterBlend = true
     var albumFilterOthers = true
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -395,6 +398,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         vc.onDoneBlock = {
             self.setVC()
         }
+        vc.interactor = interactor
         vc.userDefaultsPrefix = "album-"
         present(nvc, animated: true)
     }
@@ -426,6 +430,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
     }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

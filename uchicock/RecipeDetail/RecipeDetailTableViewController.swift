@@ -50,6 +50,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -445,6 +448,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             vc.onDoneBlock = {
                 self.setupVC()
             }
+            vc.interactor = self.interactor
             self.present(nvc, animated: true)
         }
         reminder.backgroundColor = Style.tableViewCellReminderBackgroundColor
@@ -668,6 +672,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
     
     // MARK: - Navigation

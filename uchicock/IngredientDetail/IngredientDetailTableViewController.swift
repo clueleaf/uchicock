@@ -38,6 +38,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -418,6 +421,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         vc.onDoneBlock = {
             self.setupVC()
         }
+        vc.interactor = interactor
         present(nvc, animated: true)
     }
     
@@ -467,6 +471,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 
     // MARK: - Navigation

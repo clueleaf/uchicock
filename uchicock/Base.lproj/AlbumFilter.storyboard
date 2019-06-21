@@ -704,6 +704,9 @@
                             <constraint firstItem="coJ-wc-Y5H" firstAttribute="trailing" secondItem="LlM-Sa-xRF" secondAttribute="trailing" id="oA3-7b-8zh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="coJ-wc-Y5H"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wbU-Ym-Otg" appends="YES" id="pQr-jK-NLO"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="絞り込み" id="ebA-97-jWF">
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="Zl4-La-YTM">
@@ -760,6 +763,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nz6-RQ-ASS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="wbU-Ym-Otg">
+                    <connections>
+                        <action selector="handleGesture:" destination="jVM-Wp-2x7" id="ArJ-lz-WsZ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1959.4202898550727" y="-397.09821428571428"/>
         </scene>

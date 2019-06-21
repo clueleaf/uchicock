@@ -178,6 +178,7 @@
                         <connections>
                             <outlet property="dataSource" destination="VDI-Rm-a9c" id="DKu-m1-u7m"/>
                             <outlet property="delegate" destination="VDI-Rm-a9c" id="jhH-cs-aJk"/>
+                            <outletCollection property="gestureRecognizers" destination="4wj-aW-sgX" appends="YES" id="LVn-7v-Fnx"/>
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -204,6 +205,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lC-D0-h3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="4wj-aW-sgX">
+                    <connections>
+                        <action selector="handleGesture:" destination="VDI-Rm-a9c" id="1Ds-EB-1hq"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1260" y="1236"/>
         </scene>

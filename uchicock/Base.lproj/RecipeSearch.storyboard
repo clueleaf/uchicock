@@ -1059,6 +1059,9 @@
                             <constraint firstItem="Vza-Iu-W6Q" firstAttribute="leading" secondItem="vYG-87-sej" secondAttribute="leading" id="zjn-ID-h3H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vYG-87-sej"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="SwI-bi-TYb" appends="YES" id="MEs-co-Gwk"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="条件指定" id="12u-Bf-6nP">
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="xUX-gs-gTH">
@@ -1135,6 +1138,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKw-U4-35j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="SwI-bi-TYb">
+                    <connections>
+                        <action selector="handleGesture:" destination="iHW-kn-1ob" id="F8P-5x-V1K"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1959.4202898550727" y="-397.09821428571428"/>
         </scene>

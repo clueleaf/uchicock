@@ -399,6 +399,7 @@
                         <connections>
                             <outlet property="dataSource" destination="wIa-Ti-KB5" id="5xn-s3-fAV"/>
                             <outlet property="delegate" destination="wIa-Ti-KB5" id="qJG-wx-IUm"/>
+                            <outletCollection property="gestureRecognizers" destination="rOk-r1-2iy" appends="YES" id="vTD-Uc-iLh"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Vn3-ZE-Igm">
@@ -422,6 +423,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWJ-xb-KLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="rOk-r1-2iy">
+                    <connections>
+                        <action selector="handleGesture:" destination="wIa-Ti-KB5" id="afF-BJ-eP9"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-215" y="2884"/>
         </scene>

@@ -52,6 +52,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var recipeFilterShake = true
     var recipeFilterBlend = true
     var recipeFilterOthers = true
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -938,6 +941,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         vc.onDoneBlock = {
             self.setVC()
         }
+        vc.interactor = interactor
         vc.userDefaultsPrefix = "reverse-lookup-"
         present(nvc, animated: true)
     }
@@ -946,6 +950,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
     
     // MARK: - Navigation

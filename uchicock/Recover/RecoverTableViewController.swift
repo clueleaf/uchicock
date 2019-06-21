@@ -19,6 +19,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var isRecovering = false
     let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -297,6 +300,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     vc.onDoneBlock = {
                         self.cellDeselectAnimation()
                     }
+                    vc.interactor = interactor
                     present(nvc, animated: true)
                 }
             }
@@ -435,6 +439,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 
 }

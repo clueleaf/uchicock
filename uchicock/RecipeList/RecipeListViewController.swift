@@ -42,6 +42,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeFilterBlend = true
     var recipeFilterOthers = true
     
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -727,6 +729,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         vc.onDoneBlock = {
             self.setVC()
         }
+        vc.interactor = interactor
         vc.userDefaultsPrefix = "recipe-"
         present(nvc, animated: true)
     }
@@ -736,6 +739,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         return pc
     }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

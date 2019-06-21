@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 import M13Checkbox
 
-class ReminderTableViewController: UITableViewController{
+class ReminderTableViewController: UITableViewController {
 
     @IBOutlet weak var reminderTitleLabel: UILabel!
     @IBOutlet weak var reminderTypeLabel: UILabel!
@@ -21,6 +21,9 @@ class ReminderTableViewController: UITableViewController{
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredientName = ""
+    
+    var interactor: Interactor!
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -30,6 +33,8 @@ class ReminderTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+        
         self.navigationItem.title = "リマインダー"
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.setCheckState(.unchecked, animated: true)
@@ -126,6 +131,12 @@ class ReminderTableViewController: UITableViewController{
     }
 
     // MARK: - UITableView
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if interactor.hasStarted {
+            tableView.contentOffset.y = 0.0
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{
             return UITableView.automaticDimension
@@ -149,6 +160,38 @@ class ReminderTableViewController: UITableViewController{
     }
     
     // MARK: - IBAction
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }

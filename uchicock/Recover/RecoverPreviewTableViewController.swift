@@ -17,6 +17,9 @@ class RecoverPreviewTableViewController: UITableViewController {
     @IBOutlet weak var method: UILabel!
     
     var recipe = Recipe()
+    
+    var interactor: Interactor!
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -25,6 +28,8 @@ class RecoverPreviewTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -89,6 +94,13 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
     
     // MARK: - UITableView
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        super.scrollViewDidScroll(scrollView)
+        if interactor.hasStarted {
+            tableView.contentOffset.y = 0.0
+        }
+    }
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
             return 0
@@ -162,6 +174,38 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
     
     // MARK: - IBAction
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
     @IBAction func returnButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

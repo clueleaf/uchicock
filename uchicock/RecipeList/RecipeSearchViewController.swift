@@ -9,7 +9,7 @@
 import UIKit
 import M13Checkbox
 
-class RecipeSearchViewController: UIViewController {
+class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollBackgroundView: UIView!
@@ -102,6 +102,8 @@ class RecipeSearchViewController: UIViewController {
     var recipeFilterBlend = true
     var recipeFilterOthers = true
 
+    var interactor: Interactor!
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -111,6 +113,9 @@ class RecipeSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.delegate = self
+        scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+
         readUserDefaults()
         
         switch recipeSortPrimary{
@@ -313,6 +318,13 @@ class RecipeSearchViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.onDoneBlock()
     }
+    
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if interactor.hasStarted {
+            scrollView.contentOffset.y = 0.0
+        }
+    }
 
     // MARK: - M13Checkbox
     private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
@@ -362,6 +374,39 @@ class RecipeSearchViewController: UIViewController {
     }
     
     // MARK: - IBAction
+    
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if scrollView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
         self.dismiss(animated: true, completion: nil)
