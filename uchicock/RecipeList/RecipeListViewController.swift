@@ -731,6 +731,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         vc.interactor = interactor
         vc.userDefaultsPrefix = "recipe-"
+        searchBar.resignFirstResponder()
         present(nvc, animated: true)
     }
     

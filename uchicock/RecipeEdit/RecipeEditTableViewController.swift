@@ -315,6 +315,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 vc.isAddMode = true
             }
             vc.interactor = interactor
+            recipeName.resignFirstResponder()
+            memo.resignFirstResponder()
             present(nvc, animated: true)
         }
     }
