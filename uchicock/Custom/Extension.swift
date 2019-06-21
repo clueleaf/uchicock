@@ -177,7 +177,7 @@ extension String {
         case "キティ": return 0
         case "キューバリバー": return 0
         case "キューバンスクリュー": return 0
-        case "クイーンズペック": return 0
+        case "クイーンズペッグ": return 0
         case "クラーラ": return 0
         case "クラウドバスター": return 0
         case "クリーミードライバー": return 0
