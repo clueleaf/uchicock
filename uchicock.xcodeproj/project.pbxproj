@@ -69,6 +69,7 @@
 		9BC9A31F1C783CAA0031F631 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31D1C783CAA0031F631 /* LaunchScreen.storyboard */; };
 		9BCC35A822B8DFE500389FD5 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC35A722B8DFE500389FD5 /* RecipeSearchViewController.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
+		9BD91A5922BD04930088C146 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD91A5822BD04930088C146 /* Interactor.swift */; };
 		9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */; };
 		9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */; };
 		9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */; };
@@ -153,6 +154,7 @@
 		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BCC35A722B8DFE500389FD5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeSearchViewController.swift; path = RecipeList/RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
+		9BD91A5822BD04930088C146 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverDescriptionTableViewCell.swift; path = Recover/RecoverDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverRecipeBasic.swift; path = Recover/RecoverRecipeBasic.swift; sourceTree = "<group>"; };
 		9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPreviewTableViewController.swift; path = Recover/RecoverPreviewTableViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +204,7 @@
 				9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */,
 				9B1638BE22A7E17000B7C3A7 /* Extension.swift */,
 				9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */,
-				9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */,
+				9BD91A5722BD04720088C146 /* Modal */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -373,6 +375,15 @@
 				9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */,
 			);
 			name = Album;
+			sourceTree = "<group>";
+		};
+		9BD91A5722BD04720088C146 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */,
+				9BD91A5822BD04930088C146 /* Interactor.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		9BE32CEA1C9C2B71001B98BF /* IngredientList */ = {
@@ -627,6 +638,7 @@
 				9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */,
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */,
+				9BD91A5922BD04930088C146 /* Interactor.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,

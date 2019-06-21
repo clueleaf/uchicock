@@ -216,6 +216,11 @@ class AlbumFilterViewController: UIViewController {
         scrollView.flashScrollIndicators()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.onDoneBlock()
+    }
+    
     // MARK: - M13Checkbox
     private func initFilterCheckbox(_ checkbox: M13Checkbox, shouldBeChecked: Bool){
         if shouldBeChecked{
@@ -248,7 +253,6 @@ class AlbumFilterViewController: UIViewController {
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -278,7 +282,6 @@ class AlbumFilterViewController: UIViewController {
     }
     
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -83,6 +83,11 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.onDoneBlock()
+    }
+    
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0{
@@ -158,7 +163,6 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     // MARK: - IBAction
     @IBAction func returnButtonTapped(_ sender: UIButton) {
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
     

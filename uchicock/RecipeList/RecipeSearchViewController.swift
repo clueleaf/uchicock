@@ -308,6 +308,11 @@ class RecipeSearchViewController: UIViewController {
         super.viewDidAppear(animated)
         scrollView.flashScrollIndicators()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.onDoneBlock()
+    }
 
     // MARK: - M13Checkbox
     private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
@@ -359,7 +364,6 @@ class RecipeSearchViewController: UIViewController {
     // MARK: - IBAction
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -420,7 +424,6 @@ class RecipeSearchViewController: UIViewController {
     }
     
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
     

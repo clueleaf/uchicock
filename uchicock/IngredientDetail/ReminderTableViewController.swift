@@ -65,6 +65,11 @@ class ReminderTableViewController: UITableViewController{
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.onDoneBlock()
+    }
+    
     private func showError(_ type: String){
         let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -92,7 +97,6 @@ class ReminderTableViewController: UITableViewController{
         do {
             try eventStore.save(reminder, commit: true)
             SVProgressHUD.showSuccess(withStatus: "リマインダーへ登録しました")
-            self.onDoneBlock()
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async {
@@ -112,7 +116,6 @@ class ReminderTableViewController: UITableViewController{
         
         do {
             try eventStore.save(event, span: .thisEvent)
-            self.onDoneBlock()
             SVProgressHUD.showSuccess(withStatus: "カレンダーへ登録しました")
             self.dismiss(animated: true, completion: nil)
         } catch {
@@ -147,7 +150,6 @@ class ReminderTableViewController: UITableViewController{
     
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        self.onDoneBlock()
         self.dismiss(animated: true, completion: nil)
     }
     
