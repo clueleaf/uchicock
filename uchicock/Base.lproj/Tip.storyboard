@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Basic Navigation Controller-->
+        <scene sceneID="ryB-lZ-4Ps">
+            <objects>
+                <navigationController storyboardIdentifier="StyleTipNavigationController" id="5me-nb-Kz4" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Qk-Fx-uQz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="06P-na-LIH" kind="relationship" relationship="rootViewController" id="kbJ-wY-o57"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAL-DR-pTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-617" y="56"/>
+        </scene>
+        <!--スタイル-->
+        <scene sceneID="6RR-1e-Bns">
+            <objects>
+                <viewController id="06P-na-LIH" customClass="StyleTipViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2bf-2S-esz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lon-CN-hEc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-Bd-9DY">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="301.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuN-P8-3Tu">
+                                                <rect key="frame" x="8" y="8" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="1wK-Ea-6wU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに氷などを入れて冷たさを保ち、長い時間かけて楽しめるスタイル。ショートと比べてアルコール割合は低めになることが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WET-0L-iQP">
+                                                <rect key="frame" x="8" y="42" width="398" height="50.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-hw-70H">
+                                                <rect key="frame" x="8" y="108.5" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="dgc-8S-O9M"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtX-z4-hQQ">
+                                                <rect key="frame" x="8" y="117.5" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="dOf-Va-yaP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに氷を入れずに作るもので、概ね20分以内に飲み終えるのが良いとされる。アルコール割合は高めのものが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-0g-91B">
+                                                <rect key="frame" x="8" y="151.5" width="398" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyn-g4-Sxc">
+                                                <rect key="frame" x="8" y="201" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="D2H-Yw-jAv"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="do9-SM-RH6">
+                                                <rect key="frame" x="8" y="210" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="swU-th-HaV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お湯などの熱い材料を使った温かいカクテル。冷めないうちに飲んで体を温めましょう。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-X1-1ND">
+                                                <rect key="frame" x="8" y="244" width="398" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="WET-0L-iQP" secondAttribute="trailing" constant="8" id="2c8-IM-SKf"/>
+                                            <constraint firstAttribute="bottom" secondItem="RN7-X1-1ND" secondAttribute="bottom" constant="24" id="8np-tL-kpu"/>
+                                            <constraint firstItem="Srt-0g-91B" firstAttribute="top" secondItem="xtX-z4-hQQ" secondAttribute="bottom" constant="8" id="Kyg-a6-PbS"/>
+                                            <constraint firstItem="do9-SM-RH6" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="LaH-Ur-Ya2"/>
+                                            <constraint firstItem="WET-0L-iQP" firstAttribute="top" secondItem="kuN-P8-3Tu" secondAttribute="bottom" constant="8" id="OX9-S1-STu"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jyn-g4-Sxc" secondAttribute="trailing" constant="8" id="OyP-5Z-B5x"/>
+                                            <constraint firstAttribute="trailing" secondItem="Srt-0g-91B" secondAttribute="trailing" constant="8" id="P6g-iF-Svd"/>
+                                            <constraint firstItem="xtX-z4-hQQ" firstAttribute="top" secondItem="5M5-hw-70H" secondAttribute="bottom" constant="8" id="Q7E-PA-3cr"/>
+                                            <constraint firstItem="RN7-X1-1ND" firstAttribute="top" secondItem="do9-SM-RH6" secondAttribute="bottom" constant="8" id="R1U-sS-P2p"/>
+                                            <constraint firstAttribute="trailing" secondItem="5M5-hw-70H" secondAttribute="trailing" constant="8" id="TY7-Ed-v3j"/>
+                                            <constraint firstItem="5M5-hw-70H" firstAttribute="top" secondItem="WET-0L-iQP" secondAttribute="bottom" constant="16" id="ZXz-kP-xXV"/>
+                                            <constraint firstItem="xtX-z4-hQQ" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="bKF-7f-1Aq"/>
+                                            <constraint firstAttribute="trailing" secondItem="kuN-P8-3Tu" secondAttribute="trailing" constant="8" id="d1h-Zc-zlh"/>
+                                            <constraint firstItem="kuN-P8-3Tu" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="d4m-eU-hfj"/>
+                                            <constraint firstItem="RN7-X1-1ND" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="fZP-ZE-p5c"/>
+                                            <constraint firstAttribute="trailing" secondItem="RN7-X1-1ND" secondAttribute="trailing" constant="8" id="fdQ-E5-smx"/>
+                                            <constraint firstItem="kuN-P8-3Tu" firstAttribute="top" secondItem="Zmk-Bd-9DY" secondAttribute="top" constant="8" id="iEI-MW-h1t"/>
+                                            <constraint firstAttribute="trailing" secondItem="do9-SM-RH6" secondAttribute="trailing" constant="8" id="lGD-cG-Ndk"/>
+                                            <constraint firstAttribute="trailing" secondItem="xtX-z4-hQQ" secondAttribute="trailing" constant="8" id="qnb-iu-v8b"/>
+                                            <constraint firstItem="do9-SM-RH6" firstAttribute="top" secondItem="Jyn-g4-Sxc" secondAttribute="bottom" constant="8" id="tJc-fu-7Of"/>
+                                            <constraint firstItem="Jyn-g4-Sxc" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="u0W-qS-1Zr"/>
+                                            <constraint firstItem="Jyn-g4-Sxc" firstAttribute="top" secondItem="Srt-0g-91B" secondAttribute="bottom" constant="16" id="wu9-7f-dnm"/>
+                                            <constraint firstItem="5M5-hw-70H" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="xFQ-Sn-bJ4"/>
+                                            <constraint firstItem="WET-0L-iQP" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="xN4-w2-PMG"/>
+                                            <constraint firstItem="Srt-0g-91B" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="yVN-0d-d5T"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Zmk-Bd-9DY" secondAttribute="bottom" id="7Ss-9e-IkA"/>
+                                    <constraint firstItem="Zmk-Bd-9DY" firstAttribute="top" secondItem="Lon-CN-hEc" secondAttribute="top" id="Kqx-HO-faf"/>
+                                    <constraint firstItem="Zmk-Bd-9DY" firstAttribute="leading" secondItem="Lon-CN-hEc" secondAttribute="leading" id="Mwu-OB-F7C"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zmk-Bd-9DY" secondAttribute="trailing" id="lP9-h1-hcR"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Fcd-TN-7ID" firstAttribute="trailing" secondItem="Lon-CN-hEc" secondAttribute="trailing" id="5qW-Xn-LD3"/>
+                            <constraint firstItem="Fcd-TN-7ID" firstAttribute="bottom" secondItem="Lon-CN-hEc" secondAttribute="bottom" id="Gwo-Hq-Xm1"/>
+                            <constraint firstItem="Zmk-Bd-9DY" firstAttribute="width" secondItem="2bf-2S-esz" secondAttribute="width" id="efK-Fp-yDs"/>
+                            <constraint firstItem="Lon-CN-hEc" firstAttribute="top" secondItem="Fcd-TN-7ID" secondAttribute="top" id="kE1-hJ-wdr"/>
+                            <constraint firstItem="Lon-CN-hEc" firstAttribute="leading" secondItem="Fcd-TN-7ID" secondAttribute="leading" id="ze5-GN-AES"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fcd-TN-7ID"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="スタイル" id="r4Y-9O-UZQ">
+                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="pPn-5h-yE4">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="06P-na-LIH" id="552-1O-ayn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundView" destination="Zmk-Bd-9DY" id="j22-23-DQ6"/>
+                        <outlet property="firstSeparator" destination="5M5-hw-70H" id="5sU-m3-AQP"/>
+                        <outlet property="hotDescriptionLabel" destination="RN7-X1-1ND" id="2Kn-8S-QUq"/>
+                        <outlet property="hotTitleLabel" destination="do9-SM-RH6" id="csw-V0-FRD"/>
+                        <outlet property="longDescriptionLabel" destination="WET-0L-iQP" id="gdk-P6-72E"/>
+                        <outlet property="longTitleLabel" destination="kuN-P8-3Tu" id="g6m-cT-2D9"/>
+                        <outlet property="scrollView" destination="Lon-CN-hEc" id="5Gt-HK-lkz"/>
+                        <outlet property="secondSeparator" destination="Jyn-g4-Sxc" id="Pqi-77-KuY"/>
+                        <outlet property="shortDescriptionLabel" destination="Srt-0g-91B" id="mnm-14-ERU"/>
+                        <outlet property="shortTitleLabel" destination="xtX-z4-hQQ" id="Dxd-BQ-KH1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UnE-u8-vhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="373.91304347826087" y="60.9375"/>
+        </scene>
+        <!--Basic Navigation Controller-->
+        <scene sceneID="Mrs-yb-uzd">
+            <objects>
+                <navigationController storyboardIdentifier="MethodTipNavigationController" id="pQm-pe-awS" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="n5r-Le-CPL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Z1J-D1-IAp" kind="relationship" relationship="rootViewController" id="Plk-tw-dTV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Wu-Uc-31i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-617" y="800"/>
+        </scene>
+        <!--技法-->
+        <scene sceneID="Z57-YF-tuf">
+            <objects>
+                <viewController id="Z1J-D1-IAp" customClass="MethodTipViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nRV-Pz-OTf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpG-T2-Slx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-Va-VQs">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="445"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-nL-SGG">
+                                                <rect key="frame" x="8" y="8" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="U8j-qi-ZxA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに材料を注ぎ、ほとんど混ぜないか、全く混ぜずに作る方法。もっとも手軽に作ることができ、カシスオレンジやモスコミュールなど有名なカクテルが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lo-mO-hkv">
+                                                <rect key="frame" x="8" y="42" width="398" height="50.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIy-vt-XsZ">
+                                                <rect key="frame" x="8" y="108.5" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="onb-Fj-1BQ"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-8j-gtL">
+                                                <rect key="frame" x="8" y="117.5" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="eE0-0u-PP9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料と氷をグラスに入れ、バースプーンなどで混ぜることでしっかり冷やすことができる。シェイクに比べてお酒本来の味が活き、辛口に仕上がる。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-kF-ytP">
+                                                <rect key="frame" x="8" y="151.5" width="398" height="50.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkR-wS-uAT">
+                                                <rect key="frame" x="8" y="218" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="4Wu-IK-AL4"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RV9-Jf-uL7">
+                                                <rect key="frame" x="8" y="227" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="btg-Iu-mPK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイカーに氷と材料を入れ15回程度振る、もっとも「カクテルらしい」作り方。材料が急激に冷え、口当たりもまろやかになる。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-ai-Jgv">
+                                                <rect key="frame" x="8" y="261" width="398" height="50.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-i5-oTe">
+                                                <rect key="frame" x="8" y="327.5" width="398" height="1"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="pEv-jU-lUJ"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwP-AN-KP7">
+                                                <rect key="frame" x="8" y="336.5" width="398" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="SQQ-mJ-7Vr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ミキサーに材料とクラッシュアイスを入れて撹拌する方法。フローズン系のカクテルを作る場合に用いられることが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ig-nS-tab">
+                                                <rect key="frame" x="8" y="370.5" width="398" height="50.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="jkR-wS-uAT" secondAttribute="trailing" constant="8" id="0Bi-xF-LhH"/>
+                                            <constraint firstItem="DNe-ai-Jgv" firstAttribute="top" secondItem="RV9-Jf-uL7" secondAttribute="bottom" constant="8" id="0ZE-mL-NgL"/>
+                                            <constraint firstItem="AwP-AN-KP7" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="6c4-hq-kcR"/>
+                                            <constraint firstItem="GF5-i5-oTe" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="GhS-bJ-6Av"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Ig-nS-tab" secondAttribute="bottom" constant="24" id="KTF-g9-UDR"/>
+                                            <constraint firstItem="DNe-ai-Jgv" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="KqH-Kh-UCs"/>
+                                            <constraint firstItem="VIy-vt-XsZ" firstAttribute="top" secondItem="2lo-mO-hkv" secondAttribute="bottom" constant="16" id="LSp-Sw-xPO"/>
+                                            <constraint firstItem="GF5-i5-oTe" firstAttribute="top" secondItem="DNe-ai-Jgv" secondAttribute="bottom" constant="16" id="MVW-Ij-zne"/>
+                                            <constraint firstItem="bzQ-8j-gtL" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="O49-vR-N1y"/>
+                                            <constraint firstAttribute="trailing" secondItem="RV9-Jf-uL7" secondAttribute="trailing" constant="8" id="OAs-Da-b4y"/>
+                                            <constraint firstItem="jkR-wS-uAT" firstAttribute="top" secondItem="xi2-kF-ytP" secondAttribute="bottom" constant="16" id="RHc-Zi-hIC"/>
+                                            <constraint firstItem="2lo-mO-hkv" firstAttribute="top" secondItem="e9f-nL-SGG" secondAttribute="bottom" constant="8" id="S7m-sw-t8u"/>
+                                            <constraint firstAttribute="trailing" secondItem="VIy-vt-XsZ" secondAttribute="trailing" constant="8" id="SJQ-eU-G0J"/>
+                                            <constraint firstItem="e9f-nL-SGG" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="TZe-nG-kSa"/>
+                                            <constraint firstAttribute="trailing" secondItem="DNe-ai-Jgv" secondAttribute="trailing" constant="8" id="V6S-fr-HyM"/>
+                                            <constraint firstItem="6Ig-nS-tab" firstAttribute="top" secondItem="AwP-AN-KP7" secondAttribute="bottom" constant="8" id="XfE-Pd-9b3"/>
+                                            <constraint firstItem="6Ig-nS-tab" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="ZS0-qV-yYl"/>
+                                            <constraint firstAttribute="trailing" secondItem="e9f-nL-SGG" secondAttribute="trailing" constant="8" id="aPU-hW-Tpv"/>
+                                            <constraint firstItem="2lo-mO-hkv" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="cA4-pw-ahf"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Ig-nS-tab" secondAttribute="trailing" constant="8" id="db4-8D-hFc"/>
+                                            <constraint firstAttribute="trailing" secondItem="xi2-kF-ytP" secondAttribute="trailing" constant="8" id="gey-PB-h5a"/>
+                                            <constraint firstAttribute="trailing" secondItem="AwP-AN-KP7" secondAttribute="trailing" constant="8" id="guB-gs-FvU"/>
+                                            <constraint firstItem="jkR-wS-uAT" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="hB2-LZ-Odq"/>
+                                            <constraint firstAttribute="trailing" secondItem="bzQ-8j-gtL" secondAttribute="trailing" constant="8" id="iIn-n6-DX8"/>
+                                            <constraint firstItem="bzQ-8j-gtL" firstAttribute="top" secondItem="VIy-vt-XsZ" secondAttribute="bottom" constant="8" id="ioh-OJ-bGH"/>
+                                            <constraint firstItem="VIy-vt-XsZ" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="jWo-PN-sba"/>
+                                            <constraint firstItem="RV9-Jf-uL7" firstAttribute="top" secondItem="jkR-wS-uAT" secondAttribute="bottom" constant="8" id="la3-z5-73W"/>
+                                            <constraint firstItem="xi2-kF-ytP" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="sS9-cZ-58U"/>
+                                            <constraint firstAttribute="trailing" secondItem="2lo-mO-hkv" secondAttribute="trailing" constant="8" id="sVl-xk-wQo"/>
+                                            <constraint firstItem="xi2-kF-ytP" firstAttribute="top" secondItem="bzQ-8j-gtL" secondAttribute="bottom" constant="8" id="uIB-9n-017"/>
+                                            <constraint firstItem="AwP-AN-KP7" firstAttribute="top" secondItem="GF5-i5-oTe" secondAttribute="bottom" constant="8" id="vt9-rx-7iG"/>
+                                            <constraint firstItem="RV9-Jf-uL7" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="xBL-wa-Gaj"/>
+                                            <constraint firstItem="e9f-nL-SGG" firstAttribute="top" secondItem="ToU-Va-VQs" secondAttribute="top" constant="8" id="xDK-9u-zt8"/>
+                                            <constraint firstAttribute="trailing" secondItem="GF5-i5-oTe" secondAttribute="trailing" constant="8" id="yWX-HB-22R"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ToU-Va-VQs" secondAttribute="trailing" id="Lms-nb-FuK"/>
+                                    <constraint firstItem="ToU-Va-VQs" firstAttribute="top" secondItem="MpG-T2-Slx" secondAttribute="top" id="X2Q-wG-k3n"/>
+                                    <constraint firstAttribute="bottom" secondItem="ToU-Va-VQs" secondAttribute="bottom" id="a7z-08-qpi"/>
+                                    <constraint firstItem="ToU-Va-VQs" firstAttribute="leading" secondItem="MpG-T2-Slx" secondAttribute="leading" id="vOQ-NG-eFN"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ToU-Va-VQs" firstAttribute="width" secondItem="nRV-Pz-OTf" secondAttribute="width" id="OOi-Pt-wsM"/>
+                            <constraint firstItem="MpG-T2-Slx" firstAttribute="top" secondItem="RiB-Yy-NUa" secondAttribute="top" id="Xg6-Gn-1wI"/>
+                            <constraint firstItem="RiB-Yy-NUa" firstAttribute="bottom" secondItem="MpG-T2-Slx" secondAttribute="bottom" id="YJK-nK-a0W"/>
+                            <constraint firstItem="MpG-T2-Slx" firstAttribute="leading" secondItem="RiB-Yy-NUa" secondAttribute="leading" id="aM4-4A-ugl"/>
+                            <constraint firstItem="RiB-Yy-NUa" firstAttribute="trailing" secondItem="MpG-T2-Slx" secondAttribute="trailing" id="q8U-ab-EiA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RiB-Yy-NUa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="技法" id="Fa3-b2-ROl">
+                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="K4M-Eb-sUG">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="Z1J-D1-IAp" id="Wdw-Wd-ms1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundView" destination="ToU-Va-VQs" id="yit-6P-aDE"/>
+                        <outlet property="blendDescriptionLabel" destination="6Ig-nS-tab" id="8zF-eM-Q02"/>
+                        <outlet property="blendTitleLabel" destination="AwP-AN-KP7" id="FXF-nS-Qww"/>
+                        <outlet property="buildDescriptionLabel" destination="2lo-mO-hkv" id="ssy-Ty-9sD"/>
+                        <outlet property="buildTitleLabel" destination="e9f-nL-SGG" id="vw5-XZ-tn9"/>
+                        <outlet property="firstSeparator" destination="VIy-vt-XsZ" id="aFN-C0-DdD"/>
+                        <outlet property="scrollView" destination="MpG-T2-Slx" id="Qso-a5-dhn"/>
+                        <outlet property="secondSeparator" destination="jkR-wS-uAT" id="5yP-LT-cZt"/>
+                        <outlet property="shakeDescriptionLabel" destination="DNe-ai-Jgv" id="vtw-HR-ZLF"/>
+                        <outlet property="shakeTitleLabel" destination="RV9-Jf-uL7" id="hCX-fd-kwN"/>
+                        <outlet property="stirDescriptionLabel" destination="xi2-kF-ytP" id="fUV-P0-Qtz"/>
+                        <outlet property="stirTitleLabel" destination="bzQ-8j-gtL" id="i0B-22-I6B"/>
+                        <outlet property="thirdSeparator" destination="GF5-i5-oTe" id="9z4-dV-G9O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdd-NF-qK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="366.66666666666669" y="804.91071428571422"/>
+        </scene>
+    </scenes>
+</document>
