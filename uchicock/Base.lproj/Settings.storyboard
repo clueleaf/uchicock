@@ -278,7 +278,7 @@
             <objects>
                 <tableViewController id="wIa-Ti-KB5" customClass="RecoverPreviewTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0cb-GJ-a6B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
@@ -399,7 +399,6 @@
                         <connections>
                             <outlet property="dataSource" destination="wIa-Ti-KB5" id="5xn-s3-fAV"/>
                             <outlet property="delegate" destination="wIa-Ti-KB5" id="qJG-wx-IUm"/>
-                            <outletCollection property="gestureRecognizers" destination="rOk-r1-2iy" appends="YES" id="vTD-Uc-iLh"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Vn3-ZE-Igm">
@@ -423,11 +422,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWJ-xb-KLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="rOk-r1-2iy">
-                    <connections>
-                        <action selector="handleGesture:" destination="wIa-Ti-KB5" id="afF-BJ-eP9"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-215" y="2884"/>
         </scene>
@@ -435,7 +429,7 @@
         <scene sceneID="f47-XP-3i6">
             <objects>
                 <navigationController storyboardIdentifier="RecoverPreviewNavigationController" id="pVW-a1-7aA" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="feG-hG-kLj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="feG-hG-kLj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

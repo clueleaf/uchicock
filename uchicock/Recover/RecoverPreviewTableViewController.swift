@@ -73,6 +73,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         recipeName.textColor = Style.labelTextColor
@@ -88,14 +89,15 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.onDoneBlock()
     }
     
     // MARK: - UITableView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        super.scrollViewDidScroll(scrollView)
         if interactor.hasStarted {
             tableView.contentOffset.y = 0.0
         }
@@ -173,8 +175,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - IBAction
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
         let percentThreshold: CGFloat = 0.3
         
         let translation = sender.translation(in: view)
@@ -206,6 +207,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - IBAction
     @IBAction func returnButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

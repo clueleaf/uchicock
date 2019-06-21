@@ -57,6 +57,7 @@ class ReminderTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -70,8 +71,10 @@ class ReminderTableViewController: UITableViewController {
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.onDoneBlock()
     }
     

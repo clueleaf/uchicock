@@ -41,6 +41,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var focusRecipeNameFlag = false
     let selectedCellBackgroundView = UIView()
     let openTime = Date()
+    
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -311,6 +314,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else if indexPath.row == recipeIngredientList.count{
                 vc.isAddMode = true
             }
+            vc.interactor = interactor
             present(nvc, animated: true)
         }
     }
@@ -682,6 +686,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return pc
     }
     
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissModalAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhotoFilter"{

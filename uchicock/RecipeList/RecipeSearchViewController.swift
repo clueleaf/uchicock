@@ -207,6 +207,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + "filter-others")
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -309,13 +310,16 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.flashScrollIndicators()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.onDoneBlock()
     }
     

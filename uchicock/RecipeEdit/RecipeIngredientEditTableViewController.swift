@@ -30,10 +30,14 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
     var isCancel = true
     var isAddMode = false
+    var alreadyShowedOnce = false
     var deleteFlag = false
     var isTypingName = false
     var suggestList = Array<String>()
     let selectedCellBackgroundView = UIView()
+    
+    var interactor: Interactor!
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -43,6 +47,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
 
@@ -83,8 +89,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -101,20 +110,22 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if isAddMode{
+        if isAddMode && alreadyShowedOnce == false{
             ingredientName.becomeFirstResponder()
+            alreadyShowedOnce = true
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
         NotificationCenter.default.removeObserver(self)
     }
@@ -168,6 +179,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
 
     // MARK: - UITableView
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if interactor.hasStarted {
+            tableView.contentOffset.y = 0.0
+        }
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         if tableView.tag == 0{
             return 2
@@ -313,6 +330,38 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     // MARK: - GestureRecognizer
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
     {
         if touch.view!.isDescendant(of: deleteTableViewCell) {
