@@ -8,10 +8,11 @@
 
 import UIKit
 
-class StyleTipViewController: UIViewController {
+class StyleTipViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
+    
     @IBOutlet weak var longTitleLabel: UILabel!
     @IBOutlet weak var longDescriptionLabel: UILabel!
     @IBOutlet weak var firstSeparator: UIView!
@@ -21,15 +22,93 @@ class StyleTipViewController: UIViewController {
     @IBOutlet weak var hotTitleLabel: UILabel!
     @IBOutlet weak var hotDescriptionLabel: UILabel!
     
+    var interactor: Interactor!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Style.statusBarStyle
+    }
+    
+    var onDoneBlock = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    // MARK: - IBAction
-    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
+        
+        scrollView.delegate = self
+        scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        scrollView.backgroundColor = Style.basicBackgroundColor
+        scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        backgroundView.backgroundColor = Style.basicBackgroundColor
+        longTitleLabel.textColor = Style.labelTextColor
+        longDescriptionLabel.textColor = Style.labelTextColor
+        shortTitleLabel.textColor = Style.labelTextColor
+        shortDescriptionLabel.textColor = Style.labelTextColor
+        hotTitleLabel.textColor = Style.labelTextColor
+        hotDescriptionLabel.textColor = Style.labelTextColor
+        
+        firstSeparator.backgroundColor = Style.labelTextColor
+        secondSeparator.backgroundColor = Style.labelTextColor
+    }
+    
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.flashScrollIndicators()
+    }
+    
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.onDoneBlock()
+    }
+
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if interactor.hasStarted {
+            scrollView.contentOffset.y = 0.0
+        }
+    }
+    
+    // MARK: - IBAction
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if scrollView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish
+                    ? interactor.finish()
+                    : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

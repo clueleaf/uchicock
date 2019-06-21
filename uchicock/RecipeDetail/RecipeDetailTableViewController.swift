@@ -561,9 +561,23 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        let vc = nvc.visibleViewController as! StyleTipViewController
+        vc.interactor = interactor
+        present(nvc, animated: true)
     }
     
     @IBAction func methodTipButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! UINavigationController
+        nvc.modalPresentationStyle = .custom
+        nvc.transitioningDelegate = self
+        let vc = nvc.visibleViewController as! MethodTipViewController
+        vc.interactor = interactor
+        present(nvc, animated: true)
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
@@ -670,12 +684,41 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let presentedNVC = presented as? BasicNavigationController
+        let VC = presentedNVC?.visibleViewController!
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+
+        if let VC = VC{
+            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self){
+                pc.xMargin = 60
+                pc.yMargin = 160
+                pc.canDismissWithOverlayViewTouch = true
+                return pc
+            }
+        }
+        
+        pc.xMargin = 20
+        pc.yMargin = 40
+        pc.canDismissWithOverlayViewTouch = false
         return pc
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissModalAnimator()
+        let dismissedNVC = dismissed as? BasicNavigationController
+        let VC = dismissedNVC?.visibleViewController!
+        let animator = DismissModalAnimator()
+
+        if let VC = VC {
+            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self){
+                animator.xMargin = 60
+                animator.yMargin = 160
+                return animator
+            }
+        }
+
+        animator.xMargin = 20
+        animator.yMargin = 40
+        return animator
     }
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

@@ -180,10 +180,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWg-5g-35g">
-                                                    <rect key="frame" x="81.5" y="17.5" width="16" height="16"/>
+                                                    <rect key="frame" x="81.5" y="15.5" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="IU5-P2-mmg"/>
-                                                        <constraint firstAttribute="height" constant="16" id="N3f-YY-Zra"/>
+                                                        <constraint firstAttribute="width" constant="20" id="IU5-P2-mmg"/>
+                                                        <constraint firstAttribute="height" constant="20" id="N3f-YY-Zra"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -245,10 +245,10 @@
                                                     </segments>
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ">
-                                                    <rect key="frame" x="47" y="17.5" width="16" height="16"/>
+                                                    <rect key="frame" x="47" y="15.5" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="Uxh-hE-Xna"/>
-                                                        <constraint firstAttribute="height" constant="16" id="wgo-Oh-8WM"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Uxh-hE-Xna"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wgo-Oh-8WM"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -311,7 +311,7 @@
                                         <rect key="frame" x="0.0" y="642" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
