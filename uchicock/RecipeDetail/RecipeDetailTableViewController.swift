@@ -17,12 +17,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var recipeName: CopyableLabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var starLabel: UILabel!
+    @IBOutlet weak var styleLabel: UILabel!
+    @IBOutlet weak var styleTipButton: UIButton!
     @IBOutlet weak var methodLabel: UILabel!
+    @IBOutlet weak var methodTipButton: UIButton!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var madeNumLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
+    @IBOutlet weak var style: UILabel!
     @IBOutlet weak var method: UILabel!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var madeNumPlusButton: UIButton!
@@ -104,8 +108,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         starLabel.textColor = Style.labelTextColor
+        styleLabel.textColor = Style.labelTextColor
         methodLabel.textColor = Style.labelTextColor
         memoLabel.textColor = Style.labelTextColor
+        style.textColor = Style.labelTextColor
         method.textColor = Style.labelTextColor
         madeNumLabel.textColor = Style.labelTextColor
         madeNumCountUpLabel.textColor = Style.labelTextColor
@@ -181,6 +187,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             star2.tintColor = Style.secondaryColor
             star3.tintColor = Style.secondaryColor
             
+            switch recipe.style{
+            case 0:
+                style.text = "ロング"
+            case 1:
+                style.text = "ショート"
+            case 2:
+                style.text = "ホット"
+            case 3:
+                style.text = "未指定"
+            default:
+                style.text = "未指定"
+            }
+            
             switch recipe.method{
             case 0:
                 method.text = "ビルド"
@@ -195,7 +214,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             default:
                 method.text = "その他"
             }
-            
+
+            let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
+            styleTipButton.setImage(tipImage, for: .normal)
+            styleTipButton.tintColor = Style.secondaryColor
+            methodTipButton.setImage(tipImage, for: .normal)
+            methodTipButton.tintColor = Style.secondaryColor
+
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
             madeNum = recipe.madeNum
@@ -380,7 +405,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 5
+            return 6
         }else if section == 1{
             return recipe.recipeIngredients.count
         }else if section == 2{
@@ -529,6 +554,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 3
             }
         }
+    }
+    
+    @IBAction func styleTipButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func methodTipButtonTapped(_ sender: UIButton) {
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
