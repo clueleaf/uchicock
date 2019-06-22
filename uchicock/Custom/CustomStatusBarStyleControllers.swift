@@ -23,3 +23,15 @@ class CustomActivityController: UIActivityViewController{
         return activityStatusBarStyle
     }
 }
+
+class CustomTextView: UITextView{
+}
+
+class CustomTextField: UITextField{
+}
+
+class CustomSearchBar: UISearchBar{
+}
+
+class CustomNavigationBar: UINavigationBar{
+}

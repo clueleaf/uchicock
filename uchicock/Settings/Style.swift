@@ -725,8 +725,8 @@ struct Style{
     static private func customizeBarButtonItem(){
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
         UIBarButtonItem.appearance().tintColor = primaryColor
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
     }
     
@@ -734,10 +734,10 @@ struct Style{
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
         let secondaryContentColor = FlatColor.contrastColorOf(secondaryColor, isFlat: false)
         UIButton.appearance().tintColor = secondaryContentColor
-        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = contentColor
-        UIButton.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.clear
-        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = contentColor
-        UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = UIColor.clear
+        UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
+        UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [UIStepper.self]).backgroundColor = UIColor.clear
@@ -746,16 +746,16 @@ struct Style{
     
     static private func customizeNavigationBar(){
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
-        UINavigationBar.appearance().barTintColor = primaryColor
-        UINavigationBar.appearance().tintColor = contentColor
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
-        UINavigationBar.appearance().shadowImage = UIImage()
+        CustomNavigationBar.appearance().barTintColor = primaryColor
+        CustomNavigationBar.appearance().tintColor = contentColor
+        CustomNavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
+        CustomNavigationBar.appearance().shadowImage = UIImage()
     }
     
     static private func customizeSearchBar(){
-        UISearchBar.appearance().backgroundColor = filterContainerBackgroundColor
-        UISearchBar.appearance().tintColor = labelTextColor
-        UISearchBar.appearance().barTintColor = filterContainerBackgroundColor        
+        CustomSearchBar.appearance().backgroundColor = filterContainerBackgroundColor
+        CustomSearchBar.appearance().tintColor = labelTextColor
+        CustomSearchBar.appearance().barTintColor = filterContainerBackgroundColor        
     }
     
     static private func customizeSegmentedControl(){
@@ -769,23 +769,23 @@ struct Style{
     }
     
     static private func customizeTextField(){
-        UITextField.appearance().backgroundColor = textFieldBackgroundColor
-        UITextField.appearance().tintColor = labelTextColor
-        UITextField.appearance().textColor = labelTextColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = textFieldBackgroundColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = labelTextColor
+        CustomTextField.appearance().backgroundColor = textFieldBackgroundColor
+        CustomTextField.appearance().tintColor = labelTextColor
+        CustomTextField.appearance().textColor = labelTextColor
+        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = textFieldBackgroundColor
+        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = labelTextColor
         if isDark{
-            UITextField.appearance().keyboardAppearance = .dark
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .dark
+            CustomTextField.appearance().keyboardAppearance = .dark
+            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .dark
         }else{
-            UITextField.appearance().keyboardAppearance = .default
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).keyboardAppearance = .default
+            CustomTextField.appearance().keyboardAppearance = .default
+            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .default
         }
     }
     
     static private func customizeTextView(){
-        UITextView.appearance().backgroundColor = textFieldBackgroundColor
-        UITextView.appearance().textColor = labelTextColor
+        CustomTextView.appearance().backgroundColor = textFieldBackgroundColor
+        CustomTextView.appearance().textColor = labelTextColor
     }
     
     static private func customizeTabBar(){

@@ -72,7 +72,7 @@
         <scene sceneID="5HC-Cl-HHe">
             <objects>
                 <navigationController storyboardIdentifier="IngredientRecommendNavigationController" id="oxa-6N-36i" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UAm-mD-MFu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UAm-mD-MFu" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -12,13 +12,13 @@ import M13Checkbox
 
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
 
-    @IBOutlet weak var ingredientName: UITextField!
+    @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var ingredientNameLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
-    @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var amount: CustomTextField!
     @IBOutlet weak var amountSlider: UISlider!
     @IBOutlet weak var option: M13Checkbox!
     @IBOutlet weak var optionDescriptionLabel: UILabel!

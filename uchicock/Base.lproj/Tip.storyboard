@@ -14,7 +14,7 @@
         <scene sceneID="ryB-lZ-4Ps">
             <objects>
                 <navigationController storyboardIdentifier="StyleTipNavigationController" id="5me-nb-Kz4" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Qk-Fx-uQz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Qk-Fx-uQz" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -176,7 +176,7 @@
         <scene sceneID="Mrs-yb-uzd">
             <objects>
                 <navigationController storyboardIdentifier="MethodTipNavigationController" id="pQm-pe-awS" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="n5r-Le-CPL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="n5r-Le-CPL" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

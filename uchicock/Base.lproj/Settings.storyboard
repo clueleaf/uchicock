@@ -15,7 +15,7 @@
                 <navigationController id="lbf-YC-ahC" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="いろいろ" image="tabbar-settings" id="KDX-QE-bCf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Yxz-Tz-Giv">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Yxz-Tz-Giv" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -416,7 +416,7 @@
         <scene sceneID="Z69-qE-Jvf">
             <objects>
                 <navigationController id="VGI-sz-djI" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZYV-LA-J2n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ZYV-LA-J2n" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -769,7 +769,7 @@
         <scene sceneID="FUS-k7-xrm">
             <objects>
                 <navigationController id="WJd-ly-HED" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eKz-e7-DAZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eKz-e7-DAZ" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

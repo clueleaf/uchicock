@@ -12,7 +12,7 @@ import M13Checkbox
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!
     @IBOutlet weak var searchConditionLabel: UILabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!

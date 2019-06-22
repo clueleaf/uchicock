@@ -43,7 +43,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mFV-ja-vjq"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="レシピ名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-YB-YF7">
+                            <searchBar contentMode="redraw" placeholder="レシピ名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-YB-YF7" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9cn-07-eUk"/>
@@ -211,7 +211,7 @@
                                     <outlet property="delegate" destination="IFZ-In-CDc" id="ZUW-Lo-9YR"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="材料名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-KR-IKb">
+                            <searchBar contentMode="redraw" placeholder="材料名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="Ju1-KR-IKb" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ZXf-SH-x6f"/>
@@ -343,7 +343,7 @@
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="OWJ-22-Xa1">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="OWJ-22-Xa1" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="53" y="3" width="353" height="29"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -367,7 +367,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MmG-zy-Lte">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MmG-zy-Lte" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="53" y="3" width="353" height="29"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -400,7 +400,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-ce-vs7">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-ce-vs7" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="53" y="3" width="353" height="29"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -603,7 +603,7 @@
             <objects>
                 <navigationController id="KKp-Zy-7zd" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="レシピ" image="tabbar-recipe" id="LxU-1k-8wl"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9Mv-r3-hnc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9Mv-r3-hnc" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -620,7 +620,7 @@
             <objects>
                 <navigationController id="3Ej-3Z-OyG" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="アルバム" image="tabbar-album" id="2y6-xw-CiZ"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s0R-RU-yzr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s0R-RU-yzr" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -724,7 +724,7 @@
             <objects>
                 <navigationController id="vI8-aO-1sO" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="逆引き" image="tabbar-reverse-lookup" id="009-ru-rzW"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KGg-ZN-GBX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KGg-ZN-GBX" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -741,7 +741,7 @@
             <objects>
                 <navigationController id="2U6-sC-jhY" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="材料" image="tabbar-ingredient" id="4uJ-fe-pdf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="6sM-B0-LYW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="6sM-B0-LYW" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

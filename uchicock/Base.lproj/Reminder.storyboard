@@ -13,7 +13,7 @@
         <scene sceneID="2hI-M5-V7X">
             <objects>
                 <navigationController storyboardIdentifier="ReminderNavigationController" id="bjZ-zr-dNb" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="niP-BU-ucX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="niP-BU-ucX" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

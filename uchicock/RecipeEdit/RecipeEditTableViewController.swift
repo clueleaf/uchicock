@@ -13,7 +13,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeNameLabel: UILabel!
-    @IBOutlet weak var recipeName: UITextField!
+    @IBOutlet weak var recipeName: CustomTextField!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
@@ -31,7 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var style: UISegmentedControl!
     @IBOutlet weak var method: UISegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
-    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memo: CustomTextView!
     
     weak var detailVC : RecipeDetailTableViewController?
     var recipe = Recipe()

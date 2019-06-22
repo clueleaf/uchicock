@@ -18,9 +18,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var ingredientNumberLabel1: UILabel!
     @IBOutlet weak var ingredientNumberLabel2: UILabel!
     @IBOutlet weak var ingredientNumberLabel3: UILabel!
-    @IBOutlet weak var ingredientTextField1: UITextField!
-    @IBOutlet weak var ingredientTextField2: UITextField!
-    @IBOutlet weak var ingredientTextField3: UITextField!
+    @IBOutlet weak var ingredientTextField1: CustomTextField!
+    @IBOutlet weak var ingredientTextField2: CustomTextField!
+    @IBOutlet weak var ingredientTextField3: CustomTextField!
     @IBOutlet weak var searchConditionLabel: UILabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     

@@ -12,7 +12,7 @@ import M13Checkbox
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var category: UISegmentedControl!
     @IBOutlet weak var stockState: UISegmentedControl!
