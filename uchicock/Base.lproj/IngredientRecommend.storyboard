@@ -32,7 +32,7 @@
                                                     <string key="text">在庫がない材料のうち、入手すると作れるようになるレシピが増えるものを、増えるレシピの数が多い順に最大10個表示します。
 
 新しい材料に挑戦してみよう！</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -54,7 +54,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="おすすめ材料" id="IHf-YD-Whm">
-                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="tTT-V7-ai2">
+                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="tTT-V7-ai2">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="vOT-8F-dnj" id="bC9-4X-FEy"/>
                             </connections>

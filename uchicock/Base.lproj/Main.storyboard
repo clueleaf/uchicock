@@ -251,11 +251,12 @@
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-1v-o1f">
-                                        <rect key="frame" x="30" y="68" width="354" height="25"/>
+                                        <rect key="frame" x="132" y="68" width="150" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="YwX-Qt-NYB"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="bHO-7k-TYp"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="おすすめ材料"/>
                                         <connections>
                                             <action selector="ingredientRecommendButtonTapped:" destination="IFZ-In-CDc" eventType="touchUpInside" id="6ri-JB-M1N"/>
@@ -266,12 +267,11 @@
                                 <constraints>
                                     <constraint firstItem="mG1-1v-o1f" firstAttribute="top" secondItem="wmB-he-16M" secondAttribute="bottom" constant="8" id="561-ff-brm"/>
                                     <constraint firstItem="wmB-he-16M" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="5Jk-2q-NEK"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="mG1-1v-o1f" secondAttribute="trailing" constant="30" id="8t4-XW-ID8"/>
                                     <constraint firstAttribute="bottom" secondItem="mG1-1v-o1f" secondAttribute="bottom" constant="4" id="A2F-99-oPz"/>
                                     <constraint firstItem="wmB-he-16M" firstAttribute="top" secondItem="FWr-nR-chO" secondAttribute="bottom" constant="4" id="Fy1-rg-cCF"/>
                                     <constraint firstAttribute="trailing" secondItem="FWr-nR-chO" secondAttribute="trailing" constant="8" id="QD9-kL-pUF"/>
-                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="30" id="SBN-yq-s8B"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="top" id="dg6-d1-YJj"/>
+                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="centerX" secondItem="jYr-aJ-DQL" secondAttribute="centerX" id="i8T-uw-Whi"/>
                                     <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="jTc-Oi-VTd"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="z2Q-kG-vzj"/>
                                 </constraints>

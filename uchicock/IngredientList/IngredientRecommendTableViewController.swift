@@ -20,6 +20,10 @@ class IngredientRecommendTableViewController: UITableViewController {
     
     var interactor: Interactor!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Style.statusBarStyle
+    }
+    
     var onDoneBlock: ((String?) -> Void) = {ingredientId in}
     
     override func viewDidLoad() {
@@ -135,6 +139,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             cell.ingredientDescription = "入手すると新たに" + String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability) + "レシピ作れます！"
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
             return cell
         }
     }
