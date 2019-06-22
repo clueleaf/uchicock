@@ -761,14 +761,3 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
 }
-
-// ImagePicker終了時にStatus Barの色が黒になる問題へのワークアラウンド
-extension UIImagePickerController {
-    open override var childForStatusBarHidden: UIViewController? {
-        return nil
-    }
-    
-    open override var prefersStatusBarHidden: Bool {
-        return true
-    }
-}
