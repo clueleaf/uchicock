@@ -142,7 +142,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability))
         }
         
         if searchBarTextWithoutSpace() != ""{
@@ -429,8 +429,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         nvc.transitioningDelegate = self
         
         let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
-        vc.onDoneBlock = {
-            self.closeCallback()
+        vc.onDoneBlock = { selectedRecommendIngredientId in
+            if let selectedRecommendIngredientId = selectedRecommendIngredientId{
+                for (index, ingredientBasic) in self.ingredientBasicList.enumerated(){
+                    if ingredientBasic.id == selectedRecommendIngredientId{
+                        self.performSegue(withIdentifier: "PushIngredientDetail", sender: IndexPath(item: index, section: 0))
+                        break
+                    }
+                }
+            }
         }
         vc.interactor = interactor
         

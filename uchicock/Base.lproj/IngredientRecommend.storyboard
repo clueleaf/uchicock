@@ -20,7 +20,7 @@
                         <sections>
                             <tableViewSection headerTitle="Section-1" id="e4n-Q3-e72">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="xBn-KY-dSn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="150" id="xBn-KY-dSn">
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xBn-KY-dSn" id="7iW-iG-daE">
@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBv-dO-eJA">
-                                                    <rect key="frame" x="8" y="8" width="398" height="101.5"/>
+                                                    <rect key="frame" x="8" y="8" width="398" height="133.5"/>
                                                     <string key="text">在庫がない材料のうち、入手すると作れるようになるレシピが増えるものを、増えるレシピの数が多い順に最大10個表示します。
 
 新しい材料に挑戦してみよう！</string>
@@ -39,17 +39,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eBv-dO-eJA" firstAttribute="top" secondItem="7iW-iG-daE" secondAttribute="top" constant="8" id="J3T-Hf-DHp"/>
+                                                <constraint firstAttribute="bottom" secondItem="eBv-dO-eJA" secondAttribute="bottom" constant="8" id="aZe-b8-0U9"/>
                                                 <constraint firstItem="eBv-dO-eJA" firstAttribute="leading" secondItem="7iW-iG-daE" secondAttribute="leading" constant="8" id="k9P-QL-5Df"/>
                                                 <constraint firstAttribute="trailing" secondItem="eBv-dO-eJA" secondAttribute="trailing" constant="8" id="kXn-Qf-0nD"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="90" id="MVp-jo-jAo">
-                                        <rect key="frame" x="0.0" y="178" width="414" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MVp-jo-jAo" id="HYl-YA-6GV">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="89.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

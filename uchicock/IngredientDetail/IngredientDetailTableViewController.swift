@@ -463,10 +463,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
     }
     
-    func adaptivePresentationStyleForPresentationController(_ controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
-    }
-    
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)

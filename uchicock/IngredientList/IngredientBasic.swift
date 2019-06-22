@@ -11,5 +11,6 @@ struct IngredientBasic{
     var name : String
     var stockFlag : Bool
     var category : Int
+    var contributionToRecipeAvailability : Int
 }
 

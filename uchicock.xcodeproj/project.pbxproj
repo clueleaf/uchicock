@@ -43,6 +43,8 @@
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
+		9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */; };
+		9B5A33E322BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
 		9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */; };
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
@@ -130,6 +132,8 @@
 		9B43306022B29C8B0010C89B /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewCell.swift; path = IngredientList/IngredientRecommendTableViewCell.swift; sourceTree = "<group>"; };
+		9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IngredientRecommendTableViewCell.xib; path = IngredientList/IngredientRecommendTableViewCell.xib; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
@@ -408,6 +412,8 @@
 				9B3078DC1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift */,
 				9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */,
 				9BD1211D22BD5E260096E674 /* IngredientRecommendTableViewController.swift */,
+				9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */,
+				9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */,
 			);
 			name = IngredientList;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				9BD91A5E22BD39860088C146 /* Tip.storyboard in Resources */,
 				9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */,
 				9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */,
+				9B5A33E322BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib in Resources */,
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
 				9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */,
 				9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */,
@@ -615,6 +622,7 @@
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,
+				9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */,
 				9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
