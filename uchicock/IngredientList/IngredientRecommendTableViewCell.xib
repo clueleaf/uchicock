@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientRecommendCell" rowHeight="70" id="KGk-i7-Jjw" customClass="IngredientRecommendTableViewCell" customModule="uchicock" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientRecommendCell" rowHeight="60" id="KGk-i7-Jjw" customClass="IngredientRecommendTableViewCell" customModule="uchicock" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="286" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfo-HJ-nA4">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <rect key="frame" x="8" y="8" width="270" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="v0d-eP-dlM"/>
                         </constraints>
@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zog-lA-Z1p">
-                        <rect key="frame" x="8" y="37" width="304" height="15"/>
+                        <rect key="frame" x="8" y="37" width="270" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="exC-yz-9Ec"/>
                         </constraints>
@@ -52,7 +52,7 @@
                 <outlet property="descriptionLabel" destination="zog-lA-Z1p" id="LiA-HS-R9n"/>
                 <outlet property="ingredientNameLabel" destination="Xfo-HJ-nA4" id="KkC-Sr-y65"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="129.24107142857142"/>
+            <point key="canvasLocation" x="137.68115942028987" y="125.89285714285714"/>
         </tableViewCell>
     </objects>
 </document>

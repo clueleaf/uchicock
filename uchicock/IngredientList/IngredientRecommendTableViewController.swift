@@ -32,7 +32,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         createIngredientBasicList()
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.estimatedRowHeight = 70
+        tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableView.automaticDimension
         tableView.reloadData()
     }
@@ -94,7 +94,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         if indexPath.row == 0 {
             return UITableView.automaticDimension
         }else{
-            return 70
+            return 60
         }
     }
 

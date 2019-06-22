@@ -431,11 +431,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
         vc.onDoneBlock = { selectedRecommendIngredientId in
             if let selectedRecommendIngredientId = selectedRecommendIngredientId{
-                for (index, ingredientBasic) in self.ingredientBasicList.enumerated(){
-                    if ingredientBasic.id == selectedRecommendIngredientId{
-                        self.performSegue(withIdentifier: "PushIngredientDetail", sender: IndexPath(item: index, section: 0))
-                        break
-                    }
+                let realm = try! Realm()
+                let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: selectedRecommendIngredientId)
+                if ing != nil{
+                    self.performSegue(withIdentifier: "PushIngredientDetail", sender: selectedRecommendIngredientId)
                 }
             }
         }
@@ -466,6 +465,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 selectedIngredientId = ingredientBasicList[indexPath.row].id
                 selectedIndexPath = indexPath
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
+            }else if let id = sender as? String{
+                vc.ingredientId = id
             }
         }
     }
