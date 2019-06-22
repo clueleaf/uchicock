@@ -654,6 +654,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! StyleTipViewController
         vc.interactor = interactor
+        recipeName.resignFirstResponder()
+        memo.resignFirstResponder()
         present(nvc, animated: true)
     }
     
@@ -664,6 +666,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! MethodTipViewController
         vc.interactor = interactor
+        recipeName.resignFirstResponder()
+        memo.resignFirstResponder()
         present(nvc, animated: true)
     }
     

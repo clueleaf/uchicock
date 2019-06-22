@@ -787,6 +787,7 @@ struct Style{
     static private func customizeTextView(){
         CustomTextView.appearance().backgroundColor = textFieldBackgroundColor
         CustomTextView.appearance().textColor = labelTextColor
+        CustomTextView.appearance().tintColor = labelTextColor
     }
     
     static private func customizeTabBar(){

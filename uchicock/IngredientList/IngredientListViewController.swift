@@ -423,6 +423,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func ingredientRecommendButtonTapped(_ sender: UIButton) {
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
         let storyboard = UIStoryboard(name: "IngredientRecommend", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! UINavigationController
         nvc.modalPresentationStyle = .custom
@@ -439,6 +440,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         vc.interactor = interactor
+        searchBar.resignFirstResponder()
         
         present(nvc, animated: true)
     }
