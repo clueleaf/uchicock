@@ -774,6 +774,7 @@ struct Style{
         CustomTextField.appearance().textColor = labelTextColor
         UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = textFieldBackgroundColor
         UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = labelTextColor
+        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).textColor = labelTextColor
         if isDark{
             CustomTextField.appearance().keyboardAppearance = .dark
             UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .dark
