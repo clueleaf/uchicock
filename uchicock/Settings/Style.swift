@@ -734,6 +734,8 @@ struct Style{
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
         let secondaryContentColor = FlatColor.contrastColorOf(secondaryColor, isFlat: false)
         UIButton.appearance().tintColor = secondaryContentColor
+        // テーマカラー変更のチェックマークの色ために必要
+        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.secondaryColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor

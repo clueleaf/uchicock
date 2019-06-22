@@ -79,7 +79,6 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Style.setTheme(themeNo: oldThemeNo)
-        UIButton.appearance().tintColor = Style.secondaryColor
     }
 
     // MARK: - Table view data source
@@ -98,7 +97,6 @@ class ChangeThemeTableViewController: UITableViewController {
         if let cell = tableView.cellForRow(at:indexPath) {
             cell.accessoryType = .checkmark
         }
-        UIButton.appearance().tintColor = Style.secondaryColor
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white
         }else{
