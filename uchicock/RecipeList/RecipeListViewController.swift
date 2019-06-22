@@ -16,6 +16,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var searchContainer: UIView!
     @IBOutlet weak var searchConditionLabel: UILabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
+    @IBOutlet weak var containerSeparator: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -93,6 +94,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchConditionModifyButton.tintColor = Style.secondaryColor
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
+        containerSeparator.backgroundColor = Style.labelTextColor
+
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         

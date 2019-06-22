@@ -18,6 +18,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var stockState: CustomSegmentedControl!
     @IBOutlet weak var ingredientRecommendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var containerSeparator: UIView!
     
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
@@ -62,6 +63,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         ingredientRecommendButton.tintColor = Style.secondaryColor
         ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
         
+        containerSeparator.backgroundColor = Style.labelTextColor
+
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
