@@ -724,26 +724,20 @@ struct Style{
     
     static private func customizeBarButtonItem(){
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
-        UIBarButtonItem.appearance().tintColor = primaryColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
     }
     
     static private func customizeButton(){
         let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
-        let secondaryContentColor = FlatColor.contrastColorOf(secondaryColor, isFlat: false)
-        UIButton.appearance().tintColor = secondaryContentColor
+        
         // テーマカラー変更のチェックマークの色ために必要
         UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.secondaryColor
+
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
-        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = contentColor
-        UIButton.appearance(whenContainedInInstancesOf: [UIToolbar.self]).backgroundColor = UIColor.clear
-        UIButton.appearance(whenContainedInInstancesOf: [UIStepper.self]).backgroundColor = UIColor.clear
-        UIButton.appearance().setTitleShadowColor(UIColor.clear, for: UIControl.State.normal)
     }
     
     static private func customizeNavigationBar(){
