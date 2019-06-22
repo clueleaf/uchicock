@@ -14,8 +14,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
-    @IBOutlet weak var category: UISegmentedControl!
-    @IBOutlet weak var stockState: UISegmentedControl!
+    @IBOutlet weak var category: CustomSegmentedControl!
+    @IBOutlet weak var stockState: CustomSegmentedControl!
     @IBOutlet weak var ingredientRecommendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     

@@ -28,8 +28,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var styleTableViewCell: UITableViewCell!
     @IBOutlet weak var methodTableViewCell: UITableViewCell!
-    @IBOutlet weak var style: UISegmentedControl!
-    @IBOutlet weak var method: UISegmentedControl!
+    @IBOutlet weak var style: CustomSegmentedControl!
+    @IBOutlet weak var method: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: CustomTextView!
     

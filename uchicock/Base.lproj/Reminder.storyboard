@@ -89,7 +89,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VmG-z6-twA">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VmG-z6-twA" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="98" y="16" width="269" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="EH5-ft-cH7"/>

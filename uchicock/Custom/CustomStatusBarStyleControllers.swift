@@ -35,3 +35,12 @@ class CustomSearchBar: UISearchBar{
 
 class CustomNavigationBar: UINavigationBar{
 }
+
+class CustomSlider: UISlider{
+}
+
+class CustomTabBar: UITabBar{
+}
+
+class CustomSegmentedControl: UISegmentedControl{
+}

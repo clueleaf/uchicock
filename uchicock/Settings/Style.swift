@@ -761,8 +761,8 @@ struct Style{
     }
     
     static private func customizeSegmentedControl(){
-        UISegmentedControl.appearance().backgroundColor = basicBackgroundColor
-        UISegmentedControl.appearance().tintColor = secondaryColor
+        CustomSegmentedControl.appearance().backgroundColor = basicBackgroundColor
+        CustomSegmentedControl.appearance().tintColor = secondaryColor
     }
     
     static private func customizeM13Checkbox(){
@@ -793,17 +793,18 @@ struct Style{
     }
     
     static private func customizeTabBar(){
-        UITabBar.appearance().tintColor = tabBarTintColor
-        UITabBar.appearance().barTintColor = tabBarBarTintColor
-        UITabBar.appearance().unselectedItemTintColor = tabBarUnselectedItemTintColor
+        CustomTabBar.appearance().tintColor = tabBarTintColor
+        CustomTabBar.appearance().barTintColor = tabBarBarTintColor
+        CustomTabBar.appearance().unselectedItemTintColor = tabBarUnselectedItemTintColor
     }
         
     static private func customizeSlider(){
-        UISlider.appearance().minimumTrackTintColor = secondaryColor
-        UISlider.appearance().maximumTrackTintColor = labelTextColorLight
+        CustomSlider.appearance().minimumTrackTintColor = secondaryColor
+        CustomSlider.appearance().maximumTrackTintColor = labelTextColorLight
     }
     
     static private func customizeActivityIndicatorView(){
+        // MJRefreshのぐるぐるに必要
         UIActivityIndicatorView.appearance().color = labelTextColor
     }
 

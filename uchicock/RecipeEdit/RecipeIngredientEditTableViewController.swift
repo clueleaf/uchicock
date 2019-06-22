@@ -19,7 +19,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: CustomTextField!
-    @IBOutlet weak var amountSlider: UISlider!
+    @IBOutlet weak var amountSlider: CustomSlider!
     @IBOutlet weak var option: M13Checkbox!
     @IBOutlet weak var optionDescriptionLabel: UILabel!
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!

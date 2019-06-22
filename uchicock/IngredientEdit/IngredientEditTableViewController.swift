@@ -17,7 +17,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var ingredientName: CustomTextField!
-    @IBOutlet weak var category: UISegmentedControl!
+    @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: CustomTextView!
     

@@ -16,7 +16,7 @@ class ReminderTableViewController: UITableViewController {
     @IBOutlet weak var reminderTypeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var reminderTitle: UILabel!
-    @IBOutlet weak var reminderType: UISegmentedControl!
+    @IBOutlet weak var reminderType: CustomSegmentedControl!
     @IBOutlet weak var dateFlag: M13Checkbox!
     @IBOutlet weak var datePicker: UIDatePicker!
     

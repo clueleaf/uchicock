@@ -224,7 +224,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-aJ-DQL" userLabel="Container">
                                 <rect key="frame" x="0.0" y="44" width="414" height="102"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="32" width="398" height="29"/>
                                         <segments>
                                             <segment title="すべて"/>
@@ -235,7 +235,7 @@
                                             <action selector="stockStateTapped:" destination="IFZ-In-CDc" eventType="valueChanged" id="vP8-Kj-wji"/>
                                         </connections>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FWr-nR-chO">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FWr-nR-chO" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="0.0" width="398" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="kUl-Ll-6XI"/>
@@ -702,7 +702,7 @@
         <scene sceneID="W8I-U9-Q9L">
             <objects>
                 <tabBarController id="w1V-m1-dXG" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="ZnX-ix-bqW">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ZnX-ix-bqW" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
