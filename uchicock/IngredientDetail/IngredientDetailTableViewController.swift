@@ -12,10 +12,10 @@ import M13Checkbox
 
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
-    
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var stockRecommendLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
@@ -52,6 +52,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stock.markType = .checkmark
         stock.boxType = .circle
         
+        stockRecommendLabel.isHidden = true
+        
         initActionButtonStyleOf(editButton, with: "edit")
         initActionButtonStyleOf(reminderButton, with: "reminder")
         initActionButtonStyleOf(amazonButton, with: "amazon")
@@ -86,6 +88,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     private func setupVC(){
         categoryLabel.textColor = Style.labelTextColor
         stockLabel.textColor = Style.labelTextColor
+        stockRecommendLabel.textColor = Style.secondaryColor
         memoLabel.textColor = Style.labelTextColor
         category.textColor = Style.labelTextColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
@@ -113,6 +116,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             ingredientName.text = ingredient.ingredientName
             ingredientName.textColor = Style.labelTextColor
+            
+            updateIngredientRecommendLabel()
             
             switch ingredient.category{
             case 0:
@@ -168,6 +173,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     // MARK: - Set Style
+    private func updateIngredientRecommendLabel(){
+        let realm = try! Realm()
+        try! realm.write {
+            ingredient.calcContribution()
+        }
+        if ingredient.contributionToRecipeAvailability == 0{
+            stockRecommendLabel.isHidden = true
+            stockRecommendLabel.text = ""
+        }else{
+            stockRecommendLabel.isHidden = false
+            stockRecommendLabel.text = "入手すると新たに" + String(ingredient.contributionToRecipeAvailability) + "レシピ作れます！"
+        }
+    }
+    
     private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
         button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
@@ -240,7 +259,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 1 || indexPath.row == 4{
+            if indexPath.row == 4{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
                 return UITableView.automaticDimension
@@ -399,6 +418,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 ri.recipe.updateShortageNum()
             }
         }
+        updateIngredientRecommendLabel()
         reloadIngredientRecipeBasicList()
         tableView.reloadData()
     }
