@@ -266,7 +266,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
         searchButton.layer.borderColor = Style.secondaryColor.cgColor
         searchButton.layer.borderWidth = 1.0
-        searchButton.layer.cornerRadius = 5
+        searchButton.layer.cornerRadius = 20
         searchButton.tintColor = Style.secondaryColor
     }
     

@@ -511,9 +511,9 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6S-v7-MRn">
-                                                                        <rect key="frame" x="8" y="4.3333333333333321" width="50" height="21"/>
+                                                                        <rect key="frame" x="8" y="4.3333333333333321" width="55" height="21"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="BDC-wP-b18"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="BDC-wP-b18"/>
                                                                             <constraint firstAttribute="height" constant="21" id="jfx-1G-5wx"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -521,7 +521,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-52-RaS">
-                                                                        <rect key="frame" x="66" y="4.3333333333333321" width="340" height="21"/>
+                                                                        <rect key="frame" x="71" y="4.3333333333333321" width="335" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="oGd-cN-4no"/>
                                                                         </constraints>
@@ -782,6 +782,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="daG-Cs-3sj"/>
+        <segue reference="e9K-u4-h0j"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -46,7 +46,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         
         imageView.image = originalImageView?.image
         doneButton.setTitleColor(UIColor(white: 0.9, alpha: 0.9), for: .normal)
-        doneButton.layer.cornerRadius = 3.0
+        doneButton.layer.cornerRadius = 13.0
         doneButton.layer.borderColor = UIColor(white: 0.9, alpha: 0.9).cgColor
         doneButton.layer.borderWidth = 1.0
         doneButton.backgroundColor = UIColor(white: 0.1, alpha: 0.5)

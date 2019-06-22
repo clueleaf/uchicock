@@ -20,7 +20,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var stock: Bool? = Bool(){
         didSet{
             stockLabel.backgroundColor = UIColor.clear
-            stockLabel.layer.cornerRadius = 4
+            stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
             stockLabel.textAlignment = NSTextAlignment.center
             if let stock = stock{
@@ -62,7 +62,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
         didSet{
             optionLabel.backgroundColor = UIColor.clear
             optionLabel.textColor = Style.secondaryColor
-            optionLabel.layer.cornerRadius = 4
+            optionLabel.layer.cornerRadius = 10.5
             optionLabel.clipsToBounds = true
             optionLabel.textAlignment = NSTextAlignment.center
             optionLabel.layer.borderWidth = 1

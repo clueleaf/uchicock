@@ -33,7 +33,7 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
                 stockLabel.layer.backgroundColor = UIColor.clear.cgColor
                 stockLabel.layer.borderColor = Style.secondaryColor.cgColor
             }
-            stockLabel.layer.cornerRadius = 4
+            stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
             stockLabel.textAlignment = NSTextAlignment.center
         }
