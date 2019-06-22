@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tf-GF-vKs">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tf-GF-vKs">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="701"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4p-Iq-Bmw">
@@ -1059,9 +1059,6 @@
                             <constraint firstItem="Vza-Iu-W6Q" firstAttribute="leading" secondItem="vYG-87-sej" secondAttribute="leading" id="zjn-ID-h3H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vYG-87-sej"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="SwI-bi-TYb" appends="YES" id="MEs-co-Gwk"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="条件指定" id="12u-Bf-6nP">
                         <barButtonItem key="leftBarButtonItem" title="キャンセル" id="xUX-gs-gTH">
@@ -1138,11 +1135,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKw-U4-35j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="SwI-bi-TYb">
-                    <connections>
-                        <action selector="handleGesture:" destination="iHW-kn-1ob" id="F8P-5x-V1K"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1959.4202898550727" y="-397.09821428571428"/>
         </scene>

@@ -725,7 +725,6 @@
                         <connections>
                             <outlet property="dataSource" destination="W6V-Ex-Byo" id="45P-hV-kGQ"/>
                             <outlet property="delegate" destination="W6V-Ex-Byo" id="hlw-jV-Flt"/>
-                            <outletCollection property="gestureRecognizers" destination="GsF-Jb-P3H" appends="YES" id="SQh-th-hwu"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="5k2-mx-wp8">
@@ -756,12 +755,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFa-FU-DFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="GsF-Jb-P3H">
-                    <connections>
-                        <action selector="screenTapped:" destination="W6V-Ex-Byo" id="zJS-dj-orR"/>
-                        <outlet property="delegate" destination="W6V-Ex-Byo" id="fZJ-cO-5w0"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="562" y="-417"/>
         </scene>

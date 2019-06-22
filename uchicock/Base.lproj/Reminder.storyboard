@@ -29,7 +29,7 @@
         <scene sceneID="DJc-aP-Xle">
             <objects>
                 <tableViewController id="VDI-Rm-a9c" customClass="ReminderTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nr1-rr-hNP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nr1-rr-hNP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -178,7 +178,6 @@
                         <connections>
                             <outlet property="dataSource" destination="VDI-Rm-a9c" id="DKu-m1-u7m"/>
                             <outlet property="delegate" destination="VDI-Rm-a9c" id="jhH-cs-aJk"/>
-                            <outletCollection property="gestureRecognizers" destination="4wj-aW-sgX" appends="YES" id="LVn-7v-Fnx"/>
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -205,11 +204,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lC-D0-h3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="4wj-aW-sgX">
-                    <connections>
-                        <action selector="handleGesture:" destination="VDI-Rm-a9c" id="1Ds-EB-1hq"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1260" y="1236"/>
         </scene>

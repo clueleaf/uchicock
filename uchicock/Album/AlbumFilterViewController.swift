@@ -266,8 +266,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         checkbox.contentHorizontalAlignment = .center
     }
     
-    // MARK: - IBAction
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
         let percentThreshold: CGFloat = 0.3
         
         let translation = sender.translation(in: view)
@@ -299,6 +298,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         self.saveUserDefaults()
         self.dismiss(animated: true, completion: nil)

@@ -81,8 +81,7 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    // MARK: - IBAction
-    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
         let percentThreshold: CGFloat = 0.3
         
         let translation = sender.translation(in: view)
@@ -114,7 +113,7 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    
+    // MARK: - IBAction
     @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }

@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lon-CN-hEc">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lon-CN-hEc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-Bd-9DY">
@@ -147,9 +147,6 @@
                             <constraint firstItem="Lon-CN-hEc" firstAttribute="leading" secondItem="Fcd-TN-7ID" secondAttribute="leading" id="ze5-GN-AES"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fcd-TN-7ID"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="iCM-hW-21Q" appends="YES" id="PB1-iA-ctc"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="スタイル" id="r4Y-9O-UZQ">
                         <barButtonItem key="rightBarButtonItem" title="閉じる" id="pPn-5h-yE4">
@@ -172,11 +169,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UnE-u8-vhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="iCM-hW-21Q">
-                    <connections>
-                        <action selector="handleGesture:" destination="06P-na-LIH" id="5Bl-t0-MMx"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="373.91304347826087" y="60.9375"/>
         </scene>
@@ -204,7 +196,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpG-T2-Slx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MpG-T2-Slx">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-Va-VQs">
@@ -348,9 +340,6 @@
                             <constraint firstItem="RiB-Yy-NUa" firstAttribute="trailing" secondItem="MpG-T2-Slx" secondAttribute="trailing" id="q8U-ab-EiA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RiB-Yy-NUa"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="ah7-fq-Vuc" appends="YES" id="98M-ct-wSE"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="技法" id="Fa3-b2-ROl">
                         <barButtonItem key="rightBarButtonItem" title="閉じる" id="K4M-Eb-sUG">
@@ -376,11 +365,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdd-NF-qK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="ah7-fq-Vuc">
-                    <connections>
-                        <action selector="handleGesture:" destination="Z1J-D1-IAp" id="kz8-Im-1eU"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="366.66666666666669" y="804.91071428571422"/>
         </scene>
