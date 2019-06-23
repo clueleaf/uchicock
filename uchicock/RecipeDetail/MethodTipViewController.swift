@@ -16,6 +16,7 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var firstSeparator: UIView!
     @IBOutlet weak var secondSeparator: UIView!
     @IBOutlet weak var thirdSeparator: UIView!
+    @IBOutlet weak var fourthSeparator: UIView!
     
     var interactor: Interactor!
     
@@ -43,6 +44,7 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
         firstSeparator.backgroundColor = Style.labelTextColor
         secondSeparator.backgroundColor = Style.labelTextColor
         thirdSeparator.backgroundColor = Style.labelTextColor
+        fourthSeparator.backgroundColor = Style.labelTextColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
