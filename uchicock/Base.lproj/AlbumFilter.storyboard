@@ -40,7 +40,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7H-1K-glc">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="387"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="絞り込み" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYl-Cz-MLv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="絞り込み" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYl-Cz-MLv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="232" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="Zr6-Ck-TQ5"/>
@@ -82,7 +82,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6Ly-oG-uzO">
                                                 <rect key="frame" x="8" y="75" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Mk-PF-jFg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Mk-PF-jFg" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -101,7 +101,7 @@
                                                                     <action selector="favorite0CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Gro-hs-CCC"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-Tz-MLd">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-Tz-MLd" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -132,7 +132,7 @@
                                                                     <action selector="favorite1CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="aJy-Oj-SHn"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixL-eO-weg">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixL-eO-weg" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -175,7 +175,7 @@
                                                                     <action selector="favorite2CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="JRf-df-9yY"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk5-qe-dX9">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk5-qe-dX9" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -206,7 +206,7 @@
                                                                     <action selector="favorite3CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="dkg-Ah-1Xi"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP6-y9-Vmi">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP6-y9-Vmi" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -248,7 +248,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vQW-0y-uf3">
                                                 <rect key="frame" x="8" y="179" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スタイル" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh1-PH-S6d">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スタイル" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh1-PH-S6d" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -267,7 +267,7 @@
                                                                     <action selector="styleLongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Sp4-X9-WRL"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJB-0g-twZ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJB-0g-twZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -298,7 +298,7 @@
                                                                     <action selector="styleShortCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="UnG-1E-a5R"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnU-HU-DwO">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnU-HU-DwO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -341,7 +341,7 @@
                                                                     <action selector="styleHotCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="fBI-HE-sRR"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIm-JV-lWx">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIm-JV-lWx" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -372,7 +372,7 @@
                                                                     <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="GWM-1k-wGD"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-5E-Oft">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-5E-Oft" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -414,7 +414,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RnE-uu-Pnv">
                                                 <rect key="frame" x="8" y="283" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmg-V8-Mko">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmg-V8-Mko" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -433,7 +433,7 @@
                                                                     <action selector="methodBuildCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="NCr-X4-aiw"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-Df-hyL">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-Df-hyL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -464,7 +464,7 @@
                                                                     <action selector="methodStirCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="poW-23-pfQ"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ4-Qf-v2h">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ4-Qf-v2h" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -503,7 +503,7 @@
                                                                     <action selector="methodShakeCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="iub-6B-U4y"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUN-dQ-5CQ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUN-dQ-5CQ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -534,7 +534,7 @@
                                                                     <action selector="methodBlendCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="rAB-aV-XB1"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-9X-uNw">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-9X-uNw" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="101" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -565,7 +565,7 @@
                                                                     <action selector="methodOthersCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="wim-n6-kx2"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fiz-bx-XZN">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fiz-bx-XZN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
@@ -715,29 +715,17 @@
                     <connections>
                         <outlet property="deselectAllButton" destination="c9j-cX-vId" id="WZj-tk-j7q"/>
                         <outlet property="favorite0Checkbox" destination="lz3-Oy-BNf" id="MZm-QZ-pJm"/>
-                        <outlet property="favorite0Label" destination="dI0-Tz-MLd" id="W3E-15-nbK"/>
                         <outlet property="favorite1Checkbox" destination="cKc-Dq-cxn" id="KDg-VR-UHV"/>
-                        <outlet property="favorite1Label" destination="ixL-eO-weg" id="ufv-Iv-diI"/>
                         <outlet property="favorite2Checkbox" destination="SBM-ye-ueT" id="q88-aU-ecW"/>
-                        <outlet property="favorite2Label" destination="xk5-qe-dX9" id="HFk-bZ-4or"/>
                         <outlet property="favorite3Checkbox" destination="Mfl-ku-sxM" id="z7Z-SH-0EC"/>
-                        <outlet property="favorite3Label" destination="JP6-y9-Vmi" id="8Ka-LZ-ERM"/>
-                        <outlet property="favoriteFilterLabel" destination="1Mk-PF-jFg" id="9aL-u6-bd5"/>
                         <outlet property="favoriteWarningImage" destination="5yr-IU-Lh3" id="qSi-eh-lr9"/>
                         <outlet property="favoriteWarningLabel" destination="3JK-0Y-guY" id="tCv-GA-Ccf"/>
                         <outlet property="filterExplanationLabel" destination="JAi-SP-GD8" id="cg3-vK-9hq"/>
-                        <outlet property="filterLabel" destination="HYl-Cz-MLv" id="RcX-o0-4HI"/>
                         <outlet property="methodBlendCheckbox" destination="nvx-iM-f4h" id="bXz-bb-NJx"/>
-                        <outlet property="methodBlendLabel" destination="75Z-9X-uNw" id="2tM-gY-kE6"/>
                         <outlet property="methodBuildCheckbox" destination="0pV-sU-VHa" id="uq2-tg-3J7"/>
-                        <outlet property="methodBuildLabel" destination="hxJ-Df-hyL" id="UNu-Tg-b8e"/>
-                        <outlet property="methodFilterLabel" destination="Hmg-V8-Mko" id="mMK-4T-Puv"/>
                         <outlet property="methodOthersCheckbox" destination="DMM-lq-DMJ" id="21L-4b-Id5"/>
-                        <outlet property="methodOthersLabel" destination="Fiz-bx-XZN" id="BWr-7B-REY"/>
                         <outlet property="methodShakeCheckbox" destination="i1e-EW-FqB" id="HJl-vN-dYm"/>
-                        <outlet property="methodShakeLabel" destination="eUN-dQ-5CQ" id="cSK-cL-gdu"/>
                         <outlet property="methodStirCheckbox" destination="n4D-6H-ZVp" id="Vhx-av-9BZ"/>
-                        <outlet property="methodStirLabel" destination="MQ4-Qf-v2h" id="eYd-h8-6JJ"/>
                         <outlet property="methodWarningImage" destination="Kdm-nH-m23" id="oOC-FE-BUh"/>
                         <outlet property="methodWarningLabel" destination="rMN-DJ-JYj" id="ans-1u-Dd1"/>
                         <outlet property="scrollBackgroundView" destination="A7H-1K-glc" id="CRK-J0-zwr"/>
@@ -746,15 +734,10 @@
                         <outlet property="searchButtonBackgroundView" destination="LlM-Sa-xRF" id="pRR-rs-VeS"/>
                         <outlet property="secondSeparator" destination="hmp-Z0-khX" id="zd6-Ip-Fq9"/>
                         <outlet property="selectAllButton" destination="ohL-L5-oAY" id="2HZ-Zi-jzZ"/>
-                        <outlet property="styleFilterLabel" destination="Gh1-PH-S6d" id="456-V1-TXN"/>
                         <outlet property="styleHotCheckbox" destination="33G-ax-QzN" id="sL5-rW-iYC"/>
-                        <outlet property="styleHotLabel" destination="XIm-JV-lWx" id="8ca-uj-Wob"/>
                         <outlet property="styleLongCheckbox" destination="9uG-DB-Puv" id="fp8-iw-jYF"/>
-                        <outlet property="styleLongLabel" destination="TJB-0g-twZ" id="uSR-Je-VaS"/>
                         <outlet property="styleNoneCheckbox" destination="h4h-AI-RrY" id="Qwx-Z7-fwc"/>
-                        <outlet property="styleNoneLabel" destination="4ce-5E-Oft" id="WgV-eT-yca"/>
                         <outlet property="styleShortCheckbox" destination="ipc-Dx-y1W" id="4BS-bG-WHs"/>
-                        <outlet property="styleShortLabel" destination="tnU-HU-DwO" id="bmj-DD-VK3"/>
                         <outlet property="styleWarningImage" destination="qI3-rD-XLv" id="lx7-Tl-AhQ"/>
                         <outlet property="styleWarningLabel" destination="VYO-ZV-iVt" id="2HA-hT-rev"/>
                     </connections>

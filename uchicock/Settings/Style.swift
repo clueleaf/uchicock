@@ -715,6 +715,7 @@ struct Style{
         customizeTabBar()
         customizeSlider()
         customizeActivityIndicatorView()
+        customizeLabel()
         if isDark{
             SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.light)
         }else{
@@ -795,6 +796,10 @@ struct Style{
     static private func customizeSlider(){
         CustomSlider.appearance().minimumTrackTintColor = secondaryColor
         CustomSlider.appearance().maximumTrackTintColor = labelTextColorLight
+    }
+    
+    static private func customizeLabel(){
+        CustomLabel.appearance().textColor = labelTextColor
     }
     
     static private func customizeActivityIndicatorView(){

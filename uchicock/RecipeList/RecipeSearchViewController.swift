@@ -14,16 +14,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollBackgroundView: UIView!
 
-    @IBOutlet weak var sortLabel: UILabel!
     @IBOutlet weak var sortExplanationLabel: UILabel!
-    
-    @IBOutlet weak var primaryLabel: UILabel!
-    @IBOutlet weak var secondaryLabel: UILabel!
-    @IBOutlet weak var nameOrderLabel: UILabel!
-    @IBOutlet weak var shortageOrderLabel: UILabel!
-    @IBOutlet weak var madeNumOrderLabel: UILabel!
-    @IBOutlet weak var favoriteOrderLabel: UILabel!
-    @IBOutlet weak var lastViewedOrderLabel: UILabel!
     
     @IBOutlet weak var nameOrderPrimaryCheckbox: M13Checkbox!
     @IBOutlet weak var nameOrderSecondaryCheckbox: M13Checkbox!
@@ -38,16 +29,10 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var firstSeparator: UIView!
     
-    @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var filterExplanationLabel: UILabel!
     @IBOutlet weak var selectAllButton: UIButton!
     @IBOutlet weak var deselectAllButton: UIButton!
     
-    @IBOutlet weak var favoriteFilterLabel: UILabel!
-    @IBOutlet weak var favorite0Label: UILabel!
-    @IBOutlet weak var favorite1Label: UILabel!
-    @IBOutlet weak var favorite2Label: UILabel!
-    @IBOutlet weak var favorite3Label: UILabel!
     @IBOutlet weak var favorite0Checkbox: M13Checkbox!
     @IBOutlet weak var favorite1Checkbox: M13Checkbox!
     @IBOutlet weak var favorite2Checkbox: M13Checkbox!
@@ -55,11 +40,6 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
-    @IBOutlet weak var styleFilterLabel: UILabel!
-    @IBOutlet weak var styleLongLabel: UILabel!
-    @IBOutlet weak var styleShortLabel: UILabel!
-    @IBOutlet weak var styleHotLabel: UILabel!
-    @IBOutlet weak var styleNoneLabel: UILabel!
     @IBOutlet weak var styleLongCheckbox: M13Checkbox!
     @IBOutlet weak var styleShortCheckbox: M13Checkbox!
     @IBOutlet weak var styleHotCheckbox: M13Checkbox!
@@ -67,12 +47,6 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
     
-    @IBOutlet weak var methodFilterLabel: UILabel!
-    @IBOutlet weak var methodBuildLabel: UILabel!
-    @IBOutlet weak var methodStirLabel: UILabel!
-    @IBOutlet weak var methodShakeLabel: UILabel!
-    @IBOutlet weak var methodBlendLabel: UILabel!
-    @IBOutlet weak var methodOthersLabel: UILabel!
     @IBOutlet weak var methodBuildCheckbox: M13Checkbox!
     @IBOutlet weak var methodStirCheckbox: M13Checkbox!
     @IBOutlet weak var methodShakeCheckbox: M13Checkbox!
@@ -214,49 +188,24 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         scrollBackgroundView.backgroundColor = Style.basicBackgroundColor
-        sortLabel.textColor = Style.labelTextColor
         sortExplanationLabel.textColor = Style.labelTextColorLight
-        primaryLabel.textColor = Style.labelTextColor
-        secondaryLabel.textColor = Style.labelTextColor
-        nameOrderLabel.textColor = Style.labelTextColor
-        shortageOrderLabel.textColor = Style.labelTextColor
-        madeNumOrderLabel.textColor = Style.labelTextColor
-        favoriteOrderLabel.textColor = Style.labelTextColor
-        lastViewedOrderLabel.textColor = Style.labelTextColor
         
         firstSeparator.backgroundColor = Style.labelTextColor
         
-        filterLabel.textColor = Style.labelTextColor
         filterExplanationLabel.textColor = Style.labelTextColorLight
         selectAllButton.tintColor = Style.secondaryColor
         deselectAllButton.tintColor = Style.secondaryColor
 
-        favoriteFilterLabel.textColor = Style.labelTextColor
-        favorite0Label.textColor = Style.labelTextColor
-        favorite1Label.textColor = Style.labelTextColor
-        favorite2Label.textColor = Style.labelTextColor
-        favorite3Label.textColor = Style.labelTextColor
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.secondaryColor
         favoriteWarningLabel.textColor = Style.secondaryColor
         setFavoriteWarningVisibility()
 
-        styleFilterLabel.textColor = Style.labelTextColor
-        styleLongLabel.textColor = Style.labelTextColor
-        styleShortLabel.textColor = Style.labelTextColor
-        styleHotLabel.textColor = Style.labelTextColor
-        styleNoneLabel.textColor = Style.labelTextColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.secondaryColor
         styleWarningLabel.textColor = Style.secondaryColor
         setStyleWarningVisibility()
 
-        methodFilterLabel.textColor = Style.labelTextColor
-        methodBuildLabel.textColor = Style.labelTextColor
-        methodStirLabel.textColor = Style.labelTextColor
-        methodShakeLabel.textColor = Style.labelTextColor
-        methodBlendLabel.textColor = Style.labelTextColor
-        methodOthersLabel.textColor = Style.labelTextColor
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.secondaryColor
         methodWarningLabel.textColor = Style.secondaryColor

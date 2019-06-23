@@ -44,3 +44,6 @@ class CustomTabBar: UITabBar{
 
 class CustomSegmentedControl: UISegmentedControl{
 }
+
+class CustomLabel: UILabel{
+}

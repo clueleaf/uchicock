@@ -11,14 +11,11 @@ import UIKit
 class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var ingredientName: CustomLabel!
 
     var ingredient: Ingredient = Ingredient(){
         didSet{
             ingredientName.text = ingredient.ingredientName
-            ingredientName.textColor = Style.labelTextColor
-            ingredientName.backgroundColor = Style.basicBackgroundColor
-            ingredientName.clipsToBounds = true
             
             stockLabel.backgroundColor = UIColor.clear
             stockLabel.layer.borderWidth = 1

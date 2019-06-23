@@ -13,7 +13,7 @@ import M13Checkbox
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeNum: UILabel!
-    @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var ingredientName: CustomLabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var stock: M13Checkbox!
     
@@ -44,11 +44,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             recipeNum.textAlignment = NSTextAlignment.center
 
             ingredientName.text = ingredient.ingredientName
-            ingredientName.textColor = Style.labelTextColor
-            ingredientName.backgroundColor = Style.basicBackgroundColor
-            ingredientName.clipsToBounds = true
             stockLabel.textColor = Style.labelTextColorLight
-            stockLabel.backgroundColor = Style.basicBackgroundColor
             stockLabel.clipsToBounds = true
             
             stock.secondaryTintColor = Style.checkboxSecondaryTintColor

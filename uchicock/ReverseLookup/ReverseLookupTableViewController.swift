@@ -15,13 +15,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var recipeTableView: UITableView!
     @IBOutlet weak var ingredientSuggestTableView: UITableView!
-    @IBOutlet weak var ingredientNumberLabel1: UILabel!
-    @IBOutlet weak var ingredientNumberLabel2: UILabel!
-    @IBOutlet weak var ingredientNumberLabel3: UILabel!
     @IBOutlet weak var ingredientTextField1: CustomTextField!
     @IBOutlet weak var ingredientTextField2: CustomTextField!
     @IBOutlet weak var ingredientTextField3: CustomTextField!
-    @IBOutlet weak var searchConditionLabel: UILabel!
+    @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     
     var firstIngredientName = ""
@@ -109,14 +106,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        ingredientNumberLabel1.textColor = Style.labelTextColor
-        ingredientNumberLabel2.textColor = Style.labelTextColor
-        ingredientNumberLabel3.textColor = Style.labelTextColor
         ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
         
-        searchConditionLabel.textColor = Style.labelTextColor
         searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.0
         searchConditionModifyButton.layer.cornerRadius = 15

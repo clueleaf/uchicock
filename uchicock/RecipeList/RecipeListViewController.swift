@@ -14,7 +14,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!
-    @IBOutlet weak var searchConditionLabel: UILabel!
+    @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
     
@@ -86,8 +86,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
         
-        searchConditionLabel.textColor = Style.labelTextColor
-
         searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.0
         searchConditionModifyButton.layer.cornerRadius = 15
