@@ -24,6 +24,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var showNameFlag = false
     var animationFlag = false
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
+    var noItemText = ""
     
     var albumFilterStar0 = true
     var albumFilterStar1 = true
@@ -64,6 +65,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         header.setTitle("離すとシャッフル", for: MJRefreshState.pulling)
         header.setTitle("シャッフル中...", for: MJRefreshState.refreshing)
         collectionView!.mj_header = header
+
+        self.navigationItem.title = "アルバム"
     }
     
     private func setFilterUserDefaults(){
@@ -85,7 +88,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+        noItemText = ""
         setCollectionBackgroundView()
 
         queue.async {
@@ -135,6 +138,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             DispatchQueue.main.async{
                 self.collectionView!.reloadData()
                 self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+                if self.recipeBasicList.count == 0{
+                    self.noItemText = "写真が登録されたレシピはありません"
+                }else{
+                    self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+                }
                 self.setCollectionBackgroundView()
             }
         }
@@ -175,11 +183,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     func setCollectionBackgroundView(){
         if self.filteredRecipeBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
-            if self.recipeBasicList.count == 0{
-                noDataLabel.text = "写真が登録されたレシピはありません"
-            }else{
-                noDataLabel.text = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-            }
+            noDataLabel.text = noItemText
             noDataLabel.numberOfLines = 0
             noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -253,6 +257,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         filterRecipeBasicList()
         self.collectionView!.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+        if self.recipeBasicList.count == 0{
+            self.noItemText = "写真が登録されたレシピはありません"
+        }else{
+            self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+        }
         self.setCollectionBackgroundView()
         self.collectionView!.mj_header.endRefreshing()
     }
@@ -410,6 +419,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.filterRecipeBasicList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+            if self.recipeBasicList.count == 0{
+                self.noItemText = "写真が登録されたレシピはありません"
+            }else{
+                self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+            }
             self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
@@ -417,6 +431,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.filterRecipeBasicList()
             self.collectionView!.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+            if self.recipeBasicList.count == 0{
+                self.noItemText = "写真が登録されたレシピはありません"
+            }else{
+                self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+            }
             self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
