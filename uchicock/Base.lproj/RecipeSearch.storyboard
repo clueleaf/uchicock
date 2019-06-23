@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Np-8c-vvP">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="701"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4p-Iq-Bmw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="720.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="820.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="並べ替え" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq6-kl-DiI" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="398" height="26"/>
@@ -50,7 +50,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-c8-YGG">
-                                                <rect key="frame" x="8" y="42" width="398" height="50.5"/>
+                                                <rect key="frame" x="8" y="42" width="398" height="50.333333333333343"/>
                                                 <string key="text">レシピを指定した順で並べ替えます。
 第1優先順が「作れる順」「作った回数順」「お気に入り順」の場合は、第2優先順も指定できます。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -58,20 +58,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lZ9-W3-akF">
-                                                <rect key="frame" x="8" y="108.5" width="398" height="20"/>
+                                                <rect key="frame" x="8" y="108.33333333333334" width="398" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wku-jT-nbO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1優先" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJC-85-3yL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="20"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第2優先" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fb-C6-drr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="20"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -82,19 +82,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ce2-F9-k4D">
-                                                <rect key="frame" x="8" y="136.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="136.33333333333334" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-Jr-Eoi" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uye-3K-bp8">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Iy-1P-jDa" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="NVh-aI-K86"/>
@@ -112,10 +112,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbH-8L-SXF">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xc-rz-s5Q" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333371" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="6wm-uk-gOL"/>
@@ -138,19 +138,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-gy-00C">
-                                                <rect key="frame" x="8" y="172.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="172.33333333333331" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作れる順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXB-Te-tSO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKu-Bc-Hfb">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrx-Tg-Jnl" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="Mph-RC-B1i"/>
@@ -168,10 +168,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSl-qk-djN">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Si3-uJ-qR3" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333371" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="Khp-PP-PqD"/>
@@ -194,19 +194,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ic3-T7-VUU">
-                                                <rect key="frame" x="8" y="208.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="208.33333333333331" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作った回数順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3a-jS-FcJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YzQ-5V-QHG">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khX-jJ-tvr" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="50q-GY-xfa"/>
@@ -224,10 +224,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="had-kp-t6R">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9P9-z0-L09" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333371" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="BcJ-sq-8d9"/>
@@ -250,19 +250,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-xN-Ctj">
-                                                <rect key="frame" x="8" y="244.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="244.33333333333331" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIe-MF-8S2" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLw-cm-jOV">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-aV-ylJ" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="EhW-Gd-WpI"/>
@@ -280,10 +280,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-jm-QZW">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0s-0X-Dfo" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333371" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="JNG-yx-dWh"/>
@@ -306,19 +306,19 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZlB-Ag-RwY">
-                                                <rect key="frame" x="8" y="280.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="280.33333333333331" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近見た順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-Ss-yNh" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wQ-Gy-2ri">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUX-7Y-GXu" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333343" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="xbV-a6-Knw"/>
@@ -336,10 +336,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDF-zK-m9j">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBa-iX-jEn" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.333333333333371" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="X6Z-7Z-pJv"/>
@@ -362,14 +362,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLR-2C-Fv8">
-                                                <rect key="frame" x="8" y="332.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="324.33333333333331" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="si9-ct-Gvy"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="絞り込み" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-wO-Evv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="341.5" width="232" height="26"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="絞り込み" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-wO-Evv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="333.33333333333331" width="398" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="uSe-mk-LDZ"/>
                                                 </constraints>
@@ -377,47 +377,51 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wH-1a-Jx6">
-                                                <rect key="frame" x="248" y="339.5" width="75" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="ikF-NY-Alu"/>
-                                                    <constraint firstAttribute="height" constant="30" id="ktF-Vj-21M"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="全て解除"/>
-                                                <connections>
-                                                    <action selector="deselectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="3s6-b1-6q2"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-7f-ujc">
-                                                <rect key="frame" x="331" y="339.5" width="75" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="EHR-LT-K2s"/>
-                                                    <constraint firstAttribute="height" constant="30" id="biU-4t-8CI"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="全て選択"/>
-                                                <connections>
-                                                    <action selector="selectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="K6q-Oq-UhJ"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="表示するレシピを条件に合うもののみに限定します。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzJ-bc-qqF">
-                                                <rect key="frame" x="8" y="375.5" width="398" height="17"/>
+                                                <rect key="frame" x="8" y="367.33333333333331" width="398" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-8q-CNa">
-                                                <rect key="frame" x="8" y="408.5" width="398" height="28"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8l7-v0-1F2">
+                                                <rect key="frame" x="8" y="400.33333333333331" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3b-iZ-KTU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="お気に入り" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3b-iZ-KTU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wH-1a-Jx6">
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て解除"/>
+                                                        <connections>
+                                                            <action selector="favoriteDeselectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="MLE-D7-gOf"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-7f-ujc">
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て選択"/>
+                                                        <connections>
+                                                            <action selector="favoriteSelectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="iAH-Uw-Xel"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="Z73-x7-Wip"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OQ2-8q-CNa">
+                                                <rect key="frame" x="8" y="436.33333333333337" width="398" height="28"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TU6-3M-san">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="El0-ZJ-199">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fkk-v7-y7L" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -430,7 +434,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RU-im-T33" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -448,7 +452,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2o-aQ-m9w">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ga-xg-LsS" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -461,7 +465,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnb-UM-81S" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -484,14 +488,14 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-aJ-chK">
-                                                <rect key="frame" x="8" y="444.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="472.33333333333337" width="398" height="28"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lne-Wc-pXm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulS-po-zZd">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctR-wd-QjF" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -504,7 +508,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnn-g9-R0Q" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -522,7 +526,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hI-Xg-pFk">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCa-eZ-M7y" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -535,7 +539,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQc-53-5xO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -558,14 +562,14 @@
                                                 </constraints>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-f9-Frv">
-                                                <rect key="frame" x="105.5" y="480.5" width="16" height="16"/>
+                                                <rect key="frame" x="105.33333333333333" y="508.33333333333337" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="R46-wA-iyj"/>
                                                     <constraint firstAttribute="height" constant="16" id="hwx-4M-Kxe"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1つ以上選択してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YG-J2-8MK">
-                                                <rect key="frame" x="125.5" y="478" width="163.5" height="21"/>
+                                                <rect key="frame" x="125.33333333333333" y="506" width="163.66666666666669" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="d2j-W4-7z0"/>
                                                 </constraints>
@@ -573,17 +577,45 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-sW-tWj">
-                                                <rect key="frame" x="8" y="512.5" width="398" height="28"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cIL-5E-xeZ">
+                                                <rect key="frame" x="8" y="540.33333333333337" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スタイル" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXO-Fm-TD4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="899-DK-alH">
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て解除"/>
+                                                        <connections>
+                                                            <action selector="styleDeselctAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="bIF-62-QuH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC7-Y4-iAK">
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て選択"/>
+                                                        <connections>
+                                                            <action selector="styleSelectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="mPE-3w-AEQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="IV3-sS-bsm"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-sW-tWj">
+                                                <rect key="frame" x="8" y="576.33333333333337" width="398" height="28"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bof-xu-Wil">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZj-QB-Fa0">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koC-nN-P0W" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -596,7 +628,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl3-PI-eat" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -614,7 +646,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNj-RN-CWI">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DsH-5I-s7s" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -627,7 +659,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rt6-Jy-rMU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -650,14 +682,14 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KEc-EK-bEt">
-                                                <rect key="frame" x="8" y="548.5" width="398" height="28"/>
+                                                <rect key="frame" x="8" y="612.33333333333337" width="398" height="28"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24D-xu-OaY">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3uX-Zx-JVI">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKc-fP-cdv" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -670,7 +702,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua1-cx-Uab" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -688,7 +720,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZm-dV-r6q">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Rp-60-7XK" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -701,7 +733,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIY-Lg-fJN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -724,14 +756,14 @@
                                                 </constraints>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="vpa-MK-6Jf">
-                                                <rect key="frame" x="105.5" y="584.5" width="16" height="16"/>
+                                                <rect key="frame" x="105.33333333333333" y="648.33333333333337" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="cst-Yq-VtL"/>
                                                     <constraint firstAttribute="height" constant="16" id="oAu-QY-hCt"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1つ以上選択してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4n-9v-Mcl">
-                                                <rect key="frame" x="125.5" y="582" width="163.5" height="21"/>
+                                                <rect key="frame" x="125.33333333333333" y="646" width="163.66666666666669" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="ifM-pD-zfB"/>
                                                 </constraints>
@@ -739,17 +771,41 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mwG-U0-z8h">
-                                                <rect key="frame" x="8" y="616.5" width="398" height="28"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xNw-ct-sIJ">
+                                                <rect key="frame" x="8" y="680.33333333333337" width="398" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA9-bs-g7k" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08v-EY-1Ya">
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て解除"/>
+                                                        <connections>
+                                                            <action selector="methodDeselectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="OJq-yy-tUw"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5l-kV-pEl">
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="全て選択"/>
+                                                        <connections>
+                                                            <action selector="methodSelectAllButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="sNi-iv-pZR"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="NVV-4Y-oxJ"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mwG-U0-z8h">
+                                                <rect key="frame" x="8" y="716.33333333333337" width="398" height="28"/>
+                                                <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAu-Wl-Nd7">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z12-eI-Np5" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -762,7 +818,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFZ-SM-iYh" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -780,7 +836,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66F-Hf-e6g">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nma-f5-sgW" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -793,7 +849,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odP-vc-5NO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -810,16 +866,8 @@
                                                             <constraint firstAttribute="trailing" secondItem="odP-vc-5NO" secondAttribute="trailing" id="zhn-vh-djG"/>
                                                         </constraints>
                                                     </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="mMG-cb-qut"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="feM-fM-oq4">
-                                                <rect key="frame" x="8" y="652.5" width="398" height="28"/>
-                                                <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MzM-TC-bVz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2a-eT-ktC" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -832,7 +880,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unk-tb-UnC" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -849,8 +897,20 @@
                                                             <constraint firstItem="unk-tb-UnC" firstAttribute="top" secondItem="MzM-TC-bVz" secondAttribute="top" id="xoQ-1n-kjt"/>
                                                         </constraints>
                                                     </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="mMG-cb-qut"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="feM-fM-oq4">
+                                                <rect key="frame" x="8" y="752.33333333333337" width="398" height="28"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13P-pv-f2L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTK-Mg-MUM">
-                                                        <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
+                                                        <rect key="frame" x="132.66666666666669" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTn-2X-Gcf" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -863,7 +923,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inc-hd-mYT" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -881,7 +941,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUt-gD-ixP">
-                                                        <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
+                                                        <rect key="frame" x="265.33333333333331" y="0.0" width="132.66666666666669" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLq-kX-sLB" customClass="M13Checkbox" customModule="M13Checkbox">
                                                                 <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
@@ -894,7 +954,7 @@
                                                                 </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-Vd-YxV" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                                <rect key="frame" x="32.000000000000007" y="0.0" width="100.66666666666669" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -917,14 +977,14 @@
                                                 </constraints>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="warning" translatesAutoresizingMaskIntoConstraints="NO" id="HH8-AR-3FY">
-                                                <rect key="frame" x="105.5" y="688.5" width="16" height="16"/>
+                                                <rect key="frame" x="105.33333333333333" y="788.33333333333337" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="Z3Q-kF-nEK"/>
                                                     <constraint firstAttribute="width" constant="16" id="prD-71-bP2"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1つ以上選択してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNN-qq-OzU">
-                                                <rect key="frame" x="125.5" y="686" width="163.5" height="21"/>
+                                                <rect key="frame" x="125.33333333333333" y="786" width="163.66666666666669" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="O5n-hM-Qfx"/>
                                                 </constraints>
@@ -935,31 +995,33 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="tLR-2C-Fv8" firstAttribute="top" secondItem="ZlB-Ag-RwY" secondAttribute="bottom" constant="24" id="4dy-m3-VnR"/>
+                                            <constraint firstAttribute="trailing" secondItem="8l7-v0-1F2" secondAttribute="trailing" constant="8" id="0aA-eP-sfQ"/>
+                                            <constraint firstItem="xNw-ct-sIJ" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="2xn-cM-v3F"/>
+                                            <constraint firstItem="tLR-2C-Fv8" firstAttribute="top" secondItem="ZlB-Ag-RwY" secondAttribute="bottom" constant="16" id="4dy-m3-VnR"/>
                                             <constraint firstAttribute="trailing" secondItem="OzJ-bc-qqF" secondAttribute="trailing" constant="8" id="5jX-DX-83C"/>
                                             <constraint firstAttribute="trailing" secondItem="Xye-gy-00C" secondAttribute="trailing" constant="8" id="6Xb-sk-Ao3"/>
                                             <constraint firstItem="WwX-wO-Evv" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="6l9-Ez-Ehe"/>
                                             <constraint firstItem="dqd-xN-Ctj" firstAttribute="top" secondItem="Ic3-T7-VUU" secondAttribute="bottom" constant="8" id="7d2-EV-k3Y"/>
                                             <constraint firstAttribute="trailing" secondItem="dqd-xN-Ctj" secondAttribute="trailing" constant="8" id="91k-tl-gr6"/>
                                             <constraint firstAttribute="trailing" secondItem="KEc-EK-bEt" secondAttribute="trailing" constant="8" id="A43-O8-iUT"/>
-                                            <constraint firstItem="6wH-1a-Jx6" firstAttribute="centerY" secondItem="WwX-wO-Evv" secondAttribute="centerY" id="API-Ur-idd"/>
+                                            <constraint firstItem="xNw-ct-sIJ" firstAttribute="top" secondItem="vpa-MK-6Jf" secondAttribute="bottom" constant="16" id="BIM-mH-pI8"/>
                                             <constraint firstItem="KEc-EK-bEt" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="D0f-QN-FaW"/>
                                             <constraint firstItem="ZlB-Ag-RwY" firstAttribute="top" secondItem="dqd-xN-Ctj" secondAttribute="bottom" constant="8" id="DXY-4n-vjL"/>
                                             <constraint firstItem="P4n-9v-Mcl" firstAttribute="leading" secondItem="vpa-MK-6Jf" secondAttribute="trailing" constant="4" id="F6y-Yb-Rfy"/>
                                             <constraint firstAttribute="trailing" secondItem="OQ2-8q-CNa" secondAttribute="trailing" constant="8" id="F86-Bk-6je"/>
-                                            <constraint firstItem="lCe-7f-ujc" firstAttribute="centerY" secondItem="WwX-wO-Evv" secondAttribute="centerY" id="Gju-Zm-g4n"/>
-                                            <constraint firstAttribute="trailing" secondItem="lCe-7f-ujc" secondAttribute="trailing" constant="8" id="Ibd-pn-zKQ"/>
+                                            <constraint firstItem="cIL-5E-xeZ" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="Koc-tv-n7l"/>
                                             <constraint firstItem="feM-fM-oq4" firstAttribute="top" secondItem="mwG-U0-z8h" secondAttribute="bottom" constant="8" id="L5c-1G-7Rg"/>
                                             <constraint firstItem="8YG-J2-8MK" firstAttribute="centerX" secondItem="M4p-Iq-Bmw" secondAttribute="centerX" id="Lyy-zU-p5j"/>
-                                            <constraint firstItem="lCe-7f-ujc" firstAttribute="leading" secondItem="6wH-1a-Jx6" secondAttribute="trailing" constant="8" id="Mwc-3Z-ce7"/>
                                             <constraint firstItem="mwG-U0-z8h" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="N2P-0S-tgF"/>
                                             <constraint firstItem="nq6-kl-DiI" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="Nwn-5h-dVN"/>
                                             <constraint firstAttribute="trailing" secondItem="oOf-aJ-chK" secondAttribute="trailing" constant="8" id="OQA-HH-PJb"/>
                                             <constraint firstItem="Xye-gy-00C" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="OVh-hv-JLZ"/>
                                             <constraint firstAttribute="trailing" secondItem="ZlB-Ag-RwY" secondAttribute="trailing" constant="8" id="PEj-Tu-BQC"/>
+                                            <constraint firstItem="8l7-v0-1F2" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="PM3-Td-leZ"/>
                                             <constraint firstItem="P4n-9v-Mcl" firstAttribute="centerY" secondItem="vpa-MK-6Jf" secondAttribute="centerY" id="PT3-Ch-G13"/>
                                             <constraint firstAttribute="trailing" secondItem="tLR-2C-Fv8" secondAttribute="trailing" constant="8" id="QIq-4P-VBx"/>
                                             <constraint firstItem="WwX-wO-Evv" firstAttribute="top" secondItem="tLR-2C-Fv8" secondAttribute="bottom" constant="8" id="QKN-2w-6h7"/>
+                                            <constraint firstItem="f5G-sW-tWj" firstAttribute="top" secondItem="cIL-5E-xeZ" secondAttribute="bottom" constant="8" id="QRz-Pp-gvg"/>
                                             <constraint firstItem="oOf-aJ-chK" firstAttribute="top" secondItem="OQ2-8q-CNa" secondAttribute="bottom" constant="8" id="QuQ-41-bhB"/>
                                             <constraint firstAttribute="trailing" secondItem="feM-fM-oq4" secondAttribute="trailing" constant="8" id="RJt-vh-sh6"/>
                                             <constraint firstItem="bNN-qq-OzU" firstAttribute="centerY" secondItem="HH8-AR-3FY" secondAttribute="centerY" id="RkN-tC-DOo"/>
@@ -967,29 +1029,32 @@
                                             <constraint firstItem="Xye-gy-00C" firstAttribute="top" secondItem="ce2-F9-k4D" secondAttribute="bottom" constant="8" id="TA4-e2-oiX"/>
                                             <constraint firstAttribute="trailing" secondItem="mwG-U0-z8h" secondAttribute="trailing" constant="8" id="Tpk-Ir-7o5"/>
                                             <constraint firstItem="nq6-kl-DiI" firstAttribute="top" secondItem="M4p-Iq-Bmw" secondAttribute="top" constant="8" id="Uii-d3-QXE"/>
-                                            <constraint firstItem="6wH-1a-Jx6" firstAttribute="leading" secondItem="WwX-wO-Evv" secondAttribute="trailing" constant="8" id="Uo4-7R-DX1"/>
                                             <constraint firstItem="8YG-J2-8MK" firstAttribute="leading" secondItem="Xol-f9-Frv" secondAttribute="trailing" constant="4" id="Vjy-mm-7VU"/>
+                                            <constraint firstAttribute="trailing" secondItem="cIL-5E-xeZ" secondAttribute="trailing" constant="8" id="Xcn-kI-0cV"/>
                                             <constraint firstAttribute="trailing" secondItem="Ic3-T7-VUU" secondAttribute="trailing" constant="8" id="Ycd-ZN-csy"/>
-                                            <constraint firstItem="OQ2-8q-CNa" firstAttribute="top" secondItem="OzJ-bc-qqF" secondAttribute="bottom" constant="16" id="bou-L0-KJY"/>
+                                            <constraint firstItem="cIL-5E-xeZ" firstAttribute="top" secondItem="Xol-f9-Frv" secondAttribute="bottom" constant="16" id="Ypb-og-AWq"/>
                                             <constraint firstItem="HH8-AR-3FY" firstAttribute="top" secondItem="feM-fM-oq4" secondAttribute="bottom" constant="8" id="ccx-aa-5LN"/>
                                             <constraint firstItem="feM-fM-oq4" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="ciU-64-ejH"/>
                                             <constraint firstItem="gVP-c8-YGG" firstAttribute="top" secondItem="nq6-kl-DiI" secondAttribute="bottom" constant="8" id="clh-Mx-g2E"/>
                                             <constraint firstAttribute="trailing" secondItem="f5G-sW-tWj" secondAttribute="trailing" constant="8" id="d7k-At-YzQ"/>
-                                            <constraint firstItem="mwG-U0-z8h" firstAttribute="top" secondItem="vpa-MK-6Jf" secondAttribute="bottom" constant="16" id="e8Y-aZ-bjn"/>
                                             <constraint firstItem="bNN-qq-OzU" firstAttribute="centerX" secondItem="M4p-Iq-Bmw" secondAttribute="centerX" id="eK5-gH-DpL"/>
                                             <constraint firstItem="Xol-f9-Frv" firstAttribute="top" secondItem="oOf-aJ-chK" secondAttribute="bottom" constant="8" id="ejH-Tu-RRP"/>
                                             <constraint firstItem="ce2-F9-k4D" firstAttribute="top" secondItem="lZ9-W3-akF" secondAttribute="bottom" constant="8" id="fM8-Qj-Pmq"/>
                                             <constraint firstItem="OzJ-bc-qqF" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="fQy-Un-L5c"/>
                                             <constraint firstAttribute="trailing" secondItem="gVP-c8-YGG" secondAttribute="trailing" constant="8" id="fYQ-yF-LY9"/>
                                             <constraint firstItem="KEc-EK-bEt" firstAttribute="top" secondItem="f5G-sW-tWj" secondAttribute="bottom" constant="8" id="gSe-o0-ba8"/>
+                                            <constraint firstItem="mwG-U0-z8h" firstAttribute="top" secondItem="xNw-ct-sIJ" secondAttribute="bottom" constant="8" id="gcg-SB-d3F"/>
                                             <constraint firstItem="OQ2-8q-CNa" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="gkM-1t-0VL"/>
                                             <constraint firstItem="P4n-9v-Mcl" firstAttribute="centerX" secondItem="M4p-Iq-Bmw" secondAttribute="centerX" id="k37-U7-stO"/>
                                             <constraint firstItem="ce2-F9-k4D" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="l7B-2X-sqP"/>
                                             <constraint firstItem="lZ9-W3-akF" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="ldg-ys-rvJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="WwX-wO-Evv" secondAttribute="trailing" constant="8" id="liN-no-fZo"/>
+                                            <constraint firstAttribute="trailing" secondItem="xNw-ct-sIJ" secondAttribute="trailing" constant="8" id="lrJ-OW-4qa"/>
                                             <constraint firstItem="vpa-MK-6Jf" firstAttribute="top" secondItem="KEc-EK-bEt" secondAttribute="bottom" constant="8" id="lw9-uk-Q43"/>
                                             <constraint firstAttribute="trailing" secondItem="nq6-kl-DiI" secondAttribute="trailing" constant="8" id="mW5-hh-cD8"/>
                                             <constraint firstItem="bNN-qq-OzU" firstAttribute="leading" secondItem="HH8-AR-3FY" secondAttribute="trailing" constant="4" id="mZO-aS-A1t"/>
                                             <constraint firstItem="OzJ-bc-qqF" firstAttribute="top" secondItem="WwX-wO-Evv" secondAttribute="bottom" constant="8" id="nEX-8j-nry"/>
+                                            <constraint firstItem="OQ2-8q-CNa" firstAttribute="top" secondItem="8l7-v0-1F2" secondAttribute="bottom" constant="8" id="njy-E6-IHd"/>
                                             <constraint firstItem="lZ9-W3-akF" firstAttribute="top" secondItem="gVP-c8-YGG" secondAttribute="bottom" constant="16" id="pIu-Gj-B3U"/>
                                             <constraint firstAttribute="trailing" secondItem="lZ9-W3-akF" secondAttribute="trailing" constant="8" id="qsN-s0-Lzr"/>
                                             <constraint firstItem="Ic3-T7-VUU" firstAttribute="top" secondItem="Xye-gy-00C" secondAttribute="bottom" constant="8" id="r9K-bD-j9W"/>
@@ -998,10 +1063,10 @@
                                             <constraint firstItem="tLR-2C-Fv8" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="tQg-Ar-zHo"/>
                                             <constraint firstAttribute="trailing" secondItem="ce2-F9-k4D" secondAttribute="trailing" constant="8" id="tYM-wq-f37"/>
                                             <constraint firstItem="dqd-xN-Ctj" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="uc6-gC-dZQ"/>
-                                            <constraint firstItem="f5G-sW-tWj" firstAttribute="top" secondItem="Xol-f9-Frv" secondAttribute="bottom" constant="16" id="vCO-uF-zLl"/>
                                             <constraint firstItem="oOf-aJ-chK" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="vRh-cN-LOt"/>
                                             <constraint firstItem="gVP-c8-YGG" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="xoc-0p-Jkh"/>
                                             <constraint firstItem="f5G-sW-tWj" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="z7B-V7-Ub1"/>
+                                            <constraint firstItem="8l7-v0-1F2" firstAttribute="top" secondItem="OzJ-bc-qqF" secondAttribute="bottom" constant="16" id="zSR-6Q-mug"/>
                                             <constraint firstItem="ZlB-Ag-RwY" firstAttribute="leading" secondItem="M4p-Iq-Bmw" secondAttribute="leading" constant="8" id="zwH-Ib-Npr"/>
                                         </constraints>
                                     </view>
@@ -1068,13 +1133,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="deselectAllButton" destination="6wH-1a-Jx6" id="Azh-0z-b7h"/>
                         <outlet property="favorite0Checkbox" destination="Fkk-v7-y7L" id="yxV-gx-CuN"/>
                         <outlet property="favorite1Checkbox" destination="4Ga-xg-LsS" id="6YA-Tn-QEF"/>
                         <outlet property="favorite2Checkbox" destination="ctR-wd-QjF" id="L6R-SB-ITv"/>
                         <outlet property="favorite3Checkbox" destination="QCa-eZ-M7y" id="fPz-ll-4gp"/>
+                        <outlet property="favoriteDeselectAllButton" destination="6wH-1a-Jx6" id="bc6-Rx-1Iu"/>
                         <outlet property="favoriteOrderPrimaryCheckbox" destination="5eE-aV-ylJ" id="Sg2-sI-Pek"/>
                         <outlet property="favoriteOrderSecondaryCheckbox" destination="R0s-0X-Dfo" id="rAM-y9-kfi"/>
+                        <outlet property="favoriteSelectAllButton" destination="lCe-7f-ujc" id="2Mn-s9-JrS"/>
                         <outlet property="favoriteWarningImage" destination="Xol-f9-Frv" id="B3g-tl-Qa4"/>
                         <outlet property="favoriteWarningLabel" destination="8YG-J2-8MK" id="RaL-FZ-fih"/>
                         <outlet property="filterExplanationLabel" destination="OzJ-bc-qqF" id="pWr-OL-n7j"/>
@@ -1085,7 +1151,9 @@
                         <outlet property="madeNumOrderSecondaryCheckbox" destination="9P9-z0-L09" id="ceo-1L-nUw"/>
                         <outlet property="methodBlendCheckbox" destination="hTn-2X-Gcf" id="jzU-k9-pmU"/>
                         <outlet property="methodBuildCheckbox" destination="Z12-eI-Np5" id="YOP-iK-Nvv"/>
+                        <outlet property="methodDeselectAllButton" destination="08v-EY-1Ya" id="9gL-lu-0JG"/>
                         <outlet property="methodOthersCheckbox" destination="cLq-kX-sLB" id="C7s-pl-QWl"/>
+                        <outlet property="methodSelectAllButton" destination="O5l-kV-pEl" id="iCS-S7-bYm"/>
                         <outlet property="methodShakeCheckbox" destination="R2a-eT-ktC" id="9lU-F8-mAR"/>
                         <outlet property="methodStirCheckbox" destination="Nma-f5-sgW" id="ep5-bK-1e7"/>
                         <outlet property="methodWarningImage" destination="HH8-AR-3FY" id="8T8-Dr-rUF"/>
@@ -1097,13 +1165,14 @@
                         <outlet property="searchButton" destination="q97-kq-zwf" id="LjY-Mi-yFQ"/>
                         <outlet property="searchButtonBackgroundView" destination="Vza-Iu-W6Q" id="w43-tG-qVq"/>
                         <outlet property="secondSeparator" destination="wyK-Wi-eLc" id="Pga-yE-j3J"/>
-                        <outlet property="selectAllButton" destination="lCe-7f-ujc" id="bEK-kf-e0P"/>
                         <outlet property="shortageOrderPrimaryCheckbox" destination="lrx-Tg-Jnl" id="InT-3x-JYb"/>
                         <outlet property="shortageOrderSecondaryCheckbox" destination="Si3-uJ-qR3" id="ukB-Go-bkk"/>
                         <outlet property="sortExplanationLabel" destination="gVP-c8-YGG" id="NnA-mz-cKQ"/>
+                        <outlet property="styleDeselectAllButton" destination="899-DK-alH" id="Fkl-Ka-Uzt"/>
                         <outlet property="styleHotCheckbox" destination="rKc-fP-cdv" id="oX0-LZ-ZyR"/>
                         <outlet property="styleLongCheckbox" destination="koC-nN-P0W" id="Zsf-xZ-fYI"/>
                         <outlet property="styleNoneCheckbox" destination="2Rp-60-7XK" id="HbA-X6-nWg"/>
+                        <outlet property="styleSelectAllButton" destination="sC7-Y4-iAK" id="aba-be-5mJ"/>
                         <outlet property="styleShortCheckbox" destination="DsH-5I-s7s" id="ngQ-53-MTE"/>
                         <outlet property="styleWarningImage" destination="vpa-MK-6Jf" id="AWW-Yy-eHQ"/>
                         <outlet property="styleWarningLabel" destination="P4n-9v-Mcl" id="v9R-iV-hg6"/>

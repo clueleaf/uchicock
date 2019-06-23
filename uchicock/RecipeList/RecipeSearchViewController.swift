@@ -30,9 +30,9 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var firstSeparator: UIView!
     
     @IBOutlet weak var filterExplanationLabel: UILabel!
-    @IBOutlet weak var selectAllButton: UIButton!
-    @IBOutlet weak var deselectAllButton: UIButton!
     
+    @IBOutlet weak var favoriteDeselectAllButton: UIButton!
+    @IBOutlet weak var favoriteSelectAllButton: UIButton!
     @IBOutlet weak var favorite0Checkbox: M13Checkbox!
     @IBOutlet weak var favorite1Checkbox: M13Checkbox!
     @IBOutlet weak var favorite2Checkbox: M13Checkbox!
@@ -40,6 +40,8 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
+    @IBOutlet weak var styleDeselectAllButton: UIButton!
+    @IBOutlet weak var styleSelectAllButton: UIButton!
     @IBOutlet weak var styleLongCheckbox: M13Checkbox!
     @IBOutlet weak var styleShortCheckbox: M13Checkbox!
     @IBOutlet weak var styleHotCheckbox: M13Checkbox!
@@ -47,6 +49,8 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
     
+    @IBOutlet weak var methodDeselectAllButton: UIButton!
+    @IBOutlet weak var methodSelectAllButton: UIButton!
     @IBOutlet weak var methodBuildCheckbox: M13Checkbox!
     @IBOutlet weak var methodStirCheckbox: M13Checkbox!
     @IBOutlet weak var methodShakeCheckbox: M13Checkbox!
@@ -193,19 +197,23 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         firstSeparator.backgroundColor = Style.labelTextColor
         
         filterExplanationLabel.textColor = Style.labelTextColorLight
-        selectAllButton.tintColor = Style.secondaryColor
-        deselectAllButton.tintColor = Style.secondaryColor
 
+        favoriteSelectAllButton.tintColor = Style.secondaryColor
+        favoriteDeselectAllButton.tintColor = Style.secondaryColor
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.secondaryColor
         favoriteWarningLabel.textColor = Style.secondaryColor
         setFavoriteWarningVisibility()
 
+        styleSelectAllButton.tintColor = Style.secondaryColor
+        styleDeselectAllButton.tintColor = Style.secondaryColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.secondaryColor
         styleWarningLabel.textColor = Style.secondaryColor
         setStyleWarningVisibility()
 
+        methodSelectAllButton.tintColor = Style.secondaryColor
+        methodDeselectAllButton.tintColor = Style.secondaryColor
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.secondaryColor
         methodWarningLabel.textColor = Style.secondaryColor
@@ -556,42 +564,20 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.tintColor = Style.badgeDisableBackgroundColor
     }
     
-    @IBAction func selectAllButtonTapped(_ sender: UIButton) {
-        setCheckboxChecked(favorite0Checkbox)
-        setCheckboxChecked(favorite1Checkbox)
-        setCheckboxChecked(favorite2Checkbox)
-        setCheckboxChecked(favorite3Checkbox)
-        setCheckboxChecked(styleLongCheckbox)
-        setCheckboxChecked(styleShortCheckbox)
-        setCheckboxChecked(styleHotCheckbox)
-        setCheckboxChecked(styleNoneCheckbox)
-        setCheckboxChecked(methodBuildCheckbox)
-        setCheckboxChecked(methodStirCheckbox)
-        setCheckboxChecked(methodShakeCheckbox)
-        setCheckboxChecked(methodBlendCheckbox)
-        setCheckboxChecked(methodOthersCheckbox)
-        setFavoriteWarningVisibility()
-        setStyleWarningVisibility()
-        setMethodWarningVisibility()
-    }
-    
-    @IBAction func deselectAllButtonTapped(_ sender: UIButton) {
+    @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {
         setCheckboxUnchecked(favorite0Checkbox)
         setCheckboxUnchecked(favorite1Checkbox)
         setCheckboxUnchecked(favorite2Checkbox)
         setCheckboxUnchecked(favorite3Checkbox)
-        setCheckboxUnchecked(styleLongCheckbox)
-        setCheckboxUnchecked(styleShortCheckbox)
-        setCheckboxUnchecked(styleHotCheckbox)
-        setCheckboxUnchecked(styleNoneCheckbox)
-        setCheckboxUnchecked(methodBuildCheckbox)
-        setCheckboxUnchecked(methodStirCheckbox)
-        setCheckboxUnchecked(methodShakeCheckbox)
-        setCheckboxUnchecked(methodBlendCheckbox)
-        setCheckboxUnchecked(methodOthersCheckbox)
         setFavoriteWarningVisibility()
-        setStyleWarningVisibility()
-        setMethodWarningVisibility()
+    }
+    
+    @IBAction func favoriteSelectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(favorite0Checkbox)
+        setCheckboxChecked(favorite1Checkbox)
+        setCheckboxChecked(favorite2Checkbox)
+        setCheckboxChecked(favorite3Checkbox)
+        setFavoriteWarningVisibility()
     }
     
     @IBAction func favorite0CheckboxTapped(_ sender: M13Checkbox) {
@@ -610,6 +596,22 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setFavoriteWarningVisibility()
     }
     
+    @IBAction func styleDeselctAllButtonTapped(_ sender: UIButton) {
+        setCheckboxUnchecked(styleLongCheckbox)
+        setCheckboxUnchecked(styleShortCheckbox)
+        setCheckboxUnchecked(styleHotCheckbox)
+        setCheckboxUnchecked(styleNoneCheckbox)
+        setStyleWarningVisibility()
+    }
+    
+    @IBAction func styleSelectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(styleLongCheckbox)
+        setCheckboxChecked(styleShortCheckbox)
+        setCheckboxChecked(styleHotCheckbox)
+        setCheckboxChecked(styleNoneCheckbox)
+        setStyleWarningVisibility()
+    }
+    
     @IBAction func styleLongCheckboxTapped(_ sender: M13Checkbox) {
         setStyleWarningVisibility()
     }
@@ -624,6 +626,24 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
         setStyleWarningVisibility()
+    }
+    
+    @IBAction func methodDeselectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxUnchecked(methodBuildCheckbox)
+        setCheckboxUnchecked(methodStirCheckbox)
+        setCheckboxUnchecked(methodShakeCheckbox)
+        setCheckboxUnchecked(methodBlendCheckbox)
+        setCheckboxUnchecked(methodOthersCheckbox)
+        setMethodWarningVisibility()
+    }
+    
+    @IBAction func methodSelectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(methodBuildCheckbox)
+        setCheckboxChecked(methodStirCheckbox)
+        setCheckboxChecked(methodShakeCheckbox)
+        setCheckboxChecked(methodBlendCheckbox)
+        setCheckboxChecked(methodOthersCheckbox)
+        setMethodWarningVisibility()
     }
     
     @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {
