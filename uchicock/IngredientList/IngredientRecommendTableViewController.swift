@@ -97,7 +97,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         if indexPath.row == 0 {
             return UITableView.automaticDimension
         }else{
-            return 60
+            return 55
         }
     }
 

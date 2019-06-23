@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zog-lA-Z1p">
-                        <rect key="frame" x="8" y="37" width="270" height="15"/>
+                        <rect key="frame" x="8" y="33" width="270" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="exC-yz-9Ec"/>
                         </constraints>
@@ -42,7 +42,7 @@
                     <constraint firstItem="Xfo-HJ-nA4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OBB-Yh-B5u"/>
                     <constraint firstItem="Xfo-HJ-nA4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jgN-5p-lfc"/>
                     <constraint firstAttribute="trailing" secondItem="zog-lA-Z1p" secondAttribute="trailing" constant="8" id="lns-fb-kdp"/>
-                    <constraint firstItem="zog-lA-Z1p" firstAttribute="top" secondItem="Xfo-HJ-nA4" secondAttribute="bottom" constant="8" id="vUA-9f-bJ7"/>
+                    <constraint firstItem="zog-lA-Z1p" firstAttribute="top" secondItem="Xfo-HJ-nA4" secondAttribute="bottom" constant="4" id="vUA-9f-bJ7"/>
                     <constraint firstItem="zog-lA-Z1p" firstAttribute="leading" secondItem="Xfo-HJ-nA4" secondAttribute="leading" id="y1K-uJ-bHT"/>
                     <constraint firstAttribute="trailing" secondItem="Xfo-HJ-nA4" secondAttribute="trailing" constant="8" id="zLz-gb-IVe"/>
                 </constraints>
