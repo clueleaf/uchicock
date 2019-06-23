@@ -785,6 +785,11 @@ struct Style{
         CustomTextView.appearance().backgroundColor = textFieldBackgroundColor
         CustomTextView.appearance().textColor = labelTextColor
         CustomTextView.appearance().tintColor = labelTextColor
+        if isDark{
+            CustomTextView.appearance().keyboardAppearance = .dark
+        }else{
+            CustomTextView.appearance().keyboardAppearance = .default
+        }
     }
     
     static private func customizeTabBar(){

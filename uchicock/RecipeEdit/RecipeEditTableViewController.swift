@@ -139,7 +139,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
-        memo.keyboardAppearance = Style.isDark ? .dark : .default
         
         let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
         styleTipButton.setImage(tipImage, for: .normal)
