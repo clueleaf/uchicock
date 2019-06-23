@@ -57,6 +57,11 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.flashScrollIndicators()
+    }
+    
     // MARK: - Collection View
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let im = self.image else{ return }
