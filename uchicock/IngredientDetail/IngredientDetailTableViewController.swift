@@ -85,6 +85,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+        stockRecommendLabel.textColor = Style.secondaryColor
         deleteButtonLabel.textColor = Style.deleteColor
 
         let realm = try! Realm()
