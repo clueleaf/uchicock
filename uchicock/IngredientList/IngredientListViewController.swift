@@ -50,27 +50,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     private func setVC(){
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
-        searchBar.backgroundImage = UIImage()
-        category.layer.cornerRadius = 14.0
-        category.layer.borderColor = Style.secondaryColor.cgColor
-        category.layer.borderWidth = 1.0
-        category.layer.masksToBounds = true
-        stockState.layer.cornerRadius = 14.0
-        stockState.layer.borderColor = Style.secondaryColor.cgColor
-        stockState.layer.borderWidth = 1.0
-        stockState.layer.masksToBounds = true
-
+        tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        
-        ingredientRecommendButton.layer.borderColor = Style.secondaryColor.cgColor
-        ingredientRecommendButton.layer.borderWidth = 1.0
-        ingredientRecommendButton.layer.cornerRadius = 15
-        ingredientRecommendButton.tintColor = Style.secondaryColor
-        ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
-        
-        containerSeparator.backgroundColor = Style.labelTextColor
 
+        searchBar.backgroundImage = UIImage()
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
@@ -87,6 +70,23 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
+
+        category.layer.cornerRadius = 14.0
+        category.layer.borderColor = Style.secondaryColor.cgColor
+        category.layer.borderWidth = 1.0
+        category.layer.masksToBounds = true
+        stockState.layer.cornerRadius = 14.0
+        stockState.layer.borderColor = Style.secondaryColor.cgColor
+        stockState.layer.borderWidth = 1.0
+        stockState.layer.masksToBounds = true
+
+        ingredientRecommendButton.layer.borderColor = Style.secondaryColor.cgColor
+        ingredientRecommendButton.layer.borderWidth = 1.0
+        ingredientRecommendButton.layer.cornerRadius = 15
+        ingredientRecommendButton.tintColor = Style.secondaryColor
+        ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
+        
+        containerSeparator.backgroundColor = Style.labelTextColor
         
         reloadIngredientList()
         tableView.reloadData()

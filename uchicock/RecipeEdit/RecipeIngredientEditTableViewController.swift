@@ -95,15 +95,16 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        self.suggestTableView.backgroundColor = Style.basicBackgroundColor
+        self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         amount.layer.borderColor = Style.memoBorderColor.cgColor
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor
-        suggestTableView.backgroundColor = Style.basicBackgroundColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

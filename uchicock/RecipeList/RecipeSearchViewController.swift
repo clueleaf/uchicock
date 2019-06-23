@@ -188,8 +188,8 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         scrollBackgroundView.backgroundColor = Style.basicBackgroundColor
+
         sortExplanationLabel.textColor = Style.labelTextColorLight
-        
         firstSeparator.backgroundColor = Style.labelTextColor
         
         filterExplanationLabel.textColor = Style.labelTextColorLight

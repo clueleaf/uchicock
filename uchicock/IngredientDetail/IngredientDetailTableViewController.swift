@@ -80,18 +80,19 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     private func setupVC(){
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         deleteButtonLabel.textColor = Style.deleteColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        
+
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
         if ing == nil {
             let noIngredientAlertView = CustomAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                _ = self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }))
             noIngredientAlertView.alertStatusBarStyle = Style.statusBarStyle
             noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true

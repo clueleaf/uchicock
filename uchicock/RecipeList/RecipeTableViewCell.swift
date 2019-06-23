@@ -31,8 +31,6 @@ class RecipeTableViewCell: UITableViewCell {
             }
             
             recipeName.text = recipe.recipeName
-            recipeName.backgroundColor = Style.basicBackgroundColor
-            recipeName.clipsToBounds = true
             if hightlightRecipeNameOnlyAvailable {
                 if recipe.shortageNum == 0{
                     recipeName.textColor = Style.labelTextColor
@@ -110,8 +108,6 @@ class RecipeTableViewCell: UITableViewCell {
                 shortage.textColor = Style.labelTextColorLight
                 shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
-            shortage.backgroundColor = Style.basicBackgroundColor
-            shortage.clipsToBounds = true
             
             self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
         }

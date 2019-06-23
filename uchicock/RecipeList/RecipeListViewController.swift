@@ -83,25 +83,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func setVC(){
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
         
-        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
-        searchConditionModifyButton.layer.borderWidth = 1.0
-        searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.tintColor = Style.secondaryColor
-        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
-        
-        containerSeparator.backgroundColor = Style.labelTextColor
-
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        
-        loadSearchUserDefaults()
-        setSearchConditionLabel()
-        reloadRecipeList()
-        tableView.reloadData()
-
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
@@ -119,6 +102,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
+        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchConditionModifyButton.layer.borderWidth = 1.0
+        searchConditionModifyButton.layer.cornerRadius = 15
+        searchConditionModifyButton.tintColor = Style.secondaryColor
+        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
+        
+        containerSeparator.backgroundColor = Style.labelTextColor
+
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        
+        loadSearchUserDefaults()
+        setSearchConditionLabel()
+        reloadRecipeList()
+        tableView.reloadData()
+
         if let path = selectedIndexPath {
             if tableView.numberOfRows(inSection: 0) > path.row{
                 let nowRecipeId = (tableView.cellForRow(at: path) as? RecipeTableViewCell)?.recipe.id

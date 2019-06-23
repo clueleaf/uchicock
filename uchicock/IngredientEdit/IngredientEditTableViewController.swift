@@ -65,6 +65,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         category.layer.cornerRadius = 14.0
         category.layer.borderColor = Style.secondaryColor.cgColor
@@ -72,9 +75,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         category.layer.masksToBounds = true        
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-
         memo.keyboardAppearance = Style.isDark ? .dark : .default
         
         if ingredient.category >= 0 && ingredient.category < 3 {

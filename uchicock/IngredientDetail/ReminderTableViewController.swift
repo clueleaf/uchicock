@@ -59,13 +59,14 @@ class ReminderTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+
         reminderType.layer.cornerRadius = 14.0
         reminderType.layer.borderColor = Style.secondaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

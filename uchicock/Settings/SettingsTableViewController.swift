@@ -32,12 +32,13 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = Style.basicBackgroundColor
+
         introductionImage.tintColor = Style.secondaryColor
         recoverImage.tintColor = Style.secondaryColor
         changeThemeImage.tintColor = Style.secondaryColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        tableView.backgroundColor = Style.basicBackgroundColor
 
         tableView.reloadData()
     }

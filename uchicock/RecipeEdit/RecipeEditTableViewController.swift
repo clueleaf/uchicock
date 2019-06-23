@@ -130,14 +130,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+
         recipeName.layer.borderColor = Style.memoBorderColor.cgColor
+        selectPhoto.textColor = Style.secondaryColor
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor
         star3.tintColor = Style.secondaryColor
-        selectPhoto.textColor = Style.secondaryColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         memo.keyboardAppearance = Style.isDark ? .dark : .default
         
         let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)

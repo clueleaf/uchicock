@@ -101,19 +101,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        lastViewDateLabel.textColor = Style.labelTextColorLight
-        deleteButtonLabel.textColor = Style.deleteColor
-        
+        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         photoBackground.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        lastViewDateLabel.textColor = Style.labelTextColorLight
+        deleteButtonLabel.textColor = Style.deleteColor
         
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                _ = self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }))
             noRecipeAlertView.alertStatusBarStyle = Style.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
