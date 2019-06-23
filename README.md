@@ -33,7 +33,8 @@
 * レシピの不足材料数の更新処理を必要な時だけに実施
 * 「スタイル」「技法」についてモーダルでTipsを表示
 * 検索（レシピ一覧、逆引き）、絞り込み（アルバム）、リマインダー（レシピ詳細、材料詳細）、復元プレビュー、レシピ材料編集、Tips、おすすめ材料をモーダルで表示
-* UITextView, UITextField, UINavigationBar, UISearchBarをサブクラス化することで「共有」時のTextField、SearchBar、BarButtonItemの色が引きずられる問題を修正
+* UITextView, UITextField, UINavigationBar, UISearchBar, UILabelなどをサブクラス化することで「共有」時のTextField、SearchBar、BarButtonItemの色が引きずられる問題を修正
+* 全体的に丸みを帯びたデザインに変更
 
 ###### 2019-06-17 v5.4
 * リファクタリング、処理の効率化など
