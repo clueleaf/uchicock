@@ -64,13 +64,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1優先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJC-85-3yL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1優先" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJC-85-3yL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第2優先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fb-C6-drr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第2優先" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fb-C6-drr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -84,7 +84,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ce2-F9-k4D">
                                                 <rect key="frame" x="8" y="136.5" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-Jr-Eoi" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P30-Jr-Eoi" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -94,7 +94,7 @@
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Iy-1P-jDa" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="NVh-aI-K86"/>
@@ -106,16 +106,16 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="5Iy-1P-jDa" firstAttribute="centerX" secondItem="Uye-3K-bp8" secondAttribute="centerX" id="Bx3-8Y-vsD"/>
                                                             <constraint firstAttribute="bottom" secondItem="5Iy-1P-jDa" secondAttribute="bottom" id="JQo-Bd-5KY"/>
                                                             <constraint firstItem="5Iy-1P-jDa" firstAttribute="top" secondItem="Uye-3K-bp8" secondAttribute="top" id="p6g-J2-R9F"/>
-                                                            <constraint firstItem="5Iy-1P-jDa" firstAttribute="leading" secondItem="Uye-3K-bp8" secondAttribute="leading" id="vXx-p6-9Yh"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbH-8L-SXF">
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xc-rz-s5Q" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="6wm-uk-gOL"/>
@@ -127,7 +127,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="6xc-rz-s5Q" firstAttribute="leading" secondItem="wbH-8L-SXF" secondAttribute="leading" id="2tO-dh-wfd"/>
+                                                            <constraint firstItem="6xc-rz-s5Q" firstAttribute="centerX" secondItem="wbH-8L-SXF" secondAttribute="centerX" id="5ly-RC-dEx"/>
                                                             <constraint firstAttribute="bottom" secondItem="6xc-rz-s5Q" secondAttribute="bottom" id="8JP-BW-3wX"/>
                                                             <constraint firstItem="6xc-rz-s5Q" firstAttribute="top" secondItem="wbH-8L-SXF" secondAttribute="top" id="pWm-do-Slq"/>
                                                         </constraints>
@@ -140,7 +140,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-gy-00C">
                                                 <rect key="frame" x="8" y="172.5" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作れる順" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXB-Te-tSO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作れる順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXB-Te-tSO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -150,7 +150,7 @@
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrx-Tg-Jnl" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="Mph-RC-B1i"/>
@@ -163,7 +163,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="lrx-Tg-Jnl" firstAttribute="top" secondItem="qKu-Bc-Hfb" secondAttribute="top" id="8rF-uF-KyM"/>
-                                                            <constraint firstItem="lrx-Tg-Jnl" firstAttribute="leading" secondItem="qKu-Bc-Hfb" secondAttribute="leading" id="Les-fb-6bC"/>
+                                                            <constraint firstItem="lrx-Tg-Jnl" firstAttribute="centerX" secondItem="qKu-Bc-Hfb" secondAttribute="centerX" id="i0w-3u-u1B"/>
                                                             <constraint firstAttribute="bottom" secondItem="lrx-Tg-Jnl" secondAttribute="bottom" id="uHq-mX-aPh"/>
                                                         </constraints>
                                                     </view>
@@ -171,7 +171,7 @@
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Si3-uJ-qR3" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="Khp-PP-PqD"/>
@@ -183,9 +183,9 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Si3-uJ-qR3" firstAttribute="leading" secondItem="LSl-qk-djN" secondAttribute="leading" id="8Jx-xf-Qe3"/>
                                                             <constraint firstItem="Si3-uJ-qR3" firstAttribute="top" secondItem="LSl-qk-djN" secondAttribute="top" id="X0h-mm-Sxy"/>
                                                             <constraint firstAttribute="bottom" secondItem="Si3-uJ-qR3" secondAttribute="bottom" id="dmC-3V-04w"/>
+                                                            <constraint firstItem="Si3-uJ-qR3" firstAttribute="centerX" secondItem="LSl-qk-djN" secondAttribute="centerX" id="n1g-sc-2VO"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -196,7 +196,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ic3-T7-VUU">
                                                 <rect key="frame" x="8" y="208.5" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作った回数順" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3a-jS-FcJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作った回数順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3a-jS-FcJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -206,7 +206,7 @@
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khX-jJ-tvr" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="50q-GY-xfa"/>
@@ -219,15 +219,15 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="khX-jJ-tvr" secondAttribute="bottom" id="Jme-67-2UC"/>
-                                                            <constraint firstItem="khX-jJ-tvr" firstAttribute="leading" secondItem="YzQ-5V-QHG" secondAttribute="leading" id="Kmx-EL-8uv"/>
                                                             <constraint firstItem="khX-jJ-tvr" firstAttribute="top" secondItem="YzQ-5V-QHG" secondAttribute="top" id="vwo-ov-EZs"/>
+                                                            <constraint firstItem="khX-jJ-tvr" firstAttribute="centerX" secondItem="YzQ-5V-QHG" secondAttribute="centerX" id="wc3-4o-vjv"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="had-kp-t6R">
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9P9-z0-L09" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="BcJ-sq-8d9"/>
@@ -240,8 +240,8 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="9P9-z0-L09" firstAttribute="top" secondItem="had-kp-t6R" secondAttribute="top" id="50a-gS-dff"/>
+                                                            <constraint firstItem="9P9-z0-L09" firstAttribute="centerX" secondItem="had-kp-t6R" secondAttribute="centerX" id="YMu-Qs-Fgr"/>
                                                             <constraint firstAttribute="bottom" secondItem="9P9-z0-L09" secondAttribute="bottom" id="cE3-2f-bnY"/>
-                                                            <constraint firstItem="9P9-z0-L09" firstAttribute="leading" secondItem="had-kp-t6R" secondAttribute="leading" id="uZS-mj-ziO"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -252,7 +252,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-xN-Ctj">
                                                 <rect key="frame" x="8" y="244.5" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り順" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIe-MF-8S2" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入り順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIe-MF-8S2" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -262,7 +262,7 @@
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-aV-ylJ" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="EhW-Gd-WpI"/>
@@ -275,7 +275,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="5eE-aV-ylJ" secondAttribute="bottom" id="7pN-Um-P26"/>
-                                                            <constraint firstItem="5eE-aV-ylJ" firstAttribute="leading" secondItem="bLw-cm-jOV" secondAttribute="leading" id="H0c-ua-g8H"/>
+                                                            <constraint firstItem="5eE-aV-ylJ" firstAttribute="centerX" secondItem="bLw-cm-jOV" secondAttribute="centerX" id="SA5-9f-yPk"/>
                                                             <constraint firstItem="5eE-aV-ylJ" firstAttribute="top" secondItem="bLw-cm-jOV" secondAttribute="top" id="h2u-6C-J0V"/>
                                                         </constraints>
                                                     </view>
@@ -283,7 +283,7 @@
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0s-0X-Dfo" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="JNG-yx-dWh"/>
@@ -295,8 +295,8 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="R0s-0X-Dfo" firstAttribute="leading" secondItem="F0E-jm-QZW" secondAttribute="leading" id="NVR-Ae-DDy"/>
                                                             <constraint firstAttribute="bottom" secondItem="R0s-0X-Dfo" secondAttribute="bottom" id="TWe-Cb-Mmw"/>
+                                                            <constraint firstItem="R0s-0X-Dfo" firstAttribute="centerX" secondItem="F0E-jm-QZW" secondAttribute="centerX" id="cWP-ww-XK6"/>
                                                             <constraint firstItem="R0s-0X-Dfo" firstAttribute="top" secondItem="F0E-jm-QZW" secondAttribute="top" id="qX2-2c-8c1"/>
                                                         </constraints>
                                                     </view>
@@ -308,7 +308,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZlB-Ag-RwY">
                                                 <rect key="frame" x="8" y="280.5" width="398" height="28"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近見た順" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-Ss-yNh" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近見た順" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-Ss-yNh" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -318,7 +318,7 @@
                                                         <rect key="frame" x="132.5" y="0.0" width="133" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUX-7Y-GXu" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52.5" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="xbV-a6-Knw"/>
@@ -332,14 +332,14 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="IUX-7Y-GXu" secondAttribute="bottom" id="0g3-8d-GrW"/>
                                                             <constraint firstItem="IUX-7Y-GXu" firstAttribute="top" secondItem="5wQ-Gy-2ri" secondAttribute="top" id="dXN-ae-1g5"/>
-                                                            <constraint firstItem="IUX-7Y-GXu" firstAttribute="leading" secondItem="5wQ-Gy-2ri" secondAttribute="leading" id="gP9-Tw-lnG"/>
+                                                            <constraint firstItem="IUX-7Y-GXu" firstAttribute="centerX" secondItem="5wQ-Gy-2ri" secondAttribute="centerX" id="iU7-4v-bGH"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDF-zK-m9j">
                                                         <rect key="frame" x="265.5" y="0.0" width="132.5" height="28"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBa-iX-jEn" customClass="M13Checkbox" customModule="M13Checkbox">
-                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <rect key="frame" x="52" y="0.0" width="28" height="28"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="28" id="X6Z-7Z-pJv"/>
@@ -351,8 +351,8 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="bBa-iX-jEn" firstAttribute="leading" secondItem="kDF-zK-m9j" secondAttribute="leading" id="KI6-CK-mJl"/>
                                                             <constraint firstAttribute="bottom" secondItem="bBa-iX-jEn" secondAttribute="bottom" id="ehU-i4-BPb"/>
+                                                            <constraint firstItem="bBa-iX-jEn" firstAttribute="centerX" secondItem="kDF-zK-m9j" secondAttribute="centerX" id="iLm-Mw-b9L"/>
                                                             <constraint firstItem="bBa-iX-jEn" firstAttribute="top" secondItem="kDF-zK-m9j" secondAttribute="top" id="pSf-HL-tyO"/>
                                                         </constraints>
                                                     </view>
