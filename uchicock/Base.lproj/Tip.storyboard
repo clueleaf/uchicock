@@ -194,7 +194,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-Va-VQs">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="637.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="654"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カクテルの作り方は便宜上4種類に大別されますが、カクテルの種類や作り手、好みによっても微妙に違ってきます。ここに書いてある作り方を参考にしつつ、自分なりのアレンジを試してみるとより楽しめるでしょう。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-3Q-l19" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="398" height="67"/>
@@ -243,7 +243,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-kF-ytP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="277" width="398" height="84"/>
-                                                <string key="text">飲むグラスとは別にかき混ぜる用のグラス（ミキシンググラス）に材料と氷を入れ、バースプーンなどで混ぜることでしっかり冷やす。かき混ぜるために使った氷は取り除いて飲むグラスに注いだら出来上がり。シェイクに比べると材料の混ざりが弱いのでお酒本来の味が活き、辛口に仕上がる。</string>
+                                                <string key="text">飲むグラスとは別にかき混ぜる用のグラス（ミキシンググラス）に材料と氷を入れ、バースプーンなどで混ぜることでしっかり冷やす。かき混ぜる時に使った氷は取り除き、飲むグラスに注いだら出来上がり。シェイクに比べると材料の混ざりが弱いのでお酒本来の味が活き、辛口に仕上がる。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -265,21 +265,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-ai-Jgv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="420" width="398" height="84"/>
-                                                <string key="text">もっとも「カクテルらしい」作り方と言えるかもしれない。シェイカーに氷と材料を入れ15回程度振り、グラスに注ぐ。材料がよく混ざるので口当たりがまろやかになる。炭酸を含む材料を使う場合はシェイカーには一緒に入れず、シェイクし終えグラスに注いだ後に加えてステアする。</string>
+                                                <rect key="frame" x="8" y="420" width="398" height="100.5"/>
+                                                <string key="text">もっとも「カクテルらしい」作り方と言えるかもしれない。シェイカーに氷と材料を入れ15回程度振り、グラスに注ぐ。材料がよく混ざるので口当たりがまろやかになる。炭酸を含む材料を使う場合はシェイカーには一緒に入れず、シェイクし終えグラスに注いだ後に加え、スプーンで軽くかき混ぜる。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-i5-oTe">
-                                                <rect key="frame" x="8" y="520" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="536.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="pEv-jU-lUJ"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwP-AN-KP7" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="529" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="545.5" width="398" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="SQQ-mJ-7Vr"/>
                                                 </constraints>
@@ -288,7 +288,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="フローズン系のカクテルを作る場合などに用いられる。ミキサーに材料と小さく砕いたクラッシュアイスを入れて撹拌し、シャーベット状に仕上げる。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ig-nS-tab" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="563" width="398" height="50.5"/>
+                                                <rect key="frame" x="8" y="579.5" width="398" height="50.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
