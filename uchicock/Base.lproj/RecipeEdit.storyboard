@@ -747,6 +747,12 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFa-FU-DFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="EwT-EC-mbs">
+                    <connections>
+                        <action selector="screenTapped:" destination="W6V-Ex-Byo" id="i3E-iF-JZM"/>
+                        <outlet property="delegate" destination="W6V-Ex-Byo" id="Cn2-Yo-lV0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="562" y="-417"/>
         </scene>

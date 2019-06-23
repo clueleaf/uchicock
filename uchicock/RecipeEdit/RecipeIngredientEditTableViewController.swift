@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import M13Checkbox
 
-class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
+class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
@@ -446,6 +446,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
+        print("aa")
         self.view.endEditing(true)
     }
     
