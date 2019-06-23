@@ -51,9 +51,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
         searchBar.backgroundImage = UIImage()
-        let attribute = [NSAttributedString.Key.foregroundColor:Style.secondaryColor]
-        stockState.setTitleTextAttributes(attribute, for: .normal)
-        category.setTitleTextAttributes(attribute, for: .normal)
+        category.layer.cornerRadius = 14.0
+        category.layer.borderColor = Style.secondaryColor.cgColor
+        category.layer.borderWidth = 1.0
+        category.layer.masksToBounds = true
+        stockState.layer.cornerRadius = 14.0
+        stockState.layer.borderColor = Style.secondaryColor.cgColor
+        stockState.layer.borderWidth = 1.0
+        stockState.layer.masksToBounds = true
+
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         

@@ -74,6 +74,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         ipc.delegate = self
         
+        style.layer.cornerRadius = 14.0
+        style.layer.borderColor = Style.secondaryColor.cgColor
+        style.layer.borderWidth = 1.0
+        style.layer.masksToBounds = true
+        method.layer.cornerRadius = 14.0
+        method.layer.borderColor = Style.secondaryColor.cgColor
+        method.layer.borderWidth = 1.0
+        method.layer.masksToBounds = true
+        
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")

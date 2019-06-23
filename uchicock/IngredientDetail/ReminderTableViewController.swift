@@ -64,6 +64,10 @@ class ReminderTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         reminderTitleLabel.textColor = Style.labelTextColor
         reminderTypeLabel.textColor = Style.labelTextColor
+        reminderType.layer.cornerRadius = 14.0
+        reminderType.layer.borderColor = Style.secondaryColor.cgColor
+        reminderType.layer.borderWidth = 1.0
+        reminderType.layer.masksToBounds = true
         dateLabel.textColor = Style.labelTextColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         reminderTitle.textColor = Style.labelTextColor

@@ -237,6 +237,9 @@
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="32" width="398" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="K0z-Wc-MYh"/>
+                                        </constraints>
                                         <segments>
                                             <segment title="すべて"/>
                                             <segment title="在庫あり"/>
