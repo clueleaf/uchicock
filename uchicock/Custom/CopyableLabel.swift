@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CopyableLabel: UILabel {
+class CopyableLabel: CustomLabel {
     override public var canBecomeFirstResponder: Bool {
         get {
             return true

@@ -12,14 +12,9 @@ import RealmSwift
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
-    @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var recipeName: CustomTextField!
-    @IBOutlet weak var starLabel: UILabel!
-    @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
-    @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var methodTipButton: UIButton!
-    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
     @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
@@ -135,11 +130,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        recipeNameLabel.textColor = Style.labelTextColor
-        starLabel.textColor = Style.labelTextColor
-        styleLabel.textColor = Style.labelTextColor
-        methodLabel.textColor = Style.labelTextColor
-        memoLabel.textColor = Style.labelTextColor
         recipeName.layer.borderColor = Style.memoBorderColor.cgColor
         star1.tintColor = Style.secondaryColor
         star2.tintColor = Style.secondaryColor

@@ -16,18 +16,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CopyableLabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
-    @IBOutlet weak var starLabel: UILabel!
-    @IBOutlet weak var styleLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
-    @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var methodTipButton: UIButton!
-    @IBOutlet weak var memoLabel: UILabel!
-    @IBOutlet weak var madeNumLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var style: UILabel!
-    @IBOutlet weak var method: UILabel!
+    @IBOutlet weak var style: CustomLabel!
+    @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var madeNumPlusButton: UIButton!
     @IBOutlet weak var madeNumMinusButton: UIButton!
@@ -36,9 +31,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var openInSafariButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var editButtonLabel: UILabel!
-    @IBOutlet weak var shareButtonLabel: UILabel!
-    @IBOutlet weak var openInSafariButtonLabel: UILabel!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
     var editVC : RecipeEditTableViewController!
@@ -110,17 +102,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
-        starLabel.textColor = Style.labelTextColor
-        styleLabel.textColor = Style.labelTextColor
-        methodLabel.textColor = Style.labelTextColor
-        memoLabel.textColor = Style.labelTextColor
-        style.textColor = Style.labelTextColor
-        method.textColor = Style.labelTextColor
-        madeNumLabel.textColor = Style.labelTextColor
-        madeNumCountUpLabel.textColor = Style.labelTextColor
-        editButtonLabel.textColor = Style.labelTextColor
-        shareButtonLabel.textColor = Style.labelTextColor
-        openInSafariButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
         
         photoBackground.backgroundColor = Style.basicBackgroundColor
@@ -169,7 +150,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateHeaderView()
             
             recipeName.text = recipe.recipeName
-            recipeName.textColor = Style.labelTextColor
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm"
             lastViewDateLabel.text = recipe.lastViewDate == nil ? "最終閲覧：--" : "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)

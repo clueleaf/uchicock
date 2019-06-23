@@ -10,14 +10,11 @@ import UIKit
 
 class SuggestIngredientTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var ingredientName: UILabel!
+    @IBOutlet weak var ingredientName: CustomLabel!
     
     var name: String = String(){
         didSet{
             ingredientName.text = name
-            ingredientName.textColor = Style.labelTextColor
-            ingredientName.backgroundColor = Style.basicBackgroundColor
-            ingredientName.clipsToBounds = true
         }
     }
 

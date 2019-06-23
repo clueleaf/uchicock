@@ -13,9 +13,6 @@ import M13Checkbox
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate,UIGestureRecognizerDelegate {
 
     @IBOutlet weak var ingredientName: CustomTextField!
-    @IBOutlet weak var ingredientNameLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var suggestTableViewCell: UITableViewCell!
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: CustomTextField!
@@ -100,9 +97,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.backgroundColor = Style.basicBackgroundColor
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
         amount.layer.borderColor = Style.memoBorderColor.cgColor
-        ingredientNameLabel.textColor = Style.labelTextColor
-        amountLabel.textColor = Style.labelTextColor
-        optionLabel.textColor = Style.labelTextColor
         option.secondaryTintColor = Style.checkboxSecondaryTintColor
         optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor
