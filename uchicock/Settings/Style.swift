@@ -652,7 +652,91 @@ struct Style{
         checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
+    
+    static func unionJackLight(){
+        no = "22"
+        isDark = false
+        isBackgroundDark = false
+        statusBarStyle = .lightContent
+        primaryColor = FlatColor.purple
+        secondaryColor = FlatColor.purple
+        basicBackgroundColor = FlatColor.white
+        tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        labelTextColor = FlatColor.black
+        labelTextColorLight = FlatColor.grayDark
+        labelTextColorOnBadge = FlatColor.white
+        labelTextColorOnDisableBadge = FlatColor.black
+        textFieldBackgroundColor = FlatColor.white
+        filterContainerBackgroundColor = FlatColor.white
+        deleteColor = FlatColor.red
+        tabBarTintColor = FlatColor.purple
+        tabBarBarTintColor = FlatColor.white
+        tabBarUnselectedItemTintColor = FlatColor.gray
+        tableViewCellSelectedBackgroundColor = FlatColor.whiteDark
+        tableViewCellEditBackgroundColor = FlatColor.gray
+        tableViewCellReminderBackgroundColor = FlatColor.purple
+        badgeDisableBackgroundColor = FlatColor.whiteDark
+        memoBorderColor = FlatColor.whiteDark
+        checkboxSecondaryTintColor = FlatColor.gray
+        setGlobalTheme()
+    }
 
+    static func unionJackDark(){
+        no = "23"
+        isDark = true
+        isBackgroundDark = true
+        statusBarStyle = .lightContent
+        primaryColor = FlatColor.magenta
+        secondaryColor = FlatColor.magenta
+        basicBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.grayDark
+        labelTextColor = FlatColor.white
+        labelTextColorLight = FlatColor.gray
+        labelTextColorOnBadge = FlatColor.white
+        labelTextColorOnDisableBadge = FlatColor.black
+        textFieldBackgroundColor = FlatColor.black
+        filterContainerBackgroundColor = FlatColor.black
+        deleteColor = FlatColor.redDark
+        tabBarTintColor = FlatColor.magenta
+        tabBarBarTintColor = FlatColor.blackDark
+        tabBarUnselectedItemTintColor = FlatColor.gray
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatColor.grayDark
+        tableViewCellReminderBackgroundColor = FlatColor.magenta
+        badgeDisableBackgroundColor = FlatColor.grayDark
+        memoBorderColor = FlatColor.grayDark
+        checkboxSecondaryTintColor = FlatColor.grayDark
+        setGlobalTheme()
+    }
+
+    static func blueMoonDark(){
+        no = "24"
+        isDark = true
+        isBackgroundDark = true
+        statusBarStyle = .lightContent
+        primaryColor = UIColor.black
+        secondaryColor = FlatColor.magenta
+        basicBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.grayDark
+        labelTextColor = FlatColor.white
+        labelTextColorLight = FlatColor.gray
+        labelTextColorOnBadge = FlatColor.black
+        labelTextColorOnDisableBadge = FlatColor.black
+        textFieldBackgroundColor = FlatColor.black
+        filterContainerBackgroundColor = FlatColor.black
+        deleteColor = FlatColor.redDark
+        tabBarTintColor = FlatColor.magenta
+        tabBarBarTintColor = UIColor.black
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.35, green:0.25, blue:0.40, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatColor.grayDark
+        tableViewCellReminderBackgroundColor = FlatColor.magenta
+        badgeDisableBackgroundColor = FlatColor.grayDark
+        memoBorderColor = FlatColor.grayDark
+        checkboxSecondaryTintColor = FlatColor.grayDark
+        setGlobalTheme()
+    }
+    
     // MARK: - Manage Theme
     static func saveTheme(themeNo: String?){
         if let no = themeNo{
@@ -696,6 +780,9 @@ struct Style{
             case "19": blackRussianDark()
             case "20": shoyoJulingLight()
             case "21": shoyoJulingDark()
+            case "22": unionJackLight()
+            case "23": unionJackDark()
+            case "24": blueMoonDark()
             default: break
             }
         }

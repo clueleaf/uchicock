@@ -101,9 +101,9 @@ struct FlatColor{
     //
     static let purpleDark = UIColor(hue: 253/360, saturation: 56/100, brightness: 64/100, alpha: 1)
 
-    //
+    // ユニオンジャック、ブルームーン
     static let magenta = UIColor(hue: 283/360, saturation: 51/100, brightness: 71/100, alpha: 1)
-    //
+    // ユニオンジャック
     static let magentaDark = UIColor(hue: 282/360, saturation: 61/100, brightness: 68/100, alpha: 1)
 
     //（暗い）
