@@ -11,31 +11,21 @@ import M13Checkbox
 
 class RecoverDescriptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var recoverTargetLabel: UILabel!
-    @IBOutlet weak var nonRecoverTargetLabel: UILabel!
-    @IBOutlet weak var unableRecoverLabel: UILabel!
     @IBOutlet weak var recoverTarget: M13Checkbox!
     @IBOutlet weak var nonRecoverTarget: M13Checkbox!
     @IBOutlet weak var unableRecover: M13Checkbox!
-    @IBOutlet weak var recoverableNumberLabel: UILabel!
+    @IBOutlet weak var recoverableNumberLabel: CustomLabel!
     
     var recoverableRecipeNum = 0
     var sampleRecipeNum: Int = Int(){
         didSet{
             recoverableNumberLabel.text = String(sampleRecipeNum) + "レシピ中" + String(recoverableRecipeNum) + "レシピを復元できます。"
-            recoverableNumberLabel.textColor = Style.labelTextColor
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        descriptionLabel.textColor = Style.labelTextColor
-        recoverTargetLabel.textColor = Style.labelTextColor
-        nonRecoverTargetLabel.textColor = Style.labelTextColor
-        unableRecoverLabel.textColor = Style.labelTextColor
-
         recoverTarget.stateChangeAnimation = .expand(.fill)
         recoverTarget.isEnabled = false
         recoverTarget.setCheckState(.checked, animated: true)

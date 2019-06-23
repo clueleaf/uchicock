@@ -10,11 +10,9 @@ import UIKit
 
 class RecoverPreviewTableViewController: UITableViewController {
 
-    @IBOutlet weak var recipeName: UILabel!
-    @IBOutlet weak var styleLabel: UILabel!
-    @IBOutlet weak var style: UILabel!
-    @IBOutlet weak var methodLabel: UILabel!
-    @IBOutlet weak var method: UILabel!
+    @IBOutlet weak var recipeName: CustomLabel!
+    @IBOutlet weak var style: CustomLabel!
+    @IBOutlet weak var method: CustomLabel!
     
     var recipe = Recipe()
     
@@ -76,11 +74,6 @@ class RecoverPreviewTableViewController: UITableViewController {
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        recipeName.textColor = Style.labelTextColor
-        styleLabel.textColor = Style.labelTextColor
-        methodLabel.textColor = Style.labelTextColor
-        style.textColor = Style.labelTextColor
-        method.textColor = Style.labelTextColor
 
         if Style.isBackgroundDark{
             self.tableView.indicatorStyle = .white

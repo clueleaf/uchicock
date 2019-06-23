@@ -12,10 +12,7 @@ import M13Checkbox
 
 class ReminderTableViewController: UITableViewController {
 
-    @IBOutlet weak var reminderTitleLabel: UILabel!
-    @IBOutlet weak var reminderTypeLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var reminderTitle: UILabel!
+    @IBOutlet weak var reminderTitle: CustomLabel!
     @IBOutlet weak var reminderType: CustomSegmentedControl!
     @IBOutlet weak var dateFlag: M13Checkbox!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -62,15 +59,11 @@ class ReminderTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
-        reminderTitleLabel.textColor = Style.labelTextColor
-        reminderTypeLabel.textColor = Style.labelTextColor
         reminderType.layer.cornerRadius = 14.0
         reminderType.layer.borderColor = Style.secondaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
-        dateLabel.textColor = Style.labelTextColor
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
-        reminderTitle.textColor = Style.labelTextColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
     }

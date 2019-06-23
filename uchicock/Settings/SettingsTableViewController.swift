@@ -13,9 +13,6 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!
     @IBOutlet weak var changeThemeImage: UIImageView!
-    @IBOutlet weak var introductionLabel: UILabel!
-    @IBOutlet weak var recoverLabel: UILabel!
-    @IBOutlet weak var changeThemeLabel: UILabel!
     
     let selectedCellBackgroundView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -38,9 +35,6 @@ class SettingsTableViewController: UITableViewController {
         introductionImage.tintColor = Style.secondaryColor
         recoverImage.tintColor = Style.secondaryColor
         changeThemeImage.tintColor = Style.secondaryColor
-        introductionLabel.textColor = Style.labelTextColor
-        recoverLabel.textColor = Style.labelTextColor
-        changeThemeLabel.textColor = Style.labelTextColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         tableView.backgroundColor = Style.basicBackgroundColor

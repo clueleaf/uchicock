@@ -12,10 +12,6 @@ import M13Checkbox
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
-    @IBOutlet weak var ingredientNameLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stock: M13Checkbox!
@@ -70,10 +66,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         super.viewWillAppear(animated)
         
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
-        ingredientNameLabel.textColor = Style.labelTextColor
-        categoryLabel.textColor = Style.labelTextColor
-        stockLabel.textColor = Style.labelTextColor
-        memoLabel.textColor = Style.labelTextColor
         category.layer.cornerRadius = 14.0
         category.layer.borderColor = Style.secondaryColor.cgColor
         category.layer.borderWidth = 1.0

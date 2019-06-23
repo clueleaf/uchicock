@@ -13,20 +13,14 @@ import M13Checkbox
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var ingredientName: CopyableLabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var stockRecommendLabel: UILabel!
-    @IBOutlet weak var memoLabel: UILabel!
-    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var category: CustomLabel!
     @IBOutlet weak var stock: M13Checkbox!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
     @IBOutlet weak var amazonButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var editButtonLabel: UILabel!
-    @IBOutlet weak var reminderButtonLabel: UILabel!
-    @IBOutlet weak var amazonButtonLabel: UILabel!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     @IBOutlet weak var amazonContainerView: UIView!
     @IBOutlet weak var deleteContainerView: UIView!
@@ -86,15 +80,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     private func setupVC(){
-        categoryLabel.textColor = Style.labelTextColor
-        stockLabel.textColor = Style.labelTextColor
-        stockRecommendLabel.textColor = Style.secondaryColor
-        memoLabel.textColor = Style.labelTextColor
-        category.textColor = Style.labelTextColor
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
-        editButtonLabel.textColor = Style.labelTextColor
-        reminderButtonLabel.textColor = Style.labelTextColor
-        amazonButtonLabel.textColor = Style.labelTextColor
         deleteButtonLabel.textColor = Style.deleteColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
@@ -115,7 +101,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
-            ingredientName.textColor = Style.labelTextColor
             
             updateIngredientRecommendLabel()
             

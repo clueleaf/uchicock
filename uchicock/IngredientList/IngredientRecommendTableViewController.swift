@@ -11,7 +11,7 @@ import RealmSwift
 
 class IngredientRecommendTableViewController: UITableViewController {
 
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: CustomLabel!
     
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
@@ -64,7 +64,6 @@ class IngredientRecommendTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        descriptionLabel.textColor = Style.labelTextColor
         tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black

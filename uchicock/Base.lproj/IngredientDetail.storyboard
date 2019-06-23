@@ -49,7 +49,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="14.5" width="299" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="mTf-pY-r7H"/>
@@ -99,7 +99,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="15" width="189" height="25.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="UnF-Cf-vuK"/>
@@ -108,7 +108,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="217" y="17.5" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ocm-Nq-vek"/>
@@ -135,7 +135,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="21" id="kI9-yN-asZ"/>
@@ -186,7 +186,7 @@
                                                                         <action selector="editButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="GRu-aq-ls8"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="編集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oht-Sh-YRZ">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="編集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oht-Sh-YRZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                     <rect key="frame" x="34.5" y="61" width="25" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
@@ -215,7 +215,7 @@
                                                                         <action selector="reminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="xLm-E8-4rx"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="リマインダー" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="リマインダー" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                     <rect key="frame" x="9.5" y="61" width="74" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
@@ -244,7 +244,7 @@
                                                                         <action selector="amazonButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="zFL-qs-uZt"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuT-H0-mbG">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuT-H0-mbG" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                                     <rect key="frame" x="8.5" y="61" width="76.5" height="29"/>
                                                                     <string key="text">Amazon.co.jp
 で探す</string>
@@ -335,22 +335,16 @@
                     <navigationItem key="navigationItem" title="Title" id="yNe-Yi-aiI"/>
                     <connections>
                         <outlet property="amazonButton" destination="Tyv-e1-O7y" id="lrK-LI-yvF"/>
-                        <outlet property="amazonButtonLabel" destination="IuT-H0-mbG" id="wfc-Fq-KE2"/>
                         <outlet property="amazonContainerView" destination="IUb-qb-HOW" id="7N9-Zt-MQe"/>
                         <outlet property="category" destination="bbv-Mt-9IU" id="i9Z-O6-rIg"/>
-                        <outlet property="categoryLabel" destination="iM9-Wc-cPe" id="Wky-AB-l9f"/>
                         <outlet property="deleteButton" destination="2Oo-xf-RBe" id="UAg-2u-cvH"/>
                         <outlet property="deleteButtonLabel" destination="jqM-l2-1Yk" id="lSv-ko-xGL"/>
                         <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
-                        <outlet property="editButtonLabel" destination="Oht-Sh-YRZ" id="iXV-mo-0QH"/>
                         <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
-                        <outlet property="memoLabel" destination="ffu-Ky-BvZ" id="PkI-2d-zFI"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
-                        <outlet property="reminderButtonLabel" destination="EIc-ed-ecs" id="MMn-Gt-pIG"/>
                         <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>
-                        <outlet property="stockLabel" destination="c1v-8e-XYX" id="L0B-ig-fa4"/>
                         <outlet property="stockRecommendLabel" destination="2j5-wo-2mv" id="r9j-I8-mnY"/>
                         <segue destination="Q8M-CT-PU2" kind="show" identifier="PushRecipeDetail" id="1g7-6l-jO6"/>
                         <segue destination="WkO-TB-fBh" kind="presentation" identifier="PushEditIngredient" modalPresentationStyle="fullScreen" id="dSa-zg-Pbu"/>

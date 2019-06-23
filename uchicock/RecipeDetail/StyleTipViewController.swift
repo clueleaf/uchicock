@@ -13,14 +13,8 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
     
-    @IBOutlet weak var longTitleLabel: UILabel!
-    @IBOutlet weak var longDescriptionLabel: UILabel!
     @IBOutlet weak var firstSeparator: UIView!
-    @IBOutlet weak var shortTitleLabel: UILabel!
-    @IBOutlet weak var shortDescriptionLabel: UILabel!
     @IBOutlet weak var secondSeparator: UIView!
-    @IBOutlet weak var hotTitleLabel: UILabel!
-    @IBOutlet weak var hotDescriptionLabel: UILabel!
     
     var interactor: Interactor!
     
@@ -44,12 +38,6 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = Style.basicBackgroundColor
-        longTitleLabel.textColor = Style.labelTextColor
-        longDescriptionLabel.textColor = Style.labelTextColor
-        shortTitleLabel.textColor = Style.labelTextColor
-        shortDescriptionLabel.textColor = Style.labelTextColor
-        hotTitleLabel.textColor = Style.labelTextColor
-        hotDescriptionLabel.textColor = Style.labelTextColor
         
         firstSeparator.backgroundColor = Style.labelTextColor
         secondSeparator.backgroundColor = Style.labelTextColor

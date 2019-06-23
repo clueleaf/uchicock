@@ -13,17 +13,9 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
     
-    @IBOutlet weak var buildTitleLabel: UILabel!
-    @IBOutlet weak var buildDescriptionLabel: UILabel!
     @IBOutlet weak var firstSeparator: UIView!
-    @IBOutlet weak var stirTitleLabel: UILabel!
-    @IBOutlet weak var stirDescriptionLabel: UILabel!
     @IBOutlet weak var secondSeparator: UIView!
-    @IBOutlet weak var shakeTitleLabel: UILabel!
-    @IBOutlet weak var shakeDescriptionLabel: UILabel!
     @IBOutlet weak var thirdSeparator: UIView!
-    @IBOutlet weak var blendTitleLabel: UILabel!
-    @IBOutlet weak var blendDescriptionLabel: UILabel!
     
     var interactor: Interactor!
     
@@ -47,14 +39,6 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = Style.basicBackgroundColor
-        buildTitleLabel.textColor = Style.labelTextColor
-        buildDescriptionLabel.textColor = Style.labelTextColor
-        stirTitleLabel.textColor = Style.labelTextColor
-        stirDescriptionLabel.textColor = Style.labelTextColor
-        shakeTitleLabel.textColor = Style.labelTextColor
-        shakeDescriptionLabel.textColor = Style.labelTextColor
-        blendTitleLabel.textColor = Style.labelTextColor
-        blendDescriptionLabel.textColor = Style.labelTextColor
         
         firstSeparator.backgroundColor = Style.labelTextColor
         secondSeparator.backgroundColor = Style.labelTextColor
