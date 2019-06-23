@@ -657,8 +657,8 @@ struct Style{
         no = "22"
         isDark = false
         isBackgroundDark = false
-        statusBarStyle = .lightContent
-        primaryColor = FlatColor.purple
+        statusBarStyle = .default
+        primaryColor = FlatColor.white
         secondaryColor = FlatColor.purple
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
