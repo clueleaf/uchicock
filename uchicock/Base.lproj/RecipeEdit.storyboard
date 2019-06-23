@@ -307,7 +307,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs" customClass="RecipeEditIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs">
                                         <rect key="frame" x="0.0" y="642" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">

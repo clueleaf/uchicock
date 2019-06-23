@@ -25,7 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xf3-c0-b3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4094" y="2884"/>
+            <point key="canvasLocation" x="-4095" y="2884"/>
         </scene>
         <!--サンプルレシピ復元-->
         <scene sceneID="fdE-2m-Me9">
@@ -352,7 +352,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="K7s-Te-eBa">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="eUg-2A-w4n" customClass="RecoverPreviewIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="eUg-2A-w4n">
                                         <rect key="frame" x="0.0" y="248" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eUg-2A-w4n" id="7AF-zb-etx">

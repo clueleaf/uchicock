@@ -333,7 +333,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="W49-nK-Sr8">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="jnM-hH-qrL" customClass="RecipeIngredientListTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="jnM-hH-qrL">
                                         <rect key="frame" x="0.0" y="555" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jnM-hH-qrL" id="X73-0D-mYX">
