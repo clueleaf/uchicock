@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-Bd-9DY">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="368.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="402"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuN-P8-3Tu" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="398" height="26"/>
@@ -49,21 +49,22 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに氷などを入れて飲むスタイル。冷たさをキープできるので時間をかけてゆっくり楽しめる。ジュースやソーダなどの割り材を多めに加えるレシピが多く、ショートカクテルと比べてアルコール割合は低めになりやすい。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WET-0L-iQP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="42" width="398" height="67"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WET-0L-iQP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="42" width="398" height="100.5"/>
+                                                <string key="text">グラスに氷などを入れて飲むスタイル。冷たさをキープできるので時間をかけてゆっくり楽しめる。ジュースやソーダなどの割り材を多めに加えるレシピが多く、ショートカクテルと比べてアルコール割合は低めになりやすい。ビールベースのカクテルなどはロングカクテルに分類されていても、氷を入れないことがある。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-hw-70H">
-                                                <rect key="frame" x="8" y="125" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="158.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="dgc-8S-O9M"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtX-z4-hQQ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="134" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="167.5" width="398" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="dOf-Va-yaP"/>
                                                 </constraints>
@@ -72,20 +73,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに氷を入れずに飲むもので、温まらないうち（概ね20分以内）に飲み終えるのが良いとされる。割り材は少なめか全く入らないレシピが多く、飲む間に氷が溶けて薄まることもないので、結果的にアルコール割合は高めになることが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-0g-91B" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="168" width="398" height="84"/>
+                                                <rect key="frame" x="8" y="201.5" width="398" height="84"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyn-g4-Sxc">
-                                                <rect key="frame" x="8" y="268" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="301.5" width="398" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="D2H-Yw-jAv"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="do9-SM-RH6" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="277" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="310.5" width="398" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="swU-th-HaV"/>
                                                 </constraints>
@@ -94,7 +95,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お湯や温めた材料を使ったカクテル。冬場など寒い日にうってつけ。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-X1-1ND" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="311" width="398" height="33.5"/>
+                                                <rect key="frame" x="8" y="344.5" width="398" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -196,7 +197,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-Va-VQs">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="654"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カクテルの作り方は便宜上4種類に大別されますが、カクテルの種類や作り手、好みによっても微妙に違ってきます。ここに書いてある作り方を参考にしつつ、自分なりのアレンジを試してみるとより楽しめるでしょう。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-3Q-l19" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カクテルの作り方は4種類に大別されますが、細かいところはカクテルの種類や作り手、好みによっても微妙に違ってきます。ここに書いてある作り方を参考にしつつ、自分なりのアレンジを試してみるとより楽しめるでしょう。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-3Q-l19" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="398" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
