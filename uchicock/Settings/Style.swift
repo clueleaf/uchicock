@@ -672,7 +672,7 @@ struct Style{
         tabBarTintColor = FlatColor.purple
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.87, green:0.81, blue:0.96, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewCellReminderBackgroundColor = FlatColor.purple
         badgeDisableBackgroundColor = FlatColor.whiteDark
@@ -686,7 +686,7 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = FlatColor.magenta
+        primaryColor = UIColor.black
         secondaryColor = FlatColor.magenta
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
@@ -698,9 +698,9 @@ struct Style{
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.magenta
-        tabBarBarTintColor = FlatColor.blackDark
+        tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.gray
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.35, green:0.25, blue:0.40, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewCellReminderBackgroundColor = FlatColor.magenta
         badgeDisableBackgroundColor = FlatColor.grayDark
@@ -709,31 +709,31 @@ struct Style{
         setGlobalTheme()
     }
 
-    static func blueMoonDark(){
+    static func blueMoonLight(){
         no = "24"
-        isDark = true
-        isBackgroundDark = true
-        statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.magenta
-        basicBackgroundColor = FlatColor.black
-        tableViewHeaderBackgroundColor = FlatColor.grayDark
-        labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
-        labelTextColorOnBadge = FlatColor.black
+        isDark = false
+        isBackgroundDark = false
+        statusBarStyle = .default
+        primaryColor = FlatColor.powderBlue
+        secondaryColor = FlatColor.blue
+        basicBackgroundColor = FlatColor.white
+        tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        labelTextColor = FlatColor.black
+        labelTextColorLight = FlatColor.grayDark
+        labelTextColorOnBadge = FlatColor.white
         labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
-        filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.magenta
-        tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.grayDark
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.35, green:0.25, blue:0.40, alpha:1.0)
-        tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.magenta
-        badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
+        textFieldBackgroundColor = FlatColor.white
+        filterContainerBackgroundColor = FlatColor.powderBlue
+        deleteColor = FlatColor.red
+        tabBarTintColor = FlatColor.blue
+        tabBarBarTintColor = FlatColor.powderBlue
+        tabBarUnselectedItemTintColor = FlatColor.white
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatColor.gray
+        tableViewCellReminderBackgroundColor = FlatColor.powderBlueDark
+        badgeDisableBackgroundColor = FlatColor.gray
+        memoBorderColor = FlatColor.gray
+        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -782,7 +782,7 @@ struct Style{
             case "21": shoyoJulingDark()
             case "22": unionJackLight()
             case "23": unionJackDark()
-            case "24": blueMoonDark()
+            case "24": blueMoonLight()
             default: break
             }
         }

@@ -91,7 +91,7 @@ struct FlatColor{
     //（無機質）
     static let powderBlueDark = UIColor(hue: 222/360, saturation: 28/100, brightness: 84/100, alpha: 1)
 
-    //
+    // 
     static let blue = UIColor(hue: 224/360, saturation: 50/100, brightness: 63/100, alpha: 1)
     //（暗い）
     static let blueDark = UIColor(hue: 224/360, saturation: 56/100, brightness: 51/100, alpha: 1)
@@ -101,7 +101,7 @@ struct FlatColor{
     //（暗い）
     static let purpleDark = UIColor(hue: 253/360, saturation: 56/100, brightness: 64/100, alpha: 1)
 
-    // ユニオンジャック、ブルームーン
+    // ユニオンジャック
     static let magenta = UIColor(hue: 283/360, saturation: 51/100, brightness: 71/100, alpha: 1)
     //（暗い）
     static let magentaDark = UIColor(hue: 282/360, saturation: 61/100, brightness: 68/100, alpha: 1)
