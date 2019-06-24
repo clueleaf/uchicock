@@ -716,7 +716,7 @@ struct Style{
         statusBarStyle = .default
         primaryColor = FlatColor.powderBlue
         secondaryColor = FlatColor.blue
-        basicBackgroundColor = FlatColor.white
+        basicBackgroundColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
@@ -726,14 +726,42 @@ struct Style{
         filterContainerBackgroundColor = FlatColor.powderBlue
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.blue
-        tabBarBarTintColor = FlatColor.powderBlue
-        tabBarUnselectedItemTintColor = FlatColor.white
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
+        tabBarUnselectedItemTintColor = FlatColor.gray
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.79, green:0.83, blue:0.92, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.powderBlueDark
+        tableViewCellReminderBackgroundColor = FlatColor.blue
         badgeDisableBackgroundColor = FlatColor.gray
         memoBorderColor = FlatColor.gray
         checkboxSecondaryTintColor = FlatColor.gray
+        setGlobalTheme()
+    }
+    
+    static func blueMoonDark(){
+        no = "25"
+        isDark = true
+        isBackgroundDark = true
+        statusBarStyle = .lightContent
+        primaryColor = UIColor.black
+        secondaryColor = FlatColor.powderBlueDark
+        basicBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.grayDark
+        labelTextColor = FlatColor.white
+        labelTextColorLight = FlatColor.whiteDark
+        labelTextColorOnBadge = FlatColor.black
+        labelTextColorOnDisableBadge = FlatColor.black
+        textFieldBackgroundColor = FlatColor.black
+        filterContainerBackgroundColor = FlatColor.black
+        deleteColor = FlatColor.watermelonDark
+        tabBarTintColor = FlatColor.powderBlue
+        tabBarBarTintColor = UIColor.black
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellEditBackgroundColor = FlatColor.grayDark
+        tableViewCellReminderBackgroundColor = FlatColor.powderBlueDark
+        badgeDisableBackgroundColor = FlatColor.grayDark
+        memoBorderColor = FlatColor.grayDark
+        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -783,6 +811,7 @@ struct Style{
             case "22": unionJackLight()
             case "23": unionJackDark()
             case "24": blueMoonLight()
+            case "25": blueMoonDark()
             default: break
             }
         }

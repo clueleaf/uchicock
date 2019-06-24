@@ -86,12 +86,12 @@ struct FlatColor{
     //（暗い）
     static let navyBlueDark = UIColor(hue: 210/360, saturation: 45/100, brightness: 31/100, alpha: 1)
 
-    //
+    // ブルームーン（一部）
     static let powderBlue = UIColor(hue: 222/360, saturation: 24/100, brightness: 95/100, alpha: 1)
     //（無機質）
     static let powderBlueDark = UIColor(hue: 222/360, saturation: 28/100, brightness: 84/100, alpha: 1)
 
-    // 
+    // ブルームーン（一部）
     static let blue = UIColor(hue: 224/360, saturation: 50/100, brightness: 63/100, alpha: 1)
     //（暗い）
     static let blueDark = UIColor(hue: 224/360, saturation: 56/100, brightness: 51/100, alpha: 1)
