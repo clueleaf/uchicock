@@ -299,7 +299,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             if let image = r.imageData {
                 cell.photo.image = UIImage(data: image as Data)
                 cell.recipeName.text = r.recipeName
-                cell.recipeName.textColor = Style.labelTextColor
+                cell.recipeName.textColor = FlatColor.white
                 cell.recipeName.backgroundColor = UIColor.clear
                 
                 // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
@@ -320,11 +320,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
                 let gradient = CustomCAGradientLayer()
                 gradient.frame = gradationFrame
-                if Style.isBackgroundDark{
-                    gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
-                }else{
-                    gradient.colors = [UIColor(white: 1.0, alpha: 0.0).cgColor, UIColor(white: 1.0, alpha: 0.8).cgColor]
-                }
+                gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
                 cell.recipeNameBackgroundView.layer.insertSublayer(gradient, at: 0)
 
                 if showNameFlag{
