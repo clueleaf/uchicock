@@ -69,9 +69,9 @@ class IngredientRecommendTableViewController: UITableViewController {
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         if ingredientBasicList.count == 0 {
-            descriptionLabel.text = "在庫がない材料のうち、入手すると作れるようになるレシピが増えるものを、増えるレシピの数が多い順に最大10個おすすめします。\n\nおすすめの材料はありません。\n所持している材料が少なすぎるようです・・・\nまずは所持している材料を登録しましょう。"
+            descriptionLabel.text = "入手すると、より多くのレシピを作れるようになる材料をおすすめします！\n\nおすすめの材料はありません。所持している材料が少なすぎるようです・・・"
         }else{
-            descriptionLabel.text = "在庫がない材料のうち、入手すると作れるようになるレシピが増えるものを、増えるレシピの数が多い順に最大10個おすすめします。\n\n新しい材料に挑戦してみよう！"
+            descriptionLabel.text = "入手すると、より多くのレシピを作れるようになる材料をおすすめします！\n\n新しい材料に挑戦してみよう！"
         }
     }
     
