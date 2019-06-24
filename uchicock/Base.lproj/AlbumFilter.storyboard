@@ -734,7 +734,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="r3h-h6-Goy"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="決定"/>
                                         <connections>
                                             <action selector="doneButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="yc7-dc-EIw"/>

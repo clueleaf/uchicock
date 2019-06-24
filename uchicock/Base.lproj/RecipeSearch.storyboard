@@ -1093,7 +1093,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="CIt-4k-UoN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="検索実行"/>
                                         <connections>
                                             <action selector="searchButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="p1k-Rs-1VR"/>
