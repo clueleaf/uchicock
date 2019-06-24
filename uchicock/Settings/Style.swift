@@ -737,34 +737,6 @@ struct Style{
         setGlobalTheme()
     }
     
-    static func blueMoonDark(){
-        no = "25"
-        isDark = true
-        isBackgroundDark = true
-        statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.powderBlueDark
-        basicBackgroundColor = FlatColor.black
-        tableViewHeaderBackgroundColor = FlatColor.grayDark
-        labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.whiteDark
-        labelTextColorOnBadge = FlatColor.black
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
-        filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.watermelonDark
-        tabBarTintColor = FlatColor.powderBlue
-        tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.grayDark
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
-        tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.powderBlueDark
-        badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
-        setGlobalTheme()
-    }
-    
     // MARK: - Manage Theme
     static func saveTheme(themeNo: String?){
         if let no = themeNo{
@@ -811,7 +783,6 @@ struct Style{
             case "22": unionJackLight()
             case "23": unionJackDark()
             case "24": blueMoonLight()
-            case "25": blueMoonDark()
             default: break
             }
         }

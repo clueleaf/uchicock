@@ -265,7 +265,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-1v-o1f">
-                                        <rect key="frame" x="30" y="68" width="354" height="30"/>
+                                        <rect key="frame" x="117" y="68" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="YwX-Qt-NYB"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="bHO-7k-TYp"/>
@@ -292,12 +292,11 @@
                                     <constraint firstAttribute="trailing" secondItem="eXh-YE-Hfc" secondAttribute="trailing" id="CyU-Yx-W0e"/>
                                     <constraint firstItem="wmB-he-16M" firstAttribute="top" secondItem="FWr-nR-chO" secondAttribute="bottom" constant="4" id="Fy1-rg-cCF"/>
                                     <constraint firstAttribute="trailing" secondItem="FWr-nR-chO" secondAttribute="trailing" constant="8" id="QD9-kL-pUF"/>
+                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="centerX" secondItem="jYr-aJ-DQL" secondAttribute="centerX" id="Wgr-Hg-DIS"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="top" id="dg6-d1-YJj"/>
                                     <constraint firstAttribute="bottom" secondItem="eXh-YE-Hfc" secondAttribute="bottom" id="emd-yb-SBf"/>
                                     <constraint firstItem="eXh-YE-Hfc" firstAttribute="top" secondItem="mG1-1v-o1f" secondAttribute="bottom" constant="8" id="i0y-X7-23e"/>
                                     <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="jTc-Oi-VTd"/>
-                                    <constraint firstItem="mG1-1v-o1f" firstAttribute="leading" relation="lessThanOrEqual" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="30" id="swB-r7-ugb"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="mG1-1v-o1f" secondAttribute="trailing" constant="30" id="wn2-Kz-0Jc"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="z2Q-kG-vzj"/>
                                 </constraints>
                             </view>
