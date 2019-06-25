@@ -727,7 +727,7 @@ struct Style{
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.blue
         tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
-        tabBarUnselectedItemTintColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.whiteDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.79, green:0.83, blue:0.92, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewCellReminderBackgroundColor = FlatColor.blue
