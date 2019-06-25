@@ -69,9 +69,9 @@ class IngredientRecommendTableViewController: UITableViewController {
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         if ingredientBasicList.count == 0 {
-            descriptionLabel.text = "入手すると、より多くのレシピを作れるようになる材料をおすすめします！\n\nおすすめの材料はありません。所持している材料が少なすぎるようです・・・"
+            descriptionLabel.text = "在庫がない材料のうち、入手するとより多くのレシピを作れるようになるものを最大5種類までおすすめします！\n\nおすすめの材料はありません。所持している材料が少なすぎるようです・・・"
         }else{
-            descriptionLabel.text = "入手すると、より多くのレシピを作れるようになる材料をおすすめします！\n\n新しい材料に挑戦してみよう！"
+            descriptionLabel.text = "在庫がない材料のうち、入手するとより多くのレシピを作れるようになるものを最大5種類までおすすめします！\n\n新しい材料に挑戦してみよう！"
         }
     }
     
@@ -106,12 +106,10 @@ class IngredientRecommendTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ingredientBasicList.count == 0{
-            return 1
-        }else if ingredientBasicList.count <= 10{
+        if ingredientBasicList.count <= 5{
             return ingredientBasicList.count + 1
         }else{
-            return 11
+            return 6
         }
     }
 
