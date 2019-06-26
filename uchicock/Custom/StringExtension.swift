@@ -420,6 +420,7 @@ extension String {
         case "バカラ": return 1
         case "パナマ": return 1
         case "ハニーサックル": return 1
+        case "ハバナピーチ": return 1 // v2.2以前のレシピ誤植対応
         case "ハバナビーチ": return 1
         case "パラダイス": return 1
         case "バラライカ": return 1

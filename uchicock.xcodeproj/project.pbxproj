@@ -12,9 +12,8 @@
 		9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
-		9B1638C122A7E17100B7C3A7 /* CustomStatusBarStyleControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomStatusBarStyleControllers.swift */; };
-		9B1638C222A7E17100B7C3A7 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */; };
-		9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* Extension.swift */; };
+		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
+		9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */; };
 		9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */; };
 		9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */; };
 		9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */; };
@@ -100,9 +99,8 @@
 		9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderTableViewController.swift; path = IngredientDetail/ReminderTableViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
-		9B1638BC22A7E17000B7C3A7 /* CustomStatusBarStyleControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStatusBarStyleControllers.swift; sourceTree = "<group>"; };
-		9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
-		9B1638BE22A7E17000B7C3A7 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
+		9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNavigationController.swift; sourceTree = "<group>"; };
 		9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTableViewController.swift; path = Recover/RecoverTableViewController.swift; sourceTree = "<group>"; };
 		9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTargetTableViewCell.swift; path = Recover/RecoverTargetTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,9 +214,8 @@
 		9B1638BB22A7E17000B7C3A7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				9B1638BC22A7E17000B7C3A7 /* CustomStatusBarStyleControllers.swift */,
-				9B1638BD22A7E17000B7C3A7 /* CopyableLabel.swift */,
-				9B1638BE22A7E17000B7C3A7 /* Extension.swift */,
+				9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */,
+				9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */,
 				9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */,
 				9BD91A5722BD04720088C146 /* Modal */,
 			);
@@ -623,11 +620,10 @@
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,
 				9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */,
-				9B1638C322A7E17100B7C3A7 /* Extension.swift in Sources */,
+				9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
-				9B1638C222A7E17100B7C3A7 /* CopyableLabel.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
 				9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */,
 				9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */,
@@ -663,7 +659,7 @@
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
-				9B1638C122A7E17100B7C3A7 /* CustomStatusBarStyleControllers.swift in Sources */,
+				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
 				9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */,
 				9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */,
