@@ -108,6 +108,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -195,8 +196,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func setTableBackgroundView(){
         if ingredientBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
-            noDataLabel.text          = "条件にあてはまる材料はありません"
-            noDataLabel.textColor     = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.text = "条件にあてはまる材料はありません"
+            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.tableView.backgroundView  = UIView()

@@ -217,6 +217,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -555,8 +556,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func setTableBackgroundView(){
         if recipeBasicList.count == 0{
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 60))
+            noDataLabel.numberOfLines = 0
             noDataLabel.text = "条件にあてはまるレシピはありません"
+            if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
+                recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
+                recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            }else{
+                noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
+            }
+
             noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center

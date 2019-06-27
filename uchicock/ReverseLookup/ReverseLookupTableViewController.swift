@@ -32,7 +32,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     let selectedCellBackgroundView = UIView()
     var safeAreaHeight: CGFloat = 0
     var transitioningSection1 = false
-    var shoudlHideSearchCell = false
+    var shouldHideSearchCell = false
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -240,6 +240,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
         self.recipeTableView.flashScrollIndicators()
     }
@@ -546,8 +547,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     private func setTableBackgroundView(){
         if recipeBasicList.count == 0{
-            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.recipeTableView.bounds.size.width, height: self.recipeTableView.bounds.size.height))
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.recipeTableView.bounds.size.height / 3, width: self.recipeTableView.bounds.size.width, height: 60))
+            noDataLabel.numberOfLines = 0
             noDataLabel.text = "条件にあてはまるレシピはありません"
+            if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
+                recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
+                recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            }else{
+                noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
+            }
             noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
@@ -621,7 +629,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             ingredientTextField3.resignFirstResponder()
             editingTextField = -1
             
-            shoudlHideSearchCell = false
+            shouldHideSearchCell = false
             tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
             transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
@@ -639,7 +647,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         if editingTextField == -1{
-            shoudlHideSearchCell = true
+            shouldHideSearchCell = true
             tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .left)
             transitioningSection1 = true
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
@@ -768,7 +776,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if tableView.tag == 0{
             if section == 0{
-                if shoudlHideSearchCell{
+                if shouldHideSearchCell{
                     return 3
                 }else{
                     return 4
@@ -797,7 +805,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return 72
                 }
             }else if indexPath.section == 1{
-                return safeAreaHeight - 35 * 3
+                if shouldHideSearchCell {
+                    return safeAreaHeight - 35 * 3
+                }else{
+                    return safeAreaHeight - 35 * 3 - 72
+                }
             }
         }else if tableView.tag == 1{
             return 70
@@ -916,7 +928,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField3.resignFirstResponder()
         editingTextField = -1
         
-        shoudlHideSearchCell = false
+        shouldHideSearchCell = false
         tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
         transitioningSection1 = false
         tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
