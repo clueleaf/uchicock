@@ -60,7 +60,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     let textField: UITextField = subview as! UITextField
                     textField.layer.borderColor = Style.memoBorderColor.cgColor
                     textField.layer.borderWidth = 1.0
-                    textField.layer.cornerRadius = 5.0
+                    textField.layer.cornerRadius = 8.0
                     for subsubview in subview.subviews{
                         if subsubview is UILabel{
                             let placeholderLabel = subsubview as! UILabel
