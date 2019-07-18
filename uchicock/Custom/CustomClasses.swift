@@ -88,3 +88,6 @@ class CustomSegmentedControl: UISegmentedControl{
 
 class CustomLabel: UILabel{
 }
+
+class CustomCAGradientLayer: CAGradientLayer{
+}

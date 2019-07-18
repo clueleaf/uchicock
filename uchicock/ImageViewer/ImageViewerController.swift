@@ -112,7 +112,14 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     }
     
     func setupCaptionBackground(){
-        let gradient = CAGradientLayer()
+        // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
+        captionBackgroundView.layer.sublayers?.forEach {
+            if $0.isKind(of: CustomCAGradientLayer.self){
+                $0.removeFromSuperlayer()
+            }
+        }
+
+        let gradient = CustomCAGradientLayer()
         gradient.frame = captionBackgroundView.bounds
         gradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.8).cgColor]
         captionBackgroundView.layer.insertSublayer(gradient, at: 0)

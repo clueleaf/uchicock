@@ -466,6 +466,3 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
 }
-
-class CustomCAGradientLayer: CAGradientLayer{
-}
