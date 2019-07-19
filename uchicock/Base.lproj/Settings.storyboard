@@ -856,7 +856,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ood-4d-51Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="253.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="258.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-FV-2pW" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="359" height="134"/>
@@ -868,13 +868,18 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データをバックアップせずに古いデバイスを破棄した場合は復元できませんのでご注意ください！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-5q-QBF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="204" width="359" height="33.5"/>
+                                                <rect key="frame" x="8" y="209" width="359" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbc-H0-BPE">
-                                                <rect key="frame" x="144.5" y="158" width="86" height="30"/>
+                                                <rect key="frame" x="132.5" y="158" width="110" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="5XV-GS-0n0"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="trM-i2-t4A"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <state key="normal" title="Apple公式へ"/>
                                                 <connections>
                                                     <action selector="appleLinkButtonTapped:" destination="B4t-5e-FB4" eventType="touchUpInside" id="LyM-vj-0HA"/>

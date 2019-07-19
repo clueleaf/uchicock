@@ -36,7 +36,12 @@ class AboutRestoreViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = Style.basicBackgroundColor
+        
+        appleLinkButton.layer.borderColor = Style.secondaryColor.cgColor
+        appleLinkButton.layer.borderWidth = 1.5
+        appleLinkButton.layer.cornerRadius = 17.5
         appleLinkButton.tintColor = Style.secondaryColor
+        appleLinkButton.backgroundColor = Style.basicBackgroundColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
