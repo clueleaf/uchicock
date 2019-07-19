@@ -760,7 +760,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return interactor.hasStarted ? interactor : nil
     }
 
-
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {

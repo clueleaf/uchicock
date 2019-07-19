@@ -52,6 +52,7 @@
 		9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */; };
 		9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */; };
 		9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */; };
+		9B89313F22E2297C0071B70D /* AboutRestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89313E22E2297C0071B70D /* AboutRestoreViewController.swift */; };
 		9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A34AC22B15E300085B1EC /* Introduction.storyboard */; };
 		9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */; };
 		9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A34B122B15F390085B1EC /* IntroductionDetailViewController.swift */; };
@@ -140,6 +141,7 @@
 		9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlbumCollectionViewCell.xib; path = Album/AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterCollectionViewCell.swift; path = RecipeEdit/PhotoFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B89313E22E2297C0071B70D /* AboutRestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutRestoreViewController.swift; path = Settings/AboutRestoreViewController.swift; sourceTree = "<group>"; };
 		9B8A34AD22B15E300085B1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Introduction.storyboard; sourceTree = "<group>"; };
 		9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		9B8A34B122B15F390085B1EC /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */,
 				9B41B2A91E65729E00EF2CEF /* Style.swift */,
 				9B22FEAB22A1872100D716E3 /* FlatColor.swift */,
+				9B89313E22E2297C0071B70D /* AboutRestoreViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B89313F22E2297C0071B70D /* AboutRestoreViewController.swift in Sources */,
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,

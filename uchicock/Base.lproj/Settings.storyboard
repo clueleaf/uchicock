@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -238,7 +239,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deM-ZR-Txj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1686" y="2884"/>
+            <point key="canvasLocation" x="-1604" y="2610"/>
         </scene>
         <!--Recover Preview Table View Controller-->
         <scene sceneID="WLQ-jl-Grh">
@@ -388,7 +389,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWJ-xb-KLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215" y="2884"/>
+            <point key="canvasLocation" x="-132" y="2610"/>
         </scene>
         <!--Basic Navigation Controller-->
         <scene sceneID="f47-XP-3i6">
@@ -404,7 +405,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVd-RV-2aD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-948" y="2884"/>
+            <point key="canvasLocation" x="-865" y="2610"/>
         </scene>
         <!--Basic Navigation Controller-->
         <scene sceneID="Z69-qE-Jvf">
@@ -420,7 +421,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyL-jJ-ajX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2502" y="2884"/>
+            <point key="canvasLocation" x="-2420" y="2610"/>
         </scene>
         <!--Introduction-->
         <scene sceneID="qZZ-wu-bAD">
@@ -428,7 +429,7 @@
                 <viewControllerPlaceholder storyboardName="Introduction" id="EyW-ad-CQ9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvd-IF-B8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3246" y="2226"/>
+            <point key="canvasLocation" x="-2572" y="1964"/>
         </scene>
         <!--いろいろ-->
         <scene sceneID="TJG-ad-VtA">
@@ -532,6 +533,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZFh-7V-zBW">
+                                        <rect key="frame" x="0.0" y="180" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFh-7V-zBW" id="bT5-gp-Bwr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-about-restore" translatesAutoresizingMaskIntoConstraints="NO" id="YUH-Hp-jII">
+                                                    <rect key="frame" x="8" y="18" width="24" height="23.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="Z6h-hj-E0Y"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データ引き継ぎについて" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXI-VF-F7V" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YUH-Hp-jII" firstAttribute="leading" secondItem="bT5-gp-Bwr" secondAttribute="leading" constant="8" id="4GR-1f-kMU"/>
+                                                <constraint firstItem="YUH-Hp-jII" firstAttribute="top" secondItem="bT5-gp-Bwr" secondAttribute="top" constant="18" id="4qG-nm-hmy"/>
+                                                <constraint firstItem="DXI-VF-F7V" firstAttribute="leading" secondItem="YUH-Hp-jII" secondAttribute="trailing" constant="8" id="HqK-e1-3Hf"/>
+                                                <constraint firstItem="DXI-VF-F7V" firstAttribute="centerY" secondItem="bT5-gp-Bwr" secondAttribute="centerY" id="P8j-4L-4wz"/>
+                                                <constraint firstAttribute="trailing" secondItem="DXI-VF-F7V" secondAttribute="trailing" constant="8" id="Ui7-Ed-Uy9"/>
+                                                <constraint firstAttribute="bottom" secondItem="YUH-Hp-jII" secondAttribute="bottom" constant="18" id="ebx-6F-VaL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -543,6 +574,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="いろいろ" id="fWd-PZ-3Nc"/>
                     <connections>
+                        <outlet property="aboutRestoreImage" destination="YUH-Hp-jII" id="Gl3-8Q-dk4"/>
                         <outlet property="changeThemeImage" destination="Dr9-d1-ydn" id="qic-BF-A9G"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
@@ -778,7 +810,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zon-7O-zFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1686" y="3649"/>
+            <point key="canvasLocation" x="-1604" y="3335"/>
         </scene>
         <!--Basic Navigation Controller-->
         <scene sceneID="FUS-k7-xrm">
@@ -794,10 +826,113 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYN-Hr-SZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2502" y="3649"/>
+            <point key="canvasLocation" x="-2420" y="3335"/>
+        </scene>
+        <!--Basic Navigation Controller-->
+        <scene sceneID="sex-rw-s7j">
+            <objects>
+                <navigationController storyboardIdentifier="AboutRestoreNavigationController" id="nMg-Aa-eDg" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TnE-x2-el8" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="B4t-5e-FB4" kind="relationship" relationship="rootViewController" id="1Ce-oK-YSb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EdV-9M-zSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2420" y="4050"/>
+        </scene>
+        <!--データ引き継ぎ-->
+        <scene sceneID="SxN-7x-vft">
+            <objects>
+                <viewController id="B4t-5e-FB4" customClass="AboutRestoreViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MPv-JO-o5k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-yf-Hbs">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ood-4d-51Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="253.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-FV-2pW" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="359" height="134"/>
+                                                <string key="text">うちカク！のユーザーデータ（材料の在庫状況、追加・編集したレシピ、登録した写真など）は、全てあなたのデバイス内に保存されています。
+
+機種変更などにより別のiOSデバイスにデータを転送したい場合は、他のアプリと同様、古いデバイスをバックアップし、新しいデバイスへ復元してください。具体的な方法はApple公式にて最新の情報をご確認ください。</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データをバックアップせずに古いデバイスを破棄した場合は復元できませんのでご注意ください！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-5q-QBF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="204" width="359" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbc-H0-BPE">
+                                                <rect key="frame" x="144.5" y="158" width="86" height="30"/>
+                                                <state key="normal" title="Apple公式へ"/>
+                                                <connections>
+                                                    <action selector="appleLinkButtonTapped:" destination="B4t-5e-FB4" eventType="touchUpInside" id="LyM-vj-0HA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="1OV-5q-QBF" firstAttribute="top" secondItem="Rbc-H0-BPE" secondAttribute="bottom" constant="16" id="0Cb-45-Ace"/>
+                                            <constraint firstAttribute="trailing" secondItem="1OV-5q-QBF" secondAttribute="trailing" constant="8" id="0kN-kK-umI"/>
+                                            <constraint firstAttribute="trailing" secondItem="lxp-FV-2pW" secondAttribute="trailing" constant="8" id="2di-qh-sQe"/>
+                                            <constraint firstAttribute="bottom" secondItem="1OV-5q-QBF" secondAttribute="bottom" constant="16" id="FQW-Nf-MHi"/>
+                                            <constraint firstItem="lxp-FV-2pW" firstAttribute="top" secondItem="Ood-4d-51Q" secondAttribute="top" constant="8" id="U2Z-2S-x7I"/>
+                                            <constraint firstItem="Rbc-H0-BPE" firstAttribute="top" secondItem="lxp-FV-2pW" secondAttribute="bottom" constant="16" id="a4C-Ve-72C"/>
+                                            <constraint firstItem="Rbc-H0-BPE" firstAttribute="centerX" secondItem="Ood-4d-51Q" secondAttribute="centerX" id="bbh-Wx-a9D"/>
+                                            <constraint firstItem="lxp-FV-2pW" firstAttribute="leading" secondItem="Ood-4d-51Q" secondAttribute="leading" constant="8" id="hct-cW-WYD"/>
+                                            <constraint firstItem="1OV-5q-QBF" firstAttribute="leading" secondItem="Ood-4d-51Q" secondAttribute="leading" constant="8" id="l55-9Z-AId"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ood-4d-51Q" secondAttribute="trailing" id="ELT-ys-fr6"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ood-4d-51Q" secondAttribute="bottom" id="ZbD-Zx-cze"/>
+                                    <constraint firstItem="Ood-4d-51Q" firstAttribute="top" secondItem="kGC-yf-Hbs" secondAttribute="top" id="ewG-dG-ETa"/>
+                                    <constraint firstItem="Ood-4d-51Q" firstAttribute="leading" secondItem="kGC-yf-Hbs" secondAttribute="leading" id="yro-az-5Qa"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kGC-yf-Hbs" firstAttribute="leading" secondItem="vEv-WX-tt5" secondAttribute="leading" id="RTI-fm-a8P"/>
+                            <constraint firstItem="Ood-4d-51Q" firstAttribute="width" secondItem="MPv-JO-o5k" secondAttribute="width" id="bDj-HO-SIz"/>
+                            <constraint firstItem="kGC-yf-Hbs" firstAttribute="top" secondItem="vEv-WX-tt5" secondAttribute="top" id="kYQ-mP-0tQ"/>
+                            <constraint firstItem="vEv-WX-tt5" firstAttribute="bottom" secondItem="kGC-yf-Hbs" secondAttribute="bottom" id="s6i-Xv-3mm"/>
+                            <constraint firstItem="vEv-WX-tt5" firstAttribute="trailing" secondItem="kGC-yf-Hbs" secondAttribute="trailing" id="ztA-mi-mi0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vEv-WX-tt5"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="データ引き継ぎ" id="Rxc-r6-V33">
+                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="11W-rv-3oq">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="B4t-5e-FB4" id="bkY-Yj-bPh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="appleLinkButton" destination="Rbc-H0-BPE" id="LxH-pL-5sb"/>
+                        <outlet property="backgroundView" destination="Ood-4d-51Q" id="BHc-Vs-xhI"/>
+                        <outlet property="scrollView" destination="kGC-yf-Hbs" id="mbd-Ef-bcZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0h-yd-gG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1604" y="4049"/>
         </scene>
     </scenes>
     <resources>
+        <image name="settings-about-restore" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
         <image name="settings-theme" width="24" height="24"/>
