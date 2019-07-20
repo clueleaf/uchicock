@@ -448,6 +448,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     self.performSegue(withIdentifier: "PushIngredientDetail", sender: selectedRecommendIngredientId)
                 }
             }
+            self.setupVC()
         }
         vc.interactor = interactor
         searchBar.resignFirstResponder()
