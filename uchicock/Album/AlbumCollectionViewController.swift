@@ -121,10 +121,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
         
-        setVC()
+        setupVC()
     }
     
-    private func setVC(){
+    private func setupVC(){
         self.collectionView!.backgroundColor = Style.basicBackgroundColor
         header.stateLabel.textColor = Style.labelTextColor
         self.collectionView!.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -401,7 +401,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! AlbumFilterViewController
         vc.onDoneBlock = {
-            self.setVC()
+            self.setupVC()
         }
         vc.interactor = interactor
         vc.userDefaultsPrefix = "album-"

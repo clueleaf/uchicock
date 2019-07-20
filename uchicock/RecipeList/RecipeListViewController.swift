@@ -78,10 +78,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setVC()
+        setupVC()
     }
     
-    private func setVC(){
+    private func setupVC(){
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         
@@ -738,7 +738,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.setVC()
+            self.setupVC()
         }
         vc.interactor = interactor
         vc.userDefaultsPrefix = "recipe-"

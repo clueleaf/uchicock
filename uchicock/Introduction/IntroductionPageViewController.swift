@@ -36,7 +36,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
-            let VC = setVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image)
+            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image)
             VCs.append(VC)
         }
         
@@ -57,7 +57,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setVC(number: Int, infoTitle: String, description: String, image: UIImage?) -> IntroductionDetailViewController{
+    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?) -> IntroductionDetailViewController{
         let infoVC = sb.instantiateViewController(withIdentifier: "IntroductionDetail") as! IntroductionDetailViewController
         infoVC.number = number
         infoVC.titleString = infoTitle

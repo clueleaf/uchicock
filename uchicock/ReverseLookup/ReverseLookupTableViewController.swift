@@ -90,10 +90,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setVC()
+        setupVC()
     }
     
-    private func setVC(){
+    private func setupVC(){
         let window = UIApplication.shared.keyWindow
         safeAreaHeight = view.frame.size.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
         
@@ -945,7 +945,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.setVC()
+            self.setupVC()
         }
         vc.interactor = interactor
         vc.userDefaultsPrefix = "reverse-lookup-"

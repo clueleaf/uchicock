@@ -44,10 +44,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setVC()
+        setupVC()
     }
     
-    private func setVC(){
+    private func setupVC(){
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
