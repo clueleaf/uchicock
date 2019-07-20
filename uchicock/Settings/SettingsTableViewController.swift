@@ -16,7 +16,8 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
     @IBOutlet weak var aboutRestoreImage: UIImageView!
     
     let selectedCellBackgroundView = UIView()
-    
+    var selectedIndexPath: IndexPath? = nil
+
     let interactor = Interactor()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -51,6 +52,14 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
         aboutRestoreImage.tintColor = Style.secondaryColor
         
         tableView.reloadData()
+        
+        if let path = selectedIndexPath {
+            tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView.deselectRow(at: path, animated: true)
+            }
+            self.selectedIndexPath = nil
+        }
     }
 
     // MARK: - Table view data source
@@ -75,13 +84,16 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
         case 2:
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         case 3:
-            tableView.deselectRow(at: indexPath, animated: true)
             let storyboard = UIStoryboard(name: "Settings", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "AboutRestoreNavigationController") as! UINavigationController
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
             let vc = nvc.visibleViewController as! AboutRestoreViewController
+            vc.onDoneBlock = {
+                self.setupVC()
+            }
             vc.interactor = interactor
+            self.selectedIndexPath = indexPath
             present(nvc, animated: true)
         default: break
         }
