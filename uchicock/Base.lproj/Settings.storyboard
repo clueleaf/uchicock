@@ -532,36 +532,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZFh-7V-zBW">
-                                        <rect key="frame" x="0.0" y="180" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFh-7V-zBW" id="bT5-gp-Bwr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-about-restore" translatesAutoresizingMaskIntoConstraints="NO" id="YUH-Hp-jII">
-                                                    <rect key="frame" x="8" y="18" width="24" height="23.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="Z6h-hj-E0Y"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データ引き継ぎについて" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXI-VF-F7V" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="YUH-Hp-jII" firstAttribute="leading" secondItem="bT5-gp-Bwr" secondAttribute="leading" constant="8" id="4GR-1f-kMU"/>
-                                                <constraint firstItem="YUH-Hp-jII" firstAttribute="top" secondItem="bT5-gp-Bwr" secondAttribute="top" constant="18" id="4qG-nm-hmy"/>
-                                                <constraint firstItem="DXI-VF-F7V" firstAttribute="leading" secondItem="YUH-Hp-jII" secondAttribute="trailing" constant="8" id="HqK-e1-3Hf"/>
-                                                <constraint firstItem="DXI-VF-F7V" firstAttribute="centerY" secondItem="bT5-gp-Bwr" secondAttribute="centerY" id="P8j-4L-4wz"/>
-                                                <constraint firstAttribute="trailing" secondItem="DXI-VF-F7V" secondAttribute="trailing" constant="8" id="Ui7-Ed-Uy9"/>
-                                                <constraint firstAttribute="bottom" secondItem="YUH-Hp-jII" secondAttribute="bottom" constant="18" id="ebx-6F-VaL"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -573,7 +543,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="いろいろ" id="fWd-PZ-3Nc"/>
                     <connections>
-                        <outlet property="aboutRestoreImage" destination="YUH-Hp-jII" id="Gl3-8Q-dk4"/>
                         <outlet property="changeThemeImage" destination="Dr9-d1-ydn" id="qic-BF-A9G"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
@@ -829,7 +798,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="settings-about-restore" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
         <image name="settings-theme" width="24" height="24"/>
