@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -827,113 +826,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYN-Hr-SZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2420" y="3335"/>
-        </scene>
-        <!--Basic Navigation Controller-->
-        <scene sceneID="sex-rw-s7j">
-            <objects>
-                <navigationController storyboardIdentifier="AboutRestoreNavigationController" id="nMg-Aa-eDg" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TnE-x2-el8" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="B4t-5e-FB4" kind="relationship" relationship="rootViewController" id="1Ce-oK-YSb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EdV-9M-zSs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2420" y="4050"/>
-        </scene>
-        <!--データ引き継ぎ-->
-        <scene sceneID="SxN-7x-vft">
-            <objects>
-                <viewController id="B4t-5e-FB4" customClass="AboutRestoreViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MPv-JO-o5k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-yf-Hbs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ood-4d-51Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="258.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxp-FV-2pW" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="359" height="134"/>
-                                                <string key="text">うちカク！のユーザーデータ（材料の在庫状況、追加・編集したレシピ、登録した写真など）は、全てあなたのデバイス内に保存されています。
-
-機種変更などにより別のiOSデバイスにデータを転送したい場合は、他のアプリと同様、古いデバイスをバックアップし、新しいデバイスへ復元してください。具体的な方法はApple公式にて最新の情報をご確認ください。</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データをバックアップせずに古いデバイスを破棄した場合は復元できませんのでご注意ください！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-5q-QBF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="209" width="359" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbc-H0-BPE">
-                                                <rect key="frame" x="132.5" y="158" width="110" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="5XV-GS-0n0"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="trM-i2-t4A"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Apple公式へ"/>
-                                                <connections>
-                                                    <action selector="appleLinkButtonTapped:" destination="B4t-5e-FB4" eventType="touchUpInside" id="LyM-vj-0HA"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="1OV-5q-QBF" firstAttribute="top" secondItem="Rbc-H0-BPE" secondAttribute="bottom" constant="16" id="0Cb-45-Ace"/>
-                                            <constraint firstAttribute="trailing" secondItem="1OV-5q-QBF" secondAttribute="trailing" constant="8" id="0kN-kK-umI"/>
-                                            <constraint firstAttribute="trailing" secondItem="lxp-FV-2pW" secondAttribute="trailing" constant="8" id="2di-qh-sQe"/>
-                                            <constraint firstAttribute="bottom" secondItem="1OV-5q-QBF" secondAttribute="bottom" constant="16" id="FQW-Nf-MHi"/>
-                                            <constraint firstItem="lxp-FV-2pW" firstAttribute="top" secondItem="Ood-4d-51Q" secondAttribute="top" constant="8" id="U2Z-2S-x7I"/>
-                                            <constraint firstItem="Rbc-H0-BPE" firstAttribute="top" secondItem="lxp-FV-2pW" secondAttribute="bottom" constant="16" id="a4C-Ve-72C"/>
-                                            <constraint firstItem="Rbc-H0-BPE" firstAttribute="centerX" secondItem="Ood-4d-51Q" secondAttribute="centerX" id="bbh-Wx-a9D"/>
-                                            <constraint firstItem="lxp-FV-2pW" firstAttribute="leading" secondItem="Ood-4d-51Q" secondAttribute="leading" constant="8" id="hct-cW-WYD"/>
-                                            <constraint firstItem="1OV-5q-QBF" firstAttribute="leading" secondItem="Ood-4d-51Q" secondAttribute="leading" constant="8" id="l55-9Z-AId"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Ood-4d-51Q" secondAttribute="trailing" id="ELT-ys-fr6"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ood-4d-51Q" secondAttribute="bottom" id="ZbD-Zx-cze"/>
-                                    <constraint firstItem="Ood-4d-51Q" firstAttribute="top" secondItem="kGC-yf-Hbs" secondAttribute="top" id="ewG-dG-ETa"/>
-                                    <constraint firstItem="Ood-4d-51Q" firstAttribute="leading" secondItem="kGC-yf-Hbs" secondAttribute="leading" id="yro-az-5Qa"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="kGC-yf-Hbs" firstAttribute="leading" secondItem="vEv-WX-tt5" secondAttribute="leading" id="RTI-fm-a8P"/>
-                            <constraint firstItem="Ood-4d-51Q" firstAttribute="width" secondItem="MPv-JO-o5k" secondAttribute="width" id="bDj-HO-SIz"/>
-                            <constraint firstItem="kGC-yf-Hbs" firstAttribute="top" secondItem="vEv-WX-tt5" secondAttribute="top" id="kYQ-mP-0tQ"/>
-                            <constraint firstItem="vEv-WX-tt5" firstAttribute="bottom" secondItem="kGC-yf-Hbs" secondAttribute="bottom" id="s6i-Xv-3mm"/>
-                            <constraint firstItem="vEv-WX-tt5" firstAttribute="trailing" secondItem="kGC-yf-Hbs" secondAttribute="trailing" id="ztA-mi-mi0"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="vEv-WX-tt5"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="データ引き継ぎ" id="Rxc-r6-V33">
-                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="11W-rv-3oq">
-                            <connections>
-                                <action selector="closeButtonTapped:" destination="B4t-5e-FB4" id="bkY-Yj-bPh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="appleLinkButton" destination="Rbc-H0-BPE" id="LxH-pL-5sb"/>
-                        <outlet property="backgroundView" destination="Ood-4d-51Q" id="BHc-Vs-xhI"/>
-                        <outlet property="scrollView" destination="kGC-yf-Hbs" id="mbd-Ef-bcZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o0h-yd-gG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1604" y="4049"/>
         </scene>
     </scenes>
     <resources>

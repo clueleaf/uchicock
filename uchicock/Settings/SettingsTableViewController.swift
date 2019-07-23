@@ -8,18 +8,14 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
+class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!
     @IBOutlet weak var changeThemeImage: UIImageView!
-    @IBOutlet weak var aboutRestoreImage: UIImageView!
     
     let selectedCellBackgroundView = UIView()
-    var selectedIndexPath: IndexPath? = nil
 
-    let interactor = Interactor()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -30,7 +26,6 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
         introductionImage.image = introductionImage.image!.withRenderingMode(.alwaysTemplate)
         recoverImage.image = recoverImage.image!.withRenderingMode(.alwaysTemplate)
         changeThemeImage.image = changeThemeImage.image!.withRenderingMode(.alwaysTemplate)
-        aboutRestoreImage.image = aboutRestoreImage.image!.withRenderingMode(.alwaysTemplate)
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -38,10 +33,6 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupVC()
-    }
-    
-    private func setupVC(){
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         tableView.backgroundColor = Style.basicBackgroundColor
@@ -49,26 +40,17 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
         introductionImage.tintColor = Style.secondaryColor
         recoverImage.tintColor = Style.secondaryColor
         changeThemeImage.tintColor = Style.secondaryColor
-        aboutRestoreImage.tintColor = Style.secondaryColor
         
-        tableView.reloadData()
-        
-        if let path = selectedIndexPath {
-            tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.deselectRow(at: path, animated: true)
-            }
-            self.selectedIndexPath = nil
-        }
+        tableView.reloadData()        
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -83,18 +65,6 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
             performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
         case 2:
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
-        case 3:
-            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-            let nvc = storyboard.instantiateViewController(withIdentifier: "AboutRestoreNavigationController") as! UINavigationController
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
-            let vc = nvc.visibleViewController as! AboutRestoreViewController
-            vc.onDoneBlock = {
-                self.setupVC()
-            }
-            vc.interactor = interactor
-            self.selectedIndexPath = indexPath
-            present(nvc, animated: true)
         default: break
         }
     }
@@ -105,20 +75,6 @@ class SettingsTableViewController: UITableViewController, UIViewControllerTransi
         cell.selectedBackgroundView = selectedCellBackgroundView
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
-    }
-    
-    // MARK: - UIViewControllerTransitioningDelegate
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
-        return pc
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissModalAnimator()
-    }
-    
-    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
     }
     
     // MARK: - Navigation
