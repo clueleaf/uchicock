@@ -638,6 +638,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
             transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
+            // 逆引き画面の材料選択から戻った後のEmptyDataSetの文字の高さを正しくするために必要
+            setTableBackgroundView()
+            
             self.recipeTableView.flashScrollIndicators()
         }
         clearButton.isEnabled = true
@@ -938,6 +941,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         transitioningSection1 = false
         tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
         
+        // 逆引き画面の材料選択から戻った後のEmptyDataSetの文字の高さを正しくするために必要
+        setTableBackgroundView()
+
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
         self.recipeTableView.flashScrollIndicators()
