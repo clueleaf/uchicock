@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */; };
+		9B03D38F22FD825F00E2AB86 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */; };
+		9B03D39122FD827400E2AB86 /* PullToRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */; };
+		9B03D39322FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */; };
 		9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */; };
 		9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
@@ -95,6 +98,9 @@
 /* Begin PBXFileReference section */
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.release.xcconfig"; sourceTree = "<group>"; };
+		9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = PullToRefresh/PullToRefresh.swift; sourceTree = "<group>"; };
+		9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderView.swift; path = PullToRefresh/PullToRefreshHeaderView.swift; sourceTree = "<group>"; };
+		9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderAnimator.swift; path = PullToRefresh/PullToRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
 		9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderTableViewController.swift; path = IngredientDetail/ReminderTableViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -209,6 +215,16 @@
 				95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9B03D38D22FD823200E2AB86 /* PullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */,
+				9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */,
+				9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */,
+			);
+			name = PullToRefresh;
 			sourceTree = "<group>";
 		};
 		9B1638BB22A7E17000B7C3A7 /* Custom */ = {
@@ -360,6 +376,7 @@
 				9B1638BB22A7E17000B7C3A7 /* Custom */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
+				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
@@ -591,7 +608,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-uchicock/Pods-uchicock-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -599,7 +615,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -649,6 +664,7 @@
 				9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */,
 				9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */,
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
+				9B03D39122FD827400E2AB86 /* PullToRefreshHeaderView.swift in Sources */,
 				9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */,
 				9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
@@ -665,8 +681,10 @@
 				9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */,
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */,
+				9B03D38F22FD825F00E2AB86 /* PullToRefresh.swift in Sources */,
 				9BD91A5922BD04930088C146 /* Interactor.swift in Sources */,
 				9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */,
+				9B03D39322FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,

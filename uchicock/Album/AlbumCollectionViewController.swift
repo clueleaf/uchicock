@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import MJRefresh
 
 class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate {
 
@@ -17,7 +16,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
-    let header = MJRefreshNormalHeader()
     
     let queue = DispatchQueue(label: "queue")
     let leastWaitTime = 0.15
@@ -59,13 +57,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         recipeNameBarButton.image = UIImage(named: "album-name-off")
         albumFilterBarButton.image = UIImage(named: "album-filter-off")
         
-        header.setRefreshingTarget(self, refreshingAction: #selector(AlbumCollectionViewController.refresh))
-        header.lastUpdatedTimeLabel.isHidden = true
-        header.setTitle("引っ張ってシャッフル", for: MJRefreshState.idle)
-        header.setTitle("離すとシャッフル", for: MJRefreshState.pulling)
-        header.setTitle("シャッフル中...", for: MJRefreshState.refreshing)
-        collectionView!.mj_header = header
-
         self.navigationItem.title = "アルバム"
     }
     
@@ -125,10 +116,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setupVC(){
-        self.collectionView!.backgroundColor = Style.basicBackgroundColor
-        header.stateLabel.textColor = Style.labelTextColor
-        self.collectionView!.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        
+        self.collectionView.backgroundColor = Style.basicBackgroundColor
+        self.collectionView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.collectionView.refreshHeader.removeRefreshHeader()
+        self.collectionView.refreshHeader.addPullToRefresh {
+            [unowned self] in
+            self.refresh()
+            self.collectionView.refreshHeader.stopPullToRefresh()
+        }
+
         queue.async {
             self.loadFilterUserDefaults()
             DispatchQueue.main.async{
@@ -136,7 +132,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
             self.filterRecipeBasicList()
             DispatchQueue.main.async{
-                self.collectionView!.reloadData()
+                self.collectionView.reloadData()
                 self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
                 if self.recipeBasicList.count == 0{
                     self.noItemText = "写真が登録されたレシピはありません"
@@ -251,11 +247,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    @objc func refresh(){
-        self.collectionView!.mj_header.beginRefreshing()
+    private func refresh(){
         recipeBasicList.shuffle()
         filterRecipeBasicList()
-        self.collectionView!.reloadData()
+        self.collectionView.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
             self.noItemText = "写真が登録されたレシピはありません"
@@ -263,7 +258,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
         }
         self.setCollectionBackgroundView()
-        self.collectionView!.mj_header.endRefreshing()
     }
     
     // MARK: UICollectionView
@@ -381,15 +375,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             recipeNameBarButton.image = UIImage(named: "album-name-off")
             showNameFlag = false
             animationFlag = true
-            self.collectionView!.reloadData()
-            self.collectionView!.layoutIfNeeded()
+            self.collectionView.reloadData()
+            self.collectionView.layoutIfNeeded()
             animationFlag = false
         }else{
             recipeNameBarButton.image = UIImage(named: "album-name-on")
             showNameFlag = true
             animationFlag = true
-            self.collectionView!.reloadData()
-            self.collectionView!.layoutIfNeeded()
+            self.collectionView.reloadData()
+            self.collectionView.layoutIfNeeded()
             animationFlag = false
         }
     }
@@ -413,7 +407,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
             self.reloadRecipeList()
             self.filterRecipeBasicList()
-            self.collectionView!.reloadData()
+            self.collectionView.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません"
@@ -425,7 +419,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
             self.recipeBasicList.shuffle()
             self.filterRecipeBasicList()
-            self.collectionView!.reloadData()
+            self.collectionView.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません"

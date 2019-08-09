@@ -890,8 +890,7 @@ struct Style{
     }
     
     static private func customizeActivityIndicatorView(){
-        // MJRefreshのぐるぐるに必要
-        UIActivityIndicatorView.appearance().color = labelTextColor
+        PullToRefreshActivityIndicatorView.appearance().color = labelTextColor
     }
 
 }

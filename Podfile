@@ -5,7 +5,6 @@ target 'uchicock' do
     pod 'RealmSwift'
     pod 'SVProgressHUD'
     pod 'M13Checkbox'
-    pod 'MJRefresh'
 end
 
 post_install do | installer |

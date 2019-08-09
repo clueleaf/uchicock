@@ -1,6 +1,5 @@
 PODS:
   - M13Checkbox (3.4.0)
-  - MJRefresh (3.2.0)
   - Realm (3.17.1):
     - Realm/Headers (= 3.17.1)
   - Realm/Headers (3.17.1)
@@ -10,25 +9,22 @@ PODS:
 
 DEPENDENCIES:
   - M13Checkbox
-  - MJRefresh
   - RealmSwift
   - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - M13Checkbox
-    - MJRefresh
     - Realm
     - RealmSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
-  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   Realm: c204f1a890f07dea43b14132a6aad118c054b8f2
   RealmSwift: 4d3c9233544b9cd08a8913e0872b9038eb99b054
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 216986ecbc10cf379aa75a6a07a2117376d4ee1b
+PODFILE CHECKSUM: 133afe9095ab232e5717ffb9e8cec3d6b7ae9a6a
 
 COCOAPODS: 1.5.3
