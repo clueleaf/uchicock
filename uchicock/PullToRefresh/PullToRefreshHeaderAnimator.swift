@@ -122,7 +122,7 @@ open class PullToRefreshHeaderAnimator: UIView {
         UIView.performWithoutAnimation {
             titleLabel.sizeToFit()
             titleLabel.center = CGPoint.init(x: w / 2.0, y: h / 2.0)
-            indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 16.0, y: h / 2.0)
+            indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 20.0, y: h / 2.0)
             imageView.frame = CGRect.init(x: titleLabel.frame.origin.x - 32.0, y: (h - 24.0) / 2.0, width: 24.0, height: 24.0)
         }
     }
