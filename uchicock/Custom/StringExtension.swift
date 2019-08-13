@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
+import UIKit
+
 extension String {
     func katakana() -> String {
         var str = ""

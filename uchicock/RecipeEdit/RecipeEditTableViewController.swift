@@ -566,7 +566,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC?.recipeId = newRecipe.id
                         newRecipe.updateShortageNum()
-                        SVProgressHUD.showSuccess(withStatus: "レシピを登録しました")
+                        ProgressHUD.showSuccess(with: "レシピを登録しました", duration: 2.0)
                     }
                     if detailVC == nil{
                         self.dismiss(animated: true, completion: nil)
@@ -635,7 +635,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC?.recipeId = recipe.id
                         recipe.updateShortageNum()
-                        SVProgressHUD.showSuccess(withStatus: "レシピを保存しました")
+                        ProgressHUD.showSuccess(with: "レシピを保存しました", duration: 2.0)
                     }
                     if detailVC == nil{
                         self.dismiss(animated: true, completion: nil)

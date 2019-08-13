@@ -262,7 +262,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
-                            SVProgressHUD.show(withStatus: "復元中...")
+                            ProgressHUD.show(with: "復元中...")
                             self.queue.async {
                                 self.waitAtLeast(self.leastWaitTime) {
                                     for i in 0..<self.recoverableSampleRecipeList.count {
@@ -271,7 +271,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                                     self.recover()
                                 }
                                 DispatchQueue.main.async{
-                                    SVProgressHUD.showSuccess(withStatus: "復元が完了しました")
+                                    ProgressHUD.showSuccess(with: "復元が完了しました", duration: 2.0)
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             }
@@ -416,13 +416,13 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
-                    SVProgressHUD.show(withStatus: "復元中...")
+                    ProgressHUD.show(with: "復元中...")
                     self.queue.async {
                         self.waitAtLeast(self.leastWaitTime) {
                             self.recover()
                         }
                         DispatchQueue.main.async{
-                            SVProgressHUD.showSuccess(withStatus: "復元が完了しました")
+                            ProgressHUD.showSuccess(with: "復元が完了しました", duration: 2.0)
                             self.dismiss(animated: true, completion: nil)
                         }
                     }

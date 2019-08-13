@@ -88,6 +88,8 @@
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BF53ECF22B9458400BF22D5 /* RecipeSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
+		9BF951A82302C6C600C6A1CA /* IndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */; };
+		9BF951A92302C6C600C6A1CA /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */; };
 		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
 		9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE19C1E979FA500546B47 /* Settings.storyboard */; };
@@ -165,7 +167,6 @@
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BC9A31E1C783CAA0031F631 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uchicock-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BCC35A722B8DFE500389FD5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeSearchViewController.swift; path = RecipeList/RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		9BD1211B22BD5DD90096E674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientRecommend.storyboard; sourceTree = "<group>"; };
 		9BD1211D22BD5E260096E674 /* IngredientRecommendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewController.swift; path = IngredientList/IngredientRecommendTableViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +186,8 @@
 		9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BF53ECE22B9458400BF22D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeSearch.storyboard; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
+		9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndefiniteAnimatedView.swift; path = ProgressHUD/IndefiniteAnimatedView.swift; sourceTree = "<group>"; };
+		9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressHUD.swift; path = ProgressHUD/ProgressHUD.swift; sourceTree = "<group>"; };
 		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
 		9BFCE19D1E979FA500546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -377,11 +380,11 @@
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
 				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
+				9BF951A52302C68000C6A1CA /* ProgressHUD */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
-				9BCB2DDF1CC91A1E00E8ED0E /* uchicock-Bridging-Header.h */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";
@@ -440,6 +443,15 @@
 				9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */,
 			);
 			name = IngredientDetail;
+			sourceTree = "<group>";
+		};
+		9BF951A52302C68000C6A1CA /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */,
+				9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */,
+			);
+			name = ProgressHUD;
 			sourceTree = "<group>";
 		};
 		9BFCE19F1E97A05A00546B47 /* Storyboards */ = {
@@ -610,14 +622,12 @@
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -663,11 +673,13 @@
 				9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */,
 				9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */,
 				9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */,
+				9BF951A92302C6C600C6A1CA /* ProgressHUD.swift in Sources */,
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
 				9B03D39122FD827400E2AB86 /* PullToRefreshHeaderView.swift in Sources */,
 				9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */,
 				9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
+				9BF951A82302C6C600C6A1CA /* IndefiniteAnimatedView.swift in Sources */,
 				9B70B09122B68533008A5591 /* RecipeTableViewCell.swift in Sources */,
 				9BD91A6222BD3A840088C146 /* StyleTipViewController.swift in Sources */,
 				9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */,
@@ -928,7 +940,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -951,7 +963,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.kou.uchicock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "uchicock/uchicock-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

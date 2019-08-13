@@ -102,7 +102,7 @@ class ReminderTableViewController: UITableViewController {
         
         do {
             try eventStore.save(reminder, commit: true)
-            SVProgressHUD.showSuccess(withStatus: "リマインダーへ登録しました")
+            ProgressHUD.showSuccess(with: "リマインダーへ登録しました", duration: 2.0)
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async {
@@ -122,7 +122,7 @@ class ReminderTableViewController: UITableViewController {
         
         do {
             try eventStore.save(event, span: .thisEvent)
-            SVProgressHUD.showSuccess(withStatus: "カレンダーへ登録しました")
+            ProgressHUD.showSuccess(with: "カレンダーへ登録しました", duration: 2.0)
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async{

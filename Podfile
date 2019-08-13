@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'uchicock' do
     pod 'RealmSwift'
-    pod 'SVProgressHUD'
     pod 'M13Checkbox'
 end
 

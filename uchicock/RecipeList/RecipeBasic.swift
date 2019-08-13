@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
+import UIKit
+
 struct RecipeBasic{
     var id : String
     var name : String

@@ -804,9 +804,9 @@ struct Style{
         customizeActivityIndicatorView()
         customizeLabel()
         if isDark{
-            SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.light)
+            ProgressHUD.set(defaultStyle: .light)
         }else{
-            SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+            ProgressHUD.set(defaultStyle: .dark)
         }
     }
     

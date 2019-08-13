@@ -176,7 +176,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     newIngredient.memo = memo.text
                     try! realm.write {
                         realm.add(newIngredient)
-                        SVProgressHUD.showSuccess(withStatus: "材料を登録しました")
+                        ProgressHUD.showSuccess(with: "材料を登録しました", duration: 2.0)
                     }
                     detailVC?.ingredientId = newIngredient.id
                     if detailVC == nil{
@@ -202,7 +202,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                         for ri in ingredient.recipeIngredients{
                             ri.recipe.updateShortageNum()
                         }
-                        SVProgressHUD.showSuccess(withStatus: "材料を保存しました")
+                        ProgressHUD.showSuccess(with: "材料を保存しました", duration: 2.0)
                     }
                     detailVC?.ingredientId = ingredient.id
                     if detailVC == nil{

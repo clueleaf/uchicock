@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Style.loadTheme()
-        setSVProgressHUD()
         
         let manager = FileManager()
         let documentDir: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -207,11 +206,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func setSVProgressHUD(){
-        SVProgressHUD.setMinimumDismissTimeInterval(2.0)
-        SVProgressHUD.setMinimumSize(CGSize(width: 150, height: 100))
-    }
-    
     func applicationWillResignActive(_ application: UIApplication) {
     }
 

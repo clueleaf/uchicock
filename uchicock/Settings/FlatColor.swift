@@ -6,6 +6,8 @@
 //  Copyright © 2019 Kou. All rights reserved.
 //
 
+import UIKit
+
 struct FlatColor{
     static let black = UIColor(hue: 0/360, saturation: 0/100, brightness: 17/100, alpha: 1)
     static let blackDark = UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1)
