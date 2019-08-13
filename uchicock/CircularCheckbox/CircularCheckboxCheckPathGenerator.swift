@@ -1,6 +1,6 @@
 //
-//  M13CheckboxCheckPathGenerator.swift
-//  M13Checkbox
+//  CircularCheckboxCheckPathGenerator.swift
+//  CircularCheckbox
 //
 //  Created by McQuilkin, Brandon on 10/6/16.
 //  Copyright © 2016 Brandon McQuilkin. All rights reserved.
@@ -13,7 +13,23 @@
 
 import UIKit
 
-internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
+internal class CircularCheckboxCheckPathGenerator {
+    
+    //----------------------------
+    // MARK: - Properties
+    //----------------------------
+    
+    /// The maximum width or height the path will be generated with.
+    var size: CGFloat = 0.0
+    
+    /// The line width of the created checkmark.
+    var checkmarkLineWidth: CGFloat = 1.0
+    
+    /// The line width of the created box.
+    var boxLineWidth: CGFloat = 1.0
+    
+    /// The corner radius of the box.
+    var cornerRadius: CGFloat = 3.0
     
     //----------------------------
     // MARK: - Structures
@@ -55,52 +71,16 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
     /// The intersection point between the extended long checkmark arm, and the box.
     var checkmarkLongArmBoxIntersectionPoint: CGPoint {
         
-        let cornerRadius: CGFloat = self.cornerRadius
         let boxLineWidth: CGFloat = self.boxLineWidth
         let size: CGFloat = self.size
         
         let radius: CGFloat = (size - boxLineWidth) / 2.0
         let theta:CGFloat = checkmarkProperties.longArmBoxIntersectionAngle
         
-        if boxType == .circle {
-            // Basic trig to get the location of the point on the circle.
-            let x: CGFloat = (size / 2.0) + (radius * cos(theta))
-            let y: CGFloat = (size / 2.0) - (radius * sin(theta))
-            return CGPoint(x: x, y: y)
-        } else {
-            // We need to differentiate between the box edges and the rounded corner.
-            let lineOffset: CGFloat = boxLineWidth / 2.0
-            let circleX: CGFloat = size - lineOffset - cornerRadius
-            let circleY: CGFloat = 0.0 + lineOffset + cornerRadius
-            let edgeX: CGFloat = (size / 2.0) + (0.5 * (size - boxLineWidth) * (1.0 / tan(theta)))
-            let edgeY: CGFloat = (size / 2.0) - (0.5 * (size - boxLineWidth) * tan(theta));
-            
-            if edgeX <= circleX {
-                // On the top edge.
-                return CGPoint(x: edgeX, y: lineOffset)
-            } else if edgeY >= circleY {
-                // On the right edge.
-                let x: CGFloat = size - lineOffset
-                return CGPoint(x: x, y: edgeY)
-            } else {
-                // On the corner
-                let cos2Theta: CGFloat = cos(2.0 * theta)
-                let sin2Theta: CGFloat = sin(2.0 * theta)
-                let powC: CGFloat = pow((-2.0 * cornerRadius) + size, 2.0)
-                
-                let a: CGFloat = size * (3.0 + cos2Theta + sin2Theta)
-                let b: CGFloat = -2.0 * cornerRadius * (cos(theta) + sin(theta))
-                let c: CGFloat = (((4.0 * cornerRadius) - size) * size) + (powC * sin2Theta)
-                let d: CGFloat = size * cos(theta) * (cos(theta) - sin(theta))
-                let e: CGFloat = 2.0 * cornerRadius * sin(theta) * (cos(theta) + sin(theta))
-                
-                let x: CGFloat = 0.25 * (a + (2.0 * (b + sqrt(c)) * cos(theta))) - boxLineWidth
-                let y: CGFloat = 0.50 * (d + e - (sqrt(c) * sin(theta))) + boxLineWidth
-                
-                
-                return CGPoint(x: x, y: y)
-            }
-        }
+        // Basic trig to get the location of the point on the circle.
+        let x: CGFloat = (size / 2.0) + (radius * cos(theta))
+        let y: CGFloat = (size / 2.0) - (radius * sin(theta))
+        return CGPoint(x: x, y: y)
     }
     
     var checkmarkLongArmEndPoint: CGPoint {
@@ -114,7 +94,7 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
         let midPoint: CGPoint = checkmarkMiddlePoint
         let x1: CGFloat = midPoint.x
         let y1: CGFloat = midPoint.y
-        let r: CGFloat = boxType == .circle ? size * checkmarkProperties.longArmRadius.circle : size * checkmarkProperties.longArmRadius.box
+        let r: CGFloat = size * checkmarkProperties.longArmRadius.circle
         
         let a1: CGFloat = (size * pow(x1, 2.0)) - (2.0 * size * x1 * x2) + (size * pow(x2, 2.0)) + (size * x1 * y1) - (size * x2 * y1)
         let a2: CGFloat = (2.0 * x2 * pow(y1, 2.0)) - (size * x1 * y2) + (size * x2 * y2) - (2.0 * x1 * y1 * y2) - (2.0 * x2 * y1 * y2) + (2.0 * x1 * pow(y2, 2.0))
@@ -158,16 +138,16 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
     }
     
     var checkmarkMiddlePoint: CGPoint {
-        let r: CGFloat = boxType == .circle ? checkmarkProperties.middlePointRadius.circle : checkmarkProperties.middlePointRadius.box
-        let o: CGFloat = boxType == .circle ? checkmarkProperties.middlePointOffset.circle : checkmarkProperties.middlePointOffset.box
+        let r: CGFloat = checkmarkProperties.middlePointRadius.circle
+        let o: CGFloat = checkmarkProperties.middlePointOffset.circle
         let x: CGFloat = (size / 2.0) + (size * o)
         let y: CGFloat = (size / 2.0 ) + (size * r)
         return CGPoint(x: x, y: y)
     }
     
     var checkmarkShortArmEndPoint: CGPoint {
-        let r: CGFloat = boxType == .circle ? checkmarkProperties.shortArmRadius.circle : checkmarkProperties.shortArmRadius.box
-        let o: CGFloat = boxType == .circle ? checkmarkProperties.shortArmOffset.circle : checkmarkProperties.shortArmOffset.box
+        let r: CGFloat = checkmarkProperties.shortArmRadius.circle
+        let o: CGFloat = checkmarkProperties.shortArmOffset.circle
         let x: CGFloat = (size / 2.0) - (size * r)
         let y: CGFloat = (size / 2.0) + (size * o)
         return CGPoint(x: x, y: y)
@@ -177,103 +157,45 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
     // MARK: - Box Paths
     //----------------------------
     
-    override func pathForCircle() -> UIBezierPath? {
+    /**
+     Creates a path object for the box.
+     - returns: A `UIBezierPath` representing the box.
+     */
+    final func pathForBox() -> UIBezierPath? {
         let radius = (size - boxLineWidth) / 2.0
         // Create a circle that starts in the top right hand corner.
         return UIBezierPath(arcCenter: CGPoint(x: size / 2.0, y: size / 2.0),
                             radius: radius,
-                            startAngle: -checkmarkProperties.longArmBoxIntersectionAngle,
-                            endAngle: CGFloat(2 * Double.pi) - checkmarkProperties.longArmBoxIntersectionAngle,
+                            startAngle: -(CGFloat.pi / 2),
+                            endAngle: CGFloat((2 * Double.pi) - (Double.pi / 2)),
                             clockwise: true)
-    }
-    
-    override func pathForRoundedRect() -> UIBezierPath? {
-        let path = UIBezierPath()
-        let lineOffset: CGFloat = boxLineWidth / 2.0
-        
-        let trX: CGFloat = size - lineOffset - cornerRadius
-        let trY: CGFloat = 0.0 + lineOffset + cornerRadius
-        let tr = CGPoint(x: trX, y: trY)
-        
-        let brX: CGFloat = size - lineOffset - cornerRadius
-        let brY: CGFloat = size - lineOffset - cornerRadius
-        let br = CGPoint(x: brX, y: brY)
-        
-        let blX: CGFloat = 0.0 + lineOffset + cornerRadius
-        let blY: CGFloat = size - lineOffset - cornerRadius
-        let bl = CGPoint(x: blX, y: blY)
-        
-        let tlX: CGFloat = 0.0 + lineOffset + cornerRadius
-        let tlY: CGFloat = 0.0 + lineOffset + cornerRadius
-        let tl = CGPoint(x: tlX, y: tlY)
-        
-        // Start in the top right corner.
-        let offset: CGFloat = ((cornerRadius * sqrt(2)) / 2.0)
-        let trXOffset: CGFloat = tr.x + offset
-        let trYOffset: CGFloat = tr.y - offset
-        path.move(to: CGPoint(x: trXOffset, y: trYOffset))
-        // Bottom of top right arc.12124
-        if cornerRadius != 0 {
-            path.addArc(withCenter: tr,
-                        radius: cornerRadius,
-                        startAngle: -(CGFloat.pi / 4),
-                        endAngle: 0.0,
-                        clockwise: true)
-        }
-        // Right side.
-        let brXCr: CGFloat = br.x + cornerRadius
-        path.addLine(to: CGPoint(x: brXCr, y: br.y))
-        
-        // Bottom right arc.
-        if cornerRadius != 0 {
-            path.addArc(withCenter: br,
-                        radius: cornerRadius,
-                        startAngle: 0.0,
-                        endAngle: CGFloat.pi / 2,
-                        clockwise: true)
-        }
-        // Bottom side.
-        let blYCr: CGFloat = bl.y + cornerRadius
-        path.addLine(to: CGPoint(x: bl.x , y: blYCr))
-        // Bottom left arc.
-        if cornerRadius != 0 {
-            path.addArc(withCenter: bl,
-                        radius: cornerRadius,
-                        startAngle: CGFloat.pi / 2,
-                        endAngle: CGFloat.pi,
-                        clockwise: true)
-        }
-        // Left side.
-        let tlXCr: CGFloat = tl.x - cornerRadius
-        path.addLine(to: CGPoint(x: tlXCr, y: tl.y))
-        // Top left arc.
-        if cornerRadius != 0 {
-            path.addArc(withCenter: tl,
-                        radius: cornerRadius,
-                        startAngle: CGFloat.pi,
-                        endAngle: CGFloat(CGFloat.pi + (CGFloat.pi / 2)),
-                        clockwise: true)
-        }
-        // Top side.
-        let trYCr: CGFloat = tr.y - cornerRadius
-        path.addLine(to: CGPoint(x: tr.x, y: trYCr))
-        // Top of top right arc
-        if cornerRadius != 0 {
-            path.addArc(withCenter: tr,
-                        radius: cornerRadius,
-                        startAngle: CGFloat(CGFloat.pi + (CGFloat.pi / 2)),
-                        endAngle: CGFloat(CGFloat.pi + (CGFloat.pi / 2) + (CGFloat.pi / 4)),
-                        clockwise: true)
-        }
-        path.close()
-        return path
     }
     
     //----------------------------
     // MARK: - Mark Generation
     //----------------------------
     
-    override func pathForMark() -> UIBezierPath? {
+    func pathForMark(_ state: CircularCheckbox.CheckState?) -> UIBezierPath? {
+        
+        guard let state = state else {
+            return nil
+        }
+        
+        switch state {
+        case .unchecked:
+            return pathForUnselectedMark()
+        case .checked:
+            return pathForMark()
+        case .mixed:
+            return pathForMixedMark()
+        }
+    }
+    
+    func pathForUnselectedMark() -> UIBezierPath? {
+        return nil
+    }
+    
+    func pathForMark() -> UIBezierPath? {
         let path = UIBezierPath()
         
         path.move(to: checkmarkShortArmEndPoint)
@@ -283,17 +205,7 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
         return path
     }
     
-    override func pathForLongMark() -> UIBezierPath? {
-        let path = UIBezierPath()
-        
-        path.move(to: checkmarkShortArmEndPoint)
-        path.addLine(to: checkmarkMiddlePoint)
-        path.addLine(to: checkmarkLongArmBoxIntersectionPoint)
-        
-        return path
-    }
-    
-    override func pathForMixedMark() -> UIBezierPath? {
+    func pathForMixedMark() -> UIBezierPath? {
         let path = UIBezierPath()
         
         path.move(to: CGPoint(x: size * 0.25, y: size * 0.5))
@@ -301,23 +213,5 @@ internal class M13CheckboxCheckPathGenerator: M13CheckboxPathGenerator {
         path.addLine(to: CGPoint(x: size * 0.75, y: size * 0.5))
         
         return path
-    }
-    
-    override func pathForLongMixedMark() -> UIBezierPath? {
-        let path = UIBezierPath()
-        
-        path.move(to: CGPoint(x: size * 0.25, y: size * 0.5))
-        path.addLine(to: CGPoint(x: size * 0.5, y: size * 0.5))
-        path.addLine(to: CGPoint(x: size - boxLineWidth, y: size * 0.5))
-        
-        return path
-    }
-
-    override func pathForUnselectedMark() -> UIBezierPath? {
-        return nil
-    }
-
-    override func pathForLongUnselectedMark() -> UIBezierPath? {
-        return nil
     }
 }

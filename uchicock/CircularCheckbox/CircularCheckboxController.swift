@@ -1,6 +1,6 @@
 //
-//  M13CheckboxController.swift
-//  M13Checkbox
+//  CircularCheckboxController.swift
+//  CircularCheckbox
 //
 //  Created by McQuilkin, Brandon on 3/18/16.
 //  Copyright © 2016 Brandon McQuilkin. All rights reserved.
@@ -13,20 +13,20 @@
 
 import UIKit
 
-internal class M13CheckboxController {
+internal class CircularCheckboxController {
     
     //----------------------------
     // MARK: - Properties
     //----------------------------
     
     /// The path presets for the manager.
-    var pathGenerator: M13CheckboxPathGenerator = M13CheckboxCheckPathGenerator()
+    var pathGenerator = CircularCheckboxCheckPathGenerator()
     
     /// The animation presets for the manager.
-    var animationGenerator: M13CheckboxAnimationGenerator = M13CheckboxAnimationGenerator()
+    var animationGenerator: CircularCheckboxAnimationGenerator = CircularCheckboxAnimationGenerator()
     
     /// The current state of the checkbox.
-    var state: M13Checkbox.CheckState = DefaultValues.checkState
+    var state: CircularCheckbox.CheckState = .unchecked
     
     /// The current tint color.
     /// - Note: Subclasses should override didSet to update the layers when this value changes.
@@ -47,41 +47,9 @@ internal class M13CheckboxController {
     /// Whether or not to allow morphong between states.
     var enableMorphing: Bool = true
     
-    // The type of mark to display.
-    var markType: M13Checkbox.MarkType {
-        get {
-            return _markType
-        }
-        set {
-            setMarkType(type: newValue, animated: false)
-        }
-    }
-    
-    private var _markType: M13Checkbox.MarkType = DefaultValues.markType
-    
-    func setMarkType(type: M13Checkbox.MarkType, animated: Bool) {
-        guard type != _markType else {
-            return
-        }
-        _setMarkType(type: type, animated: animated)
-        _markType = type
-    }
-    
-    private func _setMarkType(type: M13Checkbox.MarkType, animated: Bool) {
-        var newPathGenerator: M13CheckboxPathGenerator
-        switch type {
-        case .checkmark:
-            newPathGenerator = M13CheckboxCheckPathGenerator()
-        case .radio:
-            newPathGenerator = M13CheckboxRadioPathGenerator()
-        case .addRemove:
-            newPathGenerator = M13CheckboxAddRemovePathGenerator()
-        case .disclosure:
-            newPathGenerator = M13CheckboxDisclosurePathGenerator()
-        }
-        
+    private func _setMarkType(animated: Bool) {
+        let newPathGenerator = CircularCheckboxCheckPathGenerator()
         newPathGenerator.boxLineWidth = pathGenerator.boxLineWidth
-        newPathGenerator.boxType = pathGenerator.boxType
         newPathGenerator.checkmarkLineWidth = pathGenerator.checkmarkLineWidth
         newPathGenerator.cornerRadius = pathGenerator.cornerRadius
         newPathGenerator.size = pathGenerator.size
@@ -125,7 +93,7 @@ internal class M13CheckboxController {
      - parameter fromState: The previous state of the checkbox.
      - parameter toState: The new state of the checkbox.
      */
-    func animate(_ fromState: M13Checkbox.CheckState?, toState: M13Checkbox.CheckState?, completion: (() -> Void)? = nil) {
+    func animate(_ fromState: CircularCheckbox.CheckState?, toState: CircularCheckbox.CheckState?, completion: (() -> Void)? = nil) {
         if let toState = toState {
             state = toState
         }
@@ -148,7 +116,7 @@ internal class M13CheckboxController {
      Reset the layers to be in the given state.
      - parameter state: The new state of the checkbox.
      */
-    func resetLayersForState(_ state: M13Checkbox.CheckState?) {
+    func resetLayersForState(_ state: CircularCheckbox.CheckState?) {
         if let state = state {
             self.state = state
         }

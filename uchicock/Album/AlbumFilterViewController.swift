@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import M13Checkbox
 
 class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
 
@@ -18,29 +17,29 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var favoriteDeselectAllButton: UIButton!
     @IBOutlet weak var favoriteSelectAllButton: UIButton!
-    @IBOutlet weak var favorite0Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite1Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite2Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite3Checkbox: M13Checkbox!
+    @IBOutlet weak var favorite0Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite1Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite2Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite3Checkbox: CircularCheckbox!
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
     @IBOutlet weak var styleDeselectAllButton: UIButton!
     @IBOutlet weak var styleSelectAllButton: UIButton!
-    @IBOutlet weak var styleLongCheckbox: M13Checkbox!
-    @IBOutlet weak var styleShortCheckbox: M13Checkbox!
-    @IBOutlet weak var styleHotCheckbox: M13Checkbox!
-    @IBOutlet weak var styleNoneCheckbox: M13Checkbox!
+    @IBOutlet weak var styleLongCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleShortCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleHotCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleNoneCheckbox: CircularCheckbox!
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
     
     @IBOutlet weak var methodDeselectAllButton: UIButton!
     @IBOutlet weak var methodSelectAllButton: UIButton!
-    @IBOutlet weak var methodBuildCheckbox: M13Checkbox!
-    @IBOutlet weak var methodStirCheckbox: M13Checkbox!
-    @IBOutlet weak var methodShakeCheckbox: M13Checkbox!
-    @IBOutlet weak var methodBlendCheckbox: M13Checkbox!
-    @IBOutlet weak var methodOthersCheckbox: M13Checkbox!
+    @IBOutlet weak var methodBuildCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodStirCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodShakeCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodBlendCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodOthersCheckbox: CircularCheckbox!
     @IBOutlet weak var methodWarningImage: UIImageView!
     @IBOutlet weak var methodWarningLabel: UILabel!
     
@@ -211,8 +210,8 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    // MARK: - M13Checkbox
-    private func initFilterCheckbox(_ checkbox: M13Checkbox, shouldBeChecked: Bool){
+    // MARK: - CircularCheckbox
+    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
         if shouldBeChecked{
             initCheckbox(checkbox, with: .checked)
         }else{
@@ -220,11 +219,9 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func initCheckbox(_ checkbox: M13Checkbox, with checkState: M13Checkbox.CheckState){
+    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
         checkbox.boxLineWidth = 1.0
-        checkbox.markType = .checkmark
-        checkbox.boxType = .circle
-        checkbox.stateChangeAnimation = .fade(.fill)
+        checkbox.stateChangeAnimation = .fade
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)
         if checkState == .mixed{
@@ -235,7 +232,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             checkbox.tintColor = Style.secondaryColor
         }
         checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand(.fill)
+        checkbox.stateChangeAnimation = .expand
         checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
         checkbox.contentHorizontalAlignment = .center
     }
@@ -294,7 +291,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + "filter-others")
     }
     
-    private func setFilterUserDefaults(with checkbox: M13Checkbox, forKey key: String){
+    private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
         let defaults = UserDefaults.standard
         if checkbox.checkState == .checked{
             defaults.set(true, forKey: key)
@@ -307,13 +304,13 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func setCheckboxChecked(_ checkbox: M13Checkbox){
+    private func setCheckboxChecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
     }
     
-    private func setCheckboxUnchecked(_ checkbox: M13Checkbox){
+    private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
@@ -335,19 +332,19 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite0CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite0CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite1CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite1CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite2CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite2CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite3CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite3CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
@@ -367,19 +364,19 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleLongCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleLongCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleShortCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleShortCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
 
-    @IBAction func styleHotCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleHotCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
@@ -401,23 +398,23 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodBuildCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodStirCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodStirCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodShakeCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodShakeCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodBlendCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodBlendCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodOthersCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodOthersCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     

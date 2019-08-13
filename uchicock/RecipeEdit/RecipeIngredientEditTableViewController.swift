@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class RecipeIngredientEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
@@ -17,7 +16,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var suggestTableView: UITableView!
     @IBOutlet weak var amount: CustomTextField!
     @IBOutlet weak var amountSlider: CustomSlider!
-    @IBOutlet weak var option: M13Checkbox!
+    @IBOutlet weak var option: CircularCheckbox!
     @IBOutlet weak var optionDescriptionLabel: UILabel!
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
@@ -60,9 +59,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         amount.layer.borderWidth = 1
         
         option.boxLineWidth = 1.0
-        option.markType = .checkmark
-        option.boxType = .circle
-        option.stateChangeAnimation = .expand(.fill)
+        option.stateChangeAnimation = .expand
         
         if isAddMode == false{
             ingredientName.text = recipeIngredient.ingredientName

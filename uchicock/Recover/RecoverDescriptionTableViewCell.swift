@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import M13Checkbox
 
 class RecoverDescriptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var recoverTarget: M13Checkbox!
-    @IBOutlet weak var nonRecoverTarget: M13Checkbox!
-    @IBOutlet weak var unableRecover: M13Checkbox!
+    @IBOutlet weak var recoverTarget: CircularCheckbox!
+    @IBOutlet weak var nonRecoverTarget: CircularCheckbox!
+    @IBOutlet weak var unableRecover: CircularCheckbox!
     @IBOutlet weak var recoverableNumberLabel: CustomLabel!
     
     var recoverableRecipeNum = 0
@@ -26,27 +25,21 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        recoverTarget.stateChangeAnimation = .expand(.fill)
+        recoverTarget.stateChangeAnimation = .expand
         recoverTarget.isEnabled = false
         recoverTarget.setCheckState(.checked, animated: true)
         recoverTarget.boxLineWidth = 1.0
-        recoverTarget.markType = .checkmark
-        recoverTarget.boxType = .circle
         
-        nonRecoverTarget.stateChangeAnimation = .expand(.fill)
+        nonRecoverTarget.stateChangeAnimation = .expand
         nonRecoverTarget.isEnabled = false
         nonRecoverTarget.setCheckState(.unchecked, animated: true)
         nonRecoverTarget.boxLineWidth = 1.0
-        nonRecoverTarget.markType = .checkmark
-        nonRecoverTarget.boxType = .circle
         
-        unableRecover.stateChangeAnimation = .expand(.fill)
+        unableRecover.stateChangeAnimation = .expand
         unableRecover.isEnabled = false
         unableRecover.setCheckState(.mixed, animated: true)
         unableRecover.tintColor = Style.badgeDisableBackgroundColor
         unableRecover.boxLineWidth = 1.0
-        unableRecover.markType = .checkmark
-        unableRecover.boxType = .circle
 }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -42,8 +42,14 @@
 		9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */; };
 		9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */; };
 		9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B43306022B29C8B0010C89B /* ImageViewerController.xib */; };
+		9B4454E22302D51E00D1458A /* CircularCheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */; };
+		9B4454E32302D51E00D1458A /* CircularCheckboxAnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */; };
+		9B4454E42302D51E00D1458A /* CircularCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */; };
+		9B4454E52302D51E00D1458A /* CircularCheckboxFadeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */; };
+		9B4454E62302D51E00D1458A /* CircularCheckboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */; };
+		9B4454E72302D51E00D1458A /* CircularCheckboxExpandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */; };
+		9B4454E82302D51E00D1458A /* CircularCheckboxCheckPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */; };
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
-		9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */; };
 		9B5A33E322BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */; };
@@ -136,6 +142,13 @@
 		9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalInteractor.swift; path = ImageViewer/ImageViewerDismissalInteractor.swift; sourceTree = "<group>"; };
 		9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerUtil.swift; sourceTree = "<group>"; };
 		9B43306022B29C8B0010C89B /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
+		9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxGestureRecognizer.swift; path = CircularCheckbox/CircularCheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
+		9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxAnimationGenerator.swift; path = CircularCheckbox/CircularCheckboxAnimationGenerator.swift; sourceTree = "<group>"; };
+		9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckbox.swift; path = CircularCheckbox/CircularCheckbox.swift; sourceTree = "<group>"; };
+		9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxFadeController.swift; path = CircularCheckbox/CircularCheckboxFadeController.swift; sourceTree = "<group>"; };
+		9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
+		9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxExpandController.swift; path = CircularCheckbox/CircularCheckboxExpandController.swift; sourceTree = "<group>"; };
+		9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxCheckPathGenerator.swift; path = CircularCheckbox/CircularCheckboxCheckPathGenerator.swift; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewCell.swift; path = IngredientList/IngredientRecommendTableViewCell.swift; sourceTree = "<group>"; };
@@ -203,7 +216,6 @@
 			files = (
 				9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */,
 				9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */,
-				9B55370A1E686C250054D692 /* M13Checkbox.framework in Frameworks */,
 				257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +305,20 @@
 			name = ImageViewer;
 			sourceTree = "<group>";
 		};
+		9B4454DA2302D4DF00D1458A /* CircularCheckbox */ = {
+			isa = PBXGroup;
+			children = (
+				9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */,
+				9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */,
+				9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */,
+				9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */,
+				9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */,
+				9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */,
+				9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */,
+			);
+			name = CircularCheckbox;
+			sourceTree = "<group>";
+		};
 		9B8772851C9D4BA80065A816 /* IngredientEdit */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +404,7 @@
 				9B18128C1CD3BBD600717E4F /* Recover */,
 				9B1638BB22A7E17000B7C3A7 /* Custom */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
+				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
 				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
 				9BF951A52302C68000C6A1CA /* ProgressHUD */,
@@ -619,13 +646,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-uchicock/Pods-uchicock-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -646,6 +671,7 @@
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,
 				9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */,
 				9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */,
+				9B4454E72302D51E00D1458A /* CircularCheckboxExpandController.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
@@ -679,12 +705,16 @@
 				9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */,
 				9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
+				9B4454E32302D51E00D1458A /* CircularCheckboxAnimationGenerator.swift in Sources */,
 				9BF951A82302C6C600C6A1CA /* IndefiniteAnimatedView.swift in Sources */,
+				9B4454E82302D51E00D1458A /* CircularCheckboxCheckPathGenerator.swift in Sources */,
 				9B70B09122B68533008A5591 /* RecipeTableViewCell.swift in Sources */,
 				9BD91A6222BD3A840088C146 /* StyleTipViewController.swift in Sources */,
 				9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */,
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
+				9B4454E62302D51E00D1458A /* CircularCheckboxController.swift in Sources */,
+				9B4454E52302D51E00D1458A /* CircularCheckboxFadeController.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
@@ -694,8 +724,10 @@
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
 				9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */,
 				9B03D38F22FD825F00E2AB86 /* PullToRefresh.swift in Sources */,
+				9B4454E42302D51E00D1458A /* CircularCheckbox.swift in Sources */,
 				9BD91A5922BD04930088C146 /* Interactor.swift in Sources */,
 				9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */,
+				9B4454E22302D51E00D1458A /* CircularCheckboxGestureRecognizer.swift in Sources */,
 				9B03D39322FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,

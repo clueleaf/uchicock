@@ -1,6 +1,6 @@
 //
-//  M13CheckboxSpiralController.swift
-//  M13Checkbox
+//  CircularCheckboxFadeController.swift
+//  CircularCheckbox
 //
 //  Created by McQuilkin, Brandon on 4/1/16.
 //  Copyright © 2016 Brandon McQuilkin. All rights reserved.
@@ -13,7 +13,7 @@
 
 import UIKit
 
-internal class M13CheckboxSpiralController: M13CheckboxController {
+internal class CircularCheckboxFadeController: CircularCheckboxController {
     
     //----------------------------
     // MARK: - Properties
@@ -22,13 +22,19 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
     override var tintColor: UIColor {
         didSet {
             selectedBoxLayer.strokeColor = tintColor.cgColor
-            markLayer.strokeColor = tintColor.cgColor
+            selectedBoxLayer.fillColor = tintColor.cgColor
         }
     }
     
     override var secondaryTintColor: UIColor? {
         didSet {
             unselectedBoxLayer.strokeColor = secondaryTintColor?.cgColor
+        }
+    }
+    
+    override var secondaryCheckmarkTintColor: UIColor? {
+        didSet {
+            markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
         }
     }
     
@@ -41,7 +47,10 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
     
     override init() {
         super.init()
-        
+        sharedSetup()
+    }
+    
+    fileprivate func sharedSetup() {
         // Disable som implicit animations.
         let newActions = [
             "opacity": NSNull(),
@@ -69,8 +78,8 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
         selectedBoxLayer.shouldRasterize = true
         selectedBoxLayer.actions = newActions
         
-        selectedBoxLayer.transform = CATransform3DIdentity
         selectedBoxLayer.fillColor = nil
+        selectedBoxLayer.transform = CATransform3DIdentity
         
         // Setup the checkmark layer.
         markLayer.lineCap = .round
@@ -99,91 +108,35 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
     // MARK: - Animations
     //----------------------------
     
-    override func animate(_ fromState: M13Checkbox.CheckState?, toState: M13Checkbox.CheckState?, completion: (() -> Void)?) {
+    override func animate(_ fromState: CircularCheckbox.CheckState?, toState: CircularCheckbox.CheckState?, completion: (() -> Void)?) {
         super.animate(fromState, toState: toState)
         
         if pathGenerator.pathForMark(toState) == nil && pathGenerator.pathForMark(fromState) != nil {
-            // Temporarily set the path of the checkmark to the long checkmark
-            markLayer.path = pathGenerator.pathForLongMark(fromState)?.reversing().cgPath
-            
-            let checkMorphAnimation = animationGenerator.morphAnimation(pathGenerator.pathForMark(fromState)?.reversing(), toPath: pathGenerator.pathForLongMark(fromState)?.reversing())
-            checkMorphAnimation.fillMode = .backwards
-            checkMorphAnimation.duration = checkMorphAnimation.duration / 4.0
-            checkMorphAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
-            
-            let checkStrokeAnimation = animationGenerator.strokeAnimation(true)
-            checkStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration
-            checkStrokeAnimation.duration = checkStrokeAnimation.duration / 4.0
-            checkStrokeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
-            
-            let boxStrokeAnimation = animationGenerator.strokeAnimation(true)
-            boxStrokeAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration
-            boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2.0
-            boxStrokeAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            
-            let quickOpacityAnimation = animationGenerator.quickOpacityAnimation(true)
-            
-            let checkQuickOpacityAnimation = animationGenerator.quickOpacityAnimation(true)
-            checkQuickOpacityAnimation.duration = 0.001
-            checkQuickOpacityAnimation.beginTime = CACurrentMediaTime() + checkMorphAnimation.duration + checkStrokeAnimation.duration
+            let opacityAnimation = animationGenerator.opacityAnimation(true)
             
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
-                self.resetLayersForState(toState)
+                self.resetLayersForState(self.state)
                 completion?()
             })
             
-            selectedBoxLayer.add(quickOpacityAnimation, forKey: "opacity")
-            markLayer.add(checkMorphAnimation, forKey: "path")
-            markLayer.add(checkStrokeAnimation, forKey: "strokeEnd")
-            markLayer.add(checkQuickOpacityAnimation, forKey: "opacity")
-            selectedBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
-            
-            markLayer.strokeEnd = CGFloat((checkStrokeAnimation.fromValue as! NSNumber).floatValue)
-            markLayer.opacity = (checkQuickOpacityAnimation.fromValue as! NSNumber).floatValue
-            selectedBoxLayer.strokeEnd = CGFloat((checkStrokeAnimation.fromValue as! NSNumber).floatValue)
+            selectedBoxLayer.add(opacityAnimation, forKey: "opacity")
+            markLayer.add(opacityAnimation, forKey: "opacity")
             
             CATransaction.commit()
         } else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
-            // Temporarly set to the long mark.
-            markLayer.path = pathGenerator.pathForLongMark(toState)?.reversing().cgPath
+            markLayer.path = pathGenerator.pathForMark(toState)?.cgPath
             
-            let quickOpacityAnimation = animationGenerator.quickOpacityAnimation(false)
-            
-            let boxStrokeAnimation = animationGenerator.strokeAnimation(false)
-            boxStrokeAnimation.duration = boxStrokeAnimation.duration / 2.0
-            boxStrokeAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
-            
-            let checkQuickOpacityAnimation = animationGenerator.quickOpacityAnimation(false)
-            checkQuickOpacityAnimation.duration = 0.001
-            checkQuickOpacityAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration
-            
-            let checkStrokeAnimation = animationGenerator.strokeAnimation(false)
-            checkStrokeAnimation.duration = checkStrokeAnimation.duration / 4.0
-            checkStrokeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
-            checkStrokeAnimation.fillMode = .forwards
-            checkStrokeAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration
-            
-            let checkMorphAnimation = animationGenerator.morphAnimation(pathGenerator.pathForLongMark(toState)?.reversing(), toPath: pathGenerator.pathForMark(toState)?.reversing())
-            checkMorphAnimation.duration = checkMorphAnimation.duration / 4.0
-            checkMorphAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-            checkMorphAnimation.beginTime = CACurrentMediaTime() + boxStrokeAnimation.duration + checkStrokeAnimation.duration
+            let opacityAnimation = animationGenerator.opacityAnimation(false)
             
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
-                self.resetLayersForState(toState)
+                self.resetLayersForState(self.state)
                 completion?()
             })
             
-            selectedBoxLayer.add(quickOpacityAnimation, forKey: "opacity")
-            selectedBoxLayer.add(boxStrokeAnimation, forKey: "strokeEnd")
-            markLayer.add(checkQuickOpacityAnimation, forKey: "opacity")
-            markLayer.add(checkStrokeAnimation, forKey: "strokeEnd")
-            markLayer.add(checkMorphAnimation, forKey: "path")
-
-            markLayer.strokeEnd = CGFloat((checkStrokeAnimation.fromValue as! NSNumber).floatValue)
-            markLayer.opacity = (checkQuickOpacityAnimation.fromValue as! NSNumber).floatValue
-            markLayer.path = pathGenerator.pathForLongMark(toState)?.reversing().cgPath
+            selectedBoxLayer.add(opacityAnimation, forKey: "opacity")
+            markLayer.add(opacityAnimation, forKey: "opacity")
             
             CATransaction.commit()
         } else {
@@ -202,6 +155,7 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
             
             CATransaction.commit()
         }
+        
     }
     
     //----------------------------
@@ -223,7 +177,7 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
     // MARK: - Display
     //----------------------------
     
-    override func resetLayersForState(_ state: M13Checkbox.CheckState?) {
+    override func resetLayersForState(_ state: CircularCheckbox.CheckState?) {
         super.resetLayersForState(state)
         // Remove all remnant animations. They will interfere with each other if they are not removed before a new round of animations start.
         unselectedBoxLayer.removeAllAnimations()
@@ -233,27 +187,21 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
         // Set the properties for the final states of each necessary property of each layer.
         unselectedBoxLayer.strokeColor = secondaryTintColor?.cgColor
         unselectedBoxLayer.lineWidth = pathGenerator.boxLineWidth
-        unselectedBoxLayer.fillColor = nil
         
         selectedBoxLayer.strokeColor = tintColor.cgColor
         selectedBoxLayer.lineWidth = pathGenerator.boxLineWidth
         
-        markLayer.strokeColor = tintColor.cgColor
+        selectedBoxLayer.fillColor = tintColor.cgColor
+        markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
+
         markLayer.lineWidth = pathGenerator.checkmarkLineWidth
-        markLayer.fillColor = nil
         
         if pathGenerator.pathForMark(state) != nil {
-            selectedBoxLayer.opacity = 1.0
-            selectedBoxLayer.strokeEnd = 1.0
-            
             markLayer.opacity = 1.0
-            markLayer.strokeEnd = 1.0
+            selectedBoxLayer.opacity = 1.0
         } else {
             selectedBoxLayer.opacity = 0.0
-            selectedBoxLayer.strokeEnd = 0.0
-            
             markLayer.opacity = 0.0
-            markLayer.strokeEnd = 0.0
         }
         
         // Paths
@@ -263,4 +211,3 @@ internal class M13CheckboxSpiralController: M13CheckboxController {
     }
     
 }
-

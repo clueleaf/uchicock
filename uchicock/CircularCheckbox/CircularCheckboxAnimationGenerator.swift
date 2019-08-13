@@ -1,6 +1,6 @@
 //
-//  M13CheckboxAnimationGenerator.swift
-//  M13Checkbox
+//  CircularCheckboxAnimationGenerator.swift
+//  CircularCheckbox
 //
 //  Created by McQuilkin, Brandon on 3/27/16.
 //  Copyright © 2016 Brandon McQuilkin. All rights reserved.
@@ -13,7 +13,7 @@
 
 import UIKit
 
-internal class M13CheckboxAnimationGenerator {
+internal class CircularCheckboxAnimationGenerator {
     
     //----------------------------
     // MARK: - Properties

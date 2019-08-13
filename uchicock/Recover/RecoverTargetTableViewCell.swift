@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import M13Checkbox
 
 class RecoverTargetTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var isTarget: M13Checkbox!
+    @IBOutlet weak var isTarget: CircularCheckbox!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var previewLabel: UILabel!
     
     var isRecoverable: Bool = Bool(){
         didSet{
-            isTarget.stateChangeAnimation = .expand(.fill)
+            isTarget.stateChangeAnimation = .expand
             isTarget.animationDuration = 0.3
             previewLabel.textColor = Style.labelTextColorLight
         }

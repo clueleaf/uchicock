@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import M13Checkbox
 
 class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
@@ -16,16 +15,16 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var sortExplanationLabel: UILabel!
     
-    @IBOutlet weak var nameOrderPrimaryCheckbox: M13Checkbox!
-    @IBOutlet weak var nameOrderSecondaryCheckbox: M13Checkbox!
-    @IBOutlet weak var shortageOrderPrimaryCheckbox: M13Checkbox!
-    @IBOutlet weak var shortageOrderSecondaryCheckbox: M13Checkbox!
-    @IBOutlet weak var madeNumOrderPrimaryCheckbox: M13Checkbox!
-    @IBOutlet weak var madeNumOrderSecondaryCheckbox: M13Checkbox!
-    @IBOutlet weak var favoriteOrderPrimaryCheckbox: M13Checkbox!
-    @IBOutlet weak var favoriteOrderSecondaryCheckbox: M13Checkbox!
-    @IBOutlet weak var lastViewedOrderPrimaryCheckbox: M13Checkbox!
-    @IBOutlet weak var lastViewedOrderSecondaryCheckbox: M13Checkbox!
+    @IBOutlet weak var nameOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var nameOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var shortageOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var shortageOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var madeNumOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var madeNumOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var favoriteOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var favoriteOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var lastViewedOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var lastViewedOrderSecondaryCheckbox: CircularCheckbox!
     
     @IBOutlet weak var firstSeparator: UIView!
     
@@ -33,29 +32,29 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var favoriteDeselectAllButton: UIButton!
     @IBOutlet weak var favoriteSelectAllButton: UIButton!
-    @IBOutlet weak var favorite0Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite1Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite2Checkbox: M13Checkbox!
-    @IBOutlet weak var favorite3Checkbox: M13Checkbox!
+    @IBOutlet weak var favorite0Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite1Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite2Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite3Checkbox: CircularCheckbox!
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
     @IBOutlet weak var styleDeselectAllButton: UIButton!
     @IBOutlet weak var styleSelectAllButton: UIButton!
-    @IBOutlet weak var styleLongCheckbox: M13Checkbox!
-    @IBOutlet weak var styleShortCheckbox: M13Checkbox!
-    @IBOutlet weak var styleHotCheckbox: M13Checkbox!
-    @IBOutlet weak var styleNoneCheckbox: M13Checkbox!
+    @IBOutlet weak var styleLongCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleShortCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleHotCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleNoneCheckbox: CircularCheckbox!
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
     
     @IBOutlet weak var methodDeselectAllButton: UIButton!
     @IBOutlet weak var methodSelectAllButton: UIButton!
-    @IBOutlet weak var methodBuildCheckbox: M13Checkbox!
-    @IBOutlet weak var methodStirCheckbox: M13Checkbox!
-    @IBOutlet weak var methodShakeCheckbox: M13Checkbox!
-    @IBOutlet weak var methodBlendCheckbox: M13Checkbox!
-    @IBOutlet weak var methodOthersCheckbox: M13Checkbox!
+    @IBOutlet weak var methodBuildCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodStirCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodShakeCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodBlendCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodOthersCheckbox: CircularCheckbox!
     @IBOutlet weak var methodWarningImage: UIImageView!
     @IBOutlet weak var methodWarningLabel: UILabel!
     
@@ -287,9 +286,9 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    // MARK: - M13Checkbox
-    private func initPrimaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
-                                     madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+    // MARK: - CircularCheckbox
+    private func initPrimaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState,
+                                     madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
         initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
         initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
         initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
@@ -297,8 +296,8 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
     }
     
-    private func initSecondaryCheckBox(nameState: M13Checkbox.CheckState, shortageState:  M13Checkbox.CheckState,
-                                       madeNumState:  M13Checkbox.CheckState, favoriteState: M13Checkbox.CheckState, lastViewedState: M13Checkbox.CheckState){
+    private func initSecondaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState,
+                                       madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
         initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
         initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
         initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)
@@ -306,7 +305,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewedState)
     }
     
-    private func initFilterCheckbox(_ checkbox: M13Checkbox, shouldBeChecked: Bool){
+    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
         if shouldBeChecked{
             initCheckbox(checkbox, with: .checked)
         }else{
@@ -314,11 +313,9 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func initCheckbox(_ checkbox: M13Checkbox, with checkState: M13Checkbox.CheckState){
+    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
         checkbox.boxLineWidth = 1.0
-        checkbox.markType = .checkmark
-        checkbox.boxType = .circle
-        checkbox.stateChangeAnimation = .fade(.fill)
+        checkbox.stateChangeAnimation = .fade
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)
         if checkState == .mixed{
@@ -329,7 +326,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
             checkbox.tintColor = Style.secondaryColor
         }
         checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand(.fill)
+        checkbox.stateChangeAnimation = .expand
         checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
         checkbox.contentHorizontalAlignment = .center
     }
@@ -419,7 +416,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + "filter-others")
     }
     
-    private func setFilterUserDefaults(with checkbox: M13Checkbox, forKey key: String){
+    private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
         let defaults = UserDefaults.standard
         if checkbox.checkState == .checked{
             defaults.set(true, forKey: key)
@@ -432,7 +429,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func nameOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func nameOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxChecked(nameOrderPrimaryCheckbox)
         setCheckboxMixed(nameOrderSecondaryCheckbox)
         setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
@@ -445,7 +442,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func nameOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func nameOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxChecked(nameOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
@@ -453,7 +450,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func shortageOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func shortageOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
         setCheckboxChecked(shortageOrderPrimaryCheckbox)
@@ -466,7 +463,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func shortageOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func shortageOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
         setCheckboxChecked(shortageOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
@@ -474,7 +471,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func madeNumOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func madeNumOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
         setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
@@ -487,7 +484,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func madeNumOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func madeNumOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
         setCheckboxChecked(madeNumOrderSecondaryCheckbox)
@@ -495,7 +492,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func favoriteOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favoriteOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
         setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
@@ -508,7 +505,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func favoriteOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favoriteOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
@@ -516,7 +513,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func lastViewedOrderPrimaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func lastViewedOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxMixed(nameOrderSecondaryCheckbox)
         setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
@@ -529,7 +526,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func lastViewedOrderSecondaryCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func lastViewedOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
@@ -537,20 +534,20 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(lastViewedOrderSecondaryCheckbox)
     }
     
-    private func setCheckboxChecked(_ checkbox: M13Checkbox){
+    private func setCheckboxChecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
     }
 
-    private func setCheckboxUnchecked(_ checkbox: M13Checkbox){
+    private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
     }
 
     
-    private func setCheckboxUncheckedIfNotMixed(_ checkbox: M13Checkbox){
+    private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
         if checkbox.checkState != .mixed{
             checkbox.setCheckState(.unchecked, animated: true)
             checkbox.isEnabled = true
@@ -558,7 +555,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func setCheckboxMixed(_ checkbox: M13Checkbox){
+    private func setCheckboxMixed(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.mixed, animated: true)
         checkbox.isEnabled = false
         checkbox.tintColor = Style.badgeDisableBackgroundColor
@@ -580,19 +577,19 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite0CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite0CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite1CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite1CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite2CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite2CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
-    @IBAction func favorite3CheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func favorite3CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
     }
     
@@ -612,19 +609,19 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleLongCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleLongCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleShortCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleShortCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleHotCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleHotCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
-    @IBAction func styleNoneCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
     }
     
@@ -646,23 +643,23 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodBuildCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodBuildCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodStirCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodStirCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodShakeCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodShakeCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodBlendCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodBlendCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     
-    @IBAction func methodOthersCheckboxTapped(_ sender: M13Checkbox) {
+    @IBAction func methodOthersCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
     }
     

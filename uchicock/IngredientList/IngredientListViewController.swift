@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
@@ -209,7 +208,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    @objc func cellStockTapped(_ sender: M13Checkbox){
+    @objc func cellStockTapped(_ sender: CircularCheckbox){
         var view = sender.superview
         while (view! is IngredientListItemTableViewCell) == false{
             view = view!.superview
@@ -384,7 +383,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell
             cell.stockState = stockState.selectedSegmentIndex
-            cell.stock.stateChangeAnimation = .fade(.fill)
+            cell.stock.stateChangeAnimation = .fade
             cell.stock.animationDuration = 0
             
             let realm = try! Realm()

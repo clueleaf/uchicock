@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'uchicock' do
     pod 'RealmSwift'
-    pod 'M13Checkbox'
 end
 
 post_install do | installer |

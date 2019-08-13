@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class RecoverTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
@@ -110,7 +109,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
     }
     
-    @objc func isTargetTapped(_ sender: M13Checkbox){
+    @objc func isTargetTapped(_ sender: CircularCheckbox){
         if isRecovering == false {
             var view = sender.superview
             while (view! is RecoverTargetTableViewCell) == false{
@@ -352,12 +351,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
-                cell.isTarget.stateChangeAnimation = .fade(.fill)
+                cell.isTarget.stateChangeAnimation = .fade
                 cell.isTarget.animationDuration = 0.0
                 cell.isTarget.backgroundColor = UIColor.clear
                 cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.markType = .checkmark
-                cell.isTarget.boxType = .circle
                 cell.isTarget.secondaryTintColor = Style.checkboxSecondaryTintColor
                 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{

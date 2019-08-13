@@ -1,5 +1,4 @@
 PODS:
-  - M13Checkbox (3.4.0)
   - Realm (3.17.1):
     - Realm/Headers (= 3.17.1)
   - Realm/Headers (3.17.1)
@@ -7,20 +6,17 @@ PODS:
     - Realm (= 3.17.1)
 
 DEPENDENCIES:
-  - M13Checkbox
   - RealmSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - M13Checkbox
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
-  M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   Realm: c204f1a890f07dea43b14132a6aad118c054b8f2
   RealmSwift: 4d3c9233544b9cd08a8913e0872b9038eb99b054
 
-PODFILE CHECKSUM: e9cceadb4664857073fd61598af74d8a7837dc3d
+PODFILE CHECKSUM: bc0de4872e2a0b6d881c3de8b6c80dc4b6648caf
 
 COCOAPODS: 1.5.3

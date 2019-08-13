@@ -8,13 +8,12 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
 
     @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var category: CustomSegmentedControl!
-    @IBOutlet weak var stock: M13Checkbox!
+    @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CustomTextView!
     
     weak var detailVC : IngredientDetailTableViewController?
@@ -42,9 +41,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.layer.borderWidth = 1
 
         stock.boxLineWidth = 1.0
-        stock.markType = .checkmark
-        stock.boxType = .circle
-        stock.stateChangeAnimation = .expand(.fill)
+        stock.stateChangeAnimation = .expand
         if ingredient.stockFlag{
             stock.setCheckState(.checked, animated: true)
         }else{

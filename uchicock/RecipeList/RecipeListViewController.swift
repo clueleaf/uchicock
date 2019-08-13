@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 

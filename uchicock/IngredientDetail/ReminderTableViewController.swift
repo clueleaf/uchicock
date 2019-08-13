@@ -8,13 +8,12 @@
 
 import UIKit
 import EventKit
-import M13Checkbox
 
 class ReminderTableViewController: UITableViewController {
 
     @IBOutlet weak var reminderTitle: CustomLabel!
     @IBOutlet weak var reminderType: CustomSegmentedControl!
-    @IBOutlet weak var dateFlag: M13Checkbox!
+    @IBOutlet weak var dateFlag: CircularCheckbox!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredientName = ""
@@ -36,9 +35,7 @@ class ReminderTableViewController: UITableViewController {
         reminderTitle.text = ingredientName + "を買う"
         dateFlag.setCheckState(.unchecked, animated: true)
         dateFlag.boxLineWidth = 1.0
-        dateFlag.markType = .checkmark
-        dateFlag.boxType = .circle
-        dateFlag.stateChangeAnimation = .expand(.fill)
+        dateFlag.stateChangeAnimation = .expand
         
         datePicker.datePickerMode = .dateAndTime
         datePicker.locale = Locale(identifier: "ja_JP")
@@ -243,7 +240,7 @@ class ReminderTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func dateFlagTapped(_ sender: M13Checkbox) {
+    @IBAction func dateFlagTapped(_ sender: CircularCheckbox) {
         if dateFlag.checkState == .checked{
             tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
         }else{

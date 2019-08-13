@@ -8,14 +8,13 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeNum: UILabel!
     @IBOutlet weak var ingredientName: CustomLabel!
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var stock: M13Checkbox!
+    @IBOutlet weak var stock: CircularCheckbox!
     
     var stockState = 0
     
@@ -49,11 +48,9 @@ class IngredientListItemTableViewCell: UITableViewCell {
             
             stock.secondaryTintColor = Style.checkboxSecondaryTintColor
             stock.boxLineWidth = 1.0
-            stock.markType = .checkmark
-            stock.boxType = .circle
             stock.animationDuration = 0.3
             if stockState == 0{
-                stock.stateChangeAnimation = .expand(.fill)
+                stock.stateChangeAnimation = .expand
             }
         }
     }

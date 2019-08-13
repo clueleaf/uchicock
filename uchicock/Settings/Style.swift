@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import M13Checkbox
+import UIKit
 
 struct Style{
     static var no = "0"
@@ -796,7 +796,7 @@ struct Style{
         customizeNavigationBar()
         customizeSearchBar()
         customizeSegmentedControl()
-        customizeM13Checkbox()
+        customizeCircularCheckbox()
         customizeTextField()
         customizeTextView()
         customizeTabBar()
@@ -847,9 +847,9 @@ struct Style{
         CustomSegmentedControl.appearance().tintColor = secondaryColor
     }
     
-    static private func customizeM13Checkbox(){
-        M13Checkbox.appearance().backgroundColor = UIColor.clear
-        M13Checkbox.appearance().tintColor = secondaryColor
+    static private func customizeCircularCheckbox(){
+        CircularCheckbox.appearance().backgroundColor = UIColor.clear
+        CircularCheckbox.appearance().tintColor = secondaryColor
     }
     
     static private func customizeTextField(){

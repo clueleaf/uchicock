@@ -8,14 +8,13 @@
 
 import UIKit
 import RealmSwift
-import M13Checkbox
 
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var stockRecommendLabel: UILabel!
     @IBOutlet weak var category: CustomLabel!
-    @IBOutlet weak var stock: M13Checkbox!
+    @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
@@ -43,8 +42,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         super.viewDidLoad()
         
         stock.boxLineWidth = 1.0
-        stock.markType = .checkmark
-        stock.boxType = .circle
         
         stockRecommendLabel.isHidden = true
         
@@ -117,7 +114,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 category.text = "その他"
             }
             
-            stock.stateChangeAnimation = .fade(.fill)
+            stock.stateChangeAnimation = .fade
             stock.animationDuration = 0
             if ingredient.stockFlag{
                 stock.setCheckState(.checked, animated: true)
@@ -125,7 +122,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 stock.setCheckState(.unchecked, animated: true)
             }
             stock.animationDuration = 0.3
-            stock.stateChangeAnimation = .expand(.fill)
+            stock.stateChangeAnimation = .expand
             
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
@@ -397,7 +394,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
 
     // MARK: - IBAction
-    @IBAction func stockTapped(_ sender: M13Checkbox) {
+    @IBAction func stockTapped(_ sender: CircularCheckbox) {
         let realm = try! Realm()
         try! realm.write {
             ingredient.stockFlag = stock.checkState == .checked ? true : false

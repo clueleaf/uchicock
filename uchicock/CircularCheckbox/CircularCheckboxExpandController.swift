@@ -1,6 +1,6 @@
 //
-//  M13CheckboxDotController.swift
-//  M13Checkbox
+//  CircularCheckboxExpandManager.swift
+//  CircularCheckbox
 //
 //  Created by McQuilkin, Brandon on 4/1/16.
 //  Copyright © 2016 Brandon McQuilkin. All rights reserved.
@@ -13,7 +13,7 @@
 
 import UIKit
 
-internal class M13CheckboxDotController: M13CheckboxController {
+internal class CircularCheckboxExpandController: CircularCheckboxController {
     
     //----------------------------
     // MARK: - Properties
@@ -22,14 +22,7 @@ internal class M13CheckboxDotController: M13CheckboxController {
     override var tintColor: UIColor {
         didSet {
             selectedBoxLayer.strokeColor = tintColor.cgColor
-            if style == .stroke {
-                markLayer.strokeColor = tintColor.cgColor
-                if markType == .radio {
-                    markLayer.fillColor = tintColor.cgColor
-                }
-            } else {
-                selectedBoxLayer.fillColor = tintColor.cgColor
-            }
+            selectedBoxLayer.fillColor = tintColor.cgColor
         }
     }
     
@@ -41,9 +34,7 @@ internal class M13CheckboxDotController: M13CheckboxController {
     
     override var secondaryCheckmarkTintColor: UIColor? {
         didSet {
-            if style == .fill {
-                markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
-            }
+            markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
         }
     }
     
@@ -52,14 +43,6 @@ internal class M13CheckboxDotController: M13CheckboxController {
             selectedBoxLayer.isHidden = hideBox
             unselectedBoxLayer.isHidden = hideBox
         }
-    }
-    
-    fileprivate var style: M13Checkbox.AnimationStyle = .stroke
-    
-    init(style: M13Checkbox.AnimationStyle) {
-        self.style = style
-        super.init()
-        sharedSetup()
     }
     
     override init() {
@@ -123,48 +106,37 @@ internal class M13CheckboxDotController: M13CheckboxController {
     // MARK: - Animations
     //----------------------------
     
-    override func animate(_ fromState: M13Checkbox.CheckState?, toState: M13Checkbox.CheckState?, completion: (() -> Void)?) {
+    override func animate(_ fromState: CircularCheckbox.CheckState?, toState: CircularCheckbox.CheckState?, completion: (() -> Void)?) {
         super.animate(fromState, toState: toState)
         
         if pathGenerator.pathForMark(toState) == nil && pathGenerator.pathForMark(fromState) != nil {
-            let scaleAnimation = animationGenerator.fillAnimation(1, amplitude: 0.18, reverse: true)
-            let opacityAnimation = animationGenerator.opacityAnimation(true)
+            let amplitude: CGFloat = 0.35
+            let wiggleAnimation = animationGenerator.fillAnimation(1, amplitude: amplitude, reverse: true)
             
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
-                self.resetLayersForState(toState)
+                self.resetLayersForState(self.state)
                 completion?()
             })
             
-            if style == .stroke {
-                unselectedBoxLayer.opacity = 0.0
-                let quickOpacityAnimation = animationGenerator.quickOpacityAnimation(false)
-                quickOpacityAnimation.beginTime = CACurrentMediaTime() + scaleAnimation.duration - quickOpacityAnimation.duration
-                unselectedBoxLayer.add(quickOpacityAnimation, forKey: "opacity")
-            }
-            selectedBoxLayer.add(scaleAnimation, forKey: "transform")
-            markLayer.add(opacityAnimation, forKey: "opacity")
+            selectedBoxLayer.add(wiggleAnimation, forKey: "transform")
+            markLayer.add(wiggleAnimation, forKey: "transform")
             
             CATransaction.commit()
         } else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
             markLayer.path = pathGenerator.pathForMark(toState)?.cgPath
             
-            let scaleAnimation = animationGenerator.fillAnimation(1, amplitude: 0.18, reverse: false)
-            let opacityAnimation = animationGenerator.opacityAnimation(false)
+            let amplitude: CGFloat = 0.35
+            let wiggleAnimation = animationGenerator.fillAnimation(1, amplitude: amplitude, reverse: false)
             
             CATransaction.begin()
             CATransaction.setCompletionBlock({ () -> Void in
-                self.resetLayersForState(toState)
+                self.resetLayersForState(self.state)
                 completion?()
             })
             
-            if style == .stroke {
-                let quickOpacityAnimation = animationGenerator.quickOpacityAnimation(true)
-                quickOpacityAnimation.beginTime = CACurrentMediaTime()
-                unselectedBoxLayer.add(quickOpacityAnimation, forKey: "opacity")
-            }
-            selectedBoxLayer.add(scaleAnimation, forKey: "transform")
-            markLayer.add(opacityAnimation, forKey: "opacity")
+            selectedBoxLayer.add(wiggleAnimation, forKey: "transform")
+            markLayer.add(wiggleAnimation, forKey: "transform")
             
             CATransaction.commit()
         } else {
@@ -183,6 +155,7 @@ internal class M13CheckboxDotController: M13CheckboxController {
             
             CATransaction.commit()
         }
+        
     }
     
     //----------------------------
@@ -195,7 +168,7 @@ internal class M13CheckboxDotController: M13CheckboxController {
         selectedBoxLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
         markLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
         // Paths
-        unselectedBoxLayer.path = pathGenerator.pathForDot()?.cgPath
+        unselectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
         selectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
         markLayer.path = pathGenerator.pathForMark(state)?.cgPath
     }
@@ -204,7 +177,7 @@ internal class M13CheckboxDotController: M13CheckboxController {
     // MARK: - Display
     //----------------------------
     
-    override func resetLayersForState(_ state: M13Checkbox.CheckState?) {
+    override func resetLayersForState(_ state: CircularCheckbox.CheckState?) {
         super.resetLayersForState(state)
         // Remove all remnant animations. They will interfere with each other if they are not removed before a new round of animations start.
         unselectedBoxLayer.removeAllAnimations()
@@ -218,33 +191,21 @@ internal class M13CheckboxDotController: M13CheckboxController {
         selectedBoxLayer.strokeColor = tintColor.cgColor
         selectedBoxLayer.lineWidth = pathGenerator.boxLineWidth
         
-        if style == .stroke {
-            selectedBoxLayer.fillColor = nil
-            markLayer.strokeColor = tintColor.cgColor
-            if markType != .radio {
-                markLayer.fillColor = nil
-            } else {
-                markLayer.fillColor = tintColor.cgColor
-            }
-        } else {
-            selectedBoxLayer.fillColor = tintColor.cgColor
-            markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
-        }
-        
+        selectedBoxLayer.fillColor = tintColor.cgColor
+        markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
+
         markLayer.lineWidth = pathGenerator.checkmarkLineWidth
         
         if pathGenerator.pathForMark(state) != nil {
-            unselectedBoxLayer.opacity = 0.0
+            markLayer.transform = CATransform3DIdentity
             selectedBoxLayer.transform = CATransform3DIdentity
-            markLayer.opacity = 1.0
         } else {
-            unselectedBoxLayer.opacity = 1.0
+            markLayer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
             selectedBoxLayer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
-            markLayer.opacity = 0.0
         }
         
         // Paths
-        unselectedBoxLayer.path = pathGenerator.pathForDot()?.cgPath
+        unselectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
         selectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
         markLayer.path = pathGenerator.pathForMark(state)?.cgPath
     }
