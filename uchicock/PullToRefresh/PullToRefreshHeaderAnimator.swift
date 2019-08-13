@@ -43,7 +43,7 @@ open class PullToRefreshHeaderAnimator: UIView {
     
     fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
         label.textColor = Style.labelTextColor
         label.textAlignment = .left
         return label
