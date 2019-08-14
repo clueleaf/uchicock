@@ -118,7 +118,6 @@ public class ProgressHUD : UIView {
         getControlView().isUserInteractionEnabled = false
 
         if getBackGroundView().alpha != 1.0 {
-//            getHudView().transform = CGAffineTransform.init(scaleX: 1/1.5, y: 1/1.5)
             let animationsBlock : () -> Void = {
                 // Zoom HUD a little to make a nice appear / pop up animation
                 self.getHudView().transform = CGAffineTransform.identity
@@ -135,14 +134,6 @@ public class ProgressHUD : UIView {
             }
             
             let completionBlock : () -> Void = {
-                if self.getBackGroundView().alpha == 1.0 {
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-                    NotificationCenter.default.addObserver(self, selector: #selector(self.positionHUD(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-                }
-                
                 if let cd = duration {
                     let timer = Timer.init(timeInterval: cd, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
                     self.setFadeOut(timer: timer)
@@ -175,49 +166,15 @@ public class ProgressHUD : UIView {
     }
     
     @objc private func positionHUD(_ notification: Notification? = nil) {
-        var keyboardHeight: CGFloat = 0.0
-        var animationDuration: Double = 0.0
-        
-        var statusBarFrame = CGRect.zero
+        let animationDuration: Double = 0.0
         
         if let appDelegate = UIApplication.shared.delegate,
             let window : UIWindow = appDelegate.window! {
             frame = window.bounds
         }
-        var orientation = UIApplication.shared.statusBarOrientation
-        
-        if frame.width > frame.height {
-            orientation = .landscapeLeft
-        } else {
-            orientation = .portrait
-        }
-        if let notificationData = notification {
-            let keyboardInfo = notificationData.userInfo
-            if let keyboardFrame: NSValue = keyboardInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                let keyboardFrame: CGRect = keyboardFrame.cgRectValue
-                if (notification?.name.rawValue == UIResponder.keyboardWillShowNotification.rawValue || notification?.name.rawValue == UIResponder.keyboardDidShowNotification.rawValue) {
-                    keyboardHeight = keyboardFrame.width
-                    if orientation.isPortrait {
-                        keyboardHeight = keyboardFrame.height
-                    }
-                }
-            }
-            if let aDuration: Double = keyboardInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
-                animationDuration = aDuration
-            }
-        } else {
-            keyboardHeight = getVisibleKeyboardHeight()
-        }
-        statusBarFrame = UIApplication.shared.statusBarFrame
 
         let orientationFrame = bounds
-        
-        var activeHeight = orientationFrame.height
-        
-        if keyboardHeight > 0 {
-            activeHeight += statusBarFrame.height * 2
-        }
-        activeHeight -= keyboardHeight
+        let activeHeight = orientationFrame.height
         
         let posX = orientationFrame.midX
         let posY = CGFloat(floor(activeHeight * 0.45))
@@ -287,9 +244,6 @@ public class ProgressHUD : UIView {
             strongSelf.activityCount = 0
             
             let animationsBlock: () -> Void = {
-                // Shrink HUD a little to make a nice disappear animation
-//                strongSelf.getHudView().transform = strongSelf.getHudView().transform.scaledBy(x: 1/1.3, y: 1/1.3)
-                
                 // Fade out all effects (colors, blur, etc.)
                 strongSelf.getHudView().effect = nil
                 strongSelf.getHudView().backgroundColor = .clear
@@ -432,36 +386,6 @@ public class ProgressHUD : UIView {
         case .dark:
             return UIColor.black.withAlphaComponent(0.6)
         }
-    }
-    
-    private func getVisibleKeyboardHeight() -> CGFloat {
-        var keyboardWindow : UIWindow? = nil
-        for testWindow in UIApplication.shared.windows {
-            if !testWindow.self.isEqual(UIWindow.self) {
-                keyboardWindow = testWindow
-                break
-            }
-        }
-        for possibleKeyboard in keyboardWindow?.subviews ?? [] {
-            var viewName = String.init(describing: possibleKeyboard.self)
-            if viewName.hasPrefix("UI") {
-                if viewName.hasSuffix("PeripheralHostView") || viewName.hasSuffix("Keyboard") {
-                    return possibleKeyboard.bounds.height
-                } else if viewName.hasSuffix("InputSetContainerView") {
-                    for possibleKeyboardSubview: UIView? in possibleKeyboard.subviews {
-                        viewName = String.init(describing: possibleKeyboardSubview.self)
-                        if viewName.hasPrefix("UI") && viewName.hasSuffix("InputSetHostView") {
-                            let convertedRect = possibleKeyboard.convert(possibleKeyboardSubview?.frame ?? CGRect.zero, to: self)
-                            let intersectedRect: CGRect = convertedRect.intersection(bounds)
-                            if !intersectedRect.isNull {
-                                return intersectedRect.height
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return 0
     }
     
     private func move(to newCenter: CGPoint, rotateAngle angle: CGFloat) {
