@@ -118,25 +118,21 @@ public class ProgressHUD : UIView {
         getControlView().isUserInteractionEnabled = false
 
         if getBackGroundView().alpha != 1.0 {
-            getHudView().transform = CGAffineTransform.init(scaleX: 0.01, y: 0.01)
+//            getHudView().transform = CGAffineTransform.init(scaleX: 1/1.5, y: 1/1.5)
             let animationsBlock : () -> Void = {
                 // Zoom HUD a little to make a nice appear / pop up animation
                 self.getHudView().transform = CGAffineTransform.identity
                 
-                var blurStyle = UIBlurEffect.Style.light
-                if self.defaultStyle == .dark {
-                    blurStyle = UIBlurEffect.Style.dark
-                }
+                // Fade in all effects (colors, blur, etc.)
+                let blurStyle = self.defaultStyle == .dark ? UIBlurEffect.Style.dark : UIBlurEffect.Style.light
                 let blurEffect = UIBlurEffect.init(style: blurStyle)
                 self.getHudView().effect = blurEffect
-                
                 self.getHudView().backgroundColor = self.backgroundColorForStyle()
-                
                 self.getBackGroundView().alpha = 1.0
                 self.getImageView().alpha = 1.0
+                self.getStatusLabel().alpha = 1.0
                 self.getIndefiniteAnimatedView().alpha = 1.0
             }
-            
             
             let completionBlock : () -> Void = {
                 if self.getBackGroundView().alpha == 1.0 {
@@ -154,7 +150,7 @@ public class ProgressHUD : UIView {
                 }
             }
             
-            UIView.animate(withDuration: 0.15, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: {
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: {
                 finished in
                 completionBlock()
             })
@@ -292,9 +288,10 @@ public class ProgressHUD : UIView {
             
             let animationsBlock: () -> Void = {
                 // Shrink HUD a little to make a nice disappear animation
-                strongSelf.getHudView().transform = strongSelf.getHudView().transform.scaledBy(x: 0.01, y: 0.01)
+//                strongSelf.getHudView().transform = strongSelf.getHudView().transform.scaledBy(x: 1/1.3, y: 1/1.3)
                 
                 // Fade out all effects (colors, blur, etc.)
+                strongSelf.getHudView().effect = nil
                 strongSelf.getHudView().backgroundColor = .clear
                 strongSelf.getBackGroundView().alpha = 0.0
                 strongSelf.getImageView().alpha = 0.0
@@ -334,7 +331,7 @@ public class ProgressHUD : UIView {
             // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: {
-                UIView.animate(withDuration: 0.15, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
+                UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
                     animationsBlock()
                 }) { finished in
                     completionBlock()

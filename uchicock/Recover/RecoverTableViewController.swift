@@ -270,7 +270,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                                     self.recover()
                                 }
                                 DispatchQueue.main.async{
-                                    ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.7)
+                                    ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.5)
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             }
@@ -419,7 +419,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                             self.recover()
                         }
                         DispatchQueue.main.async{
-                            ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.7)
+                            ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.5)
                             self.dismiss(animated: true, completion: nil)
                         }
                     }

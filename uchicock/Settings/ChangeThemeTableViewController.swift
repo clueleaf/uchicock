@@ -150,7 +150,7 @@ class ChangeThemeTableViewController: UITableViewController {
         Style.saveTheme(themeNo: newThemeNo)
         oldThemeNo = newThemeNo
         Style.setTheme(themeNo: oldThemeNo)
-        ProgressHUD.showSuccess(with: "テーマカラーを変更しました", duration: 1.7)
+        ProgressHUD.showSuccess(with: "テーマカラーを変更しました", duration: 1.5)
 
         self.dismiss(animated: true, completion: nil)
     }
