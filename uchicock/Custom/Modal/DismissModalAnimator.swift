@@ -17,7 +17,7 @@ class DismissModalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var yMargin: CGFloat = 40.0
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.35
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
