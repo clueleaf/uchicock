@@ -127,7 +127,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 //レシピ削除のバグに対するワークアラウンド
                 if let im = photo.image {
                     if im.size.width > im.size.height{
-                        photoHeight = tableView.bounds.width * im.size.height / im.size.width
+                        photoHeight = CGFloat(Int(tableView.bounds.width * im.size.height / im.size.width))
                     }else{
                         photoHeight = tableView.bounds.width
                     }
