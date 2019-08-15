@@ -93,7 +93,6 @@ open class PullToRefreshHeaderAnimator: UIView {
         case .refreshing:
             titleLabel.text = loadingDescription
             self.setNeedsLayout()
-            break
         case .releaseToRefresh:
             titleLabel.text = releaseToRefreshDescription
             self.setNeedsLayout()
@@ -101,7 +100,6 @@ open class PullToRefreshHeaderAnimator: UIView {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
             }) { (animated) in }
-            break
         case .pullToRefresh:
             titleLabel.text = pullToRefreshDescription
             self.setNeedsLayout()
@@ -109,7 +107,6 @@ open class PullToRefreshHeaderAnimator: UIView {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransform.identity
             }) { (animated) in }
-            break
         }
     }
     

@@ -182,13 +182,10 @@ open class CircularCheckbox: UIControl {
         switch checkState {
         case .checked:
             setCheckState(.unchecked, animated: animated)
-            break
         case .unchecked:
             setCheckState(.checked, animated: animated)
-            break
         case .mixed:
             setCheckState(.unchecked, animated: animated)
-            break
         }
     }
     
