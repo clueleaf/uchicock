@@ -362,8 +362,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     cell.isTarget.isEnabled = true
                     cell.isTarget.tintColor = Style.secondaryColor
                     if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
-                        //CheckedとMixedを直接変換するとエラーになる
-                        cell.isTarget.setCheckState(.unchecked, animated: true)
                         cell.isTarget.setCheckState(.checked, animated: true)
                     }else{
                         cell.isTarget.setCheckState(.unchecked, animated: true)
@@ -374,8 +372,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
                     cell.isTarget.tintColor = Style.badgeDisableBackgroundColor
-                    //CheckedとMixedを直接変換するとエラーになる
-                    cell.isTarget.setCheckState(.unchecked, animated: true)
                     cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }

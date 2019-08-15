@@ -224,13 +224,8 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         checkbox.stateChangeAnimation = .fade
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)
-        if checkState == .mixed{
-            checkbox.isEnabled = false
-            checkbox.tintColor = Style.badgeDisableBackgroundColor
-        }else{
-            checkbox.isEnabled = true
-            checkbox.tintColor = Style.secondaryColor
-        }
+        checkbox.isEnabled = true
+        checkbox.tintColor = Style.secondaryColor
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
         checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
