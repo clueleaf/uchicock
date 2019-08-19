@@ -422,11 +422,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
+                self.showCancelAlert = true
                 performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
+                self.showCancelAlert = true
                 performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
             }
         }
@@ -437,7 +439,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             alert.addAction(UIAlertAction(title: "写真を撮る", style: .default,handler:{
                 action in
-                self.showCancelAlert = true
                 self.ipc.sourceType = .camera
                 self.ipc.allowsEditing = false
                 self.present(self.ipc, animated: true, completion: nil)
@@ -445,7 +446,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         alert.addAction(UIAlertAction(title: "写真を選択",style: .default, handler:{
             action in
-            self.showCancelAlert = true
             self.ipc.sourceType = .photoLibrary
             self.ipc.allowsEditing = true
             self.present(self.ipc, animated: true, completion: nil)
