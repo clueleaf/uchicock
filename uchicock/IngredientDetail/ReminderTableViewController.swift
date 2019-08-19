@@ -41,9 +41,6 @@ class ReminderTableViewController: UITableViewController {
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableView.automaticDimension
-        
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         var safeAreaBottom: CGFloat = 0.0

@@ -80,11 +80,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
-
-        // 再表示後にrecipeTableViewのcontentOffsetが少し下に下がることがある問題への対応
-        self.recipeTableView.estimatedRowHeight = 0
-        self.recipeTableView.estimatedSectionHeaderHeight = 0
-        self.recipeTableView.estimatedSectionFooterHeight = 0
         
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)

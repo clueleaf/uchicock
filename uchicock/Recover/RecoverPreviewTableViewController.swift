@@ -62,8 +62,6 @@ class RecoverPreviewTableViewController: UITableViewController {
             method.text = "その他"
         }
 
-        tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         var safeAreaBottom: CGFloat = 0.0

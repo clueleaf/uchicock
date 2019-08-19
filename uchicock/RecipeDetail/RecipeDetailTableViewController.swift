@@ -227,8 +227,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 openInSafariButton.backgroundColor = Style.badgeDisableBackgroundColor
             }
             
-            self.tableView.estimatedRowHeight = 70
-            self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
             
             let realm = try! Realm()
