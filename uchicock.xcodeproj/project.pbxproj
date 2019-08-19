@@ -8,19 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */; };
-		9B03D38F22FD825F00E2AB86 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */; };
-		9B03D39122FD827400E2AB86 /* PullToRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */; };
-		9B03D39322FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */; };
 		9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */; };
 		9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
 		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
 		9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */; };
-		9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */; };
 		9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */; };
 		9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */; };
 		9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22FEAB22A1872100D716E3 /* FlatColor.swift */; };
+		9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */; };
+		9B2E83CF230A9EF5002E7946 /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */; };
+		9B2E83D7230A9F20002E7946 /* CircularCheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */; };
+		9B2E83D8230A9F20002E7946 /* CircularCheckboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */; };
+		9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D2230A9F20002E7946 /* CircularCheckbox.swift */; };
+		9B2E83DA230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D3230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift */; };
+		9B2E83DB230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D4230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift */; };
+		9B2E83DC230A9F20002E7946 /* CircularCheckboxFadeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D5230A9F20002E7946 /* CircularCheckboxFadeController.swift */; };
+		9B2E83DD230A9F20002E7946 /* CircularCheckboxExpandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D6230A9F20002E7946 /* CircularCheckboxExpandController.swift */; };
+		9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83DE230A9F79002E7946 /* ImageViewerController.swift */; };
+		9B2E83E7230A9F7A002E7946 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */; };
+		9B2E83E8230A9F7A002E7946 /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E0230A9F7A002E7946 /* ImageViewerDismissalTransition.swift */; };
+		9B2E83E9230A9F7A002E7946 /* ImageViewerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E1230A9F7A002E7946 /* ImageViewerUtil.swift */; };
+		9B2E83EA230A9F7A002E7946 /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */; };
+		9B2E83EB230A9F7A002E7946 /* ImageViewerPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E3230A9F7A002E7946 /* ImageViewerPresentationTransition.swift */; };
+		9B2E83EC230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E4230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift */; };
+		9B2E83ED230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */; };
+		9B2E83F1230A9FCB002E7946 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83EE230A9FCB002E7946 /* PullToRefresh.swift */; };
+		9B2E83F2230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83EF230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift */; };
+		9B2E83F3230A9FCB002E7946 /* PullToRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */; };
+		9B2E83F6230A9FEB002E7946 /* IndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */; };
+		9B2E83F7230A9FEB002E7946 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */; };
 		9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30125122BB8A7300288DEE /* RecipeIngredientTableViewCell.swift */; };
 		9B30125422BB8A7300288DEE /* RecipeIngredientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B30125222BB8A7300288DEE /* RecipeIngredientTableViewCell.xib */; };
 		9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */; };
@@ -34,21 +52,6 @@
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
 		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
-		9B43305022B29B8B0010C89B /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */; };
-		9B43305122B29B8B0010C89B /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43304F22B29B8B0010C89B /* ImageViewerController.swift */; };
-		9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */; };
-		9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */; };
-		9B43305922B29C070010C89B /* ImageViewerPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */; };
-		9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */; };
-		9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */; };
-		9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B43306022B29C8B0010C89B /* ImageViewerController.xib */; };
-		9B4454E22302D51E00D1458A /* CircularCheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */; };
-		9B4454E32302D51E00D1458A /* CircularCheckboxAnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */; };
-		9B4454E42302D51E00D1458A /* CircularCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */; };
-		9B4454E52302D51E00D1458A /* CircularCheckboxFadeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */; };
-		9B4454E62302D51E00D1458A /* CircularCheckboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */; };
-		9B4454E72302D51E00D1458A /* CircularCheckboxExpandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */; };
-		9B4454E82302D51E00D1458A /* CircularCheckboxCheckPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */; };
 		9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5473E3220680E500E53719 /* IngredientEdit.storyboard */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */; };
@@ -62,8 +65,6 @@
 		9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */; };
 		9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */; };
 		9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8A34AC22B15E300085B1EC /* Introduction.storyboard */; };
-		9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */; };
-		9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A34B122B15F390085B1EC /* IntroductionDetailViewController.swift */; };
 		9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31A1E75437C0046687A /* ReverseLookupTableViewController.swift */; };
 		9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
@@ -94,8 +95,6 @@
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BF53ECF22B9458400BF22D5 /* RecipeSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BF53ECD22B9458400BF22D5 /* RecipeSearch.storyboard */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
-		9BF951A82302C6C600C6A1CA /* IndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */; };
-		9BF951A92302C6C600C6A1CA /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */; };
 		9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1901E97999E00546B47 /* RecipeEdit.storyboard */; };
 		9BFCE19B1E979D3100546B47 /* Reminder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE1991E979D3100546B47 /* Reminder.storyboard */; };
 		9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFCE19C1E979FA500546B47 /* Settings.storyboard */; };
@@ -106,21 +105,39 @@
 /* Begin PBXFileReference section */
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.release.xcconfig"; sourceTree = "<group>"; };
-		9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = PullToRefresh/PullToRefresh.swift; sourceTree = "<group>"; };
-		9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderView.swift; path = PullToRefresh/PullToRefreshHeaderView.swift; sourceTree = "<group>"; };
-		9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderAnimator.swift; path = PullToRefresh/PullToRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
 		9B0B29571CC66CBD0021BD02 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderTableViewController.swift; path = IngredientDetail/ReminderTableViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
 		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
 		9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNavigationController.swift; sourceTree = "<group>"; };
 		9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTableViewController.swift; path = Recover/RecoverTableViewController.swift; sourceTree = "<group>"; };
 		9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTargetTableViewCell.swift; path = Recover/RecoverTargetTableViewCell.swift; sourceTree = "<group>"; };
 		9B1FF1221E6867520096E9F1 /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/M13Checkbox/M13Checkbox.framework"; sourceTree = "<group>"; };
 		9B1FF1281E6867620096E9F1 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/ChameleonFramework/ChameleonFramework.framework"; sourceTree = "<group>"; };
 		9B22FEAB22A1872100D716E3 /* FlatColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlatColor.swift; path = Settings/FlatColor.swift; sourceTree = "<group>"; };
+		9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Util/Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
+		9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Util/Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
+		9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxGestureRecognizer.swift; path = Util/CircularCheckbox/CircularCheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
+		9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = Util/CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
+		9B2E83D2230A9F20002E7946 /* CircularCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckbox.swift; path = Util/CircularCheckbox/CircularCheckbox.swift; sourceTree = "<group>"; };
+		9B2E83D3230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxAnimationGenerator.swift; path = Util/CircularCheckbox/CircularCheckboxAnimationGenerator.swift; sourceTree = "<group>"; };
+		9B2E83D4230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxCheckPathGenerator.swift; path = Util/CircularCheckbox/CircularCheckboxCheckPathGenerator.swift; sourceTree = "<group>"; };
+		9B2E83D5230A9F20002E7946 /* CircularCheckboxFadeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxFadeController.swift; path = Util/CircularCheckbox/CircularCheckboxFadeController.swift; sourceTree = "<group>"; };
+		9B2E83D6230A9F20002E7946 /* CircularCheckboxExpandController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxExpandController.swift; path = Util/CircularCheckbox/CircularCheckboxExpandController.swift; sourceTree = "<group>"; };
+		9B2E83DE230A9F79002E7946 /* ImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerController.swift; path = Util/ImageViewer/ImageViewerController.swift; sourceTree = "<group>"; };
+		9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatableImageView.swift; path = Util/ImageViewer/AnimatableImageView.swift; sourceTree = "<group>"; };
+		9B2E83E0230A9F7A002E7946 /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalTransition.swift; path = Util/ImageViewer/ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
+		9B2E83E1230A9F7A002E7946 /* ImageViewerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerUtil.swift; path = Util/ImageViewer/ImageViewerUtil.swift; sourceTree = "<group>"; };
+		9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = Util/ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
+		9B2E83E3230A9F7A002E7946 /* ImageViewerPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerPresentationTransition.swift; path = Util/ImageViewer/ImageViewerPresentationTransition.swift; sourceTree = "<group>"; };
+		9B2E83E4230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerTransitioningHandler.swift; path = Util/ImageViewer/ImageViewerTransitioningHandler.swift; sourceTree = "<group>"; };
+		9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalInteractor.swift; path = Util/ImageViewer/ImageViewerDismissalInteractor.swift; sourceTree = "<group>"; };
+		9B2E83EE230A9FCB002E7946 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = Util/PullToRefresh/PullToRefresh.swift; sourceTree = "<group>"; };
+		9B2E83EF230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderAnimator.swift; path = Util/PullToRefresh/PullToRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
+		9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderView.swift; path = Util/PullToRefresh/PullToRefreshHeaderView.swift; sourceTree = "<group>"; };
+		9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndefiniteAnimatedView.swift; path = Util/ProgressHUD/IndefiniteAnimatedView.swift; sourceTree = "<group>"; };
+		9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressHUD.swift; path = Util/ProgressHUD/ProgressHUD.swift; sourceTree = "<group>"; };
 		9B30125122BB8A7300288DEE /* RecipeIngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientTableViewCell.swift; path = RecipeDetail/RecipeIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B30125222BB8A7300288DEE /* RecipeIngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeIngredientTableViewCell.xib; path = RecipeDetail/RecipeIngredientTableViewCell.xib; sourceTree = "<group>"; };
 		9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientBasic.swift; path = RecipeEdit/RecipeIngredientBasic.swift; sourceTree = "<group>"; };
@@ -134,21 +151,6 @@
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
-		9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatableImageView.swift; path = ImageViewer/AnimatableImageView.swift; sourceTree = "<group>"; };
-		9B43304F22B29B8B0010C89B /* ImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerController.swift; path = ImageViewer/ImageViewerController.swift; sourceTree = "<group>"; };
-		9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerTransitioningHandler.swift; path = ImageViewer/ImageViewerTransitioningHandler.swift; sourceTree = "<group>"; };
-		9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalTransition.swift; path = ImageViewer/ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
-		9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerPresentationTransition.swift; path = ImageViewer/ImageViewerPresentationTransition.swift; sourceTree = "<group>"; };
-		9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalInteractor.swift; path = ImageViewer/ImageViewerDismissalInteractor.swift; sourceTree = "<group>"; };
-		9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerUtil.swift; sourceTree = "<group>"; };
-		9B43306022B29C8B0010C89B /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
-		9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxGestureRecognizer.swift; path = CircularCheckbox/CircularCheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
-		9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxAnimationGenerator.swift; path = CircularCheckbox/CircularCheckboxAnimationGenerator.swift; sourceTree = "<group>"; };
-		9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckbox.swift; path = CircularCheckbox/CircularCheckbox.swift; sourceTree = "<group>"; };
-		9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxFadeController.swift; path = CircularCheckbox/CircularCheckboxFadeController.swift; sourceTree = "<group>"; };
-		9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
-		9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxExpandController.swift; path = CircularCheckbox/CircularCheckboxExpandController.swift; sourceTree = "<group>"; };
-		9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxCheckPathGenerator.swift; path = CircularCheckbox/CircularCheckboxCheckPathGenerator.swift; sourceTree = "<group>"; };
 		9B5473E4220680E500E53719 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientEdit.storyboard; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewCell.swift; path = IngredientList/IngredientRecommendTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,8 +164,6 @@
 		9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlbumCollectionViewCell.xib; path = Album/AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterCollectionViewCell.swift; path = RecipeEdit/PhotoFilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B8A34AD22B15E300085B1EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Introduction.storyboard; sourceTree = "<group>"; };
-		9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
-		9B8A34B122B15F390085B1EC /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9B93B31A1E75437C0046687A /* ReverseLookupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewController.swift; path = ReverseLookup/ReverseLookupTableViewController.swift; sourceTree = "<group>"; };
 		9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientTableViewCell.swift; path = ReverseLookup/ReverseLookupSelectIngredientTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,8 +199,6 @@
 		9BEF8B2A1E68739B00F32DDB /* DZNEmptyDataSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DZNEmptyDataSet.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/DZNEmptyDataSet/DZNEmptyDataSet.framework"; sourceTree = "<group>"; };
 		9BF53ECE22B9458400BF22D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeSearch.storyboard; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
-		9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndefiniteAnimatedView.swift; path = ProgressHUD/IndefiniteAnimatedView.swift; sourceTree = "<group>"; };
-		9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressHUD.swift; path = ProgressHUD/ProgressHUD.swift; sourceTree = "<group>"; };
 		9BFCE1911E97999E00546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RecipeEdit.storyboard; sourceTree = "<group>"; };
 		9BFCE19A1E979D3100546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reminder.storyboard; sourceTree = "<group>"; };
 		9BFCE19D1E979FA500546B47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
@@ -235,22 +233,27 @@
 		9B03D38D22FD823200E2AB86 /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				9B03D38E22FD825F00E2AB86 /* PullToRefresh.swift */,
-				9B03D39022FD827400E2AB86 /* PullToRefreshHeaderView.swift */,
-				9B03D39222FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift */,
+				9B2E83EE230A9FCB002E7946 /* PullToRefresh.swift */,
+				9B2E83EF230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift */,
+				9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */,
 			);
 			name = PullToRefresh;
+			path = ..;
 			sourceTree = "<group>";
 		};
-		9B1638BB22A7E17000B7C3A7 /* Custom */ = {
+		9B1638BB22A7E17000B7C3A7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */,
 				9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */,
-				9B1638BF22A7E17000B7C3A7 /* BasicNavigationController.swift */,
+				9B8A34AB22B15DCF0085B1EC /* Introduction */,
+				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
+				9B43304922B29AF70010C89B /* ImageViewer */,
+				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
+				9BF951A52302C68000C6A1CA /* ProgressHUD */,
 				9BD91A5722BD04720088C146 /* Modal */,
 			);
-			path = Custom;
+			path = Util;
 			sourceTree = "<group>";
 		};
 		9B18128C1CD3BBD600717E4F /* Recover */ = {
@@ -293,30 +296,32 @@
 		9B43304922B29AF70010C89B /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
-				9B43306022B29C8B0010C89B /* ImageViewerController.xib */,
-				9B43304E22B29B8B0010C89B /* AnimatableImageView.swift */,
-				9B43304F22B29B8B0010C89B /* ImageViewerController.swift */,
-				9B43305222B29BB20010C89B /* ImageViewerTransitioningHandler.swift */,
-				9B43305822B29C070010C89B /* ImageViewerPresentationTransition.swift */,
-				9B43305622B29BE90010C89B /* ImageViewerDismissalTransition.swift */,
-				9B43305A22B29C270010C89B /* ImageViewerDismissalInteractor.swift */,
-				9B43305C22B29C3C0010C89B /* ImageViewerUtil.swift */,
+				9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */,
+				9B2E83DE230A9F79002E7946 /* ImageViewerController.swift */,
+				9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */,
+				9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */,
+				9B2E83E0230A9F7A002E7946 /* ImageViewerDismissalTransition.swift */,
+				9B2E83E3230A9F7A002E7946 /* ImageViewerPresentationTransition.swift */,
+				9B2E83E4230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift */,
+				9B2E83E1230A9F7A002E7946 /* ImageViewerUtil.swift */,
 			);
 			name = ImageViewer;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		9B4454DA2302D4DF00D1458A /* CircularCheckbox */ = {
 			isa = PBXGroup;
 			children = (
-				9B4454DD2302D51D00D1458A /* CircularCheckbox.swift */,
-				9B4454DC2302D51D00D1458A /* CircularCheckboxAnimationGenerator.swift */,
-				9B4454E12302D51D00D1458A /* CircularCheckboxCheckPathGenerator.swift */,
-				9B4454DF2302D51D00D1458A /* CircularCheckboxController.swift */,
-				9B4454E02302D51D00D1458A /* CircularCheckboxExpandController.swift */,
-				9B4454DE2302D51D00D1458A /* CircularCheckboxFadeController.swift */,
-				9B4454DB2302D51D00D1458A /* CircularCheckboxGestureRecognizer.swift */,
+				9B2E83D2230A9F20002E7946 /* CircularCheckbox.swift */,
+				9B2E83D3230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift */,
+				9B2E83D4230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift */,
+				9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */,
+				9B2E83D6230A9F20002E7946 /* CircularCheckboxExpandController.swift */,
+				9B2E83D5230A9F20002E7946 /* CircularCheckboxFadeController.swift */,
+				9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */,
 			);
 			name = CircularCheckbox;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		9B8772851C9D4BA80065A816 /* IngredientEdit */ = {
@@ -330,10 +335,11 @@
 		9B8A34AB22B15DCF0085B1EC /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
-				9B8A34AF22B15E800085B1EC /* IntroductionPageViewController.swift */,
-				9B8A34B122B15F390085B1EC /* IntroductionDetailViewController.swift */,
+				9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */,
+				9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */,
 			);
 			name = Introduction;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		9B93B3191E7543200046687A /* ReverseLookup */ = {
@@ -402,12 +408,7 @@
 				9BD8A7071CC8F436001EB1A9 /* Album */,
 				9BB98FAB1E6480B1009240FB /* Settings */,
 				9B18128C1CD3BBD600717E4F /* Recover */,
-				9B1638BB22A7E17000B7C3A7 /* Custom */,
-				9B8A34AB22B15DCF0085B1EC /* Introduction */,
-				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
-				9B43304922B29AF70010C89B /* ImageViewer */,
-				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
-				9BF951A52302C68000C6A1CA /* ProgressHUD */,
+				9B1638BB22A7E17000B7C3A7 /* Util */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
@@ -475,10 +476,11 @@
 		9BF951A52302C68000C6A1CA /* ProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				9BF951A62302C6C600C6A1CA /* IndefiniteAnimatedView.swift */,
-				9BF951A72302C6C600C6A1CA /* ProgressHUD.swift */,
+				9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */,
+				9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */,
 			);
 			name = ProgressHUD;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		9BFCE19F1E97A05A00546B47 /* Storyboards */ = {
@@ -595,12 +597,12 @@
 				9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */,
 				9BBCF41D22BA83710020B286 /* AlbumFilter.storyboard in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
+				9B2E83EA230A9F7A002E7946 /* ImageViewerController.xib in Resources */,
 				9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */,
 				9BD1211C22BD5DD90096E674 /* IngredientRecommend.storyboard in Resources */,
 				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,
 				9B59FFA822B409CB00FB6F44 /* README.md in Resources */,
 				9BFCE1921E97999E00546B47 /* RecipeEdit.storyboard in Resources */,
-				9B43306122B29C8B0010C89B /* ImageViewerController.xib in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,75 +668,74 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B2E83ED230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift in Sources */,
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,
 				9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */,
 				9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */,
-				9B4454E72302D51E00D1458A /* CircularCheckboxExpandController.swift in Sources */,
+				9B2E83F7230A9FEB002E7946 /* ProgressHUD.swift in Sources */,
+				9B2E83DD230A9F20002E7946 /* CircularCheckboxExpandController.swift in Sources */,
+				9B2E83D7230A9F20002E7946 /* CircularCheckboxGestureRecognizer.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
-				9B43305B22B29C270010C89B /* ImageViewerDismissalInteractor.swift in Sources */,
-				9B43305D22B29C3C0010C89B /* ImageViewerUtil.swift in Sources */,
-				9B43305922B29C070010C89B /* ImageViewerPresentationTransition.swift in Sources */,
+				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
+				9B2E83F6230A9FEB002E7946 /* IndefiniteAnimatedView.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9BCC35A822B8DFE500389FD5 /* RecipeSearchViewController.swift in Sources */,
 				9B0B29581CC66CBD0021BD02 /* ReminderTableViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
+				9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
-				9B43305022B29B8B0010C89B /* AnimatableImageView.swift in Sources */,
+				9B2E83DB230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift in Sources */,
 				9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */,
 				9BD1211E22BD5E260096E674 /* IngredientRecommendTableViewController.swift in Sources */,
+				9B2E83EC230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
 				9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */,
+				9B2E83EB230A9F7A002E7946 /* ImageViewerPresentationTransition.swift in Sources */,
 				9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */,
 				9BDB39361CD44DD400CE3175 /* RecoverRecipeBasic.swift in Sources */,
 				9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */,
+				9B2E83F2230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift in Sources */,
+				9B2E83CF230A9EF5002E7946 /* IntroductionPageViewController.swift in Sources */,
+				9B2E83DC230A9F20002E7946 /* CircularCheckboxFadeController.swift in Sources */,
 				9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */,
+				9B2E83DA230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift in Sources */,
+				9B2E83E9230A9F7A002E7946 /* ImageViewerUtil.swift in Sources */,
 				9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */,
-				9B43305722B29BE90010C89B /* ImageViewerDismissalTransition.swift in Sources */,
-				9B8A34B222B15F390085B1EC /* IntroductionDetailViewController.swift in Sources */,
-				9BF951A92302C6C600C6A1CA /* ProgressHUD.swift in Sources */,
+				9B2E83F3230A9FCB002E7946 /* PullToRefreshHeaderView.swift in Sources */,
 				9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */,
-				9B03D39122FD827400E2AB86 /* PullToRefreshHeaderView.swift in Sources */,
+				9B2E83E7230A9F7A002E7946 /* AnimatableImageView.swift in Sources */,
 				9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */,
 				9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */,
+				9B2E83E8230A9F7A002E7946 /* ImageViewerDismissalTransition.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
-				9B4454E32302D51E00D1458A /* CircularCheckboxAnimationGenerator.swift in Sources */,
-				9BF951A82302C6C600C6A1CA /* IndefiniteAnimatedView.swift in Sources */,
-				9B4454E82302D51E00D1458A /* CircularCheckboxCheckPathGenerator.swift in Sources */,
 				9B70B09122B68533008A5591 /* RecipeTableViewCell.swift in Sources */,
 				9BD91A6222BD3A840088C146 /* StyleTipViewController.swift in Sources */,
-				9B1638C422A7E17100B7C3A7 /* BasicNavigationController.swift in Sources */,
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
-				9B4454E62302D51E00D1458A /* CircularCheckboxController.swift in Sources */,
-				9B4454E52302D51E00D1458A /* CircularCheckboxFadeController.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
+				9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
 				9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */,
-				9B43305322B29BB20010C89B /* ImageViewerTransitioningHandler.swift in Sources */,
+				9B2E83D8230A9F20002E7946 /* CircularCheckboxController.swift in Sources */,
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
-				9B8A34B022B15E800085B1EC /* IntroductionPageViewController.swift in Sources */,
-				9B03D38F22FD825F00E2AB86 /* PullToRefresh.swift in Sources */,
-				9B4454E42302D51E00D1458A /* CircularCheckbox.swift in Sources */,
 				9BD91A5922BD04930088C146 /* Interactor.swift in Sources */,
 				9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */,
-				9B4454E22302D51E00D1458A /* CircularCheckboxGestureRecognizer.swift in Sources */,
-				9B03D39322FD828600E2AB86 /* PullToRefreshHeaderAnimator.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,
+				9B2E83F1230A9FCB002E7946 /* PullToRefresh.swift in Sources */,
 				9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */,
 				9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */,
 				9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */,
 				9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */,
-				9B43305122B29B8B0010C89B /* ImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

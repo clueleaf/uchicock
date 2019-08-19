@@ -65,6 +65,27 @@ class CustomActivityController: UIActivityViewController{
     }
 }
 
+class BasicNavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Style.statusBarStyle
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationBar.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
+    }
+    
+    override var childForStatusBarStyle: UIViewController? {
+        return self.visibleViewController
+    }
+    
+}
+
 class CustomTextView: UITextView{
 }
 
