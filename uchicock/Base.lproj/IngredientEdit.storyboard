@@ -93,6 +93,9 @@
                                                         <constraint firstAttribute="height" constant="40" id="KtU-GL-7tG"/>
                                                         <constraint firstAttribute="width" constant="40" id="pba-HN-6sV"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="stockCheckboxTapped:" destination="oWG-9w-kCh" eventType="valueChanged" id="x3g-pf-phm"/>
+                                                    </connections>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -130,6 +133,9 @@
                                                         <segment title="ノンアルコール"/>
                                                         <segment title="その他"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="categorySegmentedControlTapped:" destination="oWG-9w-kCh" eventType="valueChanged" id="68Q-27-75v"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>

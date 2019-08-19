@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate  {
+class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var category: CustomSegmentedControl!
@@ -19,7 +19,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     weak var detailVC : IngredientDetailTableViewController?
     var ingredient = Ingredient()
     var isAddMode = true
-    let openTime = Date()
+    var showCancelAlert = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -49,6 +49,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         memo.text = ingredient.memo
+        memo.delegate = self
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
@@ -57,6 +58,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         let safeAreaBottom: CGFloat = 0.0
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +92,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
         return true
@@ -96,6 +105,15 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     func textWithoutSpace ( text: String ) -> String {
         return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    @objc func textFieldDidChange(_ notification: Notification){
+        showCancelAlert = true
+    }
+    
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(_ textView: UITextView) {
+        showCancelAlert = true
     }
     
     // MARK: - UITableView
@@ -123,10 +141,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        if Date().timeIntervalSince(openTime) < 3 {
-            _ = detailVC?.navigationController?.popViewController(animated: false)
-            self.dismiss(animated: true, completion: nil)
-        }else{
+        if showCancelAlert {
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
                 _ = self.detailVC?.navigationController?.popViewController(animated: false)
@@ -136,6 +151,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
+        }else{
+            _ = detailVC?.navigationController?.popViewController(animated: false)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -211,7 +229,15 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             }
         }
     }
-
+    
+    @IBAction func stockCheckboxTapped(_ sender: CircularCheckbox) {
+        showCancelAlert = true
+    }
+    
+    @IBAction func categorySegmentedControlTapped(_ sender: CustomSegmentedControl) {
+        showCancelAlert = true
+    }
+    
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }

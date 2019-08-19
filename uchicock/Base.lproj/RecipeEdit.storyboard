@@ -201,6 +201,9 @@
                                                         <segment title="ホット"/>
                                                         <segment title="未指定"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="styleSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="sL8-DD-ROs"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -243,6 +246,9 @@
                                                         <segment title="ブレンド"/>
                                                         <segment title="その他"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="methodSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="5lb-WF-z9U"/>
+                                                    </connections>
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ">
                                                     <rect key="frame" x="47" y="15.5" width="20" height="20"/>

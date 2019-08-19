@@ -165,9 +165,7 @@ public class ProgressHUD : UIView {
         }
     }
     
-    @objc private func positionHUD(_ notification: Notification? = nil) {
-        let animationDuration: Double = 0.0
-        
+    @objc private func positionHUD() {
         if let appDelegate = UIApplication.shared.delegate,
             let window : UIWindow = appDelegate.window! {
             frame = window.bounds
@@ -182,15 +180,7 @@ public class ProgressHUD : UIView {
         let rotateAngle : CGFloat = 0.0
         let newCenter = CGPoint.init(x: posX, y: posY)
         
-        if notification != nil {
-            // Animate update if notification was present
-            UIView.animate(withDuration: TimeInterval(animationDuration), delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-                self.move(to: newCenter, rotateAngle: rotateAngle)
-                self.getHudView().setNeedsDisplay()
-            })
-        } else {
-            move(to: newCenter, rotateAngle: rotateAngle)
-        }
+        move(to: newCenter, rotateAngle: rotateAngle)
     }
     
     private func updateViewHierarchy() {
@@ -267,9 +257,6 @@ public class ProgressHUD : UIView {
                     strongSelf.indefiniteAnimatedView?.stopActivityIndicator()
                     strongSelf.indefiniteAnimatedView?.removeFromSuperview()
 
-                    // Remove observer <=> we do not have to handle orientation changes etc.
-                    NotificationCenter.default.removeObserver(strongSelf)
-                    
                     // Tell the rootViewController to update the StatusBar appearance
                     let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
                     rootController?.setNeedsStatusBarAppearanceUpdate()

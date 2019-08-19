@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeName: CustomTextField!
@@ -35,7 +35,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var ipc = UIImagePickerController()
     var focusRecipeNameFlag = false
     let selectedCellBackgroundView = UIView()
-    let openTime = Date()
+    var showCancelAlert = false
     var selectedIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
@@ -104,6 +104,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         memo.text = recipe.memo
+        memo.delegate = self
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
@@ -121,6 +122,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         var safeAreaBottom: CGFloat = 0.0
         safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.recipeName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +177,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Set Style
     private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
         star1.setTitle(star1title, for: .normal)
@@ -185,9 +193,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         recipeName.resignFirstResponder()
         return true
+    }
+    
+    @objc func textFieldDidChange(_ notification: Notification){
+        showCancelAlert = true
+    }
+
+    // MARK: - UITextViewDelegate
+    func textViewDidChange(_ textView: UITextView) {
+        showCancelAlert = true
     }
     
     func isIngredientDuplicated() -> Bool {
@@ -281,6 +299,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
+            showCancelAlert = true
             let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
             nvc.modalPresentationStyle = .custom
@@ -333,6 +352,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let del = UITableViewRowAction(style: .default, title: "削除") {
             (action, indexPath) in
+            self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -417,6 +437,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             alert.addAction(UIAlertAction(title: "写真を撮る", style: .default,handler:{
                 action in
+                self.showCancelAlert = true
                 self.ipc.sourceType = .camera
                 self.ipc.allowsEditing = false
                 self.present(self.ipc, animated: true, completion: nil)
@@ -424,6 +445,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         alert.addAction(UIAlertAction(title: "写真を選択",style: .default, handler:{
             action in
+            self.showCancelAlert = true
             self.ipc.sourceType = .photoLibrary
             self.ipc.allowsEditing = true
             self.present(self.ipc, animated: true, completion: nil)
@@ -434,6 +456,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if let img = self.resizedImage(image: image){
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
+                    self.showCancelAlert = true
                     self.performSegue(withIdentifier: "ShowPhotoFilter", sender: img)
                 }))
             }
@@ -441,14 +464,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if self.photo.image != nil{
             alert.addAction(UIAlertAction(title: "写真を削除",style: .destructive){
                 action in
+                self.showCancelAlert = true
                 self.selectPhoto.text = "写真を追加"
                 self.photo.image = nil
                 self.photo.isUserInteractionEnabled = false
                 })
         }
-        alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:{
-            action in
-        }))
+        alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:nil))
         alert.alertStatusBarStyle = Style.statusBarStyle
         alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
@@ -457,6 +479,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     // MARK: - IBAction
     @IBAction func star1Tapped(_ sender: UIButton) {
+        self.showCancelAlert = true
         if star1.currentTitle == "★" && star2.currentTitle == "☆"{
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
@@ -465,6 +488,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
+        self.showCancelAlert = true
         if star2.currentTitle == "★" && star3.currentTitle == "☆"{
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
@@ -473,6 +497,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
+        self.showCancelAlert = true
         if star3.currentTitle == "★"{
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
         }else{
@@ -481,10 +506,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        if Date().timeIntervalSince(openTime) < 3 {
-            _ = detailVC?.navigationController?.popViewController(animated: false)
-            self.dismiss(animated: true, completion: nil)
-        }else{
+        if showCancelAlert {
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){
                 action in
@@ -495,6 +517,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
+        }else{
+            _ = detailVC?.navigationController?.popViewController(animated: false)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -671,6 +696,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         present(nvc, animated: true)
     }
     
+    @IBAction func styleSegmentedControlTapped(_ sender: CustomSegmentedControl) {
+        self.showCancelAlert = true
+    }
+    
+    @IBAction func methodSegmentedControlTapped(_ sender: CustomSegmentedControl) {
+        self.showCancelAlert = true
+    }
+    
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -752,7 +785,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return interactor.hasStarted ? interactor : nil
     }
 
-    // MARK: Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowPhotoFilter"{
             let vc = segue.destination as! PhotoFilterViewController
