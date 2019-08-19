@@ -150,6 +150,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 deleteContainerView.isHidden = false
             }
             
+            self.tableView.estimatedRowHeight = 70
+            self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
         }
     }
