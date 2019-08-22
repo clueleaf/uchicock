@@ -423,6 +423,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
+                self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
@@ -435,6 +436,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
+                self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
@@ -755,7 +757,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let img = pfvc.imageView.image!
             self.photo.image = self.resizedImage(image: img)
             self.selectPhoto.text = "写真を変更"
-            self.photo.isHidden = false
             return true
         }
         return false
