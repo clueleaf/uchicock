@@ -27,22 +27,10 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         return Style.statusBarStyle
     }
     
-    init(originalImageView: UIImageView, captionText: String?) {
-        self.originalImageView = originalImageView
-        self.captionText = captionText
-        super.init(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
-        
-        modalPresentationStyle = .overFullScreen
-        modalTransitionStyle = .crossDissolve
-        modalPresentationCapturesStatusBarAppearance = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.delegate = self
         
         imageView.image = originalImageView?.image
         doneButton.setTitleColor(UIColor(white: 0.9, alpha: 0.9), for: .normal)

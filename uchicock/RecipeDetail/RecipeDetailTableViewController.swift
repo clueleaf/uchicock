@@ -301,8 +301,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 //レシピ削除のバグに対するワークアラウンド
                 let browsePhoto = UIImage(data: image as Data)
                 if browsePhoto != nil{
-                    let imageViewerController = ImageViewerController(originalImageView: photo, captionText: self.recipe.recipeName)
-                    self.present(imageViewerController, animated: true)
+                    let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
+                    let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
+                    ivc.originalImageView = photo
+                    ivc.captionText = self.recipe.recipeName
+                    ivc.modalPresentationStyle = .overFullScreen
+                    ivc.modalTransitionStyle = .crossDissolve
+                    ivc.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(ivc, animated: true)
                 }
             }
         }

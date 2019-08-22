@@ -30,7 +30,6 @@
 		9B2E83E7230A9F7A002E7946 /* AnimatableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */; };
 		9B2E83E8230A9F7A002E7946 /* ImageViewerDismissalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E0230A9F7A002E7946 /* ImageViewerDismissalTransition.swift */; };
 		9B2E83E9230A9F7A002E7946 /* ImageViewerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E1230A9F7A002E7946 /* ImageViewerUtil.swift */; };
-		9B2E83EA230A9F7A002E7946 /* ImageViewerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */; };
 		9B2E83EB230A9F7A002E7946 /* ImageViewerPresentationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E3230A9F7A002E7946 /* ImageViewerPresentationTransition.swift */; };
 		9B2E83EC230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E4230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift */; };
 		9B2E83ED230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */; };
@@ -56,6 +55,7 @@
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B5A33E222BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */; };
 		9B5A33E322BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */; };
+		9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */; };
 		9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */; };
 		9B6D67CC1CD0F064001E8079 /* RecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */; };
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
@@ -127,7 +127,6 @@
 		9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatableImageView.swift; path = Util/ImageViewer/AnimatableImageView.swift; sourceTree = "<group>"; };
 		9B2E83E0230A9F7A002E7946 /* ImageViewerDismissalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalTransition.swift; path = Util/ImageViewer/ImageViewerDismissalTransition.swift; sourceTree = "<group>"; };
 		9B2E83E1230A9F7A002E7946 /* ImageViewerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerUtil.swift; path = Util/ImageViewer/ImageViewerUtil.swift; sourceTree = "<group>"; };
-		9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageViewerController.xib; path = Util/ImageViewer/ImageViewerController.xib; sourceTree = "<group>"; };
 		9B2E83E3230A9F7A002E7946 /* ImageViewerPresentationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerPresentationTransition.swift; path = Util/ImageViewer/ImageViewerPresentationTransition.swift; sourceTree = "<group>"; };
 		9B2E83E4230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerTransitioningHandler.swift; path = Util/ImageViewer/ImageViewerTransitioningHandler.swift; sourceTree = "<group>"; };
 		9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewerDismissalInteractor.swift; path = Util/ImageViewer/ImageViewerDismissalInteractor.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B5A33E022BDD2ED000FE700 /* IngredientRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewCell.swift; path = IngredientList/IngredientRecommendTableViewCell.swift; sourceTree = "<group>"; };
 		9B5A33E122BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IngredientRecommendTableViewCell.xib; path = IngredientList/IngredientRecommendTableViewCell.xib; sourceTree = "<group>"; };
+		9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ImageViewer.storyboard; path = Util/ImageViewer/ImageViewer.storyboard; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
 		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		9B43304922B29AF70010C89B /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
-				9B2E83E2230A9F7A002E7946 /* ImageViewerController.xib */,
+				9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */,
 				9B2E83DE230A9F79002E7946 /* ImageViewerController.swift */,
 				9B2E83DF230A9F7A002E7946 /* AnimatableImageView.swift */,
 				9B2E83E5230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift */,
@@ -582,6 +582,7 @@
 				9B70B09222B68533008A5591 /* RecipeTableViewCell.xib in Resources */,
 				9BD91A5E22BD39860088C146 /* Tip.storyboard in Resources */,
 				9BFCE1A81E97A39400546B47 /* RecipeDetail.storyboard in Resources */,
+				9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */,
 				9BFCE19E1E979FA500546B47 /* Settings.storyboard in Resources */,
 				9B5A33E322BDD2ED000FE700 /* IngredientRecommendTableViewCell.xib in Resources */,
 				9BFCE1AB1E97A41400546B47 /* IngredientDetail.storyboard in Resources */,
@@ -589,7 +590,6 @@
 				9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */,
 				9BBCF41D22BA83710020B286 /* AlbumFilter.storyboard in Resources */,
 				9BC9A31A1C783CAA0031F631 /* Main.storyboard in Resources */,
-				9B2E83EA230A9F7A002E7946 /* ImageViewerController.xib in Resources */,
 				9B8A34AE22B15E300085B1EC /* Introduction.storyboard in Resources */,
 				9BD1211C22BD5DD90096E674 /* IngredientRecommend.storyboard in Resources */,
 				9B5473E5220680E600E53719 /* IngredientEdit.storyboard in Resources */,

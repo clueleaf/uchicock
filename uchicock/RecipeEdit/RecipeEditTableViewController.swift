@@ -224,8 +224,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if let repre = image.pngData(){
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
-                    let imageViewerController = ImageViewerController(originalImageView: photo, captionText: nil)
-                    self.present(imageViewerController, animated: true)
+                    let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
+                    let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
+                    ivc.originalImageView = photo
+                    ivc.captionText = nil
+                    ivc.modalPresentationStyle = .overFullScreen
+                    ivc.modalTransitionStyle = .crossDissolve
+                    ivc.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(ivc, animated: true)
                 }
             }
         }
