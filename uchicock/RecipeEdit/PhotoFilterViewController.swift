@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
     var selectingImageIndex = 0
     var image : UIImage?
@@ -17,6 +17,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     var filterImages : [UIImage?] = []
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -41,6 +42,8 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageScrollView.delegate = self
+        
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 17.5
@@ -55,6 +58,23 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         if let im = image{
             smallImage = resizedImage(image: im)
         }
+        
+        setupScrollView()
+        setupGestureRecognizers()
+    }
+    
+    func setupScrollView() {
+        imageScrollView.indicatorStyle = .white
+        imageScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
+        imageScrollView.alwaysBounceVertical = true
+        imageScrollView.alwaysBounceHorizontal = true
+    }
+    
+    func setupGestureRecognizers() {
+        let doubleTapGestureRecognizer = UITapGestureRecognizer()
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer.addTarget(self, action: #selector(imageViewDoubleTapped))
+        imageView.addGestureRecognizer(doubleTapGestureRecognizer)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,6 +123,27 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         }
 
         return cell
+    }
+    
+    @objc func imageViewDoubleTapped() {
+        if imageScrollView.zoomScale > imageScrollView.minimumZoomScale {
+            imageScrollView.setZoomScale(imageScrollView.minimumZoomScale, animated: true)
+        } else {
+            imageScrollView.setZoomScale(imageScrollView.maximumZoomScale, animated: true)
+        }
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        guard let image = imageView.image else { return }
+        let imageViewSize = ImageViewerUtil.aspectFitRect(forSize: image.size, insideRect: imageView.frame)
+        let verticalInsets = -(scrollView.contentSize.height - max(imageViewSize.height, scrollView.bounds.height)) / 2
+        let horizontalInsets = -(scrollView.contentSize.width - max(imageViewSize.width, scrollView.bounds.width)) / 2
+        scrollView.contentInset = UIEdgeInsets(top: verticalInsets, left: horizontalInsets, bottom: verticalInsets, right: horizontalInsets)
     }
 
     // MARK: - Process Image
@@ -256,7 +297,12 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "FilterFinished", sender: self)
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.imageScrollView.setZoomScale(self.imageScrollView.minimumZoomScale, animated: false)
+        }, completion: { _ in
+            self.performSegue(withIdentifier: "FilterFinished", sender: self)
+        })
+
     }
 
 }
