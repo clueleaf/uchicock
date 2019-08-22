@@ -19,9 +19,10 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var originalImageView: UIImageView?
     var captionText: String? = nil
     var isBrowsingMode = false
+    var isStatusBarHidden = false
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        return isStatusBarHidden
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -49,6 +50,8 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupCaptionBackground()
+        isStatusBarHidden = true
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func setupScrollView() {
