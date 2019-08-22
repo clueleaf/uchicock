@@ -59,10 +59,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
-            photo.isUserInteractionEnabled = false
+            photo.isHidden = true
         }else{
             selectPhoto.text = "写真を変更"
-            photo.isUserInteractionEnabled = true
+            photo.isHidden = false
         }
         let photoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeEditTableViewController.photoTapped))
         self.photo.addGestureRecognizer(photoTapGestureRecognizer)
@@ -152,10 +152,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         self.tableView.reloadData()
         
-        if photo.alpha < 1.0{
-            UIView.animate(withDuration: 0.5, animations: {self.photo.alpha = 1.0}, completion: nil)
-        }
-
         if let path = selectedIndexPath {
             if tableView.numberOfRows(inSection: 1) > path.row{
                 tableView.selectRow(at: path, animated: false, scrollPosition: .none)
@@ -429,13 +425,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
-                performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
+                let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
+                vc.image = resizedImage(image: img)
+                vc.originalImageView = self.photo
+                vc.modalPresentationStyle = .overFullScreen
+                vc.modalTransitionStyle = .coverVertical
+                self.present(vc, animated: true)
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = resizedImage(image: image){
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
-                performSegue(withIdentifier: "ShowPhotoFilter", sender: resizedImage(image: img))
+                let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
+                vc.image = resizedImage(image: img)
+                vc.originalImageView = self.photo
+                vc.modalPresentationStyle = .overFullScreen
+                vc.modalTransitionStyle = .coverVertical
+                self.present(vc, animated: true)
             }
         }
     }
@@ -463,7 +471,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
                     self.showCancelAlert = true
-                    self.performSegue(withIdentifier: "ShowPhotoFilter", sender: img)
+                    let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
+                    vc.image = img
+                    vc.originalImageView = self.photo
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.modalTransitionStyle = .coverVertical
+                    self.present(vc, animated: true)
                 }))
             }
         }
@@ -473,7 +487,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.showCancelAlert = true
                 self.selectPhoto.text = "写真を追加"
                 self.photo.image = nil
-                self.photo.isUserInteractionEnabled = false
+                self.photo.isHidden = true
                 })
         }
         alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:nil))
@@ -741,8 +755,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let img = pfvc.imageView.image!
             self.photo.image = self.resizedImage(image: img)
             self.selectPhoto.text = "写真を変更"
-            self.photo.isUserInteractionEnabled = true
-            self.photo.alpha = 0.0
+            self.photo.isHidden = false
             return true
         }
         return false
@@ -790,15 +803,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPhotoFilter"{
-            let vc = segue.destination as! PhotoFilterViewController
-            vc.image = (sender as! UIImage)
-        }
-    }
-    
 }
 
 // ImagePickerの切り取る範囲がずれる問題へのワークアラウンド

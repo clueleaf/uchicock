@@ -15,6 +15,9 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     var smallImage : UIImage?
     let queue = DispatchQueue(label: "queue")
     var filterImages : [UIImage?] = []
+    var originalImageView: UIImageView?
+    var transitionHandler: PhotoFilterDismissalTransitioningHandler?
+    
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
@@ -61,6 +64,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         
         setupScrollView()
         setupGestureRecognizers()
+        setupTransitions()
     }
     
     func setupScrollView() {
@@ -75,6 +79,11 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.addTarget(self, action: #selector(imageViewDoubleTapped))
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
+    }
+    
+    func setupTransitions() {
+        transitionHandler = PhotoFilterDismissalTransitioningHandler(fromImageView: self.imageView, toImageView: originalImageView!)
+        self.transitioningDelegate = transitionHandler
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -297,6 +306,8 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
+        originalImageView?.isHidden = true
+
         UIView.animate(withDuration: 0.2, delay: 0, animations: {
             self.imageScrollView.setZoomScale(self.imageScrollView.minimumZoomScale, animated: false)
         }, completion: { _ in

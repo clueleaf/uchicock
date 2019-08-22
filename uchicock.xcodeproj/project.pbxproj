@@ -72,6 +72,7 @@
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
 		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
 		9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */; };
+		9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */; };
 		9BBCF41D22BA83710020B286 /* AlbumFilter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BBCF41B22BA83710020B286 /* AlbumFilter.storyboard */; };
 		9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBCF41E22BA839D0020B286 /* AlbumFilterViewController.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
@@ -170,6 +171,7 @@
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
 		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeThemeTableViewController.swift; path = Settings/ChangeThemeTableViewController.swift; sourceTree = "<group>"; };
+		9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterDismissalTransitioningHandler.swift; path = RecipeEdit/PhotoFilterDismissalTransitioningHandler.swift; sourceTree = "<group>"; };
 		9BBCF41C22BA83710020B286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AlbumFilter.storyboard; sourceTree = "<group>"; };
 		9BBCF41E22BA839D0020B286 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = Album/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BC9A3111C783CAA0031F631 /* uchicock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchicock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +286,7 @@
 				9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */,
 				9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */,
 				9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */,
+				9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */,
 				9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */,
 			);
 			name = RecipeEdit;
@@ -671,6 +674,7 @@
 				9B2E83D7230A9F20002E7946 /* CircularCheckboxGestureRecognizer.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
+				9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
