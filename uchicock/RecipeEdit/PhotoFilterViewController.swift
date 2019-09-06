@@ -10,6 +10,14 @@ import UIKit
 
 class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
+
+    func nowTime() -> String { /* 2018-04-30 19:33:32.265253+0900 */
+        let format = DateFormatter()
+        format.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
+        return format.string(from: Date())
+    }
+    
+
     var selectingImageIndex = 0
     var image : UIImage?
     var smallImage : UIImage?
@@ -110,6 +118,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFilterCell", for: indexPath) as! PhotoFilterCollectionViewCell
         cell.imageView.layer.cornerRadius = 10
 
+        print("[start]" + String(indexPath.row) + ":" + nowTime())
         cell.imageView.image = filterImages[indexPath.row]
         if filterImages[indexPath.row] == nil{
             if let smim = self.smallImage{
@@ -117,6 +126,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
                     queue.async {
                         let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
                         self.filterImages[indexPath.row] = filteredImage
+                        print("[end]" + String(indexPath.row) + ":" + nowTime())
                         DispatchQueue.main.async{
                             cell.imageView.image = filteredImage
                         }
