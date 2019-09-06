@@ -20,7 +20,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
 
     var selectingImageIndex = 0
     var image : UIImage?
-    var smallImage : UIImage?
+    var smallCIImage : CIImage?
     let queue = DispatchQueue(label: "queue")
     var filterImages : [UIImage?] = []
     var originalImageView: UIImageView?
@@ -67,7 +67,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
 
         imageView.image = image
         if let im = image{
-            smallImage = resizedImage(image: im)
+            smallCIImage = resizedImage(image: im)
         }
         
         setupScrollView()
@@ -121,15 +121,13 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         print("[start]" + String(indexPath.row) + ":" + nowTime())
         cell.imageView.image = filterImages[indexPath.row]
         if filterImages[indexPath.row] == nil{
-            if let smim = self.smallImage{
-                if let ciim = CIImage(image: smim){
-                    queue.async {
-                        let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
-                        self.filterImages[indexPath.row] = filteredImage
-                        print("[end]" + String(indexPath.row) + ":" + nowTime())
-                        DispatchQueue.main.async{
-                            cell.imageView.image = filteredImage
-                        }
+            if let smim = self.smallCIImage{
+                queue.async {
+                    let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: smim)
+                    self.filterImages[indexPath.row] = filteredImage
+                    print("[end]" + String(indexPath.row) + ":" + self.nowTime())
+                    DispatchQueue.main.async{
+                        cell.imageView.image = filteredImage
                     }
                 }
             }
@@ -199,23 +197,18 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
-    func resizedImage(image: UIImage) -> UIImage? {
+    func resizedImage(image: UIImage) -> CIImage? {
         let maxLongSide : CGFloat = (collectionView.frame.height - 20) * 2
         if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
-            return image
+            return CIImage(image: image)
         }
         
         let w = image.size.width / maxLongSide
         let h = image.size.height / maxLongSide
         let ratio = w > h ? w : h
-        let rect = CGRect(x: 0, y: 0, width: image.size.width / ratio, height: image.size.height / ratio)
+        let matrix = CGAffineTransform(scaleX: image.size.width / ratio, y: image.size.height / ratio)
         
-        UIGraphicsBeginImageContext(rect.size)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+        return CIImage(image: image)?.transformed(by: matrix)
     }
     
     func getColorImage( red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1.0, rect: CGRect) -> CIImage {
