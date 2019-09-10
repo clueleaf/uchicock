@@ -112,8 +112,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.imageView.image = filterImages[indexPath.row]
         if filterImages[indexPath.row] == nil{
             if let smim = self.smallCIImage{
-                let queue = DispatchQueue(label: "queue")
-                queue.async {
+                DispatchQueue.global(qos: .userInitiated).async{
                     self.filterImages[indexPath.row] = self.filteredImage(filterNumber: indexPath.row, originalImage: smim)
                     DispatchQueue.main.async{
                         cell.imageView.image = self.filterImages[indexPath.row]
