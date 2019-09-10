@@ -6,92 +6,6 @@ import UIKit
 
 internal class CircularCheckboxFadeController: CircularCheckboxController {
     
-    //----------------------------
-    // MARK: - Properties
-    //----------------------------
-    
-    override var tintColor: UIColor {
-        didSet {
-            selectedBoxLayer.strokeColor = tintColor.cgColor
-            selectedBoxLayer.fillColor = tintColor.cgColor
-        }
-    }
-    
-    override var secondaryTintColor: UIColor? {
-        didSet {
-            unselectedBoxLayer.strokeColor = secondaryTintColor?.cgColor
-        }
-    }
-    
-    override var secondaryCheckmarkTintColor: UIColor? {
-        didSet {
-            markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
-        }
-    }
-    
-    override init() {
-        super.init()
-        sharedSetup()
-    }
-    
-    fileprivate func sharedSetup() {
-        // Disable som implicit animations.
-        let newActions = [
-            "opacity": NSNull(),
-            "strokeEnd": NSNull(),
-            "transform": NSNull(),
-            "fillColor": NSNull(),
-            "path": NSNull(),
-            "lineWidth": NSNull()
-        ]
-        
-        // Setup the unselected box layer
-        unselectedBoxLayer.lineCap = .round
-        unselectedBoxLayer.rasterizationScale = UIScreen.main.scale
-        unselectedBoxLayer.shouldRasterize = true
-        unselectedBoxLayer.actions = newActions
-        
-        unselectedBoxLayer.opacity = 1.0
-        unselectedBoxLayer.strokeEnd = 1.0
-        unselectedBoxLayer.transform = CATransform3DIdentity
-        unselectedBoxLayer.fillColor = nil
-        
-        // Setup the selected box layer.
-        selectedBoxLayer.lineCap = .round
-        selectedBoxLayer.rasterizationScale = UIScreen.main.scale
-        selectedBoxLayer.shouldRasterize = true
-        selectedBoxLayer.actions = newActions
-        
-        selectedBoxLayer.fillColor = nil
-        selectedBoxLayer.transform = CATransform3DIdentity
-        
-        // Setup the checkmark layer.
-        markLayer.lineCap = .round
-        markLayer.lineJoin = .round
-        markLayer.rasterizationScale = UIScreen.main.scale
-        markLayer.shouldRasterize = true
-        markLayer.actions = newActions
-        
-        markLayer.transform = CATransform3DIdentity
-        markLayer.fillColor = nil
-    }
-    
-    //----------------------------
-    // MARK: - Layers
-    //----------------------------
-    
-    let markLayer = CAShapeLayer()
-    let selectedBoxLayer = CAShapeLayer()
-    let unselectedBoxLayer = CAShapeLayer()
-    
-    override var layersToDisplay: [CALayer] {
-        return [unselectedBoxLayer, selectedBoxLayer, markLayer]
-    }
-    
-    //----------------------------
-    // MARK: - Animations
-    //----------------------------
-    
     override func animate(_ fromState: CircularCheckbox.CheckState?, toState: CircularCheckbox.CheckState?, completion: (() -> Void)?) {
         super.animate(fromState, toState: toState)
         
@@ -142,25 +56,6 @@ internal class CircularCheckboxFadeController: CircularCheckboxController {
         
     }
     
-    //----------------------------
-    // MARK: - Layout
-    //----------------------------
-    
-    override func layoutLayers() {
-        // Frames
-        unselectedBoxLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
-        selectedBoxLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
-        markLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
-        // Paths
-        unselectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
-        selectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
-        markLayer.path = pathGenerator.pathForMark(state)?.cgPath
-    }
-    
-    //----------------------------
-    // MARK: - Display
-    //----------------------------
-    
     override func resetLayersForState(_ state: CircularCheckbox.CheckState?) {
         super.resetLayersForState(state)
         // Remove all remnant animations. They will interfere with each other if they are not removed before a new round of animations start.
@@ -193,5 +88,4 @@ internal class CircularCheckboxFadeController: CircularCheckboxController {
         selectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
         markLayer.path = pathGenerator.pathForMark(state)?.cgPath
     }
-    
 }

@@ -6,10 +6,6 @@ import UIKit
 
 internal class CircularCheckboxController {
     
-    //----------------------------
-    // MARK: - Properties
-    //----------------------------
-    
     /// The path presets for the manager.
     var pathGenerator = CircularCheckboxCheckPathGenerator()
     
@@ -21,15 +17,71 @@ internal class CircularCheckboxController {
     
     /// The current tint color.
     /// - Note: Subclasses should override didSet to update the layers when this value changes.
-    var tintColor: UIColor = UIColor.black
+    var tintColor: UIColor = UIColor.black{
+        didSet {
+            selectedBoxLayer.strokeColor = tintColor.cgColor
+            selectedBoxLayer.fillColor = tintColor.cgColor
+        }
+    }
     
     /// The secondary tint color.
     /// - Note: Subclasses should override didSet to update the layers when this value changes.
-    var secondaryTintColor: UIColor? = UIColor.lightGray
+    var secondaryTintColor: UIColor? = UIColor.lightGray{
+        didSet {
+            unselectedBoxLayer.strokeColor = secondaryTintColor?.cgColor
+        }
+    }
     
     /// The secondary color of the mark.
     /// - Note: Subclasses should override didSet to update the layers when this value changes.
-    var secondaryCheckmarkTintColor: UIColor? = UIColor.white
+    var secondaryCheckmarkTintColor: UIColor? = UIColor.white{
+        didSet {
+            markLayer.strokeColor = secondaryCheckmarkTintColor?.cgColor
+        }
+    }
+    
+    init() {
+        sharedSetup()
+    }
+    
+    fileprivate func sharedSetup() {
+        // Disable som implicit animations.
+        let newActions = [
+            "opacity": NSNull(),
+            "transform": NSNull(),
+            "path": NSNull(),
+        ]
+        
+        // Setup the unselected box layer
+        unselectedBoxLayer.lineCap = .round
+        unselectedBoxLayer.rasterizationScale = UIScreen.main.scale
+        unselectedBoxLayer.shouldRasterize = true
+        unselectedBoxLayer.actions = newActions
+        
+        unselectedBoxLayer.opacity = 1.0
+        unselectedBoxLayer.strokeEnd = 1.0
+        unselectedBoxLayer.transform = CATransform3DIdentity
+        unselectedBoxLayer.fillColor = nil
+
+        // Setup the selected box layer.
+        selectedBoxLayer.lineCap = .round
+        selectedBoxLayer.rasterizationScale = UIScreen.main.scale
+        selectedBoxLayer.shouldRasterize = true
+        selectedBoxLayer.actions = newActions
+        
+        selectedBoxLayer.fillColor = nil
+        selectedBoxLayer.transform = CATransform3DIdentity
+        
+        // Setup the checkmark layer.
+        markLayer.lineCap = .round
+        markLayer.lineJoin = .round
+        markLayer.rasterizationScale = UIScreen.main.scale
+        markLayer.shouldRasterize = true
+        markLayer.actions = newActions
+        
+        markLayer.transform = CATransform3DIdentity
+        markLayer.fillColor = nil
+    }
     
     private func _setMarkType(animated: Bool) {
         let newPathGenerator = CircularCheckboxCheckPathGenerator()
@@ -57,19 +109,17 @@ internal class CircularCheckboxController {
         }
     }
     
-    //----------------------------
     // MARK: - Layers
-    //----------------------------
-    
+    let markLayer = CAShapeLayer()
+    let selectedBoxLayer = CAShapeLayer()
+    let unselectedBoxLayer = CAShapeLayer()
+
     /// The layers to display in the checkbox. The top layer is the last layer in the array.
     var layersToDisplay: [CALayer] {
-        return []
+        return [unselectedBoxLayer, selectedBoxLayer, markLayer]
     }
     
-    //----------------------------
     // MARK: - Animations
-    //----------------------------
-    
     /**
      Animates the layers between the two states.
      - parameter fromState: The previous state of the checkbox.
@@ -81,19 +131,20 @@ internal class CircularCheckboxController {
         }
     }
     
-    //----------------------------
     // MARK: - Layout
-    //----------------------------
-    
     /// Layout the layers.
     func layoutLayers() {
-        
+        // Frames
+        unselectedBoxLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
+        selectedBoxLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
+        markLayer.frame = CGRect(x: 0.0, y: 0.0, width: pathGenerator.size, height: pathGenerator.size)
+        // Paths
+        unselectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
+        selectedBoxLayer.path = pathGenerator.pathForBox()?.cgPath
+        markLayer.path = pathGenerator.pathForMark(state)?.cgPath
     }
-    
-    //----------------------------
+
     // MARK: - Display
-    //----------------------------
-    
     /**
      Reset the layers to be in the given state.
      - parameter state: The new state of the checkbox.
