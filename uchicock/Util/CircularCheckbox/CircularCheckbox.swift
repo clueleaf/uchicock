@@ -9,7 +9,11 @@ import UIKit
 open class CircularCheckbox: UIControl {
     
     private var hasMovedWhilePressing = false
-    
+    private var originalX: CGFloat = 0.0
+    private var originalY: CGFloat = 0.0
+    private var currentX: CGFloat = 0.0
+    private var currentY: CGFloat = 0.0
+
     public enum CheckState: String {
         /// No check is shown.
         case unchecked = "Unchecked"
@@ -209,11 +213,22 @@ open class CircularCheckbox: UIControl {
     // MARK: - UIControl
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
+            isSelected = true
             self.hasMovedWhilePressing = false
-            isSelected = true
+            originalX = sender.location(in: sender.view).x
+            originalY = sender.location(in: sender.view).y
+            currentX = sender.location(in: sender.view).x
+            currentY = sender.location(in: sender.view).y
         } else if sender.state == .changed{
-//            self.hasMovedWhilePressing = true
             isSelected = true
+            if hasMovedWhilePressing == false{
+                currentX = sender.location(in: sender.view).x
+                currentY = sender.location(in: sender.view).y
+                let movedDistance = (currentX - originalX) * (currentX - originalX) + (currentY - originalY) * (currentY - originalY)
+                if movedDistance > 25{
+                    self.hasMovedWhilePressing = true
+                }
+            }
         } else {
             isSelected = false
             if sender.state == .ended && hasMovedWhilePressing == false {
