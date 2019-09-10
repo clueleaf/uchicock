@@ -1,9 +1,9 @@
 //
 //  IndefiniteAnimatedView.swift
-//  HUDPractice
+//  uchicock
 //
 //  Created by kou on 2019/06/14.
-//  Copyright © 2019 kaigi. All rights reserved.
+//  Copyright © 2019 kou. All rights reserved.
 //
 
 import UIKit

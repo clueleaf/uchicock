@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ImageViewerDismissalTransition.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2019/06/13.
