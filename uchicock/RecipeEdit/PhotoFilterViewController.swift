@@ -13,7 +13,6 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     var selectingImageIndex = 0
     var image : UIImage?
     var smallCIImage : CIImage?
-    let queue = DispatchQueue(label: "queue")
     var filterImages : [UIImage?] = []
     var originalImageView: UIImageView?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
@@ -113,11 +112,11 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.imageView.image = filterImages[indexPath.row]
         if filterImages[indexPath.row] == nil{
             if let smim = self.smallCIImage{
+                let queue = DispatchQueue(label: "queue")
                 queue.async {
-                    let filteredImage = self.filteredImage(filterNumber: indexPath.row, originalImage: smim)
-                    self.filterImages[indexPath.row] = filteredImage
+                    self.filterImages[indexPath.row] = self.filteredImage(filterNumber: indexPath.row, originalImage: smim)
                     DispatchQueue.main.async{
-                        cell.imageView.image = filteredImage
+                        cell.imageView.image = self.filterImages[indexPath.row]
                     }
                 }
             }
