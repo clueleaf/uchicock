@@ -10,9 +10,6 @@ open class CircularCheckbox: UIControl {
     
     private var hasMovedWhilePressing = false
     
-    //----------------------------
-    // MARK: - Constants
-    //----------------------------
     public enum CheckState: String {
         /// No check is shown.
         case unchecked = "Unchecked"
@@ -65,17 +62,11 @@ open class CircularCheckbox: UIControl {
         }
     }
     
-    //----------------------------
-    // MARK: - Properties
-    //----------------------------
-    
     /// The manager that manages display and animations of the checkbox.
     /// The default animation is a stroke.
     fileprivate var controller: CircularCheckboxController = CircularCheckboxExpandController()
     
-    //----------------------------
     // MARK: - Initalization
-    //----------------------------
     override public init(frame: CGRect) {
         super.init(frame: frame)
         sharedSetup()
@@ -101,10 +92,7 @@ open class CircularCheckbox: UIControl {
         addGestureRecognizer(longPressGesture)
     }
     
-    //----------------------------
     // MARK: - Values
-    //----------------------------
-    
     /// The object to return from `value` when the checkbox is checked.
     open var checkedValue: Any?
     
@@ -130,10 +118,7 @@ open class CircularCheckbox: UIControl {
         }
     }
     
-    //----------------------------
     // MARK: - State
-    //----------------------------
-    
     /// The current state of the checkbox.
     open var checkState: CheckState {
         get {
@@ -155,14 +140,7 @@ open class CircularCheckbox: UIControl {
         }
         
         if animated {
-            if enableMorphing {
-                controller.animate(checkState, toState: newState)
-            } else {
-                controller.animate(checkState, toState: nil, completion: { [weak self] in
-                    self?.controller.resetLayersForState(newState)
-                    self?.controller.animate(nil, toState: newState)
-                    })
-            }
+            controller.animate(checkState, toState: newState)
         } else {
             controller.resetLayersForState(newState)
         }
@@ -184,10 +162,7 @@ open class CircularCheckbox: UIControl {
         }
     }
     
-    //----------------------------
     // MARK: - Animations
-    //----------------------------
-    
     /// The duration of the animation that occurs when the checkbox switches states. The default is 0.3 seconds.
     @IBInspectable open var animationDuration: TimeInterval {
         get {
@@ -216,11 +191,9 @@ open class CircularCheckbox: UIControl {
             newManager.tintColor = tintColor
             newManager.secondaryTintColor = secondaryTintColor
             newManager.secondaryCheckmarkTintColor = secondaryCheckmarkTintColor
-            newManager.hideBox = hideBox
             newManager.pathGenerator = controller.pathGenerator
             newManager.animationGenerator.animationDuration = controller.animationGenerator.animationDuration
             newManager.state = controller.state
-            newManager.enableMorphing = controller.enableMorphing
             
             // Set up the inital state.
             for aLayer in newManager.layersToDisplay {
@@ -230,35 +203,18 @@ open class CircularCheckbox: UIControl {
             // Layout and reset
             newManager.resetLayersForState(checkState)
             controller = newManager
-
         }
     }
     
-    /// Whether or not to enable morphing between states.
-    @IBInspectable open var enableMorphing: Bool {
-        get {
-            return controller.enableMorphing
-        }
-        set {
-            controller.enableMorphing = newValue
-        }
-    }
-    
-    //----------------------------
     // MARK: - UIControl
-    //----------------------------
-    
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            print("began")
             self.hasMovedWhilePressing = false
             isSelected = true
         } else if sender.state == .changed{
-            print("changed")
 //            self.hasMovedWhilePressing = true
             isSelected = true
         } else {
-            print("ennded")
             isSelected = false
             if sender.state == .ended && hasMovedWhilePressing == false {
                 toggleCheckState(true)
@@ -266,10 +222,8 @@ open class CircularCheckbox: UIControl {
             }
         }
     }
-    //----------------------------
+
     // MARK: - Appearance
-    //----------------------------
-    
     /// The color of the checkbox's tint color when not in the unselected state. The tint color is is the main color used when not in the unselected state.
     @IBInspectable open var secondaryTintColor: UIColor? {
         get {
@@ -312,27 +266,6 @@ open class CircularCheckbox: UIControl {
         }
     }
     
-    /// The corner radius of the box if the box type is square.
-    @IBInspectable open var cornerRadius: CGFloat {
-        get {
-            return controller.pathGenerator.cornerRadius
-        }
-        set {
-            controller.pathGenerator.cornerRadius = newValue
-            setNeedsLayout()
-        }
-    }
-    
-    /// Wether or not to hide the checkbox.
-    @IBInspectable open var hideBox: Bool {
-        get {
-            return controller.hideBox
-        }
-        set {
-            controller.hideBox = newValue
-        }
-    }
-    
     /// A proxy to set the box type compatible with interface builder.
     @IBInspectable var _IBStateChangeAnimation: String {
         get {
@@ -366,10 +299,7 @@ open class CircularCheckbox: UIControl {
         controller.tintColor = tintColor
     }
     
-    //----------------------------
     // MARK: - Layout
-    //----------------------------
-    
     open override func layoutSubviews() {
         super.layoutSubviews()
         // Update size

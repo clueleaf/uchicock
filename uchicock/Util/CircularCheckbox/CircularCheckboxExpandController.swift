@@ -29,13 +29,6 @@ internal class CircularCheckboxExpandController: CircularCheckboxController {
         }
     }
     
-    override var hideBox: Bool {
-        didSet {
-            selectedBoxLayer.isHidden = hideBox
-            unselectedBoxLayer.isHidden = hideBox
-        }
-    }
-    
     override init() {
         super.init()
         sharedSetup()

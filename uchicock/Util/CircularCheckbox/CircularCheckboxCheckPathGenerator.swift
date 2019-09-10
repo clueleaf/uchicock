@@ -19,9 +19,6 @@ internal class CircularCheckboxCheckPathGenerator {
     /// The line width of the created box.
     var boxLineWidth: CGFloat = 1.0
     
-    /// The corner radius of the box.
-    var cornerRadius: CGFloat = 3.0
-    
     //----------------------------
     // MARK: - Structures
     //----------------------------

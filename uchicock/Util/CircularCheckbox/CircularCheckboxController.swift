@@ -31,19 +31,10 @@ internal class CircularCheckboxController {
     /// - Note: Subclasses should override didSet to update the layers when this value changes.
     var secondaryCheckmarkTintColor: UIColor? = UIColor.white
     
-    /// Whether or not to hide the box.
-    /// - Note: Subclasses should override didSet to update the layers when this value changes.
-    var hideBox: Bool = false
-    
-    /// Whether or not to allow morphong between states.
-    var enableMorphing: Bool = true
-    
     private func _setMarkType(animated: Bool) {
         let newPathGenerator = CircularCheckboxCheckPathGenerator()
         newPathGenerator.boxLineWidth = pathGenerator.boxLineWidth
         newPathGenerator.checkmarkLineWidth = pathGenerator.checkmarkLineWidth
-        newPathGenerator.cornerRadius = pathGenerator.cornerRadius
-        newPathGenerator.size = pathGenerator.size
         
         // Animate the change.
         if pathGenerator.pathForMark(state) != nil && animated {
