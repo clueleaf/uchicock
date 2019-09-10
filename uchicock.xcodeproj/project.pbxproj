@@ -19,7 +19,6 @@
 		9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22FEAB22A1872100D716E3 /* FlatColor.swift */; };
 		9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */; };
 		9B2E83CF230A9EF5002E7946 /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */; };
-		9B2E83D7230A9F20002E7946 /* CircularCheckboxGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */; };
 		9B2E83D8230A9F20002E7946 /* CircularCheckboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */; };
 		9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D2230A9F20002E7946 /* CircularCheckbox.swift */; };
 		9B2E83DA230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D3230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift */; };
@@ -117,7 +116,6 @@
 		9B22FEAB22A1872100D716E3 /* FlatColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlatColor.swift; path = Settings/FlatColor.swift; sourceTree = "<group>"; };
 		9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Util/Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
 		9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Util/Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
-		9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxGestureRecognizer.swift; path = Util/CircularCheckbox/CircularCheckboxGestureRecognizer.swift; sourceTree = "<group>"; };
 		9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = Util/CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
 		9B2E83D2230A9F20002E7946 /* CircularCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckbox.swift; path = Util/CircularCheckbox/CircularCheckbox.swift; sourceTree = "<group>"; };
 		9B2E83D3230A9F20002E7946 /* CircularCheckboxAnimationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxAnimationGenerator.swift; path = Util/CircularCheckbox/CircularCheckboxAnimationGenerator.swift; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 				9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */,
 				9B2E83D6230A9F20002E7946 /* CircularCheckboxExpandController.swift */,
 				9B2E83D5230A9F20002E7946 /* CircularCheckboxFadeController.swift */,
-				9B2E83D0230A9F1F002E7946 /* CircularCheckboxGestureRecognizer.swift */,
 			);
 			name = CircularCheckbox;
 			path = ..;
@@ -671,7 +668,6 @@
 				9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */,
 				9B2E83F7230A9FEB002E7946 /* ProgressHUD.swift in Sources */,
 				9B2E83DD230A9F20002E7946 /* CircularCheckboxExpandController.swift in Sources */,
-				9B2E83D7230A9F20002E7946 /* CircularCheckboxGestureRecognizer.swift in Sources */,
 				9BBCF41F22BA839D0020B286 /* AlbumFilterViewController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */,

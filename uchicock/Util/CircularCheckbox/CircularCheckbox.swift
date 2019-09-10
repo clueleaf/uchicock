@@ -1,21 +1,14 @@
 //
 //  CircularCheckbox.swift
 //  CircularCheckbox
-//
-//  Created by McQuilkin, Brandon on 2/23/16.
-//  Copyright © 2016 Brandon McQuilkin. All rights reserved.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
 
 /// A customizable checkbox control for iOS.
 @IBDesignable
 open class CircularCheckbox: UIControl {
+    
+    private var hasMovedWhilePressing = false
     
     //----------------------------
     // MARK: - Constants
@@ -102,7 +95,9 @@ open class CircularCheckbox: UIControl {
         controller.tintColor = tintColor
         controller.resetLayersForState(.unchecked)
         
-        let longPressGesture = CircularCheckboxGestureRecognizer(target: self, action: #selector(CircularCheckbox.handleLongPress(_:)))
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(CircularCheckbox.handleLongPress(_:)))
+        longPressGesture.minimumPressDuration = 0.0
+        longPressGesture.delegate = self
         addGestureRecognizer(longPressGesture)
     }
     
@@ -254,17 +249,23 @@ open class CircularCheckbox: UIControl {
     //----------------------------
     
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began || sender.state == .changed {
+        if sender.state == .began {
+            print("began")
+            self.hasMovedWhilePressing = false
+            isSelected = true
+        } else if sender.state == .changed{
+            print("changed")
+//            self.hasMovedWhilePressing = true
             isSelected = true
         } else {
+            print("ennded")
             isSelected = false
-            if sender.state == .ended {
+            if sender.state == .ended && hasMovedWhilePressing == false {
                 toggleCheckState(true)
                 sendActions(for: .valueChanged)
             }
         }
     }
-    
     //----------------------------
     // MARK: - Appearance
     //----------------------------
@@ -375,5 +376,11 @@ open class CircularCheckbox: UIControl {
         controller.pathGenerator.size = min(frame.size.width, frame.size.height)
         // Layout
         controller.layoutLayers()
+    }
+}
+
+extension CircularCheckbox: UIGestureRecognizerDelegate{
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return gestureRecognizer is UILongPressGestureRecognizer && otherGestureRecognizer is UIPanGestureRecognizer
     }
 }
