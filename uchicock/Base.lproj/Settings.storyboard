@@ -532,6 +532,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Lsu-l0-hyC">
+                                        <rect key="frame" x="0.0" y="180" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lsu-l0-hyC" id="5Ak-ER-9Tt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-review" translatesAutoresizingMaskIntoConstraints="NO" id="MVo-5X-3zv">
+                                                    <rect key="frame" x="8" y="18" width="24" height="23.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="nmC-Dp-1Wo"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク！を応援する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="QJ3-lv-2m4" secondAttribute="trailing" constant="8" id="1OP-SH-aPM"/>
+                                                <constraint firstItem="MVo-5X-3zv" firstAttribute="top" secondItem="5Ak-ER-9Tt" secondAttribute="top" constant="18" id="5OG-wE-r0k"/>
+                                                <constraint firstItem="MVo-5X-3zv" firstAttribute="leading" secondItem="5Ak-ER-9Tt" secondAttribute="leading" constant="8" id="5yq-1z-sSN"/>
+                                                <constraint firstItem="QJ3-lv-2m4" firstAttribute="centerY" secondItem="5Ak-ER-9Tt" secondAttribute="centerY" id="Vaj-JK-lqb"/>
+                                                <constraint firstItem="QJ3-lv-2m4" firstAttribute="leading" secondItem="MVo-5X-3zv" secondAttribute="trailing" constant="8" id="f6w-NP-oIw"/>
+                                                <constraint firstAttribute="bottom" secondItem="MVo-5X-3zv" secondAttribute="bottom" constant="18" id="oPC-Xh-QdC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -546,6 +576,7 @@
                         <outlet property="changeThemeImage" destination="Dr9-d1-ydn" id="qic-BF-A9G"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
+                        <outlet property="reviewImage" destination="MVo-5X-3zv" id="V5P-1y-yt5"/>
                         <segue destination="WJd-ly-HED" kind="presentation" identifier="ChangeTheme" modalPresentationStyle="fullScreen" id="Nab-pk-LRY"/>
                         <segue destination="VGI-sz-djI" kind="presentation" identifier="PushRecoverRecipe" modalPresentationStyle="fullScreen" id="mMP-wU-Khq"/>
                         <segue destination="EyW-ad-CQ9" kind="presentation" identifier="usage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="H6Q-d3-WyA"/>
@@ -800,6 +831,7 @@
     <resources>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
+        <image name="settings-review" width="24" height="24"/>
         <image name="settings-theme" width="24" height="24"/>
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>
