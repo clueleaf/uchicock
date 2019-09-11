@@ -15,6 +15,8 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var changeThemeImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     
+    var showReviewMenu = false
+    
     let selectedCellBackgroundView = UIView()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -28,6 +30,9 @@ class SettingsTableViewController: UITableViewController {
         recoverImage.image = recoverImage.image!.withRenderingMode(.alwaysTemplate)
         changeThemeImage.image = changeThemeImage.image!.withRenderingMode(.alwaysTemplate)
         reviewImage.image = reviewImage.image!.withRenderingMode(.alwaysTemplate)
+        
+        let defaults = UserDefaults.standard
+        showReviewMenu = defaults.bool(forKey: "FirstRequestReview")
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -53,7 +58,11 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if showReviewMenu{
+            return 4
+        }else{
+            return 3
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -70,7 +79,7 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         case 3:
             self.tableView.deselectRow(at: indexPath, animated: true)
-            let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「★評価だけ」でも構いません。今後も継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
+            let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「★評価だけ」でも構いません。これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "レビューする", style: .default, handler: {action in
                 if let url = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review") {
