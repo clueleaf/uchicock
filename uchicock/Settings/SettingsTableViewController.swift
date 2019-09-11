@@ -80,7 +80,7 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         case 3:
             self.tableView.deselectRow(at: indexPath, animated: true)
-            let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「★評価だけ」でも構いません。これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
+            let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「星だけ」でも構いません。これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "レビューする", style: .default, handler: {action in
                 if let url = self.appStoreReviewURL {
