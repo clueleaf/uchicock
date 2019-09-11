@@ -16,6 +16,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var reviewImage: UIImageView!
     
     var showReviewMenu = false
+    let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
     
     let selectedCellBackgroundView = UIView()
 
@@ -58,7 +59,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if showReviewMenu{
+        if showReviewMenu, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
             return 4
         }else{
             return 3
@@ -82,8 +83,10 @@ class SettingsTableViewController: UITableViewController {
             let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「★評価だけ」でも構いません。これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "レビューする", style: .default, handler: {action in
-                if let url = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review") {
-                    UIApplication.shared.open(url, options: [:])
+                if let url = self.appStoreReviewURL {
+                    if UIApplication.shared.canOpenURL(url){
+                        UIApplication.shared.open(url, options: [:])
+                    }
                 }
             }))
             alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
