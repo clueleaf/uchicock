@@ -14,7 +14,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
-    let queue = DispatchQueue(label: "queue")
     var isRecovering = false
     let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
@@ -259,7 +258,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
                             ProgressHUD.show(with: "復元中...")
-                            self.queue.async {
+                            DispatchQueue.global(qos: .userInitiated).async {
                                 self.waitAtLeast(self.leastWaitTime) {
                                     for i in 0..<self.recoverableSampleRecipeList.count {
                                         self.recoverableSampleRecipeList[i].recoverTarget = true
@@ -407,7 +406,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
                     ProgressHUD.show(with: "復元中...")
-                    self.queue.async {
+                    DispatchQueue.global(qos: .userInitiated).async {
                         self.waitAtLeast(self.leastWaitTime) {
                             self.recover()
                         }
