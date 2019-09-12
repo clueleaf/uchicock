@@ -292,6 +292,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if let r = recipe{
             if let image = r.imageData {
                 cell.photo.image = UIImage(data: image as Data)
+                //レシピ削除のバグに対するワークアラウンド
+                if cell.photo.image == nil{
+                    if Style.isDark{
+                        cell.photo.image = UIImage(named: "no-photo-dark")
+                    }else{
+                        cell.photo.image = UIImage(named: "no-photo")
+                    }
+                }
                 cell.recipeName.text = r.recipeName
                 cell.recipeName.textColor = FlatColor.white
                 cell.recipeName.backgroundColor = UIColor.clear
@@ -336,16 +344,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     }else{
                         cell.recipeName.alpha = 0.0
                         cell.recipeNameBackgroundView.alpha = 0.0
-                    }
-                }
-                //レシピ削除のバグに対するワークアラウンド
-                if cell.photo.image == nil{
-                    if Style.isDark{
-                        cell.photo.image = UIImage(named: "no-photo-dark")
-                        cell.recipeName.alpha = 0.0
-                    }else{
-                        cell.photo.image = UIImage(named: "no-photo")
-                        cell.recipeName.alpha = 0.0
                     }
                 }
             }else{
