@@ -52,7 +52,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        if let image = ImageUtil.load(imageFileName: recipe.imageFileName){
+        if let image = ImageUtil.load(imageFileName: recipe.imageFileName, useCache: false){
             photo.image = resizedImage(image: image)
         }
         if photo.image == nil{

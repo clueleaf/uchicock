@@ -12,9 +12,9 @@ struct ImageUtil{
 
     private static let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
-    static func load(imageFileName: String?) -> UIImage? {
+    static func load(imageFileName: String?, useCache: Bool) -> UIImage? {
         if let imageFileName = imageFileName{
-            if let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
+            if useCache, let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
                 return cachedData
             } else {
                 let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
