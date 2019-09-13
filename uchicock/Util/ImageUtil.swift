@@ -20,7 +20,7 @@ struct ImageUtil{
                 let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
                 let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
                 let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                if let loadedImage = loadedImage{
+                if useCache, let loadedImage = loadedImage{
                     ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
                 }
                 return loadedImage
@@ -36,7 +36,6 @@ struct ImageUtil{
         do {
             try FileManager.default.createDirectory(atPath: imageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
             try image.pngData()?.write(to: imageFilePath)
-            ImageCache.shared.setObject(image, forKey: imageFileName as NSString)
             return true
         }catch{
             return false
