@@ -17,5 +17,6 @@ struct RecipeBasic{
     var madeNum : Int
     var method : Int
     var style : Int
+    var imageFileName: String?
 }
 

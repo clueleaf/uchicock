@@ -47,17 +47,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        queue.async {
-            self.setFilterUserDefaults()
-            self.reloadRecipeList()
-        }
-        
+        self.setFilterUserDefaults()
+        self.reloadRecipeList()
+
         collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
 
         recipeNameBarButton.image = UIImage(named: "album-name-off")
         albumFilterBarButton.image = UIImage(named: "album-filter-off")
-        
-        self.navigationItem.title = "アルバム"
     }
     
     private func setFilterUserDefaults(){
@@ -82,36 +78,34 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         noItemText = ""
         setCollectionBackgroundView()
 
-        queue.async {
-            let realm = try! Realm()
-            for i in (0..<self.recipeBasicList.count).reversed() {
-                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
-                if let r = recipe{
-                    if r.imageFileName == nil{
-                        self.recipeBasicList.remove(at: i)
-                    }
-                }else{
+        let realm = try! Realm()
+        for i in (0..<self.recipeBasicList.count).reversed() {
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
+            if let r = recipe{
+                if r.imageFileName == nil{
                     self.recipeBasicList.remove(at: i)
                 }
-            }
-            
-            let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
-            for recipe in recipeList{
-                var newPhotoFlag = true
-                for i in (0..<self.recipeBasicList.count).reversed() {
-                    if recipe.id == self.recipeBasicList[i].id{
-                        newPhotoFlag = false
-                        self.recipeBasicList.remove(at: i)
-                        self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style), at: i)
-                        break
-                    }
-                }
-                if newPhotoFlag{
-                    self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
-                }
+            }else{
+                self.recipeBasicList.remove(at: i)
             }
         }
         
+        let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
+        for recipe in recipeList{
+            var newPhotoFlag = true
+            for i in (0..<self.recipeBasicList.count).reversed() {
+                if recipe.id == self.recipeBasicList[i].id{
+                    newPhotoFlag = false
+                    self.recipeBasicList.remove(at: i)
+                    self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName), at: i)
+                    break
+                }
+            }
+            if newPhotoFlag{
+                self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName))
+            }
+        }
+
         setupVC()
     }
     
@@ -125,23 +119,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView.refreshHeader.stopPullToRefresh()
         }
 
-        queue.async {
-            self.loadFilterUserDefaults()
-            DispatchQueue.main.async{
-                self.setFilterImageState()
-            }
-            self.filterRecipeBasicList()
-            DispatchQueue.main.async{
-                self.collectionView.reloadData()
-                self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
-                if self.recipeBasicList.count == 0{
-                    self.noItemText = "写真が登録されたレシピはありません"
-                }else{
-                    self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-                }
-                self.setCollectionBackgroundView()
-            }
+        self.loadFilterUserDefaults()
+        self.setFilterImageState()
+        self.filterRecipeBasicList()
+        self.collectionView.reloadData()
+        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
+        if self.recipeBasicList.count == 0{
+            self.noItemText = "写真が登録されたレシピはありません"
+        }else{
+            self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
         }
+        self.setCollectionBackgroundView()
     }
     
     private func loadFilterUserDefaults(){
@@ -171,7 +159,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName))
         }
         recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
@@ -287,70 +275,62 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
-        let realm = try! Realm()
-        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: filteredRecipeBasicList[indexPath.row].id)
-        if let r = recipe{
-            if let image = ImageUtil.load(imageFileName: r.imageFileName) {
-                cell.photo.image = image
-                cell.recipeName.text = r.recipeName
-                cell.recipeName.textColor = FlatColor.white
-                cell.recipeName.backgroundColor = UIColor.clear
-                
-                // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
-                cell.recipeNameBackgroundView.layer.sublayers?.forEach {
-                    if $0.isKind(of: CustomCAGradientLayer.self){
-                        $0.removeFromSuperlayer()
-                    }
+        if let image = ImageUtil.load(imageFileName: filteredRecipeBasicList[indexPath.row].imageFileName) {
+            cell.photo.image = image
+            cell.recipeName.text = filteredRecipeBasicList[indexPath.row].name
+            cell.recipeName.textColor = FlatColor.white
+            cell.recipeName.backgroundColor = UIColor.clear
+            
+            // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
+            cell.recipeNameBackgroundView.layer.sublayers?.forEach {
+                if $0.isKind(of: CustomCAGradientLayer.self){
+                    $0.removeFromSuperlayer()
                 }
-                
-                // 新規にアルバム画面を開き、すぐに名前を表示した状態で下にスクロールするとグラデーションがずれている問題への対応
-                // CAGradientLayerのframeはAutolayout後でないと正確に決まらないため
-                if cell.recipeNameBackgroundView.bounds.width > gradationFrame.width{
-                    gradationFrame = CGRect(x: 0, y: 0, width: cell.recipeNameBackgroundView.bounds.width, height: gradationFrame.height)
-                }
-                if cell.recipeNameBackgroundView.bounds.height > gradationFrame.height{
-                    gradationFrame = CGRect(x: 0, y: 0, width: gradationFrame.width, height: cell.recipeNameBackgroundView.bounds.height)
-                }
-
-                let gradient = CustomCAGradientLayer()
-                gradient.frame = gradationFrame
-                gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
-                cell.recipeNameBackgroundView.layer.insertSublayer(gradient, at: 0)
-
-                if showNameFlag{
-                    if animationFlag{
-                        UIView.animate(withDuration: 0.2, animations: {
-                            cell.recipeName.alpha = 1.0
-                            cell.recipeNameBackgroundView.alpha = 1.0
-                        }, completion: nil)
-                    }else{
+            }
+            
+            // 新規にアルバム画面を開き、すぐに名前を表示した状態で下にスクロールするとグラデーションがずれている問題への対応
+            // CAGradientLayerのframeはAutolayout後でないと正確に決まらないため
+            if cell.recipeNameBackgroundView.bounds.width > gradationFrame.width{
+                gradationFrame = CGRect(x: 0, y: 0, width: cell.recipeNameBackgroundView.bounds.width, height: gradationFrame.height)
+            }
+            if cell.recipeNameBackgroundView.bounds.height > gradationFrame.height{
+                gradationFrame = CGRect(x: 0, y: 0, width: gradationFrame.width, height: cell.recipeNameBackgroundView.bounds.height)
+            }
+            
+            let gradient = CustomCAGradientLayer()
+            gradient.frame = gradationFrame
+            gradient.colors = [UIColor(white: 0.0, alpha: 0.0).cgColor, UIColor(white: 0.0, alpha: 0.8).cgColor]
+            cell.recipeNameBackgroundView.layer.insertSublayer(gradient, at: 0)
+            
+            if showNameFlag{
+                if animationFlag{
+                    UIView.animate(withDuration: 0.2, animations: {
                         cell.recipeName.alpha = 1.0
                         cell.recipeNameBackgroundView.alpha = 1.0
-                    }
+                    }, completion: nil)
                 }else{
-                    if animationFlag{
-                        UIView.animate(withDuration: 0.2, animations: {
-                            cell.recipeName.alpha = 0.0
-                            cell.recipeNameBackgroundView.alpha = 0.0
-                        }, completion: nil)
-                    }else{
-                        cell.recipeName.alpha = 0.0
-                        cell.recipeNameBackgroundView.alpha = 0.0
-                    }
+                    cell.recipeName.alpha = 1.0
+                    cell.recipeNameBackgroundView.alpha = 1.0
                 }
             }else{
-                if Style.isDark{
-                    cell.photo.image = UIImage(named: "no-photo-dark")
-                    cell.recipeName.alpha = 0.0
+                if animationFlag{
+                    UIView.animate(withDuration: 0.2, animations: {
+                        cell.recipeName.alpha = 0.0
+                        cell.recipeNameBackgroundView.alpha = 0.0
+                    }, completion: nil)
                 }else{
-                    cell.photo.image = UIImage(named: "no-photo")
                     cell.recipeName.alpha = 0.0
+                    cell.recipeNameBackgroundView.alpha = 0.0
                 }
             }
         }else{
-            cell.photo.image = nil
-            cell.recipeName.text = nil
-            cell.recipeName.alpha = 0.0
+            if Style.isDark{
+                cell.photo.image = UIImage(named: "no-photo-dark")
+                cell.recipeName.alpha = 0.0
+            }else{
+                cell.photo.image = UIImage(named: "no-photo")
+                cell.recipeName.alpha = 0.0
+            }
         }
         return cell
     }
