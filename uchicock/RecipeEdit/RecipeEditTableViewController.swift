@@ -659,16 +659,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.favorites = 0
                         }
                         
-                        _ = ImageUtil.remove(imageFileName: recipe.imageFileName)
+                        let oldImageFileName = recipe.imageFileName
                         if let image = photo.image{
-                            let imageFileName = NSUUID().uuidString
-                            if ImageUtil.save(image: image, toFileName: imageFileName){
-                                recipe.imageFileName = imageFileName
+                            let newImageFileName = NSUUID().uuidString
+                            if ImageUtil.save(image: image, toFileName: newImageFileName){
+                                recipe.imageFileName = newImageFileName
                             }
                         }else{
                             recipe.imageFileName = nil
                         }
-                        
+                        _ = ImageUtil.remove(imageFileName: oldImageFileName)
+
                         recipe.style = style.selectedSegmentIndex
                         recipe.method = method.selectedSegmentIndex
                         recipe.memo = memo.text

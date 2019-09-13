@@ -444,7 +444,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
-        print("aa")
         self.view.endEditing(true)
     }
     
