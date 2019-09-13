@@ -303,19 +303,24 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @objc func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
-        if noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
+        // 画像ファイルが消えた時に変なオブジェクトがクリップボードにコピーされるバグのためのワークアラウンド
+        guard let imageFileName = self.recipe.imageFileName else{
+            return
+        }
+        let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+        let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+        let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+        
+        if loadedImage != nil && noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
-                if let image = self.photo.image {
-                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
-                }
+                UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 })
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
-                if let image = self.photo.image {
-                    let pasteboard: UIPasteboard = UIPasteboard.general
-                    pasteboard.image = image
-                    ProgressHUD.showSuccess(with: "クリップボードへコピーしました", duration: 1.5)
-                }
+                let pasteboard: UIPasteboard = UIPasteboard.general
+                pasteboard.image = loadedImage!
+                ProgressHUD.showSuccess(with: "クリップボードへコピーしました", duration: 1.5)
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.alertStatusBarStyle = Style.statusBarStyle
