@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-4095" y="2884"/>
         </scene>
-        <!--サンプルレシピ復元-->
+        <!--レシピ復元-->
         <scene sceneID="fdE-2m-Me9">
             <objects>
                 <tableViewController id="TeR-OJ-moU" customClass="RecoverTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
@@ -222,7 +222,7 @@
                             <outlet property="delegate" destination="TeR-OJ-moU" id="XHS-Kc-neE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="サンプルレシピ復元" id="FZe-eC-5un">
+                    <navigationItem key="navigationItem" title="レシピ復元" id="FZe-eC-5un">
                         <barButtonItem key="backBarButtonItem" title="レシピ復元" id="h3r-YX-V6J"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="z57-pc-xiH">
                             <connections>

@@ -102,7 +102,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 recoverCount += 1
             }
         }
-        self.navigationItem.title = "サンプルレシピ復元(" + String(recoverCount) + ")"
+        self.navigationItem.title = "レシピ復元(" + String(recoverCount) + ")"
     }
     
     @objc func isTargetTapped(_ sender: CircularCheckbox){
