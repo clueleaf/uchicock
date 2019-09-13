@@ -68,10 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
                 let tenMB = 10 * 1024 * 1024
-                let fiftyMB = 50 * 1024 * 1024
                 if (totalBytes > tenMB) && (Double(usedBytes) / Double(totalBytes)) < 0.1{
-                    return true
-                }else if (totalBytes > fiftyMB) && (Double(usedBytes) / Double(totalBytes)) < 0.5{
                     return true
                 }
                 return false
