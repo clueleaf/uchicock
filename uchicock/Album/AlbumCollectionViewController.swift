@@ -17,7 +17,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
     
-    let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
