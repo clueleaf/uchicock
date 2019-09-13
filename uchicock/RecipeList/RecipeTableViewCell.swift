@@ -21,9 +21,7 @@ class RecipeTableViewCell: UITableViewCell {
     var recipe: Recipe = Recipe(){
         didSet{
             if let image = recipe.imageData {
-                DispatchQueue.main.async {
-                    self.photo.image = UIImage(data: image as Data)
-                }
+                self.photo.image = UIImage(data: image as Data)
             }else{
                 if Style.isDark{
                     photo.image = UIImage(named: "no-photo-dark")
