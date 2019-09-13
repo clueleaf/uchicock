@@ -109,6 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // 「ハバナピーチ」の名前を「ハバナビーチ」に修正
     func correct_v_2_2(){
         let defaults = UserDefaults.standard
         let dic = ["corrected_v2.2": false]
@@ -129,6 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // 「アプリコットコラーダ」の材料「牛乳」の分量を「45」から「45ml」に修正
     func correct_v_2_3(){
         let defaults = UserDefaults.standard
         let dic = ["corrected_v2.3": false]
@@ -149,6 +151,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // 「ブルドッグ」の材料から「食塩」と「レモン」を削除
+    // 「ソルティドッグ」の材料の「食塩」を必須材料にする
     func correct_v_3_2(){
         let defaults = UserDefaults.standard
         let dic = ["corrected_v3.2": false]
@@ -180,6 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // お気に入りの最小値を星1つから星0個に変更
     func correct_v_4_1(){
         let defaults = UserDefaults.standard
         let dic = ["corrected_v4.1": false]
