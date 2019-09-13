@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         var config = Realm.Configuration(
-            schemaVersion: 7,
+            schemaVersion: 8,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
@@ -52,6 +52,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["style"] = recipeName.withoutMiddleDot().cocktailStyleNumber()
                     }
                 }
+                if (oldSchemaVersion < 8) {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        let imageData = oldObject!["imageData"] as! Data?
+                        if let imageData = imageData{
+                            let imageFileName = NSUUID().uuidString
+                            if let uiImage = UIImage(data: imageData){
+                                if ImageUtil.save(image: uiImage, toFileName: imageFileName) {
+                                    newObject!["imageFileName"] = imageFileName
+                                }
+                            }
+                        }
+                    }
+                }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
                 let oneHundredMB = 100 * 1024 * 1024
@@ -71,7 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         correct_v_2_3()
         correct_v_3_2()
         correct_v_4_1()
-        fixNilImage()
         
         requestReview()
         
@@ -187,22 +199,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             defaults.set(true, forKey: "corrected_v4.1")
-        }
-    }
-
-    func fixNilImage(){
-        let defaults = UserDefaults.standard
-        let dic = ["fixNilImage": false]
-        defaults.register(defaults: dic)
-        if defaults.bool(forKey: "fixNilImage") == false {
-            let realm = try! Realm()
-            let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
-            for recipe in recipeList{
-                try! realm.write {
-                    recipe.fixNilImage()
-                }
-            }
-            defaults.set(true, forKey: "fixNilImage")
         }
     }
 

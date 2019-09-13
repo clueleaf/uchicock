@@ -20,8 +20,8 @@ class RecipeTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
-            if let image = recipe.imageData {
-                self.photo.image = UIImage(data: image as Data)
+            if let image = ImageUtil.load(imageFileName: recipe.imageFileName){
+                self.photo.image = image
             }else{
                 if Style.isDark{
                     photo.image = UIImage(named: "no-photo-dark")

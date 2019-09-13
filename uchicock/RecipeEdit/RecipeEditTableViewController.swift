@@ -52,10 +52,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        if let image = recipe.imageData{
-            if let img = UIImage(data: image as Data){
-                photo.image = resizedImage(image: img)
-            }
+        if let image = ImageUtil.load(imageFileName: recipe.imageFileName){
+            photo.image = resizedImage(image: image)
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
@@ -589,9 +587,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
 
                         if let image = photo.image{
-                            newRecipe.imageData = image.pngData() as Data?
+                            let imageFileName = NSUUID().uuidString
+                            if ImageUtil.save(image: image, toFileName: imageFileName){
+                                newRecipe.imageFileName = imageFileName
+                            }
                         }else{
-                            newRecipe.imageData = nil
+                            newRecipe.imageFileName = nil
                         }
                         
                         newRecipe.style = style.selectedSegmentIndex
@@ -658,10 +659,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             recipe.favorites = 0
                         }
                         
+                        _ = ImageUtil.remove(imageFileName: recipe.imageFileName)
                         if let image = photo.image{
-                            recipe.imageData = image.pngData() as Data?
+                            let imageFileName = NSUUID().uuidString
+                            if ImageUtil.save(image: image, toFileName: imageFileName){
+                                recipe.imageFileName = imageFileName
+                            }
                         }else{
-                            recipe.imageData = nil
+                            recipe.imageFileName = nil
                         }
                         
                         recipe.style = style.selectedSegmentIndex

@@ -14,7 +14,7 @@ class Recipe: Object {
     @objc dynamic var favorites = 0
     @objc dynamic var method = 0
     @objc dynamic var memo = ""
-    @objc dynamic var imageData: Data? = nil
+    @objc dynamic var imageFileName: String? = nil
     @objc dynamic var shortageNum = 0
     @objc dynamic var lastViewDate : Date? = nil
     @objc dynamic var madeNum = 0
@@ -33,13 +33,5 @@ class Recipe: Object {
             }
         }
         self.shortageNum = num
-    }
-    
-    func fixNilImage(){
-        if imageData != nil{
-            if UIImage(data: imageData! as Data) == nil{
-                self.imageData = nil
-            }
-        }
     }    
 }

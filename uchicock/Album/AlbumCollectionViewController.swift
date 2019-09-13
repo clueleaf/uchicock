@@ -87,7 +87,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             for i in (0..<self.recipeBasicList.count).reversed() {
                 let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
                 if let r = recipe{
-                    if r.imageData == nil{
+                    if r.imageFileName == nil{
                         self.recipeBasicList.remove(at: i)
                     }
                 }else{
@@ -95,7 +95,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
             
-            let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
+            let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
             for recipe in recipeList{
                 var newPhotoFlag = true
                 for i in (0..<self.recipeBasicList.count).reversed() {
@@ -169,7 +169,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self).filter("imageData != nil")
+        let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
         for recipe in recipeList{
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style))
         }
@@ -290,16 +290,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: filteredRecipeBasicList[indexPath.row].id)
         if let r = recipe{
-            if let image = r.imageData {
-                cell.photo.image = UIImage(data: image as Data)
-                //レシピ削除のバグに対するワークアラウンド
-                if cell.photo.image == nil{
-                    if Style.isDark{
-                        cell.photo.image = UIImage(named: "no-photo-dark")
-                    }else{
-                        cell.photo.image = UIImage(named: "no-photo")
-                    }
-                }
+            if let image = ImageUtil.load(imageFileName: r.imageFileName) {
+                cell.photo.image = image
                 cell.recipeName.text = r.recipeName
                 cell.recipeName.textColor = FlatColor.white
                 cell.recipeName.backgroundColor = UIColor.clear

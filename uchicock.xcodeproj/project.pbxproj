@@ -81,6 +81,7 @@
 		9BCC35A822B8DFE500389FD5 /* RecipeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC35A722B8DFE500389FD5 /* RecipeSearchViewController.swift */; };
 		9BD1211C22BD5DD90096E674 /* IngredientRecommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BD1211A22BD5DD90096E674 /* IngredientRecommend.storyboard */; };
 		9BD1211E22BD5E260096E674 /* IngredientRecommendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD1211D22BD5E260096E674 /* IngredientRecommendTableViewController.swift */; };
+		9BD467B6232B8CBD00312923 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD467B5232B8CBD00312923 /* ImageUtil.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD91A5922BD04930088C146 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD91A5822BD04930088C146 /* Interactor.swift */; };
 		9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD91A5A22BD0BE90088C146 /* DismissModalAnimator.swift */; };
@@ -181,6 +182,7 @@
 		9BCC35A722B8DFE500389FD5 /* RecipeSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeSearchViewController.swift; path = RecipeList/RecipeSearchViewController.swift; sourceTree = "<group>"; };
 		9BD1211B22BD5DD90096E674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IngredientRecommend.storyboard; sourceTree = "<group>"; };
 		9BD1211D22BD5E260096E674 /* IngredientRecommendTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IngredientRecommendTableViewController.swift; path = IngredientList/IngredientRecommendTableViewController.swift; sourceTree = "<group>"; };
+		9BD467B5232B8CBD00312923 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD91A5822BD04930088C146 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		9BD91A5A22BD0BE90088C146 /* DismissModalAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissModalAnimator.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */,
 				9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */,
+				9BD467B5232B8CBD00312923 /* ImageUtil.swift */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
 				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
@@ -720,6 +723,7 @@
 				9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */,
 				9B2E83D8230A9F20002E7946 /* CircularCheckboxController.swift in Sources */,
 				9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */,
+				9BD467B6232B8CBD00312923 /* ImageUtil.swift in Sources */,
 				9BD91A5922BD04930088C146 /* Interactor.swift in Sources */,
 				9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */,
 				9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */,

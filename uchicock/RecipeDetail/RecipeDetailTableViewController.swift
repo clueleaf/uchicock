@@ -122,24 +122,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
             
             noPhotoFlag = false
-            if let image = recipe.imageData{
-                photo.image = UIImage(data: image as Data)
-                //レシピ削除のバグに対するワークアラウンド
-                if let im = photo.image {
-                    if im.size.width > im.size.height{
-                        photoHeight = CGFloat(Int(tableView.bounds.width * im.size.height / im.size.width))
-                    }else{
-                        photoHeight = tableView.bounds.width
-                    }
-                    photo.clipsToBounds = true
-                    tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-                    self.view.bringSubviewToFront(photoBackground)
+            if let image = ImageUtil.load(imageFileName: recipe.imageFileName){
+                photo.image = image
+                if image.size.width > image.size.height{
+                    photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
                 }else{
-                    tableView.tableHeaderView = nil
-                    noPhotoFlag = true
-                    photoBackground.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0)
-                    photoHeight = 0.0
+                    photoHeight = tableView.bounds.width
                 }
+                photo.clipsToBounds = true
+                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                self.view.bringSubviewToFront(photoBackground)
             }else{
                 tableView.tableHeaderView = nil
                 noPhotoFlag = true
@@ -297,19 +289,15 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
-            if let image = recipe.imageData {
-                //レシピ削除のバグに対するワークアラウンド
-                let browsePhoto = UIImage(data: image as Data)
-                if browsePhoto != nil{
-                    let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
-                    let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
-                    ivc.originalImageView = photo
-                    ivc.captionText = self.recipe.recipeName
-                    ivc.modalPresentationStyle = .overFullScreen
-                    ivc.modalTransitionStyle = .crossDissolve
-                    ivc.modalPresentationCapturesStatusBarAppearance = true
-                    self.present(ivc, animated: true)
-                }
+            if ImageUtil.load(imageFileName: recipe.imageFileName) != nil {
+                let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
+                let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
+                ivc.originalImageView = photo
+                ivc.captionText = self.recipe.recipeName
+                ivc.modalPresentationStyle = .overFullScreen
+                ivc.modalTransitionStyle = .crossDissolve
+                ivc.modalPresentationCapturesStatusBarAppearance = true
+                self.present(ivc, animated: true)
             }
         }
     }
@@ -645,6 +633,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipe.recipeIngredients[i].id)!
                 deletingRecipeIngredientList.append(recipeIngredient)
             }
+            
+            _ = ImageUtil.remove(imageFileName: self.recipe.imageFileName)
             try! realm.write{
                 for ri in deletingRecipeIngredientList{
                     let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
