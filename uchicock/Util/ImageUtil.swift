@@ -13,15 +13,27 @@ struct ImageUtil{
     private static let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     static func load(imageFileName: String?, useCache: Bool) -> UIImage? {
+        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+
         if let imageFileName = imageFileName{
-            if useCache, let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
-                return cachedData
-            } else {
-                let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
-                let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            
+            if useCache{
+                if let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
+                    return cachedData
+                }else{
+                    let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+                    if let loadedImage = loadedImage{
+                        ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+                    }
+                    return loadedImage
+                }
+            }else{
                 let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                if useCache, let loadedImage = loadedImage{
+                if let loadedImage = loadedImage{
                     ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+                }else{
+                    ImageCache.shared.removeObject(forKey: imageFileName as NSString)
                 }
                 return loadedImage
             }
@@ -35,6 +47,8 @@ struct ImageUtil{
         let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
         do {
             try FileManager.default.createDirectory(atPath: imageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
+            // 万が一の不整合のためにキャッシュをクリアしておく
+            ImageCache.shared.removeObject(forKey: imageFileName as NSString)
             try image.pngData()?.write(to: imageFilePath)
             return true
         }catch{
@@ -63,5 +77,6 @@ final class ImageCache: NSCache<NSString, UIImage> {
     static let shared = ImageCache()
     private override init() {
         super.init()
+        self.countLimit = 365
     }
 }
