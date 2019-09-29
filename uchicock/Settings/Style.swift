@@ -847,7 +847,7 @@ struct Style{
         CustomSegmentedControl.appearance().tintColor = secondaryColor
         if #available(iOS 13.0, *) {
             CustomSegmentedControl.appearance().selectedSegmentTintColor = secondaryColor
-            CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColor], for: .selected)
+            CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColorOnBadge], for: .selected)
             CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColor], for: .normal)
         }
     }
