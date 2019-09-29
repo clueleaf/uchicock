@@ -15,7 +15,8 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var changeThemeImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     
-    var showReviewMenu = false
+    var firstRequestReview = false
+    var alreadyWrittenReview = false
     let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
     
     let selectedCellBackgroundView = UIView()
@@ -33,7 +34,8 @@ class SettingsTableViewController: UITableViewController {
         reviewImage.image = reviewImage.image!.withRenderingMode(.alwaysTemplate)
         
         let defaults = UserDefaults.standard
-        showReviewMenu = defaults.bool(forKey: "FirstRequestReview")
+        firstRequestReview = defaults.bool(forKey: "FirstRequestReview")
+        alreadyWrittenReview = defaults.bool(forKey: "AlreadyWrittenReview")
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -59,7 +61,8 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if showReviewMenu, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
+//        if firstRequestReview == true, alreadyWrittenReview == false, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
+        if firstRequestReview == true, alreadyWrittenReview == false {
             return 4
         }else{
             return 3
@@ -80,14 +83,21 @@ class SettingsTableViewController: UITableViewController {
             performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
         case 3:
             self.tableView.deselectRow(at: indexPath, animated: true)
-            let message = "「うちカク！」開発のモチベーションはみなさんの応援です！\n「星だけ」でも構いません。これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\nm(_ _)m"
+            let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\nこれからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\n「星だけ」でも構いません！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
-            alertView.addAction(UIAlertAction(title: "レビューする", style: .default, handler: {action in
+            alertView.addAction(UIAlertAction(title: "レビューを書く", style: .default, handler: {action in
                 if let url = self.appStoreReviewURL {
                     if UIApplication.shared.canOpenURL(url){
                         UIApplication.shared.open(url, options: [:])
                     }
                 }
+            }))
+            alertView.addAction(UIAlertAction(title: "もう書いた", style: .destructive, handler: {action in
+                let defaults = UserDefaults.standard
+                defaults.set(true, forKey: "AlreadyWrittenReview")
+                self.alreadyWrittenReview = true
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                ProgressHUD.showSuccess(with: "Thank you!!", duration: 1.5)
             }))
             alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
             alertView.alertStatusBarStyle = Style.statusBarStyle
