@@ -323,11 +323,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }else{
-            if Style.isDark{
-                cell.photo.image = UIImage(named: "no-photo-dark")
-            }else{
-                cell.photo.image = UIImage(named: "no-photo")
-            }
+            let noPhotoImage = UIImage(named:"no-photo")!.withRenderingMode(.alwaysTemplate)
+            cell.photo.image = noPhotoImage
+            cell.photo.tintColor = Style.labelTextColorLight
             cell.recipeName.alpha = 0.0
             cell.recipeNameBackgroundView.alpha = 0.0
         }
