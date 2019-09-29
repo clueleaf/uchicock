@@ -649,7 +649,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.selectedIndexPath = indexPath
                 editVC.recipe = recipe
                 
-                editNavi.modalPresentationStyle = .overFullScreen
+                editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 history.append(detailVC)
                 editVC.detailVC = detailVC
@@ -725,7 +725,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return
             }
             
-            editNavi.modalPresentationStyle = .overFullScreen
+            editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
             history.append(detailVC)
             editVC.detailVC = detailVC

@@ -322,7 +322,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 self.selectedIndexPath = indexPath
                 editVC.ingredient = ingredient
                 
-                editNavi.modalPresentationStyle = .overFullScreen
+                editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 history.append(detailVC)
                 editVC.detailVC = detailVC
@@ -415,7 +415,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     return
             }
             
-            editNavi.modalPresentationStyle = .overFullScreen
+            editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
             history.append(detailVC)
             editVC.detailVC = detailVC
