@@ -374,7 +374,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }else{
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             }
             return cell
         } else if indexPath.section == 1{

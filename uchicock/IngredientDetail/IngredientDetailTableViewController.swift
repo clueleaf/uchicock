@@ -345,7 +345,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             return cell
         }else if indexPath.section == 1{
             if ingredient.recipeIngredients.count > 0{
@@ -386,7 +386,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     cell.textLabel?.textAlignment = .center
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }
             }

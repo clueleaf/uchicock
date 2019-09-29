@@ -42,7 +42,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh1-7L-6je" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="8" width="359" height="87"/>
+                                            <rect key="frame" x="8" y="8" width="355" height="87"/>
                                             <string key="text">サンプルレシピを選択して復元します。
 
 同名のレシピが保存されている場合、内容が違っても復元できません。復元したい場合は先に同名のレシピを削除するか、名前を変更してください。</string>
@@ -74,7 +74,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4i-Pa-ape" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="124.5" width="311" height="21"/>
+                                            <rect key="frame" x="56" y="124.5" width="307" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="n5b-oZ-OFQ"/>
                                             </constraints>
@@ -83,7 +83,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象でない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvE-cz-AmS" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="172.5" width="311" height="21"/>
+                                            <rect key="frame" x="56" y="172.5" width="307" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="8iK-4D-E5C"/>
                                             </constraints>
@@ -92,7 +92,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-f8-qUN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="213" width="311" height="36"/>
+                                            <rect key="frame" x="56" y="213" width="307" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -109,24 +109,24 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="x64-ZE-bWW" firstAttribute="top" secondItem="erc-ho-g6I" secondAttribute="bottom" constant="20" id="0gm-oG-XUh"/>
-                                        <constraint firstAttribute="trailing" secondItem="Mh1-7L-6je" secondAttribute="trailing" constant="8" id="2TH-24-URk"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mh1-7L-6je" secondAttribute="trailing" constant="12" id="2TH-24-URk"/>
                                         <constraint firstItem="qp2-f8-qUN" firstAttribute="leading" secondItem="erc-ho-g6I" secondAttribute="trailing" constant="8" id="4q0-1g-hJf"/>
                                         <constraint firstItem="cs4-5p-Ebu" firstAttribute="leading" secondItem="kog-rI-INe" secondAttribute="leading" constant="8" id="6Pg-NF-fZ4"/>
                                         <constraint firstItem="qp2-f8-qUN" firstAttribute="centerY" secondItem="erc-ho-g6I" secondAttribute="centerY" id="DCj-pA-Osb"/>
-                                        <constraint firstAttribute="trailing" secondItem="O4i-Pa-ape" secondAttribute="trailing" constant="8" id="EAz-8L-Chm"/>
+                                        <constraint firstAttribute="trailing" secondItem="O4i-Pa-ape" secondAttribute="trailing" constant="12" id="EAz-8L-Chm"/>
                                         <constraint firstItem="erc-ho-g6I" firstAttribute="leading" secondItem="kog-rI-INe" secondAttribute="leading" constant="8" id="FAs-cT-Pi0"/>
                                         <constraint firstAttribute="trailing" secondItem="x64-ZE-bWW" secondAttribute="trailing" constant="8" id="HUH-R4-vrk"/>
                                         <constraint firstItem="xR7-hQ-11P" firstAttribute="top" secondItem="cs4-5p-Ebu" secondAttribute="bottom" constant="8" id="J4Q-cP-aEk"/>
                                         <constraint firstItem="O4i-Pa-ape" firstAttribute="leading" secondItem="cs4-5p-Ebu" secondAttribute="trailing" constant="8" id="M28-5F-mdB"/>
                                         <constraint firstItem="O4i-Pa-ape" firstAttribute="centerY" secondItem="cs4-5p-Ebu" secondAttribute="centerY" id="VAm-93-THZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="qp2-f8-qUN" secondAttribute="trailing" constant="8" id="Zae-IP-o3A"/>
+                                        <constraint firstAttribute="trailing" secondItem="qp2-f8-qUN" secondAttribute="trailing" constant="12" id="Zae-IP-o3A"/>
                                         <constraint firstItem="yvE-cz-AmS" firstAttribute="leading" secondItem="xR7-hQ-11P" secondAttribute="trailing" constant="8" id="bdP-UM-AQJ"/>
                                         <constraint firstItem="Mh1-7L-6je" firstAttribute="top" secondItem="kog-rI-INe" secondAttribute="top" constant="8" id="eTZ-3N-0ce"/>
                                         <constraint firstItem="x64-ZE-bWW" firstAttribute="leading" secondItem="kog-rI-INe" secondAttribute="leading" constant="8" id="fI2-Rl-Vdd"/>
                                         <constraint firstItem="cs4-5p-Ebu" firstAttribute="top" secondItem="Mh1-7L-6je" secondAttribute="bottom" constant="20" id="lVs-js-Ose"/>
                                         <constraint firstItem="erc-ho-g6I" firstAttribute="top" secondItem="xR7-hQ-11P" secondAttribute="bottom" constant="8" id="ofb-Dz-er6"/>
                                         <constraint firstItem="yvE-cz-AmS" firstAttribute="centerY" secondItem="xR7-hQ-11P" secondAttribute="centerY" id="ozu-IB-TSG"/>
-                                        <constraint firstAttribute="trailing" secondItem="yvE-cz-AmS" secondAttribute="trailing" constant="8" id="qEA-il-Snt"/>
+                                        <constraint firstAttribute="trailing" secondItem="yvE-cz-AmS" secondAttribute="trailing" constant="12" id="qEA-il-Snt"/>
                                         <constraint firstItem="xR7-hQ-11P" firstAttribute="leading" secondItem="kog-rI-INe" secondAttribute="leading" constant="8" id="rCq-Xu-fyk"/>
                                         <constraint firstItem="Mh1-7L-6je" firstAttribute="leading" secondItem="kog-rI-INe" secondAttribute="leading" constant="8" id="yFa-v6-sQJ"/>
                                         <constraint firstAttribute="bottom" secondItem="x64-ZE-bWW" secondAttribute="bottom" constant="8" id="yYs-Wu-hTr"/>
@@ -246,7 +246,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <inset key="separatorInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                        <inset key="separatorInset" minX="8" minY="0.0" maxX="12" maxY="0.0"/>
                         <sections>
                             <tableViewSection headerTitle="Section-1" id="WrY-ha-xmw">
                                 <cells>
@@ -258,7 +258,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnK-Ra-jad" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="359" height="40"/>
+                                                    <rect key="frame" x="8" y="20" width="355" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -266,7 +266,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rnK-Ra-jad" firstAttribute="leading" secondItem="VVJ-So-ZTC" secondAttribute="leading" constant="8" id="4zb-cD-Wpf"/>
-                                                <constraint firstAttribute="trailing" secondItem="rnK-Ra-jad" secondAttribute="trailing" constant="8" id="af4-hh-gHx"/>
+                                                <constraint firstAttribute="trailing" secondItem="rnK-Ra-jad" secondAttribute="trailing" constant="12" id="af4-hh-gHx"/>
                                                 <constraint firstAttribute="bottom" secondItem="rnK-Ra-jad" secondAttribute="bottom" constant="20" id="bxJ-8j-EY1"/>
                                                 <constraint firstItem="rnK-Ra-jad" firstAttribute="top" secondItem="VVJ-So-ZTC" secondAttribute="top" constant="20" id="rOr-d4-MTz"/>
                                             </constraints>
@@ -280,7 +280,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="スタイル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tf3-RQ-nTJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15.5" width="239" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="235" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="X3L-MF-xZb"/>
                                                     </constraints>
@@ -289,7 +289,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJf-V5-UdE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="267" y="17.5" width="100" height="21"/>
+                                                    <rect key="frame" x="263" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="wfV-qh-Rwk"/>
                                                     </constraints>
@@ -300,7 +300,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tf3-RQ-nTJ" firstAttribute="leading" secondItem="9gC-3i-PU1" secondAttribute="leading" constant="8" id="Xyv-Od-Hyq"/>
-                                                <constraint firstAttribute="trailing" secondItem="xJf-V5-UdE" secondAttribute="trailing" constant="8" id="YHW-N6-Ew1"/>
+                                                <constraint firstAttribute="trailing" secondItem="xJf-V5-UdE" secondAttribute="trailing" constant="12" id="YHW-N6-Ew1"/>
                                                 <constraint firstItem="xJf-V5-UdE" firstAttribute="leading" secondItem="tf3-RQ-nTJ" secondAttribute="trailing" constant="20" id="a2N-Cg-0OX"/>
                                                 <constraint firstItem="xJf-V5-UdE" firstAttribute="centerY" secondItem="tf3-RQ-nTJ" secondAttribute="centerY" id="hjk-ED-Rj6"/>
                                             </constraints>
@@ -317,7 +317,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hde-xF-3Nh" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15.5" width="239" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="235" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ygb-f3-slS"/>
                                                     </constraints>
@@ -326,7 +326,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjW-ye-exa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="267" y="17.5" width="100" height="21"/>
+                                                    <rect key="frame" x="263" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="aHN-aQ-Zrq"/>
                                                     </constraints>
@@ -338,7 +338,7 @@
                                             <constraints>
                                                 <constraint firstItem="kjW-ye-exa" firstAttribute="leading" secondItem="Hde-xF-3Nh" secondAttribute="trailing" constant="20" id="E2k-jk-LyW"/>
                                                 <constraint firstItem="kjW-ye-exa" firstAttribute="centerY" secondItem="Hde-xF-3Nh" secondAttribute="centerY" id="bDE-Qy-3hU"/>
-                                                <constraint firstAttribute="trailing" secondItem="kjW-ye-exa" secondAttribute="trailing" constant="8" id="cBk-tl-EUj"/>
+                                                <constraint firstAttribute="trailing" secondItem="kjW-ye-exa" secondAttribute="trailing" constant="12" id="cBk-tl-EUj"/>
                                                 <constraint firstItem="Hde-xF-3Nh" firstAttribute="leading" secondItem="zTd-Rb-WYv" secondAttribute="leading" constant="8" id="lBw-cP-8WR"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -454,14 +454,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使い方を見る" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whL-dn-v14" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="whL-dn-v14" secondAttribute="trailing" constant="8" id="0vK-AQ-ekB"/>
+                                                <constraint firstAttribute="trailing" secondItem="whL-dn-v14" secondAttribute="trailing" constant="12" id="0vK-AQ-ekB"/>
                                                 <constraint firstItem="whL-dn-v14" firstAttribute="centerY" secondItem="kSu-in-tzR" secondAttribute="centerY" id="13S-LW-kqp"/>
                                                 <constraint firstItem="whL-dn-v14" firstAttribute="leading" secondItem="qXs-tz-aBk" secondAttribute="trailing" constant="8" id="8hj-j2-DFR"/>
                                                 <constraint firstAttribute="bottom" secondItem="qXs-tz-aBk" secondAttribute="bottom" constant="18" id="DVv-3i-oFR"/>
@@ -484,7 +484,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="サンプルレシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wL-Bg-17W" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -494,7 +494,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="zzL-A5-2lO" secondAttribute="bottom" constant="18" id="6HI-gZ-5ob"/>
                                                 <constraint firstItem="zzL-A5-2lO" firstAttribute="leading" secondItem="7cU-um-5ZJ" secondAttribute="leading" constant="8" id="Bfs-le-IFx"/>
                                                 <constraint firstItem="9wL-Bg-17W" firstAttribute="centerY" secondItem="7cU-um-5ZJ" secondAttribute="centerY" id="EkP-qJ-2xj"/>
-                                                <constraint firstAttribute="trailing" secondItem="9wL-Bg-17W" secondAttribute="trailing" constant="8" id="UPC-P4-a0y"/>
+                                                <constraint firstAttribute="trailing" secondItem="9wL-Bg-17W" secondAttribute="trailing" constant="12" id="UPC-P4-a0y"/>
                                                 <constraint firstItem="9wL-Bg-17W" firstAttribute="leading" secondItem="zzL-A5-2lO" secondAttribute="trailing" constant="8" id="Zqn-YC-EZo"/>
                                                 <constraint firstItem="zzL-A5-2lO" firstAttribute="top" secondItem="7cU-um-5ZJ" secondAttribute="top" constant="18" id="mnM-A2-sCr"/>
                                             </constraints>
@@ -514,7 +514,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テーマカラーを変える" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvt-im-4GV" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -525,7 +525,7 @@
                                                 <constraint firstItem="Uvt-im-4GV" firstAttribute="leading" secondItem="Dr9-d1-ydn" secondAttribute="trailing" constant="8" id="BbV-IF-UQe"/>
                                                 <constraint firstItem="Uvt-im-4GV" firstAttribute="centerY" secondItem="ShJ-5l-7dJ" secondAttribute="centerY" id="NQi-nB-0Sw"/>
                                                 <constraint firstAttribute="bottom" secondItem="Dr9-d1-ydn" secondAttribute="bottom" constant="18" id="bYE-64-lFq"/>
-                                                <constraint firstAttribute="trailing" secondItem="Uvt-im-4GV" secondAttribute="trailing" constant="8" id="jsJ-jJ-gJs"/>
+                                                <constraint firstAttribute="trailing" secondItem="Uvt-im-4GV" secondAttribute="trailing" constant="12" id="jsJ-jJ-gJs"/>
                                                 <constraint firstItem="Dr9-d1-ydn" firstAttribute="top" secondItem="ShJ-5l-7dJ" secondAttribute="top" constant="18" id="xXD-BZ-MXB"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -544,14 +544,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク！を応援する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="327" height="21"/>
+                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="QJ3-lv-2m4" secondAttribute="trailing" constant="8" id="1OP-SH-aPM"/>
+                                                <constraint firstAttribute="trailing" secondItem="QJ3-lv-2m4" secondAttribute="trailing" constant="12" id="1OP-SH-aPM"/>
                                                 <constraint firstItem="MVo-5X-3zv" firstAttribute="top" secondItem="5Ak-ER-9Tt" secondAttribute="top" constant="18" id="5OG-wE-r0k"/>
                                                 <constraint firstItem="MVo-5X-3zv" firstAttribute="leading" secondItem="5Ak-ER-9Tt" secondAttribute="leading" constant="8" id="5yq-1z-sSN"/>
                                                 <constraint firstItem="QJ3-lv-2m4" firstAttribute="centerY" secondItem="5Ak-ER-9Tt" secondAttribute="centerY" id="Vaj-JK-lqb"/>

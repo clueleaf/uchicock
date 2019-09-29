@@ -158,7 +158,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-mV-WHi" userLabel="Ingredient Name" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="38" y="14.666666666666664" width="291" height="21"/>
+                                                    <rect key="frame" x="38" y="14.666666666666664" width="293" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="oxF-8G-BjK"/>
                                                     </constraints>
@@ -167,7 +167,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqk-Jc-SWd" userLabel="在庫">
-                                                    <rect key="frame" x="334" y="14.666666666666664" width="30" height="21"/>
+                                                    <rect key="frame" x="336" y="14.666666666666664" width="30" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="IXG-oG-Lya"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LHY-sK-GFV"/>
@@ -187,7 +187,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRB-iN-8Yp" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="364" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="366" y="5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="9er-gt-qFf"/>
@@ -199,7 +199,7 @@
                                                 <constraint firstItem="QRB-iN-8Yp" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="1F1-UO-YD0"/>
                                                 <constraint firstItem="F97-6R-ReK" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="3nf-28-QDe"/>
                                                 <constraint firstItem="QRB-iN-8Yp" firstAttribute="leading" secondItem="pqk-Jc-SWd" secondAttribute="trailing" id="WcZ-ex-HmA"/>
-                                                <constraint firstAttribute="trailing" secondItem="QRB-iN-8Yp" secondAttribute="trailing" constant="10" id="bQH-Rq-0DM"/>
+                                                <constraint firstAttribute="trailing" secondItem="QRB-iN-8Yp" secondAttribute="trailing" constant="8" id="bQH-Rq-0DM"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="centerY" secondItem="h1f-kO-fpz" secondAttribute="centerY" id="hUy-Ji-hE3"/>
                                                 <constraint firstItem="pqk-Jc-SWd" firstAttribute="leading" secondItem="WQN-mV-WHi" secondAttribute="trailing" constant="5" id="jfS-1o-Kof"/>
                                                 <constraint firstItem="WQN-mV-WHi" firstAttribute="leading" secondItem="F97-6R-ReK" secondAttribute="trailing" constant="5" id="lq0-WE-u98"/>

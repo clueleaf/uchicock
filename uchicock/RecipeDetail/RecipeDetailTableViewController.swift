@@ -440,7 +440,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell

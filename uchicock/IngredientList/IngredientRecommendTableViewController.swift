@@ -141,7 +141,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             cell.ingredientDescription = "入手すると新たに" + String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability) + "レシピ作れます！"
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         }
     }

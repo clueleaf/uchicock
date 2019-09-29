@@ -132,7 +132,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.backgroundColor = Style.basicBackgroundColor
         if indexPath.row < 3{
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
         }else{
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +39,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="402"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuN-P8-3Tu" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="8" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="1wK-Ea-6wU"/>
                                                 </constraints>
@@ -50,21 +48,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WET-0L-iQP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="42" width="398" height="100.5"/>
+                                                <rect key="frame" x="8" y="42" width="394" height="100.5"/>
                                                 <string key="text">グラスに氷を入れて飲むスタイル。冷たさをキープできるので時間をかけてゆっくり楽しめる。ジュースやソーダなどの割り材を多めに加えるレシピが多く、ショートカクテルと比べてアルコール割合は低めになりやすい。ビールベースのカクテルなどはロングカクテルに分類されていても、氷を入れないことがある。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5M5-hw-70H">
-                                                <rect key="frame" x="8" y="158.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="158.5" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="dgc-8S-O9M"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtX-z4-hQQ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="167.5" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="167.5" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="dOf-Va-yaP"/>
                                                 </constraints>
@@ -73,20 +71,20 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="グラスに氷を入れずに飲むもので、温まらないうち（概ね20分以内）に飲み終えるのが良いとされる。割り材は少なめか全く入らないレシピが多く、飲む間に氷が溶けて薄まることもないので、結果的にアルコール割合は高めになることが多い。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-0g-91B" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="201.5" width="398" height="84"/>
+                                                <rect key="frame" x="8" y="201.5" width="394" height="84"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyn-g4-Sxc">
-                                                <rect key="frame" x="8" y="301.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="301.5" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="D2H-Yw-jAv"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="do9-SM-RH6" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="310.5" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="310.5" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="swU-th-HaV"/>
                                                 </constraints>
@@ -95,7 +93,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お湯や温めた材料を使ったカクテル。冬場など寒い日にうってつけ。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-X1-1ND" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="344.5" width="398" height="33.5"/>
+                                                <rect key="frame" x="8" y="344.5" width="394" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -103,25 +101,25 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="WET-0L-iQP" secondAttribute="trailing" constant="8" id="2c8-IM-SKf"/>
+                                            <constraint firstAttribute="trailing" secondItem="WET-0L-iQP" secondAttribute="trailing" constant="12" id="2c8-IM-SKf"/>
                                             <constraint firstAttribute="bottom" secondItem="RN7-X1-1ND" secondAttribute="bottom" constant="24" id="8np-tL-kpu"/>
                                             <constraint firstItem="Srt-0g-91B" firstAttribute="top" secondItem="xtX-z4-hQQ" secondAttribute="bottom" constant="8" id="Kyg-a6-PbS"/>
                                             <constraint firstItem="do9-SM-RH6" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="LaH-Ur-Ya2"/>
                                             <constraint firstItem="WET-0L-iQP" firstAttribute="top" secondItem="kuN-P8-3Tu" secondAttribute="bottom" constant="8" id="OX9-S1-STu"/>
-                                            <constraint firstAttribute="trailing" secondItem="Jyn-g4-Sxc" secondAttribute="trailing" constant="8" id="OyP-5Z-B5x"/>
-                                            <constraint firstAttribute="trailing" secondItem="Srt-0g-91B" secondAttribute="trailing" constant="8" id="P6g-iF-Svd"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jyn-g4-Sxc" secondAttribute="trailing" constant="12" id="OyP-5Z-B5x"/>
+                                            <constraint firstAttribute="trailing" secondItem="Srt-0g-91B" secondAttribute="trailing" constant="12" id="P6g-iF-Svd"/>
                                             <constraint firstItem="xtX-z4-hQQ" firstAttribute="top" secondItem="5M5-hw-70H" secondAttribute="bottom" constant="8" id="Q7E-PA-3cr"/>
                                             <constraint firstItem="RN7-X1-1ND" firstAttribute="top" secondItem="do9-SM-RH6" secondAttribute="bottom" constant="8" id="R1U-sS-P2p"/>
-                                            <constraint firstAttribute="trailing" secondItem="5M5-hw-70H" secondAttribute="trailing" constant="8" id="TY7-Ed-v3j"/>
+                                            <constraint firstAttribute="trailing" secondItem="5M5-hw-70H" secondAttribute="trailing" constant="12" id="TY7-Ed-v3j"/>
                                             <constraint firstItem="5M5-hw-70H" firstAttribute="top" secondItem="WET-0L-iQP" secondAttribute="bottom" constant="16" id="ZXz-kP-xXV"/>
                                             <constraint firstItem="xtX-z4-hQQ" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="bKF-7f-1Aq"/>
-                                            <constraint firstAttribute="trailing" secondItem="kuN-P8-3Tu" secondAttribute="trailing" constant="8" id="d1h-Zc-zlh"/>
+                                            <constraint firstAttribute="trailing" secondItem="kuN-P8-3Tu" secondAttribute="trailing" constant="12" id="d1h-Zc-zlh"/>
                                             <constraint firstItem="kuN-P8-3Tu" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="d4m-eU-hfj"/>
                                             <constraint firstItem="RN7-X1-1ND" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="fZP-ZE-p5c"/>
-                                            <constraint firstAttribute="trailing" secondItem="RN7-X1-1ND" secondAttribute="trailing" constant="8" id="fdQ-E5-smx"/>
+                                            <constraint firstAttribute="trailing" secondItem="RN7-X1-1ND" secondAttribute="trailing" constant="12" id="fdQ-E5-smx"/>
                                             <constraint firstItem="kuN-P8-3Tu" firstAttribute="top" secondItem="Zmk-Bd-9DY" secondAttribute="top" constant="8" id="iEI-MW-h1t"/>
-                                            <constraint firstAttribute="trailing" secondItem="do9-SM-RH6" secondAttribute="trailing" constant="8" id="lGD-cG-Ndk"/>
-                                            <constraint firstAttribute="trailing" secondItem="xtX-z4-hQQ" secondAttribute="trailing" constant="8" id="qnb-iu-v8b"/>
+                                            <constraint firstAttribute="trailing" secondItem="do9-SM-RH6" secondAttribute="trailing" constant="12" id="lGD-cG-Ndk"/>
+                                            <constraint firstAttribute="trailing" secondItem="xtX-z4-hQQ" secondAttribute="trailing" constant="12" id="qnb-iu-v8b"/>
                                             <constraint firstItem="do9-SM-RH6" firstAttribute="top" secondItem="Jyn-g4-Sxc" secondAttribute="bottom" constant="8" id="tJc-fu-7Of"/>
                                             <constraint firstItem="Jyn-g4-Sxc" firstAttribute="leading" secondItem="Zmk-Bd-9DY" secondAttribute="leading" constant="8" id="u0W-qS-1Zr"/>
                                             <constraint firstItem="Jyn-g4-Sxc" firstAttribute="top" secondItem="Srt-0g-91B" secondAttribute="bottom" constant="16" id="wu9-7f-dnm"/>
@@ -198,20 +196,20 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="654"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カクテルの作り方は4種類に大別されますが、細かいところはカクテルの種類や作り手、好みによっても微妙に違ってきます。ここに書いてある作り方を参考にしつつ、自分なりのアレンジを試してみるとより楽しめるでしょう。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHe-3Q-l19" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="398" height="67"/>
+                                                <rect key="frame" x="8" y="8" width="394" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9J5-q3-fbb">
-                                                <rect key="frame" x="8" y="91" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="91" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="ER0-Z5-anA"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9f-nL-SGG" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="100" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="100" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="U8j-qi-ZxA"/>
                                                 </constraints>
@@ -220,21 +218,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lo-mO-hkv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="134" width="398" height="84"/>
+                                                <rect key="frame" x="8" y="134" width="394" height="84"/>
                                                 <string key="text">飲むグラスに材料（必要に応じて氷も）を直接入れ、軽くかき混ぜるだけ。特別な器具はいらないのでもっとも手軽に作ることができる。ロングカクテルが多く、ベースとなるお酒とジュースの2種類を使うだけでもいろいろと組み合わせられる。レシピによっては全くかき混ぜずに作るものもある。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIy-vt-XsZ">
-                                                <rect key="frame" x="8" y="234" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="234" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="onb-Fj-1BQ"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-8j-gtL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="243" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="243" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="eE0-0u-PP9"/>
                                                 </constraints>
@@ -243,21 +241,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-kF-ytP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="277" width="398" height="84"/>
+                                                <rect key="frame" x="8" y="277" width="394" height="84"/>
                                                 <string key="text">飲むグラスとは別にかき混ぜる用のグラス（ミキシンググラス）に材料と氷を入れ、バースプーンなどで混ぜることでしっかり冷やす。かき混ぜる時に使った氷は取り除き、飲むグラスに注いだら出来上がり。シェイクに比べると材料の混ざりが弱いのでお酒本来の味が活き、辛口に仕上がる。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkR-wS-uAT">
-                                                <rect key="frame" x="8" y="377" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="377" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="4Wu-IK-AL4"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RV9-Jf-uL7" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="386" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="386" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="btg-Iu-mPK"/>
                                                 </constraints>
@@ -266,21 +264,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNe-ai-Jgv" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="420" width="398" height="100.5"/>
+                                                <rect key="frame" x="8" y="420" width="394" height="100.5"/>
                                                 <string key="text">もっとも「カクテルらしい」作り方と言えるかもしれない。シェイカーに氷と材料を入れ15回程度振り、グラスに注ぐ。材料がよく混ざるので口当たりがまろやかになる。炭酸を含む材料を使う場合はシェイカーには一緒に入れず、シェイクし終えグラスに注いだ後に加え、スプーンで軽くかき混ぜる。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-i5-oTe">
-                                                <rect key="frame" x="8" y="536.5" width="398" height="1"/>
+                                                <rect key="frame" x="8" y="536.5" width="394" height="1"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="pEv-jU-lUJ"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwP-AN-KP7" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="545.5" width="398" height="26"/>
+                                                <rect key="frame" x="8" y="545.5" width="394" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="SQQ-mJ-7Vr"/>
                                                 </constraints>
@@ -289,7 +287,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="フローズン系のカクテルを作る場合などに用いられる。ミキサーに材料と小さく砕いたクラッシュアイスを入れて撹拌し、シャーベット状に仕上げる。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ig-nS-tab" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="579.5" width="398" height="50.5"/>
+                                                <rect key="frame" x="8" y="579.5" width="394" height="50.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -297,7 +295,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="jkR-wS-uAT" secondAttribute="trailing" constant="8" id="0Bi-xF-LhH"/>
+                                            <constraint firstAttribute="trailing" secondItem="jkR-wS-uAT" secondAttribute="trailing" constant="12" id="0Bi-xF-LhH"/>
                                             <constraint firstItem="DNe-ai-Jgv" firstAttribute="top" secondItem="RV9-Jf-uL7" secondAttribute="bottom" constant="8" id="0ZE-mL-NgL"/>
                                             <constraint firstItem="AwP-AN-KP7" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="6c4-hq-kcR"/>
                                             <constraint firstItem="9J5-q3-fbb" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="7YI-cC-pTk"/>
@@ -308,35 +306,35 @@
                                             <constraint firstItem="VIy-vt-XsZ" firstAttribute="top" secondItem="2lo-mO-hkv" secondAttribute="bottom" constant="16" id="LSp-Sw-xPO"/>
                                             <constraint firstItem="GF5-i5-oTe" firstAttribute="top" secondItem="DNe-ai-Jgv" secondAttribute="bottom" constant="16" id="MVW-Ij-zne"/>
                                             <constraint firstItem="bzQ-8j-gtL" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="O49-vR-N1y"/>
-                                            <constraint firstAttribute="trailing" secondItem="RV9-Jf-uL7" secondAttribute="trailing" constant="8" id="OAs-Da-b4y"/>
+                                            <constraint firstAttribute="trailing" secondItem="RV9-Jf-uL7" secondAttribute="trailing" constant="12" id="OAs-Da-b4y"/>
                                             <constraint firstItem="9J5-q3-fbb" firstAttribute="top" secondItem="bHe-3Q-l19" secondAttribute="bottom" constant="16" id="PgM-6D-xTi"/>
                                             <constraint firstItem="jkR-wS-uAT" firstAttribute="top" secondItem="xi2-kF-ytP" secondAttribute="bottom" constant="16" id="RHc-Zi-hIC"/>
                                             <constraint firstItem="2lo-mO-hkv" firstAttribute="top" secondItem="e9f-nL-SGG" secondAttribute="bottom" constant="8" id="S7m-sw-t8u"/>
-                                            <constraint firstAttribute="trailing" secondItem="VIy-vt-XsZ" secondAttribute="trailing" constant="8" id="SJQ-eU-G0J"/>
+                                            <constraint firstAttribute="trailing" secondItem="VIy-vt-XsZ" secondAttribute="trailing" constant="12" id="SJQ-eU-G0J"/>
                                             <constraint firstItem="e9f-nL-SGG" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="TZe-nG-kSa"/>
-                                            <constraint firstAttribute="trailing" secondItem="DNe-ai-Jgv" secondAttribute="trailing" constant="8" id="V6S-fr-HyM"/>
+                                            <constraint firstAttribute="trailing" secondItem="DNe-ai-Jgv" secondAttribute="trailing" constant="12" id="V6S-fr-HyM"/>
                                             <constraint firstItem="6Ig-nS-tab" firstAttribute="top" secondItem="AwP-AN-KP7" secondAttribute="bottom" constant="8" id="XfE-Pd-9b3"/>
                                             <constraint firstItem="6Ig-nS-tab" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="ZS0-qV-yYl"/>
-                                            <constraint firstAttribute="trailing" secondItem="e9f-nL-SGG" secondAttribute="trailing" constant="8" id="aPU-hW-Tpv"/>
-                                            <constraint firstAttribute="trailing" secondItem="bHe-3Q-l19" secondAttribute="trailing" constant="8" id="ajk-U7-IhR"/>
-                                            <constraint firstAttribute="trailing" secondItem="9J5-q3-fbb" secondAttribute="trailing" constant="8" id="bLd-iO-48G"/>
+                                            <constraint firstAttribute="trailing" secondItem="e9f-nL-SGG" secondAttribute="trailing" constant="12" id="aPU-hW-Tpv"/>
+                                            <constraint firstAttribute="trailing" secondItem="bHe-3Q-l19" secondAttribute="trailing" constant="12" id="ajk-U7-IhR"/>
+                                            <constraint firstAttribute="trailing" secondItem="9J5-q3-fbb" secondAttribute="trailing" constant="12" id="bLd-iO-48G"/>
                                             <constraint firstItem="2lo-mO-hkv" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="cA4-pw-ahf"/>
-                                            <constraint firstAttribute="trailing" secondItem="6Ig-nS-tab" secondAttribute="trailing" constant="8" id="db4-8D-hFc"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Ig-nS-tab" secondAttribute="trailing" constant="12" id="db4-8D-hFc"/>
                                             <constraint firstItem="bHe-3Q-l19" firstAttribute="top" secondItem="ToU-Va-VQs" secondAttribute="top" constant="8" id="ga7-U7-E1G"/>
-                                            <constraint firstAttribute="trailing" secondItem="xi2-kF-ytP" secondAttribute="trailing" constant="8" id="gey-PB-h5a"/>
-                                            <constraint firstAttribute="trailing" secondItem="AwP-AN-KP7" secondAttribute="trailing" constant="8" id="guB-gs-FvU"/>
+                                            <constraint firstAttribute="trailing" secondItem="xi2-kF-ytP" secondAttribute="trailing" constant="12" id="gey-PB-h5a"/>
+                                            <constraint firstAttribute="trailing" secondItem="AwP-AN-KP7" secondAttribute="trailing" constant="12" id="guB-gs-FvU"/>
                                             <constraint firstItem="jkR-wS-uAT" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="hB2-LZ-Odq"/>
-                                            <constraint firstAttribute="trailing" secondItem="bzQ-8j-gtL" secondAttribute="trailing" constant="8" id="iIn-n6-DX8"/>
+                                            <constraint firstAttribute="trailing" secondItem="bzQ-8j-gtL" secondAttribute="trailing" constant="12" id="iIn-n6-DX8"/>
                                             <constraint firstItem="bzQ-8j-gtL" firstAttribute="top" secondItem="VIy-vt-XsZ" secondAttribute="bottom" constant="8" id="ioh-OJ-bGH"/>
                                             <constraint firstItem="VIy-vt-XsZ" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="jWo-PN-sba"/>
                                             <constraint firstItem="RV9-Jf-uL7" firstAttribute="top" secondItem="jkR-wS-uAT" secondAttribute="bottom" constant="8" id="la3-z5-73W"/>
                                             <constraint firstItem="bHe-3Q-l19" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="p8p-3t-rDW"/>
                                             <constraint firstItem="xi2-kF-ytP" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="sS9-cZ-58U"/>
-                                            <constraint firstAttribute="trailing" secondItem="2lo-mO-hkv" secondAttribute="trailing" constant="8" id="sVl-xk-wQo"/>
+                                            <constraint firstAttribute="trailing" secondItem="2lo-mO-hkv" secondAttribute="trailing" constant="12" id="sVl-xk-wQo"/>
                                             <constraint firstItem="xi2-kF-ytP" firstAttribute="top" secondItem="bzQ-8j-gtL" secondAttribute="bottom" constant="8" id="uIB-9n-017"/>
                                             <constraint firstItem="AwP-AN-KP7" firstAttribute="top" secondItem="GF5-i5-oTe" secondAttribute="bottom" constant="8" id="vt9-rx-7iG"/>
                                             <constraint firstItem="RV9-Jf-uL7" firstAttribute="leading" secondItem="ToU-Va-VQs" secondAttribute="leading" constant="8" id="xBL-wa-Gaj"/>
-                                            <constraint firstAttribute="trailing" secondItem="GF5-i5-oTe" secondAttribute="trailing" constant="8" id="yWX-HB-22R"/>
+                                            <constraint firstAttribute="trailing" secondItem="GF5-i5-oTe" secondAttribute="trailing" constant="12" id="yWX-HB-22R"/>
                                         </constraints>
                                     </view>
                                 </subviews>

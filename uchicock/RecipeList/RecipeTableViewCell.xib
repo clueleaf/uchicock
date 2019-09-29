@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="☆☆☆" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
-                        <rect key="frame" x="154.5" y="8" width="165.5" height="21"/>
+                        <rect key="frame" x="154.5" y="8" width="161.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9vy-6M-Nyt"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="ecC-sA-Jy9"/>
@@ -59,7 +59,7 @@
                     <constraint firstItem="W2V-21-ykG" firstAttribute="leading" secondItem="nIA-Y5-AVb" secondAttribute="trailing" constant="8" id="YQ0-tY-3Ld"/>
                     <constraint firstItem="Ja5-zr-t38" firstAttribute="leading" secondItem="W2V-21-ykG" secondAttribute="trailing" constant="8" id="ZS7-EH-olI"/>
                     <constraint firstAttribute="bottom" secondItem="Ehs-ln-8g3" secondAttribute="bottom" constant="15" id="hbJ-iV-DDb"/>
-                    <constraint firstAttribute="trailing" secondItem="Ja5-zr-t38" secondAttribute="trailing" id="qBr-kb-ebt"/>
+                    <constraint firstAttribute="trailing" secondItem="Ja5-zr-t38" secondAttribute="trailing" constant="4" id="qBr-kb-ebt"/>
                     <constraint firstItem="nIA-Y5-AVb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qP3-Ua-vCd"/>
                 </constraints>
             </tableViewCellContentView>

@@ -105,7 +105,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-zc-48A" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="14.5" width="216" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="212" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="5p3-FS-was"/>
                                                     </constraints>
@@ -114,7 +114,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-kp-DjR" userLabel="星3">
-                                                    <rect key="frame" x="336" y="1" width="31" height="48"/>
+                                                    <rect key="frame" x="332" y="1" width="31" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="FWG-K5-iJi"/>
                                                     </constraints>
@@ -125,7 +125,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-8v-9XM" userLabel="星2">
-                                                    <rect key="frame" x="290" y="1" width="31" height="48"/>
+                                                    <rect key="frame" x="286" y="1" width="31" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Nt8-wR-NjH"/>
                                                     </constraints>
@@ -136,7 +136,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb6-1r-5Pc" userLabel="星1">
-                                                    <rect key="frame" x="244" y="1" width="31" height="48"/>
+                                                    <rect key="frame" x="240" y="1" width="31" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="rYN-b9-e2h"/>
                                                     </constraints>
@@ -156,7 +156,7 @@
                                                 <constraint firstItem="nN9-zc-48A" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="PZb-uW-rFs"/>
                                                 <constraint firstItem="O9N-kp-DjR" firstAttribute="leading" secondItem="ffj-8v-9XM" secondAttribute="trailing" constant="15" id="deq-1d-yWX"/>
                                                 <constraint firstItem="eb6-1r-5Pc" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="orr-7F-ipq"/>
-                                                <constraint firstAttribute="trailing" secondItem="O9N-kp-DjR" secondAttribute="trailing" constant="8" id="pdf-aw-fUp"/>
+                                                <constraint firstAttribute="trailing" secondItem="O9N-kp-DjR" secondAttribute="trailing" constant="12" id="pdf-aw-fUp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -189,7 +189,7 @@
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d1R-hF-4x3" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="359" height="29"/>
+                                                    <rect key="frame" x="8" y="44" width="355" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="PXo-90-WFR"/>
                                                     </constraints>
@@ -206,7 +206,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="d1R-hF-4x3" firstAttribute="top" secondItem="fpP-fg-gGd" secondAttribute="bottom" constant="8" id="JZE-OD-iRl"/>
-                                                <constraint firstAttribute="trailing" secondItem="d1R-hF-4x3" secondAttribute="trailing" constant="8" id="PCy-26-RmW"/>
+                                                <constraint firstAttribute="trailing" secondItem="d1R-hF-4x3" secondAttribute="trailing" constant="12" id="PCy-26-RmW"/>
                                                 <constraint firstItem="fpP-fg-gGd" firstAttribute="top" secondItem="Q9C-bv-kv8" secondAttribute="top" constant="15" id="UyF-Je-M4J"/>
                                                 <constraint firstItem="xWg-5g-35g" firstAttribute="centerY" secondItem="fpP-fg-gGd" secondAttribute="centerY" id="Ygc-vw-GcS"/>
                                                 <constraint firstItem="xWg-5g-35g" firstAttribute="leading" secondItem="fpP-fg-gGd" secondAttribute="trailing" constant="4" id="kAn-wM-c1x"/>
@@ -233,7 +233,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2cE-h1-JB3" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="359" height="29"/>
+                                                    <rect key="frame" x="8" y="44" width="355" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="Esz-0D-xIH"/>
                                                     </constraints>
@@ -267,7 +267,7 @@
                                                 <constraint firstItem="2cE-h1-JB3" firstAttribute="top" secondItem="wqK-pv-E79" secondAttribute="bottom" constant="8" id="g0y-Om-PTg"/>
                                                 <constraint firstItem="wqK-pv-E79" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="i3D-mx-Ja2"/>
                                                 <constraint firstItem="yBA-Ab-QPQ" firstAttribute="centerY" secondItem="wqK-pv-E79" secondAttribute="centerY" id="lTr-N6-9Be"/>
-                                                <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="8" id="svM-mx-utc"/>
+                                                <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="12" id="svM-mx-utc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -288,7 +288,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xlb-Rh-A1C" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="359" height="120"/>
+                                                    <rect key="frame" x="8" y="44" width="355" height="120"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="OUx-Mg-qG0"/>
@@ -300,7 +300,7 @@
                                             <constraints>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="top" secondItem="eA2-mF-Eye" secondAttribute="top" constant="15" id="E0a-Xw-ECa"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="El4-gg-rub"/>
-                                                <constraint firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="8" id="Vy5-v3-QCe"/>
+                                                <constraint firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="12" id="Vy5-v3-QCe"/>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="Zif-Qa-d7I"/>
                                                 <constraint firstAttribute="trailing" secondItem="auN-Kp-oTE" secondAttribute="trailing" constant="8" id="fRj-XN-6C3"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="top" secondItem="auN-Kp-oTE" secondAttribute="bottom" constant="8" id="uHX-sk-9OG"/>
@@ -543,7 +543,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N4k-of-Pi3" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="5" width="291" height="40"/>
+                                                    <rect key="frame" x="76" y="5" width="287" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Wxm-rc-5kH"/>
                                                     </constraints>
@@ -559,7 +559,7 @@
                                                 <constraint firstItem="vLz-uO-3NT" firstAttribute="centerY" secondItem="aby-6v-3Pb" secondAttribute="centerY" id="CdJ-aY-k7U"/>
                                                 <constraint firstItem="N4k-of-Pi3" firstAttribute="centerY" secondItem="aby-6v-3Pb" secondAttribute="centerY" id="RXp-VQ-Aoz"/>
                                                 <constraint firstItem="N4k-of-Pi3" firstAttribute="leading" secondItem="vLz-uO-3NT" secondAttribute="trailing" constant="8" id="VN4-Fw-5E6"/>
-                                                <constraint firstAttribute="trailing" secondItem="N4k-of-Pi3" secondAttribute="trailing" constant="8" id="tle-1u-NBS"/>
+                                                <constraint firstAttribute="trailing" secondItem="N4k-of-Pi3" secondAttribute="trailing" constant="12" id="tle-1u-NBS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -633,7 +633,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NyC-hv-bV8" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="5" width="291" height="40"/>
+                                                    <rect key="frame" x="76" y="5" width="287" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="xsg-z2-Q6F"/>
                                                     </constraints>
@@ -644,7 +644,7 @@
                                                     </connections>
                                                 </textField>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-ft-XUK" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="55" width="295" height="31"/>
+                                                    <rect key="frame" x="74" y="55" width="291" height="31"/>
                                                     <connections>
                                                         <action selector="amountSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="Zeg-T3-gEP"/>
                                                     </connections>
@@ -656,7 +656,7 @@
                                                 <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="imD-FZ-iht" secondAttribute="trailing" constant="26" id="KWE-2h-bvt"/>
                                                 <constraint firstItem="NyC-hv-bV8" firstAttribute="top" secondItem="UVb-p4-hZv" secondAttribute="top" constant="5" id="Q5p-u4-Pt4"/>
                                                 <constraint firstItem="imD-FZ-iht" firstAttribute="centerY" secondItem="NyC-hv-bV8" secondAttribute="centerY" id="bLH-uR-r47"/>
-                                                <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="8" id="jy5-f8-ppc"/>
+                                                <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="12" id="jy5-f8-ppc"/>
                                                 <constraint firstItem="CAO-ft-XUK" firstAttribute="top" secondItem="NyC-hv-bV8" secondAttribute="bottom" constant="10" id="m3j-9F-gfj"/>
                                                 <constraint firstItem="CAO-ft-XUK" firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" id="pEf-eN-WCE"/>
                                             </constraints>
@@ -670,7 +670,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Yn-meJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="16" width="299" height="21"/>
+                                                    <rect key="frame" x="8" y="16" width="295" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="pLQ-3q-rM3"/>
                                                     </constraints>
@@ -679,7 +679,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-L3-ZDg" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="327" y="6.5" width="40" height="40"/>
+                                                    <rect key="frame" x="323" y="6.5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="5I3-Lr-AME"/>
@@ -700,7 +700,7 @@
                                                 <constraint firstItem="uyA-Yn-meJ" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="bnL-o9-Zmt"/>
                                                 <constraint firstItem="pM3-L3-ZDg" firstAttribute="leading" secondItem="uyA-Yn-meJ" secondAttribute="trailing" constant="20" id="n4i-Vo-aO0"/>
                                                 <constraint firstAttribute="trailing" secondItem="Thm-mY-qsP" secondAttribute="trailing" constant="8" id="p7y-09-NMd"/>
-                                                <constraint firstAttribute="trailing" secondItem="pM3-L3-ZDg" secondAttribute="trailing" constant="8" id="vfD-Ql-9eQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="pM3-L3-ZDg" secondAttribute="trailing" constant="12" id="vfD-Ql-9eQ"/>
                                                 <constraint firstItem="Thm-mY-qsP" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="vsf-zF-EU8"/>
                                                 <constraint firstItem="pM3-L3-ZDg" firstAttribute="centerY" secondItem="uyA-Yn-meJ" secondAttribute="centerY" id="weG-d9-qh7"/>
                                                 <constraint firstItem="Thm-mY-qsP" firstAttribute="top" secondItem="uyA-Yn-meJ" secondAttribute="bottom" constant="12" id="ynk-SE-YcY"/>
