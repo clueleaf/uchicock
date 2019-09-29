@@ -38,14 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["category"] = ingredientName.withoutMiddleDot().categoryNumber()
                     }
                 }
-                if (oldSchemaVersion < 5) {
-                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
-                        if oldObject!["imageData"] != nil {
-                            newObject!["imageData"] = oldObject!["imageData"] as! Data
-                        }
-                        newObject!["madeNum"] = 0
-                    }
-                }
                 if (oldSchemaVersion < 7) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
                         let recipeName = oldObject!["recipeName"] as! String
