@@ -649,6 +649,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.selectedIndexPath = indexPath
                 editVC.recipe = recipe
                 
+                editNavi.modalPresentationStyle = .overFullScreen
+                editNavi.modalTransitionStyle = .coverVertical
                 history.append(detailVC)
                 editVC.detailVC = detailVC
                 self.present(editNavi, animated: true, completion: {
@@ -714,6 +716,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
             guard var history = self.navigationController?.viewControllers,
@@ -722,6 +725,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return
             }
             
+            editNavi.modalPresentationStyle = .overFullScreen
+            editNavi.modalTransitionStyle = .coverVertical
             history.append(detailVC)
             editVC.detailVC = detailVC
             self.present(editNavi, animated: true, completion: {
