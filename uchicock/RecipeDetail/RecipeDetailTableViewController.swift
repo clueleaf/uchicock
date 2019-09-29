@@ -279,9 +279,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
-            if tableView.contentOffset.y < 0{
-                headRect.origin.y = tableView.contentOffset.y
+            print(tableView.contentOffset.y)
+            headRect.origin.y = tableView.contentOffset.y
+            if tableView.contentOffset.y <= 0{
                 headRect.size.height = photoHeight - tableView.contentOffset.y
+            }else if 0 < tableView.contentOffset.y && tableView.contentOffset.y < 100 {
+                headRect.size.height = photoHeight - tableView.contentOffset.y
+            }else{
+                headRect.size.height = photoHeight - 100
             }
             headerView.frame = headRect
         }
