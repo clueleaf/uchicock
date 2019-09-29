@@ -386,7 +386,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     cell.textLabel?.textAlignment = .center
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     return cell
                 }
             }
