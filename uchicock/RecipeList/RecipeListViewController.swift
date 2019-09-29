@@ -85,17 +85,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    let textField: UITextField = subview as! UITextField
-                    textField.layer.borderColor = Style.memoBorderColor.cgColor
-                    textField.layer.borderWidth = 1.0
-                    textField.layer.cornerRadius = 8.0
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColor
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.layer.borderColor = Style.memoBorderColor.cgColor
+            searchBar.searchTextField.layer.borderWidth = 1.0
+            searchBar.searchTextField.layer.cornerRadius = 8.0
+        }else{
+            for view in searchBar.subviews {
+                for subview in view.subviews {
+                    if subview is UITextField {
+                        let textField: UITextField = subview as! UITextField
+                        textField.layer.borderColor = Style.memoBorderColor.cgColor
+                        textField.layer.borderWidth = 1.0
+                        textField.layer.cornerRadius = 8.0
+                        for subsubview in subview.subviews{
+                            if subsubview is UILabel{
+                                let placeholderLabel = subsubview as! UILabel
+                                placeholderLabel.textColor = Style.labelTextColor
+                            }
                         }
                     }
                 }
