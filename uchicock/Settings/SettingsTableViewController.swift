@@ -37,6 +37,7 @@ class SettingsTableViewController: UITableViewController {
         firstRequestReview = defaults.bool(forKey: "FirstRequestReview")
         alreadyWrittenReview = defaults.bool(forKey: "AlreadyWrittenReview")
 
+        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     

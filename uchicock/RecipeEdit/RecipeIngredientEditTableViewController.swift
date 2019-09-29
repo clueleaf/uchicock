@@ -77,7 +77,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             deleteLabel.text = "材料の追加をやめる"
         }
         
+        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        suggestTableView.separatorColor = UIColor.gray
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         var safeAreaBottom: CGFloat = 0.0

@@ -76,7 +76,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.tag = 1
         ingredientSuggestTableView.tag = 2
 
+        recipeTableView.separatorColor = UIColor.gray
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
+        ingredientSuggestTableView.separatorColor = UIColor.gray
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")

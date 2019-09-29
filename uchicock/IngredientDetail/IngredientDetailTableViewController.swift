@@ -52,6 +52,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
 
+        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     

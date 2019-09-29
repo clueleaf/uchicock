@@ -62,6 +62,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             method.text = "その他"
         }
 
+        self.tableView.separatorColor = UIColor.gray
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         var safeAreaBottom: CGFloat = 0.0

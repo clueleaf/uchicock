@@ -35,6 +35,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         
         createIngredientBasicList()
 
+        self.tableView.separatorColor = UIColor.gray
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.reloadData()
     }

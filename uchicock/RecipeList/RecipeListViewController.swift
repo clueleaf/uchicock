@@ -55,6 +55,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.returnKeyType = UIReturnKeyType.done
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.separatorColor = UIColor.gray
 
         let defaults = UserDefaults.standard
         let dic = ["firstLaunch": true]

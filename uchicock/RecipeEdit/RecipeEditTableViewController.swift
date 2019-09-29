@@ -113,6 +113,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: -1))
         }
         
+        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         focusRecipeNameFlag = true

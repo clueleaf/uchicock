@@ -54,6 +54,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         
+        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         let safeAreaBottom: CGFloat = 0.0

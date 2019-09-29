@@ -39,6 +39,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.returnKeyType = UIReturnKeyType.done
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.separatorColor = UIColor.gray
     }
     
     override func viewWillAppear(_ animated: Bool) {

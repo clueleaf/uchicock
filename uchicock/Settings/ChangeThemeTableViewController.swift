@@ -49,6 +49,7 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.separatorColor = UIColor.gray
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         var safeAreaBottom: CGFloat = 0.0
