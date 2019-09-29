@@ -28,9 +28,11 @@ class RecipeTableViewCell: UITableViewCell {
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true){
                 self.photo.image = image
             }else{
-                let noPhotoImage = UIImage(named:"no-photo")!.withRenderingMode(.alwaysTemplate)
-                photo.image = noPhotoImage
-                photo.tintColor = Style.labelTextColorLight
+                if Style.isDark{
+                    photo.image = UIImage(named: "no-photo-dark")
+                }else{
+                    photo.image = UIImage(named: "no-photo")
+                }
             }
             
             recipeName.text = recipe.recipeName
