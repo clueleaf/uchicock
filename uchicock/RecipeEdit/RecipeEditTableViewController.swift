@@ -458,7 +458,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 action in
                 self.ipc.sourceType = .camera
                 self.ipc.allowsEditing = false
-                self.ipc.modalPresentationStyle = .overFullScreen
+                self.ipc.modalPresentationStyle = .fullScreen
                 self.present(self.ipc, animated: true, completion: nil)
             }))
         }
@@ -466,7 +466,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             action in
             self.ipc.sourceType = .photoLibrary
             self.ipc.allowsEditing = true
-            self.ipc.modalPresentationStyle = .overFullScreen
+            self.ipc.modalPresentationStyle = .fullScreen
             self.present(self.ipc, animated: true, completion: nil)
         }))
         let pasteboard: UIPasteboard = UIPasteboard.general
