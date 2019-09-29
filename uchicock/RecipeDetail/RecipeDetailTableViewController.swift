@@ -122,7 +122,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
             
             noPhotoFlag = false
-            if let image = ImageUtil.load(imageFileName: recipe.imageFileName, useCache: true){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true){
                 photo.image = image
                 if image.size.width > image.size.height{
                     photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
@@ -289,7 +289,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
-            if ImageUtil.load(imageFileName: recipe.imageFileName, useCache: true) != nil {
+            if ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true) != nil {
                 let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                 let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
                 ivc.originalImageView = photo
