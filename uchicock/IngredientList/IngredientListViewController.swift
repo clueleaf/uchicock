@@ -71,11 +71,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
-        category.layer.cornerRadius = 14.0
         category.layer.borderColor = Style.secondaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
-        stockState.layer.cornerRadius = 14.0
         stockState.layer.borderColor = Style.secondaryColor.cgColor
         stockState.layer.borderWidth = 1.0
         stockState.layer.masksToBounds = true

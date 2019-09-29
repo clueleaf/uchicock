@@ -70,7 +70,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
-        category.layer.cornerRadius = 14.0
         category.layer.borderColor = Style.secondaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true        
