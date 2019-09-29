@@ -36,6 +36,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
+    let minimumPhotoHeight: CGFloat = 60.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
@@ -281,12 +282,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
             print(tableView.contentOffset.y)
             headRect.origin.y = tableView.contentOffset.y
-            if tableView.contentOffset.y <= 0{
-                headRect.size.height = photoHeight - tableView.contentOffset.y
-            }else if 0 < tableView.contentOffset.y && tableView.contentOffset.y < 100 {
+            if tableView.contentOffset.y < (photoHeight - minimumPhotoHeight) {
                 headRect.size.height = photoHeight - tableView.contentOffset.y
             }else{
-                headRect.size.height = photoHeight - 100
+                headRect.size.height = minimumPhotoHeight
             }
             headerView.frame = headRect
         }
