@@ -53,7 +53,6 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var ingredientName = String(){
         didSet{
             ingredientNameLabel.text = ingredientName
-            ingredientNameLabel.backgroundColor = Style.basicBackgroundColor
             ingredientNameLabel.clipsToBounds = true
         }
     }
@@ -81,7 +80,6 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var amountText = String(){
         didSet{
             amountLabel.text = amountText
-            amountLabel.backgroundColor = Style.basicBackgroundColor
             amountLabel.clipsToBounds = true
         }
     }

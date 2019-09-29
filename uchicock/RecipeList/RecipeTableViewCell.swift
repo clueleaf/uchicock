@@ -85,7 +85,6 @@ class RecipeTableViewCell: UITableViewCell {
             }
 
             subInfoLabel.textAlignment = .right
-            subInfoLabel.backgroundColor = Style.basicBackgroundColor
             
             switch recipe.shortageNum {
             case 0:
