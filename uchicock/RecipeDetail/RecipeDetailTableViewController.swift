@@ -279,8 +279,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     // MARK: - Photo Header
     func updateHeaderView(){
         if noPhotoFlag == false{
+            tableView.bringSubviewToFront(headerView)
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
-            print(tableView.contentOffset.y)
             headRect.origin.y = tableView.contentOffset.y
             if tableView.contentOffset.y < (photoHeight - minimumPhotoHeight) {
                 headRect.size.height = photoHeight - tableView.contentOffset.y
