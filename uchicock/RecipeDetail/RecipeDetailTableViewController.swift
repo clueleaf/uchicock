@@ -444,12 +444,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
+            
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.tintColor = Style.labelTextColorLight
+            cell.accessoryView = accesoryImageView
+
             cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
             cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
             cell.amountText = recipe.recipeIngredients[indexPath.row].amount
-            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.selectionStyle = .default
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView

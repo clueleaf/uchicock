@@ -131,6 +131,12 @@ class IngredientRecommendTableViewController: UITableViewController {
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecommendCell") as! IngredientRecommendTableViewCell
+            
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.tintColor = Style.labelTextColorLight
+            cell.accessoryView = accesoryImageView
+
             cell.ingredientName = ingredientBasicList[indexPath.row - 1].name
             cell.ingredientDescription = "入手すると新たに" + String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability) + "レシピ作れます！"
             cell.backgroundColor = Style.basicBackgroundColor

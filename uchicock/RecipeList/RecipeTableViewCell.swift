@@ -20,6 +20,11 @@ class RecipeTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.tintColor = Style.labelTextColorLight
+            self.accessoryView = accesoryImageView
+
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true){
                 self.photo.image = image
             }else{

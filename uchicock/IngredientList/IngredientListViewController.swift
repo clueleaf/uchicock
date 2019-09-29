@@ -390,6 +390,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell
+            
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.tintColor = Style.labelTextColorLight
+            cell.accessoryView = accesoryImageView
+
             cell.stockState = stockState.selectedSegmentIndex
             cell.stock.stateChangeAnimation = .fade
             cell.stock.animationDuration = 0

@@ -110,7 +110,12 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.accessoryType = .disclosureIndicator
+        
+        let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+        let accesoryImageView = UIImageView(image: disclosureIndicator)
+        accesoryImageView.tintColor = Style.labelTextColorLight
+        cell.accessoryView = accesoryImageView
+
         cell.selectedBackgroundView = selectedCellBackgroundView
         cell.backgroundColor = Style.basicBackgroundColor
         return cell

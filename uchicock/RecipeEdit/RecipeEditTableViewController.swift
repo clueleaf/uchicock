@@ -385,7 +385,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = nil
 
-                cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+                let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+                let accesoryImageView = UIImageView(image: disclosureIndicator)
+                accesoryImageView.tintColor = Style.labelTextColorLight
+                cell.accessoryView = accesoryImageView
+
                 cell.selectionStyle = .default
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
