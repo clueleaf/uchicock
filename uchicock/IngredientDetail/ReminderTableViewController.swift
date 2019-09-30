@@ -56,7 +56,10 @@ class ReminderTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
-        reminderType.layer.cornerRadius = 14.0
+        if #available(iOS 13.0, *) {
+        }else{
+            reminderType.layer.cornerRadius = 14.0
+        }
         reminderType.layer.borderColor = Style.secondaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
