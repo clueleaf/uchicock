@@ -36,7 +36,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
-    var minimumPhotoHeight: CGFloat = 70.0
+    var minimumPhotoHeight: CGFloat = 80.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
@@ -130,7 +130,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else{
                     photoHeight = tableView.bounds.width
                 }
-                minimumPhotoHeight = photoHeight < 70 ? photoHeight : 70
+                minimumPhotoHeight = photoHeight < 80 ? photoHeight : 80
                 photo.clipsToBounds = true
                 tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
             }else{
