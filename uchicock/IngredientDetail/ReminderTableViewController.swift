@@ -65,6 +65,7 @@ class ReminderTableViewController: UITableViewController {
         reminderType.layer.masksToBounds = true
         dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
+        datePicker.setValue(false, forKey: "highlightsToday")
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
