@@ -36,7 +36,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
-    var minimumPhotoHeight: CGFloat = 80.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
@@ -130,9 +129,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else{
                     photoHeight = tableView.bounds.width
                 }
-                minimumPhotoHeight = photoHeight < 80 ? photoHeight : 80
                 photo.clipsToBounds = true
                 tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                self.view.bringSubviewToFront(photoBackground)
             }else{
                 tableView.tableHeaderView = nil
                 noPhotoFlag = true
@@ -231,17 +230,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        if noPhotoFlag == false{
-            // tableViewのスクロールバーが画像に隠されないようにするために必要
-            tableView.showsVerticalScrollIndicator = false
-            tableView.bringSubviewToFront(photoBackground)
-            tableView.showsVerticalScrollIndicator = true
-        }
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if recipe.isInvalidated == false{
@@ -291,11 +279,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
-            headRect.origin.y = tableView.contentOffset.y
-            if tableView.contentOffset.y < (photoHeight - minimumPhotoHeight) {
+            if tableView.contentOffset.y < 0{
+                headRect.origin.y = tableView.contentOffset.y
                 headRect.size.height = photoHeight - tableView.contentOffset.y
-            }else{
-                headRect.size.height = minimumPhotoHeight
             }
             headerView.frame = headRect
         }
