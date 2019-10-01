@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gyd-dK-ZmC">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gyd-dK-ZmC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -730,8 +728,9 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfI-OB-IGb">
-                                        <rect key="frame" x="30" y="17" width="354" height="40"/>
+                                        <rect key="frame" x="87" y="17" width="240" height="40"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="PWh-hR-ZcZ"/>
                                             <constraint firstAttribute="height" constant="40" id="r3h-h6-Goy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -743,13 +742,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="vfI-OB-IGb" firstAttribute="centerX" secondItem="LlM-Sa-xRF" secondAttribute="centerX" id="88S-Xt-gRb"/>
                                     <constraint firstItem="hmp-Z0-khX" firstAttribute="leading" secondItem="LlM-Sa-xRF" secondAttribute="leading" id="Epy-OU-yTd"/>
                                     <constraint firstAttribute="bottom" secondItem="vfI-OB-IGb" secondAttribute="bottom" constant="16" id="Gc7-NE-P3A"/>
                                     <constraint firstItem="vfI-OB-IGb" firstAttribute="top" secondItem="hmp-Z0-khX" secondAttribute="bottom" constant="16" id="aMU-f9-AJP"/>
-                                    <constraint firstItem="vfI-OB-IGb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LlM-Sa-xRF" secondAttribute="leading" constant="30" id="ijm-mx-3Vt"/>
                                     <constraint firstItem="hmp-Z0-khX" firstAttribute="top" secondItem="LlM-Sa-xRF" secondAttribute="top" id="moS-5s-0LS"/>
                                     <constraint firstAttribute="trailing" secondItem="hmp-Z0-khX" secondAttribute="trailing" id="uEx-qO-d2K"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="vfI-OB-IGb" secondAttribute="trailing" constant="30" id="vAn-DP-R2Z"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Np-8c-vvP">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Np-8c-vvP">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1089,9 +1087,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q97-kq-zwf">
-                                        <rect key="frame" x="30" y="17" width="354" height="40"/>
+                                        <rect key="frame" x="87" y="17" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="CIt-4k-UoN"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="K4l-Fn-mZk"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="検索実行"/>
@@ -1102,13 +1101,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="q97-kq-zwf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Vza-Iu-W6Q" secondAttribute="leading" constant="30" id="1jN-BG-ks7"/>
                                     <constraint firstItem="wyK-Wi-eLc" firstAttribute="top" secondItem="Vza-Iu-W6Q" secondAttribute="top" id="7Pr-Fq-qRE"/>
                                     <constraint firstItem="wyK-Wi-eLc" firstAttribute="leading" secondItem="Vza-Iu-W6Q" secondAttribute="leading" id="Iah-Tx-bHv"/>
                                     <constraint firstAttribute="trailing" secondItem="wyK-Wi-eLc" secondAttribute="trailing" id="Uxj-nr-Kbr"/>
+                                    <constraint firstItem="q97-kq-zwf" firstAttribute="centerX" secondItem="Vza-Iu-W6Q" secondAttribute="centerX" id="Yky-pi-uVp"/>
                                     <constraint firstItem="q97-kq-zwf" firstAttribute="top" secondItem="wyK-Wi-eLc" secondAttribute="bottom" constant="16" id="erZ-LW-6k8"/>
                                     <constraint firstAttribute="bottom" secondItem="q97-kq-zwf" secondAttribute="bottom" constant="16" id="gqK-KW-0cR"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="q97-kq-zwf" secondAttribute="trailing" constant="30" id="yRk-Pc-1iy"/>
                                 </constraints>
                             </view>
                         </subviews>
