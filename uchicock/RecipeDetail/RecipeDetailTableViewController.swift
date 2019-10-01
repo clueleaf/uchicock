@@ -323,6 +323,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 ProgressHUD.showSuccess(with: "クリップボードへコピーしました", duration: 1.5)
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            alertView.popoverPresentationController?.sourceView = self.view
+            alertView.popoverPresentationController?.sourceRect = self.photo.frame
             alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
@@ -612,12 +614,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             activityVC.excludedActivityTypes = excludedActivityTypes
             activityVC.activityStatusBarStyle = Style.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
+            activityVC.popoverPresentationController?.sourceView = sender
+            activityVC.popoverPresentationController?.sourceRect = sender.frame
             self.present(activityVC, animated: true, completion: nil)
         }else{
             let activityVC = CustomActivityController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             activityVC.activityStatusBarStyle = Style.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
+            activityVC.popoverPresentationController?.sourceView = sender
+            activityVC.popoverPresentationController?.sourceRect = sender.frame
             activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
                 self.setNeedsStatusBarAppearanceUpdate()
             }

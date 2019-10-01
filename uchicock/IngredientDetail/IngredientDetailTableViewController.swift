@@ -331,6 +331,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                         self.tableView.reloadData()
                     })
                     alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    alertView.popoverPresentationController?.sourceView = self.view
+                    alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
                     alertView.alertStatusBarStyle = Style.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     present(alertView, animated: true, completion: nil)

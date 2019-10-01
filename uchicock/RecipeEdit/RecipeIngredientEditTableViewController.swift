@@ -259,6 +259,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                alertView.popoverPresentationController?.sourceView = self.view
+                alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
                 alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
@@ -271,6 +273,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     self.dismiss(animated: true, completion: nil)
                     })
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                alertView.popoverPresentationController?.sourceView = self.view
+                alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
                 alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)

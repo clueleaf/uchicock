@@ -501,6 +501,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 })
         }
         alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:nil))
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))!.frame
         alert.alertStatusBarStyle = Style.statusBarStyle
         alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
