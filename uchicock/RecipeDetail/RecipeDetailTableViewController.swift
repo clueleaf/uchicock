@@ -36,9 +36,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
+    var minimumPhotoHeight: CGFloat = 0.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
+    var firstShow = true
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
@@ -129,6 +131,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else{
                     photoHeight = tableView.bounds.width
                 }
+                minimumPhotoHeight = photoHeight / 2
                 photo.clipsToBounds = true
                 tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
                 self.view.bringSubviewToFront(photoBackground)
@@ -138,8 +141,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
             }
+            tableView.contentOffset.y = minimumPhotoHeight
+            firstShow = false
+
             updateHeaderView()
-            
+
             recipeName.text = recipe.recipeName
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm"
@@ -279,9 +285,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
-            if tableView.contentOffset.y < 0{
+            if tableView.contentOffset.y < (photoHeight - minimumPhotoHeight) {
                 headRect.origin.y = tableView.contentOffset.y
                 headRect.size.height = photoHeight - tableView.contentOffset.y
+            }else{
+                headRect.origin.y = photoHeight - minimumPhotoHeight
+                headRect.size.height = minimumPhotoHeight
             }
             headerView.frame = headRect
         }
