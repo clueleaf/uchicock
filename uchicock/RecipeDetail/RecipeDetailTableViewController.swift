@@ -141,8 +141,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
             }
-            tableView.contentOffset.y = minimumPhotoHeight
-            firstShow = false
+            if firstShow{
+                tableView.contentOffset.y = minimumPhotoHeight
+                firstShow = false
+            }
 
             updateHeaderView()
 
