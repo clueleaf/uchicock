@@ -131,7 +131,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else{
                     photoHeight = tableView.bounds.width
                 }
-                minimumPhotoHeight = photoHeight / 2
+                minimumPhotoHeight = tableView.bounds.width / 2 < photoHeight ? tableView.bounds.width / 2 : photoHeight
                 photo.clipsToBounds = true
                 tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
                 self.view.bringSubviewToFront(photoBackground)
@@ -142,7 +142,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 photoHeight = 0.0
             }
             if firstShow{
-                tableView.contentOffset.y = minimumPhotoHeight
+                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
                 firstShow = false
             }
 
