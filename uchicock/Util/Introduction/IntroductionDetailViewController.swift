@@ -30,6 +30,16 @@ class IntroductionDetailViewController: UIViewController {
         imageView.alpha = 0.0
         skipButton.alpha = 0.0
         self.view.backgroundColor = UIColor.clear
+        
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            titleLabel.font = UIFont.systemFont(ofSize: 28.0)
+            descriptionLabel.font = UIFont.systemFont(ofSize: 21.0)
+            skipButton.titleLabel?.font = UIFont.systemFont(ofSize: 24.0)
+        }else{
+            titleLabel.font = UIFont.systemFont(ofSize: 21.0)
+            descriptionLabel.font = UIFont.systemFont(ofSize: 14.0)
+            skipButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
