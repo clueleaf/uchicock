@@ -121,21 +121,21 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
 
         filterExplanationLabel.textColor = Style.labelTextColorLight
         
-        favoriteDeselectAllButton.tintColor = Style.secondaryColor
+        favoriteDeselectAllButton.tintColor = Style.deleteColor
         favoriteSelectAllButton.tintColor = Style.secondaryColor
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.secondaryColor
         favoriteWarningLabel.textColor = Style.secondaryColor
         setFavoriteWarningVisibility()
         
-        styleDeselectAllButton.tintColor = Style.secondaryColor
+        styleDeselectAllButton.tintColor = Style.deleteColor
         styleSelectAllButton.tintColor = Style.secondaryColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.secondaryColor
         styleWarningLabel.textColor = Style.secondaryColor
         setStyleWarningVisibility()
         
-        methodDeselectAllButton.tintColor = Style.secondaryColor
+        methodDeselectAllButton.tintColor = Style.deleteColor
         methodSelectAllButton.tintColor = Style.secondaryColor
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.secondaryColor
