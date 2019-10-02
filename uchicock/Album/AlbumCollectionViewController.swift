@@ -252,7 +252,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            let size = (self.view.frame.size.width - 12) / 4
+            let size = (self.view.frame.size.width - 8) / 3
             return CGSize(width: size, height: size)
         }else{
             let size = (self.view.frame.size.width - 4) / 2
