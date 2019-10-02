@@ -249,10 +249,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.setCollectionBackgroundView()
     }
     
-    // MARK: UICollectionView
+    // MARK: - UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = self.view.frame.size.width / 2 - 2
-        return CGSize(width: size, height: size)
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            let size = (self.view.frame.size.width - 12) / 4
+            return CGSize(width: size, height: size)
+        }else{
+            let size = (self.view.frame.size.width - 4) / 2
+            return CGSize(width: size, height: size)
+        }
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
