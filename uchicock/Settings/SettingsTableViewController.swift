@@ -97,7 +97,6 @@ class SettingsTableViewController: UITableViewController {
                 defaults.set(true, forKey: "AlreadyWrittenReview")
                 self.alreadyWrittenReview = true
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                ProgressHUD.showSuccess(with: "Thank you!!", duration: 1.5)
             }))
             alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
             alertView.alertStatusBarStyle = Style.statusBarStyle
