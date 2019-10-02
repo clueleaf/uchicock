@@ -167,21 +167,21 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
 
-        recipeSortPrimary = defaults.integer(forKey: userDefaultsPrefix + "sort-primary")
-        recipeSortSecondary = defaults.integer(forKey: userDefaultsPrefix + "sort-secondary")
-        recipeFilterStar0 = defaults.bool(forKey: userDefaultsPrefix + "filter-star0")
-        recipeFilterStar1 = defaults.bool(forKey: userDefaultsPrefix + "filter-star1")
-        recipeFilterStar2 = defaults.bool(forKey: userDefaultsPrefix + "filter-star2")
-        recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + "filter-star3")
-        recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + "filter-long")
-        recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + "filter-short")
-        recipeFilterHot = defaults.bool(forKey: userDefaultsPrefix + "filter-hot")
-        recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + "filter-stylenone")
-        recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + "filter-build")
-        recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + "filter-stir")
-        recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + "filter-shake")
-        recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + "filter-blend")
-        recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + "filter-others")
+        recipeSortPrimary = defaults.integer(forKey: userDefaultsPrefix + GlobalConstants.SortPrimaryKey)
+        recipeSortSecondary = defaults.integer(forKey: userDefaultsPrefix + GlobalConstants.SortSecondaryKey)
+        recipeFilterStar0 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
+        recipeFilterStar1 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
+        recipeFilterStar2 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
+        recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
+        recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
+        recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
+        recipeFilterHot = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
+        recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
+        recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
+        recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
+        recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
+        recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
+        recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -398,22 +398,22 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
             secondarySort = 5
         }
         
-        defaults.set(primarySort, forKey: userDefaultsPrefix + "sort-primary")
-        defaults.set(secondarySort, forKey: userDefaultsPrefix + "sort-secondary")
+        defaults.set(primarySort, forKey: userDefaultsPrefix + GlobalConstants.SortPrimaryKey)
+        defaults.set(secondarySort, forKey: userDefaultsPrefix + GlobalConstants.SortSecondaryKey)
         
-        setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + "filter-star0")
-        setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + "filter-star1")
-        setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + "filter-star2")
-        setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + "filter-star3")
-        setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + "filter-long")
-        setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + "filter-short")
-        setFilterUserDefaults(with: styleHotCheckbox, forKey: userDefaultsPrefix + "filter-hot")
-        setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + "filter-stylenone")
-        setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + "filter-build")
-        setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + "filter-stir")
-        setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + "filter-shake")
-        setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + "filter-blend")
-        setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + "filter-others")
+        setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
+        setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
+        setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
+        setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
+        setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
+        setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
+        setFilterUserDefaults(with: styleHotCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
+        setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
+        setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
+        setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
+        setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
+        setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
+        setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
     }
     
     private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){

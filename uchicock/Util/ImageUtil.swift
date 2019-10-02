@@ -14,7 +14,7 @@ struct ImageUtil{
     private static let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     static func saveToCache(imageFileName: String?){
-        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
 
         if let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil {
             let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
@@ -26,7 +26,7 @@ struct ImageUtil{
     }
     
     static func loadImageOf(recipeId: String, useCache: Bool) -> UIImage? {
-        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
         
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
@@ -69,7 +69,7 @@ struct ImageUtil{
     }
     
     static func save(image: UIImage, toFileName imageFileName: String) -> Bool{
-        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
         let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
         do {
             try FileManager.default.createDirectory(atPath: imageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
@@ -84,7 +84,7 @@ struct ImageUtil{
     
     static func remove(imageFileName: String?) -> Bool{
         if let imageFileName = imageFileName{
-            let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+            let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
             let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
             ImageCache.shared.removeObject(forKey: imageFileName as NSString)
             do{

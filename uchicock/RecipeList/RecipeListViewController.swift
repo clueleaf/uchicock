@@ -798,19 +798,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func introductions() -> [introductionInfo]{
         let info1 = introductionInfo(title: "Thank you for downloading!!",
-                                    description: "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。",
+                                     description: GlobalConstants.IntroductionDescriptionThanks,
                                     image: nil)
         let info2 = introductionInfo(title: "レシピ",
-                                     description: "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルをつくったらぜひ写真を登録してみよう！",
+                                     description: GlobalConstants.IntroductionDescriptionRecipe,
                                      image: UIImage(named:"screen-recipe"))
         let info3 = introductionInfo(title: "材料",
-                                     description: "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。",
+                                     description: GlobalConstants.IntroductionDescriptionIngredient,
                                      image: UIImage(named:"screen-ingredient"))
         let info4 = introductionInfo(title: "逆引き",
-                                     description: "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！",
+                                     description: GlobalConstants.IntroductionDescriptionReverseLookup,
                                      image: UIImage(named:"screen-reverse-lookup"))
         let info5 = introductionInfo(title: "アルバム",
-                                     description: "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？",
+                                     description: GlobalConstants.IntroductionDescriptionAlbum,
                                      image: UIImage(named:"screen-album"))
         
         var infos: [introductionInfo] = []

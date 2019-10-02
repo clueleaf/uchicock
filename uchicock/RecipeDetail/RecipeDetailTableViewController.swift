@@ -319,7 +319,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return
         }
         let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
         let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         

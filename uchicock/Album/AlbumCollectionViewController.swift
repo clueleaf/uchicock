@@ -59,19 +59,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     private func setFilterUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "album-filter-star0")
-        defaults.set(true, forKey: "album-filter-star1")
-        defaults.set(true, forKey: "album-filter-star2")
-        defaults.set(true, forKey: "album-filter-star3")
-        defaults.set(true, forKey: "album-filter-long")
-        defaults.set(true, forKey: "album-filter-short")
-        defaults.set(true, forKey: "album-filter-hot")
-        defaults.set(true, forKey: "album-filter-stylenone")
-        defaults.set(true, forKey: "album-filter-build")
-        defaults.set(true, forKey: "album-filter-stir")
-        defaults.set(true, forKey: "album-filter-shake")
-        defaults.set(true, forKey: "album-filter-blend")
-        defaults.set(true, forKey: "album-filter-others")
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStar0Key)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStar1Key)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStar2Key)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStar3Key)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterLongKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterShortKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterHotKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStyleNoneKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterBuildKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStirKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterShakeKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterBlendKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterOthersKey)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,19 +135,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     private func loadFilterUserDefaults(){
         let defaults = UserDefaults.standard
-        albumFilterStar0 = defaults.bool(forKey: "album-filter-star0")
-        albumFilterStar1 = defaults.bool(forKey: "album-filter-star1")
-        albumFilterStar2 = defaults.bool(forKey: "album-filter-star2")
-        albumFilterStar3 = defaults.bool(forKey: "album-filter-star3")
-        albumFilterLong = defaults.bool(forKey: "album-filter-long")
-        albumFilterShort = defaults.bool(forKey: "album-filter-short")
-        albumFilterHot = defaults.bool(forKey: "album-filter-hot")
-        albumFilterStyleNone = defaults.bool(forKey: "album-filter-stylenone")
-        albumFilterBuild = defaults.bool(forKey: "album-filter-build")
-        albumFilterStir = defaults.bool(forKey: "album-filter-stir")
-        albumFilterShake = defaults.bool(forKey: "album-filter-shake")
-        albumFilterBlend = defaults.bool(forKey: "album-filter-blend")
-        albumFilterOthers = defaults.bool(forKey: "album-filter-others")
+        albumFilterStar0 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar0Key)
+        albumFilterStar1 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar1Key)
+        albumFilterStar2 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar2Key)
+        albumFilterStar3 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar3Key)
+        albumFilterLong = defaults.bool(forKey: GlobalConstants.AlbumFilterLongKey)
+        albumFilterShort = defaults.bool(forKey: GlobalConstants.AlbumFilterShortKey)
+        albumFilterHot = defaults.bool(forKey: GlobalConstants.AlbumFilterHotKey)
+        albumFilterStyleNone = defaults.bool(forKey: GlobalConstants.AlbumFilterStyleNoneKey)
+        albumFilterBuild = defaults.bool(forKey: GlobalConstants.AlbumFilterBuildKey)
+        albumFilterStir = defaults.bool(forKey: GlobalConstants.AlbumFilterStirKey)
+        albumFilterShake = defaults.bool(forKey: GlobalConstants.AlbumFilterShakeKey)
+        albumFilterBlend = defaults.bool(forKey: GlobalConstants.AlbumFilterBlendKey)
+        albumFilterOthers = defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -180,20 +180,20 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterBlend = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBlendKey)
         recipeFilterOthers = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterOthersKey)
 
-        if let first = defaults.string(forKey: "ReverseLookupFirst"){
+        if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
             ingredientTextField1.text = textWithoutSpace(text: first)
         }else{
-            defaults.set("", forKey: "ReverseLookupFirst")
+            defaults.set("", forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
         }
-        if let second = defaults.string(forKey: "ReverseLookupSecond"){
+        if let second = defaults.string(forKey: GlobalConstants.ReverseLookupSecondIngredientKey){
             ingredientTextField2.text = textWithoutSpace(text: second)
         }else{
-            defaults.set("", forKey: "ReverseLookupSecond")
+            defaults.set("", forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
         }
-        if let third = defaults.string(forKey: "ReverseLookupThird"){
+        if let third = defaults.string(forKey: GlobalConstants.ReverseLookupThirdIngredientKey){
             ingredientTextField3.text = textWithoutSpace(text: third)
         }else{
-            defaults.set("", forKey: "ReverseLookupThird")
+            defaults.set("", forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
         }
     }
     
@@ -255,9 +255,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
     func setSearchTextToUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: "ReverseLookupFirst")
-        defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: "ReverseLookupSecond")
-        defaults.set(textWithoutSpace(text: ingredientTextField3.text!), forKey: "ReverseLookupThird")
+        defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
+        defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
+        defaults.set(textWithoutSpace(text: ingredientTextField3.text!), forKey:GlobalConstants.ReverseLookupThirdIngredientKey)
     }
     
     func reloadRecipeList(){
