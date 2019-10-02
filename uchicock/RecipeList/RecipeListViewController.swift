@@ -727,7 +727,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UITabelViewDataSourcePrefetching
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths{
-            ImageUtil.saveToCache(imageFileName: recipeBasicList[indexPath.row].imageFileName)
+            DispatchQueue.global(qos: .userInteractive).async{
+                ImageUtil.saveToCache(imageFileName: self.recipeBasicList[indexPath.row].imageFileName)
+            }
         }
     }
 
