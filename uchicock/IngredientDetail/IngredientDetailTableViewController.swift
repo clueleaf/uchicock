@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
+class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var stockRecommendLabel: UILabel!
@@ -41,6 +41,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.prefetchDataSource = self
+
         stock.boxLineWidth = 1.0
         
         stockRecommendLabel.isHidden = true
@@ -394,6 +396,15 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             }
         }
         return UITableViewCell()
+    }
+    
+    // MARK: - UITableViewDataSourcePrefetching
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths{
+            if indexPath.section == 1 && indexPath.row > 0{
+                ImageUtil.saveToCache(imageFileName: ingredientRecipeBasicList[indexPath.row - 1].imageFileName)
+            }
+        }
     }
 
     // MARK: - IBAction

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
+class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -72,6 +72,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField2.layer.borderWidth = 1
         ingredientTextField3.layer.borderWidth = 1
 
+        self.recipeTableView.prefetchDataSource = self
         self.tableView.tag = 0
         recipeTableView.tag = 1
         ingredientSuggestTableView.tag = 2
@@ -905,6 +906,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         return UITableViewCell()
     }
     
+    // MARK: - UITableViewDataSourcePrefetching
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if tableView.tag == 1{
+            for indexPath in indexPaths{
+                ImageUtil.saveToCache(imageFileName: recipeBasicList[indexPath.row].imageFileName)
+            }
+        }
+    }
+
     // MARK: - IBAction
     @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: "入力した材料名をクリアします", preferredStyle: .alert)

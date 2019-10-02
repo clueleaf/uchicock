@@ -13,6 +13,18 @@ struct ImageUtil{
 
     private static let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
+    static func saveToCache(imageFileName: String?){
+        let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
+
+        if let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil {
+            let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+            if let loadedImage = loadedImage{
+                ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+            }
+        }
+    }
+    
     static func loadImageOf(recipeId: String, useCache: Bool) -> UIImage? {
         let imageFolderPath = documentDir.appendingPathComponent("recipeImages")
         

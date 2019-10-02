@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!
@@ -56,6 +56,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.separatorColor = UIColor.gray
+        self.tableView.prefetchDataSource = self
 
         let defaults = UserDefaults.standard
         let dic = ["firstLaunch": true]
@@ -723,6 +724,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    // MARK: - UITabelViewDataSourcePrefetching
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths{
+            ImageUtil.saveToCache(imageFileName: recipeBasicList[indexPath.row].imageFileName)
+        }
+    }
+
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{

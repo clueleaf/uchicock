@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate, UICollectionViewDataSourcePrefetching {
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
@@ -46,6 +46,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView.prefetchDataSource = self
+
         self.setFilterUserDefaults()
         self.reloadRecipeList()
 
@@ -336,6 +338,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    // MARK: - UICollectionViewDataSourcePrefetching
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths{
+            ImageUtil.saveToCache(imageFileName: filteredRecipeBasicList[indexPath.row].imageFileName)
+        }
+        
     }
     
     // MARK: - IBAction
