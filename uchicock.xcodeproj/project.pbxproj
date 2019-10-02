@@ -69,6 +69,7 @@
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
 		9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */; };
+		9BB12BB42344E9EB005EB43F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB12BB32344E9EB005EB43F /* UIImageExtension.swift */; };
 		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
 		9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */; };
 		9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */; };
@@ -168,6 +169,7 @@
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverAllTableViewCell.swift; path = Recover/RecoverAllTableViewCell.swift; sourceTree = "<group>"; };
+		9BB12BB32344E9EB005EB43F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeThemeTableViewController.swift; path = Settings/ChangeThemeTableViewController.swift; sourceTree = "<group>"; };
 		9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterDismissalTransitioningHandler.swift; path = RecipeEdit/PhotoFilterDismissalTransitioningHandler.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */,
 				9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */,
+				9BB12BB32344E9EB005EB43F /* UIImageExtension.swift */,
 				9BD467B5232B8CBD00312923 /* ImageUtil.swift */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
 				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
@@ -686,6 +689,7 @@
 				9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */,
+				9BB12BB42344E9EB005EB43F /* UIImageExtension.swift in Sources */,
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
 				9B2E83DB230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift in Sources */,
 				9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */,

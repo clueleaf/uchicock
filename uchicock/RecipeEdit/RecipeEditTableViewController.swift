@@ -53,7 +53,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.delegate = self
         
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: false){
-            photo.image = resizedImage(image: image)
+            photo.image = image.resizedUIImage(maxLongSide: 1024)
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
@@ -235,25 +235,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    func resizedImage(image: UIImage) -> UIImage? {
-        let maxLongSide : CGFloat = 1024
-        if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
-            return image
-        }
-        
-        let w = image.size.width / maxLongSide
-        let h = image.size.height / maxLongSide
-        let ratio = w > h ? w : h
-        let rect = CGRect(x: 0, y: 0, width: image.size.width / ratio, height: image.size.height / ratio)
-        
-        UIGraphicsBeginImageContext(rect.size)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
@@ -428,26 +409,26 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let infoDic = Dictionary(uniqueKeysWithValues: info.map {key, value in (key.rawValue, value)})
 
         if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
-            if let img = resizedImage(image: image){
+            if let img = image.resizedUIImage(maxLongSide: 1024){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
-                vc.image = resizedImage(image: img)
+                vc.image = img
                 vc.originalImageView = self.photo
                 vc.modalPresentationStyle = .overFullScreen
                 vc.modalTransitionStyle = .coverVertical
                 self.present(vc, animated: true)
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
-            if let img = resizedImage(image: image){
+            if let img = image.resizedUIImage(maxLongSide: 1024){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
-                vc.image = resizedImage(image: img)
+                vc.image = img
                 vc.originalImageView = self.photo
                 vc.modalPresentationStyle = .overFullScreen
                 vc.modalTransitionStyle = .coverVertical
@@ -477,7 +458,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let pasteboard: UIPasteboard = UIPasteboard.general
         let pasteImage: UIImage? = pasteboard.image
         if let image = pasteImage{
-            if let img = self.resizedImage(image: image){
+            if let img = image.resizedUIImage(maxLongSide: 1024){
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
                     self.showCancelAlert = true
@@ -773,7 +754,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if fromViewController is PhotoFilterViewController{
             let pfvc = fromViewController as! PhotoFilterViewController
             let img = pfvc.imageView.image!
-            self.photo.image = self.resizedImage(image: img)
+            self.photo.image = img.resizedUIImage(maxLongSide: 1024)
             self.selectPhoto.text = "写真を変更"
             return true
         }

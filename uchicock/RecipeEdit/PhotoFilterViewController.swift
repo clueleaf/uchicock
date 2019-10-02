@@ -58,7 +58,7 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
 
         imageView.image = image
         if let im = image{
-            smallCIImage = resizedImage(image: im)
+            smallCIImage = im.resizedCGImage(maxLongSide: (collectionView.frame.height - 20) * 2)
         }
         
         setupScrollView()
@@ -183,20 +183,6 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
             let filteredImageRef = ciContext.createCGImage(originalImage, from: originalImage.extent)
             return UIImage(cgImage: filteredImageRef!)
         }
-    }
-    
-    func resizedImage(image: UIImage) -> CIImage? {
-        let maxLongSide : CGFloat = (collectionView.frame.height - 20) * 2
-        if  image.size.width <= maxLongSide && image.size.height <= maxLongSide {
-            return CIImage(image: image)
-        }
-        
-        let w = image.size.width / maxLongSide
-        let h = image.size.height / maxLongSide
-        let ratio = w > h ? w : h
-        let matrix = CGAffineTransform(scaleX: 1/ratio, y: 1/ratio)
-
-        return CIImage(image: image)?.transformed(by: matrix)
     }
     
     func getColorImage( red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1.0, rect: CGRect) -> CIImage {
