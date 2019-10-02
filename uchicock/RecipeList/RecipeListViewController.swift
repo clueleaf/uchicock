@@ -59,11 +59,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.prefetchDataSource = self
 
         let defaults = UserDefaults.standard
-        let dic = ["firstLaunch": true]
+        let dic = [GlobalConstants.FirstLaunchKey: true]
         defaults.register(defaults: dic)
-        if defaults.bool(forKey: "firstLaunch") {
+        if defaults.bool(forKey: GlobalConstants.FirstLaunchKey) {
             performSegue(withIdentifier: "usage", sender: nil)
-            defaults.set(false, forKey: "firstLaunch")
+            defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }
         
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
@@ -145,37 +145,37 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func loadSearchUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: ["recipe-sort-primary" : 1])
-        defaults.register(defaults: ["recipe-sort-secondary" : 0])
-        defaults.register(defaults: ["recipe-filter-star0" : true])
-        defaults.register(defaults: ["recipe-filter-star1" : true])
-        defaults.register(defaults: ["recipe-filter-star2" : true])
-        defaults.register(defaults: ["recipe-filter-star3" : true])
-        defaults.register(defaults: ["recipe-filter-long" : true])
-        defaults.register(defaults: ["recipe-filter-short" : true])
-        defaults.register(defaults: ["recipe-filter-hot" : true])
-        defaults.register(defaults: ["recipe-filter-stylenone" : true])
-        defaults.register(defaults: ["recipe-filter-build" : true])
-        defaults.register(defaults: ["recipe-filter-stir" : true])
-        defaults.register(defaults: ["recipe-filter-shake" : true])
-        defaults.register(defaults: ["recipe-filter-blend" : true])
-        defaults.register(defaults: ["recipe-filter-others" : true])
+        defaults.register(defaults: [GlobalConstants.RecipeSortPrimaryKey : 1])
+        defaults.register(defaults: [GlobalConstants.RecipeSortSecondaryKey : 0])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar0Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar1Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar2Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar3Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterLongKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterShortKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterHotKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStyleNoneKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterBuildKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStirKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
 
-        recipeSortPrimary = defaults.integer(forKey: "recipe-sort-primary")
-        recipeSortSecondary = defaults.integer(forKey: "recipe-sort-secondary")
-        recipeFilterStar0 = defaults.bool(forKey: "recipe-filter-star0")
-        recipeFilterStar1 = defaults.bool(forKey: "recipe-filter-star1")
-        recipeFilterStar2 = defaults.bool(forKey: "recipe-filter-star2")
-        recipeFilterStar3 = defaults.bool(forKey: "recipe-filter-star3")
-        recipeFilterLong = defaults.bool(forKey: "recipe-filter-long")
-        recipeFilterShort = defaults.bool(forKey: "recipe-filter-short")
-        recipeFilterHot = defaults.bool(forKey: "recipe-filter-hot")
-        recipeFilterStyleNone = defaults.bool(forKey: "recipe-filter-stylenone")
-        recipeFilterBuild = defaults.bool(forKey: "recipe-filter-build")
-        recipeFilterStir = defaults.bool(forKey: "recipe-filter-stir")
-        recipeFilterShake = defaults.bool(forKey: "recipe-filter-shake")
-        recipeFilterBlend = defaults.bool(forKey: "recipe-filter-blend")
-        recipeFilterOthers = defaults.bool(forKey: "recipe-filter-others")
+        recipeSortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
+        recipeSortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
+        recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key)
+        recipeFilterStar1 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar1Key)
+        recipeFilterStar2 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar2Key)
+        recipeFilterStar3 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar3Key)
+        recipeFilterLong = defaults.bool(forKey: GlobalConstants.RecipeFilterLongKey)
+        recipeFilterShort = defaults.bool(forKey: GlobalConstants.RecipeFilterShortKey)
+        recipeFilterHot = defaults.bool(forKey: GlobalConstants.RecipeFilterHotKey)
+        recipeFilterStyleNone = defaults.bool(forKey: GlobalConstants.RecipeFilterStyleNoneKey)
+        recipeFilterBuild = defaults.bool(forKey: GlobalConstants.RecipeFilterBuildKey)
+        recipeFilterStir = defaults.bool(forKey: GlobalConstants.RecipeFilterStirKey)
+        recipeFilterShake = defaults.bool(forKey: GlobalConstants.RecipeFilterShakeKey)
+        recipeFilterBlend = defaults.bool(forKey: GlobalConstants.RecipeFilterBlendKey)
+        recipeFilterOthers = defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey)
     }
     
     private func setSearchConditionLabel(){

@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         var config = Realm.Configuration(
-            schemaVersion: 8,
+            schemaVersion: GlobalConstants.RealmSchemaVersion,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
@@ -81,32 +81,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func requestReview(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: ["FirstRequestReview" : false, "LaunchCountAfterReview" : 0])
+        defaults.register(defaults: [GlobalConstants.FirstRequestReviewKey : false, GlobalConstants.LaunchCountAfterReviewKey : 0])
 
-        let hasReviewed = defaults.bool(forKey: "FirstRequestReview")
-        let launchCountAfterReview = defaults.integer(forKey: "LaunchCountAfterReview")
+        let hasReviewed = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
+        let launchCountAfterReview = defaults.integer(forKey: GlobalConstants.LaunchCountAfterReviewKey)
         
-        if let launchDateAfterReview = defaults.object(forKey: "LaunchDateAfterReview") as? NSDate {
+        if let launchDateAfterReview = defaults.object(forKey: GlobalConstants.LaunchDateAfterReviewKey) as? NSDate {
             if hasReviewed == false{
-                defaults.set(launchCountAfterReview + 1, forKey: "LaunchCountAfterReview")
+                defaults.set(launchCountAfterReview + 1, forKey: GlobalConstants.LaunchCountAfterReviewKey)
 
                 let daySpan = NSDate().timeIntervalSince(launchDateAfterReview as Date) / 60 / 60 / 24
                 if daySpan > 10 && launchCountAfterReview > 7{
-                    defaults.set(true, forKey: "FirstRequestReview")
+                    defaults.set(true, forKey: GlobalConstants.FirstRequestReviewKey)
                     SKStoreReviewController.requestReview()
                 }
             }
         } else {
-            defaults.set(NSDate(), forKey: "LaunchDateAfterReview")
+            defaults.set(NSDate(), forKey: GlobalConstants.LaunchDateAfterReviewKey)
         }
     }
     
     // 「ハバナピーチ」の名前を「ハバナビーチ」に修正
     func correct_v_2_2(){
         let defaults = UserDefaults.standard
-        let dic = ["corrected_v2.2": false]
+        let dic = [GlobalConstants.Version22CorrectedKey: false]
         defaults.register(defaults: dic)
-        if defaults.bool(forKey: "corrected_v2.2") == false {
+        if defaults.bool(forKey: GlobalConstants.Version22CorrectedKey) == false {
             let realm = try! Realm()
             let rec1 = realm.objects(Recipe.self).filter("recipeName == %@", "ハバナピーチ")
             if rec1.count > 0 {
@@ -118,16 +118,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            defaults.set(true, forKey: "corrected_v2.2")
+            defaults.set(true, forKey: GlobalConstants.Version22CorrectedKey)
         }
     }
 
     // 「アプリコットコラーダ」の材料「牛乳」の分量を「45」から「45ml」に修正
     func correct_v_2_3(){
         let defaults = UserDefaults.standard
-        let dic = ["corrected_v2.3": false]
+        let dic = [GlobalConstants.Version23CorrectedKey: false]
         defaults.register(defaults: dic)
-        if defaults.bool(forKey: "corrected_v2.3") == false {
+        if defaults.bool(forKey: GlobalConstants.Version23CorrectedKey) == false {
             let realm = try! Realm()
             let rec = realm.objects(Recipe.self).filter("recipeName == %@", "アプリコットコラーダ")
             if rec.count > 0{
@@ -139,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            defaults.set(true, forKey: "corrected_v2.3")
+            defaults.set(true, forKey: GlobalConstants.Version23CorrectedKey)
         }
     }
     
@@ -147,9 +147,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 「ソルティドッグ」の材料の「食塩」を必須材料にする
     func correct_v_3_2(){
         let defaults = UserDefaults.standard
-        let dic = ["corrected_v3.2": false]
+        let dic = [GlobalConstants.Version32CorrectedKey: false]
         defaults.register(defaults: dic)
-        if defaults.bool(forKey: "corrected_v3.2") == false {
+        if defaults.bool(forKey: GlobalConstants.Version32CorrectedKey) == false {
             let realm = try! Realm()
             let rillist = realm.objects(RecipeIngredientLink.self)
             for ril in rillist.reversed() {
@@ -172,16 +172,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            defaults.set(true, forKey: "corrected_v3.2")
+            defaults.set(true, forKey: GlobalConstants.Version32CorrectedKey)
         }
     }
     
     // お気に入りの最小値を星1つから星0個に変更
     func correct_v_4_1(){
         let defaults = UserDefaults.standard
-        let dic = ["corrected_v4.1": false]
+        let dic = [GlobalConstants.Version41CorrectedKey: false]
         defaults.register(defaults: dic)
-        if defaults.bool(forKey: "corrected_v4.1") == false {
+        if defaults.bool(forKey: GlobalConstants.Version41CorrectedKey) == false {
             let realm = try! Realm()
             let recipeCount = realm.objects(Recipe.self).filter("favorites == 0").count
             if recipeCount == 0{
@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            defaults.set(true, forKey: "corrected_v4.1")
+            defaults.set(true, forKey: GlobalConstants.Version41CorrectedKey)
         }
     }
 

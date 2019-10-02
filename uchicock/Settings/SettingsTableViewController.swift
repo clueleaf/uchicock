@@ -34,7 +34,7 @@ class SettingsTableViewController: UITableViewController {
         reviewImage.image = reviewImage.image!.withRenderingMode(.alwaysTemplate)
         
         let defaults = UserDefaults.standard
-        firstRequestReview = defaults.bool(forKey: "FirstRequestReview")
+        firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: "AlreadyWrittenReview")
 
         self.tableView.separatorColor = UIColor.gray

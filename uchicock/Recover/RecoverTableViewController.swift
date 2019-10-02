@@ -28,7 +28,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         super.viewDidLoad()
         loadUserRecipe()
         
-        var config = Realm.Configuration(schemaVersion: 8)
+        var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
         config.fileURL = Bundle.main.url(forResource: "default", withExtension: "realm")
         config.readOnly = true
         Realm.Configuration.defaultConfiguration = config
@@ -60,7 +60,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     }
     
     func changeToUserDb(){
-        var config = Realm.Configuration(schemaVersion: 8)
+        var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
     }
