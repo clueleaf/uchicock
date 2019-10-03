@@ -113,12 +113,19 @@ class ChangeThemeTableViewController: UITableViewController {
         }
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
+
         UIView.animate(withDuration: 0.4, animations: {
             self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
             self.navigationController?.loadView()
             self.setNeedsStatusBarAppearanceUpdate()
         }, completion: nil)
         
+        UIView.transition(with: self.tabBarController!.tabBar, duration: 0.4, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.tabBarController?.tabBar.tintColor = Style.tabBarTintColor
+            self.tabBarController?.tabBar.barTintColor = Style.tabBarBarTintColor
+            self.tabBarController?.tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
+        }, completion: nil)
+
         tableView.reloadData()
         newTableBackgroundColor = Style.basicBackgroundColor
     }
@@ -146,9 +153,11 @@ class ChangeThemeTableViewController: UITableViewController {
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.backgroundColor = oldTableBackgroundColor
+        
         UIView.animate(withDuration: 0.4, animations: {
             cell.backgroundColor = Style.basicBackgroundColor
         }, completion: nil)
+
         return cell
     }
     
