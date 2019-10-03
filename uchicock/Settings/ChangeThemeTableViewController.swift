@@ -120,6 +120,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
             self.navigationController?.loadView()
             self.setNeedsStatusBarAppearanceUpdate()
+            self.tableView.backgroundColor = Style.basicBackgroundColor
         }, completion: nil)
         
         UIView.transition(with: self.tabBarController!.tabBar, duration: 0.4, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
