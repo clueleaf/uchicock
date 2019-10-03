@@ -114,10 +114,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
         
-        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.tintColor = Style.secondaryColor
+        searchConditionModifyButton.tintColor = Style.primaryColor
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
         loadFromUserDefaults()

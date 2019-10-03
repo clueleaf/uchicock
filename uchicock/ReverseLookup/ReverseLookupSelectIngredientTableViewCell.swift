@@ -22,13 +22,13 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             if ingredient.stockFlag{
                 stockLabel.text = "在庫あり"
                 stockLabel.textColor = Style.labelTextColorOnBadge
-                stockLabel.layer.backgroundColor = Style.secondaryColor.cgColor
-                stockLabel.layer.borderColor = Style.secondaryColor.cgColor
+                stockLabel.layer.backgroundColor = Style.primaryColor.cgColor
+                stockLabel.layer.borderColor = Style.primaryColor.cgColor
             }else{
                 stockLabel.text = "在庫なし"
-                stockLabel.textColor = Style.secondaryColor
+                stockLabel.textColor = Style.primaryColor
                 stockLabel.layer.backgroundColor = UIColor.clear.cgColor
-                stockLabel.layer.borderColor = Style.secondaryColor.cgColor
+                stockLabel.layer.borderColor = Style.primaryColor.cgColor
             }
             stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true

@@ -84,9 +84,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
-        stock.secondaryTintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.primaryColor
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        stockRecommendLabel.textColor = Style.secondaryColor
+        stockRecommendLabel.textColor = Style.primaryColor
         deleteButtonLabel.textColor = Style.deleteColor
 
         let realm = try! Realm()
@@ -131,11 +131,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             memo.text = ingredient.memo
             memo.textColor = Style.labelTextColorLight
             
-            editButton.backgroundColor = Style.secondaryColor
+            editButton.backgroundColor = Style.primaryColor
             editButton.tintColor = Style.basicBackgroundColor
-            reminderButton.backgroundColor = Style.secondaryColor
+            reminderButton.backgroundColor = Style.primaryColor
             reminderButton.tintColor = Style.basicBackgroundColor
-            amazonButton.backgroundColor = Style.secondaryColor
+            amazonButton.backgroundColor = Style.primaryColor
             amazonButton.tintColor = Style.basicBackgroundColor
             deleteButton.backgroundColor = Style.deleteColor
             deleteButton.tintColor = Style.basicBackgroundColor
@@ -372,7 +372,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                    cell.textLabel?.textColor = Style.secondaryColor
+                    cell.textLabel?.textColor = Style.primaryColor
                     switch recipeOrder{
                     case 1:
                         cell.textLabel?.text = "名前順（タップで変更）"

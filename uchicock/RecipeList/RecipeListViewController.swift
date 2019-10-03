@@ -109,10 +109,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.tintColor = Style.secondaryColor
+        searchConditionModifyButton.tintColor = Style.primaryColor
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
         containerSeparator.backgroundColor = Style.labelTextColor

@@ -72,10 +72,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             style.layer.cornerRadius = 14.0
             method.layer.cornerRadius = 14.0
         }
-        style.layer.borderColor = Style.secondaryColor.cgColor
+        style.layer.borderColor = Style.primaryColor.cgColor
         style.layer.borderWidth = 1.0
         style.layer.masksToBounds = true
-        method.layer.borderColor = Style.secondaryColor.cgColor
+        method.layer.borderColor = Style.primaryColor.cgColor
         method.layer.borderWidth = 1.0
         method.layer.masksToBounds = true
         
@@ -139,18 +139,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
-        selectPhoto.textColor = Style.secondaryColor
-        star1.tintColor = Style.secondaryColor
-        star2.tintColor = Style.secondaryColor
-        star3.tintColor = Style.secondaryColor
+        selectPhoto.textColor = Style.primaryColor
+        star1.tintColor = Style.primaryColor
+        star2.tintColor = Style.primaryColor
+        star3.tintColor = Style.primaryColor
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
         
         let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
         styleTipButton.setImage(tipImage, for: .normal)
-        styleTipButton.tintColor = Style.secondaryColor
+        styleTipButton.tintColor = Style.primaryColor
         methodTipButton.setImage(tipImage, for: .normal)
-        methodTipButton.tintColor = Style.secondaryColor
+        methodTipButton.tintColor = Style.primaryColor
 
         self.tableView.reloadData()
         
@@ -387,7 +387,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return cell
             }else if indexPath.row == recipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
-                cell.textLabel?.textColor = Style.secondaryColor
+                cell.textLabel?.textColor = Style.primaryColor
                 cell.textLabel?.text = "材料を追加"
                 cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
                 cell.textLabel?.textAlignment = .center

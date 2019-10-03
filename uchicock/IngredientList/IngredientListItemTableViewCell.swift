@@ -25,17 +25,17 @@ class IngredientListItemTableViewCell: UITableViewCell {
             if ingredient.recipeIngredients.count == 0{
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.layer.backgroundColor = UIColor.clear.cgColor
-                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
-                recipeNum.textColor = Style.secondaryColor
+                recipeNum.layer.borderColor = Style.primaryColor.cgColor
+                recipeNum.textColor = Style.primaryColor
             }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
-                recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
-                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
+                recipeNum.layer.backgroundColor = Style.primaryColor.cgColor
+                recipeNum.layer.borderColor = Style.primaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }else{
                 recipeNum.text = "99+"
-                recipeNum.layer.backgroundColor = Style.secondaryColor.cgColor
-                recipeNum.layer.borderColor = Style.secondaryColor.cgColor
+                recipeNum.layer.backgroundColor = Style.primaryColor.cgColor
+                recipeNum.layer.borderColor = Style.primaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
             }
             recipeNum.layer.cornerRadius = 10
@@ -46,7 +46,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             stockLabel.textColor = Style.labelTextColorLight
             stockLabel.clipsToBounds = true
             
-            stock.secondaryTintColor = Style.secondaryColor
+            stock.secondaryTintColor = Style.primaryColor
             stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
             stock.boxLineWidth = 1.0
             stock.animationDuration = 0.3

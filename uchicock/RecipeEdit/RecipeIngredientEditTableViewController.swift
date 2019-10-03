@@ -101,7 +101,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         amount.layer.borderColor = Style.textFieldBorderColor.cgColor
-        option.secondaryTintColor = Style.secondaryColor
+        option.secondaryTintColor = Style.primaryColor
         option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         optionDescriptionLabel.textColor = Style.labelTextColorLight
         deleteLabel.textColor = Style.deleteColor

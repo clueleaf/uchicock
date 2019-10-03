@@ -122,21 +122,21 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         filterExplanationLabel.textColor = Style.labelTextColorLight
         
         favoriteDeselectAllButton.tintColor = Style.deleteColor
-        favoriteSelectAllButton.tintColor = Style.secondaryColor
+        favoriteSelectAllButton.tintColor = Style.primaryColor
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
         
         styleDeselectAllButton.tintColor = Style.deleteColor
-        styleSelectAllButton.tintColor = Style.secondaryColor
+        styleSelectAllButton.tintColor = Style.primaryColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
         
         methodDeselectAllButton.tintColor = Style.deleteColor
-        methodSelectAllButton.tintColor = Style.secondaryColor
+        methodSelectAllButton.tintColor = Style.primaryColor
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
         methodWarningLabel.textColor = Style.deleteColor
@@ -144,10 +144,10 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         
         secondSeparator.backgroundColor = Style.labelTextColor
         searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
-        searchButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchButton.layer.borderColor = Style.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
-        searchButton.tintColor = Style.secondaryColor
+        searchButton.tintColor = Style.primaryColor
     }
     
     private func setFavoriteWarningVisibility(){
@@ -225,10 +225,10 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.secondaryColor
+        checkbox.tintColor = Style.primaryColor
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = Style.secondaryColor
+        checkbox.secondaryTintColor = Style.primaryColor
         checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         checkbox.contentHorizontalAlignment = .center
     }
@@ -303,13 +303,13 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     private func setCheckboxChecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.secondaryColor
+        checkbox.tintColor = Style.primaryColor
     }
     
     private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.secondaryColor
+        checkbox.tintColor = Style.primaryColor
     }
     
     @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {

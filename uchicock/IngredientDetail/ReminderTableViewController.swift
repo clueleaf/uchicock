@@ -60,10 +60,10 @@ class ReminderTableViewController: UITableViewController {
         }else{
             reminderType.layer.cornerRadius = 14.0
         }
-        reminderType.layer.borderColor = Style.secondaryColor.cgColor
+        reminderType.layer.borderColor = Style.primaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
-        dateFlag.secondaryTintColor = Style.secondaryColor
+        dateFlag.secondaryTintColor = Style.primaryColor
         dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
         datePicker.setValue(false, forKey: "highlightsToday")
@@ -232,7 +232,7 @@ class ReminderTableViewController: UITableViewController {
     @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.isEnabled = true
-            dateFlag.tintColor = Style.secondaryColor
+            dateFlag.tintColor = Style.primaryColor
             dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }else if reminderType.selectedSegmentIndex == 1{
             if dateFlag.checkState == .unchecked{

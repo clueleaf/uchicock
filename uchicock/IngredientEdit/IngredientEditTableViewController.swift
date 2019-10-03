@@ -74,10 +74,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }else{
             category.layer.cornerRadius = 14.0
         }
-        category.layer.borderColor = Style.secondaryColor.cgColor
+        category.layer.borderColor = Style.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
-        stock.secondaryTintColor = Style.secondaryColor
+        stock.secondaryTintColor = Style.primaryColor
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light

@@ -77,7 +77,7 @@ class BasicNavigationController: UINavigationController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationBar.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
+        navigationBar.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
     }
     
     override var childForStatusBarStyle: UIViewController? {

@@ -197,21 +197,21 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         
         filterExplanationLabel.textColor = Style.labelTextColorLight
 
-        favoriteSelectAllButton.tintColor = Style.secondaryColor
+        favoriteSelectAllButton.tintColor = Style.primaryColor
         favoriteDeselectAllButton.tintColor = Style.deleteColor
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
 
-        styleSelectAllButton.tintColor = Style.secondaryColor
+        styleSelectAllButton.tintColor = Style.primaryColor
         styleDeselectAllButton.tintColor = Style.deleteColor
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
 
-        methodSelectAllButton.tintColor = Style.secondaryColor
+        methodSelectAllButton.tintColor = Style.primaryColor
         methodDeselectAllButton.tintColor = Style.deleteColor
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
@@ -220,10 +220,10 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         
         secondSeparator.backgroundColor = Style.labelTextColor
         searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
-        searchButton.layer.borderColor = Style.secondaryColor.cgColor
+        searchButton.layer.borderColor = Style.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
-        searchButton.tintColor = Style.secondaryColor
+        searchButton.tintColor = Style.primaryColor
     }
     
     private func setFavoriteWarningVisibility(){
@@ -324,12 +324,12 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
             checkbox.secondaryCheckmarkTintColor = Style.basicBackgroundColor
         }else{
             checkbox.isEnabled = true
-            checkbox.tintColor = Style.secondaryColor
+            checkbox.tintColor = Style.primaryColor
             checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = Style.secondaryColor
+        checkbox.secondaryTintColor = Style.primaryColor
         checkbox.contentHorizontalAlignment = .center
     }
     
@@ -539,21 +539,21 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     private func setCheckboxChecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.secondaryColor
+        checkbox.tintColor = Style.primaryColor
         checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
     }
 
     private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.secondaryColor
+        checkbox.tintColor = Style.primaryColor
     }
     
     private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
         if checkbox.checkState != .mixed{
             checkbox.setCheckState(.unchecked, animated: true)
             checkbox.isEnabled = true
-            checkbox.tintColor = Style.secondaryColor
+            checkbox.tintColor = Style.primaryColor
             checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }
     }

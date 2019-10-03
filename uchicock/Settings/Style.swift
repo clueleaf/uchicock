@@ -14,8 +14,8 @@ struct Style{
     static var isDark = false
     static var isBackgroundDark = false
     static var statusBarStyle: UIStatusBarStyle = .default
-    static var primaryColor = FlatColor.yellow
-    static var secondaryColor = FlatColor.skyBlueDark
+    static var navigationBarColor = FlatColor.yellow
+    static var primaryColor = FlatColor.skyBlueDark
     static var basicBackgroundColor = FlatColor.white
     static var tableViewHeaderBackgroundColor = FlatColor.whiteDark
     static var tableViewHeaderTextColor = FlatColor.black
@@ -37,8 +37,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .default
-        primaryColor = FlatColor.yellow
-        secondaryColor = FlatColor.skyBlueDark
+        navigationBarColor = FlatColor.yellow
+        primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -60,8 +60,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .default
-        primaryColor = FlatColor.yellow
-        secondaryColor = FlatColor.yellowDark
+        navigationBarColor = FlatColor.yellow
+        primaryColor = FlatColor.yellowDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -83,8 +83,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .default
+        navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
-        secondaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         tableViewHeaderTextColor = FlatColor.black
@@ -106,8 +106,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.pinkDark
         primaryColor = FlatColor.pinkDark
-        secondaryColor = FlatColor.pinkDark
         basicBackgroundColor = FlatColor.blackDark
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -129,8 +129,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.skyBlue
         primaryColor = FlatColor.skyBlue
-        secondaryColor = FlatColor.skyBlue
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -152,8 +152,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.skyBlueDark
         primaryColor = FlatColor.skyBlueDark
-        secondaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -175,8 +175,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = FlatColor.mint
-        secondaryColor = FlatColor.mintDark
+        navigationBarColor = FlatColor.mint
+        primaryColor = FlatColor.mintDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -198,8 +198,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = FlatColor.coffeeDark
-        secondaryColor = FlatColor.coffee
+        navigationBarColor = FlatColor.coffeeDark
+        primaryColor = FlatColor.coffee
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -221,8 +221,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .default
-        primaryColor = FlatColor.white
-        secondaryColor = FlatColor.mint
+        navigationBarColor = FlatColor.white
+        primaryColor = FlatColor.mint
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -244,8 +244,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = FlatColor.watermelonDark
-        secondaryColor = FlatColor.watermelon
+        navigationBarColor = FlatColor.watermelonDark
+        primaryColor = FlatColor.watermelon
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -267,8 +267,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .default
+        navigationBarColor = FlatColor.limeDark
         primaryColor = FlatColor.limeDark
-        secondaryColor = FlatColor.limeDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -291,8 +291,8 @@ struct Style{
         isBackgroundDark = false
         statusBarStyle = .lightContent
         statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.grayDark
         primaryColor = FlatColor.grayDark
-        secondaryColor = FlatColor.grayDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -314,8 +314,8 @@ struct Style{
         isDark = false
         isBackgroundDark = true
         statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.watermelonDark
         primaryColor = FlatColor.watermelonDark
-        secondaryColor = FlatColor.watermelonDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -337,8 +337,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.skyBlueDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -360,8 +360,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.skyBlueDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -383,8 +383,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.orange
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.orange
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -406,8 +406,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.yellowDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.yellowDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -429,8 +429,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.pink
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
         tableViewHeaderTextColor = FlatColor.black
@@ -452,8 +452,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.pinkDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.pinkDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -475,8 +475,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.coffee
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.coffee
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -498,8 +498,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.greenDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.greenDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -521,8 +521,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.greenDark
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.greenDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -544,8 +544,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .default
-        primaryColor = FlatColor.white
-        secondaryColor = FlatColor.purple
+        navigationBarColor = FlatColor.white
+        primaryColor = FlatColor.purple
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -567,8 +567,8 @@ struct Style{
         isDark = true
         isBackgroundDark = true
         statusBarStyle = .lightContent
-        primaryColor = UIColor.black
-        secondaryColor = FlatColor.magenta
+        navigationBarColor = UIColor.black
+        primaryColor = FlatColor.magenta
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
@@ -590,8 +590,8 @@ struct Style{
         isDark = false
         isBackgroundDark = false
         statusBarStyle = .default
-        primaryColor = FlatColor.powderBlue
-        secondaryColor = FlatColor.blue
+        navigationBarColor = FlatColor.powderBlue
+        primaryColor = FlatColor.blue
         basicBackgroundColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
@@ -684,16 +684,16 @@ struct Style{
     }
     
     static private func customizeBarButtonItem(){
-        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
+        let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
     }
     
     static private func customizeButton(){
-        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
+        let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
         
         // テーマカラー変更のチェックマークの色ために必要
-        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.secondaryColor
+        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.primaryColor
 
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = UIColor.clear
@@ -702,8 +702,8 @@ struct Style{
     }
     
     static private func customizeNavigationBar(){
-        let contentColor = FlatColor.contrastColorOf(primaryColor, isFlat: false)
-        CustomNavigationBar.appearance().barTintColor = primaryColor
+        let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
+        CustomNavigationBar.appearance().barTintColor = navigationBarColor
         CustomNavigationBar.appearance().tintColor = contentColor
         CustomNavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: contentColor]
         CustomNavigationBar.appearance().shadowImage = UIImage()
@@ -718,17 +718,17 @@ struct Style{
     static private func customizeSegmentedControl(){
         CustomSegmentedControl.appearance().backgroundColor = basicBackgroundColor
         if #available(iOS 13.0, *) {
-            CustomSegmentedControl.appearance().selectedSegmentTintColor = secondaryColor
+            CustomSegmentedControl.appearance().selectedSegmentTintColor = primaryColor
             CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColorOnBadge], for: .selected)
             CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColor], for: .normal)
         }else{
-            CustomSegmentedControl.appearance().tintColor = secondaryColor
+            CustomSegmentedControl.appearance().tintColor = primaryColor
         }
     }
     
     static private func customizeCircularCheckbox(){
         CircularCheckbox.appearance().backgroundColor = UIColor.clear
-        CircularCheckbox.appearance().tintColor = secondaryColor
+        CircularCheckbox.appearance().tintColor = primaryColor
     }
     
     static private func customizeTextField(){
@@ -760,7 +760,7 @@ struct Style{
     }
         
     static private func customizeSlider(){
-        CustomSlider.appearance().minimumTrackTintColor = secondaryColor
+        CustomSlider.appearance().minimumTrackTintColor = primaryColor
         CustomSlider.appearance().maximumTrackTintColor = labelTextColorLight
     }
     

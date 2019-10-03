@@ -83,17 +83,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             category.layer.cornerRadius = 14.0
             stockState.layer.cornerRadius = 14.0
         }
-        category.layer.borderColor = Style.secondaryColor.cgColor
+        category.layer.borderColor = Style.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
-        stockState.layer.borderColor = Style.secondaryColor.cgColor
+        stockState.layer.borderColor = Style.primaryColor.cgColor
         stockState.layer.borderWidth = 1.0
         stockState.layer.masksToBounds = true
 
-        ingredientRecommendButton.layer.borderColor = Style.secondaryColor.cgColor
+        ingredientRecommendButton.layer.borderColor = Style.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
         ingredientRecommendButton.layer.cornerRadius = 15
-        ingredientRecommendButton.tintColor = Style.secondaryColor
+        ingredientRecommendButton.tintColor = Style.primaryColor
         ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
         
         containerSeparator.backgroundColor = Style.labelTextColor

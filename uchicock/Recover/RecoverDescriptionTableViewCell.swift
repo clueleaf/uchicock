@@ -29,14 +29,14 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         recoverTarget.isEnabled = false
         recoverTarget.setCheckState(.checked, animated: true)
         recoverTarget.boxLineWidth = 1.0
-        recoverTarget.secondaryTintColor = Style.secondaryColor
+        recoverTarget.secondaryTintColor = Style.primaryColor
         recoverTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
 
         nonRecoverTarget.stateChangeAnimation = .expand
         nonRecoverTarget.isEnabled = false
         nonRecoverTarget.setCheckState(.unchecked, animated: true)
         nonRecoverTarget.boxLineWidth = 1.0
-        nonRecoverTarget.secondaryTintColor = Style.secondaryColor
+        nonRecoverTarget.secondaryTintColor = Style.primaryColor
         nonRecoverTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
 
         unableRecover.stateChangeAnimation = .expand
@@ -45,7 +45,7 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         unableRecover.tintColor = Style.labelTextColorLight
         unableRecover.secondaryCheckmarkTintColor = Style.basicBackgroundColor
         unableRecover.boxLineWidth = 1.0
-        unableRecover.secondaryTintColor = Style.secondaryColor
+        unableRecover.secondaryTintColor = Style.primaryColor
         unableRecover.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
     }
 

@@ -63,11 +63,11 @@ class ChangeThemeTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
-        cancelButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
+        cancelButton.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
         navigationItem.leftBarButtonItem = cancelButton
 
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
-        saveButton.tintColor = FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)
+        saveButton.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
         navigationItem.rightBarButtonItem = saveButton
     }
     
@@ -108,8 +108,8 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tableView.indicatorStyle = .black
         }
 
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.primaryColor, isFlat: true)]
-        navigationController?.navigationBar.barTintColor = Style.primaryColor        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
+        navigationController?.navigationBar.barTintColor = Style.navigationBarColor        
         navigationController?.loadView()
         self.setNeedsStatusBarAppearanceUpdate()
         tableView.reloadData()
@@ -127,7 +127,7 @@ class ChangeThemeTableViewController: UITableViewController {
 
         if String(indexPath.row) == Style.no{
             cell.accessoryType = .checkmark
-            cell.textLabel?.textColor = Style.secondaryColor
+            cell.textLabel?.textColor = Style.primaryColor
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         }else{
             cell.accessoryType = .none

@@ -29,16 +29,16 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     stockLabel.isHidden = false
                     stockLabel.text = "在庫あり"
                     stockLabel.textColor = Style.labelTextColorOnBadge
-                    stockLabel.layer.backgroundColor = Style.secondaryColor.cgColor
-                    stockLabel.layer.borderColor = Style.secondaryColor.cgColor
+                    stockLabel.layer.backgroundColor = Style.primaryColor.cgColor
+                    stockLabel.layer.borderColor = Style.primaryColor.cgColor
                     ingredientNameLabel.textColor = Style.labelTextColor
                     amountLabel.textColor = Style.labelTextColor
                 }else{
                     stockLabel.isHidden = false
                     stockLabel.text = "在庫なし"
-                    stockLabel.textColor = Style.secondaryColor
+                    stockLabel.textColor = Style.primaryColor
                     stockLabel.layer.backgroundColor = UIColor.clear.cgColor
-                    stockLabel.layer.borderColor = Style.secondaryColor.cgColor
+                    stockLabel.layer.borderColor = Style.primaryColor.cgColor
                     ingredientNameLabel.textColor = Style.labelTextColorLight
                     amountLabel.textColor = Style.labelTextColorLight
                 }
@@ -60,7 +60,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var isOption = Bool(){
         didSet{
             optionLabel.backgroundColor = UIColor.clear
-            optionLabel.textColor = Style.secondaryColor
+            optionLabel.textColor = Style.primaryColor
             optionLabel.layer.cornerRadius = 10.5
             optionLabel.clipsToBounds = true
             optionLabel.textAlignment = NSTextAlignment.center
@@ -68,7 +68,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             if isOption{
                 optionLabel.text = "オプション"
                 optionLabel.layer.backgroundColor = UIColor.clear.cgColor
-                optionLabel.layer.borderColor = Style.secondaryColor.cgColor
+                optionLabel.layer.borderColor = Style.primaryColor.cgColor
             }else{
                 optionLabel.text = ""
                 optionLabel.layer.backgroundColor = UIColor.clear.cgColor

@@ -165,9 +165,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             default:
                 setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             }
-            star1.tintColor = Style.secondaryColor
-            star2.tintColor = Style.secondaryColor
-            star3.tintColor = Style.secondaryColor
+            star1.tintColor = Style.primaryColor
+            star2.tintColor = Style.primaryColor
+            star3.tintColor = Style.primaryColor
             
             switch recipe.style{
             case 0:
@@ -199,9 +199,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
             styleTipButton.setImage(tipImage, for: .normal)
-            styleTipButton.tintColor = Style.secondaryColor
+            styleTipButton.tintColor = Style.primaryColor
             methodTipButton.setImage(tipImage, for: .normal)
-            methodTipButton.tintColor = Style.secondaryColor
+            methodTipButton.tintColor = Style.primaryColor
 
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
@@ -209,11 +209,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()
             
-            editButton.backgroundColor = Style.secondaryColor
+            editButton.backgroundColor = Style.primaryColor
             editButton.tintColor = Style.basicBackgroundColor
-            shareButton.backgroundColor = Style.secondaryColor
+            shareButton.backgroundColor = Style.primaryColor
             shareButton.tintColor = Style.basicBackgroundColor
-            openInSafariButton.backgroundColor = Style.secondaryColor
+            openInSafariButton.backgroundColor = Style.primaryColor
             openInSafariButton.tintColor = Style.basicBackgroundColor
             deleteButton.backgroundColor = Style.deleteColor
             deleteButton.tintColor = Style.basicBackgroundColor
@@ -269,8 +269,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumMinusButton.layer.borderColor = Style.labelTextColorLight.cgColor
         } else {
             madeNumMinusButton.isEnabled = true
-            madeNumMinusButton.tintColor = Style.secondaryColor
-            madeNumMinusButton.layer.borderColor = Style.secondaryColor.cgColor
+            madeNumMinusButton.tintColor = Style.primaryColor
+            madeNumMinusButton.layer.borderColor = Style.primaryColor.cgColor
         }
         if madeNum >= 999 {
             madeNumPlusButton.isEnabled = false
@@ -278,8 +278,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumPlusButton.layer.borderColor = Style.labelTextColorLight.cgColor
         } else {
             madeNumPlusButton.isEnabled = true
-            madeNumPlusButton.tintColor = Style.secondaryColor
-            madeNumPlusButton.layer.borderColor = Style.secondaryColor.cgColor
+            madeNumPlusButton.tintColor = Style.primaryColor
+            madeNumPlusButton.layer.borderColor = Style.primaryColor.cgColor
         }
     }
     
@@ -442,7 +442,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             vc.interactor = self.interactor
             self.present(nvc, animated: true)
         }
-        reminder.backgroundColor = Style.secondaryColor
+        reminder.backgroundColor = Style.primaryColor
         
         return [reminder]
     }

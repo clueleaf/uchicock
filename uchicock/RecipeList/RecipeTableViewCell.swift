@@ -60,13 +60,13 @@ class RecipeTableViewCell: UITableViewCell {
                 default:
                     subInfoLabel.text = ""
                 }
-                subInfoLabel.textColor = Style.secondaryColor
+                subInfoLabel.textColor = Style.primaryColor
             case 1: // 作った回数
                 subInfoLabel.text = String(recipe.madeNum) + "回"
                 if recipe.madeNum < 1{
                     subInfoLabel.textColor = Style.labelTextColorLight
                 }else{
-                    subInfoLabel.textColor = Style.secondaryColor
+                    subInfoLabel.textColor = Style.primaryColor
                 }
             case 2: // 最近見た
                 let formatter: DateFormatter = DateFormatter()
@@ -86,7 +86,7 @@ class RecipeTableViewCell: UITableViewCell {
                 default:
                     subInfoLabel.text = ""
                 }
-                subInfoLabel.textColor = Style.secondaryColor
+                subInfoLabel.textColor = Style.primaryColor
             }
 
             subInfoLabel.textAlignment = .right
@@ -94,7 +94,7 @@ class RecipeTableViewCell: UITableViewCell {
             switch recipe.shortageNum {
             case 0:
                 shortage.text = "すぐ作れる！"
-                shortage.textColor = Style.secondaryColor
+                shortage.textColor = Style.primaryColor
                 shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 var shortageName = ""

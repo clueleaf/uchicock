@@ -15,7 +15,7 @@ class RecoverAllTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        recoverAll.textColor = Style.secondaryColor
+        recoverAll.textColor = Style.primaryColor
     }
 
 }

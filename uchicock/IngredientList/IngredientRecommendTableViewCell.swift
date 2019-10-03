@@ -21,7 +21,7 @@ class IngredientRecommendTableViewCell: UITableViewCell {
 
     var ingredientDescription: String? = String(){
         didSet{
-            descriptionLabel.textColor = Style.secondaryColor
+            descriptionLabel.textColor = Style.primaryColor
             descriptionLabel.text = ingredientDescription
         }
     }

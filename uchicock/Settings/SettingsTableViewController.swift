@@ -48,10 +48,10 @@ class SettingsTableViewController: UITableViewController {
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         tableView.backgroundColor = Style.basicBackgroundColor
         
-        introductionImage.tintColor = Style.secondaryColor
-        recoverImage.tintColor = Style.secondaryColor
-        changeThemeImage.tintColor = Style.secondaryColor
-        reviewImage.tintColor = Style.secondaryColor
+        introductionImage.tintColor = Style.primaryColor
+        recoverImage.tintColor = Style.primaryColor
+        changeThemeImage.tintColor = Style.primaryColor
+        reviewImage.tintColor = Style.primaryColor
 
         tableView.reloadData()        
     }
