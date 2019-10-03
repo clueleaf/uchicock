@@ -799,28 +799,51 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func introductions() -> [introductionInfo]{
-        let info1 = introductionInfo(title: "Thank you for downloading!!",
-                                     description: GlobalConstants.IntroductionDescriptionThanks,
-                                    image: nil)
-        let info2 = introductionInfo(title: "レシピ",
-                                     description: GlobalConstants.IntroductionDescriptionRecipe,
-                                     image: UIImage(named:"screen-recipe"))
-        let info3 = introductionInfo(title: "材料",
-                                     description: GlobalConstants.IntroductionDescriptionIngredient,
-                                     image: UIImage(named:"screen-ingredient"))
-        let info4 = introductionInfo(title: "逆引き",
-                                     description: GlobalConstants.IntroductionDescriptionReverseLookup,
-                                     image: UIImage(named:"screen-reverse-lookup"))
-        let info5 = introductionInfo(title: "アルバム",
-                                     description: GlobalConstants.IntroductionDescriptionAlbum,
-                                     image: UIImage(named:"screen-album"))
-        
         var infos: [introductionInfo] = []
-        infos.append(info1)
-        infos.append(info2)
-        infos.append(info3)
-        infos.append(info4)
-        infos.append(info5)
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            let info1 = introductionInfo(title: "Thank you for downloading!!",
+                                         description: GlobalConstants.IntroductionDescriptionThanks,
+                                        image: nil)
+            let info2 = introductionInfo(title: "レシピ",
+                                         description: GlobalConstants.IntroductionDescriptionRecipe,
+                                         image: UIImage(named:"screen-recipe-ipad"))
+            let info3 = introductionInfo(title: "材料",
+                                         description: GlobalConstants.IntroductionDescriptionIngredient,
+                                         image: UIImage(named:"screen-ingredient-ipad"))
+            let info4 = introductionInfo(title: "逆引き",
+                                         description: GlobalConstants.IntroductionDescriptionReverseLookup,
+                                         image: UIImage(named:"screen-reverse-lookup-ipad"))
+            let info5 = introductionInfo(title: "アルバム",
+                                         description: GlobalConstants.IntroductionDescriptionAlbum,
+                                         image: UIImage(named:"screen-album-ipad"))
+            infos.append(info1)
+            infos.append(info2)
+            infos.append(info3)
+            infos.append(info4)
+            infos.append(info5)
+        }else{
+            let info1 = introductionInfo(title: "Thank you for downloading!!",
+                                         description: GlobalConstants.IntroductionDescriptionThanks,
+                                        image: nil)
+            let info2 = introductionInfo(title: "レシピ",
+                                         description: GlobalConstants.IntroductionDescriptionRecipe,
+                                         image: UIImage(named:"screen-recipe-iphone"))
+            let info3 = introductionInfo(title: "材料",
+                                         description: GlobalConstants.IntroductionDescriptionIngredient,
+                                         image: UIImage(named:"screen-ingredient-iphone"))
+            let info4 = introductionInfo(title: "逆引き",
+                                         description: GlobalConstants.IntroductionDescriptionReverseLookup,
+                                         image: UIImage(named:"screen-reverse-lookup-iphone"))
+            let info5 = introductionInfo(title: "アルバム",
+                                         description: GlobalConstants.IntroductionDescriptionAlbum,
+                                         image: UIImage(named:"screen-album-iphone"))
+            infos.append(info1)
+            infos.append(info2)
+            infos.append(info3)
+            infos.append(info4)
+            infos.append(info5)
+        }
         return infos
     }
 }
