@@ -79,7 +79,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         category.layer.masksToBounds = true        
         stock.secondaryTintColor = Style.checkboxSecondaryTintColor
         memo.layer.borderColor = Style.memoBorderColor.cgColor
-        memo.keyboardAppearance = Style.isDark ? .dark : .default
+        memo.keyboardAppearance = Style.isDark ? .dark : .light
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             category.selectedSegmentIndex = ingredient.category

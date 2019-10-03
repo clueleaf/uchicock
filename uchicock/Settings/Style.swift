@@ -869,8 +869,8 @@ struct Style{
             CustomTextField.appearance().keyboardAppearance = .dark
             UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .dark
         }else{
-            CustomTextField.appearance().keyboardAppearance = .default
-            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .default
+            CustomTextField.appearance().keyboardAppearance = .light
+            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .light
         }
     }
     
