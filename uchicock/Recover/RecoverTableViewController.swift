@@ -375,7 +375,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
-                    cell.isTarget.tintColor = Style.badgeDisableBackgroundColor
+                    cell.isTarget.tintColor = Style.labelTextColorLight
+                    cell.isTarget.secondaryCheckmarkTintColor = Style.basicBackgroundColor
                     cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }

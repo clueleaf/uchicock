@@ -42,7 +42,8 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         unableRecover.stateChangeAnimation = .expand
         unableRecover.isEnabled = false
         unableRecover.setCheckState(.mixed, animated: true)
-        unableRecover.tintColor = Style.badgeDisableBackgroundColor
+        unableRecover.tintColor = Style.labelTextColorLight
+        unableRecover.secondaryCheckmarkTintColor = Style.basicBackgroundColor
         unableRecover.boxLineWidth = 1.0
         unableRecover.secondaryTintColor = Style.secondaryColor
         unableRecover.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge

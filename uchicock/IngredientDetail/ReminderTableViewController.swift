@@ -233,13 +233,15 @@ class ReminderTableViewController: UITableViewController {
         if reminderType.selectedSegmentIndex == 0{
             dateFlag.isEnabled = true
             dateFlag.tintColor = Style.secondaryColor
+            dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }else if reminderType.selectedSegmentIndex == 1{
             if dateFlag.checkState == .unchecked{
                 dateFlag.setCheckState(.checked, animated: true)
                 tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
             }
             dateFlag.isEnabled = false
-            dateFlag.tintColor = Style.badgeDisableBackgroundColor
+            dateFlag.tintColor = Style.labelTextColorLight
+            dateFlag.secondaryCheckmarkTintColor = Style.basicBackgroundColor
         }
     }
     

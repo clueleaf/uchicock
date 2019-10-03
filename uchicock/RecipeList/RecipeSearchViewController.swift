@@ -320,15 +320,16 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.setCheckState(checkState, animated: true)
         if checkState == .mixed{
             checkbox.isEnabled = false
-            checkbox.tintColor = Style.badgeDisableBackgroundColor
+            checkbox.tintColor = Style.labelTextColorLight
+            checkbox.secondaryCheckmarkTintColor = Style.basicBackgroundColor
         }else{
             checkbox.isEnabled = true
             checkbox.tintColor = Style.secondaryColor
+            checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
         checkbox.secondaryTintColor = Style.secondaryColor
-        checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         checkbox.contentHorizontalAlignment = .center
     }
     
@@ -539,6 +540,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
+        checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
     }
 
     private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
@@ -546,20 +548,21 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.isEnabled = true
         checkbox.tintColor = Style.secondaryColor
     }
-
     
     private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
         if checkbox.checkState != .mixed{
             checkbox.setCheckState(.unchecked, animated: true)
             checkbox.isEnabled = true
             checkbox.tintColor = Style.secondaryColor
+            checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }
     }
     
     private func setCheckboxMixed(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.mixed, animated: true)
         checkbox.isEnabled = false
-        checkbox.tintColor = Style.badgeDisableBackgroundColor
+        checkbox.tintColor = Style.labelTextColorLight
+        checkbox.secondaryCheckmarkTintColor = Style.basicBackgroundColor
     }
     
     @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {

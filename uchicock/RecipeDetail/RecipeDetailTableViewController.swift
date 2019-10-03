@@ -224,7 +224,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 openInSafariButton.isEnabled = true
             }else{
                 openInSafariButton.isEnabled = false
-                openInSafariButton.backgroundColor = Style.badgeDisableBackgroundColor
+                openInSafariButton.backgroundColor = Style.labelTextColorLight
             }
             
             self.tableView.estimatedRowHeight = 70
