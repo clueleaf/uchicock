@@ -69,7 +69,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
-        ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
+        ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0
@@ -79,7 +79,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         category.layer.masksToBounds = true
         stock.secondaryTintColor = Style.secondaryColor
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        memo.layer.borderColor = Style.memoBorderColor.cgColor
+        memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
         
         if ingredient.category >= 0 && ingredient.category < 3 {

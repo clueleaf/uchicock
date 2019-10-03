@@ -110,9 +110,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
-        ingredientTextField1.layer.borderColor = Style.memoBorderColor.cgColor
-        ingredientTextField2.layer.borderColor = Style.memoBorderColor.cgColor
-        ingredientTextField3.layer.borderColor = Style.memoBorderColor.cgColor
+        ingredientTextField1.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
         
         searchConditionModifyButton.layer.borderColor = Style.secondaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5

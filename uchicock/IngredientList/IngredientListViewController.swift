@@ -56,7 +56,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.backgroundImage = UIImage()
         
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = Style.memoBorderColor.cgColor
+            searchBar.searchTextField.layer.borderColor = Style.textFieldBorderColor.cgColor
             searchBar.searchTextField.layer.borderWidth = 1.0
             searchBar.searchTextField.layer.cornerRadius = 8.0
         }else{
@@ -64,7 +64,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 for subview in view.subviews {
                     if subview is UITextField {
                         let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = Style.memoBorderColor.cgColor
+                        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
                         textField.layer.borderWidth = 1.0
                         textField.layer.cornerRadius = 8.0
                         for subsubview in subview.subviews{

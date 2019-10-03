@@ -99,8 +99,8 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.suggestTableView.backgroundColor = Style.basicBackgroundColor
         self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
-        ingredientName.layer.borderColor = Style.memoBorderColor.cgColor
-        amount.layer.borderColor = Style.memoBorderColor.cgColor
+        ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
+        amount.layer.borderColor = Style.textFieldBorderColor.cgColor
         option.secondaryTintColor = Style.secondaryColor
         option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         optionDescriptionLabel.textColor = Style.labelTextColorLight

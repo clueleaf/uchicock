@@ -29,9 +29,8 @@ struct Style{
     static var tabBarUnselectedItemTintColor = FlatColor.gray
     static var tableViewCellSelectedBackgroundColor = FlatColor.whiteDark
     static var tableViewCellEditBackgroundColor = FlatColor.gray
-    static var tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
     static var badgeDisableBackgroundColor = FlatColor.whiteDark
-    static var memoBorderColor = FlatColor.whiteDark
+    static var textFieldBorderColor = FlatColor.whiteDark
 
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
@@ -54,9 +53,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.gray
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -80,9 +78,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.5, blue:0.0, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.yellowDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -106,9 +103,8 @@ struct Style{
         tabBarUnselectedItemTintColor = UIColor(red:0.35, green:0.2, blue:0.3, alpha:1.0)
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.pink
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -132,9 +128,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.pinkDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -158,9 +153,8 @@ struct Style{
         tabBarUnselectedItemTintColor = UIColor(red:0.2, green:0.2, blue:0.3, alpha:1.0)
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
 
@@ -184,9 +178,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -210,9 +203,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.whiteDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.mintDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
 
@@ -236,9 +228,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.gray
         tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.coffeeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -262,9 +253,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.gray
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.mint
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -288,9 +278,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.whiteDark
         tableViewCellSelectedBackgroundColor = UIColor(red:1.0, green:0.7, blue:0.75, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.watermelon
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -314,9 +303,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.blackDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.35, blue:0.1, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.limeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -341,9 +329,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.grayDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -367,9 +354,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.watermelonDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -393,9 +379,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -419,9 +404,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -445,9 +429,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.orange
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -471,9 +454,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.4, green:0.45, blue:0.45, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.yellowDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -497,9 +479,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.pink
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -523,9 +504,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.pinkDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -549,9 +529,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.coffeeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -575,9 +554,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.9, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.greenDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
     
@@ -601,9 +579,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.45, blue:0.33, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.greenDark
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -627,9 +604,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.gray
         tableViewCellSelectedBackgroundColor = UIColor(red:0.87, green:0.81, blue:0.96, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.purple
         badgeDisableBackgroundColor = FlatColor.whiteDark
-        memoBorderColor = FlatColor.whiteDark
+        textFieldBorderColor = FlatColor.whiteDark
         setGlobalTheme()
     }
 
@@ -653,9 +629,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.gray
         tableViewCellSelectedBackgroundColor = UIColor(red:0.35, green:0.25, blue:0.40, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
-        tableViewCellReminderBackgroundColor = FlatColor.magenta
         badgeDisableBackgroundColor = FlatColor.grayDark
-        memoBorderColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -679,9 +654,8 @@ struct Style{
         tabBarUnselectedItemTintColor = FlatColor.whiteDark
         tableViewCellSelectedBackgroundColor = UIColor(red:0.79, green:0.83, blue:0.92, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
-        tableViewCellReminderBackgroundColor = FlatColor.blue
         badgeDisableBackgroundColor = FlatColor.gray
-        memoBorderColor = FlatColor.gray
+        textFieldBorderColor = FlatColor.gray
         setGlobalTheme()
     }
     

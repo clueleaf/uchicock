@@ -442,7 +442,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             vc.interactor = self.interactor
             self.present(nvc, animated: true)
         }
-        reminder.backgroundColor = Style.tableViewCellReminderBackgroundColor
+        reminder.backgroundColor = Style.secondaryColor
         
         return [reminder]
     }
