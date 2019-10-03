@@ -13,7 +13,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
-    
+    @IBOutlet weak var orderBarButton: UIBarButtonItem!
+
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
     
@@ -127,8 +128,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
             self.noItemText = "写真が登録されたレシピはありません"
+            self.recipeNameBarButton.isEnabled = false
+            self.albumFilterBarButton.isEnabled = false
+            self.orderBarButton.isEnabled = false
         }else{
             self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+            self.recipeNameBarButton.isEnabled = true
+            self.albumFilterBarButton.isEnabled = true
+            self.orderBarButton.isEnabled = true
         }
         self.setCollectionBackgroundView()
     }
@@ -243,8 +250,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
             self.noItemText = "写真が登録されたレシピはありません"
+            self.recipeNameBarButton.isEnabled = false
+            self.albumFilterBarButton.isEnabled = false
+            self.orderBarButton.isEnabled = false
         }else{
             self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+            self.recipeNameBarButton.isEnabled = true
+            self.albumFilterBarButton.isEnabled = true
+            self.orderBarButton.isEnabled = true
         }
         self.setCollectionBackgroundView()
     }
@@ -397,8 +410,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません"
+                self.recipeNameBarButton.isEnabled = false
+                self.albumFilterBarButton.isEnabled = false
+                self.orderBarButton.isEnabled = false
             }else{
                 self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+                self.recipeNameBarButton.isEnabled = true
+                self.albumFilterBarButton.isEnabled = true
+                self.orderBarButton.isEnabled = true
             }
             self.setCollectionBackgroundView()
         }))
@@ -409,8 +428,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません"
+                self.recipeNameBarButton.isEnabled = false
+                self.albumFilterBarButton.isEnabled = false
+                self.orderBarButton.isEnabled = false
             }else{
                 self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+                self.recipeNameBarButton.isEnabled = true
+                self.albumFilterBarButton.isEnabled = true
+                self.orderBarButton.isEnabled = true
             }
             self.setCollectionBackgroundView()
         }))

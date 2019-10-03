@@ -693,6 +693,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="albumFilterBarButton" destination="b74-vW-dMn" id="Yjk-LS-KWz"/>
+                        <outlet property="orderBarButton" destination="cid-ka-mKY" id="qYR-ZD-bXY"/>
                         <outlet property="recipeNameBarButton" destination="llb-gy-qnJ" id="Aeb-JH-sYg"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="RecipeTapped" id="xK4-qe-qjp"/>
                     </connections>
@@ -801,6 +802,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="xK4-qe-qjp"/>
     </inferredMetricsTieBreakers>
 </document>
