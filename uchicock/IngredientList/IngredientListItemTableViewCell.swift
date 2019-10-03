@@ -46,21 +46,14 @@ class IngredientListItemTableViewCell: UITableViewCell {
             stockLabel.textColor = Style.labelTextColorLight
             stockLabel.clipsToBounds = true
             
-            stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+            stock.secondaryTintColor = Style.secondaryColor
+            stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
             stock.boxLineWidth = 1.0
             stock.animationDuration = 0.3
             if stockState == 0{
                 stock.stateChangeAnimation = .expand
             }
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
 }

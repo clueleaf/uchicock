@@ -327,7 +327,8 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = Style.checkboxSecondaryTintColor
+        checkbox.secondaryTintColor = Style.secondaryColor
+        checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         checkbox.contentHorizontalAlignment = .center
     }
     

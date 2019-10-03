@@ -358,8 +358,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 cell.isTarget.animationDuration = 0.0
                 cell.isTarget.backgroundColor = UIColor.clear
                 cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.secondaryTintColor = Style.checkboxSecondaryTintColor
-                
+                cell.isTarget.secondaryTintColor = Style.secondaryColor
+                cell.isTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
                     cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
                     cell.isTarget.isEnabled = true

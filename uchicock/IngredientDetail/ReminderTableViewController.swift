@@ -63,7 +63,8 @@ class ReminderTableViewController: UITableViewController {
         reminderType.layer.borderColor = Style.secondaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
-        dateFlag.secondaryTintColor = Style.checkboxSecondaryTintColor
+        dateFlag.secondaryTintColor = Style.secondaryColor
+        dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
         datePicker.setValue(false, forKey: "highlightsToday")
     }

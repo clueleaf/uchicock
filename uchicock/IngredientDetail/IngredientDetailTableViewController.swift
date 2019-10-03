@@ -84,7 +84,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
-        stock.secondaryTintColor = Style.checkboxSecondaryTintColor
+        stock.secondaryTintColor = Style.secondaryColor
+        stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         stockRecommendLabel.textColor = Style.secondaryColor
         deleteButtonLabel.textColor = Style.deleteColor
 

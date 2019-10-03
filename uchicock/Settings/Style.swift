@@ -33,7 +33,6 @@ struct Style{
     static var tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
     static var badgeDisableBackgroundColor = FlatColor.whiteDark
     static var memoBorderColor = FlatColor.whiteDark
-    static var checkboxSecondaryTintColor = FlatColor.gray
 
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
@@ -60,7 +59,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -88,7 +86,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.yellowDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -116,7 +113,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.pink
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -144,7 +140,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.pinkDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -172,7 +167,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
 
@@ -200,7 +194,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -228,7 +221,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.mintDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
 
@@ -256,7 +248,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.coffeeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -284,7 +275,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.mint
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -312,7 +302,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.watermelon
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -340,7 +329,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.limeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -369,7 +357,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.grayDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -397,7 +384,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.watermelonDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -425,7 +411,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -453,7 +438,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.skyBlueDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -481,7 +465,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.orange
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -509,7 +492,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.yellowDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -537,7 +519,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.pink
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -565,7 +546,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.pinkDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -593,7 +573,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.coffeeDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -621,7 +600,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.greenDark
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     
@@ -649,7 +627,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.greenDark
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
     
@@ -677,7 +654,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.purple
         badgeDisableBackgroundColor = FlatColor.whiteDark
         memoBorderColor = FlatColor.whiteDark
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
 
@@ -705,7 +681,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.magenta
         badgeDisableBackgroundColor = FlatColor.grayDark
         memoBorderColor = FlatColor.grayDark
-        checkboxSecondaryTintColor = FlatColor.grayDark
         setGlobalTheme()
     }
 
@@ -733,7 +708,6 @@ struct Style{
         tableViewCellReminderBackgroundColor = FlatColor.blue
         badgeDisableBackgroundColor = FlatColor.gray
         memoBorderColor = FlatColor.gray
-        checkboxSecondaryTintColor = FlatColor.gray
         setGlobalTheme()
     }
     

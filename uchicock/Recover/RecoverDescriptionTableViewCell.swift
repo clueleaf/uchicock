@@ -29,21 +29,23 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         recoverTarget.isEnabled = false
         recoverTarget.setCheckState(.checked, animated: true)
         recoverTarget.boxLineWidth = 1.0
-        
+        recoverTarget.secondaryTintColor = Style.secondaryColor
+        recoverTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+
         nonRecoverTarget.stateChangeAnimation = .expand
         nonRecoverTarget.isEnabled = false
         nonRecoverTarget.setCheckState(.unchecked, animated: true)
         nonRecoverTarget.boxLineWidth = 1.0
-        
+        nonRecoverTarget.secondaryTintColor = Style.secondaryColor
+        nonRecoverTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+
         unableRecover.stateChangeAnimation = .expand
         unableRecover.isEnabled = false
         unableRecover.setCheckState(.mixed, animated: true)
         unableRecover.tintColor = Style.badgeDisableBackgroundColor
         unableRecover.boxLineWidth = 1.0
-}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        unableRecover.secondaryTintColor = Style.secondaryColor
+        unableRecover.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
     }
 
 }
