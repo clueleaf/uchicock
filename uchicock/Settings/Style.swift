@@ -18,11 +18,10 @@ struct Style{
     static var secondaryColor = FlatColor.skyBlueDark
     static var basicBackgroundColor = FlatColor.white
     static var tableViewHeaderBackgroundColor = FlatColor.whiteDark
+    static var tableViewHeaderTextColor = FlatColor.black
     static var labelTextColor = FlatColor.black
     static var labelTextColorLight = FlatColor.grayDark
     static var labelTextColorOnBadge = FlatColor.white
-    static var labelTextColorOnDisableBadge = FlatColor.black
-    static var textFieldBackgroundColor = FlatColor.white
     static var filterContainerBackgroundColor = FlatColor.sand
     static var deleteColor = FlatColor.red
     static var tabBarTintColor = FlatColor.orange
@@ -44,11 +43,10 @@ struct Style{
         secondaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.sand
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.orange
@@ -71,11 +69,10 @@ struct Style{
         secondaryColor = FlatColor.yellowDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.white
@@ -98,11 +95,10 @@ struct Style{
         secondaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = UIColor(red:1.0, green:0.98, blue:1.0, alpha:1.0)
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         deleteColor = FlatColor.red
         tabBarTintColor = UIColor.white
@@ -125,11 +121,10 @@ struct Style{
         secondaryColor = FlatColor.pinkDark
         basicBackgroundColor = FlatColor.blackDark
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.blackDark
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.blackDark
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.white
@@ -152,11 +147,10 @@ struct Style{
         secondaryColor = FlatColor.skyBlue
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.white
@@ -179,11 +173,10 @@ struct Style{
         secondaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.white
@@ -206,11 +199,10 @@ struct Style{
         secondaryColor = FlatColor.mintDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.mint
         deleteColor = FlatColor.watermelon
         tabBarTintColor = UIColor.white
@@ -233,11 +225,10 @@ struct Style{
         secondaryColor = FlatColor.coffee
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.white
@@ -260,11 +251,10 @@ struct Style{
         secondaryColor = FlatColor.mint
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.mint
@@ -287,11 +277,10 @@ struct Style{
         secondaryColor = FlatColor.watermelon
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.white
@@ -314,11 +303,10 @@ struct Style{
         secondaryColor = FlatColor.limeDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.white
@@ -342,11 +330,10 @@ struct Style{
         secondaryColor = FlatColor.grayDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.whiteDark
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.black
@@ -369,11 +356,10 @@ struct Style{
         secondaryColor = FlatColor.watermelonDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.watermelonDark
@@ -396,11 +382,10 @@ struct Style{
         secondaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.skyBlueDark
@@ -423,11 +408,10 @@ struct Style{
         secondaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.skyBlueDark
@@ -450,11 +434,10 @@ struct Style{
         secondaryColor = FlatColor.orange
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.orangeDark
@@ -477,11 +460,10 @@ struct Style{
         secondaryColor = FlatColor.yellowDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.orange
@@ -504,11 +486,10 @@ struct Style{
         secondaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.white
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = UIColor(red:1.0, green:0.98, blue:1.0, alpha:1.0)
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.pinkDark
@@ -531,11 +512,10 @@ struct Style{
         secondaryColor = FlatColor.pinkDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.pinkDark
@@ -558,11 +538,10 @@ struct Style{
         secondaryColor = FlatColor.coffee
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.sandDark
@@ -585,11 +564,10 @@ struct Style{
         secondaryColor = FlatColor.greenDark
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.watermelon
         tabBarTintColor = FlatColor.greenDark
@@ -612,11 +590,10 @@ struct Style{
         secondaryColor = FlatColor.greenDark
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.greenDark
@@ -639,11 +616,10 @@ struct Style{
         secondaryColor = FlatColor.purple
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.purple
@@ -666,11 +642,10 @@ struct Style{
         secondaryColor = FlatColor.magenta
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.magenta
@@ -693,11 +668,10 @@ struct Style{
         secondaryColor = FlatColor.blue
         basicBackgroundColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
+        tableViewHeaderTextColor = FlatColor.black
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
-        labelTextColorOnDisableBadge = FlatColor.black
-        textFieldBackgroundColor = FlatColor.white
         filterContainerBackgroundColor = FlatColor.powderBlue
         deleteColor = FlatColor.red
         tabBarTintColor = FlatColor.blue
@@ -833,10 +807,10 @@ struct Style{
     }
     
     static private func customizeTextField(){
-        CustomTextField.appearance().backgroundColor = textFieldBackgroundColor
+        CustomTextField.appearance().backgroundColor = basicBackgroundColor
         CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
-        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = textFieldBackgroundColor
+        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = basicBackgroundColor
         UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = labelTextColor
         UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).textColor = labelTextColor
         if isDark{
@@ -849,7 +823,7 @@ struct Style{
     }
     
     static private func customizeTextView(){
-        CustomTextView.appearance().backgroundColor = textFieldBackgroundColor
+        CustomTextView.appearance().backgroundColor = basicBackgroundColor
         CustomTextView.appearance().textColor = labelTextColor
         CustomTextView.appearance().tintColor = labelTextColor
     }

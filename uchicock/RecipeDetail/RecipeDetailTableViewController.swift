@@ -387,7 +387,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.labelTextColorOnDisableBadge
+        label.textColor = Style.tableViewHeaderTextColor
         label.font = UIFont.boldSystemFont(ofSize: 15)
         if section == 1 {
             label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"

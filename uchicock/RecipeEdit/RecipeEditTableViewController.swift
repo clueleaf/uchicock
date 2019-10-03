@@ -247,7 +247,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label : UILabel = UILabel()
         label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.labelTextColorOnDisableBadge
+        label.textColor = Style.tableViewHeaderTextColor
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.text = section == 1 ? "  材料編集" : nil
         return label
