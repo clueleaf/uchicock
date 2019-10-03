@@ -13,7 +13,9 @@ class ChangeThemeTableViewController: UITableViewController {
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
     var hasScrolled = false
-    
+    var oldTableBackgroundColor: UIColor = Style.basicBackgroundColor
+    var newTableBackgroundColor: UIColor = Style.basicBackgroundColor
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -96,6 +98,8 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        oldTableBackgroundColor = newTableBackgroundColor
+        
         Style.setTheme(themeNo: String(indexPath.row))
         newThemeNo = Style.no
         
@@ -107,12 +111,16 @@ class ChangeThemeTableViewController: UITableViewController {
         }else{
             self.tableView.indicatorStyle = .black
         }
-
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
-        navigationController?.navigationBar.barTintColor = Style.navigationBarColor        
-        navigationController?.loadView()
-        self.setNeedsStatusBarAppearanceUpdate()
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
+        UIView.animate(withDuration: 0.4, animations: {
+            self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
+            self.navigationController?.loadView()
+            self.setNeedsStatusBarAppearanceUpdate()
+        }, completion: nil)
+        
         tableView.reloadData()
+        newTableBackgroundColor = Style.basicBackgroundColor
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -137,7 +145,10 @@ class ChangeThemeTableViewController: UITableViewController {
         
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.backgroundColor = Style.basicBackgroundColor
+        cell.backgroundColor = oldTableBackgroundColor
+        UIView.animate(withDuration: 0.4, animations: {
+            cell.backgroundColor = Style.basicBackgroundColor
+        }, completion: nil)
         return cell
     }
     
