@@ -13,6 +13,7 @@ class ChangeThemeTableViewController: UITableViewController {
     var oldThemeNo = Style.no
     var newThemeNo = Style.no
     var hasScrolled = false
+    var animationFlag = false
     var oldTableBackgroundColor: UIColor = Style.basicBackgroundColor
     var newTableBackgroundColor: UIColor = Style.basicBackgroundColor
 
@@ -114,6 +115,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
 
+        animationFlag = true
         UIView.animate(withDuration: 0.4, animations: {
             self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
             self.navigationController?.loadView()
@@ -124,8 +126,10 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tabBarController?.tabBar.tintColor = Style.tabBarTintColor
             self.tabBarController?.tabBar.barTintColor = Style.tabBarBarTintColor
             self.tabBarController?.tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
-        }, completion: nil)
-
+        }, completion: { _ in
+            self.animationFlag = false
+        })
+        
         tableView.reloadData()
         newTableBackgroundColor = Style.basicBackgroundColor
     }
@@ -152,11 +156,15 @@ class ChangeThemeTableViewController: UITableViewController {
         
         cell.tintColor = Style.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.backgroundColor = oldTableBackgroundColor
         
-        UIView.animate(withDuration: 0.4, animations: {
+        if animationFlag{
+            cell.backgroundColor = oldTableBackgroundColor
+            UIView.animate(withDuration: 0.6, animations: {
+                cell.backgroundColor = Style.basicBackgroundColor
+            }, completion: nil)
+        }else{
             cell.backgroundColor = Style.basicBackgroundColor
-        }, completion: nil)
+        }
 
         return cell
     }
