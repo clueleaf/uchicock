@@ -159,7 +159,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         if animationFlag{
             cell.backgroundColor = oldTableBackgroundColor
-            UIView.animate(withDuration: 0.6, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
                 cell.backgroundColor = Style.basicBackgroundColor
             }, completion: nil)
         }else{
