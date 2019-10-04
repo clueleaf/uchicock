@@ -10,12 +10,10 @@ import UIKit
 
 class ChangeThemeTableViewController: UITableViewController {
 
-    var oldThemeNo = Style.no
-    var newThemeNo = Style.no
+    let animationDuration = 0.4
     var hasScrolled = false
     var animationFlag = false
     var oldTableBackgroundColor: UIColor = Style.basicBackgroundColor
-    var newTableBackgroundColor: UIColor = Style.basicBackgroundColor
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -53,25 +51,13 @@ class ChangeThemeTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.separatorColor = UIColor.gray
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        var safeAreaBottom: CGFloat = 0.0
-        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
-
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(ChangeThemeTableViewController.cancelButtonTapped))
-        cancelButton.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
-        navigationItem.leftBarButtonItem = cancelButton
-
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(ChangeThemeTableViewController.saveButtonTapped))
-        saveButton.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
-        navigationItem.rightBarButtonItem = saveButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,11 +70,6 @@ class ChangeThemeTableViewController: UITableViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        Style.setTheme(themeNo: oldThemeNo)
-    }
-
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -99,10 +80,10 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        oldTableBackgroundColor = newTableBackgroundColor
+        oldTableBackgroundColor = Style.basicBackgroundColor
         
         Style.setTheme(themeNo: String(indexPath.row))
-        newThemeNo = Style.no
+        Style.saveTheme(themeNo: String(indexPath.row))
         
         if let cell = tableView.cellForRow(at:indexPath) {
             cell.accessoryType = .checkmark
@@ -113,17 +94,19 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tableView.indicatorStyle = .black
         }
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
-
         animationFlag = true
-        UIView.animate(withDuration: 0.4, animations: {
-            self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
+        UIView.animate(withDuration: animationDuration, animations: {
             self.navigationController?.loadView()
             self.setNeedsStatusBarAppearanceUpdate()
             self.tableView.backgroundColor = Style.basicBackgroundColor
         }, completion: nil)
+
+        UIView.transition(with: self.navigationController!.navigationBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
+        }, completion: nil)
         
-        UIView.transition(with: self.tabBarController!.tabBar, duration: 0.4, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+        UIView.transition(with: self.tabBarController!.tabBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
             self.tabBarController?.tabBar.tintColor = Style.tabBarTintColor
             self.tabBarController?.tabBar.barTintColor = Style.tabBarBarTintColor
             self.tabBarController?.tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
@@ -132,7 +115,6 @@ class ChangeThemeTableViewController: UITableViewController {
         })
         
         tableView.reloadData()
-        newTableBackgroundColor = Style.basicBackgroundColor
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -160,7 +142,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         if animationFlag{
             cell.backgroundColor = oldTableBackgroundColor
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 cell.backgroundColor = Style.basicBackgroundColor
             }, completion: nil)
         }else{
@@ -170,18 +152,4 @@ class ChangeThemeTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: IBAction
-    @objc func cancelButtonTapped() {
-        Style.setTheme(themeNo: oldThemeNo)
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    @objc func saveButtonTapped() {
-        Style.saveTheme(themeNo: newThemeNo)
-        oldThemeNo = newThemeNo
-        Style.setTheme(themeNo: oldThemeNo)
-        ProgressHUD.showSuccess(with: "テーマカラーを変更しました", duration: 1.5)
-
-        self.dismiss(animated: true, completion: nil)
-    }
 }
