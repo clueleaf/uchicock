@@ -43,27 +43,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-80-LE4" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="85.5" y="8" width="281.5" height="44"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レシピ名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-80-LE4" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="359" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfi-Cb-jv5" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="69.5" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="YQn-Su-gEb"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Rfi-Cb-jv5" firstAttribute="centerY" secondItem="YTp-7E-VbT" secondAttribute="centerY" id="DMN-5y-i4h"/>
                                                 <constraint firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" constant="8" id="FJ4-It-JNc"/>
                                                 <constraint firstAttribute="bottom" secondItem="4d9-80-LE4" secondAttribute="bottom" constant="8" id="GyJ-Hz-jgH"/>
-                                                <constraint firstItem="Rfi-Cb-jv5" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="8" id="gsm-Rx-mpn"/>
-                                                <constraint firstItem="4d9-80-LE4" firstAttribute="leading" secondItem="Rfi-Cb-jv5" secondAttribute="trailing" constant="8" id="oZf-jg-rNg"/>
+                                                <constraint firstItem="4d9-80-LE4" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="8" id="RJR-QJ-Kql"/>
                                                 <constraint firstItem="4d9-80-LE4" firstAttribute="top" secondItem="YTp-7E-VbT" secondAttribute="top" constant="8" id="xhd-0P-fnP"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -532,18 +521,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLz-uO-3NT" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="14.5" width="60" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Kjp-mg-E3g"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="q3v-3s-bB6"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N4k-of-Pi3" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="5" width="287" height="40"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N4k-of-Pi3" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="5" width="355" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Wxm-rc-5kH"/>
                                                     </constraints>
@@ -555,10 +534,8 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vLz-uO-3NT" firstAttribute="leading" secondItem="aby-6v-3Pb" secondAttribute="leading" constant="8" id="5qy-L8-scv"/>
-                                                <constraint firstItem="vLz-uO-3NT" firstAttribute="centerY" secondItem="aby-6v-3Pb" secondAttribute="centerY" id="CdJ-aY-k7U"/>
+                                                <constraint firstItem="N4k-of-Pi3" firstAttribute="leading" secondItem="aby-6v-3Pb" secondAttribute="leading" constant="8" id="8dl-Te-oYj"/>
                                                 <constraint firstItem="N4k-of-Pi3" firstAttribute="centerY" secondItem="aby-6v-3Pb" secondAttribute="centerY" id="RXp-VQ-Aoz"/>
-                                                <constraint firstItem="N4k-of-Pi3" firstAttribute="leading" secondItem="vLz-uO-3NT" secondAttribute="trailing" constant="8" id="VN4-Fw-5E6"/>
                                                 <constraint firstAttribute="trailing" secondItem="N4k-of-Pi3" secondAttribute="trailing" constant="12" id="tle-1u-NBS"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -622,18 +599,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imD-FZ-iht" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="14.5" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="o9F-TJ-WXo"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="q2o-9r-qhb"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NyC-hv-bV8" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="5" width="287" height="40"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="分量" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NyC-hv-bV8" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="5" width="355" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="xsg-z2-Q6F"/>
                                                     </constraints>
@@ -644,7 +611,7 @@
                                                     </connections>
                                                 </textField>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-ft-XUK" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="55" width="291" height="31"/>
+                                                    <rect key="frame" x="6" y="55" width="359" height="31"/>
                                                     <connections>
                                                         <action selector="amountSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="Zeg-T3-gEP"/>
                                                     </connections>
@@ -652,13 +619,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CAO-ft-XUK" firstAttribute="leading" secondItem="NyC-hv-bV8" secondAttribute="leading" id="9b9-Py-7OP"/>
-                                                <constraint firstItem="imD-FZ-iht" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="FTn-6c-H9U"/>
-                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="imD-FZ-iht" secondAttribute="trailing" constant="26" id="KWE-2h-bvt"/>
                                                 <constraint firstItem="NyC-hv-bV8" firstAttribute="top" secondItem="UVb-p4-hZv" secondAttribute="top" constant="5" id="Q5p-u4-Pt4"/>
-                                                <constraint firstItem="imD-FZ-iht" firstAttribute="centerY" secondItem="NyC-hv-bV8" secondAttribute="centerY" id="bLH-uR-r47"/>
                                                 <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="12" id="jy5-f8-ppc"/>
                                                 <constraint firstItem="CAO-ft-XUK" firstAttribute="top" secondItem="NyC-hv-bV8" secondAttribute="bottom" constant="10" id="m3j-9F-gfj"/>
                                                 <constraint firstItem="CAO-ft-XUK" firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" id="pEf-eN-WCE"/>
+                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="wG4-FI-dNa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

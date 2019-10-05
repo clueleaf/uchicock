@@ -43,27 +43,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-dZ-Qcr" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="8" width="287" height="44"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="QW8-dZ-Qcr" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="355" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgk-Yn-qtQ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="60" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="GSA-r8-Ydm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="QW8-dZ-Qcr" secondAttribute="bottom" constant="8" id="1H8-aF-cnd"/>
-                                                <constraint firstItem="mgk-Yn-qtQ" firstAttribute="leading" secondItem="i8h-eV-cUI" secondAttribute="leading" constant="8" id="290-i9-VNv"/>
+                                                <constraint firstItem="QW8-dZ-Qcr" firstAttribute="leading" secondItem="i8h-eV-cUI" secondAttribute="leading" constant="8" id="BNx-JN-9vn"/>
                                                 <constraint firstAttribute="trailing" secondItem="QW8-dZ-Qcr" secondAttribute="trailing" constant="12" id="L9w-dT-Xq7"/>
-                                                <constraint firstItem="mgk-Yn-qtQ" firstAttribute="centerY" secondItem="i8h-eV-cUI" secondAttribute="centerY" id="uJR-X7-mpr"/>
-                                                <constraint firstItem="QW8-dZ-Qcr" firstAttribute="leading" secondItem="mgk-Yn-qtQ" secondAttribute="trailing" constant="8" id="x4b-mK-otW"/>
                                                 <constraint firstItem="QW8-dZ-Qcr" firstAttribute="top" secondItem="i8h-eV-cUI" secondAttribute="top" constant="8" id="zUJ-Q9-LDR"/>
                                             </constraints>
                                         </tableViewCellContentView>
