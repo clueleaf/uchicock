@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import StoreKit
 
 class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
@@ -50,6 +51,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestReview()
 
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
@@ -68,6 +71,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func requestReview(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [GlobalConstants.FirstRequestReviewKey : false, GlobalConstants.LaunchCountAfterReviewKey : 0])
+
+        let hasReviewed = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
+        let launchCountAfterReview = defaults.integer(forKey: GlobalConstants.LaunchCountAfterReviewKey)
+
+        if let launchDateAfterReview = defaults.object(forKey: GlobalConstants.LaunchDateAfterReviewKey) as? NSDate {
+            if hasReviewed == false{
+                defaults.set(launchCountAfterReview + 1, forKey: GlobalConstants.LaunchCountAfterReviewKey)
+
+                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview as Date) / 60 / 60 / 24
+                if daySpan > 10 && launchCountAfterReview > 7{
+                    defaults.set(true, forKey: GlobalConstants.FirstRequestReviewKey)
+                    SKStoreReviewController.requestReview()
+                }
+            }
+        } else {
+            defaults.set(NSDate(), forKey: GlobalConstants.LaunchDateAfterReviewKey)
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupVC()

@@ -746,7 +746,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-du-HQ6" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" placeholder="レシピ名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-du-HQ6" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="elc-4X-Qql"/>
