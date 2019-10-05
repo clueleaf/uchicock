@@ -62,13 +62,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.prefetchDataSource = self
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         
-        let realm = try! Realm()
-        recipeList = realm.objects(Recipe.self)
-        try! realm.write {
-            for recipe in recipeList!{
-                recipe.updateShortageNum()
-            }
-        }
     }
     
     func requestReview(){

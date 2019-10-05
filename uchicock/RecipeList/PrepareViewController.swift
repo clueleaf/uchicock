@@ -122,6 +122,13 @@ class PrepareViewController: UIViewController {
             }
         }
 
+        let realm = try! Realm()
+        recipeList = realm.objects(Recipe.self)
+        try! realm.write {
+            for recipe in recipeList!{
+                recipe.updateShortageNum()
+            }
+        }
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }
     
