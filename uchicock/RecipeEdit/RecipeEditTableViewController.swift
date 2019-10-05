@@ -139,6 +139,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
+        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         selectPhoto.textColor = Style.primaryColor
         star1.tintColor = Style.primaryColor
         star2.tintColor = Style.primaryColor

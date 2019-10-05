@@ -100,7 +100,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         amount.layer.borderColor = Style.textFieldBorderColor.cgColor
+        amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         option.secondaryTintColor = Style.primaryColor
         option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         optionDescriptionLabel.textColor = Style.labelTextColorLight

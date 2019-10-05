@@ -70,6 +70,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0
