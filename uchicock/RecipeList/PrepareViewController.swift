@@ -102,18 +102,6 @@ class PrepareViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColor
-                        }
-                    }
-                }
-            }
-        }
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }
     

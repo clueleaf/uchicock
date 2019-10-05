@@ -799,9 +799,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrA-Of-JN4">
                                 <rect key="frame" x="0.0" y="160" width="320" height="359"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWD-cD-43S" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="64.5" y="159" width="191" height="41"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWD-cD-43S" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="149" width="260" height="61"/>
                                         <string key="text">データ準備中...
+しばらくかかる可能性があります
 このままお待ちください</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
