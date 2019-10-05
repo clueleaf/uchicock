@@ -19,6 +19,9 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var prepareMessage: CustomLabel!
     
+    var recipeList: Results<Recipe>?
+    var dbFileNameList: [String] = []
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -37,10 +40,7 @@ class PrepareViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupVC()
-    }
-    
-    private func setupVC(){
+
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         
@@ -102,6 +102,26 @@ class PrepareViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // DBに名前がないが存在する画像を削除する処理
+        dbFileNameList = []
+        let realm = try! Realm()
+        recipeList = realm.objects(Recipe.self)
+        for recipe in recipeList!{
+            if let imageFileName = recipe.imageFileName{
+                dbFileNameList.append(imageFileName)
+            }
+        }
+        
+        let fileManager = FileManager.default
+        let actualFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        for actualFileName in actualFileNames ?? [] {
+            if dbFileNameList.contains(actualFileName) == false{
+                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualFileName + ".png")
+                try? fileManager.removeItem(at: imageFilePath)
+            }
+        }
+
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }
     

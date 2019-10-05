@@ -10,14 +10,10 @@ import UIKit
 import RealmSwift
 
 struct ImageUtil{
-
-    private static let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    
     static func saveToCache(imageFileName: String?){
-        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
 
         if let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil {
-            let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
             let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
             if let loadedImage = loadedImage{
                 ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
@@ -26,8 +22,6 @@ struct ImageUtil{
     }
     
     static func loadImageOf(recipeId: String, useCache: Bool) -> UIImage? {
-        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
-        
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         guard recipe != nil else{
@@ -35,7 +29,7 @@ struct ImageUtil{
         }
 
         if let imageFileName = recipe!.imageFileName{
-            let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
             
             if useCache{
                 if let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
@@ -69,10 +63,9 @@ struct ImageUtil{
     }
     
     static func save(image: UIImage, toFileName imageFileName: String) -> Bool{
-        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
-        let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+        let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         do {
-            try FileManager.default.createDirectory(atPath: imageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: GlobalConstants.ImageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
             // 万が一の不整合のためにキャッシュをクリアしておく
             ImageCache.shared.removeObject(forKey: imageFileName as NSString)
             try image.pngData()?.write(to: imageFilePath)
@@ -84,8 +77,7 @@ struct ImageUtil{
     
     static func remove(imageFileName: String?) -> Bool{
         if let imageFileName = imageFileName{
-            let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
-            let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
             ImageCache.shared.removeObject(forKey: imageFileName as NSString)
             do{
                 try FileManager.default.removeItem(at: imageFilePath)

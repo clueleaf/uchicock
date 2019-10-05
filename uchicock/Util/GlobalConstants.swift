@@ -9,6 +9,10 @@
 import UIKit
 
 struct GlobalConstants{
+    // MARK: - File Manager
+    static let DocumentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    static let ImageFolderPath = GlobalConstants.DocumentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
+
     // MARK: - Database Version
     static let RealmSchemaVersion: UInt64 = 8
     

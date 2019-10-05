@@ -18,13 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Style.loadTheme()
 
-        let manager = FileManager()
-        let documentDir: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let realmPath = documentDir.appending("/default.realm")
+        let manager = FileManager.default
+        let realmPath = GlobalConstants.DocumentDir.appendingPathComponent("default.realm")
         // first time to launch this app
-        if manager.fileExists(atPath: realmPath) == false{
+        if manager.fileExists(atPath: realmPath.path) == false{
             let seedFilePath = Bundle.main.path(forResource: "default", ofType: "realm")
-            try! FileManager.default.copyItem(atPath: seedFilePath!, toPath: realmPath)
+            try! manager.copyItem(atPath: seedFilePath!, toPath: realmPath.path)
         }
 
         var config = Realm.Configuration(

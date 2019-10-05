@@ -124,7 +124,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
             
             noPhotoFlag = false
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: false){
                 photo.image = image
                 if image.size.width > image.size.height{
                     photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
@@ -318,9 +318,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         guard let imageFileName = self.recipe.imageFileName else{
             return
         }
-        let documentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let imageFolderPath = documentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
-        let imageFilePath = imageFolderPath.appendingPathComponent(imageFileName + ".png")
+        let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         
         if loadedImage != nil && noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
