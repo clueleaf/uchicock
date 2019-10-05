@@ -178,10 +178,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWg-5g-35g">
-                                                    <rect key="frame" x="81.5" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="81.5" y="13.5" width="24" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="IU5-P2-mmg"/>
-                                                        <constraint firstAttribute="height" constant="20" id="N3f-YY-Zra"/>
+                                                        <constraint firstAttribute="width" constant="24" id="IU5-P2-mmg"/>
+                                                        <constraint firstAttribute="height" constant="24" id="N3f-YY-Zra"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -249,10 +249,10 @@
                                                     </connections>
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ">
-                                                    <rect key="frame" x="47" y="15.5" width="20" height="20"/>
+                                                    <rect key="frame" x="47" y="13.5" width="24" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="Uxh-hE-Xna"/>
-                                                        <constraint firstAttribute="height" constant="20" id="wgo-Oh-8WM"/>
+                                                        <constraint firstAttribute="width" constant="24" id="Uxh-hE-Xna"/>
+                                                        <constraint firstAttribute="height" constant="24" id="wgo-Oh-8WM"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
