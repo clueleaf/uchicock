@@ -797,12 +797,34 @@
                                     <constraint firstItem="lmo-Kg-hFs" firstAttribute="top" secondItem="la5-5i-XKe" secondAttribute="bottom" constant="8" id="npU-vc-DbS"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrA-Of-JN4">
+                                <rect key="frame" x="0.0" y="160" width="320" height="359"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWD-cD-43S" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="64.5" y="159" width="191" height="41"/>
+                                        <string key="text">データ準備中...
+このままお待ちください</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="bWD-cD-43S" firstAttribute="centerX" secondItem="mrA-Of-JN4" secondAttribute="centerX" id="blP-DX-LcE"/>
+                                    <constraint firstItem="bWD-cD-43S" firstAttribute="centerY" secondItem="mrA-Of-JN4" secondAttribute="centerY" id="qIV-4I-chk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="5gn-7d-lsa" firstAttribute="trailing" secondItem="bHI-Bf-oW2" secondAttribute="trailing" id="HAW-yt-rdA"/>
                             <constraint firstItem="bHI-Bf-oW2" firstAttribute="leading" secondItem="5gn-7d-lsa" secondAttribute="leading" id="Jr2-Pz-Jwk"/>
+                            <constraint firstItem="5gn-7d-lsa" firstAttribute="bottom" secondItem="mrA-Of-JN4" secondAttribute="bottom" id="OGM-HL-b40"/>
+                            <constraint firstItem="mrA-Of-JN4" firstAttribute="leading" secondItem="5gn-7d-lsa" secondAttribute="leading" id="R2l-x9-Hq3"/>
                             <constraint firstItem="gcA-du-HQ6" firstAttribute="top" secondItem="5gn-7d-lsa" secondAttribute="top" id="R9d-pe-Z9B"/>
+                            <constraint firstItem="mrA-Of-JN4" firstAttribute="top" secondItem="bHI-Bf-oW2" secondAttribute="bottom" id="XMK-GA-BxC"/>
+                            <constraint firstItem="5gn-7d-lsa" firstAttribute="trailing" secondItem="mrA-Of-JN4" secondAttribute="trailing" id="bxB-0N-aS7"/>
                             <constraint firstItem="gcA-du-HQ6" firstAttribute="leading" secondItem="5gn-7d-lsa" secondAttribute="leading" id="c40-59-Tik"/>
                             <constraint firstItem="bHI-Bf-oW2" firstAttribute="top" secondItem="gcA-du-HQ6" secondAttribute="bottom" id="cPy-1E-BoL"/>
                             <constraint firstAttribute="trailing" secondItem="gcA-du-HQ6" secondAttribute="trailing" id="chJ-FK-mEL"/>
@@ -814,6 +836,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerSeparator" destination="lmo-Kg-hFs" id="QHc-Kx-HG5"/>
+                        <outlet property="messageContainer" destination="mrA-Of-JN4" id="AAg-Yk-FhI"/>
+                        <outlet property="prepareMessage" destination="bWD-cD-43S" id="7P6-u9-h8D"/>
                         <outlet property="searchBar" destination="gcA-du-HQ6" id="2gf-Rx-i1A"/>
                         <outlet property="searchConditionLabel" destination="la5-5i-XKe" id="jlS-Ls-evU"/>
                         <outlet property="searchConditionModifyButton" destination="wlV-Re-S3J" id="JKP-A3-SML"/>

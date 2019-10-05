@@ -16,6 +16,8 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
+    @IBOutlet weak var messageContainer: UIView!
+    @IBOutlet weak var prepareMessage: CustomLabel!
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -89,8 +91,9 @@ class PrepareViewController: UIViewController {
         
         containerSeparator.backgroundColor = Style.labelTextColor
 
-        self.view.backgroundColor = Style.basicBackgroundColor
-
+        self.messageContainer.backgroundColor = Style.basicBackgroundColor
+        self.prepareMessage.textColor = Style.labelTextColorLight
+        
         loadSearchUserDefaults()
         setSearchConditionLabel()
     }
@@ -189,9 +192,6 @@ class PrepareViewController: UIViewController {
                 }
             }
         }
-        ProgressHUD.show(with: "準備中...\nこのままお待ちください")
-        
-        ProgressHUD.dismissWithCompletion(nil)
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }
     
