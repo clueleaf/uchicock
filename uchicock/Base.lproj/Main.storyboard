@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w1V-m1-dXG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cpE-dF-ABM">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -14,7 +14,7 @@
                 <viewControllerPlaceholder storyboardName="Introduction" id="7bJ-No-Jck" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6W-GZ-Teh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="178"/>
+            <point key="canvasLocation" x="-5033" y="2346"/>
         </scene>
         <!--RecipeEdit-->
         <scene sceneID="zNG-CC-jTh">
@@ -129,7 +129,6 @@
                         <outlet property="tableView" destination="rev-jS-7mA" id="cxA-sw-Nlm"/>
                         <segue destination="jeX-PC-Dfv" kind="presentation" identifier="PushAddRecipe" modalPresentationStyle="fullScreen" id="nU1-7k-jBf"/>
                         <segue destination="l9T-EK-sHg" kind="show" identifier="PushRecipeDetail" id="daG-Cs-3sj"/>
-                        <segue destination="7bJ-No-Jck" kind="presentation" identifier="usage" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="aU3-fO-Whq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -705,7 +704,9 @@
         <!--RecipeDetail-->
         <scene sceneID="u6m-mI-pXf">
             <objects>
-                <viewControllerPlaceholder storyboardName="RecipeDetail" id="l9T-EK-sHg" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="RecipeDetail" id="l9T-EK-sHg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tGv-gf-q3u"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ZQ-PX-xJs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-320" y="1174"/>
@@ -713,15 +714,123 @@
         <!--IngredientDetail-->
         <scene sceneID="RHx-MA-SH4">
             <objects>
-                <viewControllerPlaceholder storyboardName="IngredientDetail" id="GxT-ck-hvN" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="IngredientDetail" id="GxT-ck-hvN" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="U5W-7W-3JD"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAq-tn-lnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1011" y="2631"/>
+        </scene>
+        <!--Basic Navigation Controller-->
+        <scene sceneID="wpN-Zt-xo8">
+            <objects>
+                <navigationController id="Ua8-Aq-gXD" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="50P-Vd-ddT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jwN-C2-vOD" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ELK-9p-x5l" kind="relationship" relationship="rootViewController" id="pZ2-hA-Trm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="08u-FK-4Xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5726" y="1841"/>
+        </scene>
+        <!--レシピ-->
+        <scene sceneID="imP-lb-VhL">
+            <objects>
+                <viewController id="ELK-9p-x5l" customClass="PrepareViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gAO-bm-1k1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-du-HQ6" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="elc-4X-Qql"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHI-Bf-oW2">
+                                <rect key="frame" x="0.0" y="88" width="320" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlV-Re-S3J">
+                                        <rect key="frame" x="30" y="8" width="260" height="30"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="R3q-u3-wJK"/>
+                                            <constraint firstAttribute="height" constant="30" id="wyF-AJ-e2r"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="条件指定"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la5-5i-XKe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="138.5" y="46" width="43" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="OtC-85-rTm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmo-Kg-hFs">
+                                        <rect key="frame" x="0.0" y="71" width="320" height="1"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="AL6-k2-FW5"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="la5-5i-XKe" firstAttribute="top" secondItem="wlV-Re-S3J" secondAttribute="bottom" constant="8" id="5da-Bk-Iak"/>
+                                    <constraint firstItem="lmo-Kg-hFs" firstAttribute="leading" secondItem="bHI-Bf-oW2" secondAttribute="leading" id="AJh-00-tcQ"/>
+                                    <constraint firstItem="la5-5i-XKe" firstAttribute="centerX" secondItem="bHI-Bf-oW2" secondAttribute="centerX" id="DWU-ij-IYv"/>
+                                    <constraint firstItem="wlV-Re-S3J" firstAttribute="top" secondItem="bHI-Bf-oW2" secondAttribute="top" constant="8" id="LK4-jw-oWH"/>
+                                    <constraint firstItem="wlV-Re-S3J" firstAttribute="centerX" secondItem="bHI-Bf-oW2" secondAttribute="centerX" id="MRt-Xh-bYP"/>
+                                    <constraint firstAttribute="trailing" secondItem="lmo-Kg-hFs" secondAttribute="trailing" id="R3A-Ti-GBc"/>
+                                    <constraint firstAttribute="bottom" secondItem="lmo-Kg-hFs" secondAttribute="bottom" id="UUq-Rs-UXF"/>
+                                    <constraint firstItem="lmo-Kg-hFs" firstAttribute="top" secondItem="la5-5i-XKe" secondAttribute="bottom" constant="8" id="npU-vc-DbS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5gn-7d-lsa" firstAttribute="trailing" secondItem="bHI-Bf-oW2" secondAttribute="trailing" id="HAW-yt-rdA"/>
+                            <constraint firstItem="bHI-Bf-oW2" firstAttribute="leading" secondItem="5gn-7d-lsa" secondAttribute="leading" id="Jr2-Pz-Jwk"/>
+                            <constraint firstItem="gcA-du-HQ6" firstAttribute="top" secondItem="5gn-7d-lsa" secondAttribute="top" id="R9d-pe-Z9B"/>
+                            <constraint firstItem="gcA-du-HQ6" firstAttribute="leading" secondItem="5gn-7d-lsa" secondAttribute="leading" id="c40-59-Tik"/>
+                            <constraint firstItem="bHI-Bf-oW2" firstAttribute="top" secondItem="gcA-du-HQ6" secondAttribute="bottom" id="cPy-1E-BoL"/>
+                            <constraint firstAttribute="trailing" secondItem="gcA-du-HQ6" secondAttribute="trailing" id="chJ-FK-mEL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5gn-7d-lsa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="レシピ" id="0RM-Cw-x6b">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="zP9-mG-gVJ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerSeparator" destination="lmo-Kg-hFs" id="QHc-Kx-HG5"/>
+                        <outlet property="searchBar" destination="gcA-du-HQ6" id="2gf-Rx-i1A"/>
+                        <outlet property="searchConditionLabel" destination="la5-5i-XKe" id="jlS-Ls-evU"/>
+                        <outlet property="searchConditionModifyButton" destination="wlV-Re-S3J" id="JKP-A3-SML"/>
+                        <outlet property="searchContainer" destination="bHI-Bf-oW2" id="F3X-5D-U8v"/>
+                        <segue destination="w1V-m1-dXG" kind="presentation" identifier="ShowRecipeList" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="KwC-hH-4u1"/>
+                        <segue destination="7bJ-No-Jck" kind="presentation" identifier="usage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iVQ-WJ-OnB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vyz-PB-FRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5034.375" y="1840.1408450704225"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="W8I-U9-Q9L">
             <objects>
                 <tabBarController id="w1V-m1-dXG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="pe0-Ac-2JV"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ZnX-ix-bqW" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -738,6 +847,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leN-k5-xmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4276" y="1847"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="obN-O1-lje">
+            <objects>
+                <tabBarController id="cpE-dF-ABM" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sPI-4K-grA" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Ua8-Aq-gXD" kind="relationship" relationship="viewControllers" id="d9k-hx-I34"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DCL-1v-brk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6441" y="1842"/>
         </scene>
         <!--逆引き-->
         <scene sceneID="Hpa-Qg-biA">
