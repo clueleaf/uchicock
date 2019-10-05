@@ -19,22 +19,6 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var prepareMessage: CustomLabel!
     
-    var recipeSortPrimary = 1
-    var recipeSortSecondary = 0
-    var recipeFilterStar0 = true
-    var recipeFilterStar1 = true
-    var recipeFilterStar2 = true
-    var recipeFilterStar3 = true
-    var recipeFilterLong = true
-    var recipeFilterShort = true
-    var recipeFilterHot = true
-    var recipeFilterStyleNone = true
-    var recipeFilterBuild = true
-    var recipeFilterStir = true
-    var recipeFilterShake = true
-    var recipeFilterBlend = true
-    var recipeFilterOthers = true
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
@@ -95,7 +79,6 @@ class PrepareViewController: UIViewController {
         self.prepareMessage.textColor = Style.labelTextColorLight
         
         loadSearchUserDefaults()
-        setSearchConditionLabel()
     }
     
     private func loadSearchUserDefaults(){
@@ -115,67 +98,6 @@ class PrepareViewController: UIViewController {
         defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
         defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
         defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
-
-        recipeSortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
-        recipeSortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
-        recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key)
-        recipeFilterStar1 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar1Key)
-        recipeFilterStar2 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar2Key)
-        recipeFilterStar3 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar3Key)
-        recipeFilterLong = defaults.bool(forKey: GlobalConstants.RecipeFilterLongKey)
-        recipeFilterShort = defaults.bool(forKey: GlobalConstants.RecipeFilterShortKey)
-        recipeFilterHot = defaults.bool(forKey: GlobalConstants.RecipeFilterHotKey)
-        recipeFilterStyleNone = defaults.bool(forKey: GlobalConstants.RecipeFilterStyleNoneKey)
-        recipeFilterBuild = defaults.bool(forKey: GlobalConstants.RecipeFilterBuildKey)
-        recipeFilterStir = defaults.bool(forKey: GlobalConstants.RecipeFilterStirKey)
-        recipeFilterShake = defaults.bool(forKey: GlobalConstants.RecipeFilterShakeKey)
-        recipeFilterBlend = defaults.bool(forKey: GlobalConstants.RecipeFilterBlendKey)
-        recipeFilterOthers = defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey)
-    }
-    
-    private func setSearchConditionLabel(){
-        var conditionText = ""
-        
-        switch recipeSortPrimary{
-        case 1:
-            conditionText = "名前順"
-        case 2:
-            conditionText = "作れる順"
-        case 3:
-            conditionText = "作った回数順"
-        case 4:
-            conditionText = "お気に入り順"
-        case 5:
-            conditionText = "最近見た順"
-        default:
-            conditionText = "名前順"
-        }
-        
-        if recipeSortPrimary > 1 && recipeSortPrimary < 5{
-            switch recipeSortSecondary{
-            case 1:
-                conditionText += " > 名前順"
-            case 2:
-                conditionText += " > 作れる順"
-            case 3:
-                conditionText += " > 作った回数順"
-            case 4:
-                conditionText += " > お気に入り順"
-            case 5:
-                conditionText += " > 最近見た順"
-            default:
-                conditionText += " > 名前順"
-            }
-        }
-        
-        if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-            recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
-        }else{
-            conditionText += "、絞り込みあり"
-        }
-
-        searchConditionLabel.text = conditionText
     }
     
     override func viewDidAppear(_ animated: Bool) {

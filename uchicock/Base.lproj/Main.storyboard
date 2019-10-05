@@ -746,7 +746,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar userInteractionEnabled="NO" contentMode="redraw" placeholder="レシピ名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-du-HQ6" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
+                            <searchBar userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gcA-du-HQ6" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="elc-4X-Qql"/>
@@ -766,10 +766,9 @@
                                             <constraint firstAttribute="height" constant="30" id="wyF-AJ-e2r"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <state key="normal" title="条件指定"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la5-5i-XKe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="138.5" y="46" width="43" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la5-5i-XKe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="160" y="46" width="0.0" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="OtC-85-rTm"/>
                                         </constraints>
@@ -831,9 +830,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5gn-7d-lsa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="レシピ" id="0RM-Cw-x6b">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="zP9-mG-gVJ"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="レシピ" id="0RM-Cw-x6b"/>
                     <connections>
                         <outlet property="containerSeparator" destination="lmo-Kg-hFs" id="QHc-Kx-HG5"/>
                         <outlet property="messageContainer" destination="mrA-Of-JN4" id="AAg-Yk-FhI"/>
