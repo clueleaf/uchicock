@@ -108,7 +108,7 @@ struct GlobalConstants{
     static let IntroductionDescriptionAlbum = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
     
     // MARK: - Image
-    static let ThumbnailMaxLongSide: CGFloat = 256
+    static let ThumbnailMaxLongSide: CGFloat = 512
     static let MiddleImageMaxLongSide: CGFloat = 1024
     static let LargeImageMaxLongSide: CGFloat = 2048
     
