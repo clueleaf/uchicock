@@ -16,6 +16,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
     
     let middleSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n\n画像10枚で約25MB\n画像50枚で約125MB\n画像100枚で約250MB"
     let largeSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n\n画像10枚で約100MB\n画像50枚で約500MB\n画像100枚で約1GB"
+    let selectedCellBackgroundView = UIView()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -37,6 +38,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableView.automaticDimension
+        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
         explanationLabel.textColor = Style.labelTextColor
         sizeExplanationLabel.textColor = Style.labelTextColor
@@ -80,23 +82,17 @@ class ChangeImageSizeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1{
-            let cell = tableView.cellForRow(at:indexPath)
-            cell?.accessoryType = .checkmark
+            tableView.cellForRow(at:indexPath)?.accessoryType = .checkmark
+            tableView.cellForRow(at:IndexPath(row: 2, section: 0))?.accessoryType = .none
             defaults.set(0, forKey: GlobalConstants.SaveImageSizeKey)
             setSizeExplanationText()
-            tableView.reloadData()
         }else if indexPath.row == 2{
-            let cell = tableView.cellForRow(at:indexPath)
-            cell?.accessoryType = .checkmark
+            tableView.cellForRow(at:indexPath)?.accessoryType = .checkmark
+            tableView.cellForRow(at:IndexPath(row: 1, section: 0))?.accessoryType = .none
             defaults.set(1, forKey: GlobalConstants.SaveImageSizeKey)
             setSizeExplanationText()
-            tableView.reloadData()
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at:indexPath)
-        cell?.accessoryType = .none
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,9 +107,9 @@ class ChangeImageSizeTableViewController: UITableViewController {
         case 1:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.textLabel?.text = "中"
             cell.textLabel?.textColor = Style.labelTextColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
 
             if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 0{
                 cell.accessoryType = .checkmark
@@ -125,9 +121,9 @@ class ChangeImageSizeTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.textLabel?.text = "大"
             cell.textLabel?.textColor = Style.labelTextColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
 
             if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
                 cell.accessoryType = .checkmark
