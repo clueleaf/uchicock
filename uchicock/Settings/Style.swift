@@ -363,7 +363,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
@@ -409,7 +409,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.yellowDark
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
@@ -455,7 +455,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.pinkDark
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
@@ -478,7 +478,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.coffee
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
         tableViewCellEditBackgroundColor = FlatColor.grayDark
@@ -524,7 +524,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.greenDark
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
@@ -570,7 +570,7 @@ struct Style{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.magenta
         basicBackgroundColor = UIColor.black
-        tableViewHeaderBackgroundColor = FlatColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
