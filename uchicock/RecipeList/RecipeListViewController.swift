@@ -217,8 +217,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchConditionLabel.text = conditionText
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.setTableBackgroundView()
         super.viewDidAppear(animated)
         for view in searchBar.subviews {
             for subview in view.subviews {
