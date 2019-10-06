@@ -14,6 +14,7 @@ class ChangeThemeTableViewController: UITableViewController {
     var hasScrolled = false
     var animationFlag = false
     var oldTableBackgroundColor: UIColor = Style.basicBackgroundColor
+    let cellHeight: CGFloat = 44
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -61,12 +62,12 @@ class ChangeThemeTableViewController: UITableViewController {
         self.tableView.backgroundColor = Style.basicBackgroundColor
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         if hasScrolled == false{
-            let indexPath = IndexPath(item: Int(Style.no)!, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            tableView.contentOffset.y = (CGFloat((Int(Style.no)!) + 1) * cellHeight) - (tableView.frame.height / 2)
+            tableView.reloadData()
             hasScrolled = true
         }
     }
@@ -74,6 +75,10 @@ class ChangeThemeTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
