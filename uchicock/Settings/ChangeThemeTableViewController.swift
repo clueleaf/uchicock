@@ -56,6 +56,7 @@ class ChangeThemeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
     }
@@ -115,12 +116,6 @@ class ChangeThemeTableViewController: UITableViewController {
         })
         
         tableView.reloadData()
-    }
-    
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at:indexPath) {
-            cell.accessoryType = .none
-        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

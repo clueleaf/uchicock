@@ -17,6 +17,7 @@
 		9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */; };
 		9B1812901CD3C63C00717E4F /* RecoverTargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */; };
 		9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22FEAB22A1872100D716E3 /* FlatColor.swift */; };
+		9B2573232349F0A400F732A1 /* ChangeImageSizeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */; };
 		9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */; };
 		9B2E83CF230A9EF5002E7946 /* IntroductionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */; };
 		9B2E83D8230A9F20002E7946 /* CircularCheckboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */; };
@@ -118,6 +119,7 @@
 		9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTableViewController.swift; path = Recover/RecoverTableViewController.swift; sourceTree = "<group>"; };
 		9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTargetTableViewCell.swift; path = Recover/RecoverTargetTableViewCell.swift; sourceTree = "<group>"; };
 		9B22FEAB22A1872100D716E3 /* FlatColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlatColor.swift; path = Settings/FlatColor.swift; sourceTree = "<group>"; };
+		9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeImageSizeTableViewController.swift; path = Settings/ChangeImageSizeTableViewController.swift; sourceTree = "<group>"; };
 		9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Util/Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
 		9B2E83CD230A9EF4002E7946 /* IntroductionPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionPageViewController.swift; path = Util/Introduction/IntroductionPageViewController.swift; sourceTree = "<group>"; };
 		9B2E83D1230A9F20002E7946 /* CircularCheckboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularCheckboxController.swift; path = Util/CircularCheckbox/CircularCheckboxController.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */,
 				9B41B2A91E65729E00EF2CEF /* Style.swift */,
 				9B22FEAB22A1872100D716E3 /* FlatColor.swift */,
+				9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
 				9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */,
+				9B2573232349F0A400F732A1 /* ChangeImageSizeTableViewController.swift in Sources */,
 				9B3078DE1CA4220C0014CE7E /* IngredientListItemTableViewCell.swift in Sources */,
 				9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */,
 				9BB12BB42344E9EB005EB43F /* UIImageExtension.swift in Sources */,

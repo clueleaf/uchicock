@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         Style.loadTheme()
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
 
         let manager = FileManager.default
         let realmPath = GlobalConstants.DocumentDir.appendingPathComponent("default.realm")

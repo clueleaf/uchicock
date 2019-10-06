@@ -238,7 +238,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deM-ZR-Txj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1604" y="2610"/>
+            <point key="canvasLocation" x="-1609" y="2415"/>
         </scene>
         <!--Recover Preview Table View Controller-->
         <scene sceneID="WLQ-jl-Grh">
@@ -388,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWJ-xb-KLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-132" y="2610"/>
+            <point key="canvasLocation" x="-137" y="2415"/>
         </scene>
         <!--Basic Navigation Controller-->
         <scene sceneID="f47-XP-3i6">
@@ -404,7 +404,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVd-RV-2aD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="2610"/>
+            <point key="canvasLocation" x="-871" y="2415"/>
         </scene>
         <!--Basic Navigation Controller-->
         <scene sceneID="Z69-qE-Jvf">
@@ -420,7 +420,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyL-jJ-ajX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2420" y="2610"/>
+            <point key="canvasLocation" x="-2425" y="2415"/>
         </scene>
         <!--Introduction-->
         <scene sceneID="qZZ-wu-bAD">
@@ -428,7 +428,7 @@
                 <viewControllerPlaceholder storyboardName="Introduction" id="EyW-ad-CQ9" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvd-IF-B8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2572" y="1964"/>
+            <point key="canvasLocation" x="-2575" y="1917"/>
         </scene>
         <!--いろいろ-->
         <scene sceneID="TJG-ad-VtA">
@@ -539,13 +539,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-review" translatesAutoresizingMaskIntoConstraints="NO" id="MVo-5X-3zv">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-image" translatesAutoresizingMaskIntoConstraints="NO" id="MVo-5X-3zv">
                                                     <rect key="frame" x="8" y="18" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="nmC-Dp-1Wo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク！を応援する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存する画像サイズを変える" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="19.5" width="323" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -559,6 +559,36 @@
                                                 <constraint firstItem="QJ3-lv-2m4" firstAttribute="centerY" secondItem="5Ak-ER-9Tt" secondAttribute="centerY" id="Vaj-JK-lqb"/>
                                                 <constraint firstItem="QJ3-lv-2m4" firstAttribute="leading" secondItem="MVo-5X-3zv" secondAttribute="trailing" constant="8" id="f6w-NP-oIw"/>
                                                 <constraint firstAttribute="bottom" secondItem="MVo-5X-3zv" secondAttribute="bottom" constant="18" id="oPC-Xh-QdC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fIF-qU-LsL">
+                                        <rect key="frame" x="0.0" y="268" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fIF-qU-LsL" id="Cje-To-bX7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-review" translatesAutoresizingMaskIntoConstraints="NO" id="8jb-mE-tc4">
+                                                    <rect key="frame" x="8" y="18" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="ydc-Jp-cvE"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク！を応援する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw6-QS-dqn" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Aw6-QS-dqn" firstAttribute="leading" secondItem="8jb-mE-tc4" secondAttribute="trailing" constant="8" id="02F-4A-AiP"/>
+                                                <constraint firstItem="8jb-mE-tc4" firstAttribute="top" secondItem="Cje-To-bX7" secondAttribute="top" constant="18" id="WWr-zf-SeH"/>
+                                                <constraint firstAttribute="bottom" secondItem="8jb-mE-tc4" secondAttribute="bottom" constant="18" id="msv-IX-AQ6"/>
+                                                <constraint firstAttribute="trailing" secondItem="Aw6-QS-dqn" secondAttribute="trailing" constant="12" id="oXR-mp-S10"/>
+                                                <constraint firstItem="Aw6-QS-dqn" firstAttribute="centerY" secondItem="Cje-To-bX7" secondAttribute="centerY" id="opz-Tc-kT9"/>
+                                                <constraint firstItem="8jb-mE-tc4" firstAttribute="leading" secondItem="Cje-To-bX7" secondAttribute="leading" constant="8" id="u5J-SL-FGW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -576,12 +606,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="changeThemeImage" destination="Dr9-d1-ydn" id="qic-BF-A9G"/>
+                        <outlet property="imageSizeImage" destination="MVo-5X-3zv" id="SMB-jh-YXE"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>
-                        <outlet property="reviewImage" destination="MVo-5X-3zv" id="V5P-1y-yt5"/>
+                        <outlet property="reviewImage" destination="8jb-mE-tc4" id="gJg-bM-9Dl"/>
                         <segue destination="VGI-sz-djI" kind="presentation" identifier="PushRecoverRecipe" modalPresentationStyle="fullScreen" id="mMP-wU-Khq"/>
                         <segue destination="EyW-ad-CQ9" kind="presentation" identifier="usage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="H6Q-d3-WyA"/>
                         <segue destination="LHv-Sj-xL6" kind="show" identifier="ChangeTheme" id="znB-n7-Mwl"/>
+                        <segue destination="4Vv-dQ-BjR" kind="show" identifier="ChangeImageSize" id="LCq-9o-q0j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4X-xo-Jul" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -811,10 +843,106 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zon-7O-zFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2420" y="3358"/>
+            <point key="canvasLocation" x="-2425" y="3092"/>
+        </scene>
+        <!--画像サイズ-->
+        <scene sceneID="hVl-rl-sHz">
+            <objects>
+                <tableViewController id="4Vv-dQ-BjR" customClass="ChangeImageSizeTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="I0q-BP-3up">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection id="Roi-c5-jeR">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="26M-hQ-ySk">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="26M-hQ-ySk" id="SKv-to-MOf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icf-iq-8Sr">
+                                                    <rect key="frame" x="8" y="8" width="355" height="84"/>
+                                                    <string key="text">新たに画像を保存する場合のサイズを指定できます。
+既に保存されている画像のサイズは変更されません。</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="icf-iq-8Sr" secondAttribute="bottom" constant="8" id="0Wk-9U-mMK"/>
+                                                <constraint firstItem="icf-iq-8Sr" firstAttribute="top" secondItem="SKv-to-MOf" secondAttribute="top" constant="8" id="B8Z-sJ-yeJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="icf-iq-8Sr" secondAttribute="trailing" constant="12" id="Zvy-QE-rio"/>
+                                                <constraint firstItem="icf-iq-8Sr" firstAttribute="leading" secondItem="SKv-to-MOf" secondAttribute="leading" constant="8" id="eAD-PJ-eYP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="boZ-U9-zMj">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="boZ-U9-zMj" id="oXW-3o-WOG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uLy-mf-kQs">
+                                        <rect key="frame" x="0.0" y="171.5" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uLy-mf-kQs" id="tmM-Eq-7VB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="Dft-3f-G5i">
+                                        <rect key="frame" x="0.0" y="215" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dft-3f-G5i" id="otz-6v-tKT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwd-fJ-QQ6">
+                                                    <rect key="frame" x="8" y="8" width="355" height="184"/>
+                                                    <string key="text">全てこのサイズで保存した場合に必要なおおよその容量：
+画像10枚でxxMB
+画像50枚でxxMB
+画像100枚でxxMB</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="iwd-fJ-QQ6" secondAttribute="trailing" constant="12" id="0f2-Gk-108"/>
+                                                <constraint firstAttribute="bottom" secondItem="iwd-fJ-QQ6" secondAttribute="bottom" constant="8" id="BRo-Gx-Gsn"/>
+                                                <constraint firstItem="iwd-fJ-QQ6" firstAttribute="top" secondItem="otz-6v-tKT" secondAttribute="top" constant="8" id="Ufl-j4-XbB"/>
+                                                <constraint firstItem="iwd-fJ-QQ6" firstAttribute="leading" secondItem="otz-6v-tKT" secondAttribute="leading" constant="8" id="gen-7X-846"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="4Vv-dQ-BjR" id="ubN-BL-T5d"/>
+                            <outlet property="delegate" destination="4Vv-dQ-BjR" id="zXy-6k-GOA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="画像サイズ" id="Ztu-bx-LLU"/>
+                    <connections>
+                        <outlet property="explanationLabel" destination="icf-iq-8Sr" id="nhn-c9-390"/>
+                        <outlet property="sizeExplanationLabel" destination="iwd-fJ-QQ6" id="ITo-Qz-pbk"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ol0-tk-QdN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2432" y="3770"/>
         </scene>
     </scenes>
     <resources>
+        <image name="settings-image" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
         <image name="settings-review" width="24" height="24"/>

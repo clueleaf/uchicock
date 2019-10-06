@@ -13,6 +13,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!
     @IBOutlet weak var changeThemeImage: UIImageView!
+    @IBOutlet weak var imageSizeImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     
     var firstRequestReview = false
@@ -31,11 +32,12 @@ class SettingsTableViewController: UITableViewController {
         introductionImage.image = introductionImage.image!.withRenderingMode(.alwaysTemplate)
         recoverImage.image = recoverImage.image!.withRenderingMode(.alwaysTemplate)
         changeThemeImage.image = changeThemeImage.image!.withRenderingMode(.alwaysTemplate)
+        imageSizeImage.image = imageSizeImage.image!.withRenderingMode(.alwaysTemplate)
         reviewImage.image = reviewImage.image!.withRenderingMode(.alwaysTemplate)
         
         let defaults = UserDefaults.standard
         firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
-        alreadyWrittenReview = defaults.bool(forKey: "AlreadyWrittenReview")
+        alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
 
         self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -51,6 +53,7 @@ class SettingsTableViewController: UITableViewController {
         introductionImage.tintColor = Style.primaryColor
         recoverImage.tintColor = Style.primaryColor
         changeThemeImage.tintColor = Style.primaryColor
+        imageSizeImage.tintColor = Style.primaryColor
         reviewImage.tintColor = Style.primaryColor
 
         tableView.reloadData()        
@@ -63,9 +66,9 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if firstRequestReview == true, alreadyWrittenReview == false, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
-            return 4
+            return 5
         }else{
-            return 3
+            return 4
         }
     }
     
@@ -78,10 +81,12 @@ class SettingsTableViewController: UITableViewController {
         case 0:
             performSegue(withIdentifier: "usage", sender: nil)
         case 1:
-            performSegue(withIdentifier: "PushRecoverRecipe", sender: indexPath)
+            performSegue(withIdentifier: "PushRecoverRecipe", sender: nil)
         case 2:
-            performSegue(withIdentifier: "ChangeTheme", sender: indexPath)
+            performSegue(withIdentifier: "ChangeTheme", sender: nil)
         case 3:
+            performSegue(withIdentifier: "ChangeImageSize", sender: nil)
+        case 4:
             self.tableView.deselectRow(at: indexPath, animated: true)
             let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)

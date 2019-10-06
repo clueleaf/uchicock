@@ -612,16 +612,16 @@ struct Style{
     static func saveTheme(themeNo: String?){
         if let no = themeNo{
             let defaults = UserDefaults.standard
-            defaults.set(no, forKey: "Theme")
+            defaults.set(no, forKey: GlobalConstants.ColorThemeKey)
         }
     }
     
     static func loadTheme(){
         let defaults = UserDefaults.standard
-        if let themeNo = defaults.string(forKey: "Theme"){
+        if let themeNo = defaults.string(forKey: GlobalConstants.ColorThemeKey){
             setTheme(themeNo: themeNo)
         }else{
-            defaults.set("0", forKey: "Theme")
+            defaults.set("0", forKey: GlobalConstants.ColorThemeKey)
             tequilaSunriseLight()
             setGlobalTheme()
         }

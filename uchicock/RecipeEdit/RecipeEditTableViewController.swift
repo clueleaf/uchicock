@@ -409,8 +409,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let infoDic = Dictionary(uniqueKeysWithValues: info.map {key, value in (key.rawValue, value)})
 
+        let defaults = UserDefaults.standard
+        var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
+        if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+            imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
+        }
+
         if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
+            if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
@@ -423,7 +429,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.present(vc, animated: true)
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
+            if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
@@ -459,7 +465,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let pasteboard: UIPasteboard = UIPasteboard.general
         let pasteImage: UIImage? = pasteboard.image
         if let image = pasteImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
+            let defaults = UserDefaults.standard
+            var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
+            if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+                imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
+            }
+
+            if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
                     self.showCancelAlert = true
@@ -755,7 +767,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if fromViewController is PhotoFilterViewController{
             let pfvc = fromViewController as! PhotoFilterViewController
             let img = pfvc.imageView.image!
-            self.photo.image = img.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide)
+
+            let defaults = UserDefaults.standard
+            var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
+            if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+                imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
+            }
+
+            self.photo.image = img.resizedUIImage(maxLongSide: imageMaxLongSide)
             self.selectPhoto.text = "写真を変更"
             return true
         }
