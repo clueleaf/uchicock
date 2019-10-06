@@ -67,7 +67,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return UITableView.automaticDimension
-        }else if indexPath.section == 3{
+        }else if indexPath.row == 3{
             return UITableView.automaticDimension
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
