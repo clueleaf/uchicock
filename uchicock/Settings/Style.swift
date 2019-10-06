@@ -368,14 +368,14 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.skyBlueDark
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
     
     static func mimosaLight(){
@@ -414,14 +414,14 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.yellowDark
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
 
     static func pinkLadyLight(){
@@ -460,14 +460,14 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.pinkDark
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
     
     static func blackRussianDark(){
@@ -483,14 +483,14 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.sandDark
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
     
     static func shoyoJulingLight(){
@@ -529,14 +529,14 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.greenDark
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
     
     static func unionJackLight(){
@@ -573,16 +573,16 @@ struct Style{
         tableViewHeaderBackgroundColor = FlatColor.black
         tableViewHeaderTextColor = FlatColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
-        tableViewCellEditBackgroundColor = FlatColor.gray
+        tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.gray
+        labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.magenta
         tabBarBarTintColor = UIColor.black
-        tabBarUnselectedItemTintColor = FlatColor.gray
-        textFieldBorderColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
     }
 
     static func blueMoonLight(){
