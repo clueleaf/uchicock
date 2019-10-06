@@ -20,7 +20,6 @@ class PrepareViewController: UIViewController {
     @IBOutlet weak var prepareMessage: CustomLabel!
     
     var recipeList: Results<Recipe>?
-    var dbFileNameList: [String] = []
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -104,7 +103,7 @@ class PrepareViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // DBに名前がないが存在する画像を削除する処理
-        dbFileNameList = []
+        var dbFileNameList: [String] = []
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self)
         for recipe in recipeList!{
@@ -114,7 +113,7 @@ class PrepareViewController: UIViewController {
         }
         
         let fileManager = FileManager.default
-        let actualImageFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        var actualImageFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
         for actualImageFileName in actualImageFileNames ?? [] {
             if dbFileNameList.contains(actualImageFileName) == false{
                 let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualImageFileName + ".png")
@@ -122,11 +121,25 @@ class PrepareViewController: UIViewController {
             }
         }
         
-        let actualThumbnailFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ThumbnailFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        var actualThumbnailFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ThumbnailFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
         for actualThumbnailFileName in actualThumbnailFileNames ?? [] {
             if dbFileNameList.contains(actualThumbnailFileName) == false{
-                let imageFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualThumbnailFileName + ".png")
-                try? fileManager.removeItem(at: imageFilePath)
+                let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualThumbnailFileName + ".png")
+                try? fileManager.removeItem(at: thumbnailFilePath)
+            }
+        }
+        
+        // サムネイルがない画像のサムネイルを作成
+        actualImageFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        actualThumbnailFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ThumbnailFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        for actualImageFileName in actualImageFileNames ?? [] {
+            if let actualThumbnailFileNames = actualThumbnailFileNames, actualThumbnailFileNames.contains(actualImageFileName) == false{
+                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualImageFileName + ".png")
+                let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualImageFileName + ".png")
+                let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+                if let loadedImage = loadedImage{
+                    try? loadedImage.resizedUIImage(maxLongSide: GlobalConstants.ThumbnailMaxLongSide)?.pngData()?.write(to: thumbnailFilePath)
+                }
             }
         }
 

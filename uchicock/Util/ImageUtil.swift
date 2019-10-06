@@ -59,9 +59,7 @@ struct ImageUtil{
                 }
             }else{
                 let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                if let loadedImage = loadedImage{
-                    ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
-                }else{
+                if loadedImage == nil{
                     ImageCache.shared.removeObject(forKey: imageFileName as NSString)
                     try! realm.write{
                         recipe!.imageFileName = nil
