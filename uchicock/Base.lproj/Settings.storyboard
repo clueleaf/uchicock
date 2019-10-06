@@ -545,22 +545,35 @@
                                                         <constraint firstAttribute="width" constant="24" id="nmC-Dp-1Wo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保存する画像サイズを変える" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="19.5" width="323" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="保存する画像サイズを変える" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ3-lv-2m4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="19.5" width="307" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFA-IT-qu5">
+                                                    <rect key="frame" x="355" y="19.5" width="20" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="M8H-jP-8b5"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="QJ3-lv-2m4" secondAttribute="trailing" constant="12" id="1OP-SH-aPM"/>
                                                 <constraint firstItem="MVo-5X-3zv" firstAttribute="top" secondItem="5Ak-ER-9Tt" secondAttribute="top" constant="18" id="5OG-wE-r0k"/>
                                                 <constraint firstItem="MVo-5X-3zv" firstAttribute="leading" secondItem="5Ak-ER-9Tt" secondAttribute="leading" constant="8" id="5yq-1z-sSN"/>
+                                                <constraint firstItem="MFA-IT-qu5" firstAttribute="leading" secondItem="QJ3-lv-2m4" secondAttribute="trailing" constant="8" id="KFc-KP-RpX"/>
                                                 <constraint firstItem="QJ3-lv-2m4" firstAttribute="centerY" secondItem="5Ak-ER-9Tt" secondAttribute="centerY" id="Vaj-JK-lqb"/>
                                                 <constraint firstItem="QJ3-lv-2m4" firstAttribute="leading" secondItem="MVo-5X-3zv" secondAttribute="trailing" constant="8" id="f6w-NP-oIw"/>
                                                 <constraint firstAttribute="bottom" secondItem="MVo-5X-3zv" secondAttribute="bottom" constant="18" id="oPC-Xh-QdC"/>
+                                                <constraint firstAttribute="trailing" secondItem="MFA-IT-qu5" secondAttribute="trailing" id="zWp-od-EHF"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="MFA-IT-qu5" firstAttribute="centerY" secondItem="Lsu-l0-hyC" secondAttribute="centerY" id="SpI-Fd-CjN"/>
+                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fIF-qU-LsL">
                                         <rect key="frame" x="0.0" y="268" width="375" height="60"/>
@@ -606,6 +619,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="changeThemeImage" destination="Dr9-d1-ydn" id="qic-BF-A9G"/>
+                        <outlet property="currentImageSizeLabel" destination="MFA-IT-qu5" id="hW6-ZR-uLn"/>
                         <outlet property="imageSizeImage" destination="MVo-5X-3zv" id="SMB-jh-YXE"/>
                         <outlet property="introductionImage" destination="qXs-tz-aBk" id="7a3-iq-XBm"/>
                         <outlet property="recoverImage" destination="zzL-A5-2lO" id="oiu-I5-rvU"/>

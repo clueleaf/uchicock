@@ -44,10 +44,10 @@ class ChangeImageSizeTableViewController: UITableViewController {
     
     func setSizeExplanationText(){
         let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
-        if saveImageSize == 0{
-            self.sizeExplanationLabel.text = middleSizeExplanationText
-        }else if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+        if saveImageSize == 1{
             self.sizeExplanationLabel.text = largeSizeExplanationText
+        }else{
+            self.sizeExplanationLabel.text = middleSizeExplanationText
         }
     }
 

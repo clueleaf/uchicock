@@ -15,7 +15,9 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var changeThemeImage: UIImageView!
     @IBOutlet weak var imageSizeImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
+    @IBOutlet weak var currentImageSizeLabel: UILabel!
     
+    let defaults = UserDefaults.standard
     var firstRequestReview = false
     var alreadyWrittenReview = false
     let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
@@ -56,7 +58,15 @@ class SettingsTableViewController: UITableViewController {
         imageSizeImage.tintColor = Style.primaryColor
         reviewImage.tintColor = Style.primaryColor
 
-        tableView.reloadData()        
+        currentImageSizeLabel.textColor = Style.labelTextColorLight
+        let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
+        if saveImageSize == 1{
+            currentImageSizeLabel.text = "大"
+        }else{
+            currentImageSizeLabel.text = "中"
+        }
+
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
