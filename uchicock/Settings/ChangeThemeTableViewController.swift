@@ -45,7 +45,7 @@ class ChangeThemeTableViewController: UITableViewController {
         "ユニオンジャック - ライト",
         "ユニオンジャック - ダーク",
         "ブルームーン - ライト",
-         ]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
