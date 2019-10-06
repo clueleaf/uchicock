@@ -259,7 +259,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             deletingRecipeIngredientList.append(recipeIngredient)
         }
         
-        _ = ImageUtil.remove(imageFileName: recipe.imageFileName)
+        ImageUtil.remove(imageFileName: recipe.imageFileName)
         try! realm.write{
             for ri in deletingRecipeIngredientList{
                 let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!

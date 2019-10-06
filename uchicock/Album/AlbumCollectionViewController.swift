@@ -294,7 +294,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
 
-        if let image = ImageUtil.loadImageOf(recipeId: filteredRecipeBasicList[indexPath.row].id, useCache: true) {
+        if let image = ImageUtil.loadImageOf(recipeId: filteredRecipeBasicList[indexPath.row].id, forList: true) {
             cell.photo.image = image
             cell.recipeName.text = filteredRecipeBasicList[indexPath.row].name
             cell.recipeName.textColor = FlatColor.white

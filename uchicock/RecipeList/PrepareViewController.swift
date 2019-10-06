@@ -114,14 +114,23 @@ class PrepareViewController: UIViewController {
         }
         
         let fileManager = FileManager.default
-        let actualFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
-        for actualFileName in actualFileNames ?? [] {
-            if dbFileNameList.contains(actualFileName) == false{
-                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualFileName + ".png")
+        let actualImageFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        for actualImageFileName in actualImageFileNames ?? [] {
+            if dbFileNameList.contains(actualImageFileName) == false{
+                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualImageFileName + ".png")
+                try? fileManager.removeItem(at: imageFilePath)
+            }
+        }
+        
+        let actualThumbnailFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ThumbnailFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
+        for actualThumbnailFileName in actualThumbnailFileNames ?? [] {
+            if dbFileNameList.contains(actualThumbnailFileName) == false{
+                let imageFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualThumbnailFileName + ".png")
                 try? fileManager.removeItem(at: imageFilePath)
             }
         }
 
+        // 念のためにレシピの不足材料数を一括更新
         try! realm.write {
             for recipe in recipeList!{
                 recipe.updateShortageNum()

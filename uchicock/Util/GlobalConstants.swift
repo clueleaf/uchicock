@@ -11,7 +11,10 @@ import UIKit
 struct GlobalConstants{
     // MARK: - File Manager
     static let DocumentDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    static let RecipeImagesDirectory = "recipeImages"
+    static let RecipeThumbnailsDirectory = "recipeThumbnails"
     static let ImageFolderPath = GlobalConstants.DocumentDir.appendingPathComponent(GlobalConstants.RecipeImagesDirectory)
+    static let ThumbnailFolderPath = GlobalConstants.DocumentDir.appendingPathComponent(GlobalConstants.RecipeThumbnailsDirectory)
 
     // MARK: - Database Version
     static let RealmSchemaVersion: UInt64 = 8
@@ -104,9 +107,7 @@ struct GlobalConstants{
     static let IntroductionDescriptionReverseLookup = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「あの材料とあの材料を使うカクテル何だっけ？」\nそんなときに活用しよう！"
     static let IntroductionDescriptionAlbum = "アプリに登録されているレシピの写真だけを取り出して表示します。\n表示順をシャッフルして、気まぐれにカクテルを選んでみては？"
     
-    // MARK: - Directory
-    static let RecipeImagesDirectory = "recipeImages"
-    
     // MARK: - Image
-    static let ImageMaxLongSide: CGFloat = 1024
+    static let MiddleImageMaxLongSide: CGFloat = 1024
+    static let ThumbnailMaxLongSide: CGFloat = 256
 }

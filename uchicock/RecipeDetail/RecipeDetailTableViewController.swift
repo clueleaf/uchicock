@@ -124,7 +124,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
             
             noPhotoFlag = false
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: false){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
                 photo.image = image
                 if image.size.width > image.size.height{
                     photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
@@ -300,7 +300,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
         if noPhotoFlag == false{
-            if ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true) != nil {
+            if ImageUtil.loadImageOf(recipeId: recipe.id, forList: true) != nil {
                 let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                 let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
                 ivc.originalImageView = photo
@@ -659,7 +659,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 deletingRecipeIngredientList.append(recipeIngredient)
             }
             
-            _ = ImageUtil.remove(imageFileName: self.recipe.imageFileName)
+            ImageUtil.remove(imageFileName: self.recipe.imageFileName)
             try! realm.write{
                 for ri in deletingRecipeIngredientList{
                     let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!

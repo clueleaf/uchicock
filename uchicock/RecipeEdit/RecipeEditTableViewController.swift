@@ -52,8 +52,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
         
-        if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: false){
-            photo.image = image.resizedUIImage(maxLongSide: GlobalConstants.ImageMaxLongSide)
+        if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
+            photo.image = image
         }
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
@@ -410,7 +410,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let infoDic = Dictionary(uniqueKeysWithValues: info.map {key, value in (key.rawValue, value)})
 
         if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.ImageMaxLongSide){
+            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
@@ -423,7 +423,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.present(vc, animated: true)
             }
         }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.ImageMaxLongSide){
+            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
@@ -459,7 +459,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let pasteboard: UIPasteboard = UIPasteboard.general
         let pasteImage: UIImage? = pasteboard.image
         if let image = pasteImage{
-            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.ImageMaxLongSide){
+            if let img = image.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide){
                 alert.addAction(UIAlertAction(title: "クリップボードからペースト",style: .default, handler:{
                     action in
                     self.showCancelAlert = true
@@ -662,7 +662,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }else{
                             recipe.imageFileName = nil
                         }
-                        _ = ImageUtil.remove(imageFileName: oldImageFileName)
+                        ImageUtil.remove(imageFileName: oldImageFileName)
 
                         recipe.style = style.selectedSegmentIndex
                         recipe.method = method.selectedSegmentIndex
@@ -755,7 +755,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if fromViewController is PhotoFilterViewController{
             let pfvc = fromViewController as! PhotoFilterViewController
             let img = pfvc.imageView.image!
-            self.photo.image = img.resizedUIImage(maxLongSide: GlobalConstants.ImageMaxLongSide)
+            self.photo.image = img.resizedUIImage(maxLongSide: GlobalConstants.MiddleImageMaxLongSide)
             self.selectPhoto.text = "写真を変更"
             return true
         }

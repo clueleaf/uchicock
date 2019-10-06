@@ -11,17 +11,22 @@ import RealmSwift
 
 struct ImageUtil{
     static func saveToCache(imageFileName: String?){
-
         if let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil {
-            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
-            let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-            if let loadedImage = loadedImage{
-                ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
+            let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
+            if let loadedThumbnail = loadedThumbnail{
+                ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName as NSString)
+            }else{
+                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
+                let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+                if let loadedImage = loadedImage{
+                    ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+                }
             }
         }
     }
     
-    static func loadImageOf(recipeId: String, useCache: Bool) -> UIImage? {
+    static func loadImageOf(recipeId: String, forList: Bool) -> UIImage? {
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         guard recipe != nil else{
@@ -30,20 +35,27 @@ struct ImageUtil{
 
         if let imageFileName = recipe!.imageFileName{
             let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
-            
-            if useCache{
+            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
+
+            if forList{
                 if let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
                     return cachedData
                 }else{
-                    let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                    if let loadedImage = loadedImage{
-                        ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+                    let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
+                    if let loadedThumbnail = loadedThumbnail{
+                        ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName as NSString)
+                        return loadedThumbnail
                     }else{
-                        try! realm.write{
-                            recipe!.imageFileName = nil
+                        let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+                        if let loadedImage = loadedImage{
+                            ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
+                        }else{
+                            try! realm.write{
+                                recipe!.imageFileName = nil
+                            }
                         }
+                        return loadedImage
                     }
-                    return loadedImage
                 }
             }else{
                 let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
@@ -64,29 +76,27 @@ struct ImageUtil{
     
     static func save(image: UIImage, toFileName imageFileName: String) -> Bool{
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
+        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
         do {
             try FileManager.default.createDirectory(atPath: GlobalConstants.ImageFolderPath.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: GlobalConstants.ThumbnailFolderPath.path, withIntermediateDirectories: true, attributes: nil)
             // 万が一の不整合のためにキャッシュをクリアしておく
             ImageCache.shared.removeObject(forKey: imageFileName as NSString)
             try image.pngData()?.write(to: imageFilePath)
+            try image.resizedUIImage(maxLongSide: GlobalConstants.ThumbnailMaxLongSide)?.pngData()?.write(to: thumbnailFilePath)
             return true
         }catch{
             return false
         }
     }
     
-    static func remove(imageFileName: String?) -> Bool{
+    static func remove(imageFileName: String?){
         if let imageFileName = imageFileName{
-            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
             ImageCache.shared.removeObject(forKey: imageFileName as NSString)
-            do{
-                try FileManager.default.removeItem(at: imageFilePath)
-                return true
-            }catch{
-                return false
-            }
-        }else{
-            return false
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
+            try? FileManager.default.removeItem(at: imageFilePath)
+            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
+            try? FileManager.default.removeItem(at: thumbnailFilePath)
         }
     }
 }

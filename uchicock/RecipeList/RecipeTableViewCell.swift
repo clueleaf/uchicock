@@ -25,7 +25,7 @@ class RecipeTableViewCell: UITableViewCell {
             accesoryImageView.tintColor = Style.labelTextColorLight
             self.accessoryView = accesoryImageView
 
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, useCache: true){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: true){
                 self.photo.image = image
             }else{
                 if Style.isDark{
