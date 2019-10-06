@@ -454,7 +454,7 @@ struct Style{
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.pinkDark
-        basicBackgroundColor = FlatColor.black
+        basicBackgroundColor = UIColor.black
         tableViewHeaderBackgroundColor = FlatColor.black
         tableViewHeaderTextColor = UIColor.white
         tableViewCellSelectedBackgroundColor = FlatColor.black
