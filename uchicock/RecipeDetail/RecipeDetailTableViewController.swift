@@ -15,6 +15,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CopyableLabel!
+    @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
     @IBOutlet weak var methodTipButton: UIButton!
@@ -149,6 +150,29 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateHeaderView()
 
             recipeName.text = recipe.recipeName
+            
+            switch recipe.shortageNum {
+            case 0:
+                shortageLabel.text = "すぐ作れる！"
+                shortageLabel.textColor = Style.primaryColor
+                shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
+            case 1:
+                var shortageName = ""
+                for recipeIngredient in recipe.recipeIngredients{
+                    if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
+                        shortageName = recipeIngredient.ingredient.ingredientName
+                        break
+                    }
+                }
+                shortageLabel.text = shortageName + "が足りません"
+                shortageLabel.textColor = Style.labelTextColorLight
+                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+            default:
+                shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
+                shortageLabel.textColor = Style.labelTextColorLight
+                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+            }
+            
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm"
             lastViewDateLabel.text = recipe.lastViewDate == nil ? "最終閲覧：--" : "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
