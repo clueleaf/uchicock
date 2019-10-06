@@ -415,20 +415,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
         }
 
-        if let image = infoDic[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage{
-            if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
-                self.photo.isHidden = true
-                ipc.dismiss(animated: false, completion: nil)
-                self.showCancelAlert = true
-                let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
-                vc.image = img
-                vc.originalImageView = self.photo
-                vc.modalPresentationStyle = .overFullScreen
-                vc.modalTransitionStyle = .coverVertical
-                self.present(vc, animated: true)
-            }
-        }else if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
+        if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
                 self.photo.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
@@ -458,7 +445,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title: "写真を選択",style: .default, handler:{
             action in
             self.ipc.sourceType = .photoLibrary
-            self.ipc.allowsEditing = true
+            self.ipc.allowsEditing = false
             self.ipc.modalPresentationStyle = .fullScreen
             self.present(self.ipc, animated: true, completion: nil)
         }))

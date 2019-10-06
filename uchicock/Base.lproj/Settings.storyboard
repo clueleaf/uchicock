@@ -906,9 +906,9 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwd-fJ-QQ6">
                                                     <rect key="frame" x="8" y="8" width="355" height="184"/>
                                                     <string key="text">全てこのサイズで保存した場合に必要なおおよその容量：
-画像10枚でxxMB
-画像50枚でxxMB
-画像100枚でxxMB</string>
+画像10枚で約25MB
+画像50枚で約125MB
+画像100枚で約250MB</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
