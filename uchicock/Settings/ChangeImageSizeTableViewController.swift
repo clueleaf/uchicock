@@ -14,8 +14,8 @@ class ChangeImageSizeTableViewController: UITableViewController {
     @IBOutlet weak var sizeExplanationLabel: UILabel!
     let defaults = UserDefaults.standard
     
-    let middleSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n画像10枚で約25MB\n画像50枚で約125MB\n画像100枚で約250MB"
-    let largeSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n画像10枚で約100MB\n画像50枚で約500MB\n画像100枚で約1GB"
+    let middleSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n\n画像10枚で約25MB\n画像50枚で約125MB\n画像100枚で約250MB"
+    let largeSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n\n画像10枚で約100MB\n画像50枚で約500MB\n画像100枚で約1GB"
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
