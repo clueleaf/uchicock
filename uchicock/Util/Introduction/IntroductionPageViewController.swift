@@ -28,29 +28,50 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if ["0","1"].contains(Style.no) {
-            backgroundImage = UIImage(named:"launch-background")
+        switch Style.no{
+        case "0":
+            backgroundImage = UIImage(named:"background-tequila-sunrise")
             isTextColorBlack = false
             isPageControlBlack = false
-        }else if ["12"].contains(Style.no) {
-            backgroundImage = UIImage(named:"american-lemonade-background")
+        case "7":
+            backgroundImage = UIImage(named:"background-irish-coffee")
+            isTextColorBlack = false
+            isPageControlBlack = false
+        case "8":
+            backgroundImage = UIImage(named:"background-mojito")
+            isTextColorBlack = true
+            isPageControlBlack = true
+        case "9":
+            backgroundImage = UIImage(named:"background-red-eye")
+            isTextColorBlack = true
+            isPageControlBlack = false
+        case "12":
+            backgroundImage = UIImage(named:"background-american-lemonade")
             isTextColorBlack = false
             isPageControlBlack = true
-        }else if ["8","13","15","17","20","22"].contains(Style.no) {
+        case "17":
+            backgroundImage = UIImage(named:"background-pink-lady")
+            isTextColorBlack = true
+            isPageControlBlack = false
+        case "1","3","5","10":
+            backgroundImage = getUIImage(from: Style.basicBackgroundColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
+        case "13","15","20","22":
             backgroundImage = getUIImage(from: Style.primaryColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
-        }else{
+        default:
             backgroundImage = getUIImage(from: Style.navigationBarColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
         }
-        if ["2","10","17"].contains(Style.no) {
+        if ["2","10"].contains(Style.no) {
             isTextColorBlack = false
             isPageControlBlack = false
         }
         if backgroundImage == nil{
-            backgroundImage = UIImage(named:"launch-background")
+            backgroundImage = UIImage(named:"background-tequila-sunrise")
         }        
         
         currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
