@@ -43,6 +43,11 @@ class PrepareViewController: UIViewController {
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         
+        let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = Style.labelTextColorLight
+
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.layer.borderColor = Style.textFieldBorderColor.cgColor
             searchBar.searchTextField.layer.borderWidth = 1.0
@@ -58,7 +63,7 @@ class PrepareViewController: UIViewController {
                         for subsubview in subview.subviews{
                             if subsubview is UILabel{
                                 let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = Style.labelTextColor
+                                placeholderLabel.textColor = Style.labelTextColorLight
                             }
                         }
                     }

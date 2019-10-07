@@ -685,7 +685,6 @@ struct Style{
     
     static private func customizeBarButtonItem(){
         let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
     }
     
@@ -695,8 +694,6 @@ struct Style{
         // テーマカラー変更のチェックマークの色ために必要
         UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.primaryColor
 
-        UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = contentColor
-        UIButton.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = UIColor.clear
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
     }
