@@ -17,7 +17,8 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var introductions: [introductionInfo] = []
     var VCs: [IntroductionDetailViewController] = []
     var backgroundImage: UIImage? = nil
-    
+    var isTextColorBlack = false
+
     var currentStatusBarStyle: UIStatusBarStyle = .lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentStatusBarStyle
@@ -26,7 +27,6 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var isTextColorBlack = false
         if ["0","1"].contains(Style.no) {
             backgroundImage = UIImage(named:"launch-background")
             isTextColorBlack = false
@@ -62,6 +62,22 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         for v in self.view.subviews{
             if v.isKind(of: UIScrollView.self){
                 (v as! UIScrollView).delegate = self
+            }
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for subview in self.view.subviews {
+            if subview is UIPageControl {
+                let pageControl = subview as! UIPageControl
+                if isTextColorBlack {
+                    pageControl.currentPageIndicatorTintColor = FlatColor.black
+                    pageControl.pageIndicatorTintColor = FlatColor.black.withAlphaComponent(0.3)
+                }else{
+                    pageControl.currentPageIndicatorTintColor = FlatColor.white
+                    pageControl.pageIndicatorTintColor = FlatColor.white.withAlphaComponent(0.3)
+                }
             }
         }
     }
