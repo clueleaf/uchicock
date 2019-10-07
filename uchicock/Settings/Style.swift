@@ -95,9 +95,9 @@ struct Style{
         labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         deleteColor = FlatColor.red
-        tabBarTintColor = UIColor.white
+        tabBarTintColor = UIColor(red:0.35, green:0.2, blue:0.3, alpha:1.0)
         tabBarBarTintColor = FlatColor.pink
-        tabBarUnselectedItemTintColor = UIColor(red:0.35, green:0.2, blue:0.3, alpha:1.0)
+        tabBarUnselectedItemTintColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         textFieldBorderColor = FlatColor.whiteDark
     }
     
@@ -141,9 +141,9 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.red
-        tabBarTintColor = FlatColor.white
+        tabBarTintColor = UIColor(red:0.2, green:0.2, blue:0.3, alpha:1.0)
         tabBarBarTintColor = FlatColor.skyBlue
-        tabBarUnselectedItemTintColor = UIColor(red:0.2, green:0.2, blue:0.3, alpha:1.0)
+        tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
     }
 
@@ -187,9 +187,9 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.mint
         deleteColor = FlatColor.watermelon
-        tabBarTintColor = UIColor.white
+        tabBarTintColor = FlatColor.black
         tabBarBarTintColor = FlatColor.mint
-        tabBarUnselectedItemTintColor = FlatColor.whiteDark
+        tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
     }
 
@@ -212,7 +212,7 @@ struct Style{
         deleteColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.coffeeDark
-        tabBarUnselectedItemTintColor = FlatColor.gray
+        tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
     }
     
@@ -256,9 +256,9 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.white
+        tabBarTintColor = FlatColor.black
         tabBarBarTintColor = FlatColor.watermelonDark
-        tabBarUnselectedItemTintColor = FlatColor.whiteDark
+        tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
     }
     
@@ -395,7 +395,7 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.orangeDark
+        tabBarTintColor = FlatColor.orange
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
@@ -487,9 +487,9 @@ struct Style{
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.sandDark
+        tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.black
-        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        tabBarUnselectedItemTintColor = FlatColor.coffee
         textFieldBorderColor = FlatColor.grayDark
     }
     
@@ -510,7 +510,7 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.watermelon
-        tabBarTintColor = FlatColor.greenDark
+        tabBarTintColor = FlatColor.green
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
@@ -533,7 +533,7 @@ struct Style{
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.greenDark
+        tabBarTintColor = FlatColor.green
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
@@ -556,7 +556,7 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
         deleteColor = FlatColor.red
-        tabBarTintColor = FlatColor.purple
+        tabBarTintColor = FlatColor.purpleDark
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.whiteDark
@@ -602,9 +602,9 @@ struct Style{
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.powderBlue
         deleteColor = FlatColor.red
-        tabBarTintColor = FlatColor.blue
+        tabBarTintColor = FlatColor.blueDark
         tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
-        tabBarUnselectedItemTintColor = FlatColor.whiteDark
+        tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.gray
     }
     
