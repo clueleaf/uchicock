@@ -124,21 +124,25 @@ struct FlatColor{
     static let watermelonDark = UIColor(hue: 358/360, saturation: 61/100, brightness: 85/100, alpha: 1)
     
     static func contrastColorOf(_ primeColor: UIColor, isFlat: Bool) -> UIColor{
+        if isFlat{
+            return isContractColorBlack(primeColor: primeColor) ? self.black : self.white
+        }else{
+            return isContractColorBlack(primeColor: primeColor) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+    }
+    
+    static func isContractColorBlack(primeColor: UIColor) -> Bool{
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        primeColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)        
+        primeColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         red *= 0.2126
         green *= 0.7152
         blue *= 0.0722
         let luminance = red + green + blue
-        if isFlat{
-            return (luminance > 0.6) ? self.black : self.white
-        }else{
-            return (luminance > 0.6) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        }
+        return luminance > 0.6
     }
     
 }

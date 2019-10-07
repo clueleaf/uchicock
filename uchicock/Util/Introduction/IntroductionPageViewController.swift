@@ -26,14 +26,22 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var textColor = FlatColor.white
+        var isTextColorBlack = false
         if ["0","1"].contains(Style.no) {
             backgroundImage = UIImage(named:"launch-background")
-            textColor = FlatColor.white
+            isTextColorBlack = false
+        }else if ["8","22"].contains(Style.no) {
+            backgroundImage = getUIImage(from: Style.primaryColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
+        }else if ["14","16","18","19","21","23"].contains(Style.no) {
+            backgroundImage = getUIImage(from: Style.basicBackgroundColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
         }else{
             backgroundImage = getUIImage(from: Style.navigationBarColor)
-            textColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
         }
+        
+        currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
 
         UIGraphicsBeginImageContext(self.view.frame.size)
         backgroundImage!.draw(in: self.view.bounds)
@@ -45,7 +53,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
-            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, textColor: textColor)
+            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, isTextColorBlack: isTextColorBlack)
             VCs.append(VC)
         }
         
@@ -66,13 +74,13 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, textColor: UIColor) -> IntroductionDetailViewController{
+    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, isTextColorBlack: Bool) -> IntroductionDetailViewController{
         let infoVC = sb.instantiateViewController(withIdentifier: "IntroductionDetail") as! IntroductionDetailViewController
         infoVC.number = number
         infoVC.titleString = infoTitle
         infoVC.descriptionString = description
         infoVC.image = image
-        infoVC.textColor = textColor
+        infoVC.isTextColorBlack = isTextColorBlack
         return infoVC
     }
     

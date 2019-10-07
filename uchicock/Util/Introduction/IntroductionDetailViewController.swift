@@ -20,20 +20,20 @@ class IntroductionDetailViewController: UIViewController {
     var descriptionString: String?
     var image: UIImage?
     var number: Int?
-    var textColor: UIColor = FlatColor.white
+    var isTextColorBlack = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleString
         titleLabel.alpha = 0.0
-        titleLabel.textColor = textColor
+        titleLabel.textColor = isTextColorBlack ? FlatColor.black : FlatColor.white
         descriptionLabel.text = descriptionString
         descriptionLabel.alpha = 0.0
-        descriptionLabel.textColor = textColor
+        descriptionLabel.textColor = isTextColorBlack ? FlatColor.black : FlatColor.white
         imageView.image = image
         imageView.alpha = 0.0
         skipButton.alpha = 0.0
-        skipButton.setTitleColor(textColor, for: .normal)
+        skipButton.setTitleColor((isTextColorBlack ? FlatColor.black : FlatColor.white), for: .normal)
         self.view.backgroundColor = UIColor.clear
         
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
