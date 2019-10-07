@@ -18,6 +18,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var VCs: [IntroductionDetailViewController] = []
     var backgroundImage: UIImage? = nil
     var isTextColorBlack = false
+    var isPageControlBlack = false
 
     var currentStatusBarStyle: UIStatusBarStyle = .lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -30,15 +31,24 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         if ["0","1"].contains(Style.no) {
             backgroundImage = UIImage(named:"launch-background")
             isTextColorBlack = false
+            isPageControlBlack = false
+        }else if ["12"].contains(Style.no) {
+            // TODO: アメリカンレモネードの色特別扱い
+            backgroundImage = getUIImage(from: Style.navigationBarColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
         }else if ["8","22"].contains(Style.no) {
             backgroundImage = getUIImage(from: Style.primaryColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
         }else if ["14","16","18","19","21","23"].contains(Style.no) {
             backgroundImage = getUIImage(from: Style.basicBackgroundColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
         }else{
             backgroundImage = getUIImage(from: Style.navigationBarColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
         }
         
         currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
@@ -71,7 +81,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         for subview in self.view.subviews {
             if subview is UIPageControl {
                 let pageControl = subview as! UIPageControl
-                if isTextColorBlack {
+                if isPageControlBlack {
                     pageControl.currentPageIndicatorTintColor = FlatColor.black
                     pageControl.pageIndicatorTintColor = FlatColor.black.withAlphaComponent(0.3)
                 }else{
