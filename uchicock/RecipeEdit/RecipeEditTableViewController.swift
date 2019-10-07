@@ -811,14 +811,3 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return interactor.hasStarted ? interactor : nil
     }
 }
-
-// ImagePickerの切り取る範囲がずれる問題へのワークアラウンド
-extension UIImagePickerController {
-    open override var childForStatusBarHidden: UIViewController? {
-        return nil
-    }
-    
-    open override var prefersStatusBarHidden: Bool {
-        return true
-    }
-}
