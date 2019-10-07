@@ -27,7 +27,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         super.viewDidLoad()
         
         var textColor = FlatColor.white
-        if Style.no == "0" || Style.no == "1"{
+        if ["0","1"].contains(Style.no) {
             backgroundImage = UIImage(named:"launch-background")
             textColor = FlatColor.white
         }else{
