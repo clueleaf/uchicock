@@ -33,11 +33,10 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             isTextColorBlack = false
             isPageControlBlack = false
         }else if ["12"].contains(Style.no) {
-            // TODO: アメリカンレモネードの色特別扱い
-            backgroundImage = getUIImage(from: Style.navigationBarColor)
-            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
-            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
-        }else if ["8","22"].contains(Style.no) {
+            backgroundImage = UIImage(named:"american-lemonade-background")
+            isTextColorBlack = false
+            isPageControlBlack = true
+        }else if ["8","13","15","17","20","22"].contains(Style.no) {
             backgroundImage = getUIImage(from: Style.primaryColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
@@ -50,6 +49,13 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
         }
+        if ["2","10","17"].contains(Style.no) {
+            isTextColorBlack = false
+            isPageControlBlack = false
+        }
+        if backgroundImage == nil{
+            backgroundImage = UIImage(named:"launch-background")
+        }        
         
         currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
 
@@ -63,7 +69,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
-            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, isTextColorBlack: isTextColorBlack)
+            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, isTextColorBlack: isTextColorBlack, isSkipButtonBlack: isPageControlBlack)
             VCs.append(VC)
         }
         
@@ -100,17 +106,18 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, isTextColorBlack: Bool) -> IntroductionDetailViewController{
+    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, isTextColorBlack: Bool, isSkipButtonBlack: Bool) -> IntroductionDetailViewController{
         let infoVC = sb.instantiateViewController(withIdentifier: "IntroductionDetail") as! IntroductionDetailViewController
         infoVC.number = number
         infoVC.titleString = infoTitle
         infoVC.descriptionString = description
         infoVC.image = image
         infoVC.isTextColorBlack = isTextColorBlack
+        infoVC.isSkipButtonBlack = isSkipButtonBlack
         return infoVC
     }
     
-    func getUIImage(from: UIColor) -> UIImage {
+    func getUIImage(from: UIColor) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let contextRef = UIGraphicsGetCurrentContext()
@@ -118,7 +125,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         contextRef?.fill(rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return img!
+        return img
     }
     
     // MARK: - UIScrollViewDelegate

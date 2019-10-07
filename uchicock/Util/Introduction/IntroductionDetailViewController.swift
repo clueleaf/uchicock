@@ -21,6 +21,7 @@ class IntroductionDetailViewController: UIViewController {
     var image: UIImage?
     var number: Int?
     var isTextColorBlack = false
+    var isSkipButtonBlack = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class IntroductionDetailViewController: UIViewController {
         imageView.image = image
         imageView.alpha = 0.0
         skipButton.alpha = 0.0
-        skipButton.setTitleColor((isTextColorBlack ? FlatColor.black : FlatColor.white), for: .normal)
+        skipButton.setTitleColor((isSkipButtonBlack ? FlatColor.black : FlatColor.white), for: .normal)
         self.view.backgroundColor = UIColor.clear
         
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
