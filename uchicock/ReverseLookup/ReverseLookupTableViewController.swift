@@ -30,7 +30,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
-    var safeAreaHeight: CGFloat = 0
     var transitioningSection1 = false
     var shouldHideSearchCell = false
     
@@ -97,9 +96,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setupVC(){
-        let window = UIApplication.shared.keyWindow
-        safeAreaHeight = view.frame.size.height - window!.safeAreaInsets.top - window!.safeAreaInsets.bottom
-        
         let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
         
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
@@ -815,9 +811,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }
             }else if indexPath.section == 1{
                 if shouldHideSearchCell {
-                    return safeAreaHeight - 35 * 3
+                    return view.frame.size.height - 35 * 3
                 }else{
-                    return safeAreaHeight - 35 * 3 - 72
+                    return view.frame.size.height - 35 * 3 - 72
                 }
             }
         }else if tableView.tag == 1{
