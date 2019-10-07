@@ -40,10 +40,6 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             backgroundImage = getUIImage(from: Style.primaryColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
             isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
-        }else if ["14","16","18","19","21","23"].contains(Style.no) {
-            backgroundImage = getUIImage(from: Style.basicBackgroundColor)
-            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
-            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
         }else{
             backgroundImage = getUIImage(from: Style.navigationBarColor)
             isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
