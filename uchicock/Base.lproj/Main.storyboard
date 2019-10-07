@@ -342,7 +342,7 @@
             <objects>
                 <tableViewController id="AvE-Vu-UgF" customClass="ReverseLookupTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eaH-Hq-FHn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="475"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
@@ -820,7 +820,7 @@
             <objects>
                 <tabBarController id="w1V-m1-dXG" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="pe0-Ac-2JV"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="ZnX-ix-bqW" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZnX-ix-bqW" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

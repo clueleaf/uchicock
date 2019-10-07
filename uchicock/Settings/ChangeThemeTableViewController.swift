@@ -67,6 +67,13 @@ class ChangeThemeTableViewController: UITableViewController {
         
         if hasScrolled == false{
             tableView.contentOffset.y = (CGFloat((Int(Style.no)!) + 1) * cellHeight) - (tableView.frame.height / 2)
+            if tableView.contentOffset.y < 0 {
+                tableView.contentOffset.y = 0
+            }
+            let maximumOffset = max(-tableView.contentInset.top, tableView.contentSize.height - tableView.bounds.size.height + tableView.contentInset.bottom)
+            if tableView.contentOffset.y > maximumOffset{
+                tableView.contentOffset.y = maximumOffset
+            }
             tableView.reloadData()
             hasScrolled = true
         }
