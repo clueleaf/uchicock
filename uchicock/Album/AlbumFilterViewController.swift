@@ -121,22 +121,22 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
 
         filterExplanationLabel.textColor = Style.labelTextColorLight
         
-        favoriteDeselectAllButton.tintColor = Style.deleteColor
-        favoriteSelectAllButton.tintColor = Style.primaryColor
+        favoriteDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
+        favoriteSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
         
-        styleDeselectAllButton.tintColor = Style.deleteColor
-        styleSelectAllButton.tintColor = Style.primaryColor
+        styleDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
+        styleSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
         
-        methodDeselectAllButton.tintColor = Style.deleteColor
-        methodSelectAllButton.tintColor = Style.primaryColor
+        methodDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
+        methodSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
         methodWarningLabel.textColor = Style.deleteColor
@@ -147,7 +147,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         searchButton.layer.borderColor = Style.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
-        searchButton.tintColor = Style.primaryColor
+        searchButton.setTitleColor(Style.primaryColor, for: .normal)
     }
     
     private func setFavoriteWarningVisibility(){

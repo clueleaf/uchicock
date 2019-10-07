@@ -141,9 +141,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         selectPhoto.textColor = Style.primaryColor
-        star1.tintColor = Style.primaryColor
-        star2.tintColor = Style.primaryColor
-        star3.tintColor = Style.primaryColor
+        star1.setTitleColor(Style.primaryColor, for: .normal)
+        star2.setTitleColor(Style.primaryColor, for: .normal)
+        star3.setTitleColor(Style.primaryColor, for: .normal)
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
         

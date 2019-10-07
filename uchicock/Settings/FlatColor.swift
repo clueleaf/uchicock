@@ -135,7 +135,7 @@ struct FlatColor{
         blue *= 0.0722
         let luminance = red + green + blue
         if isFlat{
-            return (luminance > 0.6) ? UIColor(hue: 0/360, saturation: 0/100, brightness: 15/100, alpha: 1) : UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
+            return (luminance > 0.6) ? self.black : self.white
         }else{
             return (luminance > 0.6) ? UIColor(red: 0, green: 0, blue: 0, alpha: 1) : UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         }

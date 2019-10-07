@@ -16,7 +16,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var isEnd = false
     var introductions: [introductionInfo] = []
     var VCs: [IntroductionDetailViewController] = []
-    var backgroundImage: UIImage!
+    var backgroundImage: UIImage? = nil
     
     var currentStatusBarStyle: UIStatusBarStyle = .lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -26,8 +26,17 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var textColor = FlatColor.white
+        if Style.no == "0" || Style.no == "1"{
+            backgroundImage = UIImage(named:"launch-background")
+            textColor = FlatColor.white
+        }else{
+            backgroundImage = getUIImage(from: Style.navigationBarColor)
+            textColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
+        }
+
         UIGraphicsBeginImageContext(self.view.frame.size)
-        backgroundImage.draw(in: self.view.bounds)
+        backgroundImage!.draw(in: self.view.bounds)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -36,7 +45,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
-            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image)
+            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, textColor: textColor)
             VCs.append(VC)
         }
         
@@ -57,13 +66,25 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?) -> IntroductionDetailViewController{
+    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, textColor: UIColor) -> IntroductionDetailViewController{
         let infoVC = sb.instantiateViewController(withIdentifier: "IntroductionDetail") as! IntroductionDetailViewController
         infoVC.number = number
         infoVC.titleString = infoTitle
         infoVC.descriptionString = description
         infoVC.image = image
+        infoVC.textColor = textColor
         return infoVC
+    }
+    
+    func getUIImage(from: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let contextRef = UIGraphicsGetCurrentContext()
+        contextRef?.setFillColor(from.cgColor)
+        contextRef?.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
     
     // MARK: - UIScrollViewDelegate

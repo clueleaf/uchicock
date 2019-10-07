@@ -139,7 +139,6 @@ class SettingsTableViewController: UITableViewController {
         if segue.identifier == "usage" {
             let vc = segue.destination as! IntroductionPageViewController
             vc.introductions = introductions()
-            vc.backgroundImage = UIImage(named:"launch-background")
         }
     }
     

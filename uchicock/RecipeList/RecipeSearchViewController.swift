@@ -197,22 +197,22 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         
         filterExplanationLabel.textColor = Style.labelTextColorLight
 
-        favoriteSelectAllButton.tintColor = Style.primaryColor
-        favoriteDeselectAllButton.tintColor = Style.deleteColor
+        favoriteSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
+        favoriteDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
 
-        styleSelectAllButton.tintColor = Style.primaryColor
-        styleDeselectAllButton.tintColor = Style.deleteColor
+        styleSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
+        styleDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
 
-        methodSelectAllButton.tintColor = Style.primaryColor
-        methodDeselectAllButton.tintColor = Style.deleteColor
+        methodSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
+        methodDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
         methodWarningLabel.textColor = Style.deleteColor
@@ -223,7 +223,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         searchButton.layer.borderColor = Style.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
-        searchButton.tintColor = Style.primaryColor
+        searchButton.setTitleColor(Style.primaryColor, for: .normal)
     }
     
     private func setFavoriteWarningVisibility(){

@@ -30,9 +30,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWG-rz-Zv5">
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWG-rz-Zv5">
                                 <rect key="frame" x="10" y="104.5" width="394" height="1"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="GkH-gH-1b8"/>
                                 </constraints>
@@ -85,6 +85,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="Fo2-JK-SNI" id="TGb-sO-zem"/>
                         <outlet property="imageView" destination="kd3-md-ktY" id="DKc-GB-zpr"/>
+                        <outlet property="separator" destination="FWG-rz-Zv5" id="fNc-kF-k6d"/>
                         <outlet property="skipButton" destination="fHE-P6-5k7" id="gs0-Ir-VMv"/>
                         <outlet property="titleLabel" destination="0d6-DM-18b" id="Hsy-Kl-5NK"/>
                     </connections>

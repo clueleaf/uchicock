@@ -93,7 +93,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         ingredientRecommendButton.layer.borderColor = Style.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
         ingredientRecommendButton.layer.cornerRadius = 15
-        ingredientRecommendButton.tintColor = Style.primaryColor
+        ingredientRecommendButton.setTitleColor(Style.primaryColor, for: .normal)
         ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
         
         containerSeparator.backgroundColor = Style.labelTextColor

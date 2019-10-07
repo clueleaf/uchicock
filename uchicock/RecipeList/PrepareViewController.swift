@@ -157,7 +157,6 @@ class PrepareViewController: UIViewController {
         if segue.identifier == "usage" {
             let vc = segue.destination as! IntroductionPageViewController
             vc.introductions = introductions()
-            vc.backgroundImage = UIImage(named:"launch-background")
         }
     }
     

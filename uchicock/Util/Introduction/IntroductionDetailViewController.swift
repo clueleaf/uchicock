@@ -11,6 +11,7 @@ import UIKit
 class IntroductionDetailViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var separator: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var skipButton: UIButton!
@@ -19,16 +20,20 @@ class IntroductionDetailViewController: UIViewController {
     var descriptionString: String?
     var image: UIImage?
     var number: Int?
+    var textColor: UIColor = FlatColor.white
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleString
         titleLabel.alpha = 0.0
+        titleLabel.textColor = textColor
         descriptionLabel.text = descriptionString
         descriptionLabel.alpha = 0.0
+        descriptionLabel.textColor = textColor
         imageView.image = image
         imageView.alpha = 0.0
         skipButton.alpha = 0.0
+        skipButton.setTitleColor(textColor, for: .normal)
         self.view.backgroundColor = UIColor.clear
         
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

@@ -189,9 +189,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             default:
                 setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             }
-            star1.tintColor = Style.primaryColor
-            star2.tintColor = Style.primaryColor
-            star3.tintColor = Style.primaryColor
+            star1.setTitleColor(Style.primaryColor, for: .normal)
+            star2.setTitleColor(Style.primaryColor, for: .normal)
+            star3.setTitleColor(Style.primaryColor, for: .normal)
             
             switch recipe.style{
             case 0:
@@ -289,20 +289,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     private func setMadeNumButton(){
         if madeNum <= 0 {
             madeNumMinusButton.isEnabled = false
-            madeNumMinusButton.tintColor = Style.labelTextColorLight
+            madeNumMinusButton.setTitleColor(Style.labelTextColorLight, for: .normal)
             madeNumMinusButton.layer.borderColor = Style.labelTextColorLight.cgColor
         } else {
             madeNumMinusButton.isEnabled = true
-            madeNumMinusButton.tintColor = Style.primaryColor
+            madeNumMinusButton.setTitleColor(Style.primaryColor, for: .normal)
             madeNumMinusButton.layer.borderColor = Style.primaryColor.cgColor
         }
         if madeNum >= 999 {
             madeNumPlusButton.isEnabled = false
-            madeNumPlusButton.tintColor = Style.labelTextColorLight
+            madeNumPlusButton.setTitleColor(Style.labelTextColorLight, for: .normal)
             madeNumPlusButton.layer.borderColor = Style.labelTextColorLight.cgColor
         } else {
             madeNumPlusButton.isEnabled = true
-            madeNumPlusButton.tintColor = Style.primaryColor
+            madeNumPlusButton.setTitleColor(Style.primaryColor, for: .normal)
             madeNumPlusButton.layer.borderColor = Style.primaryColor.cgColor
         }
     }
