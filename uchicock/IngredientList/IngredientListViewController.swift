@@ -176,21 +176,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         
-        for i in (0..<ingredientBasicList.count).reversed(){
-            switch stockState.selectedSegmentIndex{
-            case 1:
-                if ingredientBasicList[i].stockFlag == false{
-                    ingredientBasicList.remove(at: i)
-                }
-            case 2:
-                if ingredientBasicList[i].stockFlag{
-                    ingredientBasicList.remove(at: i)
-                }
-            default:
-                break
-            }
+        switch stockState.selectedSegmentIndex{
+        case 1:
+            ingredientBasicList.removeAll{ $0.stockFlag == false }
+        case 2:
+            ingredientBasicList.removeAll{ $0.stockFlag }
+        default:
+            break
         }
-
+        
         if category.selectedSegmentIndex != 0{
             ingredientBasicList.removeAll{
                 $0.category != category.selectedSegmentIndex - 1
