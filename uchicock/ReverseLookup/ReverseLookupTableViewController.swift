@@ -242,6 +242,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         searchConditionLabel.text = conditionText
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)

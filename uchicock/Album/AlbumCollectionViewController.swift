@@ -81,6 +81,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         defaults.set(true, forKey: GlobalConstants.AlbumFilterOthersKey)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setCollectionBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         noItemText = ""
