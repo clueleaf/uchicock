@@ -131,6 +131,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         containerSeparator.backgroundColor = Style.labelTextColor
 
+        self.view.backgroundColor = Style.basicBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 

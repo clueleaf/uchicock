@@ -49,6 +49,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setupVC(){
+        self.view.backgroundColor = Style.basicBackgroundColor
+
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -494,7 +496,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             vc.interactor = interactor
         }
         
-        searchBar.resignFirstResponder()        
+        searchBar.resignFirstResponder()
         present(nvc, animated: true)
     }
     

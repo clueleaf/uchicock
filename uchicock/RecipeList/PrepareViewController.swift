@@ -40,6 +40,8 @@ class PrepareViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.view.backgroundColor = Style.basicBackgroundColor
+
         searchContainer.backgroundColor = Style.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,17 +40,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1SS-av-WDw" firstAttribute="leading" secondItem="d5V-vz-Xdh" secondAttribute="leading" id="0Gp-qd-mCg"/>
                             <constraint firstItem="1D2-CM-TFS" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="2eZ-yL-8uA"/>
                             <constraint firstAttribute="bottom" secondItem="1SS-av-WDw" secondAttribute="bottom" id="3eU-QO-Tzg"/>
                             <constraint firstItem="DF4-0X-EkJ" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="4Xq-H0-Iui"/>
-                            <constraint firstItem="d5V-vz-Xdh" firstAttribute="trailing" secondItem="1SS-av-WDw" secondAttribute="trailing" id="4fT-J2-KMV"/>
                             <constraint firstItem="DF4-0X-EkJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8Pe-U7-dfJ"/>
                             <constraint firstAttribute="bottom" secondItem="1D2-CM-TFS" secondAttribute="bottom" constant="30" id="EbH-f4-Cub"/>
+                            <constraint firstAttribute="trailing" secondItem="1SS-av-WDw" secondAttribute="trailing" id="WFN-VA-cEM"/>
                             <constraint firstItem="gdC-OS-tkE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xq5-Ud-cGU"/>
                             <constraint firstItem="1SS-av-WDw" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="ZUt-7F-TMF"/>
                             <constraint firstItem="gdC-OS-tkE" firstAttribute="top" secondItem="DF4-0X-EkJ" secondAttribute="bottom" constant="4" id="u4I-hz-saL"/>
                             <constraint firstItem="gdC-OS-tkE" firstAttribute="centerX" secondItem="d5V-vz-Xdh" secondAttribute="centerX" id="uGF-Yv-5hd"/>
+                            <constraint firstItem="1SS-av-WDw" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="umV-M1-Y9N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d5V-vz-Xdh"/>
                         <variation key="default">
