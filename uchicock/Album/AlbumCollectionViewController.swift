@@ -158,14 +158,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         albumFilterOthers = defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
         flowLayout.invalidateLayout()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
