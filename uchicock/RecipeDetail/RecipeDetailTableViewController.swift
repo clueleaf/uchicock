@@ -42,6 +42,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var recipe = Recipe()
     var noPhotoFlag = false
     var firstShow = true
+    var fromContextualMenu = false
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
@@ -125,7 +126,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
             
             noPhotoFlag = false
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
                 photo.image = image
                 if image.size.width > image.size.height{
                     photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
@@ -255,16 +256,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
             
-            let realm = try! Realm()
-            try! realm.write {
-                recipe.lastViewDate = Date()
+            if fromContextualMenu == false{
+                let realm = try! Realm()
+                try! realm.write {
+                    recipe.lastViewDate = Date()
+                }
             }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if recipe.isInvalidated == false{
+        if recipe.isInvalidated == false, fromContextualMenu == false{
             let realm = try! Realm()
             try! realm.write {
                 recipe.lastViewDate = Date()

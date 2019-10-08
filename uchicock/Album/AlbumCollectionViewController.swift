@@ -23,7 +23,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var animationFlag = false
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     var noItemText = ""
-    
+    var contextualMenuRecipeId: String? = nil
+
     var albumFilterStar0 = true
     var albumFilterStar1 = true
     var albumFilterStar2 = true
@@ -290,6 +291,28 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let previewProvider: () -> RecipeDetailTableViewController? = {
+                let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+                vc.fromContextualMenu = true
+                vc.recipeId = self.filteredRecipeBasicList[indexPath.row].id
+                return vc
+            }
+            contextualMenuRecipeId = self.filteredRecipeBasicList[indexPath.row].id
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+    }
+    
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        performSegue(withIdentifier: "RecipeTapped", sender: contextualMenuRecipeId)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath as IndexPath) as! AlbumCollectionViewCell
@@ -352,10 +375,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             cell.recipeNameBackgroundView.alpha = 0.0
         }
         return cell
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
     }
     
     // MARK: - UICollectionViewDataSourcePrefetching

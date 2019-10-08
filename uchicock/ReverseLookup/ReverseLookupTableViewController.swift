@@ -32,7 +32,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     let selectedCellBackgroundView = UIView()
     var transitioningSection1 = false
     var shouldHideSearchCell = false
-    
+    var contextualMenuIndexPath: IndexPath? = nil
+
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
     var recipeFilterStar0 = true
@@ -845,6 +846,28 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if tableView.tag == 1{
+            let previewProvider: () -> RecipeDetailTableViewController? = {
+                let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+                vc.fromContextualMenu = true
+                vc.recipeId = self.recipeBasicList[indexPath.row].id
+                return vc
+            }
+            selectedRecipeId = recipeBasicList[indexPath.row].id
+            contextualMenuIndexPath = indexPath
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+        }else{
+            return nil
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
+        performSegue(withIdentifier: "PushRecipeDetail", sender: contextualMenuIndexPath)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
