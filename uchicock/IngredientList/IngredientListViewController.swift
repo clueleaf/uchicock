@@ -25,7 +25,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
-    var contextualMenuIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
 
@@ -392,24 +391,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    
-    @available(iOS 13.0, *)
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let previewProvider: () -> IngredientDetailTableViewController? = {
-            let vc = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
-            vc.ingredientId = self.ingredientBasicList[indexPath.row].id
-            return vc
-        }
-        selectedIngredientId = ingredientBasicList[indexPath.row].id
-        selectedIndexPath = indexPath
-        contextualMenuIndexPath = indexPath
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
-    }
-    
-    @available(iOS 13.0, *)
-    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
-        performSegue(withIdentifier: "PushIngredientDetail", sender: contextualMenuIndexPath)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

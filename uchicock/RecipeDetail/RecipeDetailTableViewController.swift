@@ -37,16 +37,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
+    var firstCellHeight: CGFloat = 0.0
     var minimumPhotoHeight: CGFloat = 0.0
     var recipeId = String()
     var recipe = Recipe()
     var noPhotoFlag = false
+    var imageWidth: CGFloat = 0
+    var imageHeight: CGFloat = 0
     var firstShow = true
     var fromContextualMenu = false
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    var contextualMenuIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
 
@@ -57,6 +59,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if fromContextualMenu{
+            tableView.isScrollEnabled = false
+        }
+        
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
@@ -129,24 +135,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             noPhotoFlag = false
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
                 photo.image = image
-                if image.size.width > image.size.height{
-                    photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
-                }else{
-                    photoHeight = tableView.bounds.width
-                }
-                minimumPhotoHeight = min(tableView.bounds.width / 2, tableView.bounds.height / 2,photoHeight)
                 photo.clipsToBounds = true
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                imageWidth = image.size.width
+                imageHeight = image.size.height
+                calcPhotoSize(tableViewHeight: tableView.bounds.height, tableViewWidth: tableView.bounds.width)
                 self.view.bringSubviewToFront(photoBackground)
             }else{
-                tableView.tableHeaderView = nil
+                imageWidth = 0
+                imageHeight = 0
                 noPhotoFlag = true
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
-            }
-            if firstShow{
-                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
-                firstShow = false
+                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: photoHeight))
             }
             updateHeaderView()
 
@@ -251,7 +251,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 openInSafariButton.isEnabled = false
                 openInSafariButton.backgroundColor = Style.labelTextColorLight
             }
-            
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
@@ -265,8 +264,42 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        calcPhotoSize(tableViewHeight: size.height, tableViewWidth: size.width)
+    }
+    
+    private func calcPhotoSize(tableViewHeight: CGFloat, tableViewWidth: CGFloat){
+        if fromContextualMenu == false{
+            let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+            if let firstCell = firstCell{
+                firstCellHeight = firstCell.bounds.height
+            }
+            
+            if imageWidth == 0 {
+                photoHeight = 0
+            }else{
+                photoHeight = min(tableViewWidth, tableViewHeight - firstCellHeight, tableViewWidth * imageHeight / imageWidth)
+            }
+            minimumPhotoHeight = min(tableViewWidth / 2, (tableViewHeight - firstCellHeight) / 2, photoHeight )
+            
+            if let tableHeaderView = tableView.tableHeaderView{
+                let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableViewWidth, height: photoHeight))
+                if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
+                    tableView.tableHeaderView = newTableHeaderView
+                }
+            }
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        calcPhotoSize(tableViewHeight: tableView.bounds.height, tableViewWidth: tableView.bounds.width)
+        updateHeaderView()
+        if firstShow{
+            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+            firstShow = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -452,27 +485,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return indexPath.section == 1
     }
     
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        if indexPath.section == 1{
-            let previewProvider: () -> IngredientDetailTableViewController? = {
-                let vc = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
-                vc.ingredientId = self.recipe.recipeIngredients[indexPath.row].ingredient.id
-                return vc
-            }
-            selectedIngredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-            contextualMenuIndexPath = indexPath
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
-        }else{
-            return nil
-        }
-    }
-    
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
-        performSegue(withIdentifier: "PushIngredientDetail", sender: contextualMenuIndexPath)
-    }
-
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
             (action, indexPath) in

@@ -355,7 +355,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 vc.recipeId = self.ingredientRecipeBasicList[indexPath.row - 1].id
                 return vc
             }
-            selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].id
             contextualMenuIndexPath = indexPath
             return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
         }else{
