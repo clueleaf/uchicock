@@ -494,7 +494,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 vc.ingredientId = self.recipe.recipeIngredients[indexPath.row].ingredient.id
                 return vc
             }
-            selectedIngredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             contextualMenuIndexPath = indexPath
             return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
         }else{

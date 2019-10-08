@@ -401,8 +401,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             vc.ingredientId = self.ingredientBasicList[indexPath.row].id
             return vc
         }
-        selectedIngredientId = ingredientBasicList[indexPath.row].id
-        selectedIndexPath = indexPath
         contextualMenuIndexPath = indexPath
         return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
     }

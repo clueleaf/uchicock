@@ -710,7 +710,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             vc.recipeId = self.recipeBasicList[indexPath.row].id
             return vc
         }
-        selectedIndexPath = indexPath
         contextualMenuIndexPath = indexPath
         return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
     }

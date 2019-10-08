@@ -857,7 +857,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 vc.recipeId = self.recipeBasicList[indexPath.row].id
                 return vc
             }
-            selectedRecipeId = recipeBasicList[indexPath.row].id
             contextualMenuIndexPath = indexPath
             return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
         }else{
