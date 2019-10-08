@@ -37,10 +37,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         setNavigationTitle()
         isRecovering = false
         
-        var safeAreaBottom: CGFloat = 0.0
-        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
-
         self.tableView.separatorColor = UIColor.gray
         tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

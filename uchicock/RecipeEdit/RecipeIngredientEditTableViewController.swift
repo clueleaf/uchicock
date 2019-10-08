@@ -81,11 +81,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         suggestTableView.separatorColor = UIColor.gray
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        var safeAreaBottom: CGFloat = 0.0
-        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
-        
+                
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     

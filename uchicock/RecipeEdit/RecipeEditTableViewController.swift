@@ -121,10 +121,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         focusRecipeNameFlag = true
         
-        var safeAreaBottom: CGFloat = 0.0
-        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
-        
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.recipeName)
     }
     

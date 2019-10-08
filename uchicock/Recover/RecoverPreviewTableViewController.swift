@@ -63,11 +63,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
 
         self.tableView.separatorColor = UIColor.gray
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        var safeAreaBottom: CGFloat = 0.0
-        safeAreaBottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)        
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

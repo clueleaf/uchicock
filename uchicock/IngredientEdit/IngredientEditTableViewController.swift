@@ -57,9 +57,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        let safeAreaBottom: CGFloat = 0.0
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: safeAreaBottom, right: 0.0)
-        
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
     }
     

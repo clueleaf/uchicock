@@ -57,13 +57,17 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         self.collectionView.indicatorStyle = .white
 
         imageView.image = image
-        if let im = image{
-            smallCIImage = im.resizedCGImage(maxLongSide: (collectionView.frame.height - 20) * 2)
-        }
-        
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let im = image{
+            smallCIImage = im.resizedCGImage(maxLongSide: (collectionView.frame.height - 20) * 2)
+        }
     }
     
     func setupScrollView() {

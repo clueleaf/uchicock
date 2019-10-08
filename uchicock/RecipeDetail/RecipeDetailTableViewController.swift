@@ -125,31 +125,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }else{
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
-            
-            noPhotoFlag = false
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
-                photo.image = image
-                if image.size.width > image.size.height{
-                    photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
-                }else{
-                    photoHeight = tableView.bounds.width
-                }
-                minimumPhotoHeight = tableView.bounds.width / 2 < photoHeight ? tableView.bounds.width / 2 : photoHeight
-                photo.clipsToBounds = true
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-                self.view.bringSubviewToFront(photoBackground)
-            }else{
-                tableView.tableHeaderView = nil
-                noPhotoFlag = true
-                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
-                photoHeight = 0.0
-            }
-            if firstShow{
-                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
-                firstShow = false
-            }
-
-            updateHeaderView()
 
             recipeName.text = recipe.recipeName
             
@@ -264,6 +239,35 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }
             }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        noPhotoFlag = false
+        if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
+            photo.image = image
+            if image.size.width > image.size.height{
+                photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
+            }else{
+                photoHeight = tableView.bounds.width
+            }
+            minimumPhotoHeight = min(tableView.bounds.width / 2, tableView.bounds.height / 2,photoHeight)
+            photo.clipsToBounds = true
+            tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+            self.view.bringSubviewToFront(photoBackground)
+        }else{
+            tableView.tableHeaderView = nil
+            noPhotoFlag = true
+            photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
+            photoHeight = 0.0
+        }
+        if firstShow{
+            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+            firstShow = false
+        }
+
+        updateHeaderView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

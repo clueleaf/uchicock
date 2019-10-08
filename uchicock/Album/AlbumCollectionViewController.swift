@@ -265,7 +265,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+        let windowWidth = (UIApplication.shared.keyWindow?.bounds.width)!
+        if windowWidth > 1100{
+            let size = (self.view.frame.size.width - 12) / 4
+            return CGSize(width: size, height: size)
+        }else if windowWidth > 500{
             let size = (self.view.frame.size.width - 8) / 3
             return CGSize(width: size, height: size)
         }else{
