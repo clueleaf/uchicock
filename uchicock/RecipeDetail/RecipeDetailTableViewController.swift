@@ -60,6 +60,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if fromContextualMenu{
+            tableView.isScrollEnabled = false
+        }
+        
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
@@ -248,7 +252,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 openInSafariButton.isEnabled = false
                 openInSafariButton.backgroundColor = Style.labelTextColorLight
             }
-            
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
