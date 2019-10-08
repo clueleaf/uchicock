@@ -49,7 +49,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    var contextualMenuIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
 
@@ -486,26 +485,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return indexPath.section == 1
     }
     
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        if indexPath.section == 1{
-            let previewProvider: () -> IngredientDetailTableViewController? = {
-                let vc = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
-                vc.ingredientId = self.recipe.recipeIngredients[indexPath.row].ingredient.id
-                return vc
-            }
-            contextualMenuIndexPath = indexPath
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
-        }else{
-            return nil
-        }
-    }
-    
-    @available(iOS 13.0, *)
-    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
-        performSegue(withIdentifier: "PushIngredientDetail", sender: contextualMenuIndexPath)
-    }
-
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
             (action, indexPath) in
