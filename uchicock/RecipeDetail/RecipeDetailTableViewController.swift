@@ -46,7 +46,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    
+    var contextualMenuIndexPath: IndexPath? = nil
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -446,6 +447,27 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section == 1
+    }
+    
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if indexPath.section == 1{
+            let previewProvider: () -> IngredientDetailTableViewController? = {
+                let vc = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
+                vc.ingredientId = self.recipe.recipeIngredients[indexPath.row].ingredient.id
+                return vc
+            }
+            selectedIngredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
+            contextualMenuIndexPath = indexPath
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+        }else{
+            return nil
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
+        performSegue(withIdentifier: "PushIngredientDetail", sender: contextualMenuIndexPath)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

@@ -62,7 +62,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.separatorColor = UIColor.gray
         self.tableView.prefetchDataSource = self
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
-        
     }
     
     func requestReview(){
