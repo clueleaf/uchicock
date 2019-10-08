@@ -158,6 +158,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         albumFilterOthers = defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
@@ -295,7 +303,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
