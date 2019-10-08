@@ -456,8 +456,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
             return
         }
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
             return
         }
@@ -465,7 +463,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         vc.onDoneBlock = {
             self.setupVC()
         }
-        vc.interactor = interactor
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
         present(nvc, animated: true)
     }
     

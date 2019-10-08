@@ -62,7 +62,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     var recipeFilterBlend = true
     var recipeFilterOthers = true
     
-    var interactor: Interactor!
+    var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -74,7 +74,9 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         scrollView.delegate = self
-        scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+        if interactor != nil{
+            scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+        }
 
         readUserDefaults()
         
@@ -205,8 +207,10 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor.hasStarted {
-            scrollView.contentOffset.y = 0.0
+        if interactor != nil{
+            if interactor!.hasStarted {
+                scrollView.contentOffset.y = 0.0
+            }
         }
     }
 
@@ -234,6 +238,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+        guard interactor != nil else { return }
         let percentThreshold: CGFloat = 0.3
         
         let translation = sender.translation(in: view)
@@ -242,23 +247,23 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         let downwardMovementPercent = fminf(downwardMovement, 1.0)
         let progress = CGFloat(downwardMovementPercent)
         
-        if scrollView.contentOffset.y <= 0 || interactor.hasStarted{
+        if scrollView.contentOffset.y <= 0 || interactor!.hasStarted{
             switch sender.state {
             case .began:
-                interactor.hasStarted = true
+                interactor!.hasStarted = true
                 dismiss(animated: true, completion: nil)
             case .changed:
-                interactor.shouldFinish = progress > percentThreshold
-                interactor.update(progress)
+                interactor!.shouldFinish = progress > percentThreshold
+                interactor!.update(progress)
                 break
             case .cancelled:
-                interactor.hasStarted = false
-                interactor.cancel()
+                interactor!.hasStarted = false
+                interactor!.cancel()
             case .ended:
-                interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor!.hasStarted = false
+                interactor!.shouldFinish
+                    ? interactor!.finish()
+                    : interactor!.cancel()
             default:
                 break
             }

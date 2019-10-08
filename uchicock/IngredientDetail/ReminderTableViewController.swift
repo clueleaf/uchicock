@@ -18,7 +18,7 @@ class ReminderTableViewController: UITableViewController {
     
     var ingredientName = ""
     
-    var interactor: Interactor!
+    var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -29,7 +29,9 @@ class ReminderTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+        if interactor != nil{
+            tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
+        }
         
         self.navigationItem.title = "リマインダー"
         reminderTitle.text = ingredientName + "を買う"
@@ -129,8 +131,10 @@ class ReminderTableViewController: UITableViewController {
 
     // MARK: - UITableView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor.hasStarted {
-            tableView.contentOffset.y = 0.0
+        if interactor != nil{
+            if interactor!.hasStarted {
+                tableView.contentOffset.y = 0.0
+            }
         }
     }
     
@@ -157,6 +161,8 @@ class ReminderTableViewController: UITableViewController {
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+        guard interactor != nil else { return }
+        
         let percentThreshold: CGFloat = 0.3
         
         let translation = sender.translation(in: view)
@@ -165,23 +171,23 @@ class ReminderTableViewController: UITableViewController {
         let downwardMovementPercent = fminf(downwardMovement, 1.0)
         let progress = CGFloat(downwardMovementPercent)
         
-        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
+        if tableView.contentOffset.y <= 0 || interactor!.hasStarted{
             switch sender.state {
             case .began:
-                interactor.hasStarted = true
+                interactor!.hasStarted = true
                 dismiss(animated: true, completion: nil)
             case .changed:
-                interactor.shouldFinish = progress > percentThreshold
-                interactor.update(progress)
+                interactor!.shouldFinish = progress > percentThreshold
+                interactor!.update(progress)
                 break
             case .cancelled:
-                interactor.hasStarted = false
-                interactor.cancel()
+                interactor!.hasStarted = false
+                interactor!.cancel()
             case .ended:
-                interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor!.hasStarted = false
+                interactor!.shouldFinish
+                    ? interactor!.finish()
+                    : interactor!.cancel()
             default:
                 break
             }

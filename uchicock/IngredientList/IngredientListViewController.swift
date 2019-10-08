@@ -474,9 +474,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.setContentOffset(tableView.contentOffset, animated: false)
         let storyboard = UIStoryboard(name: "IngredientRecommend", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
-        
         let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
         vc.onDoneBlock = { selectedRecommendIngredientId in
             if let selectedRecommendIngredientId = selectedRecommendIngredientId{
@@ -488,9 +485,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             self.setupVC()
         }
-        vc.interactor = interactor
-        searchBar.resignFirstResponder()
         
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
+        
+        searchBar.resignFirstResponder()        
         present(nvc, animated: true)
     }
     

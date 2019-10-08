@@ -420,14 +420,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "AlbumFilter", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "AlbumFilterModalNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! AlbumFilterViewController
         vc.onDoneBlock = {
             self.setupVC()
         }
-        vc.interactor = interactor
         vc.userDefaultsPrefix = "album-"
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
         present(nvc, animated: true)
     }
     

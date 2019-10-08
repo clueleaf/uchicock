@@ -777,17 +777,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func searchConditionModifyButtonTapped(_ sender: UIButton) {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+
         let storyboard = UIStoryboard(name: "RecipeSearch", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
             self.setupVC()
         }
-        vc.interactor = interactor
         vc.userDefaultsPrefix = "recipe-"
         searchBar.resignFirstResponder()
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
         present(nvc, animated: true)
     }
     

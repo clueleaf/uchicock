@@ -278,8 +278,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 if isRecovering == false {
                     let storyboard = UIStoryboard(name: "Settings", bundle: nil)
                     let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
-                    nvc.modalPresentationStyle = .custom
-                    nvc.transitioningDelegate = self
                     let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
                     let realm = try! Realm()
                     if indexPath.row - 1 < recoverableSampleRecipeList.count{
@@ -292,7 +290,15 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     vc.onDoneBlock = {
                         self.cellDeselectAnimation()
                     }
-                    vc.interactor = interactor
+                    
+                    if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                        nvc.modalPresentationStyle = .pageSheet
+                    }else{
+                        nvc.modalPresentationStyle = .custom
+                        nvc.transitioningDelegate = self
+                        vc.interactor = interactor
+                    }
+
                     present(nvc, animated: true)
                 }
             }

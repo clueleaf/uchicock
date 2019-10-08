@@ -480,8 +480,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
                 return
             }
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
             guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
                 return
             }
@@ -489,7 +487,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             vc.onDoneBlock = {
                 self.setupVC()
             }
-            vc.interactor = self.interactor
+
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                nvc.modalPresentationStyle = .pageSheet
+            }else{
+                nvc.modalPresentationStyle = .custom
+                nvc.transitioningDelegate = self
+                vc.interactor = self.interactor
+            }
             self.present(nvc, animated: true)
         }
         reminder.backgroundColor = Style.primaryColor
@@ -609,20 +614,30 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! StyleTipViewController
-        vc.interactor = interactor
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .formSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
         present(nvc, animated: true)
     }
     
     @IBAction func methodTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! MethodTipViewController
-        vc.interactor = interactor
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .formSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
         present(nvc, animated: true)
     }
     

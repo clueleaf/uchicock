@@ -284,9 +284,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             showCancelAlert = true
             let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
             let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
+
             vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, mustFlag, recipeIngredientId in
                 if isCancel == false{
                     if isAddMode{
@@ -323,7 +322,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else if indexPath.row == recipeIngredientList.count{
                 vc.isAddMode = true
             }
-            vc.interactor = interactor
+            
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                nvc.modalPresentationStyle = .pageSheet
+            }else{
+                nvc.modalPresentationStyle = .custom
+                nvc.transitioningDelegate = self
+                vc.interactor = interactor
+            }
+
             recipeName.resignFirstResponder()
             memo.resignFirstResponder()
             self.selectedIndexPath = indexPath
@@ -692,10 +699,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! StyleTipViewController
-        vc.interactor = interactor
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
+
         recipeName.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
@@ -704,10 +717,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func methodTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! UINavigationController
-        nvc.modalPresentationStyle = .custom
-        nvc.transitioningDelegate = self
         let vc = nvc.visibleViewController as! MethodTipViewController
-        vc.interactor = interactor
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .pageSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
+
         recipeName.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
