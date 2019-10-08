@@ -60,7 +60,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         super.viewDidLoad()
 
         headerView = tableView.tableHeaderView
-        headerView.tag = 1
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
         tableView.addSubview(headerView)
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
@@ -132,26 +131,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             noPhotoFlag = false
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
                 photo.image = image
+                photo.clipsToBounds = true
                 imageWidth = image.size.width
                 imageHeight = image.size.height
-                if imageWidth > imageHeight {
-                    photoHeight = CGFloat(Int(tableView.bounds.width * image.size.height / image.size.width))
-                }else{
-                    photoHeight = tableView.bounds.width
-                }
-                minimumPhotoHeight = min(tableView.bounds.width / 2, tableView.bounds.height / 2,photoHeight)
-                photo.clipsToBounds = true
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+                calcPhotoSize(height: tableView.bounds.height, width: tableView.bounds.width)
                 self.view.bringSubviewToFront(photoBackground)
             }else{
                 tableView.tableHeaderView = nil
                 noPhotoFlag = true
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
                 photoHeight = 0.0
-            }
-            if firstShow{
-                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
-                firstShow = false
             }
             updateHeaderView()
 
@@ -272,21 +261,31 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        calcPhotoSize(height: size.height, width: size.width)
+    }
+    
+    private func calcPhotoSize(height: CGFloat, width: CGFloat){
         if fromContextualMenu == false{
+            let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+            let firstCellHeight = firstCell?.bounds.height ?? 0
+            
             if imageWidth > imageHeight {
-                photoHeight = CGFloat(Int(size.width * imageHeight / imageWidth))
+                photoHeight = min(height - firstCellHeight, CGFloat(Int(width * imageHeight / imageWidth)))
             }else{
-                photoHeight = size.width
+                photoHeight = min(height - firstCellHeight, width)
             }
-            minimumPhotoHeight = min(size.width / 2, size.height / 2,photoHeight)
-            tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: photoHeight))
-            updateHeaderView()
-            tableView.reloadData()
+            minimumPhotoHeight = min(width / 2, height / 2, photoHeight)
+            tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: photoHeight))
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        updateHeaderView()
+        if firstShow{
+            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+            firstShow = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
