@@ -14,7 +14,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
     @IBOutlet weak var orderBarButton: UIBarButtonItem!
-
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!{
+        didSet {
+            flowLayout.sectionInsetReference = .fromSafeArea
+        }
+    }
+    
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
     
@@ -274,14 +279,18 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let windowWidth = (UIApplication.shared.keyWindow?.bounds.width)!
-        if windowWidth > 1100{
-            let size = (self.view.frame.size.width - 12) / 4
+        let leftPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.left)!
+        let rightPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.right)!
+        let safeAreaWidth = windowWidth - leftPadding - rightPadding
+        
+        if safeAreaWidth > 1100{
+            let size = (safeAreaWidth - 12) / 4
             return CGSize(width: size, height: size)
-        }else if windowWidth > 500{
-            let size = (self.view.frame.size.width - 8) / 3
+        }else if safeAreaWidth > 500{
+            let size = (safeAreaWidth - 8) / 3
             return CGSize(width: size, height: size)
         }else{
-            let size = (self.view.frame.size.width - 4) / 2
+            let size = (safeAreaWidth - 4) / 2
             return CGSize(width: size, height: size)
         }
     }
