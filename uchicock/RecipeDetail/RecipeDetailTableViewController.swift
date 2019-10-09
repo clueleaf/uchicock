@@ -64,7 +64,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         
         headerView = tableView.tableHeaderView
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.width))
+        tableView.tableHeaderView = UIView()
         tableView.addSubview(headerView)
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
