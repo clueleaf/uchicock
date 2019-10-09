@@ -133,7 +133,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
 
             photo.clipsToBounds = true
-            self.view.bringSubviewToFront(photoBackground)
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
                 noPhotoFlag = false
                 photo.image = image
@@ -144,7 +143,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 photo.image = nil
                 imageWidth = 0
                 imageHeight = 0
-                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0) //??
+                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
             }
             calcPhotoSize()
 
@@ -276,6 +275,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
         if let tableHeaderView = tableView.tableHeaderView{
             let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+            self.view.bringSubviewToFront(photoBackground)
             if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
                 tableView.tableHeaderView = newTableHeaderView
             }
