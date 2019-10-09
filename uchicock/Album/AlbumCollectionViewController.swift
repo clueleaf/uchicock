@@ -29,6 +29,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     var noItemText = ""
     var contextualMenuRecipeId: String? = nil
+    var needsLayout = false
 
     var albumFilterStar0 = true
     var albumFilterStar1 = true
@@ -79,11 +80,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         defaults.set(true, forKey: GlobalConstants.AlbumFilterShakeKey)
         defaults.set(true, forKey: GlobalConstants.AlbumFilterBlendKey)
         defaults.set(true, forKey: GlobalConstants.AlbumFilterOthersKey)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,14 +166,29 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        flowLayout.invalidateLayout()
+        needsLayout = true
         gradationFrame = CGRect(x: 0, y: 0, width: albumCellWidth(of: size.width), height: 85)
         collectionView.reloadData()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
+        
+        // iPhone X系（横にすると横にSafe Areaがある端末）において、
+        // 横向きでアルバムを表示（3列）し、詳細へ遷移 -> 縦向きにする
+        // -> アルバムに戻ると2列になるはずが1列になっている問題へのワークアラウンド
+        // needsLayoutフラグを利用して無限ループを回避
+        if needsLayout{
+            guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+                return
+            }
+            flowLayout.invalidateLayout()
+            collectionView.setNeedsLayout()
+            needsLayout = false
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
