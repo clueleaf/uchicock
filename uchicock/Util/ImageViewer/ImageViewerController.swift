@@ -28,6 +28,10 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         return Style.statusBarStyle
     }
     
+    override var prefersHomeIndicatorAutoHidden: Bool{
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
