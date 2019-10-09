@@ -47,9 +47,13 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         setupTransitions()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupCaptionBackground()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupCaptionBackground()
         isStatusBarHidden = true
         self.setNeedsStatusBarAppearanceUpdate()
     }
