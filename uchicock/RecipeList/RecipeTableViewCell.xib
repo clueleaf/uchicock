@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nIA-Y5-AVb">
-                        <rect key="frame" x="0.0" y="0.0" width="69" height="70"/>
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="69" id="VEd-YU-XaW"/>
+                            <constraint firstAttribute="width" secondItem="nIA-Y5-AVb" secondAttribute="height" multiplier="1:1" id="Wvp-MU-Zeo"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2V-21-ykG">
-                        <rect key="frame" x="77" y="8" width="69.5" height="21"/>
+                        <rect key="frame" x="78" y="8" width="69.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sXD-ZD-mtG"/>
                         </constraints>
@@ -33,13 +33,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehs-ln-8g3">
-                        <rect key="frame" x="77" y="40" width="243" height="15"/>
+                        <rect key="frame" x="78" y="40" width="242" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="☆☆☆" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja5-zr-t38">
-                        <rect key="frame" x="154.5" y="8" width="161.5" height="21"/>
+                        <rect key="frame" x="155.5" y="8" width="160.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9vy-6M-Nyt"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="ecC-sA-Jy9"/>
