@@ -132,23 +132,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
 
-            noPhotoFlag = false
+            photo.clipsToBounds = true
+            self.view.bringSubviewToFront(photoBackground)
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
+                noPhotoFlag = false
                 photo.image = image
-                photo.clipsToBounds = true
                 imageWidth = image.size.width
                 imageHeight = image.size.height
-                calcPhotoSize(tableViewHeight: tableView.bounds.height, tableViewWidth: tableView.bounds.width)
-                self.view.bringSubviewToFront(photoBackground)
             }else{
+                noPhotoFlag = true
+                photo.image = nil
                 imageWidth = 0
                 imageHeight = 0
-                noPhotoFlag = true
-                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
-                photoHeight = 0.0
-                tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: photoHeight))
+                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0) //??
             }
-            updateHeaderView()
+            calcPhotoSize()
 
             recipeName.text = recipe.recipeName
             
@@ -264,42 +262,36 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        calcPhotoSize(tableViewHeight: size.height, tableViewWidth: size.width)
-    }
+    private func calcPhotoSize(){
+        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            firstCellHeight = firstCell.bounds.height
+        }
+        
+        if imageWidth == 0 {
+            photoHeight = 0
+        }else{
+            photoHeight = min(tableView.bounds.width, tableView.bounds.height - firstCellHeight, tableView.bounds.width * imageHeight / imageWidth)
+        }
+        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - firstCellHeight) / 2, photoHeight)
     
-    private func calcPhotoSize(tableViewHeight: CGFloat, tableViewWidth: CGFloat){
-        if fromContextualMenu == false{
-            let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-            if let firstCell = firstCell{
-                firstCellHeight = firstCell.bounds.height
-            }
-            
-            if imageWidth == 0 {
-                photoHeight = 0
-            }else{
-                photoHeight = min(tableViewWidth, tableViewHeight - firstCellHeight, tableViewWidth * imageHeight / imageWidth)
-            }
-            minimumPhotoHeight = min(tableViewWidth / 2, (tableViewHeight - firstCellHeight) / 2, photoHeight )
-            
-            if let tableHeaderView = tableView.tableHeaderView{
-                let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableViewWidth, height: photoHeight))
-                if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
-                    tableView.tableHeaderView = newTableHeaderView
-                }
+        if let tableHeaderView = tableView.tableHeaderView{
+            let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+            if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
+                tableView.tableHeaderView = newTableHeaderView
             }
         }
-    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        calcPhotoSize(tableViewHeight: tableView.bounds.height, tableViewWidth: tableView.bounds.width)
-        updateHeaderView()
         if firstShow{
             tableView.contentOffset.y = photoHeight - minimumPhotoHeight
             firstShow = false
         }
+    
+        updateHeaderView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        calcPhotoSize()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
