@@ -275,7 +275,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
         if let tableHeaderView = tableView.tableHeaderView{
             let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+
+            // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
+            tableView.showsVerticalScrollIndicator = false
             self.view.bringSubviewToFront(photoBackground)
+            tableView.showsVerticalScrollIndicator = true
+
             if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
                 tableView.tableHeaderView = newTableHeaderView
             }
