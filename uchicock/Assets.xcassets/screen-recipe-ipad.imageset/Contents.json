@@ -2,16 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "iPad Pro (12.9-inch) (3rd generation) iOS 13 RecipeList_framed.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "iPad Pro (12.9-inch) (3rd generation) iOS 13 RecipeList_framed.png"
     }
   ],
   "info" : {
