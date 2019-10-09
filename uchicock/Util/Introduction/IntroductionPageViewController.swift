@@ -11,7 +11,7 @@ import UIKit
 class IntroductionPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIScrollViewDelegate {
 
     var sb: UIStoryboard!
-    let screenWidth = UIScreen.main.bounds.size.width
+    var windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
 
     var isEnd = false
     var introductions: [introductionInfo] = []
@@ -113,6 +113,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
                 }
             }
         }
+        windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -147,10 +148,10 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x < screenWidth{
+        if scrollView.contentOffset.x < windowWidth{
             isEnd = false
         }
-        if isEnd && scrollView.contentOffset.x > screenWidth + 20{
+        if isEnd && scrollView.contentOffset.x > windowWidth + 20{
             self.dismiss(animated: true, completion: nil)
         }
     }
