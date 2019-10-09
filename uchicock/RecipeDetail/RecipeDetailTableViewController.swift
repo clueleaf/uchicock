@@ -261,39 +261,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    private func calcPhotoSize(){
-        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-            firstCellHeight = firstCell.bounds.height
-        }
-        
-        if imageWidth == 0 {
-            photoHeight = 0
-        }else{
-            photoHeight = min(tableView.bounds.width, tableView.bounds.height - firstCellHeight, tableView.bounds.width * imageHeight / imageWidth)
-        }
-        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - firstCellHeight) / 2, photoHeight)
-    
-        if let tableHeaderView = tableView.tableHeaderView{
-            let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-
-            // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
-            tableView.showsVerticalScrollIndicator = false
-            self.view.bringSubviewToFront(photoBackground)
-            tableView.showsVerticalScrollIndicator = true
-
-            if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
-                tableView.tableHeaderView = newTableHeaderView
-            }
-        }
-    
-        if firstShow{
-            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
-            firstShow = false
-        }
-    
-        updateHeaderView()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         calcPhotoSize()
@@ -345,6 +312,41 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     // MARK: - Photo Header
+    private func calcPhotoSize(){
+        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            firstCellHeight = firstCell.bounds.height
+        }
+        
+        if imageWidth == 0 {
+            photoHeight = 0
+        }else{
+            photoHeight = min(tableView.bounds.width, tableView.bounds.height - firstCellHeight, tableView.bounds.width * imageHeight / imageWidth)
+        }
+        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - firstCellHeight) / 2, photoHeight)
+        photoHeight = floor(photoHeight)
+        minimumPhotoHeight = floor(minimumPhotoHeight)
+    
+        if let tableHeaderView = tableView.tableHeaderView{
+            let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+
+            // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
+            tableView.showsVerticalScrollIndicator = false
+            self.view.bringSubviewToFront(photoBackground)
+            tableView.showsVerticalScrollIndicator = true
+
+            if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
+                tableView.tableHeaderView = newTableHeaderView
+            }
+        }
+    
+        if firstShow{
+            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+            firstShow = false
+        }
+    
+        updateHeaderView()
+    }
+    
     func updateHeaderView(){
         if noPhotoFlag == false{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
