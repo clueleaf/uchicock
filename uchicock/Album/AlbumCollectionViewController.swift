@@ -83,7 +83,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setCollectionBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        self.setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +174,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             return
         }
         flowLayout.invalidateLayout()
+        gradationFrame = CGRect(x: 0, y: 0, width: albumCellWidth(of: size.width), height: 85)
+        collectionView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -282,22 +284,26 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     // MARK: - UICollectionView
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let windowWidth = (UIApplication.shared.keyWindow?.bounds.width)!
+    private func albumCellWidth(of windowWidth: CGFloat) -> CGFloat {
         let leftPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.left)!
         let rightPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.right)!
         let safeAreaWidth = windowWidth - leftPadding - rightPadding
         
         if safeAreaWidth > 1100{
             let size = (safeAreaWidth - 12) / 4
-            return CGSize(width: size, height: size)
+            return CGFloat(size)
         }else if safeAreaWidth > 500{
             let size = (safeAreaWidth - 8) / 3
-            return CGSize(width: size, height: size)
+            return CGFloat(size)
         }else{
             let size = (safeAreaWidth - 4) / 2
-            return CGSize(width: size, height: size)
+            return CGFloat(size)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = albumCellWidth(of: (UIApplication.shared.keyWindow?.bounds.width)!)
+        return CGSize(width: cellWidth, height: cellWidth)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
