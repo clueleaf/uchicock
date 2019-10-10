@@ -202,21 +202,18 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
         favoriteSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         favoriteDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
 
         styleSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         styleDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
 
         methodSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
         methodDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
         methodWarningLabel.textColor = Style.deleteColor
         setMethodWarningVisibility()

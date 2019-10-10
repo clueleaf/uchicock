@@ -36,7 +36,6 @@ open class PullToRefreshHeaderAnimator: UIView {
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage(named: "pull_to_refresh_arrow")
-        imageView.image = imageView.image!.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = Style.labelTextColor
         return imageView
     }()

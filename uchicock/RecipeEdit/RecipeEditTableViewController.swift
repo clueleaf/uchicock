@@ -143,7 +143,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
         
-        let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
+        let tipImage = UIImage(named: "tip")
         styleTipButton.setImage(tipImage, for: .normal)
         styleTipButton.tintColor = Style.primaryColor
         methodTipButton.setImage(tipImage, for: .normal)
@@ -373,7 +373,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = nil
 
-                let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+                let disclosureIndicator = UIImage(named: "disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
                 accesoryImageView.tintColor = Style.labelTextColorLight
                 cell.accessoryView = accesoryImageView

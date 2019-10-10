@@ -219,7 +219,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 method.text = "その他"
             }
 
-            let tipImage = UIImage(named: "tip")?.withRenderingMode(.alwaysTemplate)
+            let tipImage = UIImage(named: "tip")
             styleTipButton.setImage(tipImage, for: .normal)
             styleTipButton.tintColor = Style.primaryColor
             methodTipButton.setImage(tipImage, for: .normal)
@@ -280,7 +280,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
         button.layer.cornerRadius = button.frame.size.width / 2
         button.clipsToBounds = true
-        let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: imageName)
         button.setImage(image, for: .normal)
     }
     
@@ -519,7 +519,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             
-            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.tintColor = Style.labelTextColorLight
             cell.accessoryView = accesoryImageView

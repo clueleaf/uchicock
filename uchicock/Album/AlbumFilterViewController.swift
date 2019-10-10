@@ -126,21 +126,18 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         
         favoriteDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         favoriteSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        favoriteWarningImage.image = favoriteWarningImage.image!.withRenderingMode(.alwaysTemplate)
         favoriteWarningImage.tintColor = Style.deleteColor
         favoriteWarningLabel.textColor = Style.deleteColor
         setFavoriteWarningVisibility()
         
         styleDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         styleSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        styleWarningImage.image = styleWarningImage.image!.withRenderingMode(.alwaysTemplate)
         styleWarningImage.tintColor = Style.deleteColor
         styleWarningLabel.textColor = Style.deleteColor
         setStyleWarningVisibility()
         
         methodDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
         methodSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        methodWarningImage.image = methodWarningImage.image!.withRenderingMode(.alwaysTemplate)
         methodWarningImage.tintColor = Style.deleteColor
         methodWarningLabel.textColor = Style.deleteColor
         setMethodWarningVisibility()

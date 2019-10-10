@@ -402,7 +402,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell
             
-            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let disclosureIndicator = UIImage(named: "disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.tintColor = Style.labelTextColorLight
             cell.accessoryView = accesoryImageView

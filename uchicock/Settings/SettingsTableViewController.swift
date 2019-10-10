@@ -31,12 +31,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        introductionImage.image = introductionImage.image!.withRenderingMode(.alwaysTemplate)
-        recoverImage.image = recoverImage.image!.withRenderingMode(.alwaysTemplate)
-        changeThemeImage.image = changeThemeImage.image!.withRenderingMode(.alwaysTemplate)
-        imageSizeImage.image = imageSizeImage.image!.withRenderingMode(.alwaysTemplate)
-        reviewImage.image = reviewImage.image!.withRenderingMode(.alwaysTemplate)
-        
         let defaults = UserDefaults.standard
         firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
@@ -124,7 +118,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+        let disclosureIndicator = UIImage(named: "disclosure-indicator")
         let accesoryImageView = UIImageView(image: disclosureIndicator)
         accesoryImageView.tintColor = Style.labelTextColorLight
         cell.accessoryView = accesoryImageView

@@ -346,7 +346,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
                 
-                let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+                let disclosureIndicator = UIImage(named: "disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
                 accesoryImageView.tintColor = Style.labelTextColorLight
                 cell.accessoryView = accesoryImageView
