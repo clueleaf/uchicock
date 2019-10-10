@@ -153,7 +153,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             if isContributionMode{
                 cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れます！"
             }else{
-                cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))個のレシピで使われています！"
+                cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].usedRecipeNum))個のレシピで使われています！"
             }
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
