@@ -269,6 +269,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if section == 1 {
             if ingredient.recipeIngredients.count > 0 {
                 header?.textLabel?.text = "この材料を使うレシピ(\(String(ingredient.recipeIngredients.count)))"

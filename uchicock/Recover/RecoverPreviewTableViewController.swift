@@ -108,6 +108,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
     }
     

@@ -205,6 +205,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = (tableView.tag == 1 && section == 0) ? "材料候補" : ""
     }
     
