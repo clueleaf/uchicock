@@ -134,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-GC-4Ax">
-                                <rect key="frame" x="0.0" y="151" width="320" height="324"/>
+                                <rect key="frame" x="0.0" y="149" width="320" height="326"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="38" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -219,7 +219,7 @@
                                 </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYr-aJ-DQL" userLabel="Container">
-                                <rect key="frame" x="0.0" y="44" width="320" height="107"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="105"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wmB-he-16M" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="32" width="304" height="29"/>
@@ -263,7 +263,7 @@
                                         </connections>
                                     </button>
                                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXh-YE-Hfc">
-                                        <rect key="frame" x="0.0" y="106" width="320" height="1"/>
+                                        <rect key="frame" x="0.0" y="104" width="320" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="5eY-Xk-b4c"/>
@@ -281,7 +281,7 @@
                                     <constraint firstItem="mG1-1v-o1f" firstAttribute="centerX" secondItem="jYr-aJ-DQL" secondAttribute="centerX" id="Wgr-Hg-DIS"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="top" secondItem="jYr-aJ-DQL" secondAttribute="top" id="dg6-d1-YJj"/>
                                     <constraint firstAttribute="bottom" secondItem="eXh-YE-Hfc" secondAttribute="bottom" id="emd-yb-SBf"/>
-                                    <constraint firstItem="eXh-YE-Hfc" firstAttribute="top" secondItem="mG1-1v-o1f" secondAttribute="bottom" constant="8" id="i0y-X7-23e"/>
+                                    <constraint firstItem="eXh-YE-Hfc" firstAttribute="top" secondItem="mG1-1v-o1f" secondAttribute="bottom" constant="6" id="i0y-X7-23e"/>
                                     <constraint firstAttribute="trailing" secondItem="wmB-he-16M" secondAttribute="trailing" constant="8" id="jTc-Oi-VTd"/>
                                     <constraint firstItem="FWr-nR-chO" firstAttribute="leading" secondItem="jYr-aJ-DQL" secondAttribute="leading" constant="8" id="z2Q-kG-vzj"/>
                                 </constraints>
