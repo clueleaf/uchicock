@@ -190,6 +190,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.view.backgroundColor = Style.basicBackgroundColor
         scrollView.backgroundColor = Style.basicBackgroundColor
         scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         scrollBackgroundView.backgroundColor = Style.basicBackgroundColor
