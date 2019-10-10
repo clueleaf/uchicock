@@ -78,7 +78,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         if isContributionMode {
-            descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになります！\n\n新しい材料に挑戦してみよう！"
+            descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになるのでおすすめです！"
         }else{
             if ingredientBasicList.count == 0{
                 descriptionLabel.text = "おすすめできる材料はありません..."
@@ -86,9 +86,9 @@ class IngredientRecommendTableViewController: UITableViewController {
                 let realm = try! Realm()
                 let stockingIngredientList = realm.objects(Ingredient.self).filter("stockFlag == true")
                 if stockingIngredientList.count > 10{
-                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです。"
+                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
                 }else{
-                    descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょうか？"
+                    descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょう？"
                 }
             }
         }
