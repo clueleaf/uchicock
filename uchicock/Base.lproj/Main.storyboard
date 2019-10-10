@@ -703,30 +703,24 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHI-Bf-oW2">
-                                <rect key="frame" x="0.0" y="88" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="88" width="320" height="43"/>
                                 <subviews>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlV-Re-S3J">
-                                        <rect key="frame" x="30" y="8" width="260" height="30"/>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlV-Re-S3J">
+                                        <rect key="frame" x="15" y="4" width="290" height="30"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="R3q-u3-wJK"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="290" id="R3q-u3-wJK"/>
                                             <constraint firstAttribute="height" constant="30" id="wyF-AJ-e2r"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la5-5i-XKe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="160" y="46" width="0.0" height="17"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="OtC-85-rTm"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal">
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lmo-Kg-hFs">
-                                        <rect key="frame" x="0.0" y="71" width="320" height="1"/>
+                                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="AL6-k2-FW5"/>
@@ -735,21 +729,19 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="la5-5i-XKe" firstAttribute="top" secondItem="wlV-Re-S3J" secondAttribute="bottom" constant="8" id="5da-Bk-Iak"/>
+                                    <constraint firstItem="lmo-Kg-hFs" firstAttribute="top" secondItem="wlV-Re-S3J" secondAttribute="bottom" constant="8" id="A7G-4u-9iG"/>
                                     <constraint firstItem="lmo-Kg-hFs" firstAttribute="leading" secondItem="bHI-Bf-oW2" secondAttribute="leading" id="AJh-00-tcQ"/>
-                                    <constraint firstItem="la5-5i-XKe" firstAttribute="centerX" secondItem="bHI-Bf-oW2" secondAttribute="centerX" id="DWU-ij-IYv"/>
-                                    <constraint firstItem="wlV-Re-S3J" firstAttribute="top" secondItem="bHI-Bf-oW2" secondAttribute="top" constant="8" id="LK4-jw-oWH"/>
+                                    <constraint firstItem="wlV-Re-S3J" firstAttribute="top" secondItem="bHI-Bf-oW2" secondAttribute="top" constant="4" id="LK4-jw-oWH"/>
                                     <constraint firstItem="wlV-Re-S3J" firstAttribute="centerX" secondItem="bHI-Bf-oW2" secondAttribute="centerX" id="MRt-Xh-bYP"/>
                                     <constraint firstAttribute="trailing" secondItem="lmo-Kg-hFs" secondAttribute="trailing" id="R3A-Ti-GBc"/>
                                     <constraint firstAttribute="bottom" secondItem="lmo-Kg-hFs" secondAttribute="bottom" id="UUq-Rs-UXF"/>
-                                    <constraint firstItem="lmo-Kg-hFs" firstAttribute="top" secondItem="la5-5i-XKe" secondAttribute="bottom" constant="8" id="npU-vc-DbS"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrA-Of-JN4">
-                                <rect key="frame" x="0.0" y="160" width="320" height="359"/>
+                                <rect key="frame" x="0.0" y="131" width="320" height="388"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWD-cD-43S" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="38.5" y="149" width="243" height="61"/>
+                                        <rect key="frame" x="38.5" y="163.5" width="243" height="61"/>
                                         <string key="text">データ準備中...
 しばらくかかる場合があります
 このままお待ちください</string>
@@ -786,7 +778,6 @@
                         <outlet property="messageContainer" destination="mrA-Of-JN4" id="AAg-Yk-FhI"/>
                         <outlet property="prepareMessage" destination="bWD-cD-43S" id="7P6-u9-h8D"/>
                         <outlet property="searchBar" destination="gcA-du-HQ6" id="2gf-Rx-i1A"/>
-                        <outlet property="searchConditionLabel" destination="la5-5i-XKe" id="jlS-Ls-evU"/>
                         <outlet property="searchConditionModifyButton" destination="wlV-Re-S3J" id="JKP-A3-SML"/>
                         <outlet property="searchContainer" destination="bHI-Bf-oW2" id="F3X-5D-U8v"/>
                         <segue destination="w1V-m1-dXG" kind="presentation" identifier="ShowRecipeList" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="KwC-hH-4u1"/>
@@ -899,6 +890,6 @@
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e9K-u4-h0j"/>
+        <segue reference="daG-Cs-3sj"/>
     </inferredMetricsTieBreakers>
 </document>
