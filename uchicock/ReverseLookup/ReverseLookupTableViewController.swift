@@ -723,7 +723,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestList.removeAll()
         
         for ingredient in ingredientList! {
-            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability))
+            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
         if textWithoutSpace(text: text) != "" {

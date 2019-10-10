@@ -17,6 +17,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     var ingredientBasicList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
     var selectedRecommendIngredientId: String? = nil
+    var isContributionMode = true
     
     var interactor: Interactor?
     
@@ -51,14 +52,21 @@ class IngredientRecommendTableViewController: UITableViewController {
             }
         }
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
         ingredientBasicList.removeAll{
-            $0.contributionToRecipeAvailability == 0
+            $0.contributionToRecipeAvailability < 2
         }
         ingredientBasicList.sort(by: { $0.contributionToRecipeAvailability > $1.contributionToRecipeAvailability })
 
+        if ingredientBasicList.count == 0{
+            isContributionMode = false
+            for ingredient in ingredientList!{
+                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            }
+            ingredientBasicList.sort(by: { $0.usedRecipeNum > $1.usedRecipeNum })
+        }
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -69,10 +77,10 @@ class IngredientRecommendTableViewController: UITableViewController {
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
-        if ingredientBasicList.count == 0 {
-            descriptionLabel.text = "在庫がない材料のうち、入手するとより多くのレシピを作れるようになるものを最大5種類までおすすめします！\n\nおすすめの材料はありません。所持している材料が少なすぎるようです・・・"
+        if isContributionMode {
+            descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになります！\n\n新しい材料に挑戦してみよう！"
         }else{
-            descriptionLabel.text = "在庫がない材料のうち、入手するとより多くのレシピを作れるようになるものを最大5種類までおすすめします！\n\n新しい材料に挑戦してみよう！"
+            descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょうか？"
         }
     }
     
@@ -142,7 +150,11 @@ class IngredientRecommendTableViewController: UITableViewController {
             cell.accessoryView = accesoryImageView
 
             cell.ingredientName = ingredientBasicList[indexPath.row - 1].name
-            cell.ingredientDescription = "入手すると新たに" + String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability) + "レシピ作れます！"
+            if isContributionMode{
+                cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れます！"
+            }else{
+                cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))個のレシピで使われています！"
+            }
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
