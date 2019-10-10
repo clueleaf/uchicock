@@ -26,7 +26,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
-    var contextualMenuIndexPath: IndexPath? = nil
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -710,13 +709,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             vc.recipeId = self.recipeBasicList[indexPath.row].id
             return vc
         }
-        contextualMenuIndexPath = indexPath
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+        return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: previewProvider, actionProvider: nil)
     }
     
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
-        performSegue(withIdentifier: "PushRecipeDetail", sender: contextualMenuIndexPath)
+        guard let indexPath = configuration.identifier as? IndexPath else { return }
+        
+        animator.addCompletion {
+            self.performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{

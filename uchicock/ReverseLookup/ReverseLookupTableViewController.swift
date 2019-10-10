@@ -32,7 +32,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     let selectedCellBackgroundView = UIView()
     var transitioningSection1 = false
     var shouldHideSearchCell = false
-    var contextualMenuIndexPath: IndexPath? = nil
 
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -857,8 +856,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 vc.recipeId = self.recipeBasicList[indexPath.row].id
                 return vc
             }
-            contextualMenuIndexPath = indexPath
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+            return UIContextMenuConfiguration(identifier: indexPath as NSCopying, previewProvider: previewProvider, actionProvider: nil)
         }else{
             return nil
         }
@@ -866,7 +864,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     @available(iOS 13.0, *)
     override func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating){
-        performSegue(withIdentifier: "PushRecipeDetail", sender: contextualMenuIndexPath)
+        guard let indexPath = configuration.identifier as? IndexPath else { return }
+
+        animator.addCompletion {
+            self.performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{

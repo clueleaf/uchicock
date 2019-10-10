@@ -28,7 +28,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var animationFlag = false
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     var noItemText = ""
-    var contextualMenuRecipeId: String? = nil
     var needsLayout = false
 
     var albumFilterStar0 = true
@@ -347,13 +346,16 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 vc.recipeId = self.filteredRecipeBasicList[indexPath.row].id
                 return vc
             }
-            contextualMenuRecipeId = self.filteredRecipeBasicList[indexPath.row].id
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: previewProvider, actionProvider: nil)
+        return UIContextMenuConfiguration(identifier: self.filteredRecipeBasicList[indexPath.row].id as NSCopying, previewProvider: previewProvider, actionProvider: nil)
     }
     
     @available(iOS 13.0, *)
     override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        performSegue(withIdentifier: "RecipeTapped", sender: contextualMenuRecipeId)
+        guard let recipeId = configuration.identifier as? String else { return }
+
+        animator.addCompletion {
+            self.performSegue(withIdentifier: "RecipeTapped", sender: recipeId)
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
