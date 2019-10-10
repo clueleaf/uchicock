@@ -45,7 +45,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     
     private func createIngredientBasicList(){
         let realm = try! Realm()
-        ingredientList = realm.objects(Ingredient.self)
+        ingredientList = realm.objects(Ingredient.self).filter("stockFlag == false")
         try! realm.write {
             for ingredient in ingredientList!{
                 ingredient.calcContribution()
