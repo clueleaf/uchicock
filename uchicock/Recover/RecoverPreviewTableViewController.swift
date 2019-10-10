@@ -103,19 +103,14 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label : UILabel = UILabel()
-        label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        if section == 1 {
-            label.text = "  材料(" + String(recipe.recipeIngredients.count) + ")"
-        }else{
-            label.text = nil
-        }
-        return label
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = Style.tableViewHeaderBackgroundColor
+        
+        let header = view as? UITableViewHeaderFooterView
+        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
     }
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             if indexPath.row == 0{

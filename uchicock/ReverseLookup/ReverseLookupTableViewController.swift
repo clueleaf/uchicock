@@ -761,23 +761,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         return 25
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if tableView.tag == 1{
-            let label : UILabel = UILabel()
-            label.backgroundColor = Style.tableViewHeaderBackgroundColor
-            label.textColor = Style.tableViewHeaderTextColor
-            label.font = UIFont.boldSystemFont(ofSize: 14)
-            label.text = "  上の材料(完全一致)をすべて使うレシピ(" + String(self.recipeBasicList.count) + ")"
-            return label
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = Style.tableViewHeaderBackgroundColor
+        
+        let header = view as? UITableViewHeaderFooterView
+        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        if tableView.tag == 1 {
+            header?.textLabel?.text = "上の材料(完全一致)をすべて使うレシピ(\(String(self.recipeBasicList.count)))"
         }else if tableView.tag == 2{
-            let label : UILabel = UILabel()
-            label.backgroundColor = Style.tableViewHeaderBackgroundColor
-            label.textColor = Style.tableViewHeaderTextColor
-            label.font = UIFont.boldSystemFont(ofSize: 14)
-            label.text = "  材料候補"
-            return label
+            header?.textLabel?.text = "材料候補"
+        }else{
+            header?.textLabel?.text = ""
         }
-        return nil
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {

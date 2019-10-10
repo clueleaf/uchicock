@@ -265,21 +265,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label : UILabel = UILabel()
-        label.backgroundColor = Style.tableViewHeaderBackgroundColor
-        label.textColor = Style.tableViewHeaderTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = Style.tableViewHeaderBackgroundColor
+        
+        let header = view as? UITableViewHeaderFooterView
+        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
         if section == 1 {
             if ingredient.recipeIngredients.count > 0 {
-                label.text = "  この材料を使うレシピ(" + String(ingredient.recipeIngredients.count) + ")"
+                header?.textLabel?.text = "この材料を使うレシピ(\(String(ingredient.recipeIngredients.count)))"
             }else {
-                label.text = "  この材料を使うレシピはありません"
+                header?.textLabel?.text = "この材料を使うレシピはありません"
             }
         }else{
-            label.text = nil
+            header?.textLabel?.text = ""
         }
-        return label
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
