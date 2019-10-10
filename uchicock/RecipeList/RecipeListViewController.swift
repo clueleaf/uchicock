@@ -215,7 +215,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
             recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
         }else{
-            conditionText += "、絞り込みあり"
+            conditionText += "、絞り込み有"
         }
 
         searchConditionModifyButton.setTitle(conditionText, for: .normal)
