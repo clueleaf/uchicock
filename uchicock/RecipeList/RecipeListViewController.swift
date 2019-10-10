@@ -14,7 +14,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!
-    @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
     
@@ -137,7 +136,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
         loadSearchUserDefaults()
-        setSearchConditionLabel()
+        setSearchConditionButtonTitle()
         reloadRecipeList()
         tableView.reloadData()
 
@@ -177,7 +176,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipeFilterOthers = defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey)
     }
     
-    private func setSearchConditionLabel(){
+    private func setSearchConditionButtonTitle(){
         var conditionText = ""
         
         switch recipeSortPrimary{
@@ -219,7 +218,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             conditionText += "、絞り込みあり"
         }
 
-        searchConditionLabel.text = conditionText
+        searchConditionModifyButton.setTitle(conditionText, for: .normal)
     }
     
     override func viewDidLayoutSubviews() {

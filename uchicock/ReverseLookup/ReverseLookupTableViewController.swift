@@ -18,7 +18,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var ingredientTextField1: CustomTextField!
     @IBOutlet weak var ingredientTextField2: CustomTextField!
     @IBOutlet weak var ingredientTextField3: CustomTextField!
-    @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     
     var firstIngredientName = ""
@@ -120,7 +119,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
         loadFromUserDefaults()
-        setSearchConditionLabel()
+        setSearchConditionButtonTitle()
         reloadRecipeList()
         recipeTableView.reloadData()
         self.tableView.reloadData()
@@ -196,7 +195,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    private func setSearchConditionLabel(){
+    private func setSearchConditionButtonTitle(){
         var conditionText = ""
         
         switch recipeSortPrimary{
@@ -238,7 +237,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             conditionText += "、絞り込みあり"
         }
         
-        searchConditionLabel.text = conditionText
+        searchConditionModifyButton.setTitle(conditionText, for: .normal)
     }
     
     override func viewDidLayoutSubviews() {
@@ -807,13 +806,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 if indexPath.row < 3{
                     return 35
                 }else{
-                    return 72
+                    return 44
                 }
             }else if indexPath.section == 1{
                 if shouldHideSearchCell {
                     return view.frame.size.height - 35 * 3
                 }else{
-                    return view.frame.size.height - 35 * 3 - 72
+                    return view.frame.size.height - 35 * 3 - 44
                 }
             }
         }else if tableView.tag == 1{
