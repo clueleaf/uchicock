@@ -145,41 +145,22 @@ class SettingsTableViewController: UITableViewController {
     func introductions() -> [introductionInfo]{
         var infos: [introductionInfo] = []
 
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            let info1 = introductionInfo(title: "レシピ",
-                                         description: GlobalConstants.IntroductionDescriptionRecipe,
-                                         image: UIImage(named:"screen-recipe-ipad"))
-            let info2 = introductionInfo(title: "材料",
-                                         description: GlobalConstants.IntroductionDescriptionIngredient,
-                                         image: UIImage(named:"screen-ingredient-ipad"))
-            let info3 = introductionInfo(title: "逆引き",
-                                         description: GlobalConstants.IntroductionDescriptionReverseLookup,
-                                         image: UIImage(named:"screen-reverse-lookup-ipad"))
-            let info4 = introductionInfo(title: "アルバム",
-                                         description: GlobalConstants.IntroductionDescriptionAlbum,
-                                         image: UIImage(named:"screen-album-ipad"))
-            infos.append(info1)
-            infos.append(info2)
-            infos.append(info3)
-            infos.append(info4)
-        }else{
-            let info1 = introductionInfo(title: "レシピ",
-                                         description: GlobalConstants.IntroductionDescriptionRecipe,
-                                         image: UIImage(named:"screen-recipe-iphone"))
-            let info2 = introductionInfo(title: "材料",
-                                         description: GlobalConstants.IntroductionDescriptionIngredient,
-                                         image: UIImage(named:"screen-ingredient-iphone"))
-            let info3 = introductionInfo(title: "逆引き",
-                                         description: GlobalConstants.IntroductionDescriptionReverseLookup,
-                                         image: UIImage(named:"screen-reverse-lookup-iphone"))
-            let info4 = introductionInfo(title: "アルバム",
-                                         description: GlobalConstants.IntroductionDescriptionAlbum,
-                                         image: UIImage(named:"screen-album-iphone"))
-            infos.append(info1)
-            infos.append(info2)
-            infos.append(info3)
-            infos.append(info4)
-        }
+        let info1 = introductionInfo(title: "レシピ",
+                                     description: GlobalConstants.IntroductionDescriptionRecipe,
+                                     image: UIImage(named:"screen-recipe"))
+        let info2 = introductionInfo(title: "材料",
+                                     description: GlobalConstants.IntroductionDescriptionIngredient,
+                                     image: UIImage(named:"screen-ingredient"))
+        let info3 = introductionInfo(title: "逆引き",
+                                     description: GlobalConstants.IntroductionDescriptionReverseLookup,
+                                     image: UIImage(named:"screen-reverse-lookup"))
+        let info4 = introductionInfo(title: "アルバム",
+                                    description: GlobalConstants.IntroductionDescriptionAlbum,
+                                    image: UIImage(named:"screen-album"))
+        infos.append(info1)
+        infos.append(info2)
+        infos.append(info3)
+        infos.append(info4)
         return infos
     }
 
