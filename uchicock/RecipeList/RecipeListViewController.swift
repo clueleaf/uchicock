@@ -218,7 +218,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             conditionText += "、絞り込み有"
         }
 
-        searchConditionModifyButton.setTitle(conditionText, for: .normal)
+        UIView.performWithoutAnimation {
+            searchConditionModifyButton.setTitle(conditionText, for: .normal)
+            searchConditionModifyButton.layoutIfNeeded()
+        }
     }
     
     override func viewDidLayoutSubviews() {
