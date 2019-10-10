@@ -14,6 +14,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     @IBOutlet weak var descriptionLabel: CustomLabel!
     
     var ingredientList: Results<Ingredient>?
+    var stockingIngredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
     var selectedRecommendIngredientId: String? = nil
@@ -65,6 +66,13 @@ class IngredientRecommendTableViewController: UITableViewController {
             for ingredient in ingredientList!{
                 ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
             }
+            
+            let realm = try! Realm()
+            stockingIngredientList = realm.objects(Ingredient.self).filter("stockFlag == true")
+            if stockingIngredientList!.count <= 10{
+                // 持っている材料数が少ない場合、その他カテゴリの材料を取り除く
+                ingredientBasicList.removeAll{ $0.category == 2 }
+            }
             ingredientBasicList.sort(by: { $0.usedRecipeNum > $1.usedRecipeNum })
         }
     }
@@ -83,12 +91,14 @@ class IngredientRecommendTableViewController: UITableViewController {
             if ingredientBasicList.count == 0{
                 descriptionLabel.text = "おすすめできる材料はありません..."
             }else{
-                let realm = try! Realm()
-                let stockingIngredientList = realm.objects(Ingredient.self).filter("stockFlag == true")
-                if stockingIngredientList.count > 10{
-                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
+                if stockingIngredientList != nil {
+                    if stockingIngredientList!.count <= 10 {
+                        descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょう？"
+                    }else{
+                        descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
+                    }
                 }else{
-                    descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょう？"
+                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
                 }
             }
         }
