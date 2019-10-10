@@ -300,7 +300,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let rightPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.right)!
         let safeAreaWidth = windowWidth - leftPadding - rightPadding
         
-        if safeAreaWidth > 1100{
+        if safeAreaWidth > 950{
             let size = (safeAreaWidth - 12) / 4
             return CGFloat(size)
         }else if safeAreaWidth > 500{
