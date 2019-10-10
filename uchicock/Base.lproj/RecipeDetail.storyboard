@@ -374,7 +374,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="Hiq-SP-eqe"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                    <state key="normal" image="edit">
+                                                                    <state key="normal" image="button-edit">
                                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     </state>
                                                                     <connections>
@@ -405,7 +405,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="FYy-D5-O7a"/>
                                                                         <constraint firstAttribute="width" constant="48" id="zze-ph-Lem"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="share"/>
+                                                                    <state key="normal" image="button-share"/>
                                                                     <connections>
                                                                         <action selector="shareButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="dsd-iq-GfR"/>
                                                                     </connections>
@@ -434,7 +434,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="33o-n6-oYW"/>
                                                                         <constraint firstAttribute="height" constant="48" id="fSR-lC-GKM"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="safari"/>
+                                                                    <state key="normal" image="button-safari"/>
                                                                     <connections>
                                                                         <action selector="openInSafariButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="IH4-hn-Yxn"/>
                                                                     </connections>
@@ -465,7 +465,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="GGS-DI-DBK"/>
                                                                         <constraint firstAttribute="width" constant="48" id="pN1-gZ-MPM"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="delete"/>
+                                                                    <state key="normal" image="button-delete"/>
                                                                     <connections>
                                                                         <action selector="deleteButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="JTp-Z8-Qc2"/>
                                                                     </connections>
@@ -564,10 +564,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="delete" width="48" height="48"/>
-        <image name="edit" width="48" height="48"/>
-        <image name="safari" width="48" height="48"/>
-        <image name="share" width="48" height="48"/>
+        <image name="button-delete" width="240" height="240"/>
+        <image name="button-edit" width="240" height="240"/>
+        <image name="button-safari" width="240" height="240"/>
+        <image name="button-share" width="240" height="240"/>
         <image name="tip" width="24" height="24"/>
     </resources>
 </document>

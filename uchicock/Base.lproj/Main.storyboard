@@ -640,18 +640,18 @@
                     <navigationItem key="navigationItem" title="アルバム" id="mtd-gz-49z">
                         <barButtonItem key="backBarButtonItem" title="アルバム" id="Wm3-Ba-Mrh"/>
                         <leftBarButtonItems>
-                            <barButtonItem image="album-name-off" id="llb-gy-qnJ">
+                            <barButtonItem image="navigation-album-name-off" id="llb-gy-qnJ">
                                 <connections>
                                     <action selector="nameButtonTapped:" destination="N5u-Pe-SYk" id="Wam-gY-Gqo"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="album-filter-off" id="b74-vW-dMn">
+                            <barButtonItem image="navigation-album-filter-off" id="b74-vW-dMn">
                                 <connections>
                                     <action selector="filterButtonTapped:" destination="N5u-Pe-SYk" id="VR1-hG-XQ5"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" image="order" id="cid-ka-mKY">
+                        <barButtonItem key="rightBarButtonItem" image="navigation-album-order" id="cid-ka-mKY">
                             <connections>
                                 <action selector="orderButtonTapped:" destination="N5u-Pe-SYk" id="swB-cs-JPf"/>
                             </connections>
@@ -909,9 +909,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="album-filter-off" width="24" height="24"/>
-        <image name="album-name-off" width="24" height="24"/>
-        <image name="order" width="24" height="24"/>
+        <image name="navigation-album-filter-off" width="24" height="24"/>
+        <image name="navigation-album-name-off" width="24" height="24"/>
+        <image name="navigation-album-order" width="24" height="24"/>
         <image name="tabbar-album" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>

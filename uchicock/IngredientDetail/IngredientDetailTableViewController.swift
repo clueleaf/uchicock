@@ -47,10 +47,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         stockRecommendLabel.isHidden = true
         
-        initActionButtonStyleOf(editButton, with: "edit")
-        initActionButtonStyleOf(reminderButton, with: "reminder")
-        initActionButtonStyleOf(amazonButton, with: "amazon")
-        initActionButtonStyleOf(deleteButton, with: "delete")
+        initActionButtonStyleOf(editButton, with: "button-edit")
+        initActionButtonStyleOf(reminderButton, with: "button-reminder")
+        initActionButtonStyleOf(amazonButton, with: "button-amazon")
+        initActionButtonStyleOf(deleteButton, with: "button-delete")
 
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
 

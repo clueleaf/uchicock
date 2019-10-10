@@ -71,7 +71,7 @@ class IndefiniteAnimatedView : UIView {
             indefinteAnimatedLayer?.path = smoothedPath.cgPath
             
             let maskLayer = CALayer()
-            let image = loadImageBundle(named: "angle-mask")!
+            let image = loadImageBundle(named: "hud-angle-mask")!
             maskLayer.contents = image.cgImage
             maskLayer.frame = indefinteAnimatedLayer!.bounds
             indefinteAnimatedLayer?.mask = maskLayer

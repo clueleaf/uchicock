@@ -22,7 +22,7 @@ public class ProgressHUD : UIView {
     private var defaultStyle = ProgressHUDStyle.light
     private var minimumSize = CGSize.init(width: 150, height: 100)
     private var imageViewSize: CGSize = CGSize.init(width: 28, height: 28)
-    private var successImage: UIImage! = UIImage.init(named: "success")!
+    private var successImage: UIImage! = UIImage.init(named: "hud-success")!
     private var minimumDismissTimeInterval: TimeInterval = 2.0
     private var maximumDismissTimeInterval: TimeInterval = TimeInterval(CGFloat.infinity)
     private var fadeOutTimer: Timer?

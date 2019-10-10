@@ -60,8 +60,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
 
-        recipeNameBarButton.image = UIImage(named: "album-name-off")
-        albumFilterBarButton.image = UIImage(named: "album-filter-off")
+        recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
+        albumFilterBarButton.image = UIImage(named: "navigation-album-filter-off")
     }
     
     private func setFilterUserDefaults(){
@@ -224,9 +224,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if albumFilterStar0 && albumFilterStar1 && albumFilterStar2 && albumFilterStar3 &&
             albumFilterLong && albumFilterShort && albumFilterHot && albumFilterStyleNone &&
             albumFilterBuild && albumFilterStir && albumFilterShake && albumFilterBlend && albumFilterOthers {
-            albumFilterBarButton.image = UIImage(named: "album-filter-off")
+            albumFilterBarButton.image = UIImage(named: "navigation-album-filter-off")
         }else{
-            albumFilterBarButton.image = UIImage(named: "album-filter-on")
+            albumFilterBarButton.image = UIImage(named: "navigation-album-filter-on")
         }
     }
     
@@ -434,14 +434,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - IBAction
     @IBAction func nameButtonTapped(_ sender: UIBarButtonItem) {
         if showNameFlag {
-            recipeNameBarButton.image = UIImage(named: "album-name-off")
+            recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
             showNameFlag = false
             animationFlag = true
             self.collectionView.reloadData()
             self.collectionView.layoutIfNeeded()
             animationFlag = false
         }else{
-            recipeNameBarButton.image = UIImage(named: "album-name-on")
+            recipeNameBarButton.image = UIImage(named: "navigation-album-name-on")
             showNameFlag = true
             animationFlag = true
             self.collectionView.reloadData()

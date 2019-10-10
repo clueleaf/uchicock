@@ -71,10 +71,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
         madeNumMinusButton.layer.borderWidth = 1.5
         
-        initActionButtonStyleOf(editButton, with: "edit")
-        initActionButtonStyleOf(shareButton, with: "share")
-        initActionButtonStyleOf(openInSafariButton, with: "safari")
-        initActionButtonStyleOf(deleteButton, with: "delete")
+        initActionButtonStyleOf(editButton, with: "button-edit")
+        initActionButtonStyleOf(shareButton, with: "button-share")
+        initActionButtonStyleOf(openInSafariButton, with: "button-safari")
+        initActionButtonStyleOf(deleteButton, with: "button-delete")
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 

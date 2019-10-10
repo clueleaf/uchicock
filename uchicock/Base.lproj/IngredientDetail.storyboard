@@ -176,7 +176,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="3z5-jd-2nN"/>
                                                                         <constraint firstAttribute="height" constant="48" id="8Kz-jV-vn7"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="edit"/>
+                                                                    <state key="normal" image="button-edit"/>
                                                                     <connections>
                                                                         <action selector="editButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="GRu-aq-ls8"/>
                                                                     </connections>
@@ -205,7 +205,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="0Nu-hF-6KM"/>
                                                                         <constraint firstAttribute="width" constant="48" id="9ip-to-Q04"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="reminder"/>
+                                                                    <state key="normal" image="button-reminder"/>
                                                                     <connections>
                                                                         <action selector="reminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="xLm-E8-4rx"/>
                                                                     </connections>
@@ -234,7 +234,7 @@
                                                                         <constraint firstAttribute="height" constant="48" id="M74-GS-iVG"/>
                                                                         <constraint firstAttribute="width" constant="48" id="egL-Yq-Sqj"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="amazon"/>
+                                                                    <state key="normal" image="button-amazon"/>
                                                                     <connections>
                                                                         <action selector="amazonButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="zFL-qs-uZt"/>
                                                                     </connections>
@@ -271,7 +271,7 @@
                                                                         <constraint firstAttribute="width" constant="48" id="bye-T7-Crj"/>
                                                                         <constraint firstAttribute="height" constant="48" id="kxH-6D-M4l"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="delete"/>
+                                                                    <state key="normal" image="button-delete"/>
                                                                     <connections>
                                                                         <action selector="deleteButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="sS6-7d-FNN"/>
                                                                     </connections>
@@ -367,9 +367,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="amazon" width="48" height="48"/>
-        <image name="delete" width="48" height="48"/>
-        <image name="edit" width="48" height="48"/>
-        <image name="reminder" width="48" height="48"/>
+        <image name="button-amazon" width="240" height="240"/>
+        <image name="button-delete" width="16" height="16"/>
+        <image name="button-edit" width="16" height="16"/>
+        <image name="button-reminder" width="16" height="16"/>
     </resources>
 </document>
