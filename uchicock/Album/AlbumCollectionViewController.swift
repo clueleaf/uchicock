@@ -417,7 +417,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }else{
                 cell.photo.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
             }
-å            cell.recipeName.alpha = 0.0
+            cell.recipeName.alpha = 0.0
             cell.recipeNameBackgroundView.alpha = 0.0
         }
         return cell
