@@ -92,22 +92,22 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="mVD-EV-sks"/>
                                         <exclude reference="4sl-hq-ChB"/>
                                         <exclude reference="8tP-jf-enG"/>
                                         <exclude reference="8vo-zB-Cfk"/>
+                                        <exclude reference="mVD-EV-sks"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="6y7-k1-8Z3"/>
-                                        <include reference="mVD-EV-sks"/>
-                                        <exclude reference="v7m-JP-buz"/>
                                         <include reference="4sl-hq-ChB"/>
                                         <include reference="8tP-jf-enG"/>
                                         <include reference="8vo-zB-Cfk"/>
                                         <exclude reference="J04-Eh-Cm7"/>
                                         <exclude reference="RyH-Sj-EZl"/>
+                                        <include reference="mVD-EV-sks"/>
+                                        <exclude reference="v7m-JP-buz"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -320,12 +320,12 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="FYa-t9-ZQy"/>
-                                        <exclude reference="9kW-fT-eNb"/>
                                         <exclude reference="2U8-9T-M05"/>
                                         <exclude reference="9yk-O8-xGz"/>
                                         <exclude reference="zdA-Bi-UkK"/>
                                         <exclude reference="B2g-4r-94K"/>
                                         <exclude reference="EZ5-W2-MuY"/>
+                                        <exclude reference="9kW-fT-eNb"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -333,8 +333,6 @@
                                         <include reference="FYa-t9-ZQy"/>
                                         <exclude reference="ML4-28-5sY"/>
                                         <exclude reference="QD9-kL-pUF"/>
-                                        <include reference="9kW-fT-eNb"/>
-                                        <exclude reference="i0y-X7-23e"/>
                                         <include reference="2U8-9T-M05"/>
                                         <exclude reference="5Jk-2q-NEK"/>
                                         <include reference="9yk-O8-xGz"/>
@@ -344,6 +342,8 @@
                                         <include reference="B2g-4r-94K"/>
                                         <include reference="EZ5-W2-MuY"/>
                                         <exclude reference="Wgr-Hg-DIS"/>
+                                        <include reference="9kW-fT-eNb"/>
+                                        <exclude reference="i0y-X7-23e"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -396,34 +396,39 @@
                         <sections>
                             <tableViewSection id="z7y-sT-Jya">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="eKb-Tc-CBS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="eKb-Tc-CBS">
                                         <rect key="frame" x="0.0" y="28" width="320" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eKb-Tc-CBS" id="E35-XG-ptg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="GmY-To-L0r">
-                                                    <rect key="frame" x="8" y="3" width="304" height="38"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GmY-To-L0r">
+                                                    <rect key="frame" x="8" y="3" width="304" height="99"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料1" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="OWJ-22-Xa1" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="2.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料2" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="SUr-6H-v2q" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="17.5" width="304" height="3"/>
+                                                            <rect key="frame" x="0.0" y="35" width="304" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料3" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="oUz-jz-Buo" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="35.5" width="304" height="2.5"/>
+                                                            <rect key="frame" x="0.0" y="70" width="304" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <variation key="heightClass=compact" axis="horizontal"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="99" id="q11-b4-byG">
+                                                            <variation key="heightClass=compact" constant="29"/>
+                                                        </constraint>
+                                                    </constraints>
+                                                    <variation key="heightClass=compact" axis="horizontal" spacing="8"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -773,22 +778,22 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="LJh-pz-MdF"/>
                                         <exclude reference="J6j-Lv-9He"/>
                                         <exclude reference="P0b-Sf-068"/>
                                         <exclude reference="wkt-5R-RTn"/>
+                                        <exclude reference="LJh-pz-MdF"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="eWh-Nc-fXD"/>
-                                        <exclude reference="A7G-4u-9iG"/>
-                                        <include reference="LJh-pz-MdF"/>
                                         <include reference="J6j-Lv-9He"/>
                                         <exclude reference="MRt-Xh-bYP"/>
                                         <include reference="P0b-Sf-068"/>
                                         <exclude reference="jJT-3i-gAn"/>
                                         <include reference="wkt-5R-RTn"/>
+                                        <exclude reference="A7G-4u-9iG"/>
+                                        <include reference="LJh-pz-MdF"/>
                                     </mask>
                                 </variation>
                             </view>
