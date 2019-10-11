@@ -619,7 +619,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func showRecipeTableView(){
-        if editingTextField == -1{
+        if editingTextField == -1 {
             setSearchTextToUserDefaults()
             loadFromUserDefaults()
             reloadRecipeList()
@@ -639,7 +639,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             editingTextField = -1
             
             shouldHideSearchCell = false
-            tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+            tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .left)
             transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             // 逆引き画面の材料選択から戻った後のEmptyDataSetの文字の高さを正しくするために必要
@@ -660,7 +660,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     func textFieldDidBeginEditing(_ textField: UITextField){
         if editingTextField == -1{
             shouldHideSearchCell = true
-            tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+            tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .left)
             transitioningSection1 = true
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             
@@ -785,9 +785,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if tableView.tag == 0{
             if section == 0{
                 if shouldHideSearchCell{
-                    return 3
+                    return 1
                 }else{
-                    return 4
+                    return 2
                 }
             }else if section == 1{
                 if transitioningSection1{
@@ -805,18 +805,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView.tag == 0{
-            if indexPath.section == 0{
-                if indexPath.row < 3{
-                    return 35
+        if tableView.tag == 0 {
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    return 105
                 }else{
                     return 44
                 }
             }else if indexPath.section == 1{
                 if shouldHideSearchCell {
-                    return view.frame.size.height - 35 * 3
+                    return view.frame.size.height - 105
                 }else{
-                    return view.frame.size.height - 35 * 3 - 44
+                    return view.frame.size.height - 105 - 44
                 }
             }
         }else if tableView.tag == 1{
@@ -934,7 +934,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: - UITableViewDataSourcePrefetching
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if tableView.tag == 1{
+        if tableView.tag == 1 {
             for indexPath in indexPaths{
                 DispatchQueue.global(qos: .userInteractive).async{
                     ImageUtil.saveToCache(imageFileName: self.recipeBasicList[indexPath.row].imageFileName)
@@ -972,7 +972,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         editingTextField = -1
         
         shouldHideSearchCell = false
-        tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .left)
+        tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .left)
         transitioningSection1 = false
         tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
         
