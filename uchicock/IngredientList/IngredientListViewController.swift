@@ -85,14 +85,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
 
+        let font = UIFont.systemFont(ofSize: 12)
+        let boldFont = UIFont.boldSystemFont(ofSize: 12)
         if #available(iOS 13.0, *) {
+            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColorOnBadge, NSAttributedString.Key.font: boldFont], for: .selected)
+            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColor, NSAttributedString.Key.font: font], for: .normal)
         }else{
+            category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .selected)
+            category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
             category.layer.cornerRadius = 14.0
             stockState.layer.cornerRadius = 14.0
         }
-        let font = UIFont.systemFont(ofSize: 12)
-        category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColorOnBadge, NSAttributedString.Key.font: font], for: .selected)
-        category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColor, NSAttributedString.Key.font: font], for: .normal)
 
         category.layer.borderColor = Style.primaryColor.cgColor
         category.layer.borderWidth = 1.0
