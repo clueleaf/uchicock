@@ -808,15 +808,27 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if tableView.tag == 0 {
             if indexPath.section == 0 {
                 if indexPath.row == 0 {
-                    return 105
+                    if traitCollection.verticalSizeClass == .compact{
+                        return 35
+                    }else{
+                        return 105
+                    }
                 }else{
                     return 44
                 }
             }else if indexPath.section == 1{
                 if shouldHideSearchCell {
-                    return view.frame.size.height - 105
+                    if traitCollection.verticalSizeClass == .compact{
+                        return view.frame.size.height - 35
+                    }else{
+                        return view.frame.size.height - 105
+                    }
                 }else{
-                    return view.frame.size.height - 105 - 44
+                    if traitCollection.verticalSizeClass == .compact{
+                        return view.frame.size.height - 35 - 44
+                    }else{
+                        return view.frame.size.height - 105 - 44
+                    }
                 }
             }
         }else if tableView.tag == 1{

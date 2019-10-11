@@ -423,6 +423,7 @@
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <variation key="heightClass=compact" axis="horizontal"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
