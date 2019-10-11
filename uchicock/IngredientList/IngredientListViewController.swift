@@ -90,6 +90,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             category.layer.cornerRadius = 14.0
             stockState.layer.cornerRadius = 14.0
         }
+        let font = UIFont.systemFont(ofSize: 12)
+        category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         category.layer.borderColor = Style.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
