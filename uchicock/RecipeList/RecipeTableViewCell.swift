@@ -28,10 +28,11 @@ class RecipeTableViewCell: UITableViewCell {
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: true){
                 self.photo.image = image
             }else{
+                photo.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))
                 if Style.isDark{
-                    photo.image = UIImage(named: "no-photo-dark")
+                    photo.tintColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
                 }else{
-                    photo.image = UIImage(named: "no-photo")
+                    photo.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
                 }
             }
             
