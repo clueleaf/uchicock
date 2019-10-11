@@ -115,6 +115,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
 
         setupVC()
+        needsLayout = true
     }
     
     private func setupVC(){
