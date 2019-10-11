@@ -8,12 +8,10 @@
 
 import UIKit
 
-class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
-    var selectingImageIndex = 0
     var image : UIImage?
     var smallCIImage : CIImage?
-    var filterImages : [UIImage?] = []
     var originalImageView: UIImageView?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
     
@@ -21,7 +19,8 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var filterScrollView: UIScrollView!
+    @IBOutlet weak var filterStackView: UIStackView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -53,24 +52,14 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
 
         titleLabel.textColor = UIColor.white
         
-        filterImages = [UIImage?](repeating: nil, count: CIFilterNames.count)
-        self.collectionView.indicatorStyle = .white
-
         imageView.image = image
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if let im = image{
-            smallCIImage = im.resizedCGImage(maxLongSide: (collectionView.frame.height - 20) * 2)
-        }
-    }
-    
     func setupScrollView() {
+        filterScrollView.indicatorStyle = .white
         imageScrollView.indicatorStyle = .white
         imageScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
         imageScrollView.alwaysBounceVertical = true
@@ -89,49 +78,66 @@ class PhotoFilterViewController: UIViewController, UICollectionViewDelegate, UIC
         self.transitioningDelegate = transitionHandler
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        collectionView.flashScrollIndicators()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let im = image{
+            smallCIImage = im.resizedCGImage(maxLongSide: (filterScrollView.frame.height - 20) * 2)
+        }
     }
     
-    // MARK: - Collection View
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setFilters()
+        filterScrollView.flashScrollIndicators()
+    }
+    
+    func setFilters(){
+        for i in 0..<CIFilterNames.count {
+            let filterButton = UIButton(type: .custom)
+            filterButton.layer.cornerRadius = 10
+            filterButton.clipsToBounds = true
+            filterButton.tag = i
+            filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
+
+            if let smim = self.smallCIImage{
+                DispatchQueue.global(qos: .userInteractive).async{
+                    let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
+                    DispatchQueue.main.async{
+                        filterButton.setImage(filteredImage, for: .normal)
+                        filterButton.imageView?.contentMode = .scaleAspectFill
+                    }
+                }
+            }
+            
+            if i == 0{
+                filterButton.layer.borderColor = UIColor.white.cgColor
+                filterButton.layer.borderWidth = 2.0
+            }else{
+                filterButton.layer.borderWidth = 0
+            }
+            filterStackView.addArrangedSubview(filterButton)
+        }
+    }
+    
+    @objc func filterButtonTapped(sender: UIButton){
         guard let im = self.image else{ return }
         guard let ciim = CIImage(image: im) else{ return }
         DispatchQueue.main.async {
-            self.imageView.image = self.filteredImage(filterNumber: indexPath.row, originalImage: ciim)
+            self.imageView.image = self.filteredImage(filterNumber: sender.tag, originalImage: ciim)
         }
-        selectingImageIndex = indexPath.row
-        collectionView.reloadData()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CIFilterNames.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFilterCell", for: indexPath) as! PhotoFilterCollectionViewCell
-        cell.imageView.layer.cornerRadius = 10
 
-        cell.imageView.image = filterImages[indexPath.row]
-        if filterImages[indexPath.row] == nil{
-            if let smim = self.smallCIImage{
-                DispatchQueue.global(qos: .userInteractive).async{
-                    self.filterImages[indexPath.row] = self.filteredImage(filterNumber: indexPath.row, originalImage: smim)
-                    DispatchQueue.main.async{
-                        cell.imageView.image = self.filterImages[indexPath.row]
+        for subview in filterScrollView.subviews{
+            if subview is UIStackView{
+                for subsubview in subview.subviews{
+                    if subsubview is UIButton{
+                        let b = subsubview as! UIButton
+                        b.layer.borderWidth = 0
                     }
                 }
             }
         }
-        if indexPath.row == selectingImageIndex{
-            cell.imageView.layer.borderColor = UIColor.white.cgColor
-            cell.imageView.layer.borderWidth = 2.0
-        }else{
-            cell.imageView.layer.borderWidth = 0
-        }
-
-        return cell
+        sender.layer.borderColor = UIColor.white.cgColor
+        sender.layer.borderWidth = 2.0
     }
     
     @objc func imageViewDoubleTapped() {
