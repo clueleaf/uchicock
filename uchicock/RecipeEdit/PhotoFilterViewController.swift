@@ -56,6 +56,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
+        addFilterButtons()
     }
     
     func setupScrollView() {
@@ -87,27 +88,17 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setFilters()
         filterScrollView.flashScrollIndicators()
+        setFilterImages()
     }
     
-    func setFilters(){
+    func addFilterButtons(){
         for i in 0..<CIFilterNames.count {
             let filterButton = UIButton(type: .custom)
             filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             filterButton.tag = i
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
-
-            if let smim = self.smallCIImage{
-                DispatchQueue.global(qos: .userInteractive).async{
-                    let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
-                    DispatchQueue.main.async{
-                        filterButton.setImage(filteredImage, for: .normal)
-                        filterButton.imageView?.contentMode = .scaleAspectFill
-                    }
-                }
-            }
             
             if i == 0{
                 filterButton.layer.borderColor = UIColor.white.cgColor
@@ -116,6 +107,28 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 filterButton.layer.borderWidth = 0
             }
             filterStackView.addArrangedSubview(filterButton)
+        }
+    }
+    
+    func setFilterImages(){
+        for subview in filterScrollView.subviews{
+            if subview is UIStackView{
+                for subsubview in subview.subviews{
+                    if subsubview is UIButton{
+                        let b = subsubview as! UIButton
+                        if let smim = self.smallCIImage{
+                            let filterNumber = b.tag
+                            DispatchQueue.global(qos: .userInteractive).async{
+                                let filteredImage = self.filteredImage(filterNumber: filterNumber, originalImage: smim)
+                                DispatchQueue.main.async{
+                                    b.setImage(filteredImage, for: .normal)
+                                    b.imageView?.contentMode = .scaleAspectFill
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
