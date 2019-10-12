@@ -157,13 +157,12 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="byH-fO-srn" secondAttribute="bottom" id="0Rd-v0-4Gx"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="top" secondItem="PAy-Yc-Fde" secondAttribute="bottom" constant="8" id="0Yx-52-nQT"/>
-                                    <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="PAy-Yc-Fde" secondAttribute="trailing" constant="8" id="1Hw-oY-ilp"/>
-                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="trailing" secondItem="m5h-bx-XfI" secondAttribute="trailing" constant="8" id="2nl-iv-m6e"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="leading" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="6GQ-dn-bEh"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="4" id="9bS-Nc-pdt"/>
                                     <constraint firstItem="pzt-xa-LwF" firstAttribute="centerY" secondItem="dxa-Lv-rSY" secondAttribute="centerY" id="AYx-jV-zWj"/>
                                     <constraint firstItem="TSf-wI-n9h" firstAttribute="top" secondItem="pzt-xa-LwF" secondAttribute="bottom" id="Dan-ah-vYC"/>
                                     <constraint firstAttribute="trailing" secondItem="byH-fO-srn" secondAttribute="trailing" id="Ewf-C2-osx"/>
+                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="trailing" secondItem="m5h-bx-XfI" secondAttribute="trailing" constant="-8" id="FvY-sC-UZE"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="centerY" secondItem="TSf-wI-n9h" secondAttribute="centerY" id="Gcp-LE-ibB"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="leading" secondItem="pzt-xa-LwF" secondAttribute="trailing" constant="8" id="KTd-Hz-Gsn"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="centerX" secondItem="Lua-m4-zJA" secondAttribute="centerX" id="NcL-Hp-XOp"/>
@@ -176,18 +175,19 @@
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="jgZ-yb-d1j"/>
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="leading" secondItem="pzt-xa-LwF" secondAttribute="leading" id="lMu-xD-STm"/>
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="pzt-xa-LwF" secondAttribute="trailing" id="mcA-WI-EWD"/>
+                                    <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="PAy-Yc-Fde" secondAttribute="trailing" constant="8" id="tUw-0c-cMN"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="thL-54-8Xe"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="m5h-bx-XfI"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="AYx-jV-zWj"/>
-                                        <exclude reference="2nl-iv-m6e"/>
-                                        <exclude reference="KTd-Hz-Gsn"/>
                                         <exclude reference="9bS-Nc-pdt"/>
                                         <exclude reference="6GQ-dn-bEh"/>
                                         <exclude reference="Gcp-LE-ibB"/>
                                         <exclude reference="OHl-pn-gGU"/>
+                                        <exclude reference="FvY-sC-UZE"/>
+                                        <exclude reference="KTd-Hz-Gsn"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -195,10 +195,6 @@
                                         <exclude reference="jgZ-yb-d1j"/>
                                         <exclude reference="mcA-WI-EWD"/>
                                         <include reference="AYx-jV-zWj"/>
-                                        <exclude reference="0Yx-52-nQT"/>
-                                        <include reference="2nl-iv-m6e"/>
-                                        <include reference="KTd-Hz-Gsn"/>
-                                        <exclude reference="NcL-Hp-XOp"/>
                                         <include reference="9bS-Nc-pdt"/>
                                         <exclude reference="fg1-LP-gop"/>
                                         <include reference="6GQ-dn-bEh"/>
@@ -206,6 +202,10 @@
                                         <include reference="OHl-pn-gGU"/>
                                         <exclude reference="adq-im-gbd"/>
                                         <exclude reference="thL-54-8Xe"/>
+                                        <exclude reference="0Yx-52-nQT"/>
+                                        <include reference="FvY-sC-UZE"/>
+                                        <include reference="KTd-Hz-Gsn"/>
+                                        <exclude reference="NcL-Hp-XOp"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -220,6 +220,7 @@
                             <constraint firstItem="Lua-m4-zJA" firstAttribute="leading" secondItem="aum-7a-ku7" secondAttribute="leading" id="pyo-Gb-zhb"/>
                             <constraint firstAttribute="trailing" secondItem="Lua-m4-zJA" secondAttribute="trailing" id="v2j-S3-Akr"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="fMf-kL-qMd"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="材料" id="96t-nS-HfG">
