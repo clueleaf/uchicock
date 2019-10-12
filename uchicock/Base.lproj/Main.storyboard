@@ -461,7 +461,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eVd-h0-UvW" firstAttribute="top" secondItem="hLU-dF-PaL" secondAttribute="top" constant="6" id="fQJ-yO-Utg"/>
-                                                <constraint firstAttribute="bottom" secondItem="eVd-h0-UvW" secondAttribute="bottom" constant="8" id="kEe-AA-V88"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
