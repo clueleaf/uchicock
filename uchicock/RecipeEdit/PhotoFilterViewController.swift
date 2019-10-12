@@ -53,7 +53,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         titleLabel.textColor = UIColor.white
         
         imageView.image = image
-        smallCIImage = image.resizedCGImage(maxLongSide: 100)
+        smallCIImage = image.resizedCGImage(maxLongSide: 300)
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
