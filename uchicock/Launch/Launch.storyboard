@@ -125,7 +125,7 @@
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrH-hZ-WaN">
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrH-hZ-WaN">
                                         <rect key="frame" x="0.0" y="86" width="320" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -162,20 +162,20 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="IVf-tE-UyP"/>
                                         <exclude reference="hnF-aZ-p6U"/>
                                         <exclude reference="weI-nv-Od0"/>
-                                        <exclude reference="IVf-tE-UyP"/>
                                         <exclude reference="bui-dZ-fnU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="l4y-z0-lxe"/>
-                                        <include reference="hnF-aZ-p6U"/>
-                                        <exclude reference="xem-WH-5jF"/>
-                                        <include reference="weI-nv-Od0"/>
                                         <include reference="IVf-tE-UyP"/>
                                         <exclude reference="MkU-f0-Lde"/>
+                                        <include reference="hnF-aZ-p6U"/>
+                                        <include reference="weI-nv-Od0"/>
+                                        <exclude reference="xem-WH-5jF"/>
                                         <include reference="bui-dZ-fnU"/>
                                         <exclude reference="ehm-0S-niw"/>
                                     </mask>

@@ -13,7 +13,6 @@ class LaunchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!
-    @IBOutlet weak var searchConditionLabel: CustomLabel!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
     @IBOutlet weak var messageContainer: UIView!
