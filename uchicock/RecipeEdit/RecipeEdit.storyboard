@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GDP-95-qM7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1708" y="-418"/>
+            <point key="canvasLocation" x="-1508" y="-418"/>
         </scene>
         <!--Recipe Edit Table View Controller-->
         <scene sceneID="osa-Tg-BFD">
@@ -305,7 +305,7 @@
                                         <rect key="frame" x="0.0" y="670" width="667" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
-                                            <rect key="frame" x="0.0" y="0.0" width="356" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="648" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -313,7 +313,7 @@
                                         <rect key="frame" x="0.0" y="740" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -540,7 +540,7 @@
             <objects>
                 <tableViewController id="W6V-Ex-Byo" customClass="RecipeIngredientEditTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pHk-m1-LBi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -549,14 +549,14 @@
                             <tableViewSection headerTitle="Section-1" id="fKg-hD-5Bv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="ldJ-wr-cLg">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="667" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldJ-wr-cLg" id="aby-6v-3Pb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="N4k-of-Pi3" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="5" width="355" height="40"/>
+                                                    <rect key="frame" x="8" y="5" width="647" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Wxm-rc-5kH"/>
                                                     </constraints>
@@ -575,26 +575,26 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="165" id="z24-ua-voM">
-                                        <rect key="frame" x="0.0" y="78" width="375" height="165"/>
+                                        <rect key="frame" x="0.0" y="78" width="667" height="165"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z24-ua-voM" id="LPv-E3-K1s">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="165"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="30" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FJi-BL-oF3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="667" height="165"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestIngredient" rowHeight="30" id="TwZ-6k-LKj" customClass="SuggestIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="28" width="375" height="30"/>
+                                                            <rect key="frame" x="0.0" y="28" width="667" height="30"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TwZ-6k-LKj" id="mfN-ji-yan">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="667" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-PS-dyK" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                        <rect key="frame" x="8" y="5" width="359" height="20.5"/>
+                                                                        <rect key="frame" x="8" y="5" width="651" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -627,14 +627,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="zpu-ii-g9x">
-                                        <rect key="frame" x="0.0" y="243" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="243" width="667" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zpu-ii-g9x" id="UVb-p4-hZv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="分量" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NyC-hv-bV8" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="5" width="355" height="40"/>
+                                                    <rect key="frame" x="8" y="5" width="647" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="xsg-z2-Q6F"/>
                                                     </constraints>
@@ -645,7 +645,7 @@
                                                     </connections>
                                                 </textField>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="14" translatesAutoresizingMaskIntoConstraints="NO" id="CAO-ft-XUK" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="6" y="55" width="359" height="31"/>
+                                                    <rect key="frame" x="6" y="55" width="651" height="31"/>
                                                     <connections>
                                                         <action selector="amountSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="Zeg-T3-gEP"/>
                                                     </connections>
@@ -662,14 +662,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="90" id="Tlb-iC-CNM">
-                                        <rect key="frame" x="0.0" y="343" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="343" width="667" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tlb-iC-CNM" id="FwI-ja-QDi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Yn-meJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="16" width="295" height="21"/>
+                                                    <rect key="frame" x="8" y="16" width="587" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="pLQ-3q-rM3"/>
                                                     </constraints>
@@ -678,7 +678,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-L3-ZDg" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="323" y="6.5" width="40" height="40"/>
+                                                    <rect key="frame" x="615" y="6.5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="5I3-Lr-AME"/>
@@ -686,7 +686,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thm-mY-qsP">
-                                                    <rect key="frame" x="8" y="49" width="359" height="29"/>
+                                                    <rect key="frame" x="8" y="49" width="651" height="29"/>
                                                     <string key="text">「オプション」の材料は在庫がなくても、
 レシピは作れるものとして見なされます</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -711,14 +711,14 @@
                             <tableViewSection headerTitle="Section-2" id="chP-KN-S8n">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KmQ-8j-oGd">
-                                        <rect key="frame" x="0.0" y="489" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="489" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmQ-8j-oGd" id="oHc-5U-BpI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料の追加をやめる" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-iq-O5X">
-                                                    <rect key="frame" x="96" y="10" width="183.5" height="24"/>
+                                                    <rect key="frame" x="242" y="10" width="183.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.85043728350000003" green="0.21816034619999999" blue="0.15920260550000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>

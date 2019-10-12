@@ -1,5 +1,5 @@
 //
-//  PrepareViewController.swift
+//  LaunchViewController.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2019/10/05.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PrepareViewController: UIViewController {
+class LaunchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchContainer: UIView!

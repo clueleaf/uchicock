@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwW-90-Lzq">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--アルバム-->
+        <scene sceneID="fC4-3T-XE7">
+            <objects>
+                <collectionViewController id="cmn-VU-7rH" customClass="AlbumCollectionViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="Prf-Xp-phx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="hYW-wC-52D">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="cmn-VU-7rH" id="yCH-ZS-psd"/>
+                            <outlet property="delegate" destination="cmn-VU-7rH" id="79h-iE-gKR"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="アルバム" id="dJi-SS-5bk">
+                        <barButtonItem key="backBarButtonItem" title="アルバム" id="A01-vb-6tI"/>
+                        <leftBarButtonItems>
+                            <barButtonItem image="navigation-album-name-off" id="OI7-4a-Ftr">
+                                <connections>
+                                    <action selector="nameButtonTapped:" destination="cmn-VU-7rH" id="oir-NZ-MRF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="navigation-album-filter-off" id="zoY-sF-pqa">
+                                <connections>
+                                    <action selector="filterButtonTapped:" destination="cmn-VU-7rH" id="Z1c-xg-q3F"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="navigation-album-order" id="bqV-mq-viL">
+                            <connections>
+                                <action selector="orderButtonTapped:" destination="cmn-VU-7rH" id="fkp-5b-fEP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="albumFilterBarButton" destination="zoY-sF-pqa" id="6Yj-p9-ELR"/>
+                        <outlet property="flowLayout" destination="hYW-wC-52D" id="HSs-W9-G3B"/>
+                        <outlet property="orderBarButton" destination="bqV-mq-viL" id="NLP-aq-vUT"/>
+                        <outlet property="recipeNameBarButton" destination="OI7-4a-Ftr" id="z8K-y9-IED"/>
+                        <segue destination="a1g-J2-ITo" kind="show" identifier="RecipeTapped" id="QPN-kF-UNt"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LK9-QE-uEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1959" y="1047"/>
+        </scene>
+        <!--RecipeDetail-->
+        <scene sceneID="s2j-r8-E7A">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RecipeDetail" id="a1g-J2-ITo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GDv-fz-YS5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdb-R2-2vK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1097" y="1059"/>
+        </scene>
+        <!--アルバム-->
+        <scene sceneID="N3Q-QG-gSk">
+            <objects>
+                <navigationController id="dwW-90-Lzq" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="アルバム" image="tabbar-album" id="ebZ-15-k1p"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="8oa-HJ-mk7" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cmn-VU-7rH" kind="relationship" relationship="rootViewController" id="EtL-Qu-BWH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSM-r1-Y42" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2722" y="1038"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="navigation-album-filter-off" width="24" height="24"/>
+        <image name="navigation-album-name-off" width="24" height="24"/>
+        <image name="navigation-album-order" width="24" height="24"/>
+        <image name="tabbar-album" width="24" height="24"/>
+    </resources>
+</document>
