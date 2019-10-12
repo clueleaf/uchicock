@@ -25,6 +25,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    var isTyping = false
 
     let interactor = Interactor()
 
@@ -129,6 +130,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         selectedIngredientId = nil
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.verticalSizeClass == .compact && isTyping {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }else{
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -291,6 +301,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - UISearchBarDelegate
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.isTyping = true
+        if traitCollection.verticalSizeClass == .compact{
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.isTyping = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         reloadIngredientBasicList()

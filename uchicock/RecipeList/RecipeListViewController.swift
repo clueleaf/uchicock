@@ -25,6 +25,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    var isTyping = false
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -221,6 +222,15 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         UIView.performWithoutAnimation {
             searchConditionModifyButton.setTitle(conditionText, for: .normal)
             searchConditionModifyButton.layoutIfNeeded()
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.verticalSizeClass == .compact && isTyping {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }else{
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
     
@@ -608,6 +618,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - UISearchBarDelegate
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.isTyping = true
+        if traitCollection.verticalSizeClass == .compact{
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.isTyping = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         reloadRecipeBasicList()
