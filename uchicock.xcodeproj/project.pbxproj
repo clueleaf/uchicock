@@ -57,6 +57,7 @@
 		9B6D67CE1CD0F093001E8079 /* IngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */; };
 		9B70B09122B68533008A5591 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B70B08F22B68533008A5591 /* RecipeTableViewCell.swift */; };
 		9B70B09222B68533008A5591 /* RecipeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B70B09022B68533008A5591 /* RecipeTableViewCell.xib */; };
+		9B746DBB2351EFA200507530 /* Recover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B746DBA2351EFA200507530 /* Recover.storyboard */; };
 		9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */; };
 		9B7BAA6822B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */; };
 		9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */; };
@@ -163,6 +164,7 @@
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
 		9B70B08F22B68533008A5591 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = RecipeList/RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		9B70B09022B68533008A5591 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeTableViewCell.xib; path = RecipeList/RecipeTableViewCell.xib; sourceTree = "<group>"; };
+		9B746DBA2351EFA200507530 /* Recover.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Recover.storyboard; path = Recover/Recover.storyboard; sourceTree = "<group>"; };
 		9B7BAA6522B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewCell.swift; path = Album/AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B7BAA6622B4E4A5005BB3F7 /* AlbumCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AlbumCollectionViewCell.xib; path = Album/AlbumCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterCollectionViewCell.swift; path = RecipeEdit/PhotoFilterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		9B18128C1CD3BBD600717E4F /* Recover */ = {
 			isa = PBXGroup;
 			children = (
+				9B746DBA2351EFA200507530 /* Recover.storyboard */,
 				9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */,
 				9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */,
 				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
@@ -644,6 +647,7 @@
 				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
 				9B70B09222B68533008A5591 /* RecipeTableViewCell.xib in Resources */,
 				9BEC4C3B2351EC8F004FE9B4 /* Album.storyboard in Resources */,
+				9B746DBB2351EFA200507530 /* Recover.storyboard in Resources */,
 				9BEC4C132351E9FA004FE9B4 /* LaunchScreen.storyboard in Resources */,
 				9BEC4C242351EC16004FE9B4 /* IngredientList.storyboard in Resources */,
 				9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */,

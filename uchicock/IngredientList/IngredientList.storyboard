@@ -181,12 +181,12 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="AYx-jV-zWj"/>
-                                        <exclude reference="Gcp-LE-ibB"/>
                                         <exclude reference="6GQ-dn-bEh"/>
+                                        <exclude reference="Gcp-LE-ibB"/>
                                         <exclude reference="OHl-pn-gGU"/>
-                                        <exclude reference="Rmz-aU-NJV"/>
-                                        <exclude reference="KTd-Hz-Gsn"/>
                                         <exclude reference="9bS-Nc-pdt"/>
+                                        <exclude reference="KTd-Hz-Gsn"/>
+                                        <exclude reference="Rmz-aU-NJV"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
@@ -194,17 +194,17 @@
                                         <include reference="AYx-jV-zWj"/>
                                         <exclude reference="tMM-vg-6uS"/>
                                         <exclude reference="njO-qL-FGY"/>
-                                        <include reference="Gcp-LE-ibB"/>
                                         <exclude reference="2Ls-uh-VeN"/>
                                         <include reference="6GQ-dn-bEh"/>
-                                        <exclude reference="adq-im-gbd"/>
+                                        <include reference="Gcp-LE-ibB"/>
                                         <include reference="OHl-pn-gGU"/>
-                                        <exclude reference="0Yx-52-nQT"/>
-                                        <include reference="Rmz-aU-NJV"/>
-                                        <include reference="KTd-Hz-Gsn"/>
-                                        <exclude reference="NcL-Hp-XOp"/>
+                                        <exclude reference="adq-im-gbd"/>
                                         <include reference="9bS-Nc-pdt"/>
                                         <exclude reference="fg1-LP-gop"/>
+                                        <exclude reference="0Yx-52-nQT"/>
+                                        <include reference="KTd-Hz-Gsn"/>
+                                        <exclude reference="NcL-Hp-XOp"/>
+                                        <include reference="Rmz-aU-NJV"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -254,7 +254,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6aP-xD-ZkM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-960" y="2564"/>
+            <point key="canvasLocation" x="-1241" y="2571"/>
         </scene>
         <!--材料-->
         <scene sceneID="VIl-gA-EMZ">
@@ -279,7 +279,7 @@
                 <viewControllerPlaceholder storyboardName="IngredientEdit" id="tMY-tg-5CF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5RK-Hm-7rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-968" y="2683"/>
+            <point key="canvasLocation" x="-1249" y="2690"/>
         </scene>
     </scenes>
     <resources>
