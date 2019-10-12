@@ -10,9 +10,9 @@ import UIKit
 
 class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
-    var image : UIImage?
+    var image : UIImage!
+    var originalImageView: UIImageView!
     var smallCIImage : CIImage?
-    var originalImageView: UIImageView?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
     
     @IBOutlet weak var button: UIButton!
@@ -53,10 +53,10 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         titleLabel.textColor = UIColor.white
         
         imageView.image = image
+        smallCIImage = image.resizedCGImage(maxLongSide: 100)
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
-        addFilterButtons()
     }
     
     func setupScrollView() {
@@ -75,21 +75,13 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     }
     
     func setupTransitions() {
-        transitionHandler = PhotoFilterDismissalTransitioningHandler(fromImageView: self.imageView, toImageView: originalImageView!)
+        transitionHandler = PhotoFilterDismissalTransitioningHandler(fromImageView: self.imageView, toImageView: originalImageView)
         self.transitioningDelegate = transitionHandler
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let im = image{
-            smallCIImage = im.resizedCGImage(maxLongSide: (filterScrollView.frame.height - 20) * 2)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        filterScrollView.flashScrollIndicators()
-        setFilterImages()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addFilterButtons()
     }
     
     func addFilterButtons(){
@@ -103,38 +95,34 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
             if i == 0{
                 filterButton.layer.borderColor = UIColor.white.cgColor
                 filterButton.layer.borderWidth = 2.0
+                if let smim = self.smallCIImage{
+                    let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
+                    filterButton.setImage(filteredImage, for: .normal)
+                    filterButton.imageView?.contentMode = .scaleAspectFill
+                }
             }else{
                 filterButton.layer.borderWidth = 0
+                if let smim = self.smallCIImage{
+                    DispatchQueue.global(qos: .userInteractive).async{
+                        let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
+                        DispatchQueue.main.async{
+                            filterButton.setImage(filteredImage, for: .normal)
+                            filterButton.imageView?.contentMode = .scaleAspectFill
+                        }
+                    }
+                }
             }
             filterStackView.addArrangedSubview(filterButton)
         }
     }
     
-    func setFilterImages(){
-        for subview in filterScrollView.subviews{
-            if subview is UIStackView{
-                for subsubview in subview.subviews{
-                    if subsubview is UIButton{
-                        let b = subsubview as! UIButton
-                        if let smim = self.smallCIImage{
-                            let filterNumber = b.tag
-                            DispatchQueue.global(qos: .userInteractive).async{
-                                let filteredImage = self.filteredImage(filterNumber: filterNumber, originalImage: smim)
-                                DispatchQueue.main.async{
-                                    b.setImage(filteredImage, for: .normal)
-                                    b.imageView?.contentMode = .scaleAspectFill
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        filterScrollView.flashScrollIndicators()
     }
     
     @objc func filterButtonTapped(sender: UIButton){
-        guard let im = self.image else{ return }
-        guard let ciim = CIImage(image: im) else{ return }
+        guard let ciim = CIImage(image: self.image) else{ return }
         DispatchQueue.main.async {
             self.imageView.image = self.filteredImage(filterNumber: sender.tag, originalImage: ciim)
         }
@@ -306,7 +294,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     
     // MARK: - IBAction
     @IBAction func doneButtonTapped(_ sender: UIButton) {
-        originalImageView?.isHidden = true
+        originalImageView.isHidden = true
 
         UIView.animate(withDuration: 0.2, delay: 0, animations: {
             self.imageScrollView.setZoomScale(self.imageScrollView.minimumZoomScale, animated: false)
