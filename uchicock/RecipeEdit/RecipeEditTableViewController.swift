@@ -280,7 +280,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
-            showCancelAlert = true
             let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
             let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
@@ -292,6 +291,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: -1)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
+                            self.showCancelAlert = true
                         }
                     }else{
                         if deleteFlag{
@@ -301,11 +301,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 }
                             }
                             self.selectedIndexPath = nil
+                            self.showCancelAlert = true
                         }else{
                             for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].id == recipeIngredientId{
                                 self.recipeIngredientList[i].ingredientName = ingredientName
                                 self.recipeIngredientList[i].amount = amount
                                 self.recipeIngredientList[i].mustFlag = mustFlag
+                                self.showCancelAlert = true
                             }
                         }
                     }
