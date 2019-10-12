@@ -28,6 +28,7 @@ class IntroductionDetailViewController: UIViewController {
         titleLabel.text = titleString
         titleLabel.alpha = 0.0
         titleLabel.textColor = isTextColorBlack ? FlatColor.black : FlatColor.white
+        separator.alpha = 0.0
         descriptionLabel.text = descriptionString
         descriptionLabel.alpha = 0.0
         descriptionLabel.textColor = isTextColorBlack ? FlatColor.black : FlatColor.white
@@ -60,6 +61,11 @@ class IntroductionDetailViewController: UIViewController {
                 self.titleLabel.alpha = 1.0
             })
         }
+        if separator.alpha < 1.0{
+            UIView.animate(withDuration: duration, animations: {
+                self.separator.alpha = 1.0
+            })
+        }
         if descriptionLabel.alpha < 1.0{
             UIView.animate(withDuration: duration, delay: duration, animations: {
                 self.descriptionLabel.alpha = 1.0
@@ -79,6 +85,7 @@ class IntroductionDetailViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         titleLabel.alpha = 0.0
+        separator.alpha = 0.0
         descriptionLabel.alpha = 0.0
         imageView.alpha = 0.0
         skipButton.alpha = 0.0
