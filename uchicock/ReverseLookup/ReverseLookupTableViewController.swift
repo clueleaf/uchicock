@@ -250,6 +250,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         tableView.reloadData()
+        if editingTextField == 0{
+            ingredientTextField1.becomeFirstResponder()
+        }else if editingTextField == 1{
+            ingredientTextField2.becomeFirstResponder()
+        }else if editingTextField == 2{
+            ingredientTextField3.becomeFirstResponder()
+        }
     }
     
     override func viewDidLayoutSubviews() {
