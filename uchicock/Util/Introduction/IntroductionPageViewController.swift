@@ -19,6 +19,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     var backgroundImage: UIImage? = nil
     var isTextColorBlack = false
     var isPageControlBlack = false
+    var hasFinishedLayoutSubviews = true
 
     var currentStatusBarStyle: UIStatusBarStyle = .lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -99,6 +100,11 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        hasFinishedLayoutSubviews = false
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         for subview in self.view.subviews {
@@ -114,6 +120,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             }
         }
         windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
+        hasFinishedLayoutSubviews = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -148,11 +155,13 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x < windowWidth{
-            isEnd = false
-        }
-        if isEnd && scrollView.contentOffset.x > windowWidth + 20{
-            self.dismiss(animated: true, completion: nil)
+        if hasFinishedLayoutSubviews { // 画面回転でもdidScrollするため、isEndがfalseに更新されてdismissできなくなる問題への対応
+            if scrollView.contentOffset.x < windowWidth{
+                isEnd = false
+            }
+            if isEnd && scrollView.contentOffset.x > windowWidth + 20{
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
