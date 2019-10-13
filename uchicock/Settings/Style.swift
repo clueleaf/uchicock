@@ -65,7 +65,7 @@ struct Style{
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.5, blue:0.0, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.65, green:0.4, blue:0.0, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
@@ -480,7 +480,7 @@ struct Style{
         basicBackgroundColor = UIColor.black
         tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
-        tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.42, green:0.3, blue:0.1, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.grayDark
