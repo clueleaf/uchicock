@@ -25,6 +25,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var thirdIngredientName = ""
     var editingTextField: Int = -1
     var selectedRecipeId: String? = nil
+    var selectedIndexPath: IndexPath? = nil
     var recipeBasicList = Array<RecipeBasic>()
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
@@ -99,8 +100,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setupVC(){
-        let selectedPathForRecipeTableView = recipeTableView.indexPathForSelectedRow
-        
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
@@ -132,7 +131,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
         
-        if let path = selectedPathForRecipeTableView {
+        if let path = selectedIndexPath {
             if recipeBasicList.count > path.row{
                 let nowRecipeId = recipeBasicList[path.row].id
                 if selectedRecipeId != nil{
@@ -1057,6 +1056,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = recipeBasicList[indexPath.row].id
+                selectedIndexPath = indexPath
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         }

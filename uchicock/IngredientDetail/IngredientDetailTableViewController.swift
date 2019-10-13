@@ -30,6 +30,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
+    var selectedIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
 
@@ -62,17 +63,16 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
 
         setupVC()
-        if let index = indexPathForSelectedRow {
-            if ingredientRecipeBasicList.count + 1 > index.row{
-                let nowRecipeId = ingredientRecipeBasicList[index.row - 1].id
+        if let path = selectedIndexPath {
+            if ingredientRecipeBasicList.count + 1 > path.row{
+                let nowRecipeId = ingredientRecipeBasicList[path.row - 1].id
                 if selectedRecipeId != nil{
                     if nowRecipeId == selectedRecipeId!{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                            self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
                         }
                     }
                 }
@@ -539,6 +539,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].id
+                selectedIndexPath = indexPath
                 vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].id
             }
         }
