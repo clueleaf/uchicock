@@ -71,9 +71,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 let nowRecipeId = ingredientRecipeBasicList[index.row - 1].id
                 if selectedRecipeId != nil{
                     if nowRecipeId == selectedRecipeId!{
-                        tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.tableView.deselectRow(at: index, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: index, animated: true)
+                            }
                         }
                     }
                 }

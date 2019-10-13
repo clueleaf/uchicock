@@ -146,9 +146,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let nowRecipeId = recipeBasicList[path.row].id
                 if selectedRecipeId != nil{
                     if nowRecipeId == selectedRecipeId!{
-                        tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.tableView.deselectRow(at: path, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: path, animated: true)
+                            }
                         }
                     }
                 }

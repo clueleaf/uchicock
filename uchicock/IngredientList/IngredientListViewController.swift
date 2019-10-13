@@ -121,9 +121,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 let nowIngredientId = ingredientBasicList[path.row].id
                 if selectedIngredientId != nil{
                     if nowIngredientId == selectedIngredientId!{
-                        tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            self.tableView.deselectRow(at: path, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.tableView.deselectRow(at: path, animated: true)
+                            }
                         }
                     }
                 }
