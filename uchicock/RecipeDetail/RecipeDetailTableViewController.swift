@@ -267,6 +267,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            firstCellHeight = firstCell.bounds.height
+        }
         calcPhotoSize()
     }
     
@@ -310,10 +313,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - Photo Header
     private func calcPhotoSize(){
-        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-            firstCellHeight = firstCell.bounds.height
-        }
-        
         if imageWidth == 0 {
             photoHeight = 0
         }else{
