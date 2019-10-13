@@ -33,7 +33,7 @@ class LaunchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.prepareMessage.isHidden = true
+        self.prepareMessage.alpha = 0.0
         
         loadSearchUserDefaults()
     }
@@ -69,7 +69,9 @@ class LaunchViewController: UIViewController {
     }
     
     func prepareToShowRecipeList(){
-        self.prepareMessage.isHidden = false
+        UIView.animate(withDuration: 0.1, animations: {
+            self.prepareMessage.alpha = 1.0
+        })
         
         // DBに名前がないが存在する画像を削除する処理
         var dbFileNameList: [String] = []
