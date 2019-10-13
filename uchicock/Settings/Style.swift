@@ -624,7 +624,7 @@ struct Style{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.watermelon
+        deleteColor = FlatColor.redDark
         tabBarTintColor = FlatColor.watermelon
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
