@@ -47,7 +47,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="99" id="yC8-4D-iyt">
+                                                        <constraint firstAttribute="height" priority="750" constant="99" id="yC8-4D-iyt">
                                                             <variation key="heightClass=compact" constant="29"/>
                                                         </constraint>
                                                     </constraints>
