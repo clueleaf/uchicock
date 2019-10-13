@@ -163,22 +163,22 @@
                                 <viewLayoutGuide key="safeArea" id="TrC-Tm-3dM"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="bui-dZ-fnU"/>
                                         <exclude reference="IVf-tE-UyP"/>
                                         <exclude reference="ReP-5V-7fh"/>
                                         <exclude reference="hnF-aZ-p6U"/>
+                                        <exclude reference="bui-dZ-fnU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="l4y-z0-lxe"/>
-                                        <include reference="bui-dZ-fnU"/>
-                                        <exclude reference="ehm-0S-niw"/>
                                         <include reference="IVf-tE-UyP"/>
                                         <exclude reference="MkU-f0-Lde"/>
                                         <include reference="ReP-5V-7fh"/>
                                         <include reference="hnF-aZ-p6U"/>
                                         <exclude reference="xem-WH-5jF"/>
+                                        <include reference="bui-dZ-fnU"/>
+                                        <exclude reference="ehm-0S-niw"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -222,7 +222,7 @@
                         <outlet property="searchBar" destination="cX5-XG-foR" id="NjT-Eg-yAD"/>
                         <outlet property="searchConditionModifyButton" destination="T31-pC-fIy" id="P71-Os-ilK"/>
                         <outlet property="searchContainer" destination="0E7-1J-wWX" id="cCB-3l-XMP"/>
-                        <segue destination="fBk-2U-rzj" kind="presentation" identifier="usage" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="pco-jF-4js"/>
+                        <segue destination="fBk-2U-rzj" kind="presentation" identifier="usage" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="pco-jF-4js"/>
                         <segue destination="w1V-m1-dXG" kind="presentation" identifier="ShowRecipeList" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="h5P-3K-SLl"/>
                     </connections>
                 </viewController>

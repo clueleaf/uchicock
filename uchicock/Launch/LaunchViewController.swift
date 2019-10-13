@@ -19,6 +19,7 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var prepareMessage: CustomLabel!
     
     var recipeList: Results<Recipe>?
+    var shouldShowIntroduction = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
@@ -26,12 +27,11 @@ class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let defaults = UserDefaults.standard
         let dic = [GlobalConstants.FirstLaunchKey: true]
         defaults.register(defaults: dic)
         if defaults.bool(forKey: GlobalConstants.FirstLaunchKey) {
-            performSegue(withIdentifier: "usage", sender: nil)
+            shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }
     }
@@ -108,6 +108,15 @@ class LaunchViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if shouldShowIntroduction{
+            shouldShowIntroduction = false
+            performSegue(withIdentifier: "usage", sender: nil)
+        }else{
+            prepareToShowRecipeList()
+        }
+    }
+    
+    func prepareToShowRecipeList(){
         // DBに名前がないが存在する画像を削除する処理
         var dbFileNameList: [String] = []
         let realm = try! Realm()
@@ -157,13 +166,21 @@ class LaunchViewController: UIViewController {
                 recipe.updateShortageNum()
             }
         }
+        
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
+    }
+
+    func dismissIntroductionAndPrepareToShowRecipeList(_ introduction: IntroductionPageViewController){
+        introduction.dismiss(animated: true, completion: {
+            self.prepareToShowRecipeList()
+        })
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "usage" {
             let vc = segue.destination as! IntroductionPageViewController
+            vc.launchVC = self
             vc.introductions = introductions()
         }
     }

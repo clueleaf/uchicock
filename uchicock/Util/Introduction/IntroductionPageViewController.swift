@@ -12,6 +12,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
 
     var sb: UIStoryboard!
     var windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
+    weak var launchVC : LaunchViewController?
 
     var isEnd = false
     var introductions: [introductionInfo] = []
@@ -149,6 +150,8 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         infoVC.image = image
         infoVC.isTextColorBlack = isTextColorBlack
         infoVC.isSkipButtonBlack = isSkipButtonBlack
+        infoVC.introductionVC = self
+        infoVC.launchVC = self.launchVC
         return infoVC
     }
     
@@ -170,7 +173,11 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
                 isEnd = false
             }
             if isEnd && scrollView.contentOffset.x > windowWidth + 20{
-                self.dismiss(animated: true, completion: nil)
+                if launchVC != nil{
+                    launchVC!.dismissIntroductionAndPrepareToShowRecipeList(self)
+                }else{
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }

@@ -22,7 +22,9 @@ class IntroductionDetailViewController: UIViewController {
     var number: Int?
     var isTextColorBlack = false
     var isSkipButtonBlack = false
-    
+    weak var launchVC : LaunchViewController?
+    weak var introductionVC: IntroductionPageViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleString
@@ -95,7 +97,11 @@ class IntroductionDetailViewController: UIViewController {
     
     // MARK: - IBAction
     @IBAction func skipButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        if launchVC != nil{
+            launchVC!.dismissIntroductionAndPrepareToShowRecipeList(introductionVC)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
 }
