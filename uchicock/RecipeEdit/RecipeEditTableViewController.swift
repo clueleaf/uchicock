@@ -154,7 +154,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if let path = selectedIndexPath {
             if tableView.numberOfRows(inSection: 1) > path.row{
                 tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
                     self.tableView.deselectRow(at: path, animated: true)
                 }
             }

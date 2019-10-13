@@ -136,7 +136,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 let nowRecipeId = recipeBasicList[path.row].id
                 if selectedRecipeId != nil{
                     if nowRecipeId == selectedRecipeId!{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
                             self.recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
                         }
                     }
