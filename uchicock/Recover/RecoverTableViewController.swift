@@ -276,7 +276,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
             }else{
                 if isRecovering == false {
-                    let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                    let storyboard = UIStoryboard(name: "Recover", bundle: nil)
                     let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
                     let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
                     let realm = try! Realm()
