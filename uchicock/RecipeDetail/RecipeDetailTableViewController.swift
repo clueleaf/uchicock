@@ -37,7 +37,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
-    var firstCellHeight: CGFloat = 0.0
     var minimumPhotoHeight: CGFloat = 0.0
     var recipeId = String()
     var recipe = Recipe()
@@ -267,9 +266,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) {
-            firstCellHeight = firstCell.bounds.height
-        }
         calcPhotoSize()
     }
     
@@ -313,12 +309,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - Photo Header
     private func calcPhotoSize(){
+        let minimumShownTableViewHeight: CGFloat = 80.0
         if imageWidth == 0 {
             photoHeight = 0
         }else{
-            photoHeight = min(tableView.bounds.width, tableView.bounds.height - firstCellHeight, tableView.bounds.width * imageHeight / imageWidth)
+            photoHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * imageHeight / imageWidth)
         }
-        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - firstCellHeight) / 2, photoHeight)
+        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, photoHeight)
         photoHeight = floor(photoHeight)
         minimumPhotoHeight = floor(minimumPhotoHeight)
     
