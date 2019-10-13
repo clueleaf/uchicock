@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var reviewImage: UIImageView!
     @IBOutlet weak var currentImageSizeLabel: UILabel!
     
+    var selectedIndexPath: IndexPath? = nil
     let defaults = UserDefaults.standard
     var firstRequestReview = false
     var alreadyWrittenReview = false
@@ -61,6 +62,21 @@ class SettingsTableViewController: UITableViewController {
         }
 
         tableView.reloadData()
+        
+        if let path = selectedIndexPath{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+            }
+        }
+        selectedIndexPath = nil
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let path = tableView.indexPathForSelectedRow{
+            tableView.deselectRow(at: path, animated: true)
+        }
     }
     
     // MARK: - Table view data source
@@ -83,12 +99,16 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
+            selectedIndexPath = indexPath
             performSegue(withIdentifier: "usage", sender: nil)
         case 1:
+            selectedIndexPath = indexPath
             performSegue(withIdentifier: "PushRecoverRecipe", sender: nil)
         case 2:
+            selectedIndexPath = indexPath
             performSegue(withIdentifier: "ChangeTheme", sender: nil)
         case 3:
+            selectedIndexPath = indexPath
             performSegue(withIdentifier: "ChangeImageSize", sender: nil)
         case 4:
             self.tableView.deselectRow(at: indexPath, animated: true)
