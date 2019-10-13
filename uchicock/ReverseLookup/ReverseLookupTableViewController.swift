@@ -139,9 +139,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     if nowRecipeId == selectedRecipeId!{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.recipeTableView.deselectRow(at: path, animated: true)
-                            }
                         }
                     }
                 }
@@ -269,6 +266,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidAppear(_ animated: Bool) {
         self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
+        
+        if let path = recipeTableView.indexPathForSelectedRow{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.recipeTableView.deselectRow(at: path, animated: true)
+            }
+        }
         self.recipeTableView.flashScrollIndicators()
     }
 

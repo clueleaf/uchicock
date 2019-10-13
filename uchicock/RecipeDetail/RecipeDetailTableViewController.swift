@@ -103,9 +103,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     if nowIngredientId == selectedIngredientId!{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: index, animated: true)
-                            }
                         }
                     }
                 }
@@ -270,6 +267,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         calcPhotoSize()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let path = tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: path, animated: true)
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if recipe.isInvalidated == false, fromContextualMenu == false{

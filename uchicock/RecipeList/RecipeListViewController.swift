@@ -148,9 +148,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     if nowRecipeId == selectedRecipeId!{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: path, animated: true)
-                            }
                         }
                     }
                 }
@@ -255,6 +252,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
+        }
+        if let path = tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: path, animated: true)
         }
         self.tableView.flashScrollIndicators()
     }

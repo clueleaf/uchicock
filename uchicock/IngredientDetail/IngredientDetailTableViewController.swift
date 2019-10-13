@@ -73,9 +73,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     if nowRecipeId == selectedRecipeId!{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                self.tableView.deselectRow(at: index, animated: true)
-                            }
                         }
                     }
                 }
@@ -162,6 +159,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let path = tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: path, animated: true)
         }
     }
     
