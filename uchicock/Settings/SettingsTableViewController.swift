@@ -64,7 +64,7 @@ class SettingsTableViewController: UITableViewController {
         tableView.reloadData()
         
         if let path = selectedIndexPath{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
             }
         }
