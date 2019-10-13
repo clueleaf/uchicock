@@ -133,10 +133,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
         
         if let path = selectedPathForRecipeTableView {
-            if recipeTableView.numberOfRows(inSection: 0) > path.row{
-                let nowRecipeId = (recipeTableView.cellForRow(at: path) as? RecipeTableViewCell)?.recipe.id
-                if nowRecipeId != nil && selectedRecipeId != nil{
-                    if nowRecipeId! == selectedRecipeId!{
+            if recipeBasicList.count > path.row{
+                let nowRecipeId = recipeBasicList[path.row].id
+                if selectedRecipeId != nil{
+                    if nowRecipeId == selectedRecipeId!{
                         recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             self.recipeTableView.deselectRow(at: path, animated: true)

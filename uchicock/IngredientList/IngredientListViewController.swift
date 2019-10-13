@@ -117,7 +117,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.reloadData()
         
         if let path = selectedIndexPath{
-            if tableView.numberOfRows(inSection: 0) > path.row{
+            if ingredientBasicList.count > path.row{
                 let nowIngredientId = ingredientBasicList[path.row].id
                 if selectedIngredientId != nil{
                     if nowIngredientId == selectedIngredientId!{

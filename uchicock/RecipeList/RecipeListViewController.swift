@@ -142,7 +142,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
 
         if let path = selectedIndexPath {
-            if tableView.numberOfRows(inSection: 0) > path.row{
+            if recipeBasicList.count > path.row{
                 let nowRecipeId = recipeBasicList[path.row].id
                 if selectedRecipeId != nil{
                     if nowRecipeId == selectedRecipeId!{

@@ -67,10 +67,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
         setupVC()
         if let index = indexPathForSelectedRow {
-            if tableView.numberOfRows(inSection: 1) > index.row{
-                let nowRecipeId = (tableView.cellForRow(at: index) as? RecipeTableViewCell)?.recipe.id
-                if nowRecipeId != nil && selectedRecipeId != nil{
-                    if nowRecipeId! == selectedRecipeId!{
+            if ingredientRecipeBasicList.count + 1 > index.row{
+                let nowRecipeId = ingredientRecipeBasicList[index.row - 1].id
+                if selectedRecipeId != nil{
+                    if nowRecipeId == selectedRecipeId!{
                         tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             self.tableView.deselectRow(at: index, animated: true)
