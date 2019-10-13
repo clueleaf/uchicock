@@ -357,10 +357,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
             if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
-                guard var history = self.navigationController?.viewControllers,
-                    let editVC = editNavi.visibleViewController as? IngredientEditTableViewController,
-                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as? IngredientDetailTableViewController else{
-                        return
+                guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
+                    return
                 }
                 let realm = try! Realm()
                 let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
@@ -370,11 +368,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
-                history.append(detailVC)
-                editVC.detailVC = detailVC
-                self.present(editNavi, animated: true, completion: {
-                    self.navigationController?.setViewControllers(history, animated: false)
-                })
+                editVC.mainNavigationController = self.navigationController
+                self.present(editNavi, animated: true, completion: nil)
             }
         }
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
@@ -461,19 +456,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
-            guard var history = self.navigationController?.viewControllers,
-                let editVC = editNavi.visibleViewController as? IngredientEditTableViewController,
-                let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as? IngredientDetailTableViewController else{
-                    return
+            guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
+                return
             }
             
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
-            history.append(detailVC)
-            editVC.detailVC = detailVC
-            self.present(editNavi, animated: true, completion: {
-                self.navigationController?.setViewControllers(history, animated: false)
-            })
+            editVC.mainNavigationController = self.navigationController
+            self.present(editNavi, animated: true, completion: nil)
         }
     }
     

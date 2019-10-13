@@ -15,8 +15,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CustomTextView!
-    
-    weak var detailVC : IngredientDetailTableViewController?
+
+    weak var mainNavigationController : UINavigationController?
     var ingredient = Ingredient()
     var isAddMode = true
     var showCancelAlert = false
@@ -147,7 +147,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         if showCancelAlert {
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
-                _ = self.detailVC?.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
@@ -155,7 +154,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }else{
-            _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -196,11 +194,15 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                         realm.add(newIngredient)
                         ProgressHUD.showSuccess(with: "材料を登録しました", duration: 1.5)
                     }
-                    detailVC?.ingredientId = newIngredient.id
-                    if detailVC == nil{
-                        self.dismiss(animated: true, completion: nil)
+                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
+                    detailVC.ingredientId = newIngredient.id
+                    let history = mainNavigationController?.viewControllers
+                    if var history = history{
+                        history.append(detailVC)
+                        mainNavigationController?.setViewControllers(history, animated: false)
+                        detailVC.closeEditVC(self)
                     }else{
-                        detailVC!.closeEditVC(self)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }else{
@@ -222,12 +224,16 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                         }
                         ProgressHUD.showSuccess(with: "材料を保存しました", duration: 1.5)
                     }
-                    detailVC?.ingredientId = ingredient.id
-                    if detailVC == nil{
-                        self.dismiss(animated: true, completion: nil)
+                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
+                    detailVC.ingredientId = ingredient.id
+                    let history = mainNavigationController?.viewControllers
+                    if var history = history{
+                        history.append(detailVC)
+                        mainNavigationController?.setViewControllers(history, animated: false)
+                        detailVC.closeEditVC(self)
                     }else{
-                        detailVC!.closeEditVC(self)
-                    }
+                        self.dismiss(animated: true, completion: nil)
+                    }                    
                 }
             }
         }
