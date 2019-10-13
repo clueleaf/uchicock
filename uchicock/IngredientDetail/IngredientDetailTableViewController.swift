@@ -47,10 +47,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         stockRecommendLabel.isHidden = true
         
-        initActionButtonStyleOf(editButton, with: "button-edit")
-        initActionButtonStyleOf(reminderButton, with: "button-reminder")
-        initActionButtonStyleOf(amazonButton, with: "button-amazon")
-        initActionButtonStyleOf(deleteButton, with: "button-delete")
+        editButton.layer.cornerRadius = editButton.frame.size.width / 2
+        editButton.clipsToBounds = true
+        reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
+        reminderButton.clipsToBounds = true
+        amazonButton.layer.cornerRadius = amazonButton.frame.size.width / 2
+        amazonButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
+        deleteButton.clipsToBounds = true
 
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
 
@@ -175,13 +179,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
     }
     
-    private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
-        button.layer.cornerRadius = button.frame.size.width / 2
-        button.clipsToBounds = true
-        let image = UIImage(named: imageName)
-        button.setImage(image, for: .normal)
-    }
-
     func reloadIngredientRecipeBasicList(){
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{

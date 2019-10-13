@@ -71,10 +71,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
         madeNumMinusButton.layer.borderWidth = 1.5
         
-        initActionButtonStyleOf(editButton, with: "button-edit")
-        initActionButtonStyleOf(shareButton, with: "button-share")
-        initActionButtonStyleOf(openInSafariButton, with: "button-safari")
-        initActionButtonStyleOf(deleteButton, with: "button-delete")
+        editButton.layer.cornerRadius = editButton.frame.size.width / 2
+        editButton.clipsToBounds = true
+        shareButton.layer.cornerRadius = shareButton.frame.size.width / 2
+        shareButton.clipsToBounds = true
+        openInSafariButton.layer.cornerRadius = openInSafariButton.frame.size.width / 2
+        openInSafariButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
+        deleteButton.clipsToBounds = true
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
@@ -277,13 +281,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     // MARK: - Set Style
-    private func initActionButtonStyleOf(_ button: UIButton, with imageName: String){
-        button.layer.cornerRadius = button.frame.size.width / 2
-        button.clipsToBounds = true
-        let image = UIImage(named: imageName)
-        button.setImage(image, for: .normal)
-    }
-    
     private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
         star1.setTitle(star1title, for: .normal)
         star2.setTitle(star2title, for: .normal)
