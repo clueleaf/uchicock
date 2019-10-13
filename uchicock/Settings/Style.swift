@@ -608,6 +608,29 @@ struct Style{
         textFieldBorderColor = FlatColor.gray
     }
     
+    static func bloodyMaryDark(){
+        no = "25"
+        isDark = true
+        isBackgroundDark = true
+        statusBarStyle = .lightContent
+        navigationBarColor = FlatColor.black
+        primaryColor = FlatColor.watermelon
+        basicBackgroundColor = UIColor.black
+        tableViewHeaderBackgroundColor = FlatColor.blackDark
+        tableViewHeaderTextColor = FlatColor.white
+        tableViewCellSelectedBackgroundColor = FlatColor.black
+        tableViewCellEditBackgroundColor = FlatColor.grayDark
+        labelTextColor = FlatColor.white
+        labelTextColorLight = FlatColor.grayDark
+        labelTextColorOnBadge = UIColor.black
+        filterContainerBackgroundColor = UIColor.black
+        deleteColor = FlatColor.watermelon
+        tabBarTintColor = FlatColor.watermelon
+        tabBarBarTintColor = FlatColor.black
+        tabBarUnselectedItemTintColor = FlatColor.grayDark
+        textFieldBorderColor = FlatColor.grayDark
+    }
+
     // MARK: - Manage Theme
     static func saveTheme(themeNo: String?){
         if let no = themeNo{
@@ -655,6 +678,7 @@ struct Style{
             case "22": unionJackLight()
             case "23": unionJackDark()
             case "24": blueMoonLight()
+            case "25": bloodyMaryDark()
             default: break
             }
             setGlobalTheme()
