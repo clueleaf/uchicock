@@ -11,12 +11,7 @@ import RealmSwift
 
 class LaunchViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: CustomSearchBar!
-    @IBOutlet weak var searchContainer: UIView!
-    @IBOutlet weak var searchConditionModifyButton: UIButton!
-    @IBOutlet weak var containerSeparator: UIView!
-    @IBOutlet weak var messageContainer: UIView!
-    @IBOutlet weak var prepareMessage: CustomLabel!
+    @IBOutlet weak var prepareMessage: UILabel!
     
     var recipeList: Results<Recipe>?
     var shouldShowIntroduction = false
@@ -38,50 +33,7 @@ class LaunchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        self.view.backgroundColor = Style.basicBackgroundColor
-
-        searchContainer.backgroundColor = Style.filterContainerBackgroundColor
-        searchBar.backgroundImage = UIImage()
-        
-        let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
-        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-        glassIconView?.tintColor = Style.labelTextColorLight
-
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = Style.textFieldBorderColor.cgColor
-            searchBar.searchTextField.layer.borderWidth = 1.0
-            searchBar.searchTextField.layer.cornerRadius = 8.0
-        }else{
-            for view in searchBar.subviews {
-                for subview in view.subviews {
-                    if subview is UITextField {
-                        let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
-                        textField.layer.borderWidth = 1.0
-                        textField.layer.cornerRadius = 8.0
-                        for subsubview in subview.subviews{
-                            if subsubview is UILabel{
-                                let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = Style.labelTextColorLight
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
-        searchConditionModifyButton.layer.borderWidth = 1.5
-        searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.tintColor = Style.primaryColor
-        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
-        
-        containerSeparator.backgroundColor = Style.labelTextColor
-
-        self.messageContainer.backgroundColor = Style.basicBackgroundColor
-        self.prepareMessage.textColor = Style.labelTextColorLight
+        self.prepareMessage.isHidden = true
         
         loadSearchUserDefaults()
     }
@@ -117,6 +69,8 @@ class LaunchViewController: UIViewController {
     }
     
     func prepareToShowRecipeList(){
+        self.prepareMessage.isHidden = false
+        
         // DBに名前がないが存在する画像を削除する処理
         var dbFileNameList: [String] = []
         let realm = try! Realm()
