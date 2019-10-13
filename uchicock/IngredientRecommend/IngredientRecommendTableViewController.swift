@@ -150,8 +150,10 @@ class IngredientRecommendTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0{
-            self.selectedRecommendIngredientId = ingredientBasicList[indexPath.row - 1].id
-            self.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.selectedRecommendIngredientId = self.ingredientBasicList[indexPath.row - 1].id
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
