@@ -68,7 +68,6 @@ class SettingsTableViewController: UITableViewController {
                 self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
             }
         }
-        selectedIndexPath = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +76,7 @@ class SettingsTableViewController: UITableViewController {
         if let path = tableView.indexPathForSelectedRow{
             tableView.deselectRow(at: path, animated: true)
         }
+        selectedIndexPath = nil
     }
     
     // MARK: - Table view data source

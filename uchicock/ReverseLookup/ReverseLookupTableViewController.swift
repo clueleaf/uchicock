@@ -143,7 +143,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         }
-        selectedRecipeId = nil
     }
     
     private func loadFromUserDefaults(){
@@ -267,10 +266,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         super.viewDidAppear(animated)
         
         if let path = recipeTableView.indexPathForSelectedRow{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.recipeTableView.deselectRow(at: path, animated: true)
-            }
+            self.recipeTableView.deselectRow(at: path, animated: true)
         }
+        selectedRecipeId = nil
         self.recipeTableView.flashScrollIndicators()
     }
 

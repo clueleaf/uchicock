@@ -108,7 +108,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }
             }
         }
-        selectedIngredientId = nil
     }
     
     private func setupVC(){
@@ -272,6 +271,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if let path = tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: path, animated: true)
         }
+        selectedIngredientId = nil
     }
 
     override func viewWillDisappear(_ animated: Bool) {

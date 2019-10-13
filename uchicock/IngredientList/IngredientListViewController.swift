@@ -128,7 +128,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
-        selectedIngredientId = nil
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -163,6 +162,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if let path = tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: path, animated: true)
         }
+        selectedIngredientId = nil
         self.tableView.flashScrollIndicators()
     }
     

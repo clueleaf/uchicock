@@ -153,7 +153,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-        selectedRecipeId = nil
     }
     
     private func loadSearchUserDefaults(){
@@ -256,6 +255,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if let path = tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: path, animated: true)
         }
+        selectedRecipeId = nil
         self.tableView.flashScrollIndicators()
     }
         
