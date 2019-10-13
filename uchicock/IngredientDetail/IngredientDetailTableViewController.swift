@@ -24,7 +24,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var amazonContainerView: UIView!
     @IBOutlet weak var deleteContainerView: UIView!
     
-    var editVC : IngredientEditTableViewController!
     var ingredientId = String()
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<RecipeBasic>()

@@ -34,7 +34,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
-    var editVC : RecipeEditTableViewController!
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
     var minimumPhotoHeight: CGFloat = 0.0

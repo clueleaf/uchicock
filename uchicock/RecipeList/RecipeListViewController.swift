@@ -674,9 +674,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let edit = UITableViewRowAction(style: .normal, title: "編集") {
             (action, indexPath) in
             if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
-                guard var history = self.navigationController?.viewControllers,
-                    let editVC = editNavi.visibleViewController as? RecipeEditTableViewController,
-                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as? RecipeDetailTableViewController else{
+                guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
                         return
                 }
                 let realm = try! Realm()
@@ -687,11 +685,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
-                history.append(detailVC)
-                editVC.detailVC = detailVC
-                self.present(editNavi, animated: true, completion: {
-                    self.navigationController?.setViewControllers(history, animated: false)
-                })
+                editVC.mainNavigationController = self.navigationController
+                self.present(editNavi, animated: true, completion: nil)
             }
         }
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
@@ -785,19 +780,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
-            guard var history = self.navigationController?.viewControllers,
-                let editVC = editNavi.visibleViewController as? RecipeEditTableViewController,
-                let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as? RecipeDetailTableViewController else{
+            guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
                     return
             }
             
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
-            history.append(detailVC)
-            editVC.detailVC = detailVC
-            self.present(editNavi, animated: true, completion: {
-                self.navigationController?.setViewControllers(history, animated: false)
-            })
+            editVC.mainNavigationController = self.navigationController
+            self.present(editNavi, animated: true, completion: nil)
         }
     }
     

@@ -28,7 +28,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: CustomTextView!
     
-    weak var detailVC : RecipeDetailTableViewController?
+    weak var mainNavigationController : UINavigationController?
     var recipe = Recipe()
     var isAddMode = true
     var recipeIngredientList = Array<RecipeIngredientBasic>()
@@ -527,7 +527,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "はい",style: .default){
                 action in
-                _ = self.detailVC?.navigationController?.popViewController(animated: false)
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){action in})
@@ -535,7 +534,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }else{
-            _ = detailVC?.navigationController?.popViewController(animated: false)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -569,6 +567,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if sameNameRecipe.count != 0{
                     presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
+                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
                         let newRecipe = Recipe()
                         newRecipe.recipeName = textWithoutSpace(text: recipeName.text!)
@@ -609,14 +608,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",newRecipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
-                        detailVC?.recipeId = newRecipe.id
+                        detailVC.recipeId = newRecipe.id
                         newRecipe.updateShortageNum()
                         ProgressHUD.showSuccess(with: "レシピを登録しました", duration: 1.5)
                     }
-                    if detailVC == nil{
-                        self.dismiss(animated: true, completion: nil)
+                   
+                    let history = mainNavigationController?.viewControllers
+                    if var history = history{
+                        history.append(detailVC)
+                        mainNavigationController?.setViewControllers(history, animated: false)
+                        detailVC.closeEditVC(self)
                     }else{
-                        detailVC!.closeEditVC(self)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }else{
@@ -624,6 +627,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
                     presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
+                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write {
                         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
                         for ri in recipe.recipeIngredients{
@@ -683,14 +687,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",self.recipe.recipeName).first!
                             recipe.recipeIngredients.append(recipeIngredientLink)
                         }
-                        detailVC?.recipeId = recipe.id
+                        detailVC.recipeId = recipe.id
                         recipe.updateShortageNum()
                         ProgressHUD.showSuccess(with: "レシピを保存しました", duration: 1.5)
                     }
-                    if detailVC == nil{
-                        self.dismiss(animated: true, completion: nil)
+                    let history = mainNavigationController?.viewControllers
+                    if var history = history{
+                        history.append(detailVC)
+                        mainNavigationController?.setViewControllers(history, animated: false)
+                        detailVC.closeEditVC(self)
                     }else{
-                        detailVC!.closeEditVC(self)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }
