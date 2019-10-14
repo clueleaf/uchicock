@@ -42,7 +42,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var noPhotoFlag = false
     var imageWidth: CGFloat = 0
     var imageHeight: CGFloat = 0
-    var calcPhotoSizeTime = 0
+    var photoSizeCalcTime = 0
     var firstShow = true
     var fromContextualMenu = false
     var madeNum = 0
@@ -146,7 +146,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 imageHeight = 0
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
             }
-            calcPhotoSizeTime = 1
+            photoSizeCalcTime = 5
             calcPhotoSize()
 
             recipeName.text = recipe.recipeName
@@ -265,7 +265,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        calcPhotoSizeTime = 2
+        photoSizeCalcTime = 5
     }
     
     override func viewDidLayoutSubviews() {
@@ -321,7 +321,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - Photo Header
     private func calcPhotoSize(){
-        if calcPhotoSizeTime > 0{
+        if photoSizeCalcTime > 0{
             let minimumShownTableViewHeight: CGFloat = 80.0
             if imageWidth == 0 {
                 photoHeight = 0
@@ -351,7 +351,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
                 
             updateHeaderView()
-            calcPhotoSizeTime -= 1
+            photoSizeCalcTime -= 1
         }
     }
     
