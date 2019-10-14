@@ -42,6 +42,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var noPhotoFlag = false
     var imageWidth: CGFloat = 0
     var imageHeight: CGFloat = 0
+    var calcPhotoSizeTime = 0
     var firstShow = true
     var fromContextualMenu = false
     var madeNum = 0
@@ -145,6 +146,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 imageHeight = 0
                 photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
             }
+            calcPhotoSizeTime = 1
             calcPhotoSize()
 
             recipeName.text = recipe.recipeName
@@ -261,6 +263,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        calcPhotoSizeTime = 2
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         calcPhotoSize()
@@ -314,35 +321,39 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - Photo Header
     private func calcPhotoSize(){
-        let minimumShownTableViewHeight: CGFloat = 80.0
-        if imageWidth == 0 {
-            photoHeight = 0
-        }else{
-            photoHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * imageHeight / imageWidth)
-        }
-        minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, photoHeight)
-        photoHeight = floor(photoHeight)
-        minimumPhotoHeight = floor(minimumPhotoHeight)
-            
-        if let tableHeaderView = tableView.tableHeaderView{
-            let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
-
-            // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
-            tableView.showsVerticalScrollIndicator = false
-            self.view.bringSubviewToFront(photoBackground)
-            tableView.showsVerticalScrollIndicator = true
-
-            if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
-                tableView.tableHeaderView = newTableHeaderView
+        if calcPhotoSizeTime > 0{
+            print("calcPhotoSize")
+            let minimumShownTableViewHeight: CGFloat = 80.0
+            if imageWidth == 0 {
+                photoHeight = 0
+            }else{
+                photoHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * imageHeight / imageWidth)
             }
+            minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, photoHeight)
+            photoHeight = floor(photoHeight)
+            minimumPhotoHeight = floor(minimumPhotoHeight)
+                
+            if let tableHeaderView = tableView.tableHeaderView{
+                let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+
+                // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
+                tableView.showsVerticalScrollIndicator = false
+                self.view.bringSubviewToFront(photoBackground)
+                tableView.showsVerticalScrollIndicator = true
+
+                if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
+                    tableView.tableHeaderView = newTableHeaderView
+                }
+            }
+                
+            if firstShow{
+                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+                firstShow = false
+            }
+                
+            updateHeaderView()
+            calcPhotoSizeTime -= 1
         }
-            
-        if firstShow{
-            tableView.contentOffset.y = photoHeight - minimumPhotoHeight
-            firstShow = false
-        }
-            
-        updateHeaderView()
     }
     
     func updateHeaderView(){
