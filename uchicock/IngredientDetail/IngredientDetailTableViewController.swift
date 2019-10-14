@@ -429,8 +429,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths{
             if indexPath.section == 1 && indexPath.row > 0{
+                let imageFileName = self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName
                 DispatchQueue.global(qos: .userInteractive).async{
-                    ImageUtil.saveToCache(imageFileName: self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName)
+                    ImageUtil.saveToCache(imageFileName: imageFileName)
                 }
             }
         }
