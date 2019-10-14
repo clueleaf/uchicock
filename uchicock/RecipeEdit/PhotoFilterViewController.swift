@@ -14,7 +14,8 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     var originalImageView: UIImageView!
     var smallCIImage : CIImage?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
-    
+    var statuBarStyle = Style.statusBarStyle
+
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
@@ -23,9 +24,9 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     @IBOutlet weak var filterStackView: UIStackView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return statuBarStyle
     }
-
+    
     var CIFilterNames = [
         "Original",
         "Clarendon",
@@ -118,7 +119,15 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        statuBarStyle = .lightContent
+        self.setNeedsStatusBarAppearanceUpdate()
         filterScrollView.flashScrollIndicators()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        statuBarStyle = Style.statusBarStyle
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     @objc func filterButtonTapped(sender: UIButton){

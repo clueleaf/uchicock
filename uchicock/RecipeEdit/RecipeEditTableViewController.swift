@@ -430,6 +430,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 vc.originalImageView = self.photo
                 vc.modalPresentationStyle = .overFullScreen
                 vc.modalTransitionStyle = .coverVertical
+                vc.modalPresentationCapturesStatusBarAppearance = true
                 self.present(vc, animated: true)
             }
         }
@@ -472,6 +473,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     vc.originalImageView = self.photo
                     vc.modalPresentationStyle = .overFullScreen
                     vc.modalTransitionStyle = .coverVertical
+                    vc.modalPresentationCapturesStatusBarAppearance = true
                     self.present(vc, animated: true)
                 }))
             }

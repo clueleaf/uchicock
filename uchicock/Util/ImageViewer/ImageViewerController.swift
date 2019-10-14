@@ -24,6 +24,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     override var prefersStatusBarHidden: Bool {
         return isStatusBarHidden
     }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Style.statusBarStyle
     }
