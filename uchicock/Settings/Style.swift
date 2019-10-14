@@ -688,7 +688,6 @@ struct Style{
     // MARK: - Set Global Theme
     static private func setGlobalTheme(){
         // 注意：UILabel, TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
-        customizeBarButtonItem()
         customizeButton()
         customizeNavigationBar()
         customizeSearchBar()
@@ -707,18 +706,10 @@ struct Style{
         }
     }
     
-    static private func customizeBarButtonItem(){
-        let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
-//        UIBarButtonItem.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
-    }
-    
     static private func customizeButton(){
-        let contentColor = FlatColor.contrastColorOf(navigationBarColor, isFlat: false)
-        
         // テーマカラー変更のチェックマークの色ために必要
         UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.primaryColor
 
-//        UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).tintColor = contentColor
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
     }
     

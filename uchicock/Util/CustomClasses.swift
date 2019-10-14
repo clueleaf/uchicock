@@ -70,16 +70,6 @@ class BasicNavigationController: UINavigationController {
         return Style.statusBarStyle
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        navigationBar.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)
-    }
-    
     override var childForStatusBarStyle: UIViewController? {
         return self.visibleViewController
     }
