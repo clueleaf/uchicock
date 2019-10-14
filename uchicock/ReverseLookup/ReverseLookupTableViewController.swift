@@ -966,10 +966,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if tableView.tag == 1 {
             for indexPath in indexPaths{
+                let imageFileName = self.recipeBasicList[indexPath.row].imageFileName
                 DispatchQueue.global(qos: .userInteractive).async{
-                    if self.recipeBasicList.count > indexPath.row{
-                        ImageUtil.saveToCache(imageFileName: self.recipeBasicList[indexPath.row].imageFileName)
-                    }
+                    ImageUtil.saveToCache(imageFileName: imageFileName)
                 }
             }
         }

@@ -427,10 +427,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     // MARK: - UICollectionViewDataSourcePrefetching
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths{
+            let imageFileName = self.filteredRecipeBasicList[indexPath.row].imageFileName
             DispatchQueue.global(qos: .userInteractive).async{
-                if self.filteredRecipeBasicList.count > indexPath.row{
-                    ImageUtil.saveToCache(imageFileName: self.filteredRecipeBasicList[indexPath.row].imageFileName)
-                }
+                ImageUtil.saveToCache(imageFileName: imageFileName)
             }
         }
         
