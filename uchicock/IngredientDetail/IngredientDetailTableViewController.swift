@@ -430,7 +430,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         for indexPath in indexPaths{
             if indexPath.section == 1 && indexPath.row > 0{
                 DispatchQueue.global(qos: .userInteractive).async{
-                    ImageUtil.saveToCache(imageFileName: self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName)
+                    if self.ingredientRecipeBasicList.count > indexPath.row - 1{
+                        ImageUtil.saveToCache(imageFileName: self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName)
+                    }
                 }
             }
         }
