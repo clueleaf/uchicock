@@ -614,7 +614,7 @@ struct Style{
         isBackgroundDark = true
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
-        primaryColor = FlatColor.watermelon
+        primaryColor = FlatColor.red
         basicBackgroundColor = UIColor.black
         tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
@@ -624,8 +624,8 @@ struct Style{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
-        tabBarTintColor = FlatColor.watermelon
+        deleteColor = FlatColor.red
+        tabBarTintColor = FlatColor.red
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
