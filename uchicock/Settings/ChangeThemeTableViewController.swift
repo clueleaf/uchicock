@@ -110,12 +110,12 @@ class ChangeThemeTableViewController: UITableViewController {
         
         animationFlag = true
         UIView.animate(withDuration: animationDuration, animations: {
-            self.navigationController?.loadView()
             self.setNeedsStatusBarAppearanceUpdate()
             self.tableView.backgroundColor = Style.basicBackgroundColor
         }, completion: nil)
 
         UIView.transition(with: self.navigationController!.navigationBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
+            self.navigationController?.navigationBar.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: false)
             self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
         }, completion: nil)
