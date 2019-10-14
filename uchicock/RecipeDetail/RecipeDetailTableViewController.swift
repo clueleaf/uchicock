@@ -322,7 +322,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     // MARK: - Photo Header
     private func calcPhotoSize(){
         if calcPhotoSizeTime > 0{
-            print("calcPhotoSize")
             let minimumShownTableViewHeight: CGFloat = 80.0
             if imageWidth == 0 {
                 photoHeight = 0
