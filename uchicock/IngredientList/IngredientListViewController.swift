@@ -355,9 +355,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style: .normal, title: "編集") {
-            (action, indexPath) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
             if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
                 guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
                     return
@@ -373,11 +372,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 editVC.mainNavigationController = self.navigationController
                 self.present(editNavi, animated: true, completion: nil)
             }
-        }
+        })
+        edit.image = UIImage(named: "button-edit")
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
-        let del = UITableViewRowAction(style: .default, title: "削除") {
-            (action, indexPath) in
+        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             let realm = try! Realm()
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
@@ -408,22 +407,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
             }
-        }
+        })
+        del.image = UIImage(named: "button-delete")
         del.backgroundColor = Style.deleteColor
         
         let realm = try! Realm()
         let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
         if ingredient.recipeIngredients.count == 0 {
-            return [del, edit]
+            return UISwipeActionsConfiguration(actions: [del, edit])
         }else{
-            return [edit]
+            return UISwipeActionsConfiguration(actions: [edit])
         }
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell

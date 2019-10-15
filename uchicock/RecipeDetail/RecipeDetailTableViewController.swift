@@ -484,13 +484,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 1
-    }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let reminder = UITableViewRowAction(style: .normal, title: "リマインダー") {
-            (action, indexPath) in
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard indexPath.section == 1 else { return UISwipeActionsConfiguration(actions: []) }
+        
+        let reminder =  UIContextualAction(style: .normal, title: "リマインダー", handler: { (action,view,completionHandler ) in
             let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
             guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
                 return
@@ -511,10 +508,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 vc.interactor = self.interactor
             }
             self.present(nvc, animated: true)
-        }
+        })
+        reminder.image = UIImage(named: "button-reminder")
         reminder.backgroundColor = Style.primaryColor
-        
-        return [reminder]
+
+        return UISwipeActionsConfiguration(actions: [reminder])
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
