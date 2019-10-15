@@ -672,29 +672,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let edit = UITableViewRowAction(style: .normal, title: "編集") {
-            (action, indexPath) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
             if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
                 guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
-                        return
+                    return
                 }
                 let realm = try! Realm()
                 let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
                 self.selectedIndexPath = indexPath
                 editVC.recipe = recipe
-                
+                    
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController
                 self.present(editNavi, animated: true, completion: nil)
             }
-        }
+        })
+        edit.image = UIImage(named: "button-edit")
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
-        let del = UITableViewRowAction(style: .default, title: "削除") {
-            (action, indexPath) in
+        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             let alertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
@@ -709,16 +708,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }))
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.alertStatusBarStyle = Style.statusBarStyle
-            alertView.modalPresentationCapturesStatusBarAppearance = true            
+            alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
-        }
+        })
+        del.image = UIImage(named: "button-delete")
         del.backgroundColor = Style.deleteColor
-        
-        return [del, edit]
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+
+        return UISwipeActionsConfiguration(actions: [del, edit])
     }
     
     @available(iOS 13.0, *)

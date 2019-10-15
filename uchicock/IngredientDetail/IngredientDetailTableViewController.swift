@@ -31,6 +31,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
     var selectedIndexPath: IndexPath? = nil
+    var hasIngredientDeleted = false
 
     let interactor = Interactor()
 
@@ -93,14 +94,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
         if ing == nil {
-            let noIngredientAlertView = CustomAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
-            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            noIngredientAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noIngredientAlertView, animated: true, completion: nil)
+            hasIngredientDeleted = true
         } else {
+            hasIngredientDeleted = false
             ingredient = ing!
             self.navigationItem.title = ingredient.ingredientName
             
@@ -161,8 +157,33 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if hasIngredientDeleted{
+            tableView.contentOffset.y = 0
+            let coverView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
+            coverView.backgroundColor = Style.basicBackgroundColor
+            self.tableView.addSubview(coverView)
+            let deleteImageView = UIImageView(frame: CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60))
+            deleteImageView.contentMode = .scaleAspectFit
+            deleteImageView.image = UIImage(named: "button-delete")
+            deleteImageView.tintColor = Style.labelTextColorLight
+            coverView.addSubview(deleteImageView)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if hasIngredientDeleted{
+            let noIngredientAlertView = CustomAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
+            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            noIngredientAlertView.alertStatusBarStyle = Style.statusBarStyle
+            noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
+            present(noIngredientAlertView, animated: true, completion: nil)
+        }
+        
         if let path = tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: path, animated: true)
         }
@@ -255,11 +276,15 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 return UITableView.automaticDimension
             }
         }else if indexPath.section == 1{
-            if ingredient.recipeIngredients.count > 0{
-                if indexPath.row == 0{
-                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
-                }else{
-                    return 70
+            if ingredient.isInvalidated == false{
+                return 70
+            }else{
+                if ingredient.recipeIngredients.count > 0{
+                    if indexPath.row == 0{
+                        return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
+                    }else{
+                        return 70
+                    }
                 }
             }
         }
@@ -273,10 +298,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         header?.textLabel?.textColor = Style.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if section == 1 {
-            if ingredient.recipeIngredients.count > 0 {
-                header?.textLabel?.text = "この材料を使うレシピ(\(String(ingredient.recipeIngredients.count)))"
-            }else {
-                header?.textLabel?.text = "この材料を使うレシピはありません"
+            if ingredient.isInvalidated == false {
+                if ingredient.recipeIngredients.count > 0 {
+                    header?.textLabel?.text = "この材料を使うレシピ(\(String(ingredient.recipeIngredients.count)))"
+                }else {
+                    header?.textLabel?.text = "この材料を使うレシピはありません"
+                }
             }
         }else{
             header?.textLabel?.text = ""
@@ -287,8 +314,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if section == 0 {
             return 5
         }else if section == 1 {
-            if ingredient.recipeIngredients.count > 0{
-                return ingredient.recipeIngredients.count + 1
+            if ingredient.isInvalidated{
+                return 0
+            }else{
+                if ingredient.recipeIngredients.count > 0{
+                    return ingredient.recipeIngredients.count + 1
+                }
             }
         }
         return 0
@@ -379,6 +410,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             return cell
         }else if indexPath.section == 1{
+            guard ingredient.isInvalidated == false else { return UITableViewCell() }
+
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell

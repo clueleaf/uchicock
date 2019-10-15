@@ -339,22 +339,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let del = UITableViewRowAction(style: .default, title: "削除") {
-            (action, indexPath) in
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard indexPath.section == 1 && indexPath.row < recipeIngredientList.count else { return UISwipeActionsConfiguration(actions: []) }
+        
+        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
-        }
+        })
+        del.image = UIImage(named: "button-delete")
         del.backgroundColor = Style.deleteColor
-        
-        return [del]
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 1 && indexPath.row < recipeIngredientList.count
+
+        return UISwipeActionsConfiguration(actions: [del])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
