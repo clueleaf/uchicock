@@ -48,6 +48,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
+    var hasRecipeDeleted = false
 
     let interactor = Interactor()
 
@@ -122,14 +123,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
-            let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
-            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            noRecipeAlertView.alertStatusBarStyle = Style.statusBarStyle
-            noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
-            present(noRecipeAlertView, animated: true, completion: nil)
+            hasRecipeDeleted = true
         }else{
+            hasRecipeDeleted = false
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
 
@@ -275,6 +271,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if hasRecipeDeleted{
+            let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
+            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+            noRecipeAlertView.alertStatusBarStyle = Style.statusBarStyle
+            noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
+            present(noRecipeAlertView, animated: true, completion: nil)
+        }
+
         if let path = tableView.indexPathForSelectedRow{
             self.tableView.deselectRow(at: path, animated: true)
         }
