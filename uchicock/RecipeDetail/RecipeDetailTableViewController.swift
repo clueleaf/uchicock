@@ -98,7 +98,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         super.viewWillAppear(animated)
 
         setupVC()
-        if let index = indexPathForSelectedRow {
+        if let index = indexPathForSelectedRow, recipe.isInvalidated == false {
             if recipe.recipeIngredients.count > index.row{
                 let nowIngredientId = recipe.recipeIngredients[index.row].ingredient.id
                 if selectedIngredientId != nil{
@@ -266,17 +266,25 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        calcPhotoSize()
+        if hasRecipeDeleted{
+            tableView.contentOffset.y = 0
+            let coverView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
+            coverView.backgroundColor = Style.basicBackgroundColor
+            self.tableView.addSubview(coverView)
+            let deleteImageView = UIImageView(frame: CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60))
+            deleteImageView.contentMode = .scaleAspectFit
+            deleteImageView.image = UIImage(named: "button-delete")
+            deleteImageView.tintColor = Style.labelTextColorLight
+            coverView.addSubview(deleteImageView)
+        }else{
+            calcPhotoSize()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if hasRecipeDeleted{
-            let coverView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
-            coverView.backgroundColor = Style.basicBackgroundColor
-            self.view.addSubview(coverView)
-
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 self.navigationController?.popViewController(animated: true)
@@ -470,14 +478,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = Style.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
-        header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
+        if recipe.isInvalidated == false{
+            header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 6
         }else if section == 1{
-            return recipe.recipeIngredients.count
+            // 別タブでレシピを削除して戻ってきた時に存在しないレシピに
+            // アクセスしようとしてクラッシュしてしまう問題への対策
+            // （主に画面サイズ変更時にtableView再読み込みが発生するため）
+            return recipe.isInvalidated ? 0 : recipe.recipeIngredients.count
         }else if section == 2{
             return 1
         }else{
@@ -542,15 +555,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             accesoryImageView.tintColor = Style.labelTextColorLight
             cell.accessoryView = accesoryImageView
 
-            cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-            cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
-            cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
-            cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
-            cell.amountText = recipe.recipeIngredients[indexPath.row].amount
+            if recipe.isInvalidated == false{
+                cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
+                cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+                cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
+                cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
+                cell.amountText = recipe.recipeIngredients[indexPath.row].amount
+            }
+
             cell.selectionStyle = .default
             cell.backgroundColor = Style.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
-
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
