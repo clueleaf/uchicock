@@ -273,6 +273,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         super.viewDidAppear(animated)
         
         if hasRecipeDeleted{
+            let coverView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
+            coverView.backgroundColor = Style.basicBackgroundColor
+            self.view.addSubview(coverView)
+
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 self.navigationController?.popViewController(animated: true)
