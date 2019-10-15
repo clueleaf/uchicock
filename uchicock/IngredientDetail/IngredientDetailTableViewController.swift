@@ -277,8 +277,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             }
         }else if indexPath.section == 1{
             if ingredient.isInvalidated == false{
-                return 70
-            }else{
                 if ingredient.recipeIngredients.count > 0{
                     if indexPath.row == 0{
                         return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
@@ -286,6 +284,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                         return 70
                     }
                 }
+            }else{
+                return 70
             }
         }
         return 0
