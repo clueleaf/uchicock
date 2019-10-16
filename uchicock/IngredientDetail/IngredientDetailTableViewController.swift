@@ -173,6 +173,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             tableView.contentOffset.y = 0
             coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
             deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
+            self.tableView.bringSubviewToFront(coverView)
         }
     }
     
