@@ -20,7 +20,8 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var captionText: String? = nil
     var isBrowsingMode = false
     var isStatusBarHidden = false
-    
+    let gradient = CAGradientLayer()
+
     override var prefersStatusBarHidden: Bool {
         return isStatusBarHidden
     }
@@ -50,11 +51,21 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         setupScrollView()
         setupGestureRecognizers()
         setupTransitions()
+        
+        if captionText == nil{
+            self.captionLabel.alpha = 0.0
+            self.captionBackgroundView.alpha = 0.0
+            self.captionLabel.isHidden = true
+            self.captionBackgroundView.isHidden = true
+        }
+        
+        gradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.8).cgColor]
+        captionBackgroundView.layer.insertSublayer(gradient, at: 0)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupCaptionBackground()
+        gradient.frame = captionBackgroundView.bounds
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,27 +120,6 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         guard let imageView = originalImageView else { return }
         transitionHandler = ImageViewerTransitioningHandler(fromImageView: imageView, toImageView: self.imageView)
         self.transitioningDelegate = transitionHandler
-    }
-    
-    func setupCaptionBackground(){
-        // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
-        captionBackgroundView.layer.sublayers?.forEach {
-            if $0.isKind(of: CustomCAGradientLayer.self){
-                $0.removeFromSuperlayer()
-            }
-        }
-
-        let gradient = CustomCAGradientLayer()
-        gradient.frame = captionBackgroundView.bounds
-        gradient.colors = [UIColor(white: 0, alpha: 0).cgColor, UIColor(white: 0, alpha: 0.8).cgColor]
-        captionBackgroundView.layer.insertSublayer(gradient, at: 0)
-        
-        if captionText == nil{
-            self.captionLabel.alpha = 0.0
-            self.captionBackgroundView.alpha = 0.0
-            self.captionLabel.isHidden = true
-            self.captionBackgroundView.isHidden = true
-        }
     }
     
     // MARK: - UIGestureRecognizer
