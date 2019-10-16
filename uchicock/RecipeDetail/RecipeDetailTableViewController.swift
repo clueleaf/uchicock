@@ -34,6 +34,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
+    var coverView = UIView(frame: CGRect.zero)
+    var deleteImageView = UIImageView(frame: CGRect.zero)
+    
     var headerView: UIView!
     var photoHeight: CGFloat = 0.0
     var minimumPhotoHeight: CGFloat = 0.0
@@ -124,6 +127,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
             hasRecipeDeleted = true
+            coverView.backgroundColor = Style.basicBackgroundColor
+            self.tableView.addSubview(coverView)
+            deleteImageView.contentMode = .scaleAspectFit
+            deleteImageView.image = UIImage(named: "button-delete")
+            deleteImageView.tintColor = Style.labelTextColorLight
+            coverView.addSubview(deleteImageView)
+            self.tableView.setNeedsLayout()
         }else{
             hasRecipeDeleted = false
             recipe = rec!
@@ -268,14 +278,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         super.viewDidLayoutSubviews()
         if hasRecipeDeleted{
             tableView.contentOffset.y = 0
-            let coverView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
-            coverView.backgroundColor = Style.basicBackgroundColor
-            self.tableView.addSubview(coverView)
-            let deleteImageView = UIImageView(frame: CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60))
-            deleteImageView.contentMode = .scaleAspectFit
-            deleteImageView.image = UIImage(named: "button-delete")
-            deleteImageView.tintColor = Style.labelTextColorLight
-            coverView.addSubview(deleteImageView)
+            coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
+            deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
         }else{
             calcPhotoSize()
         }
