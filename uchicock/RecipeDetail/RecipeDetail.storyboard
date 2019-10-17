@@ -20,7 +20,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XT8-og-tYP">
+                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XT8-og-tYP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 </imageView>
                             </subviews>
@@ -530,7 +530,6 @@
                         <outlet property="methodTipButton" destination="KSZ-h7-jZu" id="vUd-DX-5PB"/>
                         <outlet property="openInSafariButton" destination="so1-Ff-BH9" id="TJa-xE-2IU"/>
                         <outlet property="photo" destination="XT8-og-tYP" id="QPM-5E-60F"/>
-                        <outlet property="photoBackground" destination="CM4-cO-lbD" id="cvR-4M-jFI"/>
                         <outlet property="recipeName" destination="2c2-bY-edz" id="CJw-Ne-S3U"/>
                         <outlet property="shareButton" destination="eee-lT-yn7" id="Wt3-xe-ut2"/>
                         <outlet property="shortageLabel" destination="ex7-E5-r2A" id="zyY-mX-xKj"/>
@@ -565,10 +564,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-delete" width="240" height="240"/>
-        <image name="button-edit" width="240" height="240"/>
+        <image name="button-delete" width="24" height="24"/>
+        <image name="button-edit" width="24" height="24"/>
         <image name="button-safari" width="240" height="240"/>
-        <image name="button-share" width="240" height="240"/>
+        <image name="button-share" width="24" height="24"/>
         <image name="tip" width="24" height="24"/>
     </resources>
 </document>

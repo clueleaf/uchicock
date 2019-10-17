@@ -12,7 +12,6 @@ import Accounts
 
 class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
-    @IBOutlet weak var photoBackground: UIView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CopyableLabel!
     @IBOutlet weak var shortageLabel: UILabel!
@@ -34,24 +33,24 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
+    var hasRecipeDeleted = false
     var coverView = UIView(frame: CGRect.zero)
     var deleteImageView = UIImageView(frame: CGRect.zero)
     
-    var headerView: UIView!
-    var photoHeight: CGFloat = 0.0
-    var minimumPhotoHeight: CGFloat = 0.0
     var recipeId = String()
     var recipe = Recipe()
-    var noPhotoFlag = false
-    var imageWidth: CGFloat = 0
-    var imageHeight: CGFloat = 0
-    var photoSizeCalcTime = 0
+    var madeNum = 0
+    var headerView: UIView!
+    var photoExists = false
+    var photoWidth: CGFloat = 0
+    var photoHeight: CGFloat = 0
+    var imageViewNaturalHeight: CGFloat = 0.0
+    var imageViewMinHeight: CGFloat = 0.0
+    var calcImageViewSizeTime = 0
     var firstShow = true
     var fromContextualMenu = false
-    var madeNum = 0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    var hasRecipeDeleted = false
 
     let interactor = Interactor()
 
@@ -67,8 +66,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         
         headerView = tableView.tableHeaderView
-        tableView.tableHeaderView = UIView()
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
+
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
@@ -86,11 +86,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
-        photoBackground.addGestureRecognizer(tapRecognizer)
+        photo.addGestureRecognizer(tapRecognizer)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoLongPressed(_:)))
         longPressRecognizer.allowableMovement = 100
         longPressRecognizer.minimumPressDuration = 0.2
-        photoBackground.addGestureRecognizer(longPressRecognizer)
+        photo.addGestureRecognizer(longPressRecognizer)
         
         self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -118,7 +118,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        photoBackground.backgroundColor = Style.basicBackgroundColor
+        headerView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         lastViewDateLabel.textColor = Style.labelTextColorLight
         deleteButtonLabel.textColor = Style.deleteColor
@@ -140,20 +140,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.navigationItem.title = recipe.recipeName
 
             photo.clipsToBounds = true
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
-                noPhotoFlag = false
-                photo.image = image
-                imageWidth = image.size.width
-                imageHeight = image.size.height
+            if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
+                photoExists = true
+                photo.image = recipeImage
+                photoWidth = recipeImage.size.width
+                photoHeight = recipeImage.size.height
             }else{
-                noPhotoFlag = true
+                photoExists = false
                 photo.image = nil
-                imageWidth = 0
-                imageHeight = 0
-                photoBackground.frame = CGRect(x: 0 , y: 0, width: tableView.bounds.width, height: 0)
+                photoWidth = 0
+                photoHeight = 0
             }
-            photoSizeCalcTime = 5
-            calcPhotoSize()
+            calcImageViewSizeTime = 5
+            updateImageView()
 
             recipeName.text = recipe.recipeName
             
@@ -271,7 +270,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        photoSizeCalcTime = 5
+        calcImageViewSizeTime = 5
     }
     
     override func viewDidLayoutSubviews() {
@@ -282,7 +281,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
             self.tableView.bringSubviewToFront(coverView)
         }else{
-            calcPhotoSize()
+            updateImageView()
         }
     }
     
@@ -344,57 +343,56 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     // MARK: - Photo Header
-    private func calcPhotoSize(){
-        if photoSizeCalcTime > 0{
+    private func updateImageView(){
+        if calcImageViewSizeTime > 0{
             let minimumShownTableViewHeight: CGFloat = 80.0
-            if imageWidth == 0 {
-                photoHeight = 0
+            if photoWidth == 0 {
+                imageViewNaturalHeight = 0
             }else{
-                photoHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * imageHeight / imageWidth)
+                imageViewNaturalHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * photoHeight / photoWidth)
             }
-            minimumPhotoHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, photoHeight)
-            photoHeight = floor(photoHeight)
-            minimumPhotoHeight = floor(minimumPhotoHeight)
-                
-            if let tableHeaderView = tableView.tableHeaderView{
-                let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight))
+            imageViewMinHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, imageViewNaturalHeight)
+            imageViewNaturalHeight = floor(imageViewNaturalHeight)
+            imageViewMinHeight = floor(imageViewMinHeight)
 
-                // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
-                tableView.showsVerticalScrollIndicator = false
-                self.view.bringSubviewToFront(photoBackground)
-                tableView.showsVerticalScrollIndicator = true
-
-                if abs(tableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(tableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
+            if let currentTableHeaderView = tableView.tableHeaderView{
+                let newTableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: imageViewNaturalHeight))
+            
+                if abs(currentTableHeaderView.frame.width - newTableHeaderView.frame.width) > 1 || abs(currentTableHeaderView.frame.height - newTableHeaderView.frame.height) > 1 {
                     tableView.tableHeaderView = newTableHeaderView
                 }
             }
-                
+
             if firstShow{
-                tableView.contentOffset.y = photoHeight - minimumPhotoHeight
+                tableView.contentOffset.y = imageViewNaturalHeight - imageViewMinHeight
                 firstShow = false
             }
                 
-            updateHeaderView()
-            photoSizeCalcTime -= 1
+            // tableViewのスクロールバーが画像に隠れる問題へのワークアラウンド
+            tableView.showsVerticalScrollIndicator = false
+            self.view.bringSubviewToFront(headerView)
+            tableView.showsVerticalScrollIndicator = true
+
+            calcImageViewSizeTime -= 1
+        }
+        
+        if photoExists{
+            var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: imageViewNaturalHeight)
+            if tableView.contentOffset.y < (imageViewNaturalHeight - imageViewMinHeight) {
+                headRect.origin.y = tableView.contentOffset.y
+                headRect.size.height = imageViewNaturalHeight - tableView.contentOffset.y
+            }else{
+                headRect.origin.y = imageViewNaturalHeight - imageViewMinHeight
+                headRect.size.height = imageViewMinHeight
+            }
+            headerView.frame = headRect
+        }else{
+            headerView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         }
     }
     
-    func updateHeaderView(){
-        if noPhotoFlag == false{
-            var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: photoHeight)
-            if tableView.contentOffset.y < (photoHeight - minimumPhotoHeight) {
-                headRect.origin.y = tableView.contentOffset.y
-                headRect.size.height = photoHeight - tableView.contentOffset.y
-            }else{
-                headRect.origin.y = photoHeight - minimumPhotoHeight
-                headRect.size.height = minimumPhotoHeight
-            }
-            headerView.frame = headRect
-        }
-    }
-
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
-        if noPhotoFlag == false{
+        if photoExists{
             if ImageUtil.loadImageOf(recipeId: recipe.id, forList: true) != nil {
                 let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                 let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
@@ -416,7 +414,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         
-        if loadedImage != nil && noPhotoFlag == false && recognizer.state == UIGestureRecognizer.State.began  {
+        if loadedImage != nil && photoExists && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
                 UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -451,10 +449,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
-    }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateHeaderView()
     }
     
     // MARK: - UITableView
@@ -729,7 +723,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         ]
         
         let shareText = createLongMessage()
-        if noPhotoFlag == false, let image = photo.image {
+        if photoExists, let image = photo.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
             activityVC.activityStatusBarStyle = Style.statusBarStyle
