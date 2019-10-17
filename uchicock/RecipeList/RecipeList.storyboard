@@ -56,7 +56,7 @@
                                             <outlet property="delegate" destination="jEc-9N-zr5" id="KmB-gy-oqz"/>
                                         </connections>
                                     </searchBar>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcp-nL-VZR">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gcp-nL-VZR">
                                         <rect key="frame" x="0.0" y="86" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -95,22 +95,22 @@
                                 <viewLayoutGuide key="safeArea" id="Cpa-pr-wyV"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Lvi-sW-ctU"/>
                                         <exclude reference="1ul-5L-zVy"/>
                                         <exclude reference="JbH-2J-zY8"/>
                                         <exclude reference="Zar-HK-J3s"/>
+                                        <exclude reference="Lvi-sW-ctU"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="cVw-2A-08n"/>
-                                        <exclude reference="L0Z-bq-LLO"/>
-                                        <include reference="Lvi-sW-ctU"/>
                                         <include reference="1ul-5L-zVy"/>
                                         <exclude reference="59i-DR-9t4"/>
                                         <include reference="JbH-2J-zY8"/>
                                         <include reference="Zar-HK-J3s"/>
                                         <exclude reference="sEU-qR-M9y"/>
+                                        <exclude reference="L0Z-bq-LLO"/>
+                                        <include reference="Lvi-sW-ctU"/>
                                     </mask>
                                 </variation>
                             </view>

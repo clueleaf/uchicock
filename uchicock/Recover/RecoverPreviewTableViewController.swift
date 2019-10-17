@@ -33,6 +33,7 @@ class RecoverPreviewTableViewController: UITableViewController {
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
@@ -64,8 +65,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             method.text = "その他"
         }
 
-        self.tableView.separatorColor = UIColor.gray
-        tableView.tableFooterView = UIView(frame: CGRect.zero)        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

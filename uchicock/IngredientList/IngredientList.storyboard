@@ -133,7 +133,7 @@
                                             <action selector="categoryTapped:" destination="15U-YU-usX" eventType="valueChanged" id="I1b-GT-61v"/>
                                         </connections>
                                     </segmentedControl>
-                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-fO-srn">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-fO-srn">
                                         <rect key="frame" x="0.0" y="148" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -182,10 +182,10 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="AYx-jV-zWj"/>
-                                        <exclude reference="9bS-Nc-pdt"/>
                                         <exclude reference="6GQ-dn-bEh"/>
                                         <exclude reference="Gcp-LE-ibB"/>
                                         <exclude reference="OHl-pn-gGU"/>
+                                        <exclude reference="9bS-Nc-pdt"/>
                                         <exclude reference="FvY-sC-UZE"/>
                                         <exclude reference="KTd-Hz-Gsn"/>
                                     </mask>
@@ -195,13 +195,13 @@
                                         <exclude reference="jgZ-yb-d1j"/>
                                         <exclude reference="mcA-WI-EWD"/>
                                         <include reference="AYx-jV-zWj"/>
-                                        <include reference="9bS-Nc-pdt"/>
-                                        <exclude reference="fg1-LP-gop"/>
                                         <include reference="6GQ-dn-bEh"/>
                                         <include reference="Gcp-LE-ibB"/>
                                         <include reference="OHl-pn-gGU"/>
                                         <exclude reference="adq-im-gbd"/>
                                         <exclude reference="thL-54-8Xe"/>
+                                        <include reference="9bS-Nc-pdt"/>
+                                        <exclude reference="fg1-LP-gop"/>
                                         <exclude reference="0Yx-52-nQT"/>
                                         <include reference="FvY-sC-UZE"/>
                                         <include reference="KTd-Hz-Gsn"/>

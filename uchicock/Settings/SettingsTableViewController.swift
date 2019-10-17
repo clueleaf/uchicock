@@ -36,7 +36,6 @@ class SettingsTableViewController: UITableViewController {
         firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
 
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -46,7 +45,8 @@ class SettingsTableViewController: UITableViewController {
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         tableView.backgroundColor = Style.basicBackgroundColor
-        
+        tableView.separatorColor = Style.labelTextColorLight
+
         introductionImage.tintColor = Style.primaryColor
         recoverImage.tintColor = Style.primaryColor
         changeThemeImage.tintColor = Style.primaryColor

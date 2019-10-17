@@ -39,7 +39,6 @@ class IngredientRecommendTableViewController: UITableViewController {
         
         createIngredientBasicList()
 
-        self.tableView.separatorColor = UIColor.gray
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.reloadData()
     }
@@ -82,6 +81,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.backgroundColor = Style.basicBackgroundColor
+        tableView.separatorColor = Style.labelTextColorLight
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         

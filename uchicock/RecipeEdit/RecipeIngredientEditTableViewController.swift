@@ -79,9 +79,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             deleteLabel.text = "材料の追加をやめる"
         }
         
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        suggestTableView.separatorColor = UIColor.gray
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
                 
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
@@ -92,9 +90,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.suggestTableView.backgroundColor = Style.basicBackgroundColor
+        self.suggestTableView.separatorColor = Style.labelTextColorLight
         self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor

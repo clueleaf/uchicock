@@ -76,9 +76,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.tag = 1
         ingredientSuggestTableView.tag = 2
 
-        recipeTableView.separatorColor = UIColor.gray
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
-        ingredientSuggestTableView.separatorColor = UIColor.gray
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
@@ -103,6 +101,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        recipeTableView.separatorColor = Style.labelTextColorLight
+        ingredientSuggestTableView.separatorColor = Style.labelTextColorLight
         recipeTableView.backgroundColor = Style.basicBackgroundColor
         ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
         recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black

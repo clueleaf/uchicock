@@ -37,7 +37,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         setNavigationTitle()
         isRecovering = false
         
-        self.tableView.separatorColor = UIColor.gray
+        tableView.separatorColor = Style.labelTextColorLight
         tableView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black

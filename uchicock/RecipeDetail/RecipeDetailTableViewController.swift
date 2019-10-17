@@ -92,7 +92,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         longPressRecognizer.minimumPressDuration = 0.2
         photo.addGestureRecognizer(longPressRecognizer)
         
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
@@ -117,6 +116,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         headerView.backgroundColor = Style.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

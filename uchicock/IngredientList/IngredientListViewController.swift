@@ -40,7 +40,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.returnKeyType = UIReturnKeyType.done
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.separatorColor = UIColor.gray
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +52,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
         tableView.backgroundColor = Style.basicBackgroundColor
+        tableView.separatorColor = Style.labelTextColorLight
         tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
 
@@ -111,7 +111,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         ingredientRecommendButton.setTitleColor(Style.primaryColor, for: .normal)
         ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
         
-        containerSeparator.backgroundColor = Style.labelTextColor
+        containerSeparator.backgroundColor = Style.labelTextColorLight
         
         reloadIngredientList()
         tableView.reloadData()

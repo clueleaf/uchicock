@@ -25,7 +25,6 @@ class ChangeImageSizeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         setSizeExplanationText()
@@ -36,6 +35,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
         
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.estimatedRowHeight = 70
         self.tableView.rowHeight = UITableView.automaticDimension
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

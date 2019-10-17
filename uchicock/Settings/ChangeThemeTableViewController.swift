@@ -52,8 +52,7 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.separatorColor = UIColor.gray
-        tableView.tableFooterView = UIView(frame: CGRect.zero)        
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +60,7 @@ class ChangeThemeTableViewController: UITableViewController {
         
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
     }
     
     override func viewDidLayoutSubviews() {

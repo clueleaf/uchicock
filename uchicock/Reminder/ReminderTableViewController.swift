@@ -43,7 +43,6 @@ class ReminderTableViewController: UITableViewController {
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -52,6 +51,7 @@ class ReminderTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         if #available(iOS 13.0, *) {

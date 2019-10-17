@@ -58,7 +58,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchBar.returnKeyType = UIReturnKeyType.done
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.prefetchDataSource = self
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
     }
@@ -128,10 +127,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchConditionModifyButton.setTitleColor(Style.primaryColor, for: .normal)
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
-        containerSeparator.backgroundColor = Style.labelTextColor
+        containerSeparator.backgroundColor = Style.labelTextColorLight
 
         self.view.backgroundColor = Style.basicBackgroundColor
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor

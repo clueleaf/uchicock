@@ -62,7 +62,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
         self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
 
-        self.tableView.separatorColor = UIColor.gray
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -86,6 +85,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     private func setupVC(){
         self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
