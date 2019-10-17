@@ -368,7 +368,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -414,7 +414,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -460,7 +460,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -483,7 +483,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = UIColor(red:0.42, green:0.3, blue:0.1, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -529,7 +529,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -575,7 +575,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.redDark
@@ -621,7 +621,7 @@ struct Style{
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
-        labelTextColorLight = FlatColor.grayDark
+        labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
         deleteColor = FlatColor.red
