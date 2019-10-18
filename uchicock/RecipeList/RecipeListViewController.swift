@@ -770,20 +770,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
             let realm = try! Realm()
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
-            if recipeSortPrimary == 3{
-                cell.subInfoType = 1
-            }else if recipeSortPrimary == 5{
-                cell.subInfoType = 2
-            }else if recipeSortPrimary == 2{
-                if recipeSortSecondary == 3{
+            if isBookmarkMode{
+                cell.subInfoType = 0
+            }else{
+                if recipeSortPrimary == 3{
                     cell.subInfoType = 1
-                }else if recipeSortSecondary == 5{
+                }else if recipeSortPrimary == 5{
                     cell.subInfoType = 2
+                }else if recipeSortPrimary == 2{
+                    if recipeSortSecondary == 3{
+                        cell.subInfoType = 1
+                    }else if recipeSortSecondary == 5{
+                        cell.subInfoType = 2
+                    }else{
+                        cell.subInfoType = 0
+                    }
                 }else{
                     cell.subInfoType = 0
                 }
-            }else{
-                cell.subInfoType = 0
             }
             cell.recipe = recipe
             cell.backgroundColor = Style.basicBackgroundColor
