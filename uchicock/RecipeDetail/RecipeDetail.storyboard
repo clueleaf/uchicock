@@ -43,7 +43,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-bY-edz" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="323" height="30"/>
+                                                    <rect key="frame" x="8" y="20" width="313" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -61,10 +61,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5t-8J-7pX">
-                                                    <rect key="frame" x="339" y="20" width="24" height="24"/>
+                                                    <rect key="frame" x="329" y="20" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="KeG-kN-iw2"/>
-                                                        <constraint firstAttribute="height" constant="24" id="f8i-Vb-aII"/>
+                                                        <constraint firstAttribute="width" constant="30" id="KeG-kN-iw2"/>
+                                                        <constraint firstAttribute="height" constant="30" id="f8i-Vb-aII"/>
                                                     </constraints>
                                                     <state key="normal" image="navigation-recipe-bookmark-off"/>
                                                     <connections>
@@ -79,7 +79,7 @@
                                                 <constraint firstItem="ex7-E5-r2A" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="D9q-6W-aJD"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="top" secondItem="ex7-E5-r2A" secondAttribute="bottom" constant="8" id="H9U-PH-7pV"/>
                                                 <constraint firstItem="Q5t-8J-7pX" firstAttribute="leading" secondItem="2c2-bY-edz" secondAttribute="trailing" constant="8" id="OR7-Gp-yrq"/>
-                                                <constraint firstAttribute="trailing" secondItem="Q5t-8J-7pX" secondAttribute="trailing" constant="12" id="SoD-n8-aPW"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q5t-8J-7pX" secondAttribute="trailing" constant="16" id="SoD-n8-aPW"/>
                                                 <constraint firstAttribute="bottom" secondItem="fME-VJ-TZu" secondAttribute="bottom" constant="12" id="UrX-ST-AcI"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="X4V-ks-QSk"/>
                                                 <constraint firstAttribute="trailing" secondItem="fME-VJ-TZu" secondAttribute="trailing" constant="12" id="a7e-ju-3vG"/>
