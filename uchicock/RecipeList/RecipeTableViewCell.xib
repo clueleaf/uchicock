@@ -23,6 +23,18 @@
                             <constraint firstAttribute="width" secondItem="nIA-Y5-AVb" secondAttribute="height" multiplier="1:1" id="Wvp-MU-Zeo"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-recipe-bookmark-off" translatesAutoresizingMaskIntoConstraints="NO" id="cFc-30-8ce">
+                        <rect key="frame" x="4" y="0.0" width="23.5" height="23.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="cFc-30-8ce" secondAttribute="height" multiplier="1:1" id="LEj-vy-nrd"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-recipe-bookmark-on" translatesAutoresizingMaskIntoConstraints="NO" id="lEv-KR-b4f">
+                        <rect key="frame" x="4" y="0.0" width="23.5" height="23.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="lEv-KR-b4f" secondAttribute="height" multiplier="1:1" id="jH3-sh-LBw"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レシピ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2V-21-ykG">
                         <rect key="frame" x="78" y="8" width="69.5" height="21"/>
                         <constraints>
@@ -32,12 +44,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-recipe-bookmark-on" translatesAutoresizingMaskIntoConstraints="NO" id="cFc-30-8ce">
-                        <rect key="frame" x="4" y="0.0" width="23.5" height="23.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="cFc-30-8ce" secondAttribute="height" multiplier="1:1" id="LEj-vy-nrd"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehs-ln-8g3">
                         <rect key="frame" x="78" y="40" width="242" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -58,7 +64,9 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="nIA-Y5-AVb" secondAttribute="bottom" id="F9d-h5-yvT"/>
                     <constraint firstItem="Ehs-ln-8g3" firstAttribute="leading" secondItem="W2V-21-ykG" secondAttribute="leading" id="Gm1-W7-7c3"/>
+                    <constraint firstItem="lEv-KR-b4f" firstAttribute="width" secondItem="cFc-30-8ce" secondAttribute="height" multiplier="1:1" id="L1J-Ed-gSE"/>
                     <constraint firstItem="W2V-21-ykG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="LpH-d3-Fct"/>
+                    <constraint firstItem="lEv-KR-b4f" firstAttribute="centerX" secondItem="cFc-30-8ce" secondAttribute="centerX" id="P6M-2X-9RP"/>
                     <constraint firstItem="cFc-30-8ce" firstAttribute="width" secondItem="nIA-Y5-AVb" secondAttribute="height" multiplier="1:3" id="Q6v-xI-RV5"/>
                     <constraint firstAttribute="trailing" secondItem="Ehs-ln-8g3" secondAttribute="trailing" id="QQz-qt-OAi"/>
                     <constraint firstItem="cFc-30-8ce" firstAttribute="top" secondItem="nIA-Y5-AVb" secondAttribute="top" id="RHY-c6-Xx9"/>
@@ -69,12 +77,14 @@
                     <constraint firstAttribute="bottom" secondItem="Ehs-ln-8g3" secondAttribute="bottom" constant="15" id="hbJ-iV-DDb"/>
                     <constraint firstAttribute="trailing" secondItem="Ja5-zr-t38" secondAttribute="trailing" constant="4" id="qBr-kb-ebt"/>
                     <constraint firstItem="nIA-Y5-AVb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qP3-Ua-vCd"/>
+                    <constraint firstItem="lEv-KR-b4f" firstAttribute="centerY" secondItem="cFc-30-8ce" secondAttribute="centerY" id="rlo-n2-6s6"/>
                     <constraint firstItem="cFc-30-8ce" firstAttribute="leading" secondItem="nIA-Y5-AVb" secondAttribute="leading" constant="4" id="z4L-8h-qMa"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bookmarkImage" destination="cFc-30-8ce" id="Nq9-GU-TYC"/>
+                <outlet property="bookmarkBackImage" destination="cFc-30-8ce" id="Mxj-Oh-aUa"/>
+                <outlet property="bookmarkFrontImage" destination="lEv-KR-b4f" id="3wH-Pa-PLC"/>
                 <outlet property="photo" destination="nIA-Y5-AVb" id="HGT-tu-G3u"/>
                 <outlet property="recipeName" destination="W2V-21-ykG" id="fSF-KH-KA4"/>
                 <outlet property="shortage" destination="Ehs-ln-8g3" id="dZg-td-qsS"/>
@@ -84,6 +94,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="navigation-recipe-bookmark-off" width="24" height="24"/>
         <image name="navigation-recipe-bookmark-on" width="24" height="24"/>
     </resources>
 </document>
