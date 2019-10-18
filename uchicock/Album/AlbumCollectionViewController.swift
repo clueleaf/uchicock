@@ -209,7 +209,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
             noDataLabel.text = noItemText
             noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.textColor = Style.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.collectionView.backgroundView  = UIView()

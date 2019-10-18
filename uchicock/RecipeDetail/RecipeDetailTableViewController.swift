@@ -14,6 +14,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CopyableLabel!
+    @IBOutlet weak var bookmarkButton: UIButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
@@ -138,6 +139,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             hasRecipeDeleted = false
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
+            
+            if recipe.bookmarkDate == nil{
+                bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
+            }else{
+                bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
+            }
+            bookmarkButton.tintColor = Style.primaryColor
 
             photo.clipsToBounds = true
             if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
@@ -579,6 +587,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
 
     // MARK: - IBAction
+    @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
+        let realm = try! Realm()
+        if recipe.bookmarkDate == nil{
+            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
+            try! realm.write {
+                recipe.bookmarkDate = Date()
+            }
+        }else{
+            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
+            try! realm.write {
+                recipe.bookmarkDate = nil
+            }
+        }
+    }
+    
     func createLongMessage() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
         switch recipe.method{

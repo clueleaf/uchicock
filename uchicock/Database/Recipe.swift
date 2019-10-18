@@ -19,6 +19,7 @@ class Recipe: Object {
     @objc dynamic var lastViewDate : Date? = nil
     @objc dynamic var madeNum = 0
     @objc dynamic var style = 3
+    @objc dynamic var bookmarkDate : Date? = nil
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {

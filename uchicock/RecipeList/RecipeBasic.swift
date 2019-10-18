@@ -18,5 +18,6 @@ struct RecipeBasic{
     var method : Int
     var style : Int
     var imageFileName: String?
+    var bookmarkDate : Date?
 }
 

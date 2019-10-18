@@ -130,6 +130,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="レシピ" id="HXS-eo-2Dj">
                         <barButtonItem key="backBarButtonItem" title="レシピ" id="Ycp-TQ-jSw"/>
+                        <barButtonItem key="leftBarButtonItem" image="navigation-recipe-bookmark-off" id="K4S-FM-fgv">
+                            <connections>
+                                <action selector="bookmarkButtonTapped:" destination="jEc-9N-zr5" id="t1R-QK-U6D"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZUm-8p-EIh">
                             <connections>
                                 <action selector="addButtonTapped:" destination="jEc-9N-zr5" id="WKJ-Gc-JG3"/>
@@ -137,9 +142,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addRecipeButton" destination="ZUm-8p-EIh" id="dJT-KQ-sfz"/>
+                        <outlet property="bookmarkButton" destination="K4S-FM-fgv" id="HVT-gR-MQ5"/>
                         <outlet property="containerSeparator" destination="gcp-nL-VZR" id="5dS-ht-RRU"/>
+                        <outlet property="containerSeparatorHeightConstraint" destination="50q-dG-o5b" id="utT-Dc-PoN"/>
+                        <outlet property="containerSeparatorTopConstraint" destination="L0Z-bq-LLO" id="MW0-qp-y2A"/>
                         <outlet property="searchBar" destination="Jnu-nZ-SX4" id="4T9-Bl-QF7"/>
+                        <outlet property="searchBarBottomConstraint" destination="sEU-qR-M9y" id="Ovw-HU-YBI"/>
+                        <outlet property="searchBarHeightConstraint" destination="dX1-yW-1rM" id="Eve-1y-p5l"/>
                         <outlet property="searchConditionModifyButton" destination="C6C-Wr-wLe" id="pqJ-Dq-hrC"/>
+                        <outlet property="searchConditionModifyButtonHeightConstraint" destination="ymK-Ye-CHa" id="baI-SJ-g6O"/>
                         <outlet property="searchContainer" destination="q0K-82-yQs" id="tOC-Km-nOs"/>
                         <outlet property="tableView" destination="TVW-uW-pF8" id="SDg-Jn-GRh"/>
                         <segue destination="aCP-xa-QfP" kind="presentation" identifier="PushAddRecipe" modalPresentationStyle="fullScreen" id="xlx-SF-cBw"/>
@@ -169,6 +181,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="navigation-recipe-bookmark-off" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
 </document>

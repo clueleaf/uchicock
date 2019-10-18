@@ -11,6 +11,7 @@ import UIKit
 class RecipeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var bookmarkImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var subInfoLabel: UILabel!
     @IBOutlet weak var shortage: UILabel!
@@ -34,6 +35,13 @@ class RecipeTableViewCell: UITableViewCell {
                 }else{
                     photo.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
                 }
+            }
+            
+            bookmarkImage.tintColor = Style.primaryColor
+            if recipe.bookmarkDate == nil{
+                bookmarkImage.isHidden = true
+            }else{
+                bookmarkImage.isHidden = false
             }
             
             recipeName.text = recipe.recipeName

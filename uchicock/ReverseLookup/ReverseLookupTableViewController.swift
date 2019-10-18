@@ -583,7 +583,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }else{
                 noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
             }
-            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.textColor = Style.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.recipeTableView.backgroundView  = UIView()

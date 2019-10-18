@@ -232,7 +232,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if ingredientBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
             noDataLabel.text = "条件にあてはまる材料はありません"
-            noDataLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            noDataLabel.textColor = Style.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.tableView.backgroundView  = UIView()
