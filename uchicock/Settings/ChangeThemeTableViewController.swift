@@ -138,7 +138,7 @@ class ChangeThemeTableViewController: UITableViewController {
         if String(indexPath.row) == Style.no{
             let checkmark = UIImage(named: "accesory-checkmark")
             let accesoryImageView = UIImageView(image: checkmark)
-            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
             accesoryImageView.tintColor = Style.primaryColor
             cell.accessoryView = accesoryImageView
             cell.textLabel?.textColor = Style.primaryColor
