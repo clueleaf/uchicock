@@ -377,7 +377,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = nil
 
-                let disclosureIndicator = UIImage(named: "disclosure-indicator")
+                let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
                 accesoryImageView.tintColor = Style.labelTextColorLight
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)

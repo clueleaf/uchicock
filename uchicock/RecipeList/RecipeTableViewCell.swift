@@ -22,7 +22,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     var recipe: Recipe = Recipe(){
         didSet{
-            let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
+            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             accesoryImageView.tintColor = Style.labelTextColorLight

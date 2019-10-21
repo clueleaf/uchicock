@@ -557,7 +557,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             
-            let disclosureIndicator = UIImage(named: "disclosure-indicator")
+            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             accesoryImageView.tintColor = Style.labelTextColorLight

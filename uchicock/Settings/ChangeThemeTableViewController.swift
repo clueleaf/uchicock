@@ -136,11 +136,15 @@ class ChangeThemeTableViewController: UITableViewController {
         cell.textLabel?.text = themeList[indexPath.row]
 
         if String(indexPath.row) == Style.no{
-            cell.accessoryType = .checkmark
+            let checkmark = UIImage(named: "accesory-checkmark")
+            let accesoryImageView = UIImageView(image: checkmark)
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+            accesoryImageView.tintColor = Style.primaryColor
+            cell.accessoryView = accesoryImageView
             cell.textLabel?.textColor = Style.primaryColor
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         }else{
-            cell.accessoryType = .none
+            cell.accessoryView = nil
             cell.textLabel?.textColor = Style.labelTextColor
             cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         }

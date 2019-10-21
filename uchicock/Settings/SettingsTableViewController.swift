@@ -138,7 +138,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let disclosureIndicator = UIImage(named: "disclosure-indicator")
+        let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
         let accesoryImageView = UIImageView(image: disclosureIndicator)
         accesoryImageView.tintColor = Style.labelTextColorLight
         accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)

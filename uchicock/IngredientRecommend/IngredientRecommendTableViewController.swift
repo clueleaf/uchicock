@@ -166,7 +166,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecommendCell") as! IngredientRecommendTableViewCell
             
-            let disclosureIndicator = UIImage(named: "disclosure-indicator")
+            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.tintColor = Style.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)

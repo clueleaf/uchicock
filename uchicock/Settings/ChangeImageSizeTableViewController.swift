@@ -81,14 +81,18 @@ class ChangeImageSizeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let checkmark = UIImage(named: "accesory-checkmark")
+        let accesoryImageView = UIImageView(image: checkmark)
+        accesoryImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        accesoryImageView.tintColor = Style.primaryColor
         if indexPath.row == 1{
-            tableView.cellForRow(at:indexPath)?.accessoryType = .checkmark
-            tableView.cellForRow(at:IndexPath(row: 2, section: 0))?.accessoryType = .none
+            tableView.cellForRow(at:indexPath)?.accessoryView = accesoryImageView
+            tableView.cellForRow(at:IndexPath(row: 2, section: 0))?.accessoryView = nil
             defaults.set(0, forKey: GlobalConstants.SaveImageSizeKey)
             setSizeExplanationText()
         }else if indexPath.row == 2{
-            tableView.cellForRow(at:indexPath)?.accessoryType = .checkmark
-            tableView.cellForRow(at:IndexPath(row: 1, section: 0))?.accessoryType = .none
+            tableView.cellForRow(at:indexPath)?.accessoryView = accesoryImageView
+            tableView.cellForRow(at:IndexPath(row: 1, section: 0))?.accessoryView = nil
             defaults.set(1, forKey: GlobalConstants.SaveImageSizeKey)
             setSizeExplanationText()
         }
@@ -108,14 +112,18 @@ class ChangeImageSizeTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.textLabel?.text = "中"
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
             cell.textLabel?.textColor = Style.labelTextColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 
             if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 0{
-                cell.accessoryType = .checkmark
+                let checkmark = UIImage(named: "accesory-checkmark")
+                let accesoryImageView = UIImageView(image: checkmark)
+                accesoryImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+                accesoryImageView.tintColor = Style.primaryColor
+                cell.accessoryView = accesoryImageView
             }else{
-                cell.accessoryType = .none
+                cell.accessoryView = nil
             }
             return cell
         case 2:
@@ -123,14 +131,18 @@ class ChangeImageSizeTableViewController: UITableViewController {
             cell.backgroundColor = Style.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cell.textLabel?.text = "大"
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
             cell.textLabel?.textColor = Style.labelTextColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 
             if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
-                cell.accessoryType = .checkmark
+                let checkmark = UIImage(named: "accesory-checkmark")
+                let accesoryImageView = UIImageView(image: checkmark)
+                accesoryImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+                accesoryImageView.tintColor = Style.primaryColor
+                cell.accessoryView = accesoryImageView
             }else{
-                cell.accessoryType = .none
+                cell.accessoryView = nil
             }
             return cell
         case 3:
