@@ -559,6 +559,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             
             let disclosureIndicator = UIImage(named: "disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             accesoryImageView.tintColor = Style.labelTextColorLight
             cell.accessoryView = accesoryImageView
 

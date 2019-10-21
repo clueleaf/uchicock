@@ -427,6 +427,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let disclosureIndicator = UIImage(named: "disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.tintColor = Style.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
             cell.stockState = stockState.selectedSegmentIndex

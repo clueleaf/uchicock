@@ -317,6 +317,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hb-rp-acT" id="jGP-L0-puF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作れる順（タップで変更）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgy-Pt-mDp">
+                                                    <rect key="frame" x="83.5" y="15" width="208" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Wgy-Pt-mDp" firstAttribute="centerY" secondItem="jGP-L0-puF" secondAttribute="centerY" id="HgI-L2-fhy"/>
+                                                <constraint firstItem="Wgy-Pt-mDp" firstAttribute="centerX" secondItem="jGP-L0-puF" secondAttribute="centerX" id="gh3-fi-dIq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -339,6 +351,7 @@
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
                         <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
+                        <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
                         <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>
                         <outlet property="stockRecommendLabel" destination="2j5-wo-2mv" id="r9j-I8-mnY"/>
@@ -368,9 +381,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-amazon" width="240" height="240"/>
-        <image name="button-delete" width="240" height="240"/>
-        <image name="button-edit" width="240" height="240"/>
-        <image name="button-reminder" width="240" height="240"/>
+        <image name="button-amazon" width="24" height="24"/>
+        <image name="button-delete" width="24" height="24"/>
+        <image name="button-edit" width="24" height="24"/>
+        <image name="button-reminder" width="24" height="24"/>
     </resources>
 </document>

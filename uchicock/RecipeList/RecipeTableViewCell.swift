@@ -24,6 +24,7 @@ class RecipeTableViewCell: UITableViewCell {
         didSet{
             let disclosureIndicator = UIImage(named: "disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
             let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             accesoryImageView.tintColor = Style.labelTextColorLight
             self.accessoryView = accesoryImageView
 

@@ -169,6 +169,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             let disclosureIndicator = UIImage(named: "disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.tintColor = Style.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
             cell.ingredientName = ingredientBasicList[indexPath.row - 1].name

@@ -27,6 +27,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var method: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: CustomTextView!
+    @IBOutlet weak var addIngredientLabel: UILabel!
     
     weak var mainNavigationController : UINavigationController?
     var recipe = Recipe()
@@ -142,7 +143,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star3.setTitleColor(Style.primaryColor, for: .normal)
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
-        
+        addIngredientLabel.textColor = Style.primaryColor
+        addIngredientLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+
         let tipImage = UIImage(named: "tip")
         styleTipButton.setImage(tipImage, for: .normal)
         styleTipButton.tintColor = Style.primaryColor
@@ -377,6 +380,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 let disclosureIndicator = UIImage(named: "disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
                 accesoryImageView.tintColor = Style.labelTextColorLight
+                accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView
 
                 cell.selectionStyle = .default
@@ -390,10 +394,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return cell
             }else if indexPath.row == recipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
-                cell.textLabel?.textColor = Style.primaryColor
-                cell.textLabel?.text = "材料を追加"
-                cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
-                cell.textLabel?.textAlignment = .center
                 cell.backgroundColor = Style.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

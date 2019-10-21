@@ -23,6 +23,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var deleteButtonLabel: UILabel!
     @IBOutlet weak var amazonContainerView: UIView!
     @IBOutlet weak var deleteContainerView: UIView!
+    @IBOutlet weak var recipeOrderLabel: UILabel!
     
     var coverView = UIView(frame: CGRect.zero)
     var deleteImageView = UIImageView(frame: CGRect.zero)
@@ -93,6 +94,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         stockRecommendLabel.textColor = Style.primaryColor
         deleteButtonLabel.textColor = Style.deleteColor
+
+        recipeOrderLabel.textColor = Style.primaryColor
+        recipeOrderLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
 
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
@@ -436,23 +440,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                    cell.textLabel?.textColor = Style.primaryColor
                     switch recipeOrder{
                     case 1:
-                        cell.textLabel?.text = "名前順（タップで変更）"
+                        recipeOrderLabel.text = "名前順（タップで変更）"
                     case 2:
-                        cell.textLabel?.text = "作れる順（タップで変更）"
+                        recipeOrderLabel.text = "作れる順（タップで変更）"
                     case 3:
-                        cell.textLabel?.text = "作った回数順（タップで変更）"
+                        recipeOrderLabel.text = "作った回数順（タップで変更）"
                     case 4:
-                        cell.textLabel?.text = "お気に入り順（タップで変更）"
+                        recipeOrderLabel.text = "お気に入り順（タップで変更）"
                     case 5:
-                        cell.textLabel?.text = "最近見た順（タップで変更）"
+                        recipeOrderLabel.text = "最近見た順（タップで変更）"
                     default:
-                        cell.textLabel?.text = "作れる順（タップで変更）"
+                        recipeOrderLabel.text = "作れる順（タップで変更）"
                     }
-                    cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
-                    cell.textLabel?.textAlignment = .center
                     cell.backgroundColor = Style.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

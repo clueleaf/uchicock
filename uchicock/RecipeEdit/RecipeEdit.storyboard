@@ -315,6 +315,18 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料を追加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLQ-td-rYh">
+                                                    <rect key="frame" x="136.5" y="10" width="102" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oLQ-td-rYh" firstAttribute="centerX" secondItem="NLJ-Uf-Q2E" secondAttribute="centerX" id="M3m-OE-xpD"/>
+                                                <constraint firstItem="oLQ-td-rYh" firstAttribute="centerY" secondItem="NLJ-Uf-Q2E" secondAttribute="centerY" id="lcO-H4-GYr"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -339,6 +351,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addIngredientLabel" destination="oLQ-td-rYh" id="MrB-bv-Ueh"/>
                         <outlet property="favoriteTableViewCell" destination="Uw5-Hz-bgf" id="mKU-Hl-WmV"/>
                         <outlet property="memo" destination="xlb-Rh-A1C" id="MHE-lm-xKZ"/>
                         <outlet property="memoTableViewCell" destination="ZcH-ur-jk9" id="BEt-OF-LIz"/>
@@ -501,9 +514,9 @@
                             <mask key="constraints">
                                 <exclude reference="9ye-M5-ccS"/>
                                 <exclude reference="UWx-f2-lAr"/>
-                                <exclude reference="edI-k5-C1a"/>
                                 <exclude reference="20e-jS-j3h"/>
                                 <exclude reference="rJJ-Qd-YL0"/>
+                                <exclude reference="edI-k5-C1a"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -511,12 +524,12 @@
                                 <exclude reference="3v2-XC-LBE"/>
                                 <include reference="9ye-M5-ccS"/>
                                 <include reference="UWx-f2-lAr"/>
-                                <exclude reference="dVG-Ac-xCS"/>
-                                <include reference="edI-k5-C1a"/>
                                 <include reference="20e-jS-j3h"/>
                                 <exclude reference="laI-K9-6md"/>
                                 <exclude reference="ox7-lM-tor"/>
                                 <include reference="rJJ-Qd-YL0"/>
+                                <exclude reference="dVG-Ac-xCS"/>
+                                <include reference="edI-k5-C1a"/>
                             </mask>
                         </variation>
                     </view>
