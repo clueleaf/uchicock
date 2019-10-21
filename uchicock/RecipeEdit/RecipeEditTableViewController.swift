@@ -610,7 +610,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC.recipeId = newRecipe.id
                         newRecipe.updateShortageNum()
-                        ProgressHUD.showSuccess(with: "レシピを登録しました", duration: 1.5)
+                        MessageHUD.show("レシピを登録しました", for: 2.0)
                     }
                    
                     let history = mainNavigationController?.viewControllers
@@ -689,7 +689,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC.recipeId = recipe.id
                         recipe.updateShortageNum()
-                        ProgressHUD.showSuccess(with: "レシピを保存しました", duration: 1.5)
+                        MessageHUD.show("レシピを保存しました", for: 2.0)
                     }
                     let history = mainNavigationController?.viewControllers
                     if var history = history{

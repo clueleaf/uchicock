@@ -1,37 +1,30 @@
 //
-//  ProgressHUD.swift
-//  uchicock
+//  MessageHUD.swift
+//  LayoutPractice
 //
-//  Created by kou on 2019/06/14.
-//  Copyright © 2019 kou. All rights reserved.
+//  Created by kou on 2019/10/21.
+//  Copyright © 2019 kaigi. All rights reserved.
 //
 
 import UIKit
 
-public enum ProgressHUDStyle : Int {
+public enum MessageHUDStyle : Int {
     case light
     case dark
 }
 
-public class ProgressHUD : UIView {
+public class MessageHUD : UIView {
     
-    private let ProgressHUDVerticalSpacing: CGFloat = 12.0
-    private let ProgressHUDHorizontalSpacing: CGFloat = 12.0
-    private let ProgressHUDLabelSpacing: CGFloat = 8.0
+    private let MessageHUDVerticalSpacing: CGFloat = 12.0
+    private let MessageHUDHorizontalSpacing: CGFloat = 12.0
+    private let MessageHUDTopSpacing: CGFloat = 5.0
     
-    private var defaultStyle = ProgressHUDStyle.light
-    private var minimumSize = CGSize.init(width: 150, height: 100)
-    private var imageViewSize: CGSize = CGSize.init(width: 28, height: 28)
-    private var successImage: UIImage! = UIImage.init(named: "hud-success")!
-    private var minimumDismissTimeInterval: TimeInterval = 2.0
-    private var maximumDismissTimeInterval: TimeInterval = TimeInterval(CGFloat.infinity)
+    private var defaultStyle = MessageHUDStyle.light
     private var fadeOutTimer: Timer?
     private var controlView: UIControl?
     private var backgroundView: UIView?
     private var hudView: UIVisualEffectView?
     private var statusLabel: UILabel?
-    private var imageView: UIImageView?
-    private var indefiniteAnimatedView: IndefiniteAnimatedView?
     private var activityCount: Int = 0
 
     private override init(frame: CGRect) {
@@ -39,9 +32,7 @@ public class ProgressHUD : UIView {
         isUserInteractionEnabled = false
         activityCount = 0
         getBackGroundView().alpha = 0.0
-        getImageView().alpha = 0.0
         getStatusLabel().alpha = 1.0
-        getIndefiniteAnimatedView().alpha = 0.0
         backgroundColor = UIColor.clear
     }
     
@@ -49,29 +40,20 @@ public class ProgressHUD : UIView {
         super.init(coder: aDecoder)
     }
     
-    private func getIndefiniteAnimatedView() -> IndefiniteAnimatedView {
-        if (indefiniteAnimatedView == nil) {
-            indefiniteAnimatedView = IndefiniteAnimatedView.init(frame: .zero)
-        }
-        indefiniteAnimatedView?.setIndefinite(radius: 18.0, strokeThickness: 2.0, strokeColor: foreGroundColorForStyle())
-        indefiniteAnimatedView?.sizeToFit()
-        return indefiniteAnimatedView!
-    }
-    
-    private static let sharedView : ProgressHUD = {
-        var localInstance : ProgressHUD?
+    private static let sharedView : MessageHUD = {
+        var localInstance : MessageHUD?
         if Thread.current.isMainThread {
             if let window = UIApplication.shared.delegate?.window {
-                localInstance = ProgressHUD.init(frame: window?.bounds ?? CGRect.zero)
+                localInstance = MessageHUD.init(frame: window?.bounds ?? CGRect.zero)
             } else {
-                localInstance = ProgressHUD()
+                localInstance = MessageHUD()
             }
         } else {
             DispatchQueue.main.sync {
                 if let window = UIApplication.shared.delegate?.window {
-                    localInstance = ProgressHUD.init(frame: window?.bounds ?? CGRect.zero)
+                    localInstance = MessageHUD.init(frame: window?.bounds ?? CGRect.zero)
                 } else {
-                    localInstance = ProgressHUD()
+                    localInstance = MessageHUD()
                 }
             }
         }
@@ -79,39 +61,6 @@ public class ProgressHUD : UIView {
     }()
     
     // MARK :- Setters
-    
-    private func showProgress(status: String?) {
-        OperationQueue.main.addOperation({ [weak self] in
-            guard let strongSelf = self else { return }
-            if strongSelf.fadeOutTimer != nil {
-                strongSelf.activityCount = 0
-            }
-            
-            // Stop timer
-            strongSelf.setFadeOut(timer: nil)
-            
-            // Update / Check view hierarchy to ensure the HUD is visible
-            strongSelf.updateViewHierarchy()
-            
-            // Reset imageView and fadeout timer if an image is currently displayed
-            strongSelf.getImageView().isHidden = true
-            strongSelf.getImageView().image = nil
-            
-            // Update text and set progress to the given value
-            strongSelf.getStatusLabel().isHidden = (status?.count ?? 0) == 0
-            strongSelf.getStatusLabel().text = status
-            
-            // Add indefiniteAnimatedView to HUD
-            strongSelf.getHudView().contentView.addSubview(strongSelf.getIndefiniteAnimatedView())
-            
-            // Update the activity count
-            strongSelf.activityCount += 1
-
-            // Fade in delayed if a grace time is set
-            strongSelf.fadeIn(with: nil)
-        })
-    }
-    
     private func fadeIn(with duration: TimeInterval?) {
         updateHUDFrame()
         positionHUD()
@@ -128,9 +77,7 @@ public class ProgressHUD : UIView {
                 self.getHudView().effect = blurEffect
                 self.getHudView().backgroundColor = self.backgroundColorForStyle()
                 self.getBackGroundView().alpha = 1.0
-                self.getImageView().alpha = 1.0
                 self.getStatusLabel().alpha = 1.0
-                self.getIndefiniteAnimatedView().alpha = 1.0
             }
             
             let completionBlock : () -> Void = {
@@ -172,11 +119,13 @@ public class ProgressHUD : UIView {
         }
 
         let orientationFrame = bounds
-        let activeHeight = orientationFrame.height
-        
         let posX = orientationFrame.midX
-        let posY = CGFloat(floor(activeHeight * 0.45))
-        
+
+        let labelRect = getStatusLabel().text?.boundingRect(with: CGSize.zero, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font as Any], context: nil) ?? CGRect.zero
+        let labelHeight = CGFloat(ceilf(Float(labelRect.height)))
+        let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.origin.y ?? 0
+        let posY = MessageHUDVerticalSpacing + labelHeight / 2.0 + safeAreaTop + MessageHUDTopSpacing
+                
         let rotateAngle : CGFloat = 0.0
         let newCenter = CGPoint.init(x: posX, y: posY)
         
@@ -200,24 +149,13 @@ public class ProgressHUD : UIView {
         }
     }
     
-    private func show(image: UIImage, status: String?, duration: TimeInterval) {
+    private func show(status: String?, for duration: TimeInterval) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
             
             strongSelf.setFadeOut(timer: nil)
             strongSelf.updateViewHierarchy()
-            
-            strongSelf.indefiniteAnimatedView?.stopActivityIndicator()
-            strongSelf.indefiniteAnimatedView?.removeFromSuperview()
-
-            if image.renderingMode != UIImage.RenderingMode.alwaysTemplate {
-                strongSelf.getImageView().image = image.withRenderingMode(.alwaysTemplate)
-                strongSelf.getImageView().tintColor = strongSelf.foreGroundColorForStyle()
-            } else {
-                strongSelf.getImageView().image = image
-            }
-            strongSelf.getImageView().isHidden = false
-            
+                        
             strongSelf.getStatusLabel().isHidden = status == nil || status?.count == 0
             if let stts = status {
                 strongSelf.getStatusLabel().text = stts
@@ -225,7 +163,32 @@ public class ProgressHUD : UIView {
             strongSelf.fadeIn(with: duration)
         })
     }
-    // shows a image + status, use white PNGs with the imageViewSize (default is 28x28 pt)
+    
+    private func show(status: String?) {
+        OperationQueue.main.addOperation({ [weak self] in
+            guard let strongSelf = self else { return }
+            
+            if strongSelf.fadeOutTimer != nil {
+                strongSelf.activityCount = 0
+            }
+            
+            // Stop timer
+            strongSelf.setFadeOut(timer: nil)
+            
+            // Update / Check view hierarchy to ensure the HUD is visible
+            strongSelf.updateViewHierarchy()
+            
+            // Update text and set progress to the given value
+            strongSelf.getStatusLabel().isHidden = (status?.count ?? 0) == 0
+            strongSelf.getStatusLabel().text = status
+            
+            // Update the activity count
+            strongSelf.activityCount += 1
+
+            // Fade in delayed if a grace time is set
+            strongSelf.fadeIn(with: nil)
+        })
+    }
     
     private func dismissWithCompletion(completion: (() -> Void)?) {
         OperationQueue.main.addOperation({ [weak self] in
@@ -238,9 +201,7 @@ public class ProgressHUD : UIView {
                 strongSelf.getHudView().effect = nil
                 strongSelf.getHudView().backgroundColor = .clear
                 strongSelf.getBackGroundView().alpha = 0.0
-                strongSelf.getImageView().alpha = 0.0
                 strongSelf.getStatusLabel().alpha = 0.0
-                strongSelf.getIndefiniteAnimatedView().alpha = 0.0
             }
             
             let completionBlock: (() -> Void) = {
@@ -253,10 +214,6 @@ public class ProgressHUD : UIView {
                     strongSelf.getHudView().removeFromSuperview()
                     strongSelf.removeFromSuperview()
                     
-                    // Reset progress and cancel any running animation
-                    strongSelf.indefiniteAnimatedView?.stopActivityIndicator()
-                    strongSelf.indefiniteAnimatedView?.removeFromSuperview()
-
                     // Tell the rootViewController to update the StatusBar appearance
                     let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
                     rootController?.setNeedsStatusBarAppearanceUpdate()
@@ -290,10 +247,6 @@ public class ProgressHUD : UIView {
     }
     
     private func updateHUDFrame() {
-        // Check if an image or progress ring is displayed
-        let imageUsed: Bool = (getImageView().image) != nil && !((getImageView().isHidden) )
-        let progressUsed: Bool = getImageView().isHidden
-        
         // Calculate size of string
         var labelRect : CGRect = CGRect.zero
         var labelHeight: CGFloat = 0.0
@@ -312,30 +265,14 @@ public class ProgressHUD : UIView {
         var hudWidth: CGFloat
         var hudHeight: CGFloat
         
-        var contentWidth: CGFloat = 0.0
-        var contentHeight: CGFloat = 0.0
-        
-        if (imageUsed || progressUsed) {
-            if imageUsed {
-                contentWidth = getImageView().frame.width
-                contentHeight = getImageView().frame.height
-            } else {
-                contentWidth = getIndefiniteAnimatedView().frame.width
-                contentHeight = getIndefiniteAnimatedView().frame.height
-            }
-        }
         // |-spacing-content-spacing-|
-        hudWidth = CGFloat(ProgressHUDHorizontalSpacing + max(labelWidth, contentWidth) + ProgressHUDHorizontalSpacing)
+        hudWidth = CGFloat(MessageHUDHorizontalSpacing + labelWidth + MessageHUDHorizontalSpacing)
         
         // |-spacing-content-(labelSpacing-label-)spacing-|
-        hudHeight = CGFloat(ProgressHUDVerticalSpacing) + labelHeight + contentHeight + CGFloat(ProgressHUDVerticalSpacing)
-        if ((getStatusLabel().text != nil) && (imageUsed || progressUsed )) {
-            // Add spacing if both content and label are used
-            hudHeight += CGFloat(ProgressHUDLabelSpacing)//8 [80]
-        }
+        hudHeight = CGFloat(MessageHUDVerticalSpacing) + labelHeight + CGFloat(MessageHUDVerticalSpacing)
         
         // Update values on subviews
-        getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: max(minimumSize.width, hudWidth), height: max(minimumSize.height, hudHeight))
+        getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: hudWidth, height: hudHeight)
         
         // Animate value update
         CATransaction.begin()
@@ -343,24 +280,7 @@ public class ProgressHUD : UIView {
         
         // Spinner and image view
         var centerY: CGFloat
-        if getStatusLabel().text != nil {
-            let yOffset = max(ProgressHUDVerticalSpacing, (minimumSize.height - contentHeight - CGFloat(ProgressHUDLabelSpacing) - labelHeight) / 2.0)//12
-            centerY = yOffset + contentHeight / 2.0 //26
-        } else {
-            centerY = getHudView().bounds.midY
-        }
-        getIndefiniteAnimatedView().center = CGPoint(x: getHudView().bounds.midX, y: centerY)
-        getImageView().center = CGPoint(x: getHudView().bounds.midX , y: centerY)
-        // Label
-        if imageUsed || progressUsed {
-            if imageUsed {
-                centerY = getImageView().frame.maxY + ProgressHUDLabelSpacing + labelHeight / 2.0
-            } else {
-                centerY = getIndefiniteAnimatedView().frame.maxY + ProgressHUDLabelSpacing + labelHeight / 2.0
-            }
-        } else {
-            centerY = getHudView().bounds.midY
-        }
+        centerY = getHudView().bounds.midY
         getStatusLabel().frame = labelRect
         getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: centerY)
         CATransaction.commit()
@@ -382,17 +302,17 @@ public class ProgressHUD : UIView {
 }
 
 // MARK: - Public Method
-extension ProgressHUD {
-    public class func set(defaultStyle style: ProgressHUDStyle) {
+extension MessageHUD {
+    public class func set(defaultStyle style: MessageHUDStyle) {
         sharedView.defaultStyle = style
     }
     
-    public class func show(with status: String?) {
-        sharedView.showProgress(status: status)
+    public class func show(_ status: String?) {
+        sharedView.show(status: status)
     }
     
-    public class func showSuccess(with status: String?, duration: TimeInterval) {
-        sharedView.show(image: sharedView.successImage, status: status, duration: duration)
+    public class func show(_ status: String?, for duration: TimeInterval) {
+        sharedView.show(status: status, for: duration)
     }
 
     public class func dismissWithCompletion(_ completion: (() -> Void)?) {
@@ -401,7 +321,7 @@ extension ProgressHUD {
 }
 
 //MARK: - Getter Methods
-extension ProgressHUD {
+extension MessageHUD {
     private func foreGroundColorForStyle() -> UIColor {
         switch defaultStyle{
         case .light:
@@ -475,22 +395,6 @@ extension ProgressHUD {
         return nil
     }
     
-    private func getImageView() -> UIImageView {
-        if imageView != nil && imageView?.bounds.size != imageViewSize {
-            imageView?.removeFromSuperview()
-            imageView = nil
-        }
-        
-        if imageView == nil {
-            imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: imageViewSize.width, height: imageViewSize.height))
-        }
-        if imageView?.superview == nil {
-            getHudView().contentView.addSubview(imageView!)
-        }
-        
-        return imageView!
-    }
-    
     private func getStatusLabel() -> UILabel {
         if statusLabel == nil {
             statusLabel = UILabel.init(frame: .zero)
@@ -504,7 +408,7 @@ extension ProgressHUD {
             getHudView().contentView.addSubview(statusLabel!)
         }
         statusLabel?.textColor = foreGroundColorForStyle()
-        statusLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
+        statusLabel?.font = UIFont.systemFont(ofSize: 15.0)
         statusLabel?.alpha = 1.0
         statusLabel?.isHidden = false
         return statusLabel!

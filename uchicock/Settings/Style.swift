@@ -700,9 +700,9 @@ struct Style{
         customizeActivityIndicatorView()
         customizeLabel()
         if isDark{
-            ProgressHUD.set(defaultStyle: .light)
+            MessageHUD.set(defaultStyle: .light)
         }else{
-            ProgressHUD.set(defaultStyle: .dark)
+            MessageHUD.set(defaultStyle: .dark)
         }
     }
     

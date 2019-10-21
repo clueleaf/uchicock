@@ -15,7 +15,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var isRecovering = false
-    let leastWaitTime = 0.15
     let selectedCellBackgroundView = UIView()
     
     let interactor = Interactor()
@@ -211,16 +210,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
 
     }
     
-    func waitAtLeast(_ time : TimeInterval, _ block: () -> Void) {
-        let start = CFAbsoluteTimeGetCurrent()
-        block()
-        let end = CFAbsoluteTimeGetCurrent()
-        let wait = max(0.0, time - (end - start))
-        if wait > 0.0 {
-            Thread.sleep(forTimeInterval: wait)
-        }
-    }
-
     // MARK: - Table view
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
@@ -254,16 +243,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
-                            ProgressHUD.show(with: "復元中...")
+                            MessageHUD.show("復元中...")
                             DispatchQueue.global(qos: .userInitiated).async {
-                                self.waitAtLeast(self.leastWaitTime) {
-                                    for i in 0..<self.recoverableSampleRecipeList.count {
-                                        self.recoverableSampleRecipeList[i].recoverTarget = true
-                                    }
-                                    self.recover()
+                                for i in 0..<self.recoverableSampleRecipeList.count {
+                                    self.recoverableSampleRecipeList[i].recoverTarget = true
                                 }
+                                self.recover()
                                 DispatchQueue.main.async{
-                                    ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.5)
+                                    MessageHUD.show("復元が完了しました", for: 2.0)
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             }
@@ -413,13 +400,11 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
-                    ProgressHUD.show(with: "復元中...")
+                    MessageHUD.show("復元中...")
                     DispatchQueue.global(qos: .userInitiated).async {
-                        self.waitAtLeast(self.leastWaitTime) {
-                            self.recover()
-                        }
+                        self.recover()
                         DispatchQueue.main.async{
-                            ProgressHUD.showSuccess(with: "復元が完了しました", duration: 1.5)
+                            MessageHUD.show("復元が完了しました", for: 2.0)
                             self.dismiss(animated: true, completion: nil)
                         }
                     }

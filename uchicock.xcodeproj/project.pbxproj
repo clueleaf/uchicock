@@ -35,8 +35,6 @@
 		9B2E83F1230A9FCB002E7946 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83EE230A9FCB002E7946 /* PullToRefresh.swift */; };
 		9B2E83F2230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83EF230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift */; };
 		9B2E83F3230A9FCB002E7946 /* PullToRefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */; };
-		9B2E83F6230A9FEB002E7946 /* IndefiniteAnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */; };
-		9B2E83F7230A9FEB002E7946 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */; };
 		9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30125122BB8A7300288DEE /* RecipeIngredientTableViewCell.swift */; };
 		9B30125422BB8A7300288DEE /* RecipeIngredientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B30125222BB8A7300288DEE /* RecipeIngredientTableViewCell.xib */; };
 		9B30125622BB96EE00288DEE /* RecipeIngredientBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */; };
@@ -74,6 +72,7 @@
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
 		9BD467B6232B8CBD00312923 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD467B5232B8CBD00312923 /* ImageUtil.swift */; };
+		9BD7BEDB235DB877008B305E /* MessageHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD7BEDA235DB877008B305E /* MessageHUD.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
 		9BD91A5922BD04930088C146 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD91A5822BD04930088C146 /* Interactor.swift */; };
 		9BD91A5B22BD0BE90088C146 /* DismissModalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD91A5A22BD0BE90088C146 /* DismissModalAnimator.swift */; };
@@ -142,8 +141,6 @@
 		9B2E83EE230A9FCB002E7946 /* PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = Util/PullToRefresh/PullToRefresh.swift; sourceTree = "<group>"; };
 		9B2E83EF230A9FCB002E7946 /* PullToRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderAnimator.swift; path = Util/PullToRefresh/PullToRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderView.swift; path = Util/PullToRefresh/PullToRefreshHeaderView.swift; sourceTree = "<group>"; };
-		9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndefiniteAnimatedView.swift; path = Util/ProgressHUD/IndefiniteAnimatedView.swift; sourceTree = "<group>"; };
-		9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressHUD.swift; path = Util/ProgressHUD/ProgressHUD.swift; sourceTree = "<group>"; };
 		9B30125122BB8A7300288DEE /* RecipeIngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientTableViewCell.swift; path = RecipeDetail/RecipeIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B30125222BB8A7300288DEE /* RecipeIngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeIngredientTableViewCell.xib; path = RecipeDetail/RecipeIngredientTableViewCell.xib; sourceTree = "<group>"; };
 		9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientBasic.swift; path = RecipeEdit/RecipeIngredientBasic.swift; sourceTree = "<group>"; };
@@ -184,6 +181,7 @@
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BD467B5232B8CBD00312923 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
+		9BD7BEDA235DB877008B305E /* MessageHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageHUD.swift; path = Util/MessageHUD/MessageHUD.swift; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		9BD91A5822BD04930088C146 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		9BD91A5A22BD0BE90088C146 /* DismissModalAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissModalAnimator.swift; sourceTree = "<group>"; };
@@ -269,7 +267,7 @@
 				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
 				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
-				9BF951A52302C68000C6A1CA /* ProgressHUD */,
+				9BF951A52302C68000C6A1CA /* MessageHUD */,
 				9BD91A5722BD04720088C146 /* Modal */,
 			);
 			path = Util;
@@ -551,13 +549,12 @@
 			name = AlbumFilter;
 			sourceTree = "<group>";
 		};
-		9BF951A52302C68000C6A1CA /* ProgressHUD */ = {
+		9BF951A52302C68000C6A1CA /* MessageHUD */ = {
 			isa = PBXGroup;
 			children = (
-				9B2E83F4230A9FEA002E7946 /* IndefiniteAnimatedView.swift */,
-				9B2E83F5230A9FEA002E7946 /* ProgressHUD.swift */,
+				9BD7BEDA235DB877008B305E /* MessageHUD.swift */,
 			);
-			name = ProgressHUD;
+			name = MessageHUD;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -734,14 +731,12 @@
 				9B30125322BB8A7300288DEE /* RecipeIngredientTableViewCell.swift in Sources */,
 				9BEC4C3F2351EC9B004FE9B4 /* AlbumFilterViewController.swift in Sources */,
 				9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */,
-				9B2E83F7230A9FEB002E7946 /* ProgressHUD.swift in Sources */,
 				9B2E83DD230A9F20002E7946 /* CircularCheckboxExpandController.swift in Sources */,
 				9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */,
 				9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
-				9B2E83F6230A9FEB002E7946 /* IndefiniteAnimatedView.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
@@ -778,6 +773,7 @@
 				9B7BAA6722B4E4A5005BB3F7 /* AlbumCollectionViewCell.swift in Sources */,
 				9B2E83E8230A9F7A002E7946 /* ImageViewerDismissalTransition.swift in Sources */,
 				9B3078CD1CA421AE0014CE7E /* RecipeIngredientLink.swift in Sources */,
+				9BD7BEDB235DB877008B305E /* MessageHUD.swift in Sources */,
 				9B70B09122B68533008A5591 /* RecipeTableViewCell.swift in Sources */,
 				9BD91A6222BD3A840088C146 /* StyleTipViewController.swift in Sources */,
 				9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */,

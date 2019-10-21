@@ -430,7 +430,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
                 let pasteboard: UIPasteboard = UIPasteboard.general
                 pasteboard.image = loadedImage!
-                ProgressHUD.showSuccess(with: "クリップボードへコピーしました", duration: 1.5)
+                MessageHUD.show("クリップボードへコピーしました", for: 2.0)
                 })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.popoverPresentationController?.sourceView = self.view
@@ -443,7 +443,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
-            ProgressHUD.showSuccess(with: "カメラロールへ保存しました", duration: 1.5)
+            MessageHUD.show("カメラロールへ保存しました", for: 2.0)
         }else{
             let alertView = CustomAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
