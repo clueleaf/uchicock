@@ -93,6 +93,10 @@ class ChangeThemeTableViewController: UITableViewController {
         return themeList.count
     }
     
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         oldTableBackgroundColor = Style.basicBackgroundColor
         
@@ -132,7 +136,7 @@ class ChangeThemeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = UITableViewCell()
         cell.textLabel?.text = themeList[indexPath.row]
 
         if String(indexPath.row) == Style.no{
