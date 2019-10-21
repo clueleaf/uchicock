@@ -13,6 +13,7 @@ struct Style{
     static var no = "0"
     static var isDark = false
     static var isBackgroundDark = false
+    static var messageHudStyle: MessageHUDStyle = .dark
     static var statusBarStyle: UIStatusBarStyle = .default
     static var navigationBarColor = FlatColor.yellow
     static var primaryColor = FlatColor.skyBlueDark
@@ -36,6 +37,7 @@ struct Style{
         no = "0"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.skyBlueDark
@@ -59,6 +61,7 @@ struct Style{
         no = "1"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.yellowDark
@@ -82,6 +85,7 @@ struct Style{
         no = "2"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
@@ -105,6 +109,7 @@ struct Style{
         no = "3"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.pinkDark
         primaryColor = FlatColor.pinkDark
@@ -128,6 +133,7 @@ struct Style{
         no = "4"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.skyBlue
         primaryColor = FlatColor.skyBlue
@@ -151,6 +157,7 @@ struct Style{
         no = "5"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.skyBlueDark
         primaryColor = FlatColor.skyBlueDark
@@ -174,6 +181,7 @@ struct Style{
         no = "6"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.mint
         primaryColor = FlatColor.mintDark
@@ -197,6 +205,7 @@ struct Style{
         no = "7"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.coffeeDark
         primaryColor = FlatColor.coffee
@@ -220,6 +229,7 @@ struct Style{
         no = "8"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.mint
@@ -243,6 +253,7 @@ struct Style{
         no = "9"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.watermelonDark
         primaryColor = FlatColor.watermelon
@@ -266,6 +277,7 @@ struct Style{
         no = "10"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.limeDark
         primaryColor = FlatColor.limeDark
@@ -289,7 +301,7 @@ struct Style{
         no = "11"
         isDark = false
         isBackgroundDark = false
-        statusBarStyle = .lightContent
+        messageHudStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.grayDark
         primaryColor = FlatColor.grayDark
@@ -313,6 +325,7 @@ struct Style{
         no = "12"
         isDark = false
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.watermelonDark
         primaryColor = FlatColor.watermelonDark
@@ -336,6 +349,7 @@ struct Style{
         no = "13"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.skyBlueDark
@@ -359,6 +373,7 @@ struct Style{
         no = "14"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.skyBlueDark
@@ -382,6 +397,7 @@ struct Style{
         no = "15"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.orange
@@ -405,6 +421,7 @@ struct Style{
         no = "16"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.yellowDark
@@ -428,6 +445,7 @@ struct Style{
         no = "17"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.pink
@@ -451,6 +469,7 @@ struct Style{
         no = "18"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.pinkDark
@@ -474,6 +493,7 @@ struct Style{
         no = "19"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.coffee
@@ -497,6 +517,7 @@ struct Style{
         no = "20"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.greenDark
@@ -520,6 +541,7 @@ struct Style{
         no = "21"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.greenDark
@@ -543,6 +565,7 @@ struct Style{
         no = "22"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.purple
@@ -566,6 +589,7 @@ struct Style{
         no = "23"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.magenta
@@ -589,6 +613,7 @@ struct Style{
         no = "24"
         isDark = false
         isBackgroundDark = false
+        messageHudStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.powderBlue
         primaryColor = FlatColor.blue
@@ -612,6 +637,7 @@ struct Style{
         no = "25"
         isDark = true
         isBackgroundDark = true
+        messageHudStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.red
@@ -699,11 +725,7 @@ struct Style{
         customizeSlider()
         customizeActivityIndicatorView()
         customizeLabel()
-        if isDark{
-            MessageHUD.set(defaultStyle: .light)
-        }else{
-            MessageHUD.set(defaultStyle: .dark)
-        }
+        MessageHUD.set(defaultStyle: messageHudStyle)
     }
     
     static private func customizeButton(){
