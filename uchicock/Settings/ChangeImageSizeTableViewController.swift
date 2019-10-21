@@ -108,6 +108,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = Style.basicBackgroundColor
             cell.textLabel?.text = "中"
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
             cell.textLabel?.textColor = Style.labelTextColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 
@@ -122,6 +123,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
             cell.backgroundColor = Style.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cell.textLabel?.text = "大"
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
             cell.textLabel?.textColor = Style.labelTextColor
             cell.selectedBackgroundView = selectedCellBackgroundView
 

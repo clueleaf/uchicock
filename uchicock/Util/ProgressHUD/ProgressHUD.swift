@@ -504,7 +504,7 @@ extension ProgressHUD {
             getHudView().contentView.addSubview(statusLabel!)
         }
         statusLabel?.textColor = foreGroundColorForStyle()
-        statusLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        statusLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         statusLabel?.alpha = 1.0
         statusLabel?.isHidden = false
         return statusLabel!
