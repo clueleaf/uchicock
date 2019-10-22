@@ -431,7 +431,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 let pasteboard: UIPasteboard = UIPasteboard.general
                 pasteboard.image = loadedImage!
                 MessageHUD.show("コピーしました", for: 2.0)
-                })
+            })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.photo.frame
@@ -595,11 +595,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             try! realm.write {
                 recipe.bookmarkDate = Date()
             }
+            MessageHUD.show("ブックマークしました", for: 2.0)
         }else{
             bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
             try! realm.write {
                 recipe.bookmarkDate = nil
             }
+            MessageHUD.show("ブックマークを外しました", for: 2.0)
         }
     }
     
