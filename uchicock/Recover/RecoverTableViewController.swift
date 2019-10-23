@@ -243,7 +243,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
-                            MessageHUD.show("復元中...")
+                            MessageHUD.show("復元中...", for: nil)
                             DispatchQueue.global(qos: .userInitiated).async {
                                 for i in 0..<self.recoverableSampleRecipeList.count {
                                     self.recoverableSampleRecipeList[i].recoverTarget = true
@@ -400,7 +400,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
-                    MessageHUD.show("復元中...")
+                    MessageHUD.show("復元中...", for: nil)
                     DispatchQueue.global(qos: .userInitiated).async {
                         self.recover()
                         DispatchQueue.main.async{

@@ -25,12 +25,10 @@ public class MessageHUD : UIView {
     private var backgroundView: UIView?
     private var hudView: UIVisualEffectView?
     private var statusLabel: UILabel?
-    private var activityCount: Int = 0
 
     private override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
-        activityCount = 0
         getBackGroundView().alpha = 0.0
         getStatusLabel().alpha = 1.0
         backgroundColor = UIColor.clear
@@ -43,15 +41,15 @@ public class MessageHUD : UIView {
     private static let sharedView : MessageHUD = {
         var localInstance : MessageHUD?
         if Thread.current.isMainThread {
-            if let window = UIApplication.shared.delegate?.window {
-                localInstance = MessageHUD.init(frame: window?.bounds ?? CGRect.zero)
+            if let window = UIApplication.shared.keyWindow {
+                localInstance = MessageHUD.init(frame: window.bounds)
             } else {
                 localInstance = MessageHUD()
             }
         } else {
             DispatchQueue.main.sync {
-                if let window = UIApplication.shared.delegate?.window {
-                    localInstance = MessageHUD.init(frame: window?.bounds ?? CGRect.zero)
+                if let window = UIApplication.shared.keyWindow {
+                    localInstance = MessageHUD.init(frame: window.bounds)
                 } else {
                     localInstance = MessageHUD()
                 }
@@ -68,10 +66,7 @@ public class MessageHUD : UIView {
 
         if getBackGroundView().alpha != 1.0 {
             let animationsBlock : () -> Void = {
-                // Zoom HUD a little to make a nice appear / pop up animation
                 self.getHudView().transform = CGAffineTransform.identity
-                
-                // Fade in all effects (colors, blur, etc.)
                 let blurStyle = self.defaultStyle == .dark ? UIBlurEffect.Style.dark : UIBlurEffect.Style.light
                 let blurEffect = UIBlurEffect.init(style: blurStyle)
                 self.getHudView().effect = blurEffect
@@ -81,55 +76,73 @@ public class MessageHUD : UIView {
             }
             
             let completionBlock : () -> Void = {
-                if let cd = duration {
-                    let timer = Timer.init(timeInterval: cd, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
+                if let convertedDuration = duration {
+                    let timer = Timer.init(timeInterval: convertedDuration, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
                     self.setFadeOut(timer: timer)
                     RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
                 }
             }
             
-            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: {
-                finished in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: { _ in
                 completionBlock()
             })
             self.setNeedsDisplay()
         } else {
             if let convertedDuration = duration {
                 let timer = Timer.init(timeInterval: convertedDuration, target: self, selector: #selector(dismiss), userInfo: nil, repeats: false)
-                setFadeOut(timer: timer)
+                self.setFadeOut(timer: timer)
                 RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
             }
         }
     }
     
-    private func setFadeOut(timer: Timer?) {
-        if (fadeOutTimer != nil) {
-            fadeOutTimer?.invalidate()
-            fadeOutTimer = nil
+    private func updateHUDFrame() {
+        // Calculate size of string
+        var labelRect : CGRect = CGRect.zero
+        var labelHeight: CGFloat = 0.0
+        var labelWidth: CGFloat = 0.0
+        
+        if getStatusLabel().text != nil {
+            let constraintSize = CGSize(width: 200.0, height: 300.0)
+            labelRect = getStatusLabel().text?.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font as Any], context: nil) ?? CGRect.zero
+            labelHeight = CGFloat(ceilf(Float(labelRect.height )))
+            labelWidth = CGFloat(ceilf(Float(labelRect.width )))
         }
-        if timer != nil {
-            fadeOutTimer = timer
-        }
+        
+        // Calculate hud size based on content
+        // For the beginning use default values, these
+        // might get update if string is too large etc.
+        let hudWidth = CGFloat(MessageHUDHorizontalSpacing + labelWidth + MessageHUDHorizontalSpacing)
+        let hudHeight = CGFloat(MessageHUDVerticalSpacing + labelHeight + MessageHUDVerticalSpacing)
+        
+        // Update values on subviews
+        getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: hudWidth, height: hudHeight)
+        getStatusLabel().frame = labelRect
+        getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: getHudView().bounds.midY)
     }
     
-    @objc private func positionHUD() {
-        if let appDelegate = UIApplication.shared.delegate,
-            let window : UIWindow = appDelegate.window! {
-            frame = window.bounds
+    private func positionHUD() {
+        if let window = UIApplication.shared.keyWindow {
+            self.frame = window.bounds
         }
-
-        let orientationFrame = bounds
-        let posX = orientationFrame.midX
 
         let labelRect = getStatusLabel().text?.boundingRect(with: CGSize.zero, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font as Any], context: nil) ?? CGRect.zero
         let labelHeight = CGFloat(ceilf(Float(labelRect.height)))
         let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.origin.y ?? 0
         let posY = MessageHUDVerticalSpacing + labelHeight / 2.0 + safeAreaTop + MessageHUDTopSpacing
                 
-        let rotateAngle : CGFloat = 0.0
-        let newCenter = CGPoint.init(x: posX, y: posY)
-        
-        move(to: newCenter, rotateAngle: rotateAngle)
+        let newCenter = CGPoint.init(x: self.bounds.midX, y: posY)
+        move(to: newCenter)
+    }
+    
+    private func setFadeOut(timer: Timer?) {
+        if fadeOutTimer != nil {
+            fadeOutTimer?.invalidate()
+            fadeOutTimer = nil
+        }
+        if timer != nil {
+            fadeOutTimer = timer
+        }
     }
     
     private func updateViewHierarchy() {
@@ -149,28 +162,9 @@ public class MessageHUD : UIView {
         }
     }
     
-    private func show(status: String?, for duration: TimeInterval) {
+    private func show(status: String?, for duration: TimeInterval?) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
-            
-            strongSelf.setFadeOut(timer: nil)
-            strongSelf.updateViewHierarchy()
-                        
-            strongSelf.getStatusLabel().isHidden = status == nil || status?.count == 0
-            if let stts = status {
-                strongSelf.getStatusLabel().text = stts
-            }
-            strongSelf.fadeIn(with: duration)
-        })
-    }
-    
-    private func show(status: String?) {
-        OperationQueue.main.addOperation({ [weak self] in
-            guard let strongSelf = self else { return }
-            
-            if strongSelf.fadeOutTimer != nil {
-                strongSelf.activityCount = 0
-            }
             
             // Stop timer
             strongSelf.setFadeOut(timer: nil)
@@ -179,22 +173,17 @@ public class MessageHUD : UIView {
             strongSelf.updateViewHierarchy()
             
             // Update text and set progress to the given value
-            strongSelf.getStatusLabel().isHidden = (status?.count ?? 0) == 0
+            strongSelf.getStatusLabel().isHidden = status == nil || status?.count == 0
             strongSelf.getStatusLabel().text = status
             
-            // Update the activity count
-            strongSelf.activityCount += 1
-
             // Fade in delayed if a grace time is set
-            strongSelf.fadeIn(with: nil)
+            strongSelf.fadeIn(with: duration)
         })
     }
     
     private func dismissWithCompletion(completion: (() -> Void)?) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
-            // Reset activity count
-            strongSelf.activityCount = 0
             
             let animationsBlock: () -> Void = {
                 // Fade out all effects (colors, blur, etc.)
@@ -217,18 +206,16 @@ public class MessageHUD : UIView {
                     // Tell the rootViewController to update the StatusBar appearance
                     let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
                     rootController?.setNeedsStatusBarAppearanceUpdate()
-                    if completion != nil {
-                        completion!()
-                    }
+                    completion?()
                 }
             }
             
-            // UIViewAnimationOptionBeginFromCurrentState AND a delay doesn't always work as expected
-            // When UIViewAnimationOptionBeginFromCurrentState is set, animateWithDuration: evaluates the current
+            // .beginFromCurrentState AND a delay doesn't always work as expected
+            // When .beginFromCurrentState is set, withDuration: evaluates the current
             // values to check if an animation is necessary. The evaluation happens at function call time and not
-            // after the delay => the animation is sometimes skipped. Therefore we delay using dispatch_after.
+            // after the delay => the animation is sometimes skipped. Therefore we delay using asyncAfter.
             
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                 UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
                     animationsBlock()
                 }) { finished in
@@ -238,54 +225,31 @@ public class MessageHUD : UIView {
             
             // Inform iOS to redraw the view hierarchy
             strongSelf.setNeedsDisplay()
-            }
-        )
+        })
     }
     
     @objc private func dismiss() {
         dismissWithCompletion(completion: nil)
     }
     
-    private func updateHUDFrame() {
-        // Calculate size of string
-        var labelRect : CGRect = CGRect.zero
-        var labelHeight: CGFloat = 0.0
-        var labelWidth: CGFloat = 0.0
-        
-        if getStatusLabel().text != nil {
-            let constraintSize = CGSize(width: 200.0, height: 300.0)
-            labelRect = getStatusLabel().text?.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font as Any], context: nil) ?? CGRect.zero
-            labelHeight = CGFloat(ceilf(Float(labelRect.height )))
-            labelWidth = CGFloat(ceilf(Float(labelRect.width )))
-        }
-        
-        // Calculate hud size based on content
-        // For the beginning use default values, these
-        // might get update if string is too large etc.
-        var hudWidth: CGFloat
-        var hudHeight: CGFloat
-        
-        // |-spacing-content-spacing-|
-        hudWidth = CGFloat(MessageHUDHorizontalSpacing + labelWidth + MessageHUDHorizontalSpacing)
-        
-        // |-spacing-content-(labelSpacing-label-)spacing-|
-        hudHeight = CGFloat(MessageHUDVerticalSpacing) + labelHeight + CGFloat(MessageHUDVerticalSpacing)
-        
-        // Update values on subviews
-        getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: hudWidth, height: hudHeight)
-        
-        // Animate value update
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        
-        // Spinner and image view
-        var centerY: CGFloat
-        centerY = getHudView().bounds.midY
-        getStatusLabel().frame = labelRect
-        getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: centerY)
-        CATransaction.commit()
+    private func move(to newCenter: CGPoint) {
+        getHudView().center = CGPoint(x: newCenter.x, y: newCenter.y)
+    }
+
+    // MARK: - Public Method
+    public class func set(defaultStyle style: MessageHUDStyle) {
+        sharedView.defaultStyle = style
     }
     
+    public class func show(_ status: String?, for duration: TimeInterval?) {
+        sharedView.show(status: status, for: duration)
+    }
+
+    public class func dismissWithCompletion(_ completion: (() -> Void)?) {
+        sharedView.dismissWithCompletion(completion: completion)
+    }
+
+    //MARK: - Getter Methods
     private func backgroundColorForStyle() -> UIColor {
         switch defaultStyle{
         case .light:
@@ -295,33 +259,6 @@ public class MessageHUD : UIView {
         }
     }
     
-    private func move(to newCenter: CGPoint, rotateAngle angle: CGFloat) {
-        getHudView().transform = CGAffineTransform(rotationAngle: angle)
-        getHudView().center = CGPoint(x: newCenter.x, y: newCenter.y)
-    }
-}
-
-// MARK: - Public Method
-extension MessageHUD {
-    public class func set(defaultStyle style: MessageHUDStyle) {
-        sharedView.defaultStyle = style
-    }
-    
-    public class func show(_ status: String?) {
-        sharedView.show(status: status)
-    }
-    
-    public class func show(_ status: String?, for duration: TimeInterval) {
-        sharedView.show(status: status, for: duration)
-    }
-
-    public class func dismissWithCompletion(_ completion: (() -> Void)?) {
-        sharedView.dismissWithCompletion(completion: completion)
-    }
-}
-
-//MARK: - Getter Methods
-extension MessageHUD {
     private func foreGroundColorForStyle() -> UIColor {
         switch defaultStyle{
         case .light:
@@ -359,7 +296,7 @@ extension MessageHUD {
 
         // Update frame
         if backgroundView != nil {
-            backgroundView?.frame = bounds
+            backgroundView?.frame = self.bounds
         }
         return backgroundView!
     }
@@ -371,7 +308,7 @@ extension MessageHUD {
             controlView?.backgroundColor = .clear
             controlView?.isUserInteractionEnabled = true
         }
-        if let windowBounds : CGRect = UIApplication.shared.delegate?.window??.bounds {
+        if let windowBounds : CGRect = UIApplication.shared.keyWindow?.bounds {
             controlView?.frame = windowBounds
         }
         return controlView!
@@ -383,9 +320,7 @@ extension MessageHUD {
             guard let win : UIWindow = window as? UIWindow else {return nil}
             let windowOnMainScreen: Bool = win.screen == UIScreen.main
             let windowIsVisible: Bool = !win.isHidden && (win.alpha > 0)
-            var windowLevelSupported = false
-            windowLevelSupported = win.windowLevel == UIWindow.Level.normal
-            
+            let windowLevelSupported = win.windowLevel == UIWindow.Level.normal
             let windowKeyWindow = win.isKeyWindow
             
             if windowOnMainScreen && windowIsVisible && windowLevelSupported && windowKeyWindow {
