@@ -9,6 +9,7 @@
 struct IngredientBasic{
     var id : String
     var name : String
+    var katakanaLowercasedNameForSearch : String
     var stockFlag : Bool
     var category : Int
     var contributionToRecipeAvailability : Int

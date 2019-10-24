@@ -189,12 +189,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
         if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
             ingredientBasicList.removeAll{
-                !$0.name.katakanaLowercasedForSearch().contains(searchBar.text!.katakanaLowercasedForSearch())
+                !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch())
             }
         }
         

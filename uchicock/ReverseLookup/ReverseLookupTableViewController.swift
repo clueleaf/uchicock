@@ -609,7 +609,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName))
         }
     }
     
@@ -618,7 +618,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, imageFileName: ri.recipe.imageFileName))
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, imageFileName: ri.recipe.imageFileName))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(withoutUse: t2)
@@ -754,12 +754,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestList.removeAll()
         
         for ingredient in ingredientList! {
-            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
         if text.withoutSpace() != "" {
             ingredientSuggestList.removeAll{
-                !$0.name.katakanaLowercasedForSearch().contains(text.katakanaLowercasedForSearch())
+                !$0.katakanaLowercasedNameForSearch.contains(text.katakanaLowercasedForSearch())
             }
         }
         

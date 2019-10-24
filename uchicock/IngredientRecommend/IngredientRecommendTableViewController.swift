@@ -52,7 +52,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             }
         }
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
         ingredientBasicList.removeAll{
@@ -63,7 +63,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         if ingredientBasicList.count == 0{
             isContributionMode = false
             for ingredient in ingredientList!{
-                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
             }
             
             let realm = try! Realm()

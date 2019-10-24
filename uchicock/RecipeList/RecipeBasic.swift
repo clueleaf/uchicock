@@ -11,6 +11,7 @@ import UIKit
 struct RecipeBasic{
     var id : String
     var name : String
+    var katakanaLowercasedNameForSearch : String
     var shortageNum : Int
     var favorites: Int
     var lastViewDate : Date?

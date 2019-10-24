@@ -320,7 +320,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
         if isBookmarkMode{
@@ -329,7 +329,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
             if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
-                recipeBasicList.removeAll{ !$0.name.katakanaLowercasedForSearch().contains(searchBar.text!.katakanaLowercasedForSearch()) }
+                recipeBasicList.removeAll{ !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
             }
                 
             if recipeFilterStar0 == false{

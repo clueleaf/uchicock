@@ -56,6 +56,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                 }
+                if (oldSchemaVersion < 10) {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        let recipeName = oldObject!["recipeName"] as! String
+                        newObject!["katakanaLowercasedNameForSearch"] = recipeName.katakanaLowercasedForSearch()
+                    }
+                    migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
+                        let ingredientName = oldObject!["ingredientName"] as! String
+                        newObject!["katakanaLowercasedNameForSearch"] = ingredientName.katakanaLowercasedForSearch()
+                    }
+                }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
             let tenMB = 10 * 1024 * 1024
