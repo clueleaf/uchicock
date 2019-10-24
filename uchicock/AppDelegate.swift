@@ -34,13 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
                         let ingredientName = oldObject!["ingredientName"] as! String
-                        newObject!["category"] = ingredientName.withoutMiddleDot().categoryNumber()
+                        newObject!["category"] = ingredientName.withoutSpaceAndMiddleDot().categoryNumber()
                     }
                 }
                 if (oldSchemaVersion < 7) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
                         let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["style"] = recipeName.withoutMiddleDot().cocktailStyleNumber()
+                        newObject!["style"] = recipeName.withoutSpaceAndMiddleDot().cocktailStyleNumber()
                     }
                 }
                 if (oldSchemaVersion < 8) {

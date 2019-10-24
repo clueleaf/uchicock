@@ -311,10 +311,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private func searchBarTextWithoutSpace() -> String {
-        return searchBar.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-    
     private func reloadRecipeList(){
         let realm = try! Realm()
         recipeList = realm.objects(Recipe.self)
@@ -332,8 +328,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
-            if searchBarTextWithoutSpace() != ""{
-                recipeBasicList.removeAll{ !$0.name.katakana().lowercased().withoutMiddleDot().contains(searchBarTextWithoutSpace().katakana().lowercased().withoutMiddleDot()) }
+            if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+                recipeBasicList.removeAll{ !$0.name.katakanaLowercasedForSearch().contains(searchBar.text!.katakanaLowercasedForSearch()) }
             }
                 
             if recipeFilterStar0 == false{

@@ -121,7 +121,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.textWithoutSpace(text: self.ingredientName.text!), self.textWithoutSpace(text:self.amount.text!), (self.option.checkState != .checked), self.recipeIngredient.id)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), (self.option.checkState != .checked), self.recipeIngredient.id)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -150,9 +150,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.append(ingredient.ingredientName)
         }
         
-        if textWithoutSpace(text: ingredientName.text!) != ""{
+        if ingredientName.text!.withoutSpaceAndMiddleDot() != ""{
             suggestList.removeAll{
-                !$0.katakana().lowercased().withoutMiddleDot().contains(textWithoutSpace(text: ingredientName.text!).katakana().lowercased().withoutMiddleDot())
+                !$0.katakanaLowercasedForSearch().contains(ingredientName.text!.katakanaLowercasedForSearch())
             }
         }
         
@@ -169,10 +169,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    func textWithoutSpace(text: String) -> String{
-        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-
     // MARK: - UITableView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if interactor != nil{
@@ -397,7 +393,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     private func setIngredient(_ categoryNum: Int) -> Ingredient{
         let ingredient = Ingredient()
-        ingredient.ingredientName = self.textWithoutSpace(text: self.ingredientName.text!)
+        ingredient.ingredientName = self.ingredientName.text!.withoutSpace()
         ingredient.stockFlag = false
         ingredient.memo = ""
         ingredient.category = categoryNum
@@ -405,15 +401,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        if textWithoutSpace(text: ingredientName.text!) == "" {
+        if ingredientName.text!.withoutSpace() == "" {
             presentAlert("材料名を入力してください")
-        }else if textWithoutSpace(text: ingredientName.text!).count > 30{
+        }else if ingredientName.text!.withoutSpace().count > 30{
             presentAlert("材料名を30文字以下にしてください")
-        }else if textWithoutSpace(text: amount.text!).count > 30{
+        }else if amount.text!.withoutSpace().count > 30{
             presentAlert("分量を30文字以下にしてください")
         }else{
             let realm = try! Realm()
-            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",textWithoutSpace(text: ingredientName.text!))
+            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName.text!.withoutSpace())
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)

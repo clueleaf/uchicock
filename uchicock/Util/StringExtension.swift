@@ -37,9 +37,62 @@ extension String {
         return str
     }
     
-    func withoutMiddleDot() -> String{
-        let passed = self.unicodeScalars.filter { !CharacterSet(charactersIn: "・").contains($0) }
-        return String(String.UnicodeScalarView(passed))
+    func withoutSpace() -> String{
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+    
+    func withoutSpaceAndMiddleDot() -> String{
+        // 半角スペース、全角スペース、中黒は取り除く
+        let passedUnicodeScalars = self.unicodeScalars.filter { [0x0020,0x3000,0x30FB].contains($0.value) == false }
+        return String(String.UnicodeScalarView(passedUnicodeScalars)).withoutSpace()
+    }
+    
+    func katakanaLowercasedForSearch() -> String{
+        var convertedString = ""
+
+        let passedUnicodeScalars = self.withoutSpaceAndMiddleDot().unicodeScalars
+
+        for unicodeScalar in passedUnicodeScalars {
+            var convertedUnicodeScalar = unicodeScalar
+
+            // ひらがなはカタカナに変換
+            if unicodeScalar.value >= 0x3041 && unicodeScalar.value <= 0x3096 {
+                if let katakana = UnicodeScalar(unicodeScalar.value+96){
+                    convertedUnicodeScalar = katakana
+                }
+            }
+            
+            switch convertedUnicodeScalar.value {
+            case 0x30A1, 0x30A3, 0x30A5, 0x30A7, 0x30A9, 0x30C3, 0x30E3, 0x30E5, 0x30E7, 0x30EE:
+                // 「ァィゥェォッャュョヮ」を「アイウエオツヤユヨワ」に変換
+                if let u = UnicodeScalar(convertedUnicodeScalar.value+1){
+                    convertedUnicodeScalar = u
+                }
+            case 0x30F4:
+                // 「ヴ」を「ウ」に変換
+                convertedUnicodeScalar = UnicodeScalar("ウ")
+            case 0x30F5, 0x30F6:
+                // 「ヵヶ」を「カ」に変換
+                convertedUnicodeScalar = UnicodeScalar("カ")
+            case 0x30AC, 0x30AE, 0x30B0, 0x30B2, 0x30B4, 0x30B6, 0x30B8, 0x30BA, 0x30BC, 0x30BE,
+                 0x30C0, 0x30C2, 0x30C5, 0x30C7, 0x30C9, 0x30D0, 0x30D3, 0x30D6, 0x30D9, 0x30DC:
+                // 濁音（ガギグゲゴザジズゼゾダヂヅデドバビブベボ）を清音（カキクケコサシスセソタチツテトハヒフヘホ）に変換
+                if let u = UnicodeScalar(convertedUnicodeScalar.value-1){
+                    convertedUnicodeScalar = u
+                }
+            case 0x30D1, 0x30D4, 0x30D7, 0x30DA, 0x30DD:
+                // 半濁音（パピプペポ）を清音（ハヒフヘホ）に変換
+                if let u = UnicodeScalar(convertedUnicodeScalar.value-2){
+                    convertedUnicodeScalar = u
+                }
+            default:
+                break
+            }
+
+            convertedString += "\(convertedUnicodeScalar)"
+        }
+        
+        return convertedString.lowercased()
     }
     
     func categoryNumber() -> Int {

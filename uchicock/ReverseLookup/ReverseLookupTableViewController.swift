@@ -189,17 +189,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterOthers = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterOthersKey)
 
         if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
-            ingredientTextField1.text = textWithoutSpace(text: first)
+            ingredientTextField1.text = first.withoutSpace()
         }else{
             defaults.set("", forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
         }
         if let second = defaults.string(forKey: GlobalConstants.ReverseLookupSecondIngredientKey){
-            ingredientTextField2.text = textWithoutSpace(text: second)
+            ingredientTextField2.text = second.withoutSpace()
         }else{
             defaults.set("", forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
         }
         if let third = defaults.string(forKey: GlobalConstants.ReverseLookupThirdIngredientKey){
-            ingredientTextField3.text = textWithoutSpace(text: third)
+            ingredientTextField3.text = third.withoutSpace()
         }else{
             defaults.set("", forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
         }
@@ -289,38 +289,38 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
     func setSearchTextToUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.set(textWithoutSpace(text: ingredientTextField1.text!), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
-        defaults.set(textWithoutSpace(text: ingredientTextField2.text!), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
-        defaults.set(textWithoutSpace(text: ingredientTextField3.text!), forKey:GlobalConstants.ReverseLookupThirdIngredientKey)
+        defaults.set(ingredientTextField1.text!.withoutSpace(), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
+        defaults.set(ingredientTextField2.text!.withoutSpace(), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
+        defaults.set(ingredientTextField3.text!.withoutSpace(), forKey:GlobalConstants.ReverseLookupThirdIngredientKey)
     }
     
     func reloadRecipeList(){
         recipeBasicList.removeAll()
         
-        if ingredientTextField1.text != nil && textWithoutSpace(text: ingredientTextField1.text!) != ""{
-            if ingredientTextField2.text != nil && textWithoutSpace(text: ingredientTextField2.text!) != ""{
-                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField2.text!), text3: textWithoutSpace(text: ingredientTextField3.text!))
+        if ingredientTextField1.text != nil && ingredientTextField1.text!.withoutSpace() != ""{
+            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: ingredientTextField3.text!.withoutSpace())
                 }else{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField2.text!), text3: nil)
+                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: nil)
                 }
             }else{
-                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: textWithoutSpace(text: ingredientTextField3.text!), text3: nil)
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
                 }else{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField1.text!), text2: nil, text3: nil)
+                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: nil, text3: nil)
                 }
             }
         }else{
-            if ingredientTextField2.text != nil && textWithoutSpace(text: ingredientTextField2.text!) != ""{
-                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField2.text!), text2: textWithoutSpace(text: ingredientTextField3.text!), text3: nil)
+            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(text1: ingredientTextField2.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
                 }else{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField2.text!), text2: nil, text3: nil)
+                    createRecipeBasicList(text1: ingredientTextField2.text!.withoutSpace(), text2: nil, text3: nil)
                 }
             }else{
-                if ingredientTextField3.text != nil && textWithoutSpace(text: ingredientTextField3.text!) != ""{
-                    createRecipeBasicList(text1: textWithoutSpace(text: ingredientTextField3.text!), text2: nil, text3: nil)
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(text1: ingredientTextField3.text!.withoutSpace(), text2: nil, text3: nil)
                 }else{
                     createRecipeBasicList()
                 }
@@ -757,18 +757,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
-        if textWithoutSpace(text: text) != "" {
+        if text.withoutSpace() != "" {
             ingredientSuggestList.removeAll{
-                !$0.name.katakana().lowercased().withoutMiddleDot().contains(textWithoutSpace(text: text).katakana().lowercased().withoutMiddleDot())
+                !$0.name.katakanaLowercasedForSearch().contains(text.katakanaLowercasedForSearch())
             }
         }
         
         ingredientSuggestList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
         ingredientSuggestTableView.reloadData()
-    }
-    
-    func textWithoutSpace(text: String) -> String{
-        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     // MARK: - UITableView

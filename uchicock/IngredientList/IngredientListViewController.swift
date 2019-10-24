@@ -180,10 +180,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return nil
     }
     
-    func searchBarTextWithoutSpace() -> String {
-        return searchBar.text!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-    
     func reloadIngredientList(){
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
@@ -196,9 +192,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
-        if searchBarTextWithoutSpace() != ""{
+        if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
             ingredientBasicList.removeAll{
-                !$0.name.katakana().lowercased().withoutMiddleDot().contains(searchBarTextWithoutSpace().katakana().lowercased().withoutMiddleDot())
+                !$0.name.katakanaLowercasedForSearch().contains(searchBar.text!.katakanaLowercasedForSearch())
             }
         }
         
