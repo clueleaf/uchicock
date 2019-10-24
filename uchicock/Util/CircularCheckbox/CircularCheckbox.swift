@@ -1,6 +1,6 @@
 //
 //  CircularCheckbox.swift
-//  CircularCheckbox
+//  uchicock
 
 import UIKit
 

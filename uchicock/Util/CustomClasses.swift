@@ -1,5 +1,5 @@
 //
-//  CustomAlertController.swift
+//  CustomClasses.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2019/06/02.

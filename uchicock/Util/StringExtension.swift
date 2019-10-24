@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  StringExtension.swift
 //  uchicock
 //
 //  Created by Kou Kinyo on 2016/04/27.

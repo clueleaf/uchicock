@@ -1,6 +1,6 @@
 //
 //  CircularCheckboxAnimationGenerator.swift
-//  CircularCheckbox
+//  uchicock
 
 import UIKit
 

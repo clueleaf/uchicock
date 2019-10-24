@@ -1,6 +1,6 @@
 //
 //  CircularCheckboxCheckPathGenerator.swift
-//  CircularCheckbox
+//  uchicock
 
 import UIKit
 
