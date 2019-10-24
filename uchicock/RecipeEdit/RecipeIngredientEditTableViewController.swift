@@ -121,7 +121,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), (self.option.checkState != .checked), self.recipeIngredient.id)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), (self.option.checkState != .checked), self.recipeIngredient.id)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -395,6 +395,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     private func setIngredient(_ categoryNum: Int) -> Ingredient{
         let ingredient = Ingredient()
         ingredient.ingredientName = self.ingredientName.text!.withoutSpace()
+        ingredient.katakanaLowercasedNameForSearch = self.ingredientName.text!.katakanaLowercasedForSearch()
         ingredient.stockFlag = false
         ingredient.memo = ""
         ingredient.category = categoryNum

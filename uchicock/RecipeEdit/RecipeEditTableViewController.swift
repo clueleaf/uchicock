@@ -187,10 +187,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star3.setTitle(star3title, for: .normal)
     }
 
-    func textWithoutSpace(text: String) -> String{
-        return text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    }
-    
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         recipeName.resignFirstResponder()
@@ -547,9 +543,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        if recipeName.text == nil || textWithoutSpace(text: recipeName.text!) == ""{
+        if recipeName.text == nil || recipeName.text!.withoutSpace() == ""{
             presentAlert("レシピ名を入力してください")
-        }else if textWithoutSpace(text: recipeName.text!).count > 30{
+        }else if recipeName.text!.withoutSpace().count > 30{
             presentAlert("レシピ名を30文字以下にしてください")
         }else if memo.text.count > 1000 {
             presentAlert("メモを1000文字以下にしてください")
@@ -563,14 +559,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let realm = try! Realm()
             
             if isAddMode {
-                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
+                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutSpace())
                 if sameNameRecipe.count != 0{
                     presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
                         let newRecipe = Recipe()
-                        newRecipe.recipeName = textWithoutSpace(text: recipeName.text!)
+                        newRecipe.recipeName = recipeName.text!.withoutSpace()
+                        newRecipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
 
                         if star3.currentTitle == "★" {
                             newRecipe.favorites = 3
@@ -623,8 +620,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }
                 }
             }else{
-                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",textWithoutSpace(text: recipeName.text!))
-                if sameNameRecipe.count != 0 && recipe.recipeName != textWithoutSpace(text: recipeName.text!){
+                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutSpace())
+                if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.withoutSpace(){
                     presentAlert("同じ名前のレシピが既に登録されています")
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
@@ -649,7 +646,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             realm.delete(ri)
                         }
 
-                        recipe.recipeName = textWithoutSpace(text: recipeName.text!)
+                        recipe.recipeName = recipeName.text!.withoutSpace()
+                        recipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
                         if star3.currentTitle == "★" {
                             recipe.favorites = 3
                         }else if star2.currentTitle == "★" {

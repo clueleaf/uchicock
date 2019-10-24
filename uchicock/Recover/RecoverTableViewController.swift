@@ -165,6 +165,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         if rec.count < 1 {
             let recipe = Recipe()
             recipe.recipeName = recipeName
+            recipe.katakanaLowercasedNameForSearch = recipeName.katakanaLowercasedForSearch()
             recipe.favorites = favorites
             recipe.memo = memo
             recipe.style = style
@@ -179,6 +180,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         if ing.count < 1 {
             let ingredient = Ingredient()
             ingredient.ingredientName = ingredientName
+            ingredient.katakanaLowercasedNameForSearch = ingredientName.katakanaLowercasedForSearch()
             ingredient.stockFlag = stockFlag
             ingredient.memo = memo
             ingredient.category = category
