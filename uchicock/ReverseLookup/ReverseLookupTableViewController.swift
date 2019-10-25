@@ -677,6 +677,42 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
+        
+        let realm = try! Realm()
+        ingredientTextField1.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientTextField1.tintColor = Style.labelTextColor
+        ingredientTextField1.textColor = Style.labelTextColor
+        ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientTextField2.tintColor = Style.labelTextColor
+        ingredientTextField2.textColor = Style.labelTextColor
+        ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
+        ingredientTextField3.tintColor = Style.labelTextColor
+        ingredientTextField3.textColor = Style.labelTextColor
+        if ingredientTextField1.text != ""{
+            let ing1 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField1.text!)
+            if ing1.count == 0 {
+                ingredientTextField1.layer.borderColor = Style.deleteColor.cgColor
+                ingredientTextField1.tintColor = Style.deleteColor
+                ingredientTextField1.textColor = Style.deleteColor
+            }
+        }
+        if ingredientTextField2.text != ""{
+            let ing2 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField2.text!)
+            if ing2.count == 0 {
+                ingredientTextField2.layer.borderColor = Style.deleteColor.cgColor
+                ingredientTextField2.tintColor = Style.deleteColor
+                ingredientTextField2.textColor = Style.deleteColor
+            }
+        }
+        if ingredientTextField3.text != ""{
+            let ing3 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField3.text!)
+            if ing3.count == 0 {
+                ingredientTextField3.layer.borderColor = Style.deleteColor.cgColor
+                ingredientTextField3.tintColor = Style.deleteColor
+                ingredientTextField3.textColor = Style.deleteColor
+            }
+        }
+
     }
     
     // MARK: - UITextField
