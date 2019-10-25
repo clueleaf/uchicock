@@ -646,7 +646,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    func showRecipeTableView(){
+    private func showRecipeTableView(){
         if editingTextField == -1 {
             setSearchTextToUserDefaults()
             loadFromUserDefaults()
@@ -677,42 +677,26 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
-        
-        let realm = try! Realm()
-        ingredientTextField1.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField1.tintColor = Style.labelTextColor
-        ingredientTextField1.textColor = Style.labelTextColor
-        ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField2.tintColor = Style.labelTextColor
-        ingredientTextField2.textColor = Style.labelTextColor
-        ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField3.tintColor = Style.labelTextColor
-        ingredientTextField3.textColor = Style.labelTextColor
-        if ingredientTextField1.text != ""{
-            let ing1 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField1.text!)
-            if ing1.count == 0 {
-                ingredientTextField1.layer.borderColor = Style.deleteColor.cgColor
-                ingredientTextField1.tintColor = Style.deleteColor
-                ingredientTextField1.textColor = Style.deleteColor
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false)
+    }
+    
+    private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
+        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
+        textField.tintColor = Style.labelTextColor
+        textField.textColor = Style.labelTextColor
+        if alwaysNormalColor == false{
+            if textField.text != ""{
+                let realm = try! Realm()
+                let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
+                if ing.count == 0 {
+                    textField.layer.borderColor = Style.deleteColor.cgColor
+                    textField.tintColor = Style.deleteColor
+                    textField.textColor = Style.deleteColor
+                }
             }
         }
-        if ingredientTextField2.text != ""{
-            let ing2 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField2.text!)
-            if ing2.count == 0 {
-                ingredientTextField2.layer.borderColor = Style.deleteColor.cgColor
-                ingredientTextField2.tintColor = Style.deleteColor
-                ingredientTextField2.textColor = Style.deleteColor
-            }
-        }
-        if ingredientTextField3.text != ""{
-            let ing3 = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientTextField3.text!)
-            if ing3.count == 0 {
-                ingredientTextField3.layer.borderColor = Style.deleteColor.cgColor
-                ingredientTextField3.tintColor = Style.deleteColor
-                ingredientTextField3.textColor = Style.deleteColor
-            }
-        }
-
     }
     
     // MARK: - UITextField
@@ -740,6 +724,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         clearButton.isEnabled = false
         cancelButton.isEnabled = true
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -755,6 +742,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             reloadRecipeList()
             recipeTableView.reloadData()
         }
+        setTextFieldColor(textField: textField, alwaysNormalColor: true)
         return false
     }
 
@@ -1050,6 +1038,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
         clearButton.isEnabled = true
         cancelButton.isEnabled = false
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false)
         self.recipeTableView.flashScrollIndicators()
     }
     
