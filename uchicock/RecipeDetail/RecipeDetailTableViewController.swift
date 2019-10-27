@@ -613,7 +613,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 1:
             message += "スタイル：ショート\n"
         case 2:
-            message += "スタイル：ホット\n\n"
+            message += "スタイル：ホット\n"
         default: break
         }
         switch recipe.method{
