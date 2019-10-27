@@ -607,6 +607,15 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     func createLongMessage() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
+        switch recipe.style{
+        case 0:
+            message += "スタイル：ロング\n"
+        case 1:
+            message += "スタイル：ショート\n"
+        case 2:
+            message += "スタイル：ホット\n\n"
+        default: break
+        }
         switch recipe.method{
         case 0:
             message += "技法：ビルド\n\n"
@@ -616,8 +625,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             message += "技法：シェイク\n\n"
         case 3:
             message += "技法：ブレンド\n\n"
-        case 4:
-            message += "技法：その他\n\n"
         default: break
         }
         message += "材料：\n"
