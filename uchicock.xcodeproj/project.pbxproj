@@ -614,12 +614,11 @@
 			};
 			buildConfigurationList = 9BC9A30C1C783CAA0031F631 /* Build configuration list for PBXProject "uchicock" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				ja,
-				en,
 			);
 			mainGroup = 9BC9A3081C783CAA0031F631;
 			productRefGroup = 9BC9A3121C783CAA0031F631 /* Products */;
