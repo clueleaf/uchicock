@@ -186,10 +186,23 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
             
-            let formatter: DateFormatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd HH:mm"
-            lastViewDateLabel.text = recipe.lastViewDate == nil ? "最終閲覧：--" : "最終閲覧：" + formatter.string(from: recipe.lastViewDate!)
-            
+            let dateTimeFormatter: DateFormatter = DateFormatter()
+            dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+            let timeFormatter: DateFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm"
+            if let lastViewDate = recipe.lastViewDate{
+                let calendar = Calendar(identifier: .gregorian)
+                if calendar.isDateInToday(lastViewDate){
+                    lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
+                }else if calendar.isDateInYesterday(lastViewDate){
+                    lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
+                }else{
+                    lastViewDateLabel.text = dateTimeFormatter.string(from: lastViewDate)
+                }
+            }else{
+                lastViewDateLabel.text = "最終閲覧：--"
+            }
+
             switch recipe.favorites{
             case 0:
                 setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")

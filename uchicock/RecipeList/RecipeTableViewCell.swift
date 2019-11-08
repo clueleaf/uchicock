@@ -85,7 +85,18 @@ class RecipeTableViewCell: UITableViewCell {
             case 2: // 最近見た
                 let formatter: DateFormatter = DateFormatter()
                 formatter.dateFormat = "yy/MM/dd"
-                subInfoLabel.text = recipe.lastViewDate == nil ? "--" : formatter.string(from: recipe.lastViewDate!)
+                if let lastViewDate = recipe.lastViewDate{
+                    let calendar = Calendar(identifier: .gregorian)
+                    if calendar.isDateInToday(lastViewDate){
+                        subInfoLabel.text = "今日"
+                    }else if calendar.isDateInYesterday(lastViewDate){
+                        subInfoLabel.text = "昨日"
+                    }else{
+                        subInfoLabel.text = formatter.string(from: lastViewDate)
+                    }
+                }else{
+                    subInfoLabel.text = "--"
+                }
                 subInfoLabel.textColor = Style.labelTextColorLight
             default: // お気に入り
                 switch recipe.favorites{
