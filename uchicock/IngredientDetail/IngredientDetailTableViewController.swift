@@ -210,7 +210,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             stockRecommendLabel.text = ""
         }else{
             stockRecommendLabel.isHidden = false
-            stockRecommendLabel.text = "入手すると新たに" + String(ingredient.contributionToRecipeAvailability) + "レシピ作れます！"
+            stockRecommendLabel.text = "入手すると新たに" + String(ingredient.contributionToRecipeAvailability) + "レシピ作れる！"
         }
     }
     

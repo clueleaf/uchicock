@@ -174,7 +174,7 @@ class IngredientRecommendTableViewController: UITableViewController {
 
             cell.ingredientName = ingredientBasicList[indexPath.row - 1].name
             if isContributionMode{
-                cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れます！"
+                cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れる！"
             }else{
                 cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].usedRecipeNum))個のレシピで使われています！"
             }
