@@ -18,17 +18,22 @@ public class MessageHUD : UIView {
     private let MessageHUDVerticalSpacing: CGFloat = 12.0
     private let MessageHUDHorizontalSpacing: CGFloat = 12.0
     private let MessageHUDTopSpacing: CGFloat = 5.0
-    
+    private let MessageHUDImageSpacing: CGFloat = 4.0
+    private var imageViewSize = CGSize(width: 22, height: 22)
+    private var imageUsed: Bool = false
+
     private var defaultStyle = MessageHUDStyle.light
     private var fadeOutTimer: Timer?
     private var controlView: UIControl?
     private var backgroundView: UIView?
     private var hudView: UIVisualEffectView?
     private var statusLabel: UILabel?
+    private var imageView: UIImageView?
 
     private override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false
+        getImageView().alpha = 0.0
         getBackGroundView().alpha = 0.0
         getStatusLabel().alpha = 1.0
         backgroundColor = UIColor.clear
@@ -72,6 +77,7 @@ public class MessageHUD : UIView {
                 self.getHudView().effect = blurEffect
                 self.getHudView().backgroundColor = self.backgroundColorForStyle()
                 self.getBackGroundView().alpha = 1.0
+                self.getImageView().alpha = 1.0
                 self.getStatusLabel().alpha = 1.0
             }
             
@@ -112,13 +118,22 @@ public class MessageHUD : UIView {
         // Calculate hud size based on content
         // For the beginning use default values, these
         // might get update if string is too large etc.
-        let hudWidth = CGFloat(MessageHUDHorizontalSpacing + labelWidth + MessageHUDHorizontalSpacing)
+        var hudWidth = CGFloat(MessageHUDHorizontalSpacing + labelWidth + MessageHUDHorizontalSpacing)
+        if imageUsed{
+            hudWidth = CGFloat(MessageHUDHorizontalSpacing + imageViewSize.width + MessageHUDImageSpacing + labelWidth + MessageHUDHorizontalSpacing)
+        }
         let hudHeight = CGFloat(MessageHUDVerticalSpacing + labelHeight + MessageHUDVerticalSpacing)
         
         // Update values on subviews
         getHudView().bounds = CGRect(x: 0.0, y: 0.0, width: hudWidth, height: hudHeight)
-        getStatusLabel().frame = labelRect
-        getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: getHudView().bounds.midY)
+        if imageUsed{
+            getImageView().center = CGPoint(x: MessageHUDHorizontalSpacing + imageViewSize.width / 2, y: getHudView().bounds.midY)
+            getStatusLabel().frame = labelRect
+            getStatusLabel().center = CGPoint(x: (imageViewSize.width + MessageHUDImageSpacing) / 2 + getHudView().bounds.midX , y: getHudView().bounds.midY)
+        }else{
+            getStatusLabel().frame = labelRect
+            getStatusLabel().center = CGPoint(x: getHudView().bounds.midX , y: getHudView().bounds.midY)
+        }
     }
     
     private func positionHUD() {
@@ -162,7 +177,7 @@ public class MessageHUD : UIView {
         }
     }
     
-    private func show(status: String?, for duration: TimeInterval?) {
+    private func show(status: String?, for duration: TimeInterval?, withCheckmark: Bool) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
             
@@ -172,6 +187,16 @@ public class MessageHUD : UIView {
             // Update / Check view hierarchy to ensure the HUD is visible
             strongSelf.updateViewHierarchy()
             
+            if withCheckmark{
+                strongSelf.imageUsed = true
+                strongSelf.getImageView().image = UIImage(named: "accesory-checkmark")
+                strongSelf.getImageView().tintColor = strongSelf.foreGroundColorForStyle()
+                strongSelf.getImageView().isHidden = false
+            }else{
+                strongSelf.imageUsed = false
+                strongSelf.getImageView().isHidden = true
+            }
+
             // Update text and set progress to the given value
             strongSelf.getStatusLabel().isHidden = status == nil || status?.count == 0
             strongSelf.getStatusLabel().text = status
@@ -190,6 +215,7 @@ public class MessageHUD : UIView {
                 strongSelf.getHudView().effect = nil
                 strongSelf.getHudView().backgroundColor = .clear
                 strongSelf.getBackGroundView().alpha = 0.0
+                strongSelf.getImageView().alpha = 0.0
                 strongSelf.getStatusLabel().alpha = 0.0
             }
             
@@ -241,8 +267,8 @@ public class MessageHUD : UIView {
         sharedView.defaultStyle = style
     }
     
-    public class func show(_ status: String?, for duration: TimeInterval?) {
-        sharedView.show(status: status, for: duration)
+    public class func show(_ status: String?, for duration: TimeInterval?, withCheckmark: Bool) {
+        sharedView.show(status: status, for: duration, withCheckmark: withCheckmark)
     }
 
     public class func dismissWithCompletion(_ completion: (() -> Void)?) {
@@ -348,4 +374,21 @@ public class MessageHUD : UIView {
         statusLabel?.isHidden = false
         return statusLabel!
     }
+    
+    private func getImageView() -> UIImageView {
+        if imageView != nil && imageView?.bounds.size != imageViewSize {
+            imageView?.removeFromSuperview()
+            imageView = nil
+        }
+        
+        if imageView == nil {
+            imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: imageViewSize.width, height: imageViewSize.height))
+        }
+        if imageView?.superview == nil {
+            getHudView().contentView.addSubview(imageView!)
+        }
+        
+        return imageView!
+    }
+
 }

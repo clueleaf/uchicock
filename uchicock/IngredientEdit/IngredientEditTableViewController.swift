@@ -189,7 +189,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     newIngredient.memo = memo.text
                     try! realm.write {
                         realm.add(newIngredient)
-                        MessageHUD.show("材料を登録しました", for: 2.0)
+                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
                     }
                     let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
                     detailVC.ingredientId = newIngredient.id
@@ -220,7 +220,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                         for ri in ingredient.recipeIngredients{
                             ri.recipe.updateShortageNum()
                         }
-                        MessageHUD.show("材料を保存しました", for: 2.0)
+                        MessageHUD.show("材料を保存しました", for: 2.0, withCheckmark: true)
                     }
                     let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
                     detailVC.ingredientId = ingredient.id

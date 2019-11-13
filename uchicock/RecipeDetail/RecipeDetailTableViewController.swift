@@ -443,7 +443,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
                 let pasteboard: UIPasteboard = UIPasteboard.general
                 pasteboard.image = loadedImage!
-                MessageHUD.show("画像をコピーしました", for: 2.0)
+                MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true)
             })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.popoverPresentationController?.sourceView = self.view
@@ -456,7 +456,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
-            MessageHUD.show("画像を保存しました", for: 2.0)
+            MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true)
         }else{
             let alertView = CustomAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -608,13 +608,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             try! realm.write {
                 recipe.bookmarkDate = Date()
             }
-            MessageHUD.show("ブックマークしました", for: 2.0)
+            MessageHUD.show("ブックマークしました", for: 2.0, withCheckmark: true)
         }else{
             bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
             try! realm.write {
                 recipe.bookmarkDate = nil
             }
-            MessageHUD.show("ブックマークを外しました", for: 2.0)
+            MessageHUD.show("ブックマークを外しました", for: 2.0, withCheckmark: true)
         }
     }
     
