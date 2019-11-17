@@ -197,7 +197,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else if calendar.isDateInYesterday(lastViewDate){
                     lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
                 }else{
-                    lastViewDateLabel.text = dateTimeFormatter.string(from: lastViewDate)
+                    lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
                 }
             }else{
                 lastViewDateLabel.text = "最終閲覧：--"
