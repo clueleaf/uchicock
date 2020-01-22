@@ -707,6 +707,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController
                 self.present(editNavi, animated: true, completion: nil)
+                completionHandler(true)
+            }else{
+                completionHandler(false)
             }
         })
         edit.image = UIImage(named: "button-edit")
@@ -728,8 +731,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
                     }
                 }
+                completionHandler(true)
             }))
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
+                completionHandler(false)
+            })
             alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)

@@ -534,9 +534,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let reminder =  UIContextualAction(style: .normal, title: "リマインダー", handler: { (action,view,completionHandler ) in
             let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
             guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
+                completionHandler(false)
                 return
             }
             guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
+                completionHandler(false)
                 return
             }
             vc.ingredientName = self.recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
@@ -552,6 +554,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 vc.interactor = self.interactor
             }
             self.present(nvc, animated: true)
+            completionHandler(true)
         })
         reminder.image = UIImage(named: "button-reminder")
         reminder.backgroundColor = Style.primaryColor

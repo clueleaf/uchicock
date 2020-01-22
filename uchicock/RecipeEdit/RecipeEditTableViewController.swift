@@ -346,6 +346,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+            }else{
+                completionHandler(false)
             }
         })
         del.image = UIImage(named: "button-delete")

@@ -367,6 +367,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController
                 self.present(editNavi, animated: true, completion: nil)
+                completionHandler(true)
+            }else{
+                completionHandler(false)
             }
         })
         edit.image = UIImage(named: "button-edit")
@@ -382,6 +385,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 alertView.alertStatusBarStyle = Style.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
+                completionHandler(false)
             } else{
                 let deleteAlertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
                 deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
@@ -397,8 +401,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }else{
                         self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                     }
+                    completionHandler(true)
                 }))
-                deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
+                    completionHandler(false)
+                })
                 deleteAlertView.alertStatusBarStyle = Style.statusBarStyle
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
