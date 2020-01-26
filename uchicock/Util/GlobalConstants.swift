@@ -109,8 +109,8 @@ struct GlobalConstants{
     
     // MARK: - Image
     static let ThumbnailMaxLongSide: CGFloat = 512
-    static let MiddleImageMaxLongSide: CGFloat = 1024
-    static let LargeImageMaxLongSide: CGFloat = 2048
+    static let MiddleImageMaxLongSide: CGFloat = 1080
+    static let LargeImageMaxLongSide: CGFloat = 2160
     
     // MARK: - Setting Keys
     static let ColorThemeKey = "Theme"
