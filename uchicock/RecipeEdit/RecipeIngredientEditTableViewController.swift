@@ -83,6 +83,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
                 
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -99,8 +100,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientName.adjustClearButtonColor()
         amount.layer.borderColor = Style.textFieldBorderColor.cgColor
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        amount.adjustClearButtonColor()
         option.secondaryTintColor = Style.primaryColor
         option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         optionDescriptionLabel.textColor = Style.labelTextColorLight
@@ -125,6 +128,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         NotificationCenter.default.removeObserver(self)
     }
 
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
         amount.resignFirstResponder()

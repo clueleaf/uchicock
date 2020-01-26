@@ -121,6 +121,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientTextField1.adjustClearButtonColor()
+        ingredientTextField2.adjustClearButtonColor()
+        ingredientTextField3.adjustClearButtonColor()
 
         searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5
@@ -139,7 +142,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField1)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
+
         if let path = selectedIndexPath {
             if recipeBasicList.count > path.row{
                 let nowRecipeId = recipeBasicList[path.row].id
@@ -729,29 +735,23 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
     }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        textField.text = ""
-        if editingTextField == 0{
-            reloadIngredientSuggestList(text: ingredientTextField1.text!)
-        }else if editingTextField == 1{
-            reloadIngredientSuggestList(text: ingredientTextField2.text!)
-        }else if editingTextField == 2{
-            reloadIngredientSuggestList(text: ingredientTextField3.text!)
-        }else{
-            setSearchTextToUserDefaults()
-            reloadRecipeList()
-            recipeTableView.reloadData()
-        }
-        setTextFieldColor(textField: textField, alwaysNormalColor: true)
-        return false
-    }
-
     @objc func textFieldDidChange1(_ notification: Notification){
         if let text = ingredientTextField1.text {
             if text.count > 30 {
                 ingredientTextField1.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
             }
-            reloadIngredientSuggestList(text: text)
+            if editingTextField == 0{
+                reloadIngredientSuggestList(text: ingredientTextField1.text!)
+            }else if editingTextField == 1{
+                reloadIngredientSuggestList(text: ingredientTextField2.text!)
+            }else if editingTextField == 2{
+                reloadIngredientSuggestList(text: ingredientTextField3.text!)
+            }else{
+                setSearchTextToUserDefaults()
+                reloadRecipeList()
+                recipeTableView.reloadData()
+            }
+            setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
         }
     }
     
@@ -760,7 +760,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if text.count > 30 {
                 ingredientTextField2.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
             }
-            reloadIngredientSuggestList(text: text)
+            if editingTextField == 0{
+                reloadIngredientSuggestList(text: ingredientTextField1.text!)
+            }else if editingTextField == 1{
+                reloadIngredientSuggestList(text: ingredientTextField2.text!)
+            }else if editingTextField == 2{
+                reloadIngredientSuggestList(text: ingredientTextField3.text!)
+            }else{
+                setSearchTextToUserDefaults()
+                reloadRecipeList()
+                recipeTableView.reloadData()
+            }
+            setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
         }
     }
 
@@ -769,7 +780,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if text.count > 30 {
                 ingredientTextField3.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
             }
-            reloadIngredientSuggestList(text: text)
+            if editingTextField == 0{
+                reloadIngredientSuggestList(text: ingredientTextField1.text!)
+            }else if editingTextField == 1{
+                reloadIngredientSuggestList(text: ingredientTextField2.text!)
+            }else if editingTextField == 2{
+                reloadIngredientSuggestList(text: ingredientTextField3.text!)
+            }else{
+                setSearchTextToUserDefaults()
+                reloadRecipeList()
+                recipeTableView.reloadData()
+            }
+            setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
         }
     }
 

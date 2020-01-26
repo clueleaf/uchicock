@@ -57,6 +57,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +69,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientName.adjustClearButtonColor()
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0

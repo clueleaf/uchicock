@@ -121,7 +121,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         focusRecipeNameFlag = true
         
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.recipeName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,6 +139,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        recipeName.adjustClearButtonColor()
         selectPhoto.textColor = Style.primaryColor
         star1.setTitleColor(Style.primaryColor, for: .normal)
         star2.setTitleColor(Style.primaryColor, for: .normal)
