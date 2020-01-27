@@ -86,12 +86,11 @@ class CustomTextField: UITextField{
         clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         clearButton.imageEdgeInsets = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset * 2)
         clearButton.contentMode = .scaleAspectFit
+        clearButton.tintColor = Style.labelTextColorLight
+        clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
         if self.text == nil || self.text == ""{
-            clearButton.tintColor = UIColor.clear
             self.rightViewMode = .never
         }else{
-            clearButton.tintColor = Style.labelTextColorLight
-            clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
             self.rightViewMode = .always
         }
         self.rightView = clearButton
