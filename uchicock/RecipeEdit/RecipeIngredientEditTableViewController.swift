@@ -100,10 +100,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        ingredientName.adjustClearButtonColor()
+        ingredientName.adjustClearButtonColor(with: 4)
         amount.layer.borderColor = Style.textFieldBorderColor.cgColor
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        amount.adjustClearButtonColor()
+        amount.adjustClearButtonColor(with: 4)
         option.secondaryTintColor = Style.primaryColor
         option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         optionDescriptionLabel.textColor = Style.labelTextColorLight

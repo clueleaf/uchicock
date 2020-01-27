@@ -139,7 +139,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        recipeName.adjustClearButtonColor()
+        recipeName.adjustClearButtonColor(with: 4)
         selectPhoto.textColor = Style.primaryColor
         star1.setTitleColor(Style.primaryColor, for: .normal)
         star2.setTitleColor(Style.primaryColor, for: .normal)

@@ -69,7 +69,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        ingredientName.adjustClearButtonColor()
+        ingredientName.adjustClearButtonColor(with: 4)
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0

@@ -121,9 +121,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        ingredientTextField1.adjustClearButtonColor()
-        ingredientTextField2.adjustClearButtonColor()
-        ingredientTextField3.adjustClearButtonColor()
+        ingredientTextField1.adjustClearButtonColor(with: 5)
+        ingredientTextField2.adjustClearButtonColor(with: 5)
+        ingredientTextField3.adjustClearButtonColor(with: 5)
 
         searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5

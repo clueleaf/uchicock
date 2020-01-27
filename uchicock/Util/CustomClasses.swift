@@ -80,12 +80,12 @@ class CustomTextView: UITextView{
 }
 
 class CustomTextField: UITextField{
-    func adjustClearButtonColor() {
+    func adjustClearButtonColor(with edgeInset: CGFloat) {
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(UIImage(named: "clear"), for: .normal)
         clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         clearButton.tintColor = Style.labelTextColorLight
-        clearButton.imageEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 8)
+        clearButton.imageEdgeInsets = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset * 2)
         clearButton.contentMode = .scaleAspectFit
         clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
         self.rightView = clearButton
