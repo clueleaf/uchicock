@@ -290,6 +290,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }else if tableView.tag == 1{
             tableView.deselectRow(at: indexPath, animated: true)
             ingredientName.text = suggestList[indexPath.row].name
+            ingredientName.adjustClearButtonColor(with: 4)
         }
     }
     

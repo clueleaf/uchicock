@@ -741,7 +741,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @objc func textFieldDidChange1(_ notification: Notification){
-        ingredientTextField1.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField1.text {
             if text.count > 30 {
                 ingredientTextField1.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
@@ -759,10 +758,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
         }
+        ingredientTextField1.adjustClearButtonColor(with: 5)
     }
     
     @objc func textFieldDidChange2(_ notification: Notification){
-        ingredientTextField2.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField2.text {
             if text.count > 30 {
                 ingredientTextField2.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
@@ -780,10 +779,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
         }
+        ingredientTextField2.adjustClearButtonColor(with: 5)
     }
 
     @objc func textFieldDidChange3(_ notification: Notification){
-        ingredientTextField3.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField3.text {
             if text.count > 30 {
                 ingredientTextField3.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
@@ -801,6 +800,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
         }
+        ingredientTextField3.adjustClearButtonColor(with: 5)
     }
 
     func reloadIngredientSuggestList(text: String){
