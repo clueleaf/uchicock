@@ -82,8 +82,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         suggestTableView.tableFooterView = UIView(frame: CGRect.zero)
                 
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
-        NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.nameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.nameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.amountTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.amount)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.amountTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.amount)
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -143,10 +145,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    @objc func textFieldDidChange(_ notification: Notification){
+    @objc func nameTextFieldDidChange(_ notification: Notification){
+        ingredientName.adjustClearButtonColor(with: 4)
         reloadSuggestList()
     }
     
+    @objc func amountTextFieldDidChange(_ notification: Notification){
+        amount.adjustClearButtonColor(with: 4)
+    }
+
     func reloadSuggestList(){
         suggestList.removeAll()
         
@@ -373,6 +380,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     // MARK: - IBAction
     @IBAction func amountSliderValueChanged(_ sender: UISlider) {
+        amount.adjustClearButtonColor(with: 4)
         switch floor(sender.value) {
         case 0:
             amount.text = "少々"

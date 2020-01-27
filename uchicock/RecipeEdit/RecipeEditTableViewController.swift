@@ -197,6 +197,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @objc func textFieldDidChange(_ notification: Notification){
+        recipeName.adjustClearButtonColor(with: 4)
         showCancelAlert = true
     }
 

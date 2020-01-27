@@ -115,6 +115,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
 
+        loadFromUserDefaults()
+
         ingredientTextField1.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
         ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
@@ -133,15 +135,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         hiddenLabel.textColor = Style.labelTextColorLight
         
-        loadFromUserDefaults()
         setSearchConditionButtonTitle()
         reloadRecipeList()
         recipeTableView.reloadData()
         self.tableView.reloadData()
         
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField1)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField2)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientTextField3)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField1)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField2)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField3)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
@@ -209,6 +210,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else{
             defaults.set("", forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
         }
+        
+        ingredientTextField1.adjustClearButtonColor(with: 5)
+        ingredientTextField2.adjustClearButtonColor(with: 5)
+        ingredientTextField3.adjustClearButtonColor(with: 5)
     }
     
     private func setSearchConditionButtonTitle(){
@@ -736,6 +741,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @objc func textFieldDidChange1(_ notification: Notification){
+        ingredientTextField1.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField1.text {
             if text.count > 30 {
                 ingredientTextField1.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
@@ -756,6 +762,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @objc func textFieldDidChange2(_ notification: Notification){
+        ingredientTextField2.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField2.text {
             if text.count > 30 {
                 ingredientTextField2.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
@@ -776,6 +783,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
 
     @objc func textFieldDidChange3(_ notification: Notification){
+        ingredientTextField3.adjustClearButtonColor(with: 5)
         if let text = ingredientTextField3.text {
             if text.count > 30 {
                 ingredientTextField3.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])

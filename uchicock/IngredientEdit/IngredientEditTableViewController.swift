@@ -56,7 +56,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: UITextField.textDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
     }
     
@@ -109,6 +109,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     @objc func textFieldDidChange(_ notification: Notification){
+        ingredientName.adjustClearButtonColor(with: 4)
         showCancelAlert = true
     }
     
