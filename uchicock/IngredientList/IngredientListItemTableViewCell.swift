@@ -12,9 +12,11 @@ import RealmSwift
 class IngredientListItemTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recipeNum: UILabel!
+    @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var ingredientName: CustomLabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var stock: CircularCheckbox!
+    @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
     var stockState = 0
     
@@ -37,6 +39,15 @@ class IngredientListItemTableViewCell: UITableViewCell {
                 recipeNum.layer.backgroundColor = Style.primaryColor.cgColor
                 recipeNum.layer.borderColor = Style.primaryColor.cgColor
                 recipeNum.textColor = Style.labelTextColorOnBadge
+            }
+            
+            alcoholIconImage.tintColor = Style.primaryColor
+            if ingredient.category == 0{
+                alcoholIconImage.isHidden = false
+                alcoholIconImageWidthConstraint.constant = 15
+            }else{
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
             }
             recipeNum.layer.cornerRadius = 10
             recipeNum.clipsToBounds = true
