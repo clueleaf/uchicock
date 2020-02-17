@@ -67,9 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
                 if (oldSchemaVersion < 11) {
-                    migration.enumerateObjects(ofType: CalculatorIngredient.className()) { oldObject, newObject in
-                        // TODO
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        let recipeName = oldObject!["recipeName"] as! String
+                        newObject!["strength"] = recipeName.withoutSpaceAndMiddleDot().cocktailStrengthNumber()
                     }
+                    self.addSampleCalcIngredient()
                 }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
@@ -84,6 +86,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         return true
+    }
+    
+    private func addSampleCalcIngredient(){
+        addCalcIngredient(id: "0", degree: 40, amount: 45, valid: true)
+        addCalcIngredient(id: "1", degree: 0, amount: 90, valid: true)
+        addCalcIngredient(id: "2", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "3", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "4", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "5", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "6", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "7", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "8", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "9", degree: 0, amount: 0, valid: false)
+    }
+        
+    private func addCalcIngredient(id: String, degree: Int, amount: Int, valid: Bool){
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: id)
+        if ing == nil {
+            let ingredient = CalculatorIngredient()
+            ingredient.id = id
+            ingredient.degree = degree
+            ingredient.amount = amount
+            ingredient.valid = valid
+            realm.add(ingredient)
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
