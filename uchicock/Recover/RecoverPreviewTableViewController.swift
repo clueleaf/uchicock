@@ -154,6 +154,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
             cell.amountText = recipe.recipeIngredients[indexPath.row].amount
             cell.stock = nil
+            cell.category = recipe.recipeIngredients[indexPath.row].ingredient.category
 
             cell.selectionStyle = .none
             cell.backgroundColor = Style.basicBackgroundColor
