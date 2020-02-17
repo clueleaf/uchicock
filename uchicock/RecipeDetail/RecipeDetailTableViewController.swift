@@ -19,11 +19,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var lastViewDateLabel: UILabel!
     @IBOutlet weak var styleTipButton: UIButton!
     @IBOutlet weak var methodTipButton: UIButton!
+    @IBOutlet weak var strengthTipButton: UIButton!
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
+    @IBOutlet weak var strength: CustomLabel!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var madeNumPlusButton: UIButton!
     @IBOutlet weak var madeNumMinusButton: UIButton!
@@ -246,12 +248,29 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             default:
                 method.text = "その他"
             }
+            
+            switch recipe.strength{
+            case 0:
+                strength.text = "ノンアルコール"
+            case 1:
+                strength.text = "弱い"
+            case 2:
+                strength.text = "やや強い"
+            case 3:
+                strength.text = "強い"
+            case 4:
+                strength.text = "未指定"
+            default:
+                strength.text = "未指定"
+            }
 
             let tipImage = UIImage(named: "tip")
             styleTipButton.setImage(tipImage, for: .normal)
             styleTipButton.tintColor = Style.primaryColor
             methodTipButton.setImage(tipImage, for: .normal)
             methodTipButton.tintColor = Style.primaryColor
+            strengthTipButton.setImage(tipImage, for: .normal)
+            strengthTipButton.tintColor = Style.primaryColor
 
             memo.text = recipe.memo
             memo.textColor = Style.labelTextColorLight
@@ -635,13 +654,24 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         switch recipe.method{
         case 0:
-            message += "技法：ビルド\n\n"
+            message += "技法：ビルド\n"
         case 1:
-            message += "技法：ステア\n\n"
+            message += "技法：ステア\n"
         case 2:
-            message += "技法：シェイク\n\n"
+            message += "技法：シェイク\n"
         case 3:
-            message += "技法：ブレンド\n\n"
+            message += "技法：ブレンド\n"
+        default: break
+        }
+        switch recipe.strength{
+        case 0:
+            message += "アルコール度数：ノンアルコール\n\n"
+        case 1:
+            message += "アルコール度数：弱い\n\n"
+        case 2:
+            message += "アルコール度数：やや強い\n\n"
+        case 3:
+            message += "アルコール度数：強い\n\n"
         default: break
         }
         message += "材料：\n"
@@ -727,6 +757,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             vc.interactor = interactor
         }
         present(nvc, animated: true)
+    }
+    
+    @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
+        // TODO
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {

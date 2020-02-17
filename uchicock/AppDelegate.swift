@@ -66,6 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["katakanaLowercasedNameForSearch"] = ingredientName.katakanaLowercasedForSearch()
                     }
                 }
+                if (oldSchemaVersion < 11) {
+                    migration.enumerateObjects(ofType: CalculatorIngredient.className()) { oldObject, newObject in
+                        // TODO
+                    }
+                }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
             let tenMB = 10 * 1024 * 1024
