@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4ZX-nv-xyK">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -13,15 +13,263 @@
             <objects>
                 <viewController id="4ZX-nv-xyK" customClass="AlcoholCalcViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kWH-Kn-dwU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbZ-Jp-BWm" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JRg-5K-vdY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMV-SC-5Zk">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-Qp-Tvn" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="54.5" y="26" width="79" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="mZg-aT-wma"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfk-s4-cQN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="133.5" y="32" width="21" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全体の量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-5c-Jxo" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="54.5" y="6" width="57.5" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="nhr-GZ-wLN"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="ueW-Qp-Tvn" firstAttribute="top" secondItem="Zgp-5c-Jxo" secondAttribute="bottom" id="14f-U2-yYa"/>
+                                                    <constraint firstItem="ueW-Qp-Tvn" firstAttribute="centerX" secondItem="ZMV-SC-5Zk" secondAttribute="centerX" id="Q3h-EB-njX"/>
+                                                    <constraint firstItem="Cfk-s4-cQN" firstAttribute="leading" secondItem="ueW-Qp-Tvn" secondAttribute="trailing" id="Rbt-Ir-se6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ueW-Qp-Tvn" secondAttribute="bottom" constant="4" id="YFR-Ss-ckS"/>
+                                                    <constraint firstItem="ueW-Qp-Tvn" firstAttribute="leading" secondItem="Zgp-5c-Jxo" secondAttribute="leading" id="fk8-aU-U7a"/>
+                                                    <constraint firstItem="Cfk-s4-cQN" firstAttribute="bottom" secondItem="ueW-Qp-Tvn" secondAttribute="bottom" id="lXO-ey-dgn"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VU-Ad-sYa">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXv-cI-Yun" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="54.5" y="26" width="79" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="8YC-s1-ByP"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-wI-gbz" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="133.5" y="32" width="21" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-KG-oIC" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="54.5" y="6" width="86" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="NtA-oN-QiP"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="KXv-cI-Yun" secondAttribute="bottom" constant="4" id="IUb-el-w38"/>
+                                                    <constraint firstItem="KXv-cI-Yun" firstAttribute="top" secondItem="4dc-KG-oIC" secondAttribute="bottom" id="K1k-Qd-XEM"/>
+                                                    <constraint firstItem="KLi-wI-gbz" firstAttribute="bottom" secondItem="KXv-cI-Yun" secondAttribute="bottom" id="UQU-g1-cc9"/>
+                                                    <constraint firstItem="KXv-cI-Yun" firstAttribute="leading" secondItem="4dc-KG-oIC" secondAttribute="leading" id="ZTh-s0-THd"/>
+                                                    <constraint firstItem="KXv-cI-Yun" firstAttribute="centerX" secondItem="6VU-Ad-sYa" secondAttribute="centerX" id="dlI-1h-SuO"/>
+                                                    <constraint firstItem="KLi-wI-gbz" firstAttribute="leading" secondItem="KXv-cI-Yun" secondAttribute="trailing" id="vh8-oJ-niF"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ip7-h5-tag"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iad-Bh-isB" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="133.5" y="105" width="108.5" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="XVM-Tp-LdX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzn-bX-9ww" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="242" y="129" width="24" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHs-4P-Wj4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="133.5" y="84" width="121.5" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="MNU-Zp-3Fj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="8d3-0S-Z39"/>
+                                    <constraint firstItem="Iad-Bh-isB" firstAttribute="top" secondItem="zHs-4P-Wj4" secondAttribute="bottom" constant="4" id="EmI-SZ-zj8"/>
+                                    <constraint firstItem="Bzn-bX-9ww" firstAttribute="leading" secondItem="Iad-Bh-isB" secondAttribute="trailing" id="M8Y-8z-uJT"/>
+                                    <constraint firstItem="zHs-4P-Wj4" firstAttribute="top" secondItem="JRg-5K-vdY" secondAttribute="bottom" constant="24" id="QFo-wI-v1l"/>
+                                    <constraint firstAttribute="trailing" secondItem="JRg-5K-vdY" secondAttribute="trailing" id="Qux-lq-gop"/>
+                                    <constraint firstItem="Iad-Bh-isB" firstAttribute="centerX" secondItem="XbZ-Jp-BWm" secondAttribute="centerX" id="TkG-hW-xtP"/>
+                                    <constraint firstItem="Iad-Bh-isB" firstAttribute="leading" secondItem="zHs-4P-Wj4" secondAttribute="leading" id="UNb-o9-cMh"/>
+                                    <constraint firstItem="Bzn-bX-9ww" firstAttribute="bottom" secondItem="Iad-Bh-isB" secondAttribute="bottom" id="WNq-jv-TM3"/>
+                                    <constraint firstItem="JRg-5K-vdY" firstAttribute="leading" secondItem="XbZ-Jp-BWm" secondAttribute="leading" id="Wst-gZ-Gx3"/>
+                                    <constraint firstItem="JRg-5K-vdY" firstAttribute="top" secondItem="XbZ-Jp-BWm" secondAttribute="top" id="auS-Bv-okn"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-sm-cqE">
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="124" id="Roo-nX-eys" customClass="AlcoholCalcIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="124"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Roo-nX-eys" id="6ak-Zs-XJU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn4-6s-z1B" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="40" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="rnu-0M-OaD"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有効" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t6-vt-G21" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="40" y="38.5" width="35" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="Dyo-1X-7yh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="度数 30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2m5-gB-9nE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="83" y="8" width="284" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Itl-M2-NlE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分量 30ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Q-tA-EoB" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="83" y="66" width="78" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="1ZL-Qa-5X1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkI-Nm-0dv" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="33" width="28" height="28"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="28" id="IMg-jI-9kQ"/>
+                                                        <constraint firstAttribute="height" constant="28" id="SWi-RG-cMf"/>
+                                                    </constraints>
+                                                </view>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-hs-X9z" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="81" y="28" width="288" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="PGO-n2-fOc"/>
+                                                    </constraints>
+                                                </slider>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="81" y="86" width="288" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="5yf-Zm-dXO"/>
+                                                    </constraints>
+                                                </slider>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2m5-gB-9nE" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="8" id="CL0-ZQ-Q5x"/>
+                                                <constraint firstItem="L7Q-tA-EoB" firstAttribute="top" secondItem="XoQ-hs-X9z" secondAttribute="bottom" constant="8" id="JZg-hj-8l7"/>
+                                                <constraint firstAttribute="trailing" secondItem="XoQ-hs-X9z" secondAttribute="trailing" constant="8" id="LBd-Sd-d3m"/>
+                                                <constraint firstItem="fn4-6s-z1B" firstAttribute="leading" secondItem="6ak-Zs-XJU" secondAttribute="leading" constant="8" id="R97-BG-X47"/>
+                                                <constraint firstItem="XoQ-hs-X9z" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="SLo-QX-loc"/>
+                                                <constraint firstItem="fn4-6s-z1B" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="8" id="UrJ-sB-BL2"/>
+                                                <constraint firstItem="XoQ-hs-X9z" firstAttribute="top" secondItem="2m5-gB-9nE" secondAttribute="bottom" id="Vt3-Hw-R1v"/>
+                                                <constraint firstItem="L7Q-tA-EoB" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="b2m-d9-USE"/>
+                                                <constraint firstItem="6t6-vt-G21" firstAttribute="centerY" secondItem="fkI-Nm-0dv" secondAttribute="centerY" id="d2M-vo-2de"/>
+                                                <constraint firstItem="6t6-vt-G21" firstAttribute="leading" secondItem="fkI-Nm-0dv" secondAttribute="trailing" constant="4" id="geC-vp-wZ6"/>
+                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="top" secondItem="fn4-6s-z1B" secondAttribute="bottom" constant="8" id="hel-Yf-iHL"/>
+                                                <constraint firstAttribute="trailing" secondItem="2m5-gB-9nE" secondAttribute="trailing" constant="8" id="ncp-PU-riQ"/>
+                                                <constraint firstItem="2m5-gB-9nE" firstAttribute="leading" secondItem="6t6-vt-G21" secondAttribute="trailing" constant="8" id="pZc-4q-SG5"/>
+                                                <constraint firstAttribute="trailing" secondItem="4Se-uj-K8v" secondAttribute="trailing" constant="8" id="qKd-g9-ilq"/>
+                                                <constraint firstItem="4Se-uj-K8v" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="uvg-ek-DUs"/>
+                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="leading" secondItem="6ak-Zs-XJU" secondAttribute="leading" constant="8" id="wtk-Qh-iOn"/>
+                                                <constraint firstItem="4Se-uj-K8v" firstAttribute="top" secondItem="L7Q-tA-EoB" secondAttribute="bottom" id="xaA-ZK-SS3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="L7Q-tA-EoB" id="mg1-VC-AiW"/>
+                                            <outlet property="amountSlider" destination="4Se-uj-K8v" id="qZF-kA-Ppl"/>
+                                            <outlet property="ingredientNumberLabel" destination="fn4-6s-z1B" id="YAP-hS-8Av"/>
+                                            <outlet property="strengthLabel" destination="2m5-gB-9nE" id="4TG-mF-tV5"/>
+                                            <outlet property="strengthSlider" destination="XoQ-hs-X9z" id="i00-ow-scS"/>
+                                            <outlet property="validCheckbox" destination="fkI-Nm-0dv" id="MSw-aW-tH5"/>
+                                            <outlet property="validLabel" destination="6t6-vt-G21" id="lvH-Vq-TFu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="4ZX-nv-xyK" id="PLS-9B-YgM"/>
+                                    <outlet property="delegate" destination="4ZX-nv-xyK" id="nF8-L0-Lmh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R7c-sm-cqE" firstAttribute="top" secondItem="XbZ-Jp-BWm" secondAttribute="bottom" id="1vE-XB-MN8"/>
+                            <constraint firstItem="R7c-sm-cqE" firstAttribute="leading" secondItem="p20-Vz-See" secondAttribute="leading" id="F9X-SV-EmS"/>
+                            <constraint firstItem="XbZ-Jp-BWm" firstAttribute="leading" secondItem="p20-Vz-See" secondAttribute="leading" id="Pcz-3L-VRn"/>
+                            <constraint firstItem="p20-Vz-See" firstAttribute="trailing" secondItem="R7c-sm-cqE" secondAttribute="trailing" id="XeO-Ga-5hm"/>
+                            <constraint firstAttribute="bottom" secondItem="R7c-sm-cqE" secondAttribute="bottom" id="baZ-Jo-sat"/>
+                            <constraint firstItem="XbZ-Jp-BWm" firstAttribute="top" secondItem="kWH-Kn-dwU" secondAttribute="top" id="sgk-JO-dqM"/>
+                            <constraint firstItem="p20-Vz-See" firstAttribute="trailing" secondItem="XbZ-Jp-BWm" secondAttribute="trailing" id="whk-hT-2i4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="p20-Vz-See"/>
                     </view>
+                    <connections>
+                        <outlet property="alcoholAmountLabel" destination="KXv-cI-Yun" id="x8i-j7-xXr"/>
+                        <outlet property="alcoholPercentageLabel" destination="Iad-Bh-isB" id="bxH-Bf-oCn"/>
+                        <outlet property="backgroundView" destination="XbZ-Jp-BWm" id="Ev8-1r-aqj"/>
+                        <outlet property="ingredientTableView" destination="R7c-sm-cqE" id="1LU-eD-gux"/>
+                        <outlet property="totalAmountLabel" destination="ueW-Qp-Tvn" id="MZo-93-UyJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvC-pn-AuI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="148"/>
+            <point key="canvasLocation" x="101.59999999999999" y="147.97601199400302"/>
         </scene>
     </scenes>
 </document>

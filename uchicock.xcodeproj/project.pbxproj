@@ -13,6 +13,7 @@
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B0E3DFB23FAD4A300D7F22A /* AlcoholCalc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */; };
 		9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */; };
+		9B0E3DFF23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0E3DFE23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
 		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
 		9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */; };
@@ -75,6 +76,7 @@
 		9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
+		9BCF1FB623F995BA007E5600 /* CalculatorIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF1FB523F995BA007E5600 /* CalculatorIngredient.swift */; };
 		9BD467B6232B8CBD00312923 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD467B5232B8CBD00312923 /* ImageUtil.swift */; };
 		9BD7BEDB235DB877008B305E /* MessageHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD7BEDA235DB877008B305E /* MessageHUD.swift */; };
 		9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */; };
@@ -124,6 +126,7 @@
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlcoholCalc.storyboard; sourceTree = "<group>"; };
 		9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholCalcViewController.swift; sourceTree = "<group>"; };
+		9B0E3DFE23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholCalcIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
 		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
 		9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		9BC9A3141C783CAA0031F631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9BC9A3201C783CAA0031F631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BCF1FB523F995BA007E5600 /* CalculatorIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalculatorIngredient.swift; path = Database/CalculatorIngredient.swift; sourceTree = "<group>"; };
 		9BD467B5232B8CBD00312923 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		9BD7BEDA235DB877008B305E /* MessageHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageHUD.swift; path = Util/MessageHUD/MessageHUD.swift; sourceTree = "<group>"; };
 		9BD8A7081CC8F466001EB1A9 /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCollectionViewController.swift; path = Album/AlbumCollectionViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			children = (
 				9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */,
 				9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */,
+				9B0E3DFE23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift */,
 			);
 			path = AlcoholCalc;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				9B3078C91CA421AE0014CE7E /* Recipe.swift */,
 				9B3078C81CA421AE0014CE7E /* Ingredient.swift */,
 				9B3078CA1CA421AE0014CE7E /* RecipeIngredientLink.swift */,
+				9BCF1FB523F995BA007E5600 /* CalculatorIngredient.swift */,
 				9BF93F6B1CCB36620000F7F8 /* default.realm */,
 			);
 			name = Database;
@@ -775,6 +781,7 @@
 				9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */,
 				9B2E83DB230A9F20002E7946 /* CircularCheckboxCheckPathGenerator.swift in Sources */,
 				9B6BC1B32003BC4800CF8722 /* AmazonProduct.swift in Sources */,
+				9BCF1FB623F995BA007E5600 /* CalculatorIngredient.swift in Sources */,
 				9BEC4C1B2351EA7E004FE9B4 /* RecipeSearchViewController.swift in Sources */,
 				9B2E83EC230A9F7A002E7946 /* ImageViewerTransitioningHandler.swift in Sources */,
 				9B3078C71CA421660014CE7E /* RecipeListViewController.swift in Sources */,
@@ -806,6 +813,7 @@
 				9BDB39341CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift in Sources */,
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */,
+				9B0E3DFF23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
 				9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */,
