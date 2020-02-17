@@ -46,6 +46,96 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
 
     }
     
+    private func calcAlcoholStrength(){
+        // TODO
+    }
+    
+    // MARK: - Cell Target Action
+    @objc func cellValidCheckboxTapped(_ sender: CircularCheckbox){
+        var view = sender.superview
+        while (view! is AlcoholCalcIngredientTableViewCell) == false{
+            view = view!.superview
+        }
+        let cell = view as! AlcoholCalcIngredientTableViewCell
+        let touchIndex = self.ingredientTableView.indexPath(for: cell)
+        
+        if let index = touchIndex {
+            let realm = try! Realm()
+            let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
+            if calcIngredient.valid {
+                try! realm.write {
+                    calcIngredient.valid = false
+                }
+                cell.validLabel.textColor = Style.labelTextColorLight
+                cell.strengthLabel.textColor = Style.labelTextColorLight
+                cell.strengthSlider.isEnabled = false
+                cell.amountLabel.textColor = Style.labelTextColorLight
+                cell.amountSlider.isEnabled = false
+            }else{
+                try! realm.write {
+                    calcIngredient.valid = true
+                }
+                cell.validLabel.textColor = Style.labelTextColor
+                cell.strengthLabel.textColor = Style.labelTextColor
+                cell.strengthSlider.isEnabled = true
+                cell.amountLabel.textColor = Style.labelTextColor
+                cell.amountSlider.isEnabled = true
+            }
+            
+            calcAlcoholStrength()
+        }
+    }
+    
+    @objc func cellStrengthSliderTapped(sender: CustomSlider, event: UIEvent){
+        var view = sender.superview
+        while (view! is AlcoholCalcIngredientTableViewCell) == false{
+            view = view!.superview
+        }
+        let cell = view as! AlcoholCalcIngredientTableViewCell
+        let touchIndex = self.ingredientTableView.indexPath(for: cell)
+        
+        if let index = touchIndex {
+            cell.strengthLabel.text = "度数 " + String(Int(floor(sender.value))) + "%"
+            
+            if let touchEvent = event.allTouches?.first {
+                if touchEvent.phase == .ended{
+                    let realm = try! Realm()
+                    let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
+                    try! realm.write {
+                        calcIngredient.degree = Int(floor(sender.value))
+                    }
+                }
+            }
+            
+            calcAlcoholStrength()
+        }
+    }
+
+    @objc func cellAmountSliderTapped(sender: CustomSlider, event: UIEvent){
+        var view = sender.superview
+        while (view! is AlcoholCalcIngredientTableViewCell) == false{
+            view = view!.superview
+        }
+        let cell = view as! AlcoholCalcIngredientTableViewCell
+        let touchIndex = self.ingredientTableView.indexPath(for: cell)
+            
+        if let index = touchIndex {
+            cell.amountLabel.text = "分量 " + String(Int(floor(sender.value) * 5)) + "ml"
+
+            if let touchEvent = event.allTouches?.first {
+                if touchEvent.phase == .ended{
+                    let realm = try! Realm()
+                    let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
+                    try! realm.write {
+                        calcIngredient.amount = Int(floor(sender.value) * 5)
+                    }
+                }
+            }
+                
+            calcAlcoholStrength()
+        }
+    }
+
     // MARK: - Table View
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -93,8 +183,12 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.strengthSlider.value = Float(calcIngredient.degree)
         
         cell.amountLabel.text = "分量 " + String(calcIngredient.amount) + "ml"
-        cell.amountSlider.value = Float(calcIngredient.amount)
+        cell.amountSlider.value = Float(calcIngredient.amount / 5)
         
+        cell.validCheckbox.addTarget(self, action: #selector(AlcoholCalcViewController.cellValidCheckboxTapped(_:)), for: UIControl.Event.valueChanged)
+        cell.strengthSlider.addTarget(self, action: #selector(AlcoholCalcViewController.cellStrengthSliderTapped(sender:event:)), for: UIControl.Event.valueChanged)
+        cell.amountSlider.addTarget(self, action: #selector(AlcoholCalcViewController.cellAmountSliderTapped(sender:event:)), for: UIControl.Event.valueChanged)
+
         cell.backgroundColor = Style.basicBackgroundColor
         return cell
     }

@@ -214,7 +214,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="PGO-n2-fOc"/>
                                                     </constraints>
                                                 </slider>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="81" y="86" width="288" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="5yf-Zm-dXO"/>
