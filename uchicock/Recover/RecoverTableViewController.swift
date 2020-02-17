@@ -130,7 +130,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
                 
-                var recoverRecipe = RecoverRecipe(name: recipe.recipeName,style: recipe.style, method: recipe.method, ingredientList: [])
+                var recoverRecipe = RecoverRecipe(name: recipe.recipeName,style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
                 for ri in recipe.recipeIngredients{
                     recoverRecipe.ingredientList.append(RecipeIngredientBasic(id: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category))
                 }
@@ -148,7 +148,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addIngredient(ingredientName: recoverIngredient.ingredientName, stockFlag: false, memo: "", category: recoverIngredient.category)
                     }
-                    addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method)
+                    addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method, strength: recoverRecipe.strength)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag)
@@ -159,7 +159,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addRecipe(recipeName:String, favorites:Int, memo:String, style:Int, method:Int){
+    func addRecipe(recipeName:String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
         if rec.count < 1 {
@@ -170,6 +170,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             recipe.memo = memo
             recipe.style = style
             recipe.method = method
+            recipe.strength = strength
             realm.add(recipe)
         }
     }

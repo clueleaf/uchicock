@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fv3-ks-9ou">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fv3-ks-9ou">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -329,12 +329,49 @@
                                             <constraint firstItem="CSr-N0-xge" firstAttribute="centerY" secondItem="9T3-04-7CX" secondAttribute="centerY" id="Rlt-33-CTx"/>
                                         </constraints>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="dzR-jc-h9F">
+                                        <rect key="frame" x="0.0" y="220" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzR-jc-h9F" id="0uS-Hx-l1f">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkc-zJ-9Ok" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="15.5" width="274" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="jqw-Vm-JWg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弱い" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSw-zp-kx2" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="302" y="17.5" width="100" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="9ed-Ap-n8s"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jSw-zp-kx2" secondAttribute="trailing" constant="12" id="1OS-rG-1mQ"/>
+                                                <constraint firstItem="jSw-zp-kx2" firstAttribute="leading" secondItem="Lkc-zJ-9Ok" secondAttribute="trailing" constant="20" id="2iH-ff-lyi"/>
+                                                <constraint firstItem="Lkc-zJ-9Ok" firstAttribute="leading" secondItem="0uS-Hx-l1f" secondAttribute="leading" constant="8" id="DFt-fZ-LsL"/>
+                                                <constraint firstItem="jSw-zp-kx2" firstAttribute="centerY" secondItem="Lkc-zJ-9Ok" secondAttribute="centerY" id="oxj-d6-OlQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="Lkc-zJ-9Ok" firstAttribute="centerY" secondItem="dzR-jc-h9F" secondAttribute="centerY" id="Gwq-Hl-XpO"/>
+                                        </constraints>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-2" id="Bba-7w-RZZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="z4V-X6-TR5">
-                                        <rect key="frame" x="0.0" y="276" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="332" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z4V-X6-TR5" id="CuJ-uY-M44">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -364,6 +401,7 @@
                     <connections>
                         <outlet property="method" destination="OS4-y0-mXq" id="fAW-QH-p0B"/>
                         <outlet property="recipeName" destination="f61-JX-cGb" id="2zb-1s-jRc"/>
+                        <outlet property="strength" destination="jSw-zp-kx2" id="h7V-JV-j8E"/>
                         <outlet property="style" destination="DXP-JM-xoE" id="EVl-RW-U6d"/>
                     </connections>
                 </tableViewController>

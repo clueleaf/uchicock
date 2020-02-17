@@ -16,5 +16,6 @@ struct RecoverRecipe{
     var name : String
     var style: Int
     var method : Int
+    var strength : Int
     var ingredientList = Array<RecipeIngredientBasic>()
 }

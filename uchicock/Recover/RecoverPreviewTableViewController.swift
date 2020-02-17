@@ -13,6 +13,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     @IBOutlet weak var recipeName: CustomLabel!
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
+    @IBOutlet weak var strength: CustomLabel!
     
     var recipe = Recipe()
     
@@ -63,6 +64,20 @@ class RecoverPreviewTableViewController: UITableViewController {
             method.text = "その他"
         default:
             method.text = "その他"
+        }
+        switch recipe.strength{
+        case 0:
+            strength.text = "ノンアルコール"
+        case 1:
+            strength.text = "弱い"
+        case 2:
+            strength.text = "やや強い"
+        case 3:
+            strength.text = "強い"
+        case 4:
+            strength.text = "未指定"
+        default:
+            strength.text = "未指定"
         }
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -127,7 +142,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 3
+            return 4
         }else if section == 1{
             return recipe.recipeIngredients.count
         }
