@@ -15,6 +15,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var recipeName: CustomTextField!
     @IBOutlet weak var styleTipButton: UIButton!
     @IBOutlet weak var methodTipButton: UIButton!
+    @IBOutlet weak var strengthTipButton: UIButton!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
     @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
@@ -23,8 +24,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var styleTableViewCell: UITableViewCell!
     @IBOutlet weak var methodTableViewCell: UITableViewCell!
+    @IBOutlet weak var strengthTableViewCell: UITableViewCell!
     @IBOutlet weak var style: CustomSegmentedControl!
     @IBOutlet weak var method: CustomSegmentedControl!
+    @IBOutlet weak var strength: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: CustomTextView!
     @IBOutlet weak var addIngredientLabel: UILabel!
@@ -72,6 +75,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else{
             style.layer.cornerRadius = 14.0
             method.layer.cornerRadius = 14.0
+            strength.layer.cornerRadius = 14.0
         }
         style.layer.borderColor = Style.primaryColor.cgColor
         style.layer.borderWidth = 1.0
@@ -79,12 +83,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         method.layer.borderColor = Style.primaryColor.cgColor
         method.layer.borderWidth = 1.0
         method.layer.masksToBounds = true
-        
+        strength.layer.borderColor = Style.primaryColor.cgColor
+        strength.layer.borderWidth = 1.0
+        strength.layer.masksToBounds = true
+
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
             style.selectedSegmentIndex = 3
             method.selectedSegmentIndex = 0
+            strength.selectedSegmentIndex = 4
             isAddMode = true
         } else {
             self.navigationItem.title = "レシピ編集"
@@ -102,6 +110,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
             style.selectedSegmentIndex = recipe.style
             method.selectedSegmentIndex = recipe.method
+            strength.selectedSegmentIndex = recipe.strength
             isAddMode = false
         }
         
@@ -154,6 +163,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         styleTipButton.tintColor = Style.primaryColor
         methodTipButton.setImage(tipImage, for: .normal)
         methodTipButton.tintColor = Style.primaryColor
+        strengthTipButton.setImage(tipImage, for: .normal)
+        strengthTipButton.tintColor = Style.primaryColor
 
         self.tableView.reloadData()
         
@@ -599,6 +610,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         
                         newRecipe.style = style.selectedSegmentIndex
                         newRecipe.method = method.selectedSegmentIndex
+                        newRecipe.strength = strength.selectedSegmentIndex
                         newRecipe.memo = memo.text
                         realm.add(newRecipe)
                         
@@ -680,6 +692,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                         recipe.style = style.selectedSegmentIndex
                         recipe.method = method.selectedSegmentIndex
+                        recipe.strength = strength.selectedSegmentIndex
                         recipe.memo = memo.text
                         
                         for editingRecipeIngredient in recipeIngredientList{
@@ -747,6 +760,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         present(nvc, animated: true)
     }
     
+    @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
+        // TODO
+    }
+    
     @IBAction func styleSegmentedControlTapped(_ sender: CustomSegmentedControl) {
         self.showCancelAlert = true
     }
@@ -754,6 +771,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func methodSegmentedControlTapped(_ sender: CustomSegmentedControl) {
         self.showCancelAlert = true
     }
+    
+    @IBAction func strengthSegmentedControlTapped(_ sender: CustomSegmentedControl) {
+        self.showCancelAlert = true
+    }
+    
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -769,6 +791,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else if touch.view!.isDescendant(of: styleTableViewCell){
             return true
         }else if touch.view!.isDescendant(of: methodTableViewCell){
+            return true
+        }else if touch.view!.isDescendant(of: strengthTableViewCell){
             return true
         }else if touch.view!.isDescendant(of: memoTableViewCell){
             return true

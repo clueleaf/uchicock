@@ -261,8 +261,64 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="Ily-hb-7T4">
+                                        <rect key="frame" x="0.0" y="414" width="375" height="93"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ily-hb-7T4" id="mfa-5v-Z8V">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-6i-6Yc" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="15" width="121.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="00h-PU-B6V"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="cyg-9y-mi0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wz3-IL-g1Z" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="44" width="355" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="KMS-y4-uue"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="ノンアル"/>
+                                                        <segment title="弱い"/>
+                                                        <segment title="やや強い"/>
+                                                        <segment title="強い"/>
+                                                        <segment title="未指定"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="strengthSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="ao3-HH-Sip"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSt-5r-bL1">
+                                                    <rect key="frame" x="133.5" y="13.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="QF7-kS-s9B"/>
+                                                        <constraint firstAttribute="height" constant="24" id="VRq-vN-f9H"/>
+                                                    </constraints>
+                                                    <state key="normal" image="tip"/>
+                                                    <connections>
+                                                        <action selector="strengthTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="hsq-rW-Ll1"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="centerY" secondItem="dtL-6i-6Yc" secondAttribute="centerY" id="6mz-9y-rbe"/>
+                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="leading" secondItem="mfa-5v-Z8V" secondAttribute="leading" constant="8" id="APS-P9-WIL"/>
+                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="top" secondItem="mfa-5v-Z8V" secondAttribute="top" constant="15" id="EZP-oA-xzc"/>
+                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="leading" secondItem="dtL-6i-6Yc" secondAttribute="trailing" constant="4" id="K46-9V-FTg"/>
+                                                <constraint firstAttribute="trailing" secondItem="Wz3-IL-g1Z" secondAttribute="trailing" constant="12" id="Mvj-TF-qkK"/>
+                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="leading" secondItem="mfa-5v-Z8V" secondAttribute="leading" constant="8" id="pdk-01-aYo"/>
+                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="top" secondItem="dtL-6i-6Yc" secondAttribute="bottom" constant="8" id="z3d-WE-4gc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="ZcH-ur-jk9">
-                                        <rect key="frame" x="0.0" y="414" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="507" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZcH-ur-jk9" id="eA2-mF-Eye">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -302,7 +358,7 @@
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs">
-                                        <rect key="frame" x="0.0" y="670" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="763" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="70"/>
@@ -310,7 +366,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lFs-ko-xD7">
-                                        <rect key="frame" x="0.0" y="740" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="833" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -365,6 +421,9 @@
                         <outlet property="star1" destination="eb6-1r-5Pc" id="oML-i7-KNn"/>
                         <outlet property="star2" destination="ffj-8v-9XM" id="pmP-02-DcC"/>
                         <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
+                        <outlet property="strength" destination="Wz3-IL-g1Z" id="idF-5X-FOC"/>
+                        <outlet property="strengthTableViewCell" destination="Ily-hb-7T4" id="t6p-vt-qHm"/>
+                        <outlet property="strengthTipButton" destination="XSt-5r-bL1" id="6Iq-ih-TDi"/>
                         <outlet property="style" destination="d1R-hF-4x3" id="aFa-uC-u5P"/>
                         <outlet property="styleTableViewCell" destination="ZYb-eu-9eu" id="v3a-a9-FjO"/>
                         <outlet property="styleTipButton" destination="xWg-5g-35g" id="BXm-es-6h0"/>
