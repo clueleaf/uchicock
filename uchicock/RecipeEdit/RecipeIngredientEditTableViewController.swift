@@ -158,7 +158,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            let suggest = IngredientSuggestBasic(name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch)
+            let suggest = IngredientSuggestBasic(name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, category: ingredient.category)
             suggestList.append(suggest)
         }
         
@@ -329,6 +329,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.backgroundColor = Style.basicBackgroundColor
             cell.name = suggestList[indexPath.row].name
+            cell.category = suggestList[indexPath.row].category
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

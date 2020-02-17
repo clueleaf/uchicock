@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WuL-jK-LtH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WuL-jK-LtH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -607,19 +607,30 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-PS-dyK" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                        <rect key="frame" x="8" y="5" width="359" height="20.5"/>
+                                                                        <rect key="frame" x="21" y="5" width="346" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-6r-JbE">
+                                                                        <rect key="frame" x="8" y="6.5" width="13" height="17"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="13" id="3uU-p2-dYB"/>
+                                                                            <constraint firstAttribute="height" constant="17" id="EX5-wY-peL"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <constraints>
+                                                                    <constraint firstItem="lI2-6r-JbE" firstAttribute="centerY" secondItem="Knd-PS-dyK" secondAttribute="centerY" id="953-aB-S6h"/>
                                                                     <constraint firstItem="Knd-PS-dyK" firstAttribute="centerY" secondItem="mfN-ji-yan" secondAttribute="centerY" id="LLI-Fq-csU"/>
+                                                                    <constraint firstItem="lI2-6r-JbE" firstAttribute="leading" secondItem="mfN-ji-yan" secondAttribute="leading" constant="8" id="P8I-Hi-n4G"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Knd-PS-dyK" secondAttribute="trailing" constant="8" id="bZQ-7J-S8G"/>
-                                                                    <constraint firstItem="Knd-PS-dyK" firstAttribute="leading" secondItem="mfN-ji-yan" secondAttribute="leading" constant="8" id="wiB-lz-8x6"/>
+                                                                    <constraint firstItem="Knd-PS-dyK" firstAttribute="leading" secondItem="lI2-6r-JbE" secondAttribute="trailing" id="ymT-fy-pzM"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
+                                                                <outlet property="alcoholIconImage" destination="lI2-6r-JbE" id="t9W-Qa-AuX"/>
+                                                                <outlet property="alcoholIconImageWidthConstraint" destination="3uU-p2-dYB" id="lB4-Cv-OMo"/>
                                                                 <outlet property="ingredientName" destination="Knd-PS-dyK" id="mhi-KS-pZn"/>
                                                             </connections>
                                                         </tableViewCell>
@@ -784,10 +795,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="562" y="-417"/>
+            <point key="canvasLocation" x="560.79999999999995" y="-417.8410794602699"/>
         </scene>
     </scenes>
     <resources>
+        <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tip" width="24" height="24"/>
     </resources>
 </document>

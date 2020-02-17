@@ -11,8 +11,10 @@ import UIKit
 class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var ingredientName: CustomLabel!
-
+    @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
+    
     var ingredient: Ingredient = Ingredient(){
         didSet{
             ingredientName.text = ingredient.ingredientName
@@ -30,6 +32,16 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
                 stockLabel.layer.backgroundColor = UIColor.clear.cgColor
                 stockLabel.layer.borderColor = Style.primaryColor.cgColor
             }
+            
+            alcoholIconImage.tintColor = Style.primaryColor
+            if ingredient.category == 0{
+                alcoholIconImage.isHidden = false
+                alcoholIconImageWidthConstraint.constant = 13
+            }else{
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
+            }
+            
             stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
             stockLabel.textAlignment = NSTextAlignment.center

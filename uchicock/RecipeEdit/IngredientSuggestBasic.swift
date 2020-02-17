@@ -11,4 +11,5 @@ import UIKit
 struct IngredientSuggestBasic{
     var name : String
     var katakanaLowercasedNameForSearch : String
+    var category : Int
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZFg-h0-uYq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZFg-h0-uYq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,17 +140,17 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrJ-QD-jb5">
-                                                                        <rect key="frame" x="8" y="4.5" width="55" height="21"/>
+                                                                        <rect key="frame" x="8" y="4.5" width="45" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="Jrd-CZ-fGq"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="Yew-44-040"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Yew-44-040"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8K-dd-Ezf" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                        <rect key="frame" x="71" y="4.5" width="335" height="21"/>
+                                                                        <rect key="frame" x="74" y="4.5" width="332" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="3cj-vk-RCX"/>
                                                                         </constraints>
@@ -158,16 +158,27 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-ci-cco">
+                                                                        <rect key="frame" x="61" y="6.5" width="13" height="17"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="17" id="X2h-8D-W0t"/>
+                                                                            <constraint firstAttribute="width" constant="13" id="gY2-Rv-Nax"/>
+                                                                        </constraints>
+                                                                    </imageView>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="ZrJ-QD-jb5" firstAttribute="centerY" secondItem="yLW-Ef-JNp" secondAttribute="centerY" id="0LL-EA-MA6"/>
                                                                     <constraint firstItem="D8K-dd-Ezf" firstAttribute="centerY" secondItem="yLW-Ef-JNp" secondAttribute="centerY" id="3go-LQ-o43"/>
-                                                                    <constraint firstItem="D8K-dd-Ezf" firstAttribute="leading" secondItem="ZrJ-QD-jb5" secondAttribute="trailing" constant="8" id="dfs-Fu-pB3"/>
+                                                                    <constraint firstItem="gg0-ci-cco" firstAttribute="centerY" secondItem="ZrJ-QD-jb5" secondAttribute="centerY" id="6g8-Kz-48G"/>
+                                                                    <constraint firstItem="D8K-dd-Ezf" firstAttribute="leading" secondItem="gg0-ci-cco" secondAttribute="trailing" id="NvM-XB-rbk"/>
                                                                     <constraint firstItem="ZrJ-QD-jb5" firstAttribute="leading" secondItem="yLW-Ef-JNp" secondAttribute="leading" constant="8" id="fVq-nf-ata"/>
                                                                     <constraint firstAttribute="trailing" secondItem="D8K-dd-Ezf" secondAttribute="trailing" constant="8" id="hm0-Kn-cON"/>
+                                                                    <constraint firstItem="gg0-ci-cco" firstAttribute="leading" secondItem="ZrJ-QD-jb5" secondAttribute="trailing" constant="8" id="sqJ-dX-Y04"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
+                                                                <outlet property="alcoholIconImage" destination="gg0-ci-cco" id="gMB-TK-5QU"/>
+                                                                <outlet property="alcoholIconImageWidthConstraint" destination="gY2-Rv-Nax" id="SQc-kV-vIg"/>
                                                                 <outlet property="ingredientName" destination="D8K-dd-Ezf" id="CCc-aX-mhP"/>
                                                                 <outlet property="stockLabel" destination="ZrJ-QD-jb5" id="64y-Ji-HzO"/>
                                                             </connections>
@@ -221,7 +232,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sa3-33-DvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1909.1517857142856" y="1844.9275362318842"/>
+            <point key="canvasLocation" x="-1910.144927536232" y="1844.8660714285713"/>
         </scene>
         <!--RecipeDetail-->
         <scene sceneID="oVw-0U-b8W">
@@ -252,6 +263,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tabbar-reverse-lookup" width="24" height="24"/>
     </resources>
 </document>
