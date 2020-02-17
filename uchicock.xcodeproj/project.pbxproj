@@ -11,6 +11,8 @@
 		9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */; };
 		9B0AEBD923FA407B00EEA4F9 /* StrengthTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0AEBD823FA407B00EEA4F9 /* StrengthTipViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
+		9B0E3DFB23FAD4A300D7F22A /* AlcoholCalc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */; };
+		9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
 		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
 		9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */; };
@@ -120,6 +122,8 @@
 		9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
 		9B0AEBD823FA407B00EEA4F9 /* StrengthTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StrengthTipViewController.swift; path = RecipeDetail/StrengthTipViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlcoholCalc.storyboard; sourceTree = "<group>"; };
+		9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholCalcViewController.swift; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
 		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
 		9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -259,6 +263,15 @@
 			);
 			name = PullToRefresh;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		9B0E3DF923FAD48900D7F22A /* AlcoholCalc */ = {
+			isa = PBXGroup;
+			children = (
+				9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */,
+				9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */,
+			);
+			path = AlcoholCalc;
 			sourceTree = "<group>";
 		};
 		9B1638BB22A7E17000B7C3A7 /* Util */ = {
@@ -447,6 +460,7 @@
 				9BEC4C392351EC81004FE9B4 /* AlbumFilter */,
 				9BB98FAB1E6480B1009240FB /* Settings */,
 				9B18128C1CD3BBD600717E4F /* Recover */,
+				9B0E3DF923FAD48900D7F22A /* AlcoholCalc */,
 				9B1638BB22A7E17000B7C3A7 /* Util */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
@@ -647,6 +661,7 @@
 				9BEC4C382351EC75004FE9B4 /* ReverseLookup.storyboard in Resources */,
 				9BEC4C3E2351EC9B004FE9B4 /* AlbumFilter.storyboard in Resources */,
 				9BEC4C362351EC69004FE9B4 /* IngredientEdit.storyboard in Resources */,
+				9B0E3DFB23FAD4A300D7F22A /* AlcoholCalc.storyboard in Resources */,
 				9BEC4C2C2351EC40004FE9B4 /* IngredientRecommendTableViewCell.xib in Resources */,
 				9B30125422BB8A7300288DEE /* RecipeIngredientTableViewCell.xib in Resources */,
 				9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */,
@@ -793,6 +808,7 @@
 				9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
+				9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */,
 				9BEC4C152351E9FA004FE9B4 /* LaunchViewController.swift in Sources */,
 				9B3078CC1CA421AE0014CE7E /* Recipe.swift in Sources */,
 				9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */,

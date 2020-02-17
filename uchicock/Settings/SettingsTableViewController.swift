@@ -14,6 +14,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var recoverImage: UIImageView!
     @IBOutlet weak var changeThemeImage: UIImageView!
     @IBOutlet weak var imageSizeImage: UIImageView!
+    @IBOutlet weak var alcoholCalcImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     @IBOutlet weak var currentImageSizeLabel: UILabel!
     
@@ -51,6 +52,7 @@ class SettingsTableViewController: UITableViewController {
         recoverImage.tintColor = Style.primaryColor
         changeThemeImage.tintColor = Style.primaryColor
         imageSizeImage.tintColor = Style.primaryColor
+        alcoholCalcImage.tintColor = Style.primaryColor
         reviewImage.tintColor = Style.primaryColor
 
         currentImageSizeLabel.textColor = Style.labelTextColorLight
@@ -86,9 +88,9 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if firstRequestReview == true, alreadyWrittenReview == false, let url = appStoreReviewURL, UIApplication.shared.canOpenURL(url) {
-            return 5
+            return 6
         }else{
-            return 4
+            return 5
         }
     }
     
@@ -111,6 +113,9 @@ class SettingsTableViewController: UITableViewController {
             selectedIndexPath = indexPath
             performSegue(withIdentifier: "ChangeImageSize", sender: nil)
         case 4:
+            selectedIndexPath = indexPath
+            performSegue(withIdentifier: "AlcoholCalc", sender: nil)
+        case 5:
             self.tableView.deselectRow(at: indexPath, animated: true)
             let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
             let alertView = CustomAlertController(title: "", message: message, preferredStyle: .alert)
