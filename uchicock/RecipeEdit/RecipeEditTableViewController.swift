@@ -114,7 +114,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.borderWidth = 1
 
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: -1))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category))
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -287,11 +287,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
             let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
 
-            vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, mustFlag, recipeIngredientId in
+            vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
-                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: -1)
+                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
@@ -310,6 +310,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.recipeIngredientList[i].ingredientName = ingredientName
                                 self.recipeIngredientList[i].amount = amount
                                 self.recipeIngredientList[i].mustFlag = mustFlag
+                                self.recipeIngredientList[i].category = category
                                 self.showCancelAlert = true
                             }
                         }
@@ -379,6 +380,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.amountText = recipeIngredientList[indexPath.row].amount
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = nil
+                cell.category = recipeIngredientList[indexPath.row].category
 
                 let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)

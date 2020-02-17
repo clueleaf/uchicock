@@ -38,7 +38,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         return Style.statusBarStyle
     }
     
-    var onDoneBlock: ((Bool, Bool, Bool, String, String, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, mustFlag, recipeIngredientId  in }
+    var onDoneBlock: ((Bool, Bool, Bool, String, String, Int, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +126,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), (self.option.checkState != .checked), self.recipeIngredient.id)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.id)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -433,6 +433,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                         realm.add(self.setIngredient(0))
                         MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
                     }
+                    self.recipeIngredient.category = 0
                     self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
@@ -441,6 +442,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                         realm.add(self.setIngredient(1))
                         MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
                     }
+                    self.recipeIngredient.category = 1
                     self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
@@ -449,6 +451,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                         realm.add(self.setIngredient(2))
                         MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
                     }
+                    self.recipeIngredient.category = 2
                     self.isCancel = false
                     self.dismiss(animated: true, completion: nil)
                 }))
@@ -457,6 +460,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.modalPresentationCapturesStatusBarAppearance = true
                 present(registAlertView, animated: true, completion: nil)
             }else{
+                self.recipeIngredient.category = sameNameIngredient.first!.category
                 self.isCancel = false
                 self.dismiss(animated: true, completion: nil)
             }
