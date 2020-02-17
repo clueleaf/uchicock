@@ -17,6 +17,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var alcoholPercentageLabel: CustomLabel!
     @IBOutlet weak var alcoholStrengthLabel: CustomLabel!
     @IBOutlet weak var ingredientTableView: UITableView!
+    @IBOutlet weak var fakeTableHeaderView: UIView!
+    @IBOutlet weak var validNumLabel: UILabel!
+    @IBOutlet weak var clearAllButton: UIButton!
     
     var calcIngredientList: Results<CalculatorIngredient>?
     
@@ -40,11 +43,24 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
         
         backgroundView.backgroundColor = Style.basicBackgroundColor
-        
+        fakeTableHeaderView.backgroundColor = Style.tableViewHeaderBackgroundColor
+        validNumLabel.textColor = Style.tableViewHeaderTextColor
+        updateValidNumLabel()
+        clearAllButton.setTitleColor(Style.primaryColor, for: .normal)
+
         self.ingredientTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = Style.basicBackgroundColor
         self.ingredientTableView.separatorColor = Style.labelTextColorLight
-
+    }
+    
+    private func updateValidNumLabel(){
+        var validNum = 0
+        for ing in calcIngredientList!{
+            if ing.valid{
+                validNum += 1
+            }
+        }
+        validNumLabel.text = "有効な材料" + String(validNum) + "個"
     }
     
     private func calcAlcoholStrength(){
@@ -123,8 +139,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.amountLabel.textColor = Style.labelTextColor
                 cell.amountSlider.isEnabled = true
             }
-            
             calcAlcoholStrength()
+            updateValidNumLabel()
         }
     }
     
@@ -181,6 +197,10 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return calcIngredientList == nil ? 0 : calcIngredientList!.count
     }
@@ -233,7 +253,33 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-
-
-
+    // MARK: - IBAction
+    @IBAction func clearAllButtonTapped(_ sender: UIButton) {
+        guard calcIngredientList != nil else{
+            return
+        }
+        
+        let realm = try! Realm()
+        try! realm.write {
+            for ing in calcIngredientList!{
+                ing.valid = false
+            }
+        }
+        
+        for (index, _) in calcIngredientList!.enumerated() {
+            let cell = ingredientTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlcoholCalcIngredientTableViewCell
+            if cell != nil{
+                cell?.validCheckbox.setCheckState(.unchecked, animated: true)
+                cell?.validLabel.textColor = Style.labelTextColorLight
+                cell?.strengthLabel.textColor = Style.labelTextColorLight
+                cell?.strengthSlider.isEnabled = false
+                cell?.amountLabel.textColor = Style.labelTextColorLight
+                cell?.amountSlider.isEnabled = false
+            }else{
+            }
+        }
+        
+        calcAlcoholStrength()
+        updateValidNumLabel()
+    }
 }
