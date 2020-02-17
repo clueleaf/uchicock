@@ -20,28 +20,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JRg-5K-vdY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZMV-SC-5Zk">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueW-Qp-Tvn" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="54.5" y="26" width="79" height="30"/>
+                                                        <rect key="frame" x="58" y="26" width="71.5" height="27"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="mZg-aT-wma"/>
+                                                            <constraint firstAttribute="height" constant="27" id="mZg-aT-wma"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfk-s4-cQN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="133.5" y="32" width="21" height="24"/>
+                                                        <rect key="frame" x="129.5" y="29" width="21" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全体の量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-5c-Jxo" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="54.5" y="6" width="57.5" height="20"/>
+                                                        <rect key="frame" x="58" y="6" width="57.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="nhr-GZ-wLN"/>
                                                         </constraints>
@@ -61,25 +61,25 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6VU-Ad-sYa">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="60"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXv-cI-Yun" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="54.5" y="26" width="79" height="30"/>
+                                                        <rect key="frame" x="58" y="26" width="71.5" height="27"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="8YC-s1-ByP"/>
+                                                            <constraint firstAttribute="height" constant="27" id="8YC-s1-ByP"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLi-wI-gbz" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="133.5" y="32" width="21" height="24"/>
+                                                        <rect key="frame" x="129.5" y="29" width="21" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-KG-oIC" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="54.5" y="6" width="86" height="20"/>
+                                                        <rect key="frame" x="58" y="6" width="86" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="NtA-oN-QiP"/>
                                                         </constraints>
@@ -100,28 +100,37 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="ip7-h5-tag"/>
+                                            <constraint firstAttribute="height" constant="57" id="ip7-h5-tag"/>
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iad-Bh-isB" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="133.5" y="105" width="108.5" height="60"/>
+                                        <rect key="frame" x="142" y="94" width="91" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="XVM-Tp-LdX"/>
+                                            <constraint firstAttribute="height" constant="50" id="XVM-Tp-LdX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzn-bX-9ww" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="242" y="129" width="24" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="233" y="111.5" width="21.5" height="32.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHs-4P-Wj4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="133.5" y="84" width="121.5" height="17"/>
+                                        <rect key="frame" x="142" y="73" width="121.5" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="MNU-Zp-3Fj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="強い" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4km-7l-Nc0" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="170" y="144" width="35" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="fuZ-xJ-rrM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -130,10 +139,12 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="4km-7l-Nc0" firstAttribute="centerX" secondItem="XbZ-Jp-BWm" secondAttribute="centerX" id="4mH-fr-pHs"/>
                                     <constraint firstAttribute="height" constant="170" id="8d3-0S-Z39"/>
                                     <constraint firstItem="Iad-Bh-isB" firstAttribute="top" secondItem="zHs-4P-Wj4" secondAttribute="bottom" constant="4" id="EmI-SZ-zj8"/>
+                                    <constraint firstItem="4km-7l-Nc0" firstAttribute="top" secondItem="Iad-Bh-isB" secondAttribute="bottom" id="F1Z-nM-fub"/>
                                     <constraint firstItem="Bzn-bX-9ww" firstAttribute="leading" secondItem="Iad-Bh-isB" secondAttribute="trailing" id="M8Y-8z-uJT"/>
-                                    <constraint firstItem="zHs-4P-Wj4" firstAttribute="top" secondItem="JRg-5K-vdY" secondAttribute="bottom" constant="24" id="QFo-wI-v1l"/>
+                                    <constraint firstItem="zHs-4P-Wj4" firstAttribute="top" secondItem="JRg-5K-vdY" secondAttribute="bottom" constant="16" id="QFo-wI-v1l"/>
                                     <constraint firstAttribute="trailing" secondItem="JRg-5K-vdY" secondAttribute="trailing" id="Qux-lq-gop"/>
                                     <constraint firstItem="Iad-Bh-isB" firstAttribute="centerX" secondItem="XbZ-Jp-BWm" secondAttribute="centerX" id="TkG-hW-xtP"/>
                                     <constraint firstItem="Iad-Bh-isB" firstAttribute="leading" secondItem="zHs-4P-Wj4" secondAttribute="leading" id="UNb-o9-cMh"/>
@@ -146,7 +157,7 @@
                                 <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="124" id="Roo-nX-eys" customClass="AlcoholCalcIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="124" id="Roo-nX-eys" customClass="AlcoholCalcIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Roo-nX-eys" id="6ak-Zs-XJU">
@@ -197,13 +208,13 @@
                                                         <constraint firstAttribute="height" constant="28" id="SWi-RG-cMf"/>
                                                     </constraints>
                                                 </view>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-hs-X9z" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-hs-X9z" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="81" y="28" width="288" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="PGO-n2-fOc"/>
                                                     </constraints>
                                                 </slider>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="81" y="86" width="288" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="5yf-Zm-dXO"/>
@@ -262,6 +273,7 @@
                     <connections>
                         <outlet property="alcoholAmountLabel" destination="KXv-cI-Yun" id="x8i-j7-xXr"/>
                         <outlet property="alcoholPercentageLabel" destination="Iad-Bh-isB" id="bxH-Bf-oCn"/>
+                        <outlet property="alcoholStrengthLabel" destination="4km-7l-Nc0" id="3xW-u4-IIM"/>
                         <outlet property="backgroundView" destination="XbZ-Jp-BWm" id="Ev8-1r-aqj"/>
                         <outlet property="ingredientTableView" destination="R7c-sm-cqE" id="1LU-eD-gux"/>
                         <outlet property="totalAmountLabel" destination="ueW-Qp-Tvn" id="MZo-93-UyJ"/>
