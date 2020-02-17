@@ -524,7 +524,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 7
+            return super.tableView(tableView, numberOfRowsInSection: 0)
         }else if section == 1{
             // 別タブでレシピを削除して戻ってきた時に存在しないレシピに
             // アクセスしようとしてクラッシュしてしまう問題への対策
