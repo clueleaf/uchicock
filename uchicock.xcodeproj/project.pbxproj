@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */; };
 		9B05D1B522B7D5DF0062D9C9 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */; };
+		9B0AEBD923FA407B00EEA4F9 /* StrengthTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0AEBD823FA407B00EEA4F9 /* StrengthTipViewController.swift */; };
 		9B0CF99E1CA7EE870024AF40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CF99D1CA7EE870024AF40 /* Settings.bundle */; };
 		9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */; };
 		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
@@ -117,6 +118,7 @@
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95172BD4FAD927EE844F42CE /* Pods-uchicock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uchicock.release.xcconfig"; path = "Pods/Target Support Files/Pods-uchicock/Pods-uchicock.release.xcconfig"; sourceTree = "<group>"; };
 		9B05D1B422B7D5DF0062D9C9 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
+		9B0AEBD823FA407B00EEA4F9 /* StrengthTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StrengthTipViewController.swift; path = RecipeDetail/StrengthTipViewController.swift; sourceTree = "<group>"; };
 		9B0CF99D1CA7EE870024AF40 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterViewController.swift; path = RecipeEdit/PhotoFilterViewController.swift; sourceTree = "<group>"; };
 		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				9BEC4C212351EB38004FE9B4 /* Tip.storyboard */,
 				9BD91A6122BD3A840088C146 /* StyleTipViewController.swift */,
 				9BD91A5F22BD3A740088C146 /* MethodTipViewController.swift */,
+				9B0AEBD823FA407B00EEA4F9 /* StrengthTipViewController.swift */,
 			);
 			name = RecipeDetail;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
 				9B3078CB1CA421AE0014CE7E /* Ingredient.swift in Sources */,
+				9B0AEBD923FA407B00EEA4F9 /* StrengthTipViewController.swift in Sources */,
 				9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */,
 				9B2E83E6230A9F7A002E7946 /* ImageViewerController.swift in Sources */,
 				9B2573232349F0A400F732A1 /* ChangeImageSizeTableViewController.swift in Sources */,

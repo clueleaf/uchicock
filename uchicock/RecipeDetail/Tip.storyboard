@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -375,6 +375,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdd-NF-qK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="366.66666666666669" y="804.91071428571422"/>
+        </scene>
+        <!--Basic Navigation Controller-->
+        <scene sceneID="Vi7-2J-pGj">
+            <objects>
+                <navigationController storyboardIdentifier="StrengthTipNavigationController" id="JC5-Km-Vye" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="6Gj-QF-afz" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8By-U8-1Cc" kind="relationship" relationship="rootViewController" id="uiq-Cg-uAH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NEa-0d-wzt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-617" y="1513"/>
+        </scene>
+        <!--アルコール度数-->
+        <scene sceneID="h6l-P7-ynp">
+            <objects>
+                <viewController id="8By-U8-1Cc" customClass="StrengthTipViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x5e-i9-RqN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Xu-qL-fiD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-cv-qGg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="283"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-IZ-4fa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="394" height="251"/>
+                                                <mutableString key="text">このアプリでは、概ねアルコール度数10%未満のカクテルを「弱い」、10%以上25%未満のカクテルを「やや強い」、25%以上のカクテルを「強い」として分類している。厳密な分類ではないので参考程度に。
+
+アルコールを含む材料の割合を増やせば度数は強くなるし、逆にノンアルコールの材料の割合を増やせば度数は弱くなる。アルコールが強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のカクテルの味とは変わってしまうが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
+
+自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機能を活用しよう。</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="FXx-IZ-4fa" secondAttribute="trailing" constant="12" id="DBu-yX-EiA"/>
+                                            <constraint firstItem="FXx-IZ-4fa" firstAttribute="top" secondItem="zq6-cv-qGg" secondAttribute="top" constant="8" id="eTM-Q7-uHQ"/>
+                                            <constraint firstItem="FXx-IZ-4fa" firstAttribute="leading" secondItem="zq6-cv-qGg" secondAttribute="leading" constant="8" id="elf-Pp-G9b"/>
+                                            <constraint firstAttribute="bottom" secondItem="FXx-IZ-4fa" secondAttribute="bottom" constant="24" id="fed-y8-4GX"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zq6-cv-qGg" secondAttribute="bottom" id="hVm-H2-pdW"/>
+                                    <constraint firstItem="zq6-cv-qGg" firstAttribute="leading" secondItem="3Xu-qL-fiD" secondAttribute="leading" id="rFL-vx-fiz"/>
+                                    <constraint firstItem="zq6-cv-qGg" firstAttribute="top" secondItem="3Xu-qL-fiD" secondAttribute="top" id="uDz-Pm-Tnp"/>
+                                    <constraint firstAttribute="trailing" secondItem="zq6-cv-qGg" secondAttribute="trailing" id="zt3-RD-fww"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zpl-eY-VOD" firstAttribute="bottom" secondItem="3Xu-qL-fiD" secondAttribute="bottom" id="EuH-vV-A6g"/>
+                            <constraint firstItem="zq6-cv-qGg" firstAttribute="width" secondItem="x5e-i9-RqN" secondAttribute="width" id="Mhx-E1-lHx"/>
+                            <constraint firstItem="3Xu-qL-fiD" firstAttribute="leading" secondItem="zpl-eY-VOD" secondAttribute="leading" id="Siy-MT-BNb"/>
+                            <constraint firstItem="3Xu-qL-fiD" firstAttribute="top" secondItem="zpl-eY-VOD" secondAttribute="top" id="YXq-5n-qWE"/>
+                            <constraint firstItem="zpl-eY-VOD" firstAttribute="trailing" secondItem="3Xu-qL-fiD" secondAttribute="trailing" id="uzv-dF-Cpd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zpl-eY-VOD"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="アルコール度数" id="07U-gZ-JB6">
+                        <barButtonItem key="rightBarButtonItem" title="閉じる" id="lLn-fu-xJ2">
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="8By-U8-1Cc" id="mR8-K3-UL2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundView" destination="zq6-cv-qGg" id="bo2-eW-hlO"/>
+                        <outlet property="scrollView" destination="3Xu-qL-fiD" id="iOL-2r-dEm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="spb-p7-FLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="367" y="1518"/>
         </scene>
     </scenes>
 </document>

@@ -760,7 +760,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
-        // TODO
+        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! UINavigationController
+        let vc = nvc.visibleViewController as! StrengthTipViewController
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .formSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
+        present(nvc, animated: true)
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
@@ -878,7 +889,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
 
         if let VC = VC{
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self){
+            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
                 pc.xMargin = 60
                 pc.yMargin = 160
                 pc.canDismissWithOverlayViewTouch = true
@@ -898,7 +909,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let animator = DismissModalAnimator()
 
         if let VC = VC {
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self){
+            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
                 animator.xMargin = 60
                 animator.yMargin = 160
                 return animator
