@@ -585,6 +585,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
                 cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
                 cell.amountText = recipe.recipeIngredients[indexPath.row].amount
+                cell.category = recipe.recipeIngredients[indexPath.row].ingredient.category
             }
 
             cell.selectionStyle = .default

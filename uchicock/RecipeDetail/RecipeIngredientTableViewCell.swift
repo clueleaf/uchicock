@@ -11,9 +11,11 @@ import UIKit
 class RecipeIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var ingredientNameLabel: UILabel!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
     var ingredientId: String? = nil
     
@@ -49,7 +51,20 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
+    var category = Int(){
+        didSet{
+            alcoholIconImage.tintColor = Style.primaryColor
+            if category == 0{
+                alcoholIconImage.isHidden = false
+                alcoholIconImageWidthConstraint.constant = 13
+            }else{
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
+            }
+        }
+    }
+
     var ingredientName = String(){
         didSet{
             ingredientNameLabel.text = ingredientName

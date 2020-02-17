@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n6-Ph-gt1">
@@ -30,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23P-pr-BF0">
-                        <rect key="frame" x="71" y="8" width="241" height="21"/>
+                        <rect key="frame" x="84" y="8" width="228" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="L18-dt-Tn0"/>
                         </constraints>
@@ -57,22 +55,34 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" translatesAutoresizingMaskIntoConstraints="NO" id="pt2-6t-NLc">
+                        <rect key="frame" x="71" y="10" width="13" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Qaz-fz-5I6"/>
+                            <constraint firstAttribute="width" constant="13" id="oXt-EL-MmH"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Tsr-Sv-bcu" secondAttribute="trailing" constant="8" id="32G-I0-kKA"/>
                     <constraint firstAttribute="trailing" secondItem="23P-pr-BF0" secondAttribute="trailing" constant="8" id="4Qh-dl-hbD"/>
+                    <constraint firstItem="Tsr-Sv-bcu" firstAttribute="top" secondItem="pt2-6t-NLc" secondAttribute="bottom" constant="10" id="5OK-Lg-zNK"/>
                     <constraint firstItem="Tsr-Sv-bcu" firstAttribute="top" secondItem="23P-pr-BF0" secondAttribute="bottom" constant="8" id="BMV-Al-3ez"/>
-                    <constraint firstItem="23P-pr-BF0" firstAttribute="leading" secondItem="6n6-Ph-gt1" secondAttribute="trailing" constant="8" id="Boz-uG-5Dt"/>
                     <constraint firstItem="T7H-l3-AhO" firstAttribute="top" secondItem="6n6-Ph-gt1" secondAttribute="bottom" constant="8" id="CC6-aA-w3V"/>
                     <constraint firstItem="23P-pr-BF0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="DTn-LS-SfO"/>
                     <constraint firstItem="Tsr-Sv-bcu" firstAttribute="leading" secondItem="T7H-l3-AhO" secondAttribute="trailing" constant="8" id="FiU-jI-ykl"/>
+                    <constraint firstItem="pt2-6t-NLc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="HWr-BT-cpb"/>
                     <constraint firstItem="T7H-l3-AhO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="P2T-0g-Afl"/>
                     <constraint firstItem="6n6-Ph-gt1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Ytt-hv-qxn"/>
+                    <constraint firstItem="23P-pr-BF0" firstAttribute="leading" secondItem="pt2-6t-NLc" secondAttribute="trailing" id="cyH-Z2-HHu"/>
+                    <constraint firstItem="pt2-6t-NLc" firstAttribute="leading" secondItem="6n6-Ph-gt1" secondAttribute="trailing" constant="8" id="ecJ-G1-jh6"/>
                     <constraint firstItem="6n6-Ph-gt1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="qao-DW-3oX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="alcoholIconImage" destination="pt2-6t-NLc" id="98g-fk-WPn"/>
+                <outlet property="alcoholIconImageWidthConstraint" destination="oXt-EL-MmH" id="wRB-dF-qNg"/>
                 <outlet property="amountLabel" destination="Tsr-Sv-bcu" id="oOm-dS-fSR"/>
                 <outlet property="ingredientNameLabel" destination="23P-pr-BF0" id="byo-p7-bao"/>
                 <outlet property="optionLabel" destination="T7H-l3-AhO" id="3Fv-O3-GtU"/>
@@ -81,4 +91,7 @@
             <point key="canvasLocation" x="47.826086956521742" y="44.196428571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="tabbar-ingredient" width="24" height="24"/>
+    </resources>
 </document>

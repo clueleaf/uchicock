@@ -14,6 +14,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var stockRecommendLabel: UILabel!
     @IBOutlet weak var category: CustomLabel!
+    @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CopyableLabel!
     @IBOutlet weak var editButton: UIButton!
@@ -24,6 +25,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var amazonContainerView: UIView!
     @IBOutlet weak var deleteContainerView: UIView!
     @IBOutlet weak var recipeOrderLabel: UILabel!
+    @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
     var coverView = UIView(frame: CGRect.zero)
     var deleteImageView = UIImageView(frame: CGRect.zero)
@@ -93,6 +95,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stock.secondaryTintColor = Style.primaryColor
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         stockRecommendLabel.textColor = Style.primaryColor
+        alcoholIconImage.tintColor = Style.primaryColor
         deleteButtonLabel.textColor = Style.deleteColor
 
         recipeOrderLabel.textColor = Style.primaryColor
@@ -121,12 +124,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             switch ingredient.category{
             case 0:
                 category.text = "アルコール"
+                alcoholIconImage.isHidden = false
+                alcoholIconImageWidthConstraint.constant = 17
             case 1:
                 category.text = "ノンアルコール"
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
             case 2:
                 category.text = "その他"
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
             default:
                 category.text = "その他"
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
             }
             
             stock.stateChangeAnimation = .fade

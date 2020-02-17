@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -96,7 +96,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="185" height="26"/>
+                                                    <rect key="frame" x="8" y="15" width="231" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="UnF-Cf-vuK"/>
                                                     </constraints>
@@ -105,22 +105,31 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="213" y="17.5" width="150" height="21"/>
+                                                    <rect key="frame" x="276" y="17.5" width="87" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Ocm-Nq-vek"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Ocm-Nq-vek"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cc-fS-Lij">
+                                                    <rect key="frame" x="259" y="17.5" width="17" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="17" id="WDk-kB-DPh"/>
+                                                        <constraint firstAttribute="height" constant="21" id="mxV-kq-9vi"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="bbv-Mt-9IU" secondAttribute="trailing" constant="12" id="HKG-Gd-o8j"/>
                                                 <constraint firstItem="iM9-Wc-cPe" firstAttribute="top" secondItem="wx8-pu-png" secondAttribute="top" constant="15" id="Ikg-pL-OUT"/>
                                                 <constraint firstAttribute="bottom" secondItem="iM9-Wc-cPe" secondAttribute="bottom" constant="15" id="QEq-rU-2aE"/>
-                                                <constraint firstItem="bbv-Mt-9IU" firstAttribute="leading" secondItem="iM9-Wc-cPe" secondAttribute="trailing" constant="20" id="euU-Py-Uq9"/>
+                                                <constraint firstItem="6cc-fS-Lij" firstAttribute="leading" secondItem="iM9-Wc-cPe" secondAttribute="trailing" constant="20" id="nbw-5c-vxk"/>
                                                 <constraint firstItem="bbv-Mt-9IU" firstAttribute="centerY" secondItem="iM9-Wc-cPe" secondAttribute="centerY" id="pR4-Jz-E1N"/>
                                                 <constraint firstItem="iM9-Wc-cPe" firstAttribute="leading" secondItem="wx8-pu-png" secondAttribute="leading" constant="8" id="r3p-zZ-MBF"/>
+                                                <constraint firstItem="6cc-fS-Lij" firstAttribute="centerY" secondItem="iM9-Wc-cPe" secondAttribute="centerY" id="xxX-ND-53h"/>
+                                                <constraint firstItem="bbv-Mt-9IU" firstAttribute="leading" secondItem="6cc-fS-Lij" secondAttribute="trailing" id="yPZ-6C-YZg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -342,6 +351,8 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Title" id="yNe-Yi-aiI"/>
                     <connections>
+                        <outlet property="alcoholIconImage" destination="6cc-fS-Lij" id="ghV-YK-oMc"/>
+                        <outlet property="alcoholIconImageWidthConstraint" destination="WDk-kB-DPh" id="1Th-QH-dRr"/>
                         <outlet property="amazonButton" destination="Tyv-e1-O7y" id="lrK-LI-yvF"/>
                         <outlet property="amazonContainerView" destination="IUb-qb-HOW" id="7N9-Zt-MQe"/>
                         <outlet property="category" destination="bbv-Mt-9IU" id="i9Z-O6-rIg"/>
@@ -385,5 +396,6 @@
         <image name="button-delete" width="24" height="24"/>
         <image name="button-edit" width="24" height="24"/>
         <image name="button-reminder" width="24" height="24"/>
+        <image name="tabbar-ingredient" width="24" height="24"/>
     </resources>
 </document>
