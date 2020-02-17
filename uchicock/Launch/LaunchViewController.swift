@@ -14,6 +14,7 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var prepareMessage: UILabel!
     
     var recipeList: Results<Recipe>?
+    var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -76,10 +77,17 @@ class LaunchViewController: UIViewController {
     
     func prepareToShowRecipeList(){
         prepareMessage.alpha = 1.0
+        
+        let realm = try! Realm()
+
+        // アルコール度数計算オブジェクトを追加する処理
+        calcIngredientList = realm.objects(CalculatorIngredient.self)
+        if calcIngredientList == nil || calcIngredientList!.count == 0{
+            addSampleCalcIngredient()
+        }
 
         // DBに名前がないが存在する画像を削除する処理
         var dbFileNameList: [String] = []
-        let realm = try! Realm()
         recipeList = realm.objects(Recipe.self)
         for recipe in recipeList!{
             if let imageFileName = recipe.imageFileName{
@@ -128,6 +136,34 @@ class LaunchViewController: UIViewController {
         }
         
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
+    }
+    
+    private func addSampleCalcIngredient(){
+        addCalcIngredient(id: "0", degree: 40, amount: 45, valid: true)
+        addCalcIngredient(id: "1", degree: 0, amount: 90, valid: true)
+        addCalcIngredient(id: "2", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "3", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "4", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "5", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "6", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "7", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "8", degree: 0, amount: 0, valid: false)
+        addCalcIngredient(id: "9", degree: 0, amount: 0, valid: false)
+    }
+        
+    private func addCalcIngredient(id: String, degree: Int, amount: Int, valid: Bool){
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: id)
+        if ing == nil {
+            let ingredient = CalculatorIngredient()
+            ingredient.id = id
+            ingredient.degree = degree
+            ingredient.amount = amount
+            ingredient.valid = valid
+            try! realm.write{
+                realm.add(ingredient)
+            }
+        }
     }
 
     func dismissIntroductionAndPrepareToShowRecipeList(_ introduction: IntroductionPageViewController){
