@@ -43,7 +43,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var albumFilterShake = true
     var albumFilterBlend = true
     var albumFilterOthers = true
-    
+    var albumFilterNonAlcohol = true
+    var albumFilterWeak = true
+    var albumFilterMedium = true
+    var albumFilterStrong = true
+    var albumFilterStrengthNone = true
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -79,6 +84,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         defaults.set(true, forKey: GlobalConstants.AlbumFilterShakeKey)
         defaults.set(true, forKey: GlobalConstants.AlbumFilterBlendKey)
         defaults.set(true, forKey: GlobalConstants.AlbumFilterOthersKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterNonAlcoholKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterWeakKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterMediumKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStrongKey)
+        defaults.set(true, forKey: GlobalConstants.AlbumFilterStrengthNoneKey)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,6 +172,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         albumFilterShake = defaults.bool(forKey: GlobalConstants.AlbumFilterShakeKey)
         albumFilterBlend = defaults.bool(forKey: GlobalConstants.AlbumFilterBlendKey)
         albumFilterOthers = defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey)
+        albumFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.AlbumFilterNonAlcoholKey)
+        albumFilterWeak = defaults.bool(forKey: GlobalConstants.AlbumFilterWeakKey)
+        albumFilterMedium = defaults.bool(forKey: GlobalConstants.AlbumFilterMediumKey)
+        albumFilterStrong = defaults.bool(forKey: GlobalConstants.AlbumFilterStrongKey)
+        albumFilterStrengthNone = defaults.bool(forKey: GlobalConstants.AlbumFilterStrengthNoneKey)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -224,7 +239,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     private func setFilterImageState(){
         if albumFilterStar0 && albumFilterStar1 && albumFilterStar2 && albumFilterStar3 &&
             albumFilterLong && albumFilterShort && albumFilterHot && albumFilterStyleNone &&
-            albumFilterBuild && albumFilterStir && albumFilterShake && albumFilterBlend && albumFilterOthers {
+            albumFilterBuild && albumFilterStir && albumFilterShake && albumFilterBlend && albumFilterOthers &&
+            albumFilterNonAlcohol && albumFilterWeak && albumFilterMedium && albumFilterStrong && albumFilterStrengthNone{
             albumFilterBarButton.image = UIImage(named: "navigation-album-filter-off")
         }else{
             albumFilterBarButton.image = UIImage(named: "navigation-album-filter-on")
@@ -272,6 +288,21 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
         if albumFilterOthers == false{
             filteredRecipeBasicList.removeAll{ $0.method == 4 }
+        }
+        if albumFilterNonAlcohol == false{
+            filteredRecipeBasicList.removeAll{ $0.strength == 0 }
+        }
+        if albumFilterWeak == false{
+            filteredRecipeBasicList.removeAll{ $0.strength == 1 }
+        }
+        if albumFilterMedium == false{
+            filteredRecipeBasicList.removeAll{ $0.strength == 2 }
+        }
+        if albumFilterStrong == false{
+            filteredRecipeBasicList.removeAll{ $0.strength == 3 }
+        }
+        if albumFilterStrengthNone == false{
+            filteredRecipeBasicList.removeAll{ $0.strength == 4 }
         }
     }
     

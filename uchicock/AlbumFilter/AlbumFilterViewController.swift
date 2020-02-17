@@ -43,6 +43,16 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var methodWarningImage: UIImageView!
     @IBOutlet weak var methodWarningLabel: UILabel!
     
+    @IBOutlet weak var strengthDeselectAllButton: UIButton!
+    @IBOutlet weak var strengthSelectAllButton: UIButton!
+    @IBOutlet weak var strengthNonAlcoholCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthWeakCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthMediumCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthStrongCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthNoneCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthWarningImage: UIImageView!
+    @IBOutlet weak var strengthWarningLabel: UILabel!
+    
     @IBOutlet weak var secondSeparator: UIView!
     @IBOutlet weak var searchButtonBackgroundView: UIView!
     @IBOutlet weak var searchButton: UIButton!
@@ -61,7 +71,12 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     var recipeFilterShake = true
     var recipeFilterBlend = true
     var recipeFilterOthers = true
-    
+    var recipeFilterNonAlcohol = true
+    var recipeFilterWeak = true
+    var recipeFilterMedium = true
+    var recipeFilterStrong = true
+    var recipeFilterStrengthNone = true
+
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -93,6 +108,11 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: recipeFilterShake)
         initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: recipeFilterBlend)
         initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: recipeFilterOthers)
+        initFilterCheckbox(strengthNonAlcoholCheckbox, shouldBeChecked: recipeFilterNonAlcohol)
+        initFilterCheckbox(strengthWeakCheckbox, shouldBeChecked: recipeFilterWeak)
+        initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: recipeFilterMedium)
+        initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: recipeFilterStrong)
+        initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: recipeFilterStrengthNone)
     }
     
     private func readUserDefaults(){
@@ -111,6 +131,11 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
         recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
         recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
+        recipeFilterNonAlcohol = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
+        recipeFilterWeak = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
+        recipeFilterMedium = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
+        recipeFilterStrong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
+        recipeFilterStrengthNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -142,6 +167,12 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         methodWarningLabel.textColor = Style.deleteColor
         setMethodWarningVisibility()
         
+        strengthDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
+        strengthSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
+        strengthWarningImage.tintColor = Style.deleteColor
+        strengthWarningLabel.textColor = Style.deleteColor
+        setStrengthWarningVisibility()
+
         secondSeparator.backgroundColor = Style.labelTextColor
         searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
         searchButton.layer.borderColor = Style.primaryColor.cgColor
@@ -190,6 +221,20 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    private func setStrengthWarningVisibility(){
+        if strengthNonAlcoholCheckbox.checkState == .unchecked &&
+            strengthWeakCheckbox.checkState == .unchecked &&
+            strengthMediumCheckbox.checkState == .unchecked &&
+            strengthStrongCheckbox.checkState == .unchecked &&
+            strengthNoneCheckbox.checkState == .unchecked {
+            strengthWarningImage.isHidden = false
+            strengthWarningLabel.isHidden = false
+        }else{
+            strengthWarningImage.isHidden = true
+            strengthWarningLabel.isHidden = true
+        }
+    }
+
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -288,6 +333,11 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
         setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
         setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
+        setFilterUserDefaults(with: strengthNonAlcoholCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
+        setFilterUserDefaults(with: strengthWeakCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
+        setFilterUserDefaults(with: strengthMediumCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
+        setFilterUserDefaults(with: strengthStrongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
+        setFilterUserDefaults(with: strengthNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
     }
     
     private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
@@ -417,4 +467,41 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setMethodWarningVisibility()
     }
     
+    @IBAction func strengthDeselectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxUnchecked(strengthNonAlcoholCheckbox)
+        setCheckboxUnchecked(strengthWeakCheckbox)
+        setCheckboxUnchecked(strengthMediumCheckbox)
+        setCheckboxUnchecked(strengthStrongCheckbox)
+        setCheckboxUnchecked(strengthNoneCheckbox)
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthSelectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(strengthNonAlcoholCheckbox)
+        setCheckboxChecked(strengthWeakCheckbox)
+        setCheckboxChecked(strengthMediumCheckbox)
+        setCheckboxChecked(strengthStrongCheckbox)
+        setCheckboxChecked(strengthNoneCheckbox)
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthNonAlcoholCheckboxTapped(_ sender: CircularCheckbox) {
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthWeakCheckboxTapped(_ sender: CircularCheckbox) {
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthMediumCheckboxTapped(_ sender: CircularCheckbox) {
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthStrongCheckboxTapped(_ sender: CircularCheckbox) {
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthNoneCheckboxTapped(_ sender: CircularCheckbox) {
+        setStrengthWarningVisibility()
+    }
 }
