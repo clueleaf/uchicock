@@ -56,6 +56,11 @@ class LaunchViewController: UIViewController {
         defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
         defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
         defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterNonAlcoholKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterWeakKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterMediumKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStrongKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStrengthNoneKey : true])
     }
     
     override func viewDidAppear(_ animated: Bool) {

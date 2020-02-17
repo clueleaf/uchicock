@@ -228,7 +228,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     func reloadIngredientRecipeBasicList(){
         ingredientRecipeBasicList.removeAll()
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, imageFileName: recipeIngredient.recipe.imageFileName))
+            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
         }
         
         switch  recipeOrder {

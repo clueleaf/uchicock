@@ -51,7 +51,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeFilterShake = true
     var recipeFilterBlend = true
     var recipeFilterOthers = true
-    
+    var recipeFilterNonAlcohol = true
+    var recipeFilterWeak = true
+    var recipeFilterMedium = true
+    var recipeFilterStrong = true
+    var recipeFilterStrengthNone = true
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -184,6 +189,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipeFilterShake = defaults.bool(forKey: GlobalConstants.RecipeFilterShakeKey)
         recipeFilterBlend = defaults.bool(forKey: GlobalConstants.RecipeFilterBlendKey)
         recipeFilterOthers = defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey)
+        recipeFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.RecipeFilterNonAlcoholKey)
+        recipeFilterWeak = defaults.bool(forKey: GlobalConstants.RecipeFilterWeakKey)
+        recipeFilterMedium = defaults.bool(forKey: GlobalConstants.RecipeFilterMediumKey)
+        recipeFilterStrong = defaults.bool(forKey: GlobalConstants.RecipeFilterStrongKey)
+        recipeFilterStrengthNone = defaults.bool(forKey: GlobalConstants.RecipeFilterStrengthNoneKey)
     }
     
     private func setSearchConditionButtonTitle(){
@@ -223,7 +233,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
             recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
+            recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
         }else{
             conditionText += "、絞り込み有"
         }
@@ -320,7 +331,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
         if isBookmarkMode{
@@ -370,6 +381,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             if recipeFilterOthers == false{
                 recipeBasicList.removeAll{ $0.method == 4 }
+            }
+            if recipeFilterNonAlcohol == false{
+                recipeBasicList.removeAll{ $0.strength == 0 }
+            }
+            if recipeFilterWeak == false{
+                recipeBasicList.removeAll{ $0.strength == 1 }
+            }
+            if recipeFilterMedium == false{
+                recipeBasicList.removeAll{ $0.strength == 2 }
+            }
+            if recipeFilterStrong == false{
+                recipeBasicList.removeAll{ $0.strength == 3 }
+            }
+            if recipeFilterStrengthNone == false{
+                recipeBasicList.removeAll{ $0.strength == 4 }
             }
 
             switch recipeSortPrimary{
@@ -610,7 +636,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 noDataLabel.text = "条件にあてはまるレシピはありません"
                 if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
                     recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-                    recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+                    recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
+                    recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
                 }else{
                     noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
                 }

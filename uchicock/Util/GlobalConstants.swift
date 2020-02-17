@@ -47,7 +47,12 @@ struct GlobalConstants{
     static let FilterShakeKey = "filter-shake"
     static let FilterBlendKey = "filter-blend"
     static let FilterOthersKey = "filter-others"
-    
+    static let FilterNonAlcoholKey = "filter-nonalcohol"
+    static let FilterWeakKey = "filter-weak"
+    static let FilterMediumKey = "filter-medium"
+    static let FilterStrongKey = "filter-strong"
+    static let FilterStrengthNoneKey = "filter-strengthnone"
+
     // MARK: - Recipe Search Keys
     static let RecipeSortPrimaryKey = "recipe-sort-primary"
     static let RecipeSortSecondaryKey = "recipe-sort-secondary"
@@ -64,7 +69,12 @@ struct GlobalConstants{
     static let RecipeFilterShakeKey = "recipe-filter-shake"
     static let RecipeFilterBlendKey = "recipe-filter-blend"
     static let RecipeFilterOthersKey = "recipe-filter-others"
-    
+    static let RecipeFilterNonAlcoholKey = "recipe-filter-nonalcohol"
+    static let RecipeFilterWeakKey = "recipe-filter-weak"
+    static let RecipeFilterMediumKey = "recipe-filter-medium"
+    static let RecipeFilterStrongKey = "recipe-filter-strong"
+    static let RecipeFilterStrengthNoneKey = "recipe-filter-strengthnone"
+
     // MARK: - Reverse Lookup Search Keys
     static let ReverseLookupSortPrimaryKey = "reverse-lookup-sort-primary"
     static let ReverseLookupSortSecondaryKey = "reverse-lookup-sort-secondary"
@@ -81,6 +91,11 @@ struct GlobalConstants{
     static let ReverseLookupFilterShakeKey = "reverse-lookup-filter-shake"
     static let ReverseLookupFilterBlendKey = "reverse-lookup-filter-blend"
     static let ReverseLookupFilterOthersKey = "reverse-lookup-filter-others"
+    static let ReverseLookupFilterNonAlcoholKey = "reverse-lookup-filter-nonalcohol"
+    static let ReverseLookupFilterWeakKey = "reverse-lookup-filter-weak"
+    static let ReverseLookupFilterMediumKey = "reverse-lookup-filter-medium"
+    static let ReverseLookupFilterStrongKey = "reverse-lookup-filter-strong"
+    static let ReverseLookupFilterStrengthNoneKey = "reverse-lookup-filter-strengthnone"
     static let ReverseLookupFirstIngredientKey = "ReverseLookupFirst"
     static let ReverseLookupSecondIngredientKey = "ReverseLookupSecond"
     static let ReverseLookupThirdIngredientKey = "ReverseLookupThird"
@@ -99,6 +114,11 @@ struct GlobalConstants{
     static let AlbumFilterShakeKey = "album-filter-shake"
     static let AlbumFilterBlendKey = "album-filter-blend"
     static let AlbumFilterOthersKey = "album-filter-others"
+    static let AlbumFilterNonAlcoholKey = "album-filter-nonalcohol"
+    static let AlbumFilterWeakKey = "album-filter-weak"
+    static let AlbumFilterMediumKey = "album-filter-medium"
+    static let AlbumFilterStrongKey = "album-filter-strong"
+    static let AlbumFilterStrengthNoneKey = "album-filter-strengthnone"
 
     // MARK: - Introduction Descriptions
     static let IntroductionDescriptionThanks = "ダウンロードしていただき、ありがとうございます！\n使い方を簡単に説明します。\n\n※この説明は後からでも確認できます。"

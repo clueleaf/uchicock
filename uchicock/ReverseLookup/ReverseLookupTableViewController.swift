@@ -49,7 +49,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var recipeFilterShake = true
     var recipeFilterBlend = true
     var recipeFilterOthers = true
-    
+    var recipeFilterNonAlcohol = true
+    var recipeFilterWeak = true
+    var recipeFilterMedium = true
+    var recipeFilterStrong = true
+    var recipeFilterStrengthNone = true
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -178,7 +183,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         defaults.register(defaults: [GlobalConstants.ReverseLookupFilterShakeKey : true])
         defaults.register(defaults: [GlobalConstants.ReverseLookupFilterBlendKey : true])
         defaults.register(defaults: [GlobalConstants.ReverseLookupFilterOthersKey : true])
-        
+        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterNonAlcoholKey : true])
+        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterWeakKey : true])
+        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterMediumKey : true])
+        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStrongKey : true])
+        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStrengthNoneKey : true])
+
         recipeSortPrimary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortPrimaryKey)
         recipeSortSecondary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortSecondaryKey)
         recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar0Key)
@@ -194,6 +204,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterShake = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterShakeKey)
         recipeFilterBlend = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBlendKey)
         recipeFilterOthers = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterOthersKey)
+        recipeFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterNonAlcoholKey)
+        recipeFilterWeak = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterWeakKey)
+        recipeFilterMedium = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterMediumKey)
+        recipeFilterStrong = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrongKey)
+        recipeFilterStrengthNone = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrengthNoneKey)
 
         if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
             ingredientTextField1.text = first.withoutSpace()
@@ -253,7 +268,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
             recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
+            recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
         }else{
             conditionText += "、絞り込み有"
         }
@@ -377,7 +393,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if recipeFilterOthers == false{
             recipeBasicList.removeAll{ $0.method == 4 }
         }
-        
+        if recipeFilterNonAlcohol == false{
+            recipeBasicList.removeAll{ $0.strength == 0 }
+        }
+        if recipeFilterWeak == false{
+            recipeBasicList.removeAll{ $0.strength == 1 }
+        }
+        if recipeFilterMedium == false{
+            recipeBasicList.removeAll{ $0.strength == 2 }
+        }
+        if recipeFilterStrong == false{
+            recipeBasicList.removeAll{ $0.strength == 3 }
+        }
+        if recipeFilterStrengthNone == false{
+            recipeBasicList.removeAll{ $0.strength == 4 }
+        }
+
         switch recipeSortPrimary{
         case 1: // 名前順
             recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
@@ -600,7 +631,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             noDataLabel.text = "条件にあてはまるレシピはありません"
             if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
                 recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-                recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers {
+                recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
+                recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
             }else{
                 noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
             }
@@ -620,7 +652,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, imageFileName: recipe.imageFileName))
+            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
         }
     }
     
@@ -629,7 +661,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, imageFileName: ri.recipe.imageFileName))
+                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(withoutUse: t2)

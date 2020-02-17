@@ -18,6 +18,7 @@ struct RecipeBasic{
     var madeNum : Int
     var method : Int
     var style : Int
+    var strength : Int
     var imageFileName: String?
     var bookmarkDate : Date?
 }
