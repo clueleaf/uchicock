@@ -277,6 +277,7 @@
                                                 <constraint firstItem="4Se-uj-K8v" firstAttribute="top" secondItem="L7Q-tA-EoB" secondAttribute="bottom" id="xaA-ZK-SS3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="amountLabel" destination="L7Q-tA-EoB" id="mg1-VC-AiW"/>
                                             <outlet property="amountSlider" destination="4Se-uj-K8v" id="qZF-kA-Ppl"/>
