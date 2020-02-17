@@ -41,7 +41,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全体の量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-5c-Jxo" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="58" y="6" width="57.5" height="20"/>
+                                                        <rect key="frame" x="65" y="6" width="57.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="nhr-GZ-wLN"/>
                                                         </constraints>
@@ -53,10 +53,10 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="ueW-Qp-Tvn" firstAttribute="top" secondItem="Zgp-5c-Jxo" secondAttribute="bottom" id="14f-U2-yYa"/>
+                                                    <constraint firstItem="Zgp-5c-Jxo" firstAttribute="centerX" secondItem="ZMV-SC-5Zk" secondAttribute="centerX" id="Pg1-UY-aug"/>
                                                     <constraint firstItem="ueW-Qp-Tvn" firstAttribute="centerX" secondItem="ZMV-SC-5Zk" secondAttribute="centerX" id="Q3h-EB-njX"/>
                                                     <constraint firstItem="Cfk-s4-cQN" firstAttribute="leading" secondItem="ueW-Qp-Tvn" secondAttribute="trailing" id="Rbt-Ir-se6"/>
                                                     <constraint firstAttribute="bottom" secondItem="ueW-Qp-Tvn" secondAttribute="bottom" constant="4" id="YFR-Ss-ckS"/>
-                                                    <constraint firstItem="ueW-Qp-Tvn" firstAttribute="leading" secondItem="Zgp-5c-Jxo" secondAttribute="leading" id="fk8-aU-U7a"/>
                                                     <constraint firstItem="Cfk-s4-cQN" firstAttribute="bottom" secondItem="ueW-Qp-Tvn" secondAttribute="bottom" id="lXO-ey-dgn"/>
                                                 </constraints>
                                             </view>
@@ -79,7 +79,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-KG-oIC" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="58" y="6" width="86" height="20"/>
+                                                        <rect key="frame" x="51" y="6" width="86" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="NtA-oN-QiP"/>
                                                         </constraints>
@@ -90,10 +90,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="4dc-KG-oIC" firstAttribute="centerX" secondItem="6VU-Ad-sYa" secondAttribute="centerX" id="0Dw-qT-gt1"/>
                                                     <constraint firstAttribute="bottom" secondItem="KXv-cI-Yun" secondAttribute="bottom" constant="4" id="IUb-el-w38"/>
                                                     <constraint firstItem="KXv-cI-Yun" firstAttribute="top" secondItem="4dc-KG-oIC" secondAttribute="bottom" id="K1k-Qd-XEM"/>
                                                     <constraint firstItem="KLi-wI-gbz" firstAttribute="bottom" secondItem="KXv-cI-Yun" secondAttribute="bottom" id="UQU-g1-cc9"/>
-                                                    <constraint firstItem="KXv-cI-Yun" firstAttribute="leading" secondItem="4dc-KG-oIC" secondAttribute="leading" id="ZTh-s0-THd"/>
                                                     <constraint firstItem="KXv-cI-Yun" firstAttribute="centerX" secondItem="6VU-Ad-sYa" secondAttribute="centerX" id="dlI-1h-SuO"/>
                                                     <constraint firstItem="KLi-wI-gbz" firstAttribute="leading" secondItem="KXv-cI-Yun" secondAttribute="trailing" id="vh8-oJ-niF"/>
                                                 </constraints>
@@ -119,7 +119,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHs-4P-Wj4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="142" y="73" width="121.5" height="17"/>
+                                        <rect key="frame" x="127" y="73" width="121.5" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="MNU-Zp-3Fj"/>
                                         </constraints>
@@ -147,10 +147,10 @@
                                     <constraint firstItem="zHs-4P-Wj4" firstAttribute="top" secondItem="JRg-5K-vdY" secondAttribute="bottom" constant="16" id="QFo-wI-v1l"/>
                                     <constraint firstAttribute="trailing" secondItem="JRg-5K-vdY" secondAttribute="trailing" id="Qux-lq-gop"/>
                                     <constraint firstItem="Iad-Bh-isB" firstAttribute="centerX" secondItem="XbZ-Jp-BWm" secondAttribute="centerX" id="TkG-hW-xtP"/>
-                                    <constraint firstItem="Iad-Bh-isB" firstAttribute="leading" secondItem="zHs-4P-Wj4" secondAttribute="leading" id="UNb-o9-cMh"/>
                                     <constraint firstItem="Bzn-bX-9ww" firstAttribute="bottom" secondItem="Iad-Bh-isB" secondAttribute="bottom" id="WNq-jv-TM3"/>
                                     <constraint firstItem="JRg-5K-vdY" firstAttribute="leading" secondItem="XbZ-Jp-BWm" secondAttribute="leading" id="Wst-gZ-Gx3"/>
                                     <constraint firstItem="JRg-5K-vdY" firstAttribute="top" secondItem="XbZ-Jp-BWm" secondAttribute="top" id="auS-Bv-okn"/>
+                                    <constraint firstItem="zHs-4P-Wj4" firstAttribute="centerX" secondItem="XbZ-Jp-BWm" secondAttribute="centerX" id="u9W-TY-qMe"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-sm-cqE">

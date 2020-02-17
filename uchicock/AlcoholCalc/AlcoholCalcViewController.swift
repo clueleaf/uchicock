@@ -24,7 +24,6 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return Style.statusBarStyle
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +32,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         let realm = try! Realm()
         calcIngredientList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
+        
+        calcAlcoholStrength()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +48,48 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     private func calcAlcoholStrength(){
-        // TODO
+        var totalAmount: Int = 0
+        var alcoholAmount: Double = 0.0
+        var alcoholPercentage: Double = 0.0
+        
+        guard calcIngredientList != nil else{
+            return
+        }
+        
+        for ing in calcIngredientList!{
+            if ing.valid{
+                totalAmount += ing.amount
+                alcoholAmount = alcoholAmount + Double(ing.amount) * Double(ing.degree) / 100.0
+            }
+        }
+        
+        totalAmountLabel.text = String(totalAmount)
+        
+        if Int(ceil(alcoholAmount)) == 1{
+            alcoholAmount = 1.0
+        }
+        alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
+        
+        if totalAmount == 0{
+            alcoholPercentage = 0.0
+        }else{
+            alcoholPercentage = alcoholAmount / Double(totalAmount) * 100.0
+        }
+        
+        if Int(ceil(alcoholPercentage)) == 1{
+            alcoholPercentage = 1.0
+        }
+        
+        alcoholPercentageLabel.text = String(Int(floor(alcoholPercentage)))
+        if Int(floor(alcoholPercentage)) == 0{
+            alcoholStrengthLabel.text = "ノンアルコール"
+        }else if Int(floor(alcoholPercentage)) < 10 {
+            alcoholStrengthLabel.text = "弱い"
+        }else if Int(floor(alcoholPercentage)) < 25 {
+            alcoholStrengthLabel.text = "やや強い"
+        }else{
+            alcoholStrengthLabel.text = "強い"
+        }
     }
     
     // MARK: - Cell Target Action
@@ -104,10 +146,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                     try! realm.write {
                         calcIngredient.degree = Int(floor(sender.value))
                     }
+                    calcAlcoholStrength()
                 }
             }
-            
-            calcAlcoholStrength()
         }
     }
 
@@ -129,10 +170,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                     try! realm.write {
                         calcIngredient.amount = Int(floor(sender.value) * 5)
                     }
+                    calcAlcoholStrength()
                 }
             }
-                
-            calcAlcoholStrength()
         }
     }
 
