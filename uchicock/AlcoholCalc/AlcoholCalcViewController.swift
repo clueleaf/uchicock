@@ -124,6 +124,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                 try! realm.write {
                     calcIngredient.valid = false
                 }
+                cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
                 cell.validLabel.textColor = Style.labelTextColorLight
                 cell.strengthLabel.textColor = Style.labelTextColorLight
                 cell.strengthSlider.isEnabled = false
@@ -133,6 +134,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                 try! realm.write {
                     calcIngredient.valid = true
                 }
+                cell.ingredientNumberLabel.textColor = Style.labelTextColor
                 cell.validLabel.textColor = Style.labelTextColor
                 cell.strengthLabel.textColor = Style.labelTextColor
                 cell.strengthSlider.isEnabled = true
@@ -224,6 +226,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.validCheckbox.animationDuration = 0.3
 
         if calcIngredient.valid{
+            cell.ingredientNumberLabel.textColor = Style.labelTextColor
             cell.validCheckbox.checkState = .checked
             cell.validLabel.textColor = Style.labelTextColor
             cell.strengthLabel.textColor = Style.labelTextColor
@@ -231,6 +234,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             cell.amountLabel.textColor = Style.labelTextColor
             cell.amountSlider.isEnabled = true
         }else{
+            cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
             cell.validCheckbox.checkState = .unchecked
             cell.validLabel.textColor = Style.labelTextColorLight
             cell.strengthLabel.textColor = Style.labelTextColorLight
@@ -269,13 +273,13 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         for (index, _) in calcIngredientList!.enumerated() {
             let cell = ingredientTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlcoholCalcIngredientTableViewCell
             if cell != nil{
+                cell?.ingredientNumberLabel.textColor = Style.labelTextColorLight
                 cell?.validCheckbox.setCheckState(.unchecked, animated: true)
                 cell?.validLabel.textColor = Style.labelTextColorLight
                 cell?.strengthLabel.textColor = Style.labelTextColorLight
                 cell?.strengthSlider.isEnabled = false
                 cell?.amountLabel.textColor = Style.labelTextColorLight
                 cell?.amountSlider.isEnabled = false
-            }else{
             }
         }
         
