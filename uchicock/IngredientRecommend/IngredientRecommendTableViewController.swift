@@ -173,6 +173,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             cell.accessoryView = accesoryImageView
 
             cell.ingredientName = ingredientBasicList[indexPath.row - 1].name
+            cell.category = ingredientBasicList[indexPath.row - 1].category
             if isContributionMode{
                 cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れる！"
             }else{

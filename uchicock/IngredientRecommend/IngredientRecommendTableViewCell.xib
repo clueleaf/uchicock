@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfo-HJ-nA4" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="304" height="25"/>
+                        <rect key="frame" x="25" y="8" width="287" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="v0d-eP-dlM"/>
                         </constraints>
@@ -35,22 +35,36 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" translatesAutoresizingMaskIntoConstraints="NO" id="hdu-Pc-4yk">
+                        <rect key="frame" x="8" y="10" width="17" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bxq-if-MBI"/>
+                            <constraint firstAttribute="width" constant="17" id="sLw-RW-Y9f"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Xfo-HJ-nA4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OBB-Yh-B5u"/>
+                    <constraint firstItem="Xfo-HJ-nA4" firstAttribute="leading" secondItem="hdu-Pc-4yk" secondAttribute="trailing" id="BF1-Jt-PlI"/>
+                    <constraint firstItem="hdu-Pc-4yk" firstAttribute="centerY" secondItem="Xfo-HJ-nA4" secondAttribute="centerY" id="Sc2-nW-vgM"/>
+                    <constraint firstItem="zog-lA-Z1p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bqC-LI-3BU"/>
+                    <constraint firstItem="hdu-Pc-4yk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fEs-gm-QCO"/>
                     <constraint firstItem="Xfo-HJ-nA4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jgN-5p-lfc"/>
                     <constraint firstAttribute="trailing" secondItem="zog-lA-Z1p" secondAttribute="trailing" constant="8" id="lns-fb-kdp"/>
                     <constraint firstItem="zog-lA-Z1p" firstAttribute="top" secondItem="Xfo-HJ-nA4" secondAttribute="bottom" constant="8" id="vUA-9f-bJ7"/>
-                    <constraint firstItem="zog-lA-Z1p" firstAttribute="leading" secondItem="Xfo-HJ-nA4" secondAttribute="leading" id="y1K-uJ-bHT"/>
                     <constraint firstAttribute="trailing" secondItem="Xfo-HJ-nA4" secondAttribute="trailing" constant="8" id="zLz-gb-IVe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="alcoholIconImage" destination="hdu-Pc-4yk" id="99h-9Z-8Kp"/>
+                <outlet property="alcoholIconImageWidthConstraint" destination="sLw-RW-Y9f" id="1ac-SL-EW6"/>
                 <outlet property="descriptionLabel" destination="zog-lA-Z1p" id="LiA-HS-R9n"/>
                 <outlet property="ingredientNameLabel" destination="Xfo-HJ-nA4" id="KkC-Sr-y65"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="125.89285714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="tabbar-ingredient" width="24" height="24"/>
+    </resources>
 </document>
