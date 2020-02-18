@@ -404,13 +404,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-cv-qGg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="283"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="266"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-IZ-4fa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="394" height="251"/>
-                                                <mutableString key="text">このアプリでは、概ねアルコール度数10%未満のカクテルを「弱い」、10%以上25%未満のカクテルを「やや強い」、25%以上のカクテルを「強い」として分類している。厳密な分類ではないので参考程度に。
+                                                <rect key="frame" x="8" y="8" width="394" height="234"/>
+                                                <mutableString key="text">このアプリでは、概ねアルコール度数10%未満のカクテルを「弱い」、10%以上25%未満のカクテルを「やや強い」、25%以上のカクテルを「強い」と分類している。使用する材料の銘柄や氷の溶け具合などによっても度数は変わるので、あくまで参考程度に。
 
-アルコールを含む材料の割合を増やせば度数は強くなるし、逆にノンアルコールの材料の割合を増やせば度数は弱くなる。アルコールが強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のカクテルの味とは変わってしまうが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
+アルコール度数がが強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のカクテルとは味が変わってしまうことがあるが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
 
 自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機能を活用しよう。</mutableString>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
