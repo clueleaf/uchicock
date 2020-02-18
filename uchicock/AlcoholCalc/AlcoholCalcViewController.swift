@@ -47,6 +47,10 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         validNumLabel.textColor = Style.tableViewHeaderTextColor
         updateValidNumLabel()
         clearAllButton.setTitleColor(Style.primaryColor, for: .normal)
+        clearAllButton.layer.borderColor = Style.primaryColor.cgColor
+        clearAllButton.layer.borderWidth = 1.0
+        clearAllButton.layer.cornerRadius = 14
+        clearAllButton.backgroundColor = Style.basicBackgroundColor
 
         self.ingredientTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = Style.basicBackgroundColor
