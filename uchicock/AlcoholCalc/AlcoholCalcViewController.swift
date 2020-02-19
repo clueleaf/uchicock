@@ -82,6 +82,12 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                 alcoholAmount = alcoholAmount + Double(ing.amount) * Double(ing.degree) / 100.0
             }
         }
+
+        if totalAmount == 0{
+            alcoholPercentage = 0.0
+        }else{
+            alcoholPercentage = alcoholAmount / Double(totalAmount) * 100.0
+        }
         
         totalAmountLabel.text = String(totalAmount)
         
@@ -90,22 +96,14 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         }
         alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
         
-        if totalAmount == 0{
-            alcoholPercentage = 0.0
-        }else{
-            alcoholPercentage = alcoholAmount / Double(totalAmount) * 100.0
-        }
-        
-        if Int(ceil(alcoholPercentage)) == 1{
-            alcoholPercentage = 1.0
-        }
-        
-        alcoholPercentageLabel.text = String(Int(floor(alcoholPercentage)))
-        if Int(floor(alcoholPercentage)) == 0{
+        let flooredAlcoholPercentage = Int(floor(alcoholPercentage))
+        alcoholPercentageLabel.text = String(flooredAlcoholPercentage)
+
+        if flooredAlcoholPercentage == 0{
             alcoholStrengthLabel.text = "ノンアルコール"
-        }else if Int(floor(alcoholPercentage)) < 10 {
+        }else if flooredAlcoholPercentage < 10 {
             alcoholStrengthLabel.text = "弱い"
-        }else if Int(floor(alcoholPercentage)) < 25 {
+        }else if flooredAlcoholPercentage < 25 {
             alcoholStrengthLabel.text = "やや強い"
         }else{
             alcoholStrengthLabel.text = "強い"
