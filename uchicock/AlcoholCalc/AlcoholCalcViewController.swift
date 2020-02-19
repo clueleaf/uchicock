@@ -49,7 +49,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         clearAllButton.setTitleColor(Style.primaryColor, for: .normal)
         clearAllButton.layer.borderColor = Style.primaryColor.cgColor
         clearAllButton.layer.borderWidth = 1.0
-        clearAllButton.layer.cornerRadius = 14
+        clearAllButton.layer.cornerRadius = 10
         clearAllButton.backgroundColor = Style.basicBackgroundColor
 
         self.ingredientTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -210,7 +210,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 124
+        return 110
     }
 
     func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
@@ -224,7 +224,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         cell.validCheckbox.secondaryTintColor = Style.primaryColor
         cell.validCheckbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        cell.validCheckbox.boxLineWidth = 1.0
+        cell.validCheckbox.boxLineWidth = 1.5
         cell.validCheckbox.animationDuration = 0.3
 
         if calcIngredient.valid{
