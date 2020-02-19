@@ -164,11 +164,12 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Yu7-65-dKT" firstAttribute="centerY" secondItem="dvh-r7-TOo" secondAttribute="centerY" id="3fD-1Z-V6t"/>
-                                            <constraint firstAttribute="trailing" secondItem="Yu7-65-dKT" secondAttribute="trailing" constant="12" id="7r1-DB-w1l"/>
+                                            <constraint firstItem="PkO-xw-qFE" firstAttribute="trailing" secondItem="Yu7-65-dKT" secondAttribute="trailing" constant="12" id="7r1-DB-w1l"/>
                                             <constraint firstItem="v6u-4E-a4e" firstAttribute="centerY" secondItem="dvh-r7-TOo" secondAttribute="centerY" id="Icy-cK-uGV"/>
                                             <constraint firstAttribute="height" constant="30" id="jkt-Pe-KHX"/>
-                                            <constraint firstItem="v6u-4E-a4e" firstAttribute="leading" secondItem="dvh-r7-TOo" secondAttribute="leading" constant="8" id="tD7-mQ-9wu"/>
+                                            <constraint firstItem="v6u-4E-a4e" firstAttribute="leading" secondItem="PkO-xw-qFE" secondAttribute="leading" constant="8" id="tD7-mQ-9wu"/>
                                         </constraints>
+                                        <viewLayoutGuide key="safeArea" id="PkO-xw-qFE"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -300,12 +301,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="R7c-sm-cqE" firstAttribute="top" secondItem="XbZ-Jp-BWm" secondAttribute="bottom" id="1vE-XB-MN8"/>
-                            <constraint firstItem="R7c-sm-cqE" firstAttribute="leading" secondItem="p20-Vz-See" secondAttribute="leading" id="F9X-SV-EmS"/>
-                            <constraint firstItem="XbZ-Jp-BWm" firstAttribute="leading" secondItem="p20-Vz-See" secondAttribute="leading" id="Pcz-3L-VRn"/>
-                            <constraint firstItem="p20-Vz-See" firstAttribute="trailing" secondItem="R7c-sm-cqE" secondAttribute="trailing" id="XeO-Ga-5hm"/>
+                            <constraint firstItem="R7c-sm-cqE" firstAttribute="leading" secondItem="kWH-Kn-dwU" secondAttribute="leading" id="F9X-SV-EmS"/>
+                            <constraint firstItem="XbZ-Jp-BWm" firstAttribute="leading" secondItem="kWH-Kn-dwU" secondAttribute="leading" id="Pcz-3L-VRn"/>
+                            <constraint firstAttribute="trailing" secondItem="R7c-sm-cqE" secondAttribute="trailing" id="XeO-Ga-5hm"/>
                             <constraint firstAttribute="bottom" secondItem="R7c-sm-cqE" secondAttribute="bottom" id="baZ-Jo-sat"/>
                             <constraint firstItem="XbZ-Jp-BWm" firstAttribute="top" secondItem="kWH-Kn-dwU" secondAttribute="top" id="sgk-JO-dqM"/>
-                            <constraint firstItem="p20-Vz-See" firstAttribute="trailing" secondItem="XbZ-Jp-BWm" secondAttribute="trailing" id="whk-hT-2i4"/>
+                            <constraint firstAttribute="trailing" secondItem="XbZ-Jp-BWm" secondAttribute="trailing" id="whk-hT-2i4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p20-Vz-See"/>
                     </view>
