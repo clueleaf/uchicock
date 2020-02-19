@@ -730,7 +730,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let vc = nvc.visibleViewController as! StyleTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .pageSheet
+            nvc.modalPresentationStyle = .formSheet
         }else{
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
@@ -748,7 +748,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let vc = nvc.visibleViewController as! MethodTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .pageSheet
+            nvc.modalPresentationStyle = .formSheet
         }else{
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
@@ -766,7 +766,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let vc = nvc.visibleViewController as! StrengthTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .pageSheet
+            nvc.modalPresentationStyle = .formSheet
         }else{
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
