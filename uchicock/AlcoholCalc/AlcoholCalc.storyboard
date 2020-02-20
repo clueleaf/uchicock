@@ -202,26 +202,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn4-6s-z1B" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="4" width="40" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fn4-6s-z1B" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="4" width="45" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="rnu-0M-OaD"/>
+                                                        <constraint firstAttribute="height" constant="17" id="KOr-Wp-ClQ"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="rnu-0M-OaD"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="有効" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t6-vt-G21" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="29.5" width="28" height="14.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="Dyo-1X-7yh"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="度数 30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2m5-gB-9nE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="4" width="283" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="度数 30%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2m5-gB-9nE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="61" y="4" width="298" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="Itl-M2-NlE"/>
                                                     </constraints>
@@ -229,8 +221,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分量 30ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Q-tA-EoB" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="76" y="59" width="283" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="分量 30ml" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Q-tA-EoB" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="61" y="59" width="298" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="1ZL-Qa-5X1"/>
                                                     </constraints>
@@ -239,44 +231,53 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkI-Nm-0dv" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="22.5" width="28" height="28"/>
+                                                    <rect key="frame" x="13" y="37.5" width="35" height="35"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="IMg-jI-9kQ"/>
-                                                        <constraint firstAttribute="height" constant="28" id="SWi-RG-cMf"/>
+                                                        <constraint firstAttribute="width" constant="35" id="IMg-jI-9kQ"/>
+                                                        <constraint firstAttribute="height" constant="35" id="SWi-RG-cMf"/>
                                                     </constraints>
                                                 </view>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-hs-X9z" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="21" width="287" height="31"/>
+                                                    <rect key="frame" x="59" y="21" width="302" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="PGO-n2-fOc"/>
                                                     </constraints>
                                                 </slider>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="76" width="287" height="31"/>
+                                                    <rect key="frame" x="59" y="76" width="302" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="5yf-Zm-dXO"/>
                                                     </constraints>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="有効" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t6-vt-G21" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="16.5" y="76.5" width="28" height="14.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="Dyo-1X-7yh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="6t6-vt-G21" firstAttribute="top" secondItem="fkI-Nm-0dv" secondAttribute="bottom" constant="4" id="6c5-PV-zWy"/>
                                                 <constraint firstAttribute="trailing" secondItem="L7Q-tA-EoB" secondAttribute="trailing" constant="16" id="ARs-Eo-cIr"/>
                                                 <constraint firstItem="2m5-gB-9nE" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="4" id="CL0-ZQ-Q5x"/>
+                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="centerX" secondItem="6t6-vt-G21" secondAttribute="centerX" id="D8f-7S-ODG"/>
                                                 <constraint firstItem="L7Q-tA-EoB" firstAttribute="top" secondItem="XoQ-hs-X9z" secondAttribute="bottom" constant="8" id="JZg-hj-8l7"/>
                                                 <constraint firstAttribute="trailing" secondItem="XoQ-hs-X9z" secondAttribute="trailing" constant="16" id="LBd-Sd-d3m"/>
+                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="centerY" secondItem="6ak-Zs-XJU" secondAttribute="centerY" id="Qjt-W7-iYa"/>
                                                 <constraint firstItem="fn4-6s-z1B" firstAttribute="leading" secondItem="6ak-Zs-XJU" secondAttribute="leading" constant="8" id="R97-BG-X47"/>
                                                 <constraint firstItem="XoQ-hs-X9z" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="SLo-QX-loc"/>
+                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="centerX" secondItem="fn4-6s-z1B" secondAttribute="centerX" id="U2p-9H-XiU"/>
                                                 <constraint firstItem="fn4-6s-z1B" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="4" id="UrJ-sB-BL2"/>
                                                 <constraint firstItem="XoQ-hs-X9z" firstAttribute="top" secondItem="2m5-gB-9nE" secondAttribute="bottom" id="Vt3-Hw-R1v"/>
                                                 <constraint firstItem="L7Q-tA-EoB" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="b2m-d9-USE"/>
-                                                <constraint firstItem="6t6-vt-G21" firstAttribute="centerY" secondItem="fkI-Nm-0dv" secondAttribute="centerY" id="d2M-vo-2de"/>
-                                                <constraint firstItem="6t6-vt-G21" firstAttribute="leading" secondItem="fkI-Nm-0dv" secondAttribute="trailing" constant="4" id="geC-vp-wZ6"/>
-                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="top" secondItem="fn4-6s-z1B" secondAttribute="bottom" constant="4" id="hel-Yf-iHL"/>
+                                                <constraint firstItem="2m5-gB-9nE" firstAttribute="leading" secondItem="fn4-6s-z1B" secondAttribute="trailing" constant="8" id="cwM-aD-6C5"/>
                                                 <constraint firstAttribute="trailing" secondItem="2m5-gB-9nE" secondAttribute="trailing" constant="16" id="ncp-PU-riQ"/>
-                                                <constraint firstItem="2m5-gB-9nE" firstAttribute="leading" secondItem="6t6-vt-G21" secondAttribute="trailing" constant="8" id="pZc-4q-SG5"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Se-uj-K8v" secondAttribute="trailing" constant="16" id="qKd-g9-ilq"/>
                                                 <constraint firstItem="4Se-uj-K8v" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="uvg-ek-DUs"/>
-                                                <constraint firstItem="fkI-Nm-0dv" firstAttribute="leading" secondItem="6ak-Zs-XJU" secondAttribute="leading" constant="8" id="wtk-Qh-iOn"/>
                                                 <constraint firstItem="4Se-uj-K8v" firstAttribute="top" secondItem="L7Q-tA-EoB" secondAttribute="bottom" id="xaA-ZK-SS3"/>
                                             </constraints>
                                         </tableViewCellContentView>
