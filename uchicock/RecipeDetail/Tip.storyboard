@@ -408,11 +408,11 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-IZ-4fa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="394" height="234"/>
-                                                <mutableString key="text">このアプリでは、概ねアルコール度数10%未満のカクテルを「弱い」、10%以上25%未満のカクテルを「やや強い」、25%以上のカクテルを「強い」と分類している。使用する材料の銘柄や氷の溶け具合などによっても度数は変わるので、あくまで参考程度に。
+                                                <mutableString key="text">このアプリでは、概ねアルコール度数10%未満のカクテルを「弱い」、10%以上25%未満のカクテルを「やや強い」、25%以上のカクテルを「強い」と分類している。割り材の分量、アルコールの銘柄、そして氷の溶け具合などによっても度数は変わるので、あくまで目安として考えよう。
 
-アルコール度数がが強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のカクテルとは味が変わってしまうことがあるが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
+アルコール度数が強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のカクテルとは味が変わってしまうが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
 
-自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機能を活用しよう。</mutableString>
+自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機を活用しよう！</mutableString>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
