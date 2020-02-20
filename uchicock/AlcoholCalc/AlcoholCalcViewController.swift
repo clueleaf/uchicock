@@ -69,7 +69,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func calcAlcoholStrength(){
         var totalAmount: Int = 0
-        var alcoholAmount: Double = 0.0
+        var hundredTimesAlcoholAmount: Int = 0
         var alcoholPercentage: Double = 0.0
         
         guard calcIngredientList != nil else{
@@ -79,34 +79,41 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         for ing in calcIngredientList!{
             if ing.valid{
                 totalAmount += ing.amount
-                alcoholAmount = alcoholAmount + Double(ing.amount) * Double(ing.degree) / 100.0
+                hundredTimesAlcoholAmount += ing.amount * ing.degree
             }
         }
 
         if totalAmount == 0{
             alcoholPercentage = 0.0
         }else{
-            alcoholPercentage = alcoholAmount / Double(totalAmount) * 100.0
+            alcoholPercentage = Double(hundredTimesAlcoholAmount) / Double(totalAmount)
         }
-        
+
         totalAmountLabel.text = String(totalAmount)
         
-        if Int(ceil(alcoholAmount)) == 1{
-            alcoholAmount = 1.0
-        }
-        alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
-        
-        let flooredAlcoholPercentage = Int(floor(alcoholPercentage))
-        alcoholPercentageLabel.text = String(flooredAlcoholPercentage)
-
-        if flooredAlcoholPercentage == 0{
-            alcoholStrengthLabel.text = "ノンアルコール"
-        }else if flooredAlcoholPercentage < 10 {
-            alcoholStrengthLabel.text = "弱い"
-        }else if flooredAlcoholPercentage < 25 {
-            alcoholStrengthLabel.text = "やや強い"
+        if hundredTimesAlcoholAmount > 0 && hundredTimesAlcoholAmount < 100{
+            alcoholAmountLabel.text = "<1"
         }else{
-            alcoholStrengthLabel.text = "強い"
+            let alcoholAmount: Double = Double(hundredTimesAlcoholAmount) / 100.0
+            alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
+        }
+        
+        if ceil(alcoholPercentage) == 0{
+            alcoholPercentageLabel.text = "0"
+            alcoholStrengthLabel.text = "ノンアルコール"
+        } else if alcoholPercentage < 1.0{
+            alcoholPercentageLabel.text = "<1"
+            alcoholStrengthLabel.text = "ノンアルコール"
+        } else{
+            let flooredAlcoholPercentage = Int(floor(alcoholPercentage))
+            alcoholPercentageLabel.text = String(flooredAlcoholPercentage)
+            if flooredAlcoholPercentage < 10 {
+                alcoholStrengthLabel.text = "弱い"
+            }else if flooredAlcoholPercentage < 25 {
+                alcoholStrengthLabel.text = "やや強い"
+            }else{
+                alcoholStrengthLabel.text = "強い"
+            }
         }
     }
     
