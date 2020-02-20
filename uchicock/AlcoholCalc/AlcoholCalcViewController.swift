@@ -21,6 +21,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var validNumLabel: UILabel!
     @IBOutlet weak var clearAllButton: UIButton!
     
+    var hiddenLabel = UILabel()
     var calcIngredientList: Results<CalculatorIngredient>?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,6 +33,12 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
 
         self.navigationItem.title = "度数計算機"
         ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
+        hiddenLabel.text = "お酒は楽しくほどほどに！"
+        hiddenLabel.frame = CGRect(x: 0, y: -90, width: 0, height: 20)
+        hiddenLabel.textAlignment = .center
+        ingredientTableView.addSubview(hiddenLabel)
         
         let realm = try! Realm()
         calcIngredientList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
@@ -52,9 +59,16 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         clearAllButton.layer.cornerRadius = 12
         clearAllButton.backgroundColor = Style.basicBackgroundColor
 
+        hiddenLabel.textColor = Style.labelTextColorLight
+        
         self.ingredientTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = Style.basicBackgroundColor
         self.ingredientTableView.separatorColor = Style.labelTextColorLight
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        hiddenLabel.frame = CGRect(x: 0, y: -90, width: ingredientTableView.frame.width, height: 20)
     }
     
     private func updateValidNumLabel(){
