@@ -8,12 +8,13 @@
 
 import UIKit
 
-class IntroductionPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIScrollViewDelegate {
+class IntroductionPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate {
 
     var sb: UIStoryboard!
     var windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
     weak var launchVC : LaunchViewController?
 
+    var lastPendingViewControllerIndex = 0
     var isEnd = false
     var introductions: [introductionInfo] = []
     var VCs: [IntroductionDetailViewController] = []
@@ -85,6 +86,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         
         self.view.backgroundColor = UIColor(patternImage: image!)
         self.dataSource = self
+        self.delegate = self
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
@@ -168,10 +170,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if hasFinishedLayoutSubviews { // 画面回転でもdidScrollするため、isEndがfalseに更新されてdismissできなくなる問題への対応
-            if scrollView.contentOffset.x < windowWidth{
-                isEnd = false
-            }
+        if hasFinishedLayoutSubviews { // 画面回転でもdidScrollするため、回転して勝手にdismissされてしまうことを防ぐ
             if isEnd && scrollView.contentOffset.x > windowWidth + 20{
                 if launchVC != nil{
                     launchVC!.dismissIntroductionAndPrepareToShowRecipeList(self)
@@ -182,11 +181,27 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         }
     }
     
+    // MARK: - UIPageViewControllerDelegate
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
+        if let vc = pendingViewControllers[0] as? IntroductionDetailViewController {
+            self.lastPendingViewControllerIndex = vc.number!
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
+        if completed{
+            if self.lastPendingViewControllerIndex == VCs.count - 1{
+                isEnd = true
+            }else{
+                isEnd = false
+            }
+        }
+    }
+    
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
         if vc.number! > 0{
-            isEnd = false
             return VCs[vc.number! - 1]
         }else{
             return nil
@@ -196,11 +211,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
         if vc.number! < VCs.count - 1{
-            isEnd = false
             return VCs[vc.number! + 1]
-        }else if vc.number! == VCs.count - 1{
-            isEnd = true
-            return nil
         }else{
             return nil
         }
