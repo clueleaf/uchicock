@@ -121,7 +121,7 @@ struct GlobalConstants{
     static let AlbumFilterStrengthNoneKey = "album-filter-strengthnone"
 
     // MARK: - Introduction Descriptions
-    static let IntroductionDescriptionThanks = "ダウンロードしていただき、ありがとうございます！\n「うちカク！」はあなたのおうちカクテル ライフを強力にサポートするアプリです。\n\nこれから簡単に使い方を説明しますが、この説明は後からでも確認できるので飛ばしていただいても構いません。"
+    static let IntroductionDescriptionThanks = "ダウンロードありがとうございます！\n「うちカク！」はあなたのおうちカクテルライフを強力にサポートするアプリです。\n\nこれから簡単に使い方を説明します。\nこの説明は後からでも確認できるので飛ばしていただいても構いません。"
     static let IntroductionDescriptionRecipe = "レシピの検索や新規登録はこの画面から。\nサンプルレシピですら、編集して自前でアレンジ可能！\nカクテルを作ったらぜひ写真を登録してみよう！"
     static let IntroductionDescriptionIngredient = "ワンタップで材料の在庫を登録できます。\n在庫を登録すると、今の手持ちで作れるレシピがわかります。\nアルコールを含む材料は、わかりやすいように名前の横に瓶のマークが付いています。"
     static let IntroductionDescriptionReverseLookup = "3つまで材料を指定して、それらをすべて使うレシピを逆引きできます。\n「赤ワインとジンジャエールを使うカクテル何だっけ？」\n「テキーラベースのカクテルを絞り込み検索したい！」\nそんなときに活用しよう！"
