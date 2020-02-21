@@ -207,20 +207,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             switch recipe.favorites{
             case 0:
-                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
             case 1:
-                setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
             case 2:
-                setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
+                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
             case 3:
-                setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
+                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
             default:
-                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
             }
-            star1.setTitleColor(Style.primaryColor, for: .normal)
-            star2.setTitleColor(Style.primaryColor, for: .normal)
-            star3.setTitleColor(Style.primaryColor, for: .normal)
-            
+            star1.tintColor = Style.primaryColor
+            star2.tintColor = Style.primaryColor
+            star3.tintColor = Style.primaryColor
+
             switch recipe.style{
             case 0:
                 style.text = "ロング"
@@ -355,10 +355,22 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     // MARK: - Set Style
-    private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
-        star1.setTitle(star1title, for: .normal)
-        star2.setTitle(star2title, for: .normal)
-        star3.setTitle(star3title, for: .normal)
+    private func setStarImageOf(star1isFilled: Bool, star2isFilled: Bool, star3isFilled: Bool){
+        if star1isFilled {
+            star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
+        if star2isFilled {
+            star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
+        if star3isFilled {
+            star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
     }
 
     private func setMadeNumButton(){
@@ -627,13 +639,27 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
         let realm = try! Realm()
         if recipe.bookmarkDate == nil{
-            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.bookmarkButton.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.bookmarkButton.transform = .identity
+                })
+            }
             try! realm.write {
                 recipe.bookmarkDate = Date()
             }
             MessageHUD.show("ブックマークしました", for: 2.0, withCheckmark: true)
         }else{
-            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.bookmarkButton.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.bookmarkButton.transform = .identity
+                })
+            }
             try! realm.write {
                 recipe.bookmarkDate = nil
             }
@@ -686,47 +712,194 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func star1Tapped(_ sender: UIButton) {
         let realm = try! Realm()
-        if star1.currentTitle == "★" && star2.currentTitle == "☆"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-            try! realm.write {
-                recipe.favorites = 0
-            }
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
+        switch recipe.favorites {
+        case 0:
             try! realm.write {
                 recipe.favorites = 1
             }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                })
+            }
+        case 1:
+            try! realm.write {
+                recipe.favorites = 0
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                })
+            }
+        case 2:
+            try! realm.write {
+                recipe.favorites = 1
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                })
+            }
+        case 3:
+            try! realm.write {
+                recipe.favorites = 1
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
         }
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
         let realm = try! Realm()
-        if star2.currentTitle == "★" && star3.currentTitle == "☆"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-            try! realm.write {
-                recipe.favorites = 0
-            }
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
+        switch recipe.favorites {
+        case 0:
             try! realm.write {
                 recipe.favorites = 2
             }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                })
+            }
+        case 1:
+            try! realm.write {
+                recipe.favorites = 2
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                })
+            }
+        case 2:
+            try! realm.write {
+                recipe.favorites = 0
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                })
+            }
+        case 3:
+            try! realm.write {
+                recipe.favorites = 2
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
         }
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
         let realm = try! Realm()
-        if star3.currentTitle == "★"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-            try! realm.write {
-                recipe.favorites = 0
-            }
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
+        switch recipe.favorites {
+        case 0:
             try! realm.write {
                 recipe.favorites = 3
             }
-        }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        case 1:
+            try! realm.write {
+                recipe.favorites = 3
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        case 2:
+            try! realm.write {
+                recipe.favorites = 3
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star3.transform = .identity
+                })
+            }
+        case 3:
+            try! realm.write {
+                recipe.favorites = 0
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
+        }        
     }
     
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {

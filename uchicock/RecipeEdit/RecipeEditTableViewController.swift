@@ -34,6 +34,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     weak var mainNavigationController : UINavigationController?
     var recipe = Recipe()
+    var recipeFavorite = 0
     var isAddMode = true
     var recipeIngredientList = Array<RecipeIngredientBasic>()
     var ipc = UIImagePickerController()
@@ -89,7 +90,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+            setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+            recipeFavorite = 0
             style.selectedSegmentIndex = 3
             method.selectedSegmentIndex = 0
             strength.selectedSegmentIndex = 4
@@ -98,15 +100,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.navigationItem.title = "レシピ編集"
             switch recipe.favorites{
             case 0:
-                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+                recipeFavorite = 0
             case 1:
-                setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
+                recipeFavorite = 1
             case 2:
-                setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
+                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
+                recipeFavorite = 2
             case 3:
-                setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
+                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
+                recipeFavorite = 3
             default:
-                setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
+                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+                recipeFavorite = 0
             }
             style.selectedSegmentIndex = recipe.style
             method.selectedSegmentIndex = recipe.method
@@ -150,9 +157,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
         selectPhoto.textColor = Style.primaryColor
-        star1.setTitleColor(Style.primaryColor, for: .normal)
-        star2.setTitleColor(Style.primaryColor, for: .normal)
-        star3.setTitleColor(Style.primaryColor, for: .normal)
+        star1.tintColor = Style.primaryColor
+        star2.tintColor = Style.primaryColor
+        star3.tintColor = Style.primaryColor
         memo.layer.borderColor = Style.textFieldBorderColor.cgColor
         memo.keyboardAppearance = Style.isDark ? .dark : .light
         addIngredientLabel.textColor = Style.primaryColor
@@ -195,10 +202,22 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     // MARK: - Set Style
-    private func setStarTitleOf(star1title: String, star2title: String, star3title: String){
-        star1.setTitle(star1title, for: .normal)
-        star2.setTitle(star2title, for: .normal)
-        star3.setTitle(star3title, for: .normal)
+    private func setStarImageOf(star1isFilled: Bool, star2isFilled: Bool, star3isFilled: Bool){
+        if star1isFilled {
+            star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
+        if star2isFilled {
+            star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
+        if star3isFilled {
+            star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+        }else{
+            star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+        }
     }
 
     // MARK: - UITextFieldDelegate
@@ -513,30 +532,170 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     // MARK: - IBAction
     @IBAction func star1Tapped(_ sender: UIButton) {
         self.showCancelAlert = true
-        if star1.currentTitle == "★" && star2.currentTitle == "☆"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "☆", star3title: "☆")
+        switch recipeFavorite {
+        case 0:
+            recipeFavorite = 1
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                })
+            }
+        case 1:
+            recipeFavorite = 0
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                })
+            }
+        case 2:
+            recipeFavorite = 1
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                })
+            }
+        case 3:
+            recipeFavorite = 1
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
         }
     }
     
     @IBAction func star2Tapped(_ sender: UIButton) {
         self.showCancelAlert = true
-        if star2.currentTitle == "★" && star3.currentTitle == "☆"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "★", star3title: "☆")
+        switch recipeFavorite {
+        case 0:
+            recipeFavorite = 2
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                })
+            }
+        case 1:
+            recipeFavorite = 2
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                })
+            }
+        case 2:
+            recipeFavorite = 0
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                })
+            }
+        case 3:
+            recipeFavorite = 2
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
         }
     }
     
     @IBAction func star3Tapped(_ sender: UIButton) {
         self.showCancelAlert = true
-        if star3.currentTitle == "★"{
-            setStarTitleOf(star1title: "☆", star2title: "☆", star3title: "☆")
-        }else{
-            setStarTitleOf(star1title: "★", star2title: "★", star3title: "★")
-        }
-    }
+        switch recipeFavorite {
+        case 0:
+            recipeFavorite = 3
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        case 1:
+            recipeFavorite = 3
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        case 2:
+            recipeFavorite = 3
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star3.transform = .identity
+                })
+            }
+        case 3:
+            recipeFavorite = 0
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.star1.transform = .identity
+                    self.star2.transform = .identity
+                    self.star3.transform = .identity
+                })
+            }
+        default:
+            break
+        }    }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if showCancelAlert {
@@ -589,15 +748,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         newRecipe.recipeName = recipeName.text!.withoutSpace()
                         newRecipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
 
-                        if star3.currentTitle == "★" {
-                            newRecipe.favorites = 3
-                        }else if star2.currentTitle == "★" {
-                            newRecipe.favorites = 2
-                        }else if star1.currentTitle == "★"{
-                            newRecipe.favorites = 1
-                        }else{
-                            newRecipe.favorites = 0
-                        }
+                        newRecipe.favorites = recipeFavorite
 
                         if let image = photo.image{
                             let imageFileName = NSUUID().uuidString
@@ -669,15 +820,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                         recipe.recipeName = recipeName.text!.withoutSpace()
                         recipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
-                        if star3.currentTitle == "★" {
-                            recipe.favorites = 3
-                        }else if star2.currentTitle == "★" {
-                            recipe.favorites = 2
-                        }else if star1.currentTitle == "★"{
-                            recipe.favorites = 1
-                        }else{
-                            recipe.favorites = 0
-                        }
+                        
+                        recipe.favorites = recipeFavorite
                         
                         let oldImageFileName = recipe.imageFileName
                         if let image = photo.image{

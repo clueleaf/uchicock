@@ -225,7 +225,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings-review" translatesAutoresizingMaskIntoConstraints="NO" id="8jb-mE-tc4">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-star-filled" translatesAutoresizingMaskIntoConstraints="NO" id="8jb-mE-tc4">
                                                     <rect key="frame" x="8" y="18" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="ydc-Jp-cvE"/>
@@ -411,11 +411,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button-star-filled" width="24" height="24"/>
         <image name="settings-calc" width="24" height="24"/>
         <image name="settings-image" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
         <image name="settings-recover" width="24" height="24"/>
-        <image name="settings-review" width="24" height="24"/>
         <image name="settings-theme" width="24" height="24"/>
         <image name="tabbar-settings" width="24" height="24"/>
     </resources>

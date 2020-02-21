@@ -95,7 +95,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-zc-48A" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="14.5" width="212" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="229" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="5p3-FS-was"/>
                                                     </constraints>
@@ -103,35 +103,35 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-kp-DjR" userLabel="星3">
-                                                    <rect key="frame" x="332" y="1" width="31" height="48"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-kp-DjR" userLabel="星3">
+                                                    <rect key="frame" x="333" y="10" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="FWG-K5-iJi"/>
+                                                        <constraint firstAttribute="width" constant="30" id="FWG-K5-iJi"/>
+                                                        <constraint firstAttribute="height" constant="30" id="djb-tF-3Za"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <state key="normal" title="☆"/>
+                                                    <state key="normal" title="☆" image="button-star-empty"/>
                                                     <connections>
                                                         <action selector="star3Tapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="5P1-xD-euK"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-8v-9XM" userLabel="星2">
-                                                    <rect key="frame" x="286" y="1" width="31" height="48"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-8v-9XM" userLabel="星2">
+                                                    <rect key="frame" x="295" y="10" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Nt8-wR-NjH"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Nt8-wR-NjH"/>
+                                                        <constraint firstAttribute="height" constant="30" id="k53-v6-V1z"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <state key="normal" title="☆"/>
+                                                    <state key="normal" title="☆" image="button-star-empty"/>
                                                     <connections>
                                                         <action selector="star2Tapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="c3l-41-vza"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb6-1r-5Pc" userLabel="星1">
-                                                    <rect key="frame" x="240" y="1" width="31" height="48"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eb6-1r-5Pc" userLabel="星1">
+                                                    <rect key="frame" x="257" y="10" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="rYN-b9-e2h"/>
+                                                        <constraint firstAttribute="height" constant="30" id="XJm-rE-v22"/>
+                                                        <constraint firstAttribute="width" constant="30" id="rYN-b9-e2h"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <state key="normal" title="☆"/>
+                                                    <state key="normal" image="button-star-empty"/>
                                                     <connections>
                                                         <action selector="star1Tapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="45F-JF-re3"/>
                                                     </connections>
@@ -142,9 +142,9 @@
                                                 <constraint firstItem="O9N-kp-DjR" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="710-N5-cqT"/>
                                                 <constraint firstItem="ffj-8v-9XM" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="CTZ-KZ-ihP"/>
                                                 <constraint firstItem="nN9-zc-48A" firstAttribute="leading" secondItem="WCO-BJ-OEb" secondAttribute="leading" constant="8" id="LPc-Bv-okt"/>
-                                                <constraint firstItem="ffj-8v-9XM" firstAttribute="leading" secondItem="eb6-1r-5Pc" secondAttribute="trailing" constant="15" id="Oyh-JZ-Jdf"/>
+                                                <constraint firstItem="ffj-8v-9XM" firstAttribute="leading" secondItem="eb6-1r-5Pc" secondAttribute="trailing" constant="8" id="Oyh-JZ-Jdf"/>
                                                 <constraint firstItem="nN9-zc-48A" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="PZb-uW-rFs"/>
-                                                <constraint firstItem="O9N-kp-DjR" firstAttribute="leading" secondItem="ffj-8v-9XM" secondAttribute="trailing" constant="15" id="deq-1d-yWX"/>
+                                                <constraint firstItem="O9N-kp-DjR" firstAttribute="leading" secondItem="ffj-8v-9XM" secondAttribute="trailing" constant="8" id="deq-1d-yWX"/>
                                                 <constraint firstItem="eb6-1r-5Pc" firstAttribute="centerY" secondItem="WCO-BJ-OEb" secondAttribute="centerY" id="orr-7F-ipq"/>
                                                 <constraint firstAttribute="trailing" secondItem="O9N-kp-DjR" secondAttribute="trailing" constant="12" id="pdf-aw-fUp"/>
                                             </constraints>
@@ -861,6 +861,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button-star-empty" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
         <image name="tip" width="24" height="24"/>
     </resources>
