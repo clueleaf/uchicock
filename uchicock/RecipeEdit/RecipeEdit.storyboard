@@ -109,7 +109,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="FWG-K5-iJi"/>
                                                         <constraint firstAttribute="height" constant="30" id="djb-tF-3Za"/>
                                                     </constraints>
-                                                    <state key="normal" title="☆" image="button-star-empty"/>
+                                                    <state key="normal" image="button-star-empty"/>
                                                     <connections>
                                                         <action selector="star3Tapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="5P1-xD-euK"/>
                                                     </connections>
@@ -120,7 +120,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="Nt8-wR-NjH"/>
                                                         <constraint firstAttribute="height" constant="30" id="k53-v6-V1z"/>
                                                     </constraints>
-                                                    <state key="normal" title="☆" image="button-star-empty"/>
+                                                    <state key="normal" image="button-star-empty"/>
                                                     <connections>
                                                         <action selector="star2Tapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="c3l-41-vza"/>
                                                     </connections>
