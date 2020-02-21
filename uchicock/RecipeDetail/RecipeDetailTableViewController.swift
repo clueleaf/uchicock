@@ -777,10 +777,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
         if madeNum < 999 {
             madeNum += 1
-            madeNumCountUpLabel.text = String(madeNum) + "回"
             let realm = try! Realm()
             try! realm.write {
                 recipe.madeNum = Int(madeNum)
+            }
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.madeNumCountUpLabel.transform = .init(scaleX: 1.15, y: 1.15)
+            }) { (finished: Bool) -> Void in
+                self.madeNumCountUpLabel.text = String(self.madeNum) + "回"
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                    self.madeNumCountUpLabel.transform = .identity
+                })
             }
         }
         setMadeNumButton()
