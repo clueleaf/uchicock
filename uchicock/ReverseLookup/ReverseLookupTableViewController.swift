@@ -20,6 +20,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var ingredientTextField3: CustomTextField!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     
+    var hiddenLabel = UILabel()
     var firstIngredientName = ""
     var secondIngredientName = ""
     var thirdIngredientName = ""
@@ -84,6 +85,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
+        hiddenLabel.text = "Thank you for using!!!!"
+        hiddenLabel.frame = CGRect(x: 0, y: -180, width: 0, height: 20)
+        hiddenLabel.textAlignment = .center
+        recipeTableView.addSubview(hiddenLabel)
+        
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         
         let realm = try! Realm()
@@ -131,6 +138,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         searchConditionModifyButton.setTitleColor(Style.primaryColor, for: .normal)
         searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
         
+        hiddenLabel.textColor = Style.labelTextColorLight
+
         setSearchConditionButtonTitle()
         reloadRecipeList()
         recipeTableView.reloadData()
@@ -286,6 +295,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        hiddenLabel.frame = CGRect(x: 0, y: -180, width: recipeTableView.frame.width, height: 20)
     }
     
     override func viewDidAppear(_ animated: Bool) {
