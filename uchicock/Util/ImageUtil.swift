@@ -103,6 +103,6 @@ final class ImageCache: NSCache<NSString, UIImage> {
     static let shared = ImageCache()
     private override init() {
         super.init()
-        self.countLimit = 365
+        self.countLimit = 366
     }
 }
