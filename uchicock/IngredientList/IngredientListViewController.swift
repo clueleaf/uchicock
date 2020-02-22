@@ -261,6 +261,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 try! realm.write {
                     ingredient.stockFlag = true
                 }
+                if ingredient.reminderSetDate != nil{
+                    let alertView = CustomAlertController(title: nil, message: ingredient.ingredientName + "は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
+                    alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
+                        try! realm.write {
+                            ingredient.reminderSetDate = nil
+                        }
+                    }))
+                    alertView.alertStatusBarStyle = Style.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(alertView, animated: true, completion: nil)
+                }
             }
             
             try! realm.write {

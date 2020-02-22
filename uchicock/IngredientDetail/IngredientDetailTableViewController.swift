@@ -545,7 +545,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
         
         if stock.checkState == .checked && ingredient.reminderSetDate != nil{
-            let alertView = CustomAlertController(title: nil, message: "この材料には購入リマインダーに登録されています。解除しますか？", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: nil, message: "この材料は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
             alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
                 try! realm.write {
