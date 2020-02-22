@@ -16,6 +16,7 @@ class Ingredient: Object {
     @objc dynamic var memo = ""
     @objc dynamic var category = 2
     @objc dynamic var contributionToRecipeAvailability = 0
+    @objc dynamic var reminderSetDate : Date? = nil
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
