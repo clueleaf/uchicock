@@ -236,6 +236,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="材料" id="96t-nS-HfG">
                         <barButtonItem key="backBarButtonItem" title="材料" id="OrE-dN-45V"/>
+                        <barButtonItem key="leftBarButtonItem" image="button-reminder-empty" id="f1a-T6-kRA">
+                            <connections>
+                                <action selector="reminderButtonTapped:" destination="15U-YU-usX" id="b6s-XI-EOs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JF9-fv-66t">
                             <connections>
                                 <action selector="addButtonTapped:" destination="15U-YU-usX" id="4iK-lC-JuJ"/>
@@ -243,9 +248,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addIngredientButton" destination="JF9-fv-66t" id="eTk-5I-bNI"/>
                         <outlet property="category" destination="TSf-wI-n9h" id="v6b-6e-4tO"/>
                         <outlet property="containerSeparator" destination="byH-fO-srn" id="BBD-So-Cn9"/>
                         <outlet property="ingredientRecommendButton" destination="dxa-Lv-rSY" id="8pq-ao-HeU"/>
+                        <outlet property="reminderButton" destination="f1a-T6-kRA" id="1Jj-x7-hic"/>
                         <outlet property="searchBar" destination="pzt-xa-LwF" id="nNr-ul-9jY"/>
                         <outlet property="segmentedControlContainer" destination="Lua-m4-zJA" id="aCT-96-MB8"/>
                         <outlet property="stockState" destination="PAy-Yc-Fde" id="MZ1-HH-7Cs"/>
@@ -295,6 +302,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="button-reminder-empty" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
     </resources>
 </document>

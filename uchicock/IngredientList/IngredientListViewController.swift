@@ -11,6 +11,8 @@ import RealmSwift
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
+    @IBOutlet weak var reminderButton: UIBarButtonItem!
+    @IBOutlet weak var addIngredientButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var category: CustomSegmentedControl!
@@ -457,6 +459,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - IBAction
+    @IBAction func reminderButtonTapped(_ sender: UIBarButtonItem) {
+    }
+    
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
             guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
