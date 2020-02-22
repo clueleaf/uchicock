@@ -11,8 +11,10 @@ import EventKit
 
 class ReminderTableViewController: UITableViewController {
 
+    @IBOutlet weak var titleLabel: CustomLabel!
     @IBOutlet weak var reminderTitle: CustomLabel!
     @IBOutlet weak var reminderType: CustomSegmentedControl!
+    @IBOutlet weak var reminderTypeDescription: UILabel!
     @IBOutlet weak var dateFlag: CircularCheckbox!
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -34,7 +36,9 @@ class ReminderTableViewController: UITableViewController {
         }
         
         self.navigationItem.title = "リマインダー"
+        titleLabel.text = "タイトル"
         reminderTitle.text = ingredientName + "を買う"
+        reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
         dateFlag.setCheckState(.unchecked, animated: true)
         dateFlag.boxLineWidth = 1.0
         dateFlag.stateChangeAnimation = .expand
@@ -61,6 +65,7 @@ class ReminderTableViewController: UITableViewController {
         reminderType.layer.borderColor = Style.primaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
+        reminderTypeDescription.textColor = Style.labelTextColorLight
         dateFlag.secondaryTintColor = Style.primaryColor
         dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
@@ -139,7 +144,7 @@ class ReminderTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0{
+        if indexPath.row == 0 || indexPath.row == 1 {
             return UITableView.automaticDimension
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
@@ -232,10 +237,16 @@ class ReminderTableViewController: UITableViewController {
 
     @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
+            titleLabel.text = "タイトル"
+            reminderTitle.text = ingredientName + "を買う"
+            reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
             dateFlag.isEnabled = true
             dateFlag.tintColor = Style.primaryColor
             dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         }else if reminderType.selectedSegmentIndex == 1{
+            titleLabel.text = "タイトル"
+            reminderTitle.text = ingredientName + "を買う"
+            reminderTypeDescription.text = "iOSのカレンダーアプリに登録します"
             if dateFlag.checkState == .unchecked{
                 dateFlag.setCheckState(.checked, animated: true)
                 tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
