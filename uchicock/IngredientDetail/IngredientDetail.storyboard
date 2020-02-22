@@ -41,8 +41,53 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="A6t-lU-ViC">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6t-lU-ViC" id="QGa-Uf-7vm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="購入リマインダーに登録されています" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPo-SR-Hj1" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="29" y="16" width="256" height="16"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-reminder-filled" translatesAutoresizingMaskIntoConstraints="NO" id="p3g-RM-K5J">
+                                                    <rect key="frame" x="8" y="15.5" width="17" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="PtO-2j-JTk"/>
+                                                        <constraint firstAttribute="width" constant="17" id="g8b-eR-QHy"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsX-jD-29O">
+                                                    <rect key="frame" x="293" y="12" width="70" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="UTP-2Y-AdZ"/>
+                                                        <constraint firstAttribute="height" constant="24" id="vrk-S3-jDp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="解除する"/>
+                                                    <connections>
+                                                        <action selector="removeReminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="fOm-vs-Vpo"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nsX-jD-29O" firstAttribute="centerY" secondItem="EPo-SR-Hj1" secondAttribute="centerY" id="1V9-bq-kKl"/>
+                                                <constraint firstItem="nsX-jD-29O" firstAttribute="centerY" secondItem="p3g-RM-K5J" secondAttribute="centerY" id="8kS-UW-XbI"/>
+                                                <constraint firstItem="EPo-SR-Hj1" firstAttribute="top" secondItem="QGa-Uf-7vm" secondAttribute="top" constant="16" id="9bo-hS-0tj"/>
+                                                <constraint firstItem="p3g-RM-K5J" firstAttribute="leading" secondItem="QGa-Uf-7vm" secondAttribute="leading" constant="8" id="Cvz-0S-Yv2"/>
+                                                <constraint firstItem="nsX-jD-29O" firstAttribute="leading" secondItem="EPo-SR-Hj1" secondAttribute="trailing" constant="8" id="DAl-vz-4Zj"/>
+                                                <constraint firstAttribute="trailing" secondItem="nsX-jD-29O" secondAttribute="trailing" constant="12" id="GrX-Al-UlG"/>
+                                                <constraint firstItem="EPo-SR-Hj1" firstAttribute="leading" secondItem="p3g-RM-K5J" secondAttribute="trailing" constant="4" id="hpy-vb-m0Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="EPo-SR-Hj1" secondAttribute="bottom" constant="16" id="w16-zh-i7a"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="Kjl-Jf-p6s">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="156" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kjl-Jf-p6s" id="yJQ-2z-gnr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -89,7 +134,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="NWc-va-JyA">
-                                        <rect key="frame" x="0.0" y="178" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="226" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NWc-va-JyA" id="wx8-pu-png">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -134,7 +179,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="enb-W9-wRs">
-                                        <rect key="frame" x="0.0" y="234" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="282" width="375" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="enb-W9-wRs" id="QhB-zD-uPo">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
@@ -168,7 +213,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="UzA-F4-XmK">
-                                        <rect key="frame" x="0.0" y="327" width="375" height="95"/>
+                                        <rect key="frame" x="0.0" y="375" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UzA-F4-XmK" id="d70-EG-7C3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
@@ -323,7 +368,7 @@
                             <tableViewSection headerTitle="Section-2" id="tBY-75-L8T">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="9Hb-rp-acT">
-                                        <rect key="frame" x="0.0" y="478" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="526" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hb-rp-acT" id="jGP-L0-puF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -366,6 +411,9 @@
                         <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
                         <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
+                        <outlet property="reminderImage" destination="p3g-RM-K5J" id="AVs-EA-BRe"/>
+                        <outlet property="reminderMessageLabel" destination="EPo-SR-Hj1" id="vex-jn-bKO"/>
+                        <outlet property="removeReminderButton" destination="nsX-jD-29O" id="I3X-2g-czt"/>
                         <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>
                         <outlet property="stockRecommendLabel" destination="2j5-wo-2mv" id="r9j-I8-mnY"/>
                         <segue destination="Q8M-CT-PU2" kind="show" identifier="PushRecipeDetail" id="1g7-6l-jO6"/>
@@ -398,6 +446,7 @@
         <image name="button-delete" width="24" height="24"/>
         <image name="button-edit" width="24" height="24"/>
         <image name="button-reminder-empty" width="24" height="24"/>
+        <image name="button-reminder-filled" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
     </resources>
 </document>

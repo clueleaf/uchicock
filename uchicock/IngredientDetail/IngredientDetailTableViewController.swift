@@ -12,6 +12,9 @@ import RealmSwift
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
     @IBOutlet weak var ingredientName: CopyableLabel!
+    @IBOutlet weak var reminderImage: UIImageView!
+    @IBOutlet weak var reminderMessageLabel: CopyableLabel!
+    @IBOutlet weak var removeReminderButton: UIButton!
     @IBOutlet weak var stockRecommendLabel: UILabel!
     @IBOutlet weak var category: CustomLabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
@@ -92,6 +95,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
+        reminderImage.tintColor = Style.primaryColor
+        reminderMessageLabel.textColor = Style.primaryColor
+        removeReminderButton.setTitleColor(Style.primaryColor, for: .normal)
+        removeReminderButton.layer.borderColor = Style.primaryColor.cgColor
+        removeReminderButton.layer.borderWidth = 1.0
+        removeReminderButton.layer.cornerRadius = 12
+        removeReminderButton.backgroundColor = Style.basicBackgroundColor
+
         stock.secondaryTintColor = Style.primaryColor
         stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         stockRecommendLabel.textColor = Style.primaryColor
@@ -290,10 +301,18 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if indexPath.row == 4{
-                return super.tableView(tableView, heightForRowAt: indexPath)
+            if ingredient.reminderSetDate == nil{
+                if indexPath.row == 4{
+                    return super.tableView(tableView, heightForRowAt: indexPath)
+                }else{
+                    return UITableView.automaticDimension
+                }
             }else{
-                return UITableView.automaticDimension
+                if indexPath.row == 5{
+                    return super.tableView(tableView, heightForRowAt: indexPath)
+                }else{
+                    return UITableView.automaticDimension
+                }
             }
         }else if indexPath.section == 1{
             if ingredient.isInvalidated == false{
@@ -332,7 +351,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 5
+            if ingredient.reminderSetDate == nil{
+                return 5
+            }else{
+                return 6
+            }
         }else if section == 1 {
             if ingredient.isInvalidated{
                 return 0
@@ -424,11 +447,27 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
-            cell.selectedBackgroundView = selectedCellBackgroundView
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
-            return cell
+            if ingredient.reminderSetDate == nil{
+                if indexPath.row == 0{
+                    let cell = super.tableView(tableView, cellForRowAt: indexPath)
+                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = selectedCellBackgroundView
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                    return cell
+                }else{
+                    let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
+                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.selectedBackgroundView = selectedCellBackgroundView
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                    return cell
+                }
+            }else{
+                let cell = super.tableView(tableView, cellForRowAt: indexPath)
+                cell.backgroundColor = Style.basicBackgroundColor
+                cell.selectedBackgroundView = selectedCellBackgroundView
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                return cell
+            }
         }else if indexPath.section == 1{
             guard ingredient.isInvalidated == false else { return UITableViewCell() }
 
@@ -488,6 +527,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
 
     // MARK: - IBAction
+    @IBAction func removeReminderButtonTapped(_ sender: UIButton) {
+        let realm = try! Realm()
+        try! realm.write {
+            ingredient.reminderSetDate = nil
+        }
+        tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
+    }
+    
     @IBAction func stockTapped(_ sender: CircularCheckbox) {
         let realm = try! Realm()
         try! realm.write {
@@ -496,6 +543,21 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 ri.recipe.updateShortageNum()
             }
         }
+        
+        if stock.checkState == .checked && ingredient.reminderSetDate != nil{
+            let alertView = CustomAlertController(title: nil, message: "この材料には購入リマインダーに登録されています。解除しますか？", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
+            alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
+                try! realm.write {
+                    self.ingredient.reminderSetDate = nil
+                }
+                self.tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
+            }))
+            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.modalPresentationCapturesStatusBarAppearance = true
+            self.present(alertView, animated: true, completion: nil)
+        }
+        
         updateIngredientRecommendLabel()
         reloadIngredientRecipeBasicList()
         tableView.reloadData()
