@@ -348,6 +348,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchBar.resignFirstResponder()
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     

@@ -715,6 +715,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchBar.resignFirstResponder()
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
