@@ -587,7 +587,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.present(nvc, animated: true)
             completionHandler(true)
         })
-        reminder.image = UIImage(named: "button-reminder")
+        reminder.image = UIImage(named: "button-reminder-empty")
         reminder.backgroundColor = Style.primaryColor
 
         return UISwipeActionsConfiguration(actions: [reminder])
