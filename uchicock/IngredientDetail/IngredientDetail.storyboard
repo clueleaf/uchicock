@@ -220,8 +220,10 @@
                                                                         <action selector="reminderButtonTapped:" destination="wli-BK-85f" eventType="touchUpInside" id="xLm-E8-4rx"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="リマインダー" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                    <rect key="frame" x="9.5" y="61" width="74" height="14.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                                    <rect key="frame" x="9.5" y="61" width="74" height="29"/>
+                                                                    <string key="text">購入
+リマインダー</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
