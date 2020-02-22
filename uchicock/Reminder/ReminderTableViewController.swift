@@ -8,6 +8,7 @@
 
 import UIKit
 import EventKit
+import RealmSwift
 
 class ReminderTableViewController: UITableViewController {
 
@@ -18,8 +19,8 @@ class ReminderTableViewController: UITableViewController {
     @IBOutlet weak var dateFlag: CircularCheckbox!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var ingredientName = ""
-    
+    var ingredient = Ingredient()
+    var reminderTypePreviousState = 0
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,9 +37,8 @@ class ReminderTableViewController: UITableViewController {
         }
         
         self.navigationItem.title = "リマインダー"
-        titleLabel.text = "タイトル"
-        reminderTitle.text = ingredientName + "を買う"
-        reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
+        titleLabel.text = "対象材料"
+        reminderTitle.text = ingredient.ingredientName
         dateFlag.setCheckState(.unchecked, animated: true)
         dateFlag.boxLineWidth = 1.0
         dateFlag.stateChangeAnimation = .expand
@@ -65,7 +65,15 @@ class ReminderTableViewController: UITableViewController {
         reminderType.layer.borderColor = Style.primaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
-        reminderTypeDescription.textColor = Style.labelTextColorLight
+        if ingredient.reminderSetDate == nil{
+            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
+            reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
+            reminderTypeDescription.textColor = Style.labelTextColorLight
+        }else{
+            reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
+            reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
+            reminderTypeDescription.textColor = Style.primaryColor
+        }
         dateFlag.secondaryTintColor = Style.primaryColor
         dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
         datePicker.setValue(Style.labelTextColor, forKey: "textColor")
@@ -152,10 +160,14 @@ class ReminderTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dateFlag.checkState == .checked{
-            return 4
+        if reminderType.selectedSegmentIndex == 0{
+            return 2
         }else{
-            return 3
+            if dateFlag.checkState == .checked{
+                return 4
+            }else{
+                return 3
+            }
         }
     }
 
@@ -209,6 +221,12 @@ class ReminderTableViewController: UITableViewController {
         let eventStore = EKEventStore()
         
         if reminderType.selectedSegmentIndex == 0{
+            let realm = try! Realm()
+            try! realm.write {
+                ingredient.reminderSetDate = Date()
+            }
+            self.dismiss(animated: true, completion: nil)
+        } else if reminderType.selectedSegmentIndex == 1{
             if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
                 eventStore.requestAccess(to: .reminder, completion: {
                     granted, error in
@@ -219,7 +237,7 @@ class ReminderTableViewController: UITableViewController {
             } else {
                 createReminder(eventStore: eventStore, title: reminderTitle.text!)
             }
-        }else if reminderType.selectedSegmentIndex == 1{
+        }else if reminderType.selectedSegmentIndex == 2{
             let startDate = datePicker.date
             let endDate = datePicker.date
             if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
@@ -237,23 +255,63 @@ class ReminderTableViewController: UITableViewController {
 
     @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
         if reminderType.selectedSegmentIndex == 0{
+            titleLabel.text = "対象材料"
+            reminderTitle.text = ingredient.ingredientName
+            if ingredient.reminderSetDate == nil{
+                reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
+                reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
+                reminderTypeDescription.textColor = Style.labelTextColorLight
+            }else{
+                reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
+                reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
+                reminderTypeDescription.textColor = Style.primaryColor
+            }
+
+            if dateFlag.checkState == .checked{
+                tableView.deleteRows(at: [IndexPath(row: 2,section: 0), IndexPath(row: 3,section: 0)], with: .middle)
+            }else{
+                tableView.deleteRows(at: [IndexPath(row: 2,section: 0)], with: .middle)
+            }
+            dateFlag.setCheckState(.unchecked, animated: true)
+
+            dateFlag.isEnabled = false
+            reminderTypePreviousState = 0
+        } else if reminderType.selectedSegmentIndex == 1{
             titleLabel.text = "タイトル"
-            reminderTitle.text = ingredientName + "を買う"
+            reminderTitle.text = ingredient.ingredientName + "を買う"
+            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
+            reminderTypeDescription.textColor = Style.labelTextColorLight
+
+            if reminderTypePreviousState == 0{
+                tableView.insertRows(at: [IndexPath(row: 2,section: 0)], with: .middle)
+            }
+
             dateFlag.isEnabled = true
             dateFlag.tintColor = Style.primaryColor
             dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        }else if reminderType.selectedSegmentIndex == 1{
+            reminderTypePreviousState = 1
+        }else if reminderType.selectedSegmentIndex == 2{
             titleLabel.text = "タイトル"
-            reminderTitle.text = ingredientName + "を買う"
+            reminderTitle.text = ingredient.ingredientName + "を買う"
+            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "iOSのカレンダーアプリに登録します"
-            if dateFlag.checkState == .unchecked{
+            reminderTypeDescription.textColor = Style.labelTextColorLight
+
+            if reminderTypePreviousState == 0{
                 dateFlag.setCheckState(.checked, animated: true)
-                tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
+                tableView.insertRows(at: [IndexPath(row: 2,section: 0), IndexPath(row: 3,section: 0)], with: .middle)
+            }else if reminderTypePreviousState == 1{
+                if dateFlag.checkState == .unchecked{
+                    dateFlag.setCheckState(.checked, animated: true)
+                    tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
+                }
             }
+
             dateFlag.isEnabled = false
             dateFlag.tintColor = Style.labelTextColorLight
             dateFlag.secondaryCheckmarkTintColor = Style.basicBackgroundColor
+            reminderTypePreviousState = 2
         }
     }
     

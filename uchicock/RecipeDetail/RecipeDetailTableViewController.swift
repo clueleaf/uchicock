@@ -572,7 +572,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 completionHandler(false)
                 return
             }
-            vc.ingredientName = self.recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            vc.ingredient = self.recipe.recipeIngredients[indexPath.row].ingredient
             vc.onDoneBlock = {
                 self.setupVC()
             }

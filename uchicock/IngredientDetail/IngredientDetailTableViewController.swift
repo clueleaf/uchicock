@@ -513,7 +513,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         guard let vc = nvc.visibleViewController as? ReminderTableViewController else{
             return
         }
-        vc.ingredientName = self.ingredient.ingredientName
+        vc.ingredient = self.ingredient
         vc.onDoneBlock = {
             self.setupVC()
         }
