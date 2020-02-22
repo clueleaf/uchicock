@@ -86,7 +86,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
-        hiddenLabel.text = "Thank you for using!!!!"
+        hiddenLabel.text = "Thank you for using うちカク!!!!"
         hiddenLabel.frame = CGRect(x: 0, y: -180, width: 0, height: 20)
         hiddenLabel.textAlignment = .center
         recipeTableView.addSubview(hiddenLabel)
