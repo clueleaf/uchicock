@@ -267,6 +267,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
                         try! realm.write {
                             ingredient.reminderSetDate = nil
+                            MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
                         }
                     }))
                     alertView.alertStatusBarStyle = Style.statusBarStyle
