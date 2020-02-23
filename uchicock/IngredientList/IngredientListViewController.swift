@@ -21,6 +21,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSeparator: UIView!
     
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var categoryHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var categoryBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stockStateHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stockStateBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ingredientRecommendButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerSeparatorTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerSeparatorLandscapeTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
+    
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
@@ -28,6 +38,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var selectedIngredientId: String? = nil
     var selectedIndexPath: IndexPath? = nil
     var isTyping = false
+    var isReminderMode = false
 
     let interactor = Interactor()
 
@@ -50,6 +61,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setupVC(){
+        isReminderMode ? changeToReminderMode() : changeToIngredientMode()
         self.view.backgroundColor = Style.basicBackgroundColor
 
         segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
@@ -191,36 +203,42 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
         }
         
-        if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
-            ingredientBasicList.removeAll{
-                !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch())
-            }
-        }
-        
-        switch stockState.selectedSegmentIndex{
-        case 1:
-            ingredientBasicList.removeAll{ $0.stockFlag == false }
-        case 2:
-            ingredientBasicList.removeAll{ $0.stockFlag }
-        default:
-            break
-        }
-        
-        if category.selectedSegmentIndex != 0{
-            ingredientBasicList.removeAll{
-                $0.category != category.selectedSegmentIndex - 1
-            }
-        }
-
-        ingredientBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-
-        if let allIngredientNum = ingredientList?.count{
-            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+        if isReminderMode{
+            ingredientBasicList.removeAll{ $0.reminderSetDate == nil }
+            ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
+            self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+            if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+                ingredientBasicList.removeAll{
+                    !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch())
+                }
+            }
+            
+            switch stockState.selectedSegmentIndex{
+            case 1:
+                ingredientBasicList.removeAll{ $0.stockFlag == false }
+            case 2:
+                ingredientBasicList.removeAll{ $0.stockFlag }
+            default:
+                break
+            }
+            
+            if category.selectedSegmentIndex != 0{
+                ingredientBasicList.removeAll{
+                    $0.category != category.selectedSegmentIndex - 1
+                }
+            }
+
+            ingredientBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+
+            if let allIngredientNum = ingredientList?.count{
+                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+            }else{
+                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+            }
         }
         
         setTableBackgroundView()
@@ -228,14 +246,20 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func setTableBackgroundView(){
         if ingredientBasicList.count == 0{
-            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 4, width: self.tableView.bounds.size.width, height: 20))
-            noDataLabel.text = "条件にあてはまる材料はありません"
+            self.tableView.backgroundView  = UIView()
+            self.tableView.isScrollEnabled = false
+            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
+            noDataLabel.numberOfLines = 0
             noDataLabel.textColor = Style.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
-            self.tableView.backgroundView  = UIView()
+
+            if isReminderMode{
+                noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
+            }else{
+                noDataLabel.text = "条件にあてはまる材料はありません"
+            }
             self.tableView.backgroundView?.addSubview(noDataLabel)
-            self.tableView.isScrollEnabled = false
         }else{
             self.tableView.backgroundView = nil
             self.tableView.isScrollEnabled = true
@@ -267,7 +291,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
                         try! realm.write {
                             ingredient.reminderSetDate = nil
-                            MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
+                            if self.isReminderMode{
+                                self.ingredientBasicList.remove(at: index.row)
+                                self.tableView.deleteRows(at: [index], with: .automatic)
+                                if self.ingredientBasicList.count == 0{
+                                    self.setTableBackgroundView()
+                                    self.tableView.reloadData()
+                                }
+                                self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
+                            }else{
+                                MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
+                            }
                         }
                     }))
                     alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -282,17 +316,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
             
-            if stockState.selectedSegmentIndex != 0{
-                ingredientBasicList.remove(at: index.row)
-                tableView.deleteRows(at: [index], with: .automatic)
-                if ingredientBasicList.count == 0{
-                    setTableBackgroundView()
-                    tableView.reloadData()
-                }
-                if let allIngredientNum = ingredientList?.count{
-                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
-                }else{
-                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+            if self.isReminderMode == false{
+                if stockState.selectedSegmentIndex != 0{
+                    ingredientBasicList.remove(at: index.row)
+                    tableView.deleteRows(at: [index], with: .automatic)
+                    if ingredientBasicList.count == 0{
+                        setTableBackgroundView()
+                        tableView.reloadData()
+                    }
+                    if let allIngredientNum = ingredientList?.count{
+                        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+                    }else{
+                        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
+                    }
                 }
             }
         }
@@ -306,7 +342,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -50{
+        if scrollView.contentOffset.y < -50, isReminderMode == false{
             searchBar.becomeFirstResponder()
         }else if scrollBeginingYPoint < scrollView.contentOffset.y {
             searchBar.resignFirstResponder()
@@ -403,7 +439,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 self.present(alertView, animated: true, completion: nil)
                 completionHandler(false)
             } else{
-                let deleteAlertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+                let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
                 deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                     let realm = try! Realm()
                     try! realm.write {
@@ -412,10 +448,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     self.ingredientBasicList.remove(at: indexPath.row)
                     self.setTableBackgroundView()
                     tableView.deleteRows(at: [indexPath], with: .automatic)
-                    if let allIngredientNum = self.ingredientList?.count{
-                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+                    if self.isReminderMode{
+                        self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
                     }else{
-                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
+                        if let allIngredientNum = self.ingredientList?.count{
+                            self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
+                        }else{
+                            self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
+                        }
                     }
                     completionHandler(true)
                 }))
@@ -432,7 +472,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         let realm = try! Realm()
         let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
-        if ingredient.recipeIngredients.count == 0 {
+        if ingredient.recipeIngredients.count == 0 && isReminderMode == false {
             return UISwipeActionsConfiguration(actions: [del, edit])
         }else{
             return UISwipeActionsConfiguration(actions: [edit])
@@ -473,6 +513,46 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - IBAction
     @IBAction func reminderButtonTapped(_ sender: UIBarButtonItem) {
+        isReminderMode.toggle()
+        
+        isReminderMode ? changeToReminderMode() : changeToIngredientMode()
+        reloadIngredientBasicList()
+        tableView.reloadData()
+    }
+    
+    private func changeToReminderMode(){
+        reminderButton.image = UIImage(named: "button-reminder-filled")
+        searchBarHeightConstraint.constant = 0
+        categoryHeightConstraint.constant = 0
+        category.isHidden = true
+        categoryBottomConstraint.constant = 0
+        stockStateHeightConstraint.constant = 0
+        stockState.isHidden = true
+        stockStateBottomConstraint.constant = 0
+        ingredientRecommendButtonHeightConstraint.constant = 0
+        ingredientRecommendButton.isHidden = true
+        containerSeparatorTopConstraint.constant = 0
+        containerSeparatorLandscapeTopConstraint.constant = 0
+        containerSeparatorHeightConstraint.constant = 0
+        addIngredientButton.isEnabled = false
+        searchBar.resignFirstResponder()
+    }
+    
+    private func changeToIngredientMode(){
+        reminderButton.image = UIImage(named: "button-reminder-empty")
+        searchBarHeightConstraint.constant = 44
+        categoryHeightConstraint.constant = 28
+        category.isHidden = false
+        categoryBottomConstraint.constant = 4
+        stockStateHeightConstraint.constant = 28
+        stockState.isHidden = false
+        stockStateBottomConstraint.constant = 8
+        ingredientRecommendButtonHeightConstraint.constant = 30
+        ingredientRecommendButton.isHidden = false
+        containerSeparatorTopConstraint.constant = 6
+        containerSeparatorLandscapeTopConstraint.constant = 4
+        containerSeparatorHeightConstraint.constant = 1
+        addIngredientButton.isEnabled = true
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {

@@ -1029,7 +1029,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        let alertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+        let alertView = CustomAlertController(title: nil, message: "このレシピを本当に削除しますか？", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
             action in
             let realm = try! Realm()

@@ -250,12 +250,21 @@
                     <connections>
                         <outlet property="addIngredientButton" destination="JF9-fv-66t" id="eTk-5I-bNI"/>
                         <outlet property="category" destination="TSf-wI-n9h" id="v6b-6e-4tO"/>
+                        <outlet property="categoryBottomConstraint" destination="adq-im-gbd" id="G4h-n0-dHl"/>
+                        <outlet property="categoryHeightConstraint" destination="eF9-ls-XPO" id="TaW-HW-MkE"/>
                         <outlet property="containerSeparator" destination="byH-fO-srn" id="BBD-So-Cn9"/>
+                        <outlet property="containerSeparatorHeightConstraint" destination="YxM-PQ-fdV" id="dcH-BX-Bgv"/>
+                        <outlet property="containerSeparatorLandscapeTopConstraint" destination="9bS-Nc-pdt" id="6gK-l2-bMe"/>
+                        <outlet property="containerSeparatorTopConstraint" destination="fg1-LP-gop" id="TBQ-i1-FLx"/>
                         <outlet property="ingredientRecommendButton" destination="dxa-Lv-rSY" id="8pq-ao-HeU"/>
+                        <outlet property="ingredientRecommendButtonHeightConstraint" destination="Ovy-gO-1LM" id="nFS-9G-EzC"/>
                         <outlet property="reminderButton" destination="f1a-T6-kRA" id="1Jj-x7-hic"/>
                         <outlet property="searchBar" destination="pzt-xa-LwF" id="nNr-ul-9jY"/>
+                        <outlet property="searchBarHeightConstraint" destination="WNZ-hg-Syb" id="FuU-vn-aX7"/>
                         <outlet property="segmentedControlContainer" destination="Lua-m4-zJA" id="aCT-96-MB8"/>
                         <outlet property="stockState" destination="PAy-Yc-Fde" id="MZ1-HH-7Cs"/>
+                        <outlet property="stockStateBottomConstraint" destination="0Yx-52-nQT" id="K2i-Ww-aw7"/>
+                        <outlet property="stockStateHeightConstraint" destination="ovn-Nt-HBQ" id="gN3-nb-8xe"/>
                         <outlet property="tableView" destination="Cpd-Fl-ZaY" id="amY-yG-DWo"/>
                         <segue destination="tMY-tg-5CF" kind="presentation" identifier="PushAddIngredient" modalPresentationStyle="fullScreen" id="Pbn-EL-fnW"/>
                         <segue destination="JhU-9b-6yy" kind="show" identifier="PushIngredientDetail" id="VCb-qc-LbU"/>

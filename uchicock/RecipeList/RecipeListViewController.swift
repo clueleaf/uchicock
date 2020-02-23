@@ -744,7 +744,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         edit.backgroundColor = Style.tableViewCellEditBackgroundColor
         
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
-            let alertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: nil, message: "このレシピを本当に削除しますか？", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
@@ -771,7 +771,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = Style.deleteColor
 
-        return UISwipeActionsConfiguration(actions: [del, edit])
+        return isBookmarkMode ? UISwipeActionsConfiguration(actions: [edit]) : UISwipeActionsConfiguration(actions: [del, edit])
     }
     
     @available(iOS 13.0, *)

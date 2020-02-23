@@ -613,7 +613,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         } else{
-            let deleteAlertView = CustomAlertController(title: nil, message: "本当に削除しますか？", preferredStyle: .alert)
+            let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
             deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 let realm = try! Realm()
                 try! realm.write {

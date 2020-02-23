@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Kou. All rights reserved.
 //
 
+import UIKit
+
 struct IngredientBasic{
     var id : String
     var name : String
@@ -14,5 +16,6 @@ struct IngredientBasic{
     var category : Int
     var contributionToRecipeAvailability : Int
     var usedRecipeNum : Int
+    var reminderSetDate : Date?
 }
 
