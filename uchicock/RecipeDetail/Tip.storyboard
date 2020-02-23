@@ -404,17 +404,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-cv-qGg">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="349.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="366.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-IZ-4fa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="394" height="317.5"/>
+                                                <rect key="frame" x="8" y="8" width="394" height="334.5"/>
                                                 <mutableString key="text">このアプリでは、カクテルのアルコール度数を
 
-10%未満→「弱い」
+1%未満→「ノンアルコール」
+1%以上10%未満→「弱い」
 10%以上25%未満→「やや強い」
 25%以上→「強い」
 
-と分類している。
+の4つに分類している。
 割り材の分量、アルコールの銘柄、そして氷の溶け具合などによっても度数は変わるので、あくまで目安として考えよう。
 
 アルコール度数が強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のレシピとは味が変わってしまうが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
