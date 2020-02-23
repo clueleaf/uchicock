@@ -144,7 +144,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
-            self.noItemText = "写真が登録されたレシピはありません"
+            self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
             self.recipeNameBarButton.isEnabled = false
             self.albumFilterBarButton.isEnabled = false
             self.orderBarButton.isEnabled = false
@@ -312,7 +312,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         self.collectionView.reloadData()
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
-            self.noItemText = "写真が登録されたレシピはありません"
+            self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
             self.recipeNameBarButton.isEnabled = false
             self.albumFilterBarButton.isEnabled = false
             self.orderBarButton.isEnabled = false
@@ -512,7 +512,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
-                self.noItemText = "写真が登録されたレシピはありません"
+                self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
                 self.recipeNameBarButton.isEnabled = false
                 self.albumFilterBarButton.isEnabled = false
                 self.orderBarButton.isEnabled = false
@@ -530,7 +530,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView.reloadData()
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
-                self.noItemText = "写真が登録されたレシピはありません"
+                self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
                 self.recipeNameBarButton.isEnabled = false
                 self.albumFilterBarButton.isEnabled = false
                 self.orderBarButton.isEnabled = false

@@ -624,14 +624,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if recipeBasicList.count == 0{
             self.tableView.backgroundView = UIView()
             self.tableView.isScrollEnabled = false
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 60))
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
             noDataLabel.textColor = Style.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             
             if isBookmarkMode{
-                noDataLabel.text = "ブックマークはありません"
+                noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
             }else{
                 noDataLabel.text = "条件にあてはまるレシピはありません"
                 if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
