@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -12,7 +12,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="IngredientDetail" id="wli-BK-85f" userLabel="Ingredient Detail Table View Controller" customClass="IngredientDetailTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="V9f-0B-OTf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -20,14 +20,14 @@
                             <tableViewSection headerTitle="Section-1" id="y1T-XT-XVf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="Br0-fB-ERp">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Br0-fB-ERp" id="S9O-AN-bvG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps6-U7-0aD" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="359" height="40"/>
+                                                    <rect key="frame" x="8" y="20" width="304" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -42,15 +42,15 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="A6t-lU-ViC">
-                                        <rect key="frame" x="0.0" y="108" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A6t-lU-ViC" id="QGa-Uf-7vm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="購入リマインダーに登録されています" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPo-SR-Hj1" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="29" y="16" width="256" height="16"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <rect key="frame" x="29" y="16" width="201" height="16"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -62,7 +62,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsX-jD-29O">
-                                                    <rect key="frame" x="293" y="12" width="70" height="24"/>
+                                                    <rect key="frame" x="238" y="12" width="70" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="UTP-2Y-AdZ"/>
                                                         <constraint firstAttribute="height" constant="24" id="vrk-S3-jDp"/>
@@ -87,20 +87,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="Kjl-Jf-p6s">
-                                        <rect key="frame" x="0.0" y="156" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="156" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kjl-Jf-p6s" id="yJQ-2z-gnr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-8e-XYX" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="7" width="295" height="36"/>
+                                                    <rect key="frame" x="8" y="7" width="240" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbX-in-ob8" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="323" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="268" y="5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Vwl-49-zDc"/>
@@ -111,7 +111,7 @@
                                                     </connections>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入手すると新たに0レシピ作れる！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j5-wo-2mv">
-                                                    <rect key="frame" x="8" y="47" width="305" height="15"/>
+                                                    <rect key="frame" x="8" y="47" width="250" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="a09-y6-gUo"/>
                                                     </constraints>
@@ -134,14 +134,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="NWc-va-JyA">
-                                        <rect key="frame" x="0.0" y="226" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="226" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NWc-va-JyA" id="wx8-pu-png">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="カテゴリー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM9-Wc-cPe" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="231" height="26"/>
+                                                    <rect key="frame" x="8" y="15" width="176" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="UnF-Cf-vuK"/>
                                                     </constraints>
@@ -150,7 +150,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbv-Mt-9IU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="276" y="17.5" width="87" height="21"/>
+                                                    <rect key="frame" x="221" y="17.5" width="87" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Ocm-Nq-vek"/>
                                                     </constraints>
@@ -159,7 +159,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cc-fS-Lij">
-                                                    <rect key="frame" x="259" y="17.5" width="17" height="21"/>
+                                                    <rect key="frame" x="204" y="17.5" width="17" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="17" id="WDk-kB-DPh"/>
                                                         <constraint firstAttribute="height" constant="21" id="mxV-kq-9vi"/>
@@ -179,14 +179,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="enb-W9-wRs">
-                                        <rect key="frame" x="0.0" y="282" width="375" height="93"/>
+                                        <rect key="frame" x="0.0" y="282" width="320" height="93"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="enb-W9-wRs" id="QhB-zD-uPo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="304" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="21" id="kI9-yN-asZ"/>
                                                     </constraints>
@@ -195,7 +195,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYC-Ar-0sn" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="355" height="34"/>
+                                                    <rect key="frame" x="8" y="44" width="300" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -213,20 +213,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="UzA-F4-XmK">
-                                        <rect key="frame" x="0.0" y="375" width="375" height="95"/>
+                                        <rect key="frame" x="0.0" y="375" width="320" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UzA-F4-XmK" id="d70-EG-7C3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wdZ-zn-D2G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpi-hE-avz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="95"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lS3-q2-ds8">
-                                                                    <rect key="frame" x="23" y="8" width="48" height="48"/>
+                                                                    <rect key="frame" x="16" y="8" width="48" height="48"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="48" id="3z5-jd-2nN"/>
                                                                         <constraint firstAttribute="height" constant="48" id="8Kz-jV-vn7"/>
@@ -237,7 +237,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="編集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oht-Sh-YRZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                    <rect key="frame" x="34.5" y="61" width="25" height="14.5"/>
+                                                                    <rect key="frame" x="27.5" y="61" width="25" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -252,10 +252,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pdl-KI-MmH">
-                                                            <rect key="frame" x="94" y="0.0" width="93.5" height="95"/>
+                                                            <rect key="frame" x="80" y="0.0" width="80" height="95"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPs-GH-jRH">
-                                                                    <rect key="frame" x="22.5" y="8" width="48" height="48"/>
+                                                                    <rect key="frame" x="16" y="8" width="48" height="48"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="48" id="0Nu-hF-6KM"/>
                                                                         <constraint firstAttribute="width" constant="48" id="9ip-to-Q04"/>
@@ -266,7 +266,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-ed-ecs" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                    <rect key="frame" x="9.5" y="61" width="74" height="29"/>
+                                                                    <rect key="frame" x="3" y="61" width="74" height="29"/>
                                                                     <string key="text">購入
 リマインダー</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -283,10 +283,10 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUb-qb-HOW">
-                                                            <rect key="frame" x="187.5" y="0.0" width="94" height="95"/>
+                                                            <rect key="frame" x="160" y="0.0" width="80" height="95"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyv-e1-O7y">
-                                                                    <rect key="frame" x="23" y="8" width="48" height="48"/>
+                                                                    <rect key="frame" x="16" y="8" width="48" height="48"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="48" id="M74-GS-iVG"/>
                                                                         <constraint firstAttribute="width" constant="48" id="egL-Yq-Sqj"/>
@@ -297,7 +297,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuT-H0-mbG" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                    <rect key="frame" x="8.5" y="61" width="76.5" height="29"/>
+                                                                    <rect key="frame" x="2" y="61" width="76.5" height="29"/>
                                                                     <string key="text">Amazon.co.jp
 で探す</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -314,16 +314,16 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5GJ-2B-cNq">
-                                                            <rect key="frame" x="281.5" y="0.0" width="93.5" height="95"/>
+                                                            <rect key="frame" x="240" y="0.0" width="80" height="95"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="材料削除" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqM-l2-1Yk">
-                                                                    <rect key="frame" x="22" y="61" width="49.5" height="14.5"/>
+                                                                    <rect key="frame" x="15.5" y="61" width="49.5" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Oo-xf-RBe">
-                                                                    <rect key="frame" x="22.5" y="8" width="48" height="48"/>
+                                                                    <rect key="frame" x="16" y="8" width="48" height="48"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="48" id="bye-T7-Crj"/>
                                                                         <constraint firstAttribute="height" constant="48" id="kxH-6D-M4l"/>
@@ -368,14 +368,14 @@
                             <tableViewSection headerTitle="Section-2" id="tBY-75-L8T">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="9Hb-rp-acT">
-                                        <rect key="frame" x="0.0" y="526" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="526" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hb-rp-acT" id="jGP-L0-puF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作れる順（タップで変更）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgy-Pt-mDp">
-                                                    <rect key="frame" x="83.5" y="15" width="208" height="20.5"/>
+                                                    <rect key="frame" x="56" y="15" width="208" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
