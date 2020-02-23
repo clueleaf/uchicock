@@ -42,7 +42,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     let selectedCellBackgroundView = UIView()
     var showCancelAlert = false
     var selectedIndexPath: IndexPath? = nil
-    var hiddenLabel = UILabel()
 
     let interactor = Interactor()
 
@@ -52,12 +51,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
-        hiddenLabel.text = "5月13日はカクテルの日"
-        hiddenLabel.frame = CGRect(x: 0, y: -130, width: 0, height: 20)
-        hiddenLabel.textAlignment = .center
-        tableView.addSubview(hiddenLabel)
         
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
@@ -160,8 +153,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
         
-        hiddenLabel.textColor = Style.labelTextColorLight
-
         recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
@@ -192,11 +183,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
             }
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        hiddenLabel.frame = CGRect(x: 0, y: -130, width: tableView.frame.width, height: 20)
     }
     
     override func viewDidAppear(_ animated: Bool) {
