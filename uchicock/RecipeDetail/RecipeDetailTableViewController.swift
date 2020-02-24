@@ -476,6 +476,26 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 pasteboard.image = loadedImage!
                 MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true)
             })
+            alertView.addAction(UIAlertAction(title: "写真を共有",style: .default){ action in
+                let excludedActivityTypes = [
+                    UIActivity.ActivityType.print,
+                    UIActivity.ActivityType.assignToContact,
+                    UIActivity.ActivityType.addToReadingList,
+                    UIActivity.ActivityType.postToFlickr,
+                    UIActivity.ActivityType.postToVimeo,
+                    UIActivity.ActivityType.postToWeibo,
+                    UIActivity.ActivityType.postToTencentWeibo,
+                    UIActivity.ActivityType.openInIBooks
+                ]
+                
+                let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
+                activityVC.excludedActivityTypes = excludedActivityTypes
+                activityVC.activityStatusBarStyle = Style.statusBarStyle
+                activityVC.modalPresentationCapturesStatusBarAppearance = true
+                activityVC.popoverPresentationController?.sourceView = self.view
+                activityVC.popoverPresentationController?.sourceRect = self.photo.frame
+                self.present(activityVC, animated: true, completion: nil)
+            })
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.photo.frame
