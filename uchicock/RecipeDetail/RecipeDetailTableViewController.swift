@@ -984,8 +984,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         let excludedActivityTypes = [
-            UIActivity.ActivityType.message,
-            UIActivity.ActivityType.mail,
             UIActivity.ActivityType.print,
             UIActivity.ActivityType.assignToContact,
             UIActivity.ActivityType.addToReadingList,
@@ -993,7 +991,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             UIActivity.ActivityType.postToVimeo,
             UIActivity.ActivityType.postToWeibo,
             UIActivity.ActivityType.postToTencentWeibo,
-            UIActivity.ActivityType.airDrop,
             UIActivity.ActivityType.openInIBooks
         ]
         
