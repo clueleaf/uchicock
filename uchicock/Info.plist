@@ -35,7 +35,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>レシピの写真を撮影するために使います。</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>レシピの写真をカメラロールに保存するために使います。</string>
+	<string>レシピの写真を「写真」アプリに保存するために使います。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>レシピの写真を登録するために使います。</string>
 	<key>NSRemindersUsageDescription</key>

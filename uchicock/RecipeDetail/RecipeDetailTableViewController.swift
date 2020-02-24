@@ -468,7 +468,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         if loadedImage != nil && photoExists && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alertView.addAction(UIAlertAction(title: "カメラロールへ保存",style: .default){ action in
+            alertView.addAction(UIAlertAction(title: "「写真」アプリへ保存",style: .default){ action in
                 UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                 })
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
@@ -489,7 +489,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if error == nil{
             MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true)
         }else{
-            let alertView = CustomAlertController(title: "カメラロールへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
+            let alertView = CustomAlertController(title: "「写真」アプリへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
             }))
             alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
