@@ -27,7 +27,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool{

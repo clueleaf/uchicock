@@ -35,7 +35,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock: ((Bool, Bool, Bool, String, String, Int, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in }
@@ -92,24 +92,24 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.suggestTableView.backgroundColor = Style.basicBackgroundColor
-        self.suggestTableView.separatorColor = Style.labelTextColorLight
-        self.suggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        self.suggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.suggestTableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.suggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
-        amount.layer.borderColor = Style.textFieldBorderColor.cgColor
-        amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        amount.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         amount.adjustClearButtonColor(with: 4)
-        option.secondaryTintColor = Style.primaryColor
-        option.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        optionDescriptionLabel.textColor = Style.labelTextColorLight
-        deleteLabel.textColor = Style.deleteColor
+        option.secondaryTintColor = UchicockStyle.primaryColor
+        option.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        optionDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
+        deleteLabel.textColor = UchicockStyle.deleteColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -209,10 +209,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = (tableView.tag == 1 && section == 0) ? "材料候補" : ""
     }
@@ -268,7 +268,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 alertView.popoverPresentationController?.sourceView = self.view
                 alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
-                alertView.alertStatusBarStyle = Style.statusBarStyle
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
             }else{
@@ -282,7 +282,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                 alertView.popoverPresentationController?.sourceView = self.view
                 alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
-                alertView.alertStatusBarStyle = Style.statusBarStyle
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 present(alertView, animated: true, completion: nil)
             }
@@ -298,7 +298,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if tableView.tag == 0{
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.section == 0{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -309,13 +309,13 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }else{
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     if indexPath.section == 0{
                         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -327,7 +327,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.name = suggestList[indexPath.row].name
             cell.category = suggestList[indexPath.row].category
             cell.selectedBackgroundView = selectedCellBackgroundView
@@ -401,7 +401,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     func presentAlert(_ message: String){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -457,7 +457,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     self.dismiss(animated: true, completion: nil)
                 }))
                 registAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                registAlertView.alertStatusBarStyle = Style.statusBarStyle
+                registAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 registAlertView.modalPresentationCapturesStatusBarAppearance = true
                 present(registAlertView, animated: true, completion: nil)
             }else{

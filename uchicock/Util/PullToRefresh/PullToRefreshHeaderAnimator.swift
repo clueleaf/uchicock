@@ -36,14 +36,14 @@ open class PullToRefreshHeaderAnimator: UIView {
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage(named: "pull_to_refresh_arrow")
-        imageView.tintColor = Style.labelTextColor
+        imageView.tintColor = UchicockStyle.labelTextColor
         return imageView
     }()
     
     fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
         label.font = UIFont.boldSystemFont(ofSize: 14.0)
-        label.textColor = Style.labelTextColor
+        label.textColor = UchicockStyle.labelTextColor
         label.textAlignment = .left
         return label
     }()

@@ -20,7 +20,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -36,10 +36,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         setNavigationTitle()
         isRecovering = false
         
-        tableView.separatorColor = Style.labelTextColorLight
-        tableView.backgroundColor = Style.basicBackgroundColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
     }
     
     private func cellDeselectAnimation(){
@@ -51,7 +51,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
     }
     
     func changeToUserDb(){
@@ -239,7 +239,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                         }))
-                        alertView.alertStatusBarStyle = Style.statusBarStyle
+                        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                         alertView.modalPresentationCapturesStatusBarAppearance = true
                         self.present(alertView, animated: true, completion: nil)
                     }else{
@@ -259,7 +259,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                             }
                         }))
                         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                        alertView.alertStatusBarStyle = Style.statusBarStyle
+                        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                         alertView.modalPresentationCapturesStatusBarAppearance = true
                         self.present(alertView, animated: true, completion: nil)
                     }
@@ -296,10 +296,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "復元したいレシピを選んでください" : ""
     }
@@ -324,13 +324,13 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 1:
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
@@ -339,7 +339,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 
                 let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
-                accesoryImageView.tintColor = Style.labelTextColorLight
+                accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView
 
@@ -347,13 +347,13 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 cell.isTarget.animationDuration = 0.0
                 cell.isTarget.backgroundColor = UIColor.clear
                 cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.secondaryTintColor = Style.primaryColor
-                cell.isTarget.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+                cell.isTarget.secondaryTintColor = UchicockStyle.primaryColor
+                cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
                     cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
                     cell.isTarget.isEnabled = true
-                    cell.isTarget.tintColor = Style.primaryColor
+                    cell.isTarget.tintColor = UchicockStyle.primaryColor
                     if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
                         cell.isTarget.setCheckState(.checked, animated: true)
                     }else{
@@ -364,12 +364,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }else{
                     cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
-                    cell.isTarget.tintColor = Style.labelTextColorLight
-                    cell.isTarget.secondaryCheckmarkTintColor = Style.basicBackgroundColor
+                    cell.isTarget.tintColor = UchicockStyle.labelTextColorLight
+                    cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
                     cell.isTarget.setCheckState(.mixed, animated: true)
                     cell.isRecoverable = false
                 }
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
                 return cell
@@ -413,7 +413,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     }
                 }))
                 alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                alertView.alertStatusBarStyle = Style.statusBarStyle
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        Style.loadTheme()
+        UchicockStyle.loadTheme()
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
 

@@ -60,7 +60,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     override func viewDidLoad() {
@@ -106,16 +106,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func setupVC(){
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
 
-        searchContainer.backgroundColor = Style.filterContainerBackgroundColor
+        searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
         searchBar.backgroundImage = UIImage()
         
         let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-        glassIconView?.tintColor = Style.labelTextColorLight
+        glassIconView?.tintColor = UchicockStyle.labelTextColorLight
 
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = Style.textFieldBorderColor.cgColor
+            searchBar.searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
             searchBar.searchTextField.layer.borderWidth = 1.0
             searchBar.searchTextField.layer.cornerRadius = 8.0
         }else{
@@ -123,13 +123,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 for subview in view.subviews {
                     if subview is UITextField {
                         let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
+                        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
                         textField.layer.borderWidth = 1.0
                         textField.layer.cornerRadius = 8.0
                         for subsubview in subview.subviews{
                             if subsubview is UILabel{
                                 let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = Style.labelTextColorLight
+                                placeholderLabel.textColor = UchicockStyle.labelTextColorLight
                             }
                         }
                     }
@@ -137,20 +137,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
+        searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.setTitleColor(Style.primaryColor, for: .normal)
-        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
+        searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        containerSeparator.backgroundColor = Style.labelTextColorLight
+        containerSeparator.backgroundColor = UchicockStyle.labelTextColorLight
 
-        self.view.backgroundColor = Style.basicBackgroundColor
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.view.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
         loadSearchUserDefaults()
         setSearchConditionButtonTitle()
@@ -270,7 +270,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     for subsubview in subview.subviews{
                         if subsubview is UILabel{
                             let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColorLight
+                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
                         }
                     }
                 }
@@ -642,7 +642,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.tableView.isScrollEnabled = false
             let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = Style.labelTextColorLight
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             
@@ -757,7 +757,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         })
         edit.image = UIImage(named: "button-edit")
-        edit.backgroundColor = Style.tableViewCellEditBackgroundColor
+        edit.backgroundColor = UchicockStyle.tableViewCellEditBackgroundColor
         
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             let alertView = CustomAlertController(title: nil, message: "このレシピを本当に削除しますか？", preferredStyle: .alert)
@@ -780,12 +780,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
                 completionHandler(false)
             })
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = Style.deleteColor
+        del.backgroundColor = UchicockStyle.deleteColor
 
         return isBookmarkMode ? UISwipeActionsConfiguration(actions: [edit]) : UISwipeActionsConfiguration(actions: [del, edit])
     }
@@ -836,7 +836,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
             cell.recipe = recipe
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

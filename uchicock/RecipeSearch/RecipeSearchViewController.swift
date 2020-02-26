@@ -97,7 +97,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     var interactor: Interactor?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock = {}
@@ -215,46 +215,46 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = Style.basicBackgroundColor
-        scrollView.backgroundColor = Style.basicBackgroundColor
-        scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        scrollBackgroundView.backgroundColor = Style.basicBackgroundColor
+        self.view.backgroundColor = UchicockStyle.basicBackgroundColor
+        scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
+        scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        scrollBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        sortExplanationLabel.textColor = Style.labelTextColorLight
-        firstSeparator.backgroundColor = Style.labelTextColor
+        sortExplanationLabel.textColor = UchicockStyle.labelTextColorLight
+        firstSeparator.backgroundColor = UchicockStyle.labelTextColor
         
-        filterExplanationLabel.textColor = Style.labelTextColorLight
+        filterExplanationLabel.textColor = UchicockStyle.labelTextColorLight
 
-        favoriteSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        favoriteDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        favoriteWarningImage.tintColor = Style.deleteColor
-        favoriteWarningLabel.textColor = Style.deleteColor
+        favoriteSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        favoriteDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        favoriteWarningImage.tintColor = UchicockStyle.deleteColor
+        favoriteWarningLabel.textColor = UchicockStyle.deleteColor
         setFavoriteWarningVisibility()
 
-        styleSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        styleDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        styleWarningImage.tintColor = Style.deleteColor
-        styleWarningLabel.textColor = Style.deleteColor
+        styleSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        styleDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        styleWarningImage.tintColor = UchicockStyle.deleteColor
+        styleWarningLabel.textColor = UchicockStyle.deleteColor
         setStyleWarningVisibility()
 
-        methodSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        methodDeselectAllButton.setTitleColor(Style.deleteColor, for: .normal)
-        methodWarningImage.tintColor = Style.deleteColor
-        methodWarningLabel.textColor = Style.deleteColor
+        methodSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        methodDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        methodWarningImage.tintColor = UchicockStyle.deleteColor
+        methodWarningLabel.textColor = UchicockStyle.deleteColor
         setMethodWarningVisibility()
         
-        strengthSelectAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        strengthDeselectAllbutton.setTitleColor(Style.deleteColor, for: .normal)
-        strengthWarningImage.tintColor = Style.deleteColor
-        strengthWarningLabel.textColor = Style.deleteColor
+        strengthSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        strengthDeselectAllbutton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        strengthWarningImage.tintColor = UchicockStyle.deleteColor
+        strengthWarningLabel.textColor = UchicockStyle.deleteColor
         setStrengthWarningVisibility()
 
-        secondSeparator.backgroundColor = Style.labelTextColor
-        searchButtonBackgroundView.backgroundColor = Style.basicBackgroundColor
-        searchButton.layer.borderColor = Style.primaryColor.cgColor
+        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
+        searchButtonBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
+        searchButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
-        searchButton.setTitleColor(Style.primaryColor, for: .normal)
+        searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
     }
     
     private func setFavoriteWarningVisibility(){
@@ -367,16 +367,16 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.setCheckState(checkState, animated: true)
         if checkState == .mixed{
             checkbox.isEnabled = false
-            checkbox.tintColor = Style.labelTextColorLight
-            checkbox.secondaryCheckmarkTintColor = Style.basicBackgroundColor
+            checkbox.tintColor = UchicockStyle.labelTextColorLight
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
         }else{
             checkbox.isEnabled = true
-            checkbox.tintColor = Style.primaryColor
-            checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+            checkbox.tintColor = UchicockStyle.primaryColor
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         }
         checkbox.animationDuration = 0.3
         checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = Style.primaryColor
+        checkbox.secondaryTintColor = UchicockStyle.primaryColor
         checkbox.contentHorizontalAlignment = .center
     }
     
@@ -592,30 +592,30 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     private func setCheckboxChecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.checked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.primaryColor
-        checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+        checkbox.tintColor = UchicockStyle.primaryColor
+        checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
     }
 
     private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
-        checkbox.tintColor = Style.primaryColor
+        checkbox.tintColor = UchicockStyle.primaryColor
     }
     
     private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
         if checkbox.checkState != .mixed{
             checkbox.setCheckState(.unchecked, animated: true)
             checkbox.isEnabled = true
-            checkbox.tintColor = Style.primaryColor
-            checkbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+            checkbox.tintColor = UchicockStyle.primaryColor
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         }
     }
     
     private func setCheckboxMixed(_ checkbox: CircularCheckbox){
         checkbox.setCheckState(.mixed, animated: true)
         checkbox.isEnabled = false
-        checkbox.tintColor = Style.labelTextColorLight
-        checkbox.secondaryCheckmarkTintColor = Style.basicBackgroundColor
+        checkbox.tintColor = UchicockStyle.labelTextColorLight
+        checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
     }
     
     @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {

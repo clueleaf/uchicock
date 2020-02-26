@@ -58,7 +58,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -110,35 +110,35 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setupVC(){
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        recipeTableView.separatorColor = Style.labelTextColorLight
-        ingredientSuggestTableView.separatorColor = Style.labelTextColorLight
-        recipeTableView.backgroundColor = Style.basicBackgroundColor
-        ingredientSuggestTableView.backgroundColor = Style.basicBackgroundColor
-        recipeTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        ingredientSuggestTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        recipeTableView.separatorColor = UchicockStyle.labelTextColorLight
+        ingredientSuggestTableView.separatorColor = UchicockStyle.labelTextColorLight
+        recipeTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        ingredientSuggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        recipeTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        ingredientSuggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         loadFromUserDefaults()
 
-        ingredientTextField1.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField2.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField3.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
-        ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientTextField1.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientTextField2.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientTextField3.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientTextField1.adjustClearButtonColor(with: 5)
         ingredientTextField2.adjustClearButtonColor(with: 5)
         ingredientTextField3.adjustClearButtonColor(with: 5)
 
-        searchConditionModifyButton.layer.borderColor = Style.primaryColor.cgColor
+        searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = 15
-        searchConditionModifyButton.setTitleColor(Style.primaryColor, for: .normal)
-        searchConditionModifyButton.backgroundColor = Style.basicBackgroundColor
+        searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        hiddenLabel.textColor = Style.labelTextColorLight
+        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
 
         setSearchConditionButtonTitle()
         reloadRecipeList()
@@ -636,7 +636,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }else{
                 noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
             }
-            noDataLabel.textColor = Style.labelTextColorLight
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.recipeTableView.backgroundView  = UIView()
@@ -726,17 +726,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
-        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
-        textField.tintColor = Style.labelTextColor
-        textField.textColor = Style.labelTextColor
+        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        textField.tintColor = UchicockStyle.labelTextColor
+        textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
             if textField.text != ""{
                 let realm = try! Realm()
                 let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
-                    textField.layer.borderColor = Style.deleteColor.cgColor
-                    textField.tintColor = Style.deleteColor
-                    textField.textColor = Style.deleteColor
+                    textField.layer.borderColor = UchicockStyle.deleteColor.cgColor
+                    textField.tintColor = UchicockStyle.deleteColor
+                    textField.textColor = UchicockStyle.deleteColor
                 }
             }
         }
@@ -873,10 +873,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if tableView.tag == 1 {
             header?.textLabel?.text = "上の材料(完全一致)をすべて使うレシピ(\(String(self.recipeBasicList.count)))"
@@ -996,20 +996,20 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if tableView.tag == 0{
             if indexPath.section == 0{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.isUserInteractionEnabled = true
                 return cell
             }else if indexPath.section == 1{
                 if editingTextField == -1{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
@@ -1035,12 +1035,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 cell.subInfoType = 0
             }
             cell.recipe = recipe
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }else if tableView.tag == 2{
             let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             let realm = try! Realm()
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
             cell.ingredient = ingredient
@@ -1072,7 +1072,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             self.showRecipeTableView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }

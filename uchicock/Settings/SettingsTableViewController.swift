@@ -27,7 +27,7 @@ class SettingsTableViewController: UITableViewController {
     let selectedCellBackgroundView = UIView()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -43,19 +43,19 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        tableView.backgroundColor = Style.basicBackgroundColor
-        tableView.separatorColor = Style.labelTextColorLight
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
 
-        introductionImage.tintColor = Style.primaryColor
-        recoverImage.tintColor = Style.primaryColor
-        changeThemeImage.tintColor = Style.primaryColor
-        imageSizeImage.tintColor = Style.primaryColor
-        alcoholCalcImage.tintColor = Style.primaryColor
-        reviewImage.tintColor = Style.primaryColor
+        introductionImage.tintColor = UchicockStyle.primaryColor
+        recoverImage.tintColor = UchicockStyle.primaryColor
+        changeThemeImage.tintColor = UchicockStyle.primaryColor
+        imageSizeImage.tintColor = UchicockStyle.primaryColor
+        alcoholCalcImage.tintColor = UchicockStyle.primaryColor
+        reviewImage.tintColor = UchicockStyle.primaryColor
 
-        currentImageSizeLabel.textColor = Style.labelTextColorLight
+        currentImageSizeLabel.textColor = UchicockStyle.labelTextColorLight
         let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
         if saveImageSize == 1{
             currentImageSizeLabel.text = "大"
@@ -133,7 +133,7 @@ class SettingsTableViewController: UITableViewController {
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }))
             alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         default: break
@@ -145,12 +145,12 @@ class SettingsTableViewController: UITableViewController {
         
         let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
         let accesoryImageView = UIImageView(image: disclosureIndicator)
-        accesoryImageView.tintColor = Style.labelTextColorLight
+        accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
         accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         cell.accessoryView = accesoryImageView
 
         cell.selectedBackgroundView = selectedCellBackgroundView
-        cell.backgroundColor = Style.basicBackgroundColor
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
         return cell
     }
     

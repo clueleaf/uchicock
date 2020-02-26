@@ -58,7 +58,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -118,23 +118,23 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     private func setupVC(){
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        headerView.backgroundColor = Style.basicBackgroundColor
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
-        lastViewDateLabel.textColor = Style.labelTextColorLight
-        deleteButtonLabel.textColor = Style.deleteColor
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        headerView.backgroundColor = UchicockStyle.basicBackgroundColor
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        lastViewDateLabel.textColor = UchicockStyle.labelTextColorLight
+        deleteButtonLabel.textColor = UchicockStyle.deleteColor
         
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         if rec == nil {
             hasRecipeDeleted = true
-            coverView.backgroundColor = Style.basicBackgroundColor
+            coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
-            deleteImageView.tintColor = Style.labelTextColorLight
+            deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
             self.tableView.setNeedsLayout()
         }else{
@@ -147,7 +147,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }else{
                 bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
             }
-            bookmarkButton.tintColor = Style.primaryColor
+            bookmarkButton.tintColor = UchicockStyle.primaryColor
 
             photo.clipsToBounds = true
             if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
@@ -169,7 +169,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             switch recipe.shortageNum {
             case 0:
                 shortageLabel.text = "すぐ作れる！"
-                shortageLabel.textColor = Style.primaryColor
+                shortageLabel.textColor = UchicockStyle.primaryColor
                 shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 var shortageName = ""
@@ -180,11 +180,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     }
                 }
                 shortageLabel.text = shortageName + "が足りません"
-                shortageLabel.textColor = Style.labelTextColorLight
+                shortageLabel.textColor = UchicockStyle.labelTextColorLight
                 shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             default:
                 shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
-                shortageLabel.textColor = Style.labelTextColorLight
+                shortageLabel.textColor = UchicockStyle.labelTextColorLight
                 shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
             
@@ -217,9 +217,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             default:
                 setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
             }
-            star1.tintColor = Style.primaryColor
-            star2.tintColor = Style.primaryColor
-            star3.tintColor = Style.primaryColor
+            star1.tintColor = UchicockStyle.primaryColor
+            star2.tintColor = UchicockStyle.primaryColor
+            star3.tintColor = UchicockStyle.primaryColor
 
             switch recipe.style{
             case 0:
@@ -266,26 +266,26 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             let tipImage = UIImage(named: "tip")
             styleTipButton.setImage(tipImage, for: .normal)
-            styleTipButton.tintColor = Style.primaryColor
+            styleTipButton.tintColor = UchicockStyle.primaryColor
             methodTipButton.setImage(tipImage, for: .normal)
-            methodTipButton.tintColor = Style.primaryColor
+            methodTipButton.tintColor = UchicockStyle.primaryColor
             strengthTipButton.setImage(tipImage, for: .normal)
-            strengthTipButton.tintColor = Style.primaryColor
+            strengthTipButton.tintColor = UchicockStyle.primaryColor
 
             memo.text = recipe.memo
-            memo.textColor = Style.labelTextColorLight
+            memo.textColor = UchicockStyle.labelTextColorLight
             madeNum = recipe.madeNum
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()
             
-            editButton.backgroundColor = Style.primaryColor
-            editButton.tintColor = Style.basicBackgroundColor
-            shareButton.backgroundColor = Style.primaryColor
-            shareButton.tintColor = Style.basicBackgroundColor
-            openInSafariButton.backgroundColor = Style.primaryColor
-            openInSafariButton.tintColor = Style.basicBackgroundColor
-            deleteButton.backgroundColor = Style.deleteColor
-            deleteButton.tintColor = Style.basicBackgroundColor
+            editButton.backgroundColor = UchicockStyle.primaryColor
+            editButton.tintColor = UchicockStyle.basicBackgroundColor
+            shareButton.backgroundColor = UchicockStyle.primaryColor
+            shareButton.tintColor = UchicockStyle.basicBackgroundColor
+            openInSafariButton.backgroundColor = UchicockStyle.primaryColor
+            openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
+            deleteButton.backgroundColor = UchicockStyle.deleteColor
+            deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
             let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
             let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
@@ -293,7 +293,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 openInSafariButton.isEnabled = true
             }else{
                 openInSafariButton.isEnabled = false
-                openInSafariButton.backgroundColor = Style.labelTextColorLight
+                openInSafariButton.backgroundColor = UchicockStyle.labelTextColorLight
             }
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
@@ -333,7 +333,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 self.navigationController?.popViewController(animated: true)
             }))
-            noRecipeAlertView.alertStatusBarStyle = Style.statusBarStyle
+            noRecipeAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
         }
@@ -376,21 +376,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     private func setMadeNumButton(){
         if madeNum <= 0 {
             madeNumMinusButton.isEnabled = false
-            madeNumMinusButton.setTitleColor(Style.labelTextColorLight, for: .normal)
-            madeNumMinusButton.layer.borderColor = Style.labelTextColorLight.cgColor
+            madeNumMinusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
+            madeNumMinusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
         } else {
             madeNumMinusButton.isEnabled = true
-            madeNumMinusButton.setTitleColor(Style.primaryColor, for: .normal)
-            madeNumMinusButton.layer.borderColor = Style.primaryColor.cgColor
+            madeNumMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+            madeNumMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         }
         if madeNum >= 999 {
             madeNumPlusButton.isEnabled = false
-            madeNumPlusButton.setTitleColor(Style.labelTextColorLight, for: .normal)
-            madeNumPlusButton.layer.borderColor = Style.labelTextColorLight.cgColor
+            madeNumPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
+            madeNumPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
         } else {
             madeNumPlusButton.isEnabled = true
-            madeNumPlusButton.setTitleColor(Style.primaryColor, for: .normal)
-            madeNumPlusButton.layer.borderColor = Style.primaryColor.cgColor
+            madeNumPlusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+            madeNumPlusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         }
     }
     
@@ -490,7 +490,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 
                 let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
                 activityVC.excludedActivityTypes = excludedActivityTypes
-                activityVC.activityStatusBarStyle = Style.statusBarStyle
+                activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
                 activityVC.modalPresentationCapturesStatusBarAppearance = true
                 activityVC.popoverPresentationController?.sourceView = self.view
                 activityVC.popoverPresentationController?.sourceRect = self.photo.frame
@@ -499,7 +499,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.photo.frame
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
@@ -517,7 +517,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }))
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }
@@ -544,10 +544,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if recipe.isInvalidated == false{
             header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
@@ -608,7 +608,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             completionHandler(true)
         })
         reminder.image = UIImage(named: "button-reminder-empty")
-        reminder.backgroundColor = Style.primaryColor
+        reminder.backgroundColor = UchicockStyle.primaryColor
 
         return UISwipeActionsConfiguration(actions: [reminder])
     }
@@ -617,7 +617,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             return cell
@@ -627,7 +627,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-            accesoryImageView.tintColor = Style.labelTextColorLight
+            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             cell.accessoryView = accesoryImageView
 
             if recipe.isInvalidated == false{
@@ -640,13 +640,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
 
             cell.selectionStyle = .default
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
@@ -1018,7 +1018,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if photoExists, let image = photo.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            activityVC.activityStatusBarStyle = Style.statusBarStyle
+            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.popoverPresentationController?.sourceView = sender
             activityVC.popoverPresentationController?.sourceRect = sender.frame
@@ -1026,7 +1026,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }else{
             let activityVC = CustomActivityController(activityItems: [shareText], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
-            activityVC.activityStatusBarStyle = Style.statusBarStyle
+            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.popoverPresentationController?.sourceView = sender
             activityVC.popoverPresentationController?.sourceRect = sender.frame
@@ -1074,7 +1074,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             _ = self.navigationController?.popViewController(animated: true)
         })
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

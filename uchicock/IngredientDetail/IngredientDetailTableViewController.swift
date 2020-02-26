@@ -45,7 +45,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -92,37 +92,37 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     private func setupVC(){
         setReminderBadge()
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        reminderImage.tintColor = Style.primaryColor
-        reminderMessageLabel.textColor = Style.primaryColor
-        removeReminderButton.setTitleColor(Style.primaryColor, for: .normal)
-        removeReminderButton.layer.borderColor = Style.primaryColor.cgColor
+        reminderImage.tintColor = UchicockStyle.primaryColor
+        reminderMessageLabel.textColor = UchicockStyle.primaryColor
+        removeReminderButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        removeReminderButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         removeReminderButton.layer.borderWidth = 1.0
         removeReminderButton.layer.cornerRadius = 12
-        removeReminderButton.backgroundColor = Style.basicBackgroundColor
+        removeReminderButton.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        stock.secondaryTintColor = Style.primaryColor
-        stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        stockRecommendLabel.textColor = Style.primaryColor
-        alcoholIconImage.tintColor = Style.primaryColor
-        deleteButtonLabel.textColor = Style.deleteColor
+        stock.secondaryTintColor = UchicockStyle.primaryColor
+        stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        stockRecommendLabel.textColor = UchicockStyle.primaryColor
+        alcoholIconImage.tintColor = UchicockStyle.primaryColor
+        deleteButtonLabel.textColor = UchicockStyle.deleteColor
 
-        recipeOrderLabel.textColor = Style.primaryColor
+        recipeOrderLabel.textColor = UchicockStyle.primaryColor
         recipeOrderLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
 
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
         if ing == nil {
             hasIngredientDeleted = true
-            coverView.backgroundColor = Style.basicBackgroundColor
+            coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
-            deleteImageView.tintColor = Style.labelTextColorLight
+            deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
             self.tableView.setNeedsLayout()
         } else {
@@ -164,16 +164,16 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             stock.stateChangeAnimation = .expand
             
             memo.text = ingredient.memo
-            memo.textColor = Style.labelTextColorLight
+            memo.textColor = UchicockStyle.labelTextColorLight
             
-            editButton.backgroundColor = Style.primaryColor
-            editButton.tintColor = Style.basicBackgroundColor
-            reminderButton.backgroundColor = Style.primaryColor
-            reminderButton.tintColor = Style.basicBackgroundColor
-            amazonButton.backgroundColor = Style.primaryColor
-            amazonButton.tintColor = Style.basicBackgroundColor
-            deleteButton.backgroundColor = Style.deleteColor
-            deleteButton.tintColor = Style.basicBackgroundColor
+            editButton.backgroundColor = UchicockStyle.primaryColor
+            editButton.tintColor = UchicockStyle.basicBackgroundColor
+            reminderButton.backgroundColor = UchicockStyle.primaryColor
+            reminderButton.tintColor = UchicockStyle.basicBackgroundColor
+            amazonButton.backgroundColor = UchicockStyle.primaryColor
+            amazonButton.tintColor = UchicockStyle.basicBackgroundColor
+            deleteButton.backgroundColor = UchicockStyle.deleteColor
+            deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
             reloadIngredientRecipeBasicList()
             
@@ -212,7 +212,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                 self.navigationController?.popViewController(animated: true)
             }))
-            noIngredientAlertView.alertStatusBarStyle = Style.statusBarStyle
+            noIngredientAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noIngredientAlertView, animated: true, completion: nil)
         }
@@ -347,10 +347,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if section == 1 {
             if ingredient.isInvalidated == false {
@@ -428,7 +428,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
                     alertView.popoverPresentationController?.sourceView = self.view
                     alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
-                    alertView.alertStatusBarStyle = Style.statusBarStyle
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     present(alertView, animated: true, completion: nil)
                     tableView.deselectRow(at: indexPath, animated: true)
@@ -466,20 +466,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if ingredient.reminderSetDate == nil{
                 if indexPath.row == 0{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }
             }else{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                 return cell
@@ -501,7 +501,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     }
                     cell.hightlightRecipeNameOnlyAvailable = true
                     cell.recipe = recipe
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell
                 }else{
@@ -520,7 +520,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     default:
                         recipeOrderLabel.text = "作れる順（タップで変更）"
                     }
-                    cell.backgroundColor = Style.basicBackgroundColor
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                     return cell
@@ -572,7 +572,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 self.tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
                 self.setReminderBadge()
             }))
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         }
@@ -628,7 +628,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if ingredient.recipeIngredients.count > 0 {
             let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         } else{
@@ -642,7 +642,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 _ = self.navigationController?.popViewController(animated: true)
             }))
             deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-            deleteAlertView.alertStatusBarStyle = Style.statusBarStyle
+            deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(deleteAlertView, animated: true, completion: nil)
         }

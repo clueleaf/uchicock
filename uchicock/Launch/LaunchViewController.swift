@@ -18,7 +18,7 @@ class LaunchViewController: UIViewController {
     var shouldShowIntroduction = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {

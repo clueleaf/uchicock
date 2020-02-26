@@ -30,31 +30,31 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                 if stock{
                     stockLabel.isHidden = false
                     stockLabel.text = "在庫あり"
-                    stockLabel.textColor = Style.labelTextColorOnBadge
-                    stockLabel.layer.backgroundColor = Style.primaryColor.cgColor
-                    stockLabel.layer.borderColor = Style.primaryColor.cgColor
-                    ingredientNameLabel.textColor = Style.labelTextColor
-                    amountLabel.textColor = Style.labelTextColor
+                    stockLabel.textColor = UchicockStyle.labelTextColorOnBadge
+                    stockLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
+                    stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
+                    ingredientNameLabel.textColor = UchicockStyle.labelTextColor
+                    amountLabel.textColor = UchicockStyle.labelTextColor
                 }else{
                     stockLabel.isHidden = false
                     stockLabel.text = "在庫なし"
-                    stockLabel.textColor = Style.primaryColor
+                    stockLabel.textColor = UchicockStyle.primaryColor
                     stockLabel.layer.backgroundColor = UIColor.clear.cgColor
-                    stockLabel.layer.borderColor = Style.primaryColor.cgColor
-                    ingredientNameLabel.textColor = Style.labelTextColorLight
-                    amountLabel.textColor = Style.labelTextColorLight
+                    stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
+                    ingredientNameLabel.textColor = UchicockStyle.labelTextColorLight
+                    amountLabel.textColor = UchicockStyle.labelTextColorLight
                 }
             }else{
                 stockLabel.isHidden = true
-                ingredientNameLabel.textColor = Style.labelTextColor
-                amountLabel.textColor = Style.labelTextColor
+                ingredientNameLabel.textColor = UchicockStyle.labelTextColor
+                amountLabel.textColor = UchicockStyle.labelTextColor
             }
         }
     }
 
     var category = Int(){
         didSet{
-            alcoholIconImage.tintColor = Style.primaryColor
+            alcoholIconImage.tintColor = UchicockStyle.primaryColor
             if category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 13
@@ -75,7 +75,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var isOption = Bool(){
         didSet{
             optionLabel.backgroundColor = UIColor.clear
-            optionLabel.textColor = Style.primaryColor
+            optionLabel.textColor = UchicockStyle.primaryColor
             optionLabel.layer.cornerRadius = 10.5
             optionLabel.clipsToBounds = true
             optionLabel.textAlignment = NSTextAlignment.center
@@ -83,7 +83,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             if isOption{
                 optionLabel.text = "オプション"
                 optionLabel.layer.backgroundColor = UIColor.clear.cgColor
-                optionLabel.layer.borderColor = Style.primaryColor.cgColor
+                optionLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
             }else{
                 optionLabel.text = ""
                 optionLabel.layer.backgroundColor = UIColor.clear.cgColor

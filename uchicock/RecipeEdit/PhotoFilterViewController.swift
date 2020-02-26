@@ -14,7 +14,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     var originalImageView: UIImageView!
     var smallCIImage : CIImage?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
-    var statuBarStyle = Style.statusBarStyle
+    var statuBarStyle = UchicockStyle.statusBarStyle
 
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -126,7 +126,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        statuBarStyle = Style.statusBarStyle
+        statuBarStyle = UchicockStyle.statusBarStyle
         self.setNeedsStatusBarAppearanceUpdate()
     }
     

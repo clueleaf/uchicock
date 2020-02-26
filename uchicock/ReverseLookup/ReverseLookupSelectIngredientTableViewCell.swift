@@ -23,17 +23,17 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             stockLabel.layer.borderWidth = 1
             if ingredient.stockFlag{
                 stockLabel.text = "在庫あり"
-                stockLabel.textColor = Style.labelTextColorOnBadge
-                stockLabel.layer.backgroundColor = Style.primaryColor.cgColor
-                stockLabel.layer.borderColor = Style.primaryColor.cgColor
+                stockLabel.textColor = UchicockStyle.labelTextColorOnBadge
+                stockLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
+                stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
             }else{
                 stockLabel.text = "在庫なし"
-                stockLabel.textColor = Style.primaryColor
+                stockLabel.textColor = UchicockStyle.primaryColor
                 stockLabel.layer.backgroundColor = UIColor.clear.cgColor
-                stockLabel.layer.borderColor = Style.primaryColor.cgColor
+                stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
             }
             
-            alcoholIconImage.tintColor = Style.primaryColor
+            alcoholIconImage.tintColor = UchicockStyle.primaryColor
             if ingredient.category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 13

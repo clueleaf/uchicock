@@ -23,7 +23,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     var interactor: Interactor?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock: ((String?) -> Void) = {ingredientId in}
@@ -80,10 +80,10 @@ class IngredientRecommendTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.backgroundColor = Style.basicBackgroundColor
-        tableView.separatorColor = Style.labelTextColorLight
-        tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
         if isContributionMode {
             descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになるのでおすすめです！"
@@ -160,7 +160,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             return cell
         }else{
@@ -168,7 +168,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             
             let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
-            accesoryImageView.tintColor = Style.labelTextColorLight
+            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
@@ -179,7 +179,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             }else{
                 cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].usedRecipeNum))個のレシピで使われています！"
             }
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell

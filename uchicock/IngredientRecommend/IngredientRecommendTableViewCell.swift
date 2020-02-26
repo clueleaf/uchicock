@@ -23,14 +23,14 @@ class IngredientRecommendTableViewCell: UITableViewCell {
 
     var ingredientDescription: String? = String(){
         didSet{
-            descriptionLabel.textColor = Style.primaryColor
+            descriptionLabel.textColor = UchicockStyle.primaryColor
             descriptionLabel.text = ingredientDescription
         }
     }
     
     var category: Int? = Int(){
         didSet{
-            alcoholIconImage.tintColor = Style.primaryColor
+            alcoholIconImage.tintColor = UchicockStyle.primaryColor
             if category == 0 {
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 17

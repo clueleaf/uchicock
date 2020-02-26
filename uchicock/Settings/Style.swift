@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Style{
+struct UchicockStyle{
     static var no = "0"
     static var isDark = false
     static var isBackgroundDark = false
@@ -31,6 +31,8 @@ struct Style{
     static var tabBarBarTintColor = FlatColor.white
     static var tabBarUnselectedItemTintColor = FlatColor.gray
     static var textFieldBorderColor = FlatColor.whiteDark
+    static var badgeBackgroundColor = FlatColor.red
+    static var badgeTextColor = FlatColor.white
 
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
@@ -55,6 +57,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func tequilaSunriseDark(){
@@ -79,6 +83,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.yellowDark
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func seaBreezeLight(){
@@ -103,6 +109,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.pink
         tabBarUnselectedItemTintColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func seaBreezeDark(){
@@ -127,6 +135,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.pinkDark
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func chinaBlueLight(){
@@ -151,6 +161,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.skyBlue
         tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func chinaBlueDark(){
@@ -175,6 +187,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.skyBlueDark
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func grasshopperLight(){
@@ -199,6 +213,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.mint
         tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func irishCoffeeDark(){
@@ -223,6 +239,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.coffeeDark
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func mojitoLight(){
@@ -247,6 +265,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func redEyeLight(){
@@ -271,6 +291,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.watermelonDark
         tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func cubaLibreDark(){
@@ -295,6 +317,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.limeDark
         tabBarUnselectedItemTintColor = FlatColor.blackDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func silverWingLight(){
@@ -319,6 +343,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.grayDark
         tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func americanLemonadeDark(){
@@ -343,6 +369,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func blueLagoonLight(){
@@ -367,6 +395,8 @@ struct Style{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func blueLagoonDark(){
@@ -391,6 +421,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func mimosaLight(){
@@ -415,6 +447,8 @@ struct Style{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func mimosaDark(){
@@ -439,6 +473,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func pinkLadyLight(){
@@ -463,6 +499,8 @@ struct Style{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func pinkLadyDark(){
@@ -487,6 +525,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func blackRussianDark(){
@@ -511,6 +551,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.coffee
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func shoyoJulingLight(){
@@ -535,6 +577,8 @@ struct Style{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func shoyoJulingDark(){
@@ -559,6 +603,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func unionJackLight(){
@@ -583,6 +629,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.whiteDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func unionJackDark(){
@@ -607,6 +655,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     static func blueMoonLight(){
@@ -631,6 +681,8 @@ struct Style{
         tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tabBarUnselectedItemTintColor = FlatColor.gray
         textFieldBorderColor = FlatColor.gray
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
     
     static func bloodyMaryDark(){
@@ -655,6 +707,8 @@ struct Style{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         textFieldBorderColor = FlatColor.grayDark
+        badgeBackgroundColor = FlatColor.red
+        badgeTextColor = FlatColor.white
     }
 
     // MARK: - Manage Theme
@@ -730,7 +784,7 @@ struct Style{
     
     static private func customizeButton(){
         // テーマカラー変更のチェックマークの色ために必要
-        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = Style.primaryColor
+        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = UchicockStyle.primaryColor
 
         UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
     }

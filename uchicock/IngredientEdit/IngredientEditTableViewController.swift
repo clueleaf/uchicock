@@ -21,7 +21,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var isAddMode = true
     var showCancelAlert = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -63,24 +63,24 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        ingredientName.layer.borderColor = Style.textFieldBorderColor.cgColor
-        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0
         }
-        category.layer.borderColor = Style.primaryColor.cgColor
+        category.layer.borderColor = UchicockStyle.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
-        stock.secondaryTintColor = Style.primaryColor
-        stock.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        memo.layer.borderColor = Style.textFieldBorderColor.cgColor
-        memo.keyboardAppearance = Style.isDark ? .dark : .light
+        stock.secondaryTintColor = UchicockStyle.primaryColor
+        stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             category.selectedSegmentIndex = ingredient.category
@@ -132,7 +132,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = Style.basicBackgroundColor
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
         if indexPath.row < 3{
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
         }else{
@@ -149,7 +149,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }else{
@@ -160,7 +160,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     func presentAlert(_ message: String){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

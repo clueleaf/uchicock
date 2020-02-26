@@ -52,7 +52,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -129,8 +129,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setupVC(){
-        self.collectionView.backgroundColor = Style.basicBackgroundColor
-        self.collectionView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.collectionView.refreshHeader.removeRefreshHeader()
         self.collectionView.refreshHeader.addPullToRefresh {
             [unowned self] in
@@ -224,7 +224,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
             noDataLabel.text = noItemText
             noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = Style.labelTextColorLight
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
             self.collectionView.backgroundView  = UIView()
@@ -444,7 +444,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }else{
             let margin = -albumCellWidth(of: (UIApplication.shared.keyWindow?.bounds.width)!) * 0.2
             cell.photo.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
-            if Style.isDark{
+            if UchicockStyle.isDark{
                 cell.photo.tintColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
             }else{
                 cell.photo.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
@@ -543,7 +543,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

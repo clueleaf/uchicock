@@ -31,7 +31,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch Style.no{
+        switch UchicockStyle.no{
         case "0":
             backgroundImage = UIImage(named:"background-tequila-sunrise")
             isTextColorBlack = false
@@ -57,19 +57,19 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             isTextColorBlack = true
             isPageControlBlack = false
         case "1","3","5","10":
-            backgroundImage = getUIImage(from: Style.basicBackgroundColor)
-            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
-            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.basicBackgroundColor)
+            backgroundImage = getUIImage(from: UchicockStyle.basicBackgroundColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.basicBackgroundColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.basicBackgroundColor)
         case "13","15","20","22":
-            backgroundImage = getUIImage(from: Style.primaryColor)
-            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
-            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.primaryColor)
+            backgroundImage = getUIImage(from: UchicockStyle.primaryColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.primaryColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.primaryColor)
         default:
-            backgroundImage = getUIImage(from: Style.navigationBarColor)
-            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
-            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: Style.navigationBarColor)
+            backgroundImage = getUIImage(from: UchicockStyle.navigationBarColor)
+            isTextColorBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.navigationBarColor)
+            isPageControlBlack = FlatColor.isContractColorBlack(primeColor: UchicockStyle.navigationBarColor)
         }
-        if ["2","10"].contains(Style.no) {
+        if ["2","10"].contains(UchicockStyle.no) {
             isTextColorBlack = false
             isPageControlBlack = false
         }
@@ -140,7 +140,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         super.viewWillDisappear(animated)
         
         // 元のVCに戻るときにStatus Barの色をテーマに合わせるために必要
-        currentStatusBarStyle = Style.statusBarStyle
+        currentStatusBarStyle = UchicockStyle.statusBarStyle
         self.setNeedsStatusBarAppearanceUpdate()
     }
     

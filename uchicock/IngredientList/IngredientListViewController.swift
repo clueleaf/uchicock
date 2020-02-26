@@ -43,7 +43,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -62,23 +62,23 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func setupVC(){
         isReminderMode ? changeToReminderMode() : changeToIngredientMode()
-        self.view.backgroundColor = Style.basicBackgroundColor
+        self.view.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        segmentedControlContainer.backgroundColor = Style.filterContainerBackgroundColor
-        tableView.backgroundColor = Style.basicBackgroundColor
-        tableView.separatorColor = Style.labelTextColorLight
-        tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        segmentedControlContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
         searchBar.backgroundImage = UIImage()
         
         let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-        glassIconView?.tintColor = Style.labelTextColorLight
+        glassIconView?.tintColor = UchicockStyle.labelTextColorLight
 
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = Style.textFieldBorderColor.cgColor
+            searchBar.searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
             searchBar.searchTextField.layer.borderWidth = 1.0
             searchBar.searchTextField.layer.cornerRadius = 8.0
         }else{
@@ -86,13 +86,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 for subview in view.subviews {
                     if subview is UITextField {
                         let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = Style.textFieldBorderColor.cgColor
+                        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
                         textField.layer.borderWidth = 1.0
                         textField.layer.cornerRadius = 8.0
                         for subsubview in subview.subviews{
                             if subsubview is UILabel{
                                 let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = Style.labelTextColorLight
+                                placeholderLabel.textColor = UchicockStyle.labelTextColorLight
                             }
                         }
                     }
@@ -103,8 +103,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let font = UIFont.systemFont(ofSize: 12)
         let boldFont = UIFont.boldSystemFont(ofSize: 12)
         if #available(iOS 13.0, *) {
-            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColorOnBadge, NSAttributedString.Key.font: boldFont], for: .selected)
-            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: Style.labelTextColor, NSAttributedString.Key.font: font], for: .normal)
+            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorOnBadge, NSAttributedString.Key.font: boldFont], for: .selected)
+            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColor, NSAttributedString.Key.font: font], for: .normal)
         }else{
             category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .selected)
             category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
@@ -112,20 +112,20 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             stockState.layer.cornerRadius = 14.0
         }
 
-        category.layer.borderColor = Style.primaryColor.cgColor
+        category.layer.borderColor = UchicockStyle.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
-        stockState.layer.borderColor = Style.primaryColor.cgColor
+        stockState.layer.borderColor = UchicockStyle.primaryColor.cgColor
         stockState.layer.borderWidth = 1.0
         stockState.layer.masksToBounds = true
 
-        ingredientRecommendButton.layer.borderColor = Style.primaryColor.cgColor
+        ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
         ingredientRecommendButton.layer.cornerRadius = 15
-        ingredientRecommendButton.setTitleColor(Style.primaryColor, for: .normal)
-        ingredientRecommendButton.backgroundColor = Style.basicBackgroundColor
+        ingredientRecommendButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        ingredientRecommendButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        containerSeparator.backgroundColor = Style.labelTextColorLight
+        containerSeparator.backgroundColor = UchicockStyle.labelTextColorLight
         
         reloadIngredientList()
         tableView.reloadData()
@@ -169,7 +169,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     for subsubview in subview.subviews{
                         if subsubview is UILabel{
                             let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = Style.labelTextColorLight
+                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
                         }
                     }
                 }
@@ -268,7 +268,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             self.tableView.isScrollEnabled = false
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = Style.labelTextColorLight
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
 
@@ -323,7 +323,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             self.setReminderBadge()
                         }
                     }))
-                    alertView.alertStatusBarStyle = Style.statusBarStyle
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     self.present(alertView, animated: true, completion: nil)
                 }
@@ -444,7 +444,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         })
         edit.image = UIImage(named: "button-edit")
-        edit.backgroundColor = Style.tableViewCellEditBackgroundColor
+        edit.backgroundColor = UchicockStyle.tableViewCellEditBackgroundColor
         
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             let realm = try! Realm()
@@ -453,7 +453,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-                alertView.alertStatusBarStyle = Style.statusBarStyle
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
                 completionHandler(false)
@@ -482,13 +482,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
                     completionHandler(false)
                 })
-                deleteAlertView.alertStatusBarStyle = Style.statusBarStyle
+                deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
             }
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = Style.deleteColor
+        del.backgroundColor = UchicockStyle.deleteColor
         
         let realm = try! Realm()
         let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
@@ -505,7 +505,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             
             let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)
-            accesoryImageView.tintColor = Style.labelTextColorLight
+            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
@@ -522,7 +522,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 cell.stock.setCheckState(.unchecked, animated: true)
             }
             cell.ingredient = ingredient
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
             
             cell.selectedBackgroundView = selectedCellBackgroundView

@@ -46,7 +46,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -78,13 +78,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             method.layer.cornerRadius = 14.0
             strength.layer.cornerRadius = 14.0
         }
-        style.layer.borderColor = Style.primaryColor.cgColor
+        style.layer.borderColor = UchicockStyle.primaryColor.cgColor
         style.layer.borderWidth = 1.0
         style.layer.masksToBounds = true
-        method.layer.borderColor = Style.primaryColor.cgColor
+        method.layer.borderColor = UchicockStyle.primaryColor.cgColor
         method.layer.borderWidth = 1.0
         method.layer.masksToBounds = true
-        strength.layer.borderColor = Style.primaryColor.cgColor
+        strength.layer.borderColor = UchicockStyle.primaryColor.cgColor
         strength.layer.borderWidth = 1.0
         strength.layer.masksToBounds = true
 
@@ -148,30 +148,30 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     private func setupVC(){
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = Style.tableViewCellSelectedBackgroundColor
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        recipeName.layer.borderColor = Style.textFieldBorderColor.cgColor
-        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: Style.labelTextColorLight])
+        recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
-        selectPhoto.textColor = Style.primaryColor
-        star1.tintColor = Style.primaryColor
-        star2.tintColor = Style.primaryColor
-        star3.tintColor = Style.primaryColor
-        memo.layer.borderColor = Style.textFieldBorderColor.cgColor
-        memo.keyboardAppearance = Style.isDark ? .dark : .light
-        addIngredientLabel.textColor = Style.primaryColor
+        selectPhoto.textColor = UchicockStyle.primaryColor
+        star1.tintColor = UchicockStyle.primaryColor
+        star2.tintColor = UchicockStyle.primaryColor
+        star3.tintColor = UchicockStyle.primaryColor
+        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
+        addIngredientLabel.textColor = UchicockStyle.primaryColor
         addIngredientLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
 
         let tipImage = UIImage(named: "tip")
         styleTipButton.setImage(tipImage, for: .normal)
-        styleTipButton.tintColor = Style.primaryColor
+        styleTipButton.tintColor = UchicockStyle.primaryColor
         methodTipButton.setImage(tipImage, for: .normal)
-        methodTipButton.tintColor = Style.primaryColor
+        methodTipButton.tintColor = UchicockStyle.primaryColor
         strengthTipButton.setImage(tipImage, for: .normal)
-        strengthTipButton.tintColor = Style.primaryColor
+        strengthTipButton.tintColor = UchicockStyle.primaryColor
 
         self.tableView.reloadData()
         
@@ -275,9 +275,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "材料編集" : ""
     }
@@ -387,7 +387,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = Style.deleteColor
+        del.backgroundColor = UchicockStyle.deleteColor
 
         return UISwipeActionsConfiguration(actions: [del])
     }
@@ -395,7 +395,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -414,12 +414,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
                 let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)
-                accesoryImageView.tintColor = Style.labelTextColorLight
+                accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView
 
                 cell.selectionStyle = .default
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.row == recipeIngredientList.count - 1{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -429,7 +429,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return cell
             }else if indexPath.row == recipeIngredientList.count{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
@@ -523,7 +523,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         alert.addAction(UIAlertAction(title:"キャンセル",style: .cancel, handler:nil))
         alert.popoverPresentationController?.sourceView = self.view
         alert.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))!.frame
-        alert.alertStatusBarStyle = Style.statusBarStyle
+        alert.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
     }
@@ -705,7 +705,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.dismiss(animated: true, completion: nil)
             })
             alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){action in})
-            alertView.alertStatusBarStyle = Style.statusBarStyle
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
         }else{
@@ -716,7 +716,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     func presentAlert(_ message: String){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

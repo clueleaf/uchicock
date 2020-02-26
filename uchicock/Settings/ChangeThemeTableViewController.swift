@@ -13,11 +13,11 @@ class ChangeThemeTableViewController: UITableViewController {
     let animationDuration = 0.4
     var hasScrolled = false
     var animationFlag = false
-    var oldTableBackgroundColor: UIColor = Style.basicBackgroundColor
+    var oldTableBackgroundColor: UIColor = UchicockStyle.basicBackgroundColor
     let cellHeight: CGFloat = 44
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     let themeList: [String] = [
@@ -58,16 +58,16 @@ class ChangeThemeTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         if hasScrolled == false{
-            tableView.contentOffset.y = (CGFloat((Int(Style.no)!) + 1) * cellHeight) - (tableView.frame.height / 2)
+            tableView.contentOffset.y = (CGFloat((Int(UchicockStyle.no)!) + 1) * cellHeight) - (tableView.frame.height / 2)
             if tableView.contentOffset.y < 0 {
                 tableView.contentOffset.y = 0
             }
@@ -98,15 +98,15 @@ class ChangeThemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        oldTableBackgroundColor = Style.basicBackgroundColor
+        oldTableBackgroundColor = UchicockStyle.basicBackgroundColor
         
-        Style.setTheme(themeNo: String(indexPath.row))
-        Style.saveTheme(themeNo: String(indexPath.row))
+        UchicockStyle.setTheme(themeNo: String(indexPath.row))
+        UchicockStyle.saveTheme(themeNo: String(indexPath.row))
         
         if let cell = tableView.cellForRow(at:indexPath) {
             cell.accessoryType = .checkmark
         }
-        if Style.isBackgroundDark{
+        if UchicockStyle.isBackgroundDark{
             self.tableView.indicatorStyle = .white
         }else{
             self.tableView.indicatorStyle = .black
@@ -115,19 +115,19 @@ class ChangeThemeTableViewController: UITableViewController {
         animationFlag = true
         UIView.animate(withDuration: animationDuration, animations: {
             self.setNeedsStatusBarAppearanceUpdate()
-            self.tableView.backgroundColor = Style.basicBackgroundColor
+            self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         }, completion: nil)
 
         UIView.transition(with: self.navigationController!.navigationBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
-            self.navigationController?.navigationBar.tintColor = FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: false)
-            self.navigationController?.navigationBar.barTintColor = Style.navigationBarColor
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(Style.navigationBarColor, isFlat: true)]
+            self.navigationController?.navigationBar.tintColor = FlatColor.contrastColorOf(UchicockStyle.navigationBarColor, isFlat: false)
+            self.navigationController?.navigationBar.barTintColor = UchicockStyle.navigationBarColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: FlatColor.contrastColorOf(UchicockStyle.navigationBarColor, isFlat: true)]
         }, completion: nil)
         
         UIView.transition(with: self.tabBarController!.tabBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
-            self.tabBarController?.tabBar.tintColor = Style.tabBarTintColor
-            self.tabBarController?.tabBar.barTintColor = Style.tabBarBarTintColor
-            self.tabBarController?.tabBar.unselectedItemTintColor = Style.tabBarUnselectedItemTintColor
+            self.tabBarController?.tabBar.tintColor = UchicockStyle.tabBarTintColor
+            self.tabBarController?.tabBar.barTintColor = UchicockStyle.tabBarBarTintColor
+            self.tabBarController?.tabBar.unselectedItemTintColor = UchicockStyle.tabBarUnselectedItemTintColor
         }, completion: { _ in
             self.animationFlag = false
         })
@@ -139,30 +139,30 @@ class ChangeThemeTableViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = themeList[indexPath.row]
 
-        if String(indexPath.row) == Style.no{
+        if String(indexPath.row) == UchicockStyle.no{
             let checkmark = UIImage(named: "accesory-checkmark")
             let accesoryImageView = UIImageView(image: checkmark)
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            accesoryImageView.tintColor = Style.primaryColor
+            accesoryImageView.tintColor = UchicockStyle.primaryColor
             cell.accessoryView = accesoryImageView
-            cell.textLabel?.textColor = Style.primaryColor
+            cell.textLabel?.textColor = UchicockStyle.primaryColor
             cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         }else{
             cell.accessoryView = nil
-            cell.textLabel?.textColor = Style.labelTextColor
+            cell.textLabel?.textColor = UchicockStyle.labelTextColor
             cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         }
         
-        cell.tintColor = Style.labelTextColor
+        cell.tintColor = UchicockStyle.labelTextColor
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         if animationFlag{
             cell.backgroundColor = oldTableBackgroundColor
             UIView.animate(withDuration: animationDuration, animations: {
-                cell.backgroundColor = Style.basicBackgroundColor
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
             }, completion: nil)
         }else{
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
         }
 
         return cell

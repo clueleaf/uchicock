@@ -25,7 +25,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     var calcIngredientList: Results<CalculatorIngredient>?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 
     override func viewDidLoad() {
@@ -49,21 +49,21 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        backgroundView.backgroundColor = Style.basicBackgroundColor
-        fakeTableHeaderView.backgroundColor = Style.tableViewHeaderBackgroundColor
-        validNumLabel.textColor = Style.tableViewHeaderTextColor
+        backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
+        fakeTableHeaderView.backgroundColor = UchicockStyle.tableViewHeaderBackgroundColor
+        validNumLabel.textColor = UchicockStyle.tableViewHeaderTextColor
         updateValidNumLabel()
-        clearAllButton.setTitleColor(Style.primaryColor, for: .normal)
-        clearAllButton.layer.borderColor = Style.primaryColor.cgColor
+        clearAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        clearAllButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         clearAllButton.layer.borderWidth = 1.0
         clearAllButton.layer.cornerRadius = 12
-        clearAllButton.backgroundColor = Style.basicBackgroundColor
+        clearAllButton.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        hiddenLabel.textColor = Style.labelTextColorLight
+        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
         
-        self.ingredientTableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        self.ingredientTableView.backgroundColor = Style.basicBackgroundColor
-        self.ingredientTableView.separatorColor = Style.labelTextColorLight
+        self.ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        self.ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.ingredientTableView.separatorColor = UchicockStyle.labelTextColorLight
     }
     
     override func viewDidLayoutSubviews() {
@@ -147,21 +147,21 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
                 try! realm.write {
                     calcIngredient.valid = false
                 }
-                cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
-                cell.validLabel.textColor = Style.labelTextColorLight
-                cell.strengthLabel.textColor = Style.labelTextColorLight
+                cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
+                cell.validLabel.textColor = UchicockStyle.labelTextColorLight
+                cell.strengthLabel.textColor = UchicockStyle.labelTextColorLight
                 cell.strengthSlider.isEnabled = false
-                cell.amountLabel.textColor = Style.labelTextColorLight
+                cell.amountLabel.textColor = UchicockStyle.labelTextColorLight
                 cell.amountSlider.isEnabled = false
             }else{
                 try! realm.write {
                     calcIngredient.valid = true
                 }
-                cell.ingredientNumberLabel.textColor = Style.labelTextColor
-                cell.validLabel.textColor = Style.labelTextColor
-                cell.strengthLabel.textColor = Style.labelTextColor
+                cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
+                cell.validLabel.textColor = UchicockStyle.labelTextColor
+                cell.strengthLabel.textColor = UchicockStyle.labelTextColor
                 cell.strengthSlider.isEnabled = true
-                cell.amountLabel.textColor = Style.labelTextColor
+                cell.amountLabel.textColor = UchicockStyle.labelTextColor
                 cell.amountSlider.isEnabled = true
             }
             calcAlcoholStrength()
@@ -243,26 +243,26 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.ingredientNumberLabel.text = "材料" + String(indexPath.row + 1)
         let calcIngredient = calcIngredientList![indexPath.row]
         
-        cell.validCheckbox.secondaryTintColor = Style.primaryColor
-        cell.validCheckbox.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+        cell.validCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        cell.validCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         cell.validCheckbox.boxLineWidth = 1.5
         cell.validCheckbox.animationDuration = 0.3
 
         if calcIngredient.valid{
-            cell.ingredientNumberLabel.textColor = Style.labelTextColor
+            cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
             cell.validCheckbox.checkState = .checked
-            cell.validLabel.textColor = Style.labelTextColor
-            cell.strengthLabel.textColor = Style.labelTextColor
+            cell.validLabel.textColor = UchicockStyle.labelTextColor
+            cell.strengthLabel.textColor = UchicockStyle.labelTextColor
             cell.strengthSlider.isEnabled = true
-            cell.amountLabel.textColor = Style.labelTextColor
+            cell.amountLabel.textColor = UchicockStyle.labelTextColor
             cell.amountSlider.isEnabled = true
         }else{
-            cell.ingredientNumberLabel.textColor = Style.labelTextColorLight
+            cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
             cell.validCheckbox.checkState = .unchecked
-            cell.validLabel.textColor = Style.labelTextColorLight
-            cell.strengthLabel.textColor = Style.labelTextColorLight
+            cell.validLabel.textColor = UchicockStyle.labelTextColorLight
+            cell.strengthLabel.textColor = UchicockStyle.labelTextColorLight
             cell.strengthSlider.isEnabled = false
-            cell.amountLabel.textColor = Style.labelTextColorLight
+            cell.amountLabel.textColor = UchicockStyle.labelTextColorLight
             cell.amountSlider.isEnabled = false
         }
         
@@ -276,7 +276,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.strengthSlider.addTarget(self, action: #selector(AlcoholCalcViewController.cellStrengthSliderTapped(sender:event:)), for: UIControl.Event.valueChanged)
         cell.amountSlider.addTarget(self, action: #selector(AlcoholCalcViewController.cellAmountSliderTapped(sender:event:)), for: UIControl.Event.valueChanged)
 
-        cell.backgroundColor = Style.basicBackgroundColor
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
         return cell
     }
     
@@ -296,12 +296,12 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         for (index, _) in calcIngredientList!.enumerated() {
             let cell = ingredientTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlcoholCalcIngredientTableViewCell
             if cell != nil{
-                cell?.ingredientNumberLabel.textColor = Style.labelTextColorLight
+                cell?.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
                 cell?.validCheckbox.setCheckState(.unchecked, animated: true)
-                cell?.validLabel.textColor = Style.labelTextColorLight
-                cell?.strengthLabel.textColor = Style.labelTextColorLight
+                cell?.validLabel.textColor = UchicockStyle.labelTextColorLight
+                cell?.strengthLabel.textColor = UchicockStyle.labelTextColorLight
                 cell?.strengthSlider.isEnabled = false
-                cell?.amountLabel.textColor = Style.labelTextColorLight
+                cell?.amountLabel.textColor = UchicockStyle.labelTextColorLight
                 cell?.amountSlider.isEnabled = false
             }
         }

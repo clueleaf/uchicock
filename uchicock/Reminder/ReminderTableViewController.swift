@@ -24,7 +24,7 @@ class ReminderTableViewController: UITableViewController {
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock = {}
@@ -54,29 +54,29 @@ class ReminderTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         if #available(iOS 13.0, *) {
         }else{
             reminderType.layer.cornerRadius = 14.0
         }
-        reminderType.layer.borderColor = Style.primaryColor.cgColor
+        reminderType.layer.borderColor = UchicockStyle.primaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
         if ingredient.reminderSetDate == nil{
             reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
-            reminderTypeDescription.textColor = Style.labelTextColorLight
+            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
         }else{
             reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
             reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
-            reminderTypeDescription.textColor = Style.primaryColor
+            reminderTypeDescription.textColor = UchicockStyle.primaryColor
         }
-        dateFlag.secondaryTintColor = Style.primaryColor
-        dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
-        datePicker.setValue(Style.labelTextColor, forKey: "textColor")
+        dateFlag.secondaryTintColor = UchicockStyle.primaryColor
+        dateFlag.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        datePicker.setValue(UchicockStyle.labelTextColor, forKey: "textColor")
         datePicker.setValue(false, forKey: "highlightsToday")
     }
     
@@ -96,7 +96,7 @@ class ReminderTableViewController: UITableViewController {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }))
-        alertView.alertStatusBarStyle = Style.statusBarStyle
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }
@@ -173,7 +173,7 @@ class ReminderTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = Style.basicBackgroundColor
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
         return cell
     }
     
@@ -260,11 +260,11 @@ class ReminderTableViewController: UITableViewController {
             if ingredient.reminderSetDate == nil{
                 reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
                 reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
-                reminderTypeDescription.textColor = Style.labelTextColorLight
+                reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
             }else{
                 reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
                 reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
-                reminderTypeDescription.textColor = Style.primaryColor
+                reminderTypeDescription.textColor = UchicockStyle.primaryColor
             }
 
             if dateFlag.checkState == .checked{
@@ -281,22 +281,22 @@ class ReminderTableViewController: UITableViewController {
             reminderTitle.text = ingredient.ingredientName + "を買う"
             reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
-            reminderTypeDescription.textColor = Style.labelTextColorLight
+            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
 
             if reminderTypePreviousState == 0{
                 tableView.insertRows(at: [IndexPath(row: 2,section: 0)], with: .middle)
             }
 
             dateFlag.isEnabled = true
-            dateFlag.tintColor = Style.primaryColor
-            dateFlag.secondaryCheckmarkTintColor = Style.labelTextColorOnBadge
+            dateFlag.tintColor = UchicockStyle.primaryColor
+            dateFlag.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
             reminderTypePreviousState = 1
         }else if reminderType.selectedSegmentIndex == 2{
             titleLabel.text = "タイトル"
             reminderTitle.text = ingredient.ingredientName + "を買う"
             reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "iOSのカレンダーアプリに登録します"
-            reminderTypeDescription.textColor = Style.labelTextColorLight
+            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
 
             if reminderTypePreviousState == 0{
                 dateFlag.setCheckState(.checked, animated: true)
@@ -309,8 +309,8 @@ class ReminderTableViewController: UITableViewController {
             }
 
             dateFlag.isEnabled = false
-            dateFlag.tintColor = Style.labelTextColorLight
-            dateFlag.secondaryCheckmarkTintColor = Style.basicBackgroundColor
+            dateFlag.tintColor = UchicockStyle.labelTextColorLight
+            dateFlag.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
             reminderTypePreviousState = 2
         }
     }

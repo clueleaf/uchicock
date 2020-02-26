@@ -20,7 +20,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock = {}
@@ -33,9 +33,9 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
-        self.tableView.backgroundColor = Style.basicBackgroundColor
-        self.tableView.separatorColor = Style.labelTextColorLight
-        self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
@@ -87,7 +87,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if Style.isBackgroundDark{
+        if UchicockStyle.isBackgroundDark{
             self.tableView.indicatorStyle = .white
         }else{
             self.tableView.indicatorStyle = .black
@@ -119,10 +119,10 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = Style.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = Style.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
     }
@@ -161,7 +161,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         switch indexPath.section{
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
@@ -172,7 +172,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.category = recipe.recipeIngredients[indexPath.row].ingredient.category
 
             cell.selectionStyle = .none
-            cell.backgroundColor = Style.basicBackgroundColor
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             return cell
         default:
             return UITableViewCell()

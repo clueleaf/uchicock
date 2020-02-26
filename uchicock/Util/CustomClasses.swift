@@ -67,7 +67,7 @@ class CustomActivityController: UIActivityViewController{
 
 class BasicNavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     override var childForStatusBarStyle: UIViewController? {
@@ -86,7 +86,7 @@ class CustomTextField: UITextField{
         clearButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         clearButton.imageEdgeInsets = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset * 2)
         clearButton.contentMode = .scaleAspectFit
-        clearButton.tintColor = Style.labelTextColorLight
+        clearButton.tintColor = UchicockStyle.labelTextColorLight
         clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
         if self.text == nil || self.text == ""{
             self.rightViewMode = .never
@@ -114,14 +114,14 @@ public class BadgeBarButtonItem: UIBarButtonItem {
     
     required public init?(coder aDecoder: NSCoder){
         let label = UILabel()
-        label.backgroundColor = .red
+        label.backgroundColor = UchicockStyle.badgeBackgroundColor
         label.alpha = 1.0
         label.layer.cornerRadius = 9
         label.clipsToBounds = true
         label.isUserInteractionEnabled = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = UchicockStyle.badgeTextColor
         label.layer.zPosition = 1
         label.font = UIFont.systemFont(ofSize: 12.0)
         self.label = label
@@ -139,6 +139,8 @@ public class BadgeBarButtonItem: UIBarButtonItem {
         guard let view = self.value(forKey: "view") as? UIView else { return }
         
         self.label.text = "\(badgeNumber)"
+        self.label.backgroundColor = UchicockStyle.badgeBackgroundColor
+        self.label.textColor = UchicockStyle.badgeTextColor
         
         if self.badgeNumber > 0 && self.label.superview == nil{
             view.addSubview(self.label)

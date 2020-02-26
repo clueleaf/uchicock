@@ -22,7 +22,7 @@ class SuggestIngredientTableViewCell: UITableViewCell {
     
     var category: Int = Int(){
         didSet{
-            alcoholIconImage.tintColor = Style.primaryColor
+            alcoholIconImage.tintColor = UchicockStyle.primaryColor
             if category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 13

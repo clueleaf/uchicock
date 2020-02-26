@@ -16,7 +16,7 @@ class StrengthTipViewController: UIViewController, UIScrollViewDelegate {
     var interactor: Interactor?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock = {}
@@ -34,9 +34,9 @@ class StrengthTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scrollView.backgroundColor = Style.basicBackgroundColor
-        scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        backgroundView.backgroundColor = Style.basicBackgroundColor
+        scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
+        scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

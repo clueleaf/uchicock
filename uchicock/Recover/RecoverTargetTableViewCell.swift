@@ -18,7 +18,7 @@ class RecoverTargetTableViewCell: UITableViewCell {
         didSet{
             isTarget.stateChangeAnimation = .expand
             isTarget.animationDuration = 0.3
-            previewLabel.textColor = Style.labelTextColorLight
+            previewLabel.textColor = UchicockStyle.labelTextColorLight
         }
     }
 

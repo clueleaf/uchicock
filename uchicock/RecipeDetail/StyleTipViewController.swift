@@ -19,7 +19,7 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
     var interactor: Interactor?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Style.statusBarStyle
+        return UchicockStyle.statusBarStyle
     }
     
     var onDoneBlock = {}
@@ -37,12 +37,12 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        scrollView.backgroundColor = Style.basicBackgroundColor
-        scrollView.indicatorStyle = Style.isBackgroundDark ? .white : .black
-        backgroundView.backgroundColor = Style.basicBackgroundColor
+        scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
+        scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        firstSeparator.backgroundColor = Style.labelTextColor
-        secondSeparator.backgroundColor = Style.labelTextColor
+        firstSeparator.backgroundColor = UchicockStyle.labelTextColor
+        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
