@@ -128,6 +128,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tabBarController?.tabBar.tintColor = UchicockStyle.tabBarTintColor
             self.tabBarController?.tabBar.barTintColor = UchicockStyle.tabBarBarTintColor
             self.tabBarController?.tabBar.unselectedItemTintColor = UchicockStyle.tabBarUnselectedItemTintColor
+            self.tabBarController?.tabBar.items?[1].badgeColor = UchicockStyle.badgeBackgroundColor
         }, completion: { _ in
             self.animationFlag = false
         })
