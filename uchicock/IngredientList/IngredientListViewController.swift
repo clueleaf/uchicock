@@ -191,12 +191,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
             if reminderNum == 0{
                 tabItem.badgeValue = nil
+                reminderButton.badgeText = nil
             }else{
                 tabItem.badgeValue = "！"
+                reminderButton.badgeText = "！"
             }
         }
         
-        reminderButton.badgeText = "！"
     }
     
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
