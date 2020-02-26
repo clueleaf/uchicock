@@ -262,6 +262,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         self.setTableBackgroundView()
         super.viewDidAppear(animated)
+        self.setReminderBadge()
+        
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
@@ -279,6 +281,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         selectedRecipeId = nil
         self.tableView.flashScrollIndicators()
+    }
+    
+    private func setReminderBadge(){
+        let realm = try! Realm()
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = String(reminderNum)
+            }
+        }
     }
         
     func getTextFieldFromView(view: UIView) -> UITextField?{

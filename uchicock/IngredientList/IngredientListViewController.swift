@@ -180,6 +180,20 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.flashScrollIndicators()
     }
     
+    private func setTabBarBadge(){
+        let realm = try! Realm()
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = String(reminderNum)
+            }
+        }
+    }
+    
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField {
@@ -302,6 +316,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             }else{
                                 MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
                             }
+                            self.setTabBarBadge()
                         }
                     }))
                     alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -457,6 +472,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                         }
                     }
+                    self.setTabBarBadge()
                     completionHandler(true)
                 }))
                 deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in

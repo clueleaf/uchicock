@@ -90,6 +90,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     private func setupVC(){
+        setReminderBadge()
+        
         self.tableView.backgroundColor = Style.basicBackgroundColor
         self.tableView.separatorColor = Style.labelTextColorLight
         self.tableView.indicatorStyle = Style.isBackgroundDark ? .white : .black
@@ -233,6 +235,20 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }else{
             stockRecommendLabel.isHidden = false
             stockRecommendLabel.text = "入手すると新たに" + String(ingredient.contributionToRecipeAvailability) + "レシピ作れる！"
+        }
+    }
+    
+    private func setReminderBadge(){
+        let realm = try! Realm()
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = String(reminderNum)
+            }
         }
     }
     
@@ -533,6 +549,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             ingredient.reminderSetDate = nil
         }
         tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
+        
+        setReminderBadge()
     }
     
     @IBAction func stockTapped(_ sender: CircularCheckbox) {
@@ -552,6 +570,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     self.ingredient.reminderSetDate = nil
                 }
                 self.tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
+                self.setReminderBadge()
             }))
             alertView.alertStatusBarStyle = Style.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -619,6 +638,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 try! realm.write {
                     realm.delete(self.ingredient)
                 }
+                self.setReminderBadge()
                 _ = self.navigationController?.popViewController(animated: true)
             }))
             deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
