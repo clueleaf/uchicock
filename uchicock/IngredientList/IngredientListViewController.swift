@@ -192,11 +192,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if reminderNum == 0{
                 tabItem.badgeValue = nil
             }else{
-                tabItem.badgeValue = "!"
+                tabItem.badgeValue = "！"
             }
         }
         
-        reminderButton.badgeText = "!"
+        reminderButton.badgeText = "！"
     }
     
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
