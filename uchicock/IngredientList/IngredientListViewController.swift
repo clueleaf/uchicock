@@ -11,7 +11,7 @@ import RealmSwift
 
 class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
-    @IBOutlet weak var reminderButton: UIBarButtonItem!
+    @IBOutlet weak var reminderButton: BadgeBarButtonItem!
     @IBOutlet weak var addIngredientButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -161,6 +161,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidAppear(_ animated: Bool) {
         self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
+        self.setReminderBadge()
+
         for view in searchBar.subviews {
             for subview in view.subviews {
                 if subview is UITextField {
@@ -180,7 +182,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.flashScrollIndicators()
     }
     
-    private func setTabBarBadge(){
+    private func setReminderBadge(){
         let realm = try! Realm()
         let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
 
@@ -192,6 +194,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 tabItem.badgeValue = String(reminderNum)
             }
         }
+        
+        reminderButton.badgeNumber = reminderNum
     }
     
     func getTextFieldFromView(_ view: UIView) -> UITextField?{
@@ -316,7 +320,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             }else{
                                 MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
                             }
-                            self.setTabBarBadge()
+                            self.setReminderBadge()
                         }
                     }))
                     alertView.alertStatusBarStyle = Style.statusBarStyle
@@ -472,7 +476,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
                         }
                     }
-                    self.setTabBarBadge()
+                    self.setReminderBadge()
                     completionHandler(true)
                 }))
                 deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
