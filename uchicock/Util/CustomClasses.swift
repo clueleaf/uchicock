@@ -121,7 +121,7 @@ public class BadgeBarButtonItem: UIBarButtonItem {
         label.isUserInteractionEnabled = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = UchicockStyle.badgeTextColor
+        label.textColor = .white
         label.layer.zPosition = 1
         label.font = UIFont.systemFont(ofSize: 12.0)
         self.label = label
@@ -140,7 +140,6 @@ public class BadgeBarButtonItem: UIBarButtonItem {
         
         self.label.text = "\(badgeNumber)"
         self.label.backgroundColor = UchicockStyle.badgeBackgroundColor
-        self.label.textColor = UchicockStyle.badgeTextColor
         
         if self.badgeNumber > 0 && self.label.superview == nil{
             view.addSubview(self.label)

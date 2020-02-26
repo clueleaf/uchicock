@@ -188,6 +188,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[1]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
             if reminderNum == 0{
                 tabItem.badgeValue = nil
             }else{
