@@ -104,7 +104,7 @@ class CustomTextField: UITextField{
 
 public class BadgeBarButtonItem: UIBarButtonItem {
     @IBInspectable
-    public var badgeNumber: Int = 0 {
+    public var badgeText: String? = nil {
         didSet {
             self.updateBadge()
         }
@@ -138,19 +138,17 @@ public class BadgeBarButtonItem: UIBarButtonItem {
     private func updateBadge(){
         guard let view = self.value(forKey: "view") as? UIView else { return }
         
-        self.label.text = "\(badgeNumber)"
+        self.label.text = badgeText
         self.label.backgroundColor = UchicockStyle.badgeBackgroundColor
         
-        if self.badgeNumber > 0 && self.label.superview == nil{
+        if self.badgeText != nil && self.label.superview == nil{
             view.addSubview(self.label)
             
             self.label.widthAnchor.constraint(equalToConstant: 18).isActive = true
             self.label.heightAnchor.constraint(equalToConstant: 18).isActive = true
             self.label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 12).isActive = true
             self.label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -9).isActive = true
-        }
-        else if self.badgeNumber == 0 && self.label.superview != nil
-        {
+        }else if self.badgeText == nil && self.label.superview != nil{
             self.label.removeFromSuperview()
         }
     }

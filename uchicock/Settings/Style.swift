@@ -131,7 +131,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.pinkDark
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
-        badgeBackgroundColor = FlatColor.red
+        badgeBackgroundColor = FlatColor.redDark
     }
 
     static func chinaBlueLight(){
@@ -281,7 +281,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.watermelonDark
         tabBarUnselectedItemTintColor = FlatColor.white
         textFieldBorderColor = FlatColor.whiteDark
-        badgeBackgroundColor = FlatColor.redDark
+        badgeBackgroundColor = FlatColor.black
     }
     
     static func cubaLibreDark(){
@@ -356,7 +356,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.black
         textFieldBorderColor = FlatColor.grayDark
-        badgeBackgroundColor = FlatColor.watermelonDark
+        badgeBackgroundColor = FlatColor.redDark
     }
     
     static func blueLagoonLight(){

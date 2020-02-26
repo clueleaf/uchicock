@@ -248,7 +248,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if reminderNum == 0{
                 tabItem.badgeValue = nil
             }else{
-                tabItem.badgeValue = String(reminderNum)
+                tabItem.badgeValue = "!"
             }
         }
     }

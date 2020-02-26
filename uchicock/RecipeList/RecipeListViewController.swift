@@ -100,6 +100,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setReminderBadge()
         setupVC()
     }
     
@@ -262,7 +263,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         self.setTableBackgroundView()
         super.viewDidAppear(animated)
-        self.setReminderBadge()
         
         for view in searchBar.subviews {
             for subview in view.subviews {
@@ -293,7 +293,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if reminderNum == 0{
                 tabItem.badgeValue = nil
             }else{
-                tabItem.badgeValue = String(reminderNum)
+                tabItem.badgeValue = "!"
             }
         }
     }
