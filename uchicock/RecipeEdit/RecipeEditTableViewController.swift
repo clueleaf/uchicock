@@ -13,15 +13,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeName: CustomTextField!
-    @IBOutlet weak var styleTipButton: UIButton!
-    @IBOutlet weak var methodTipButton: UIButton!
-    @IBOutlet weak var strengthTipButton: UIButton!
+    @IBOutlet weak var star1: ExpandedButton!
+    @IBOutlet weak var star2: ExpandedButton!
+    @IBOutlet weak var star3: ExpandedButton!
+    @IBOutlet weak var styleTipButton: ExpandedButton!
+    @IBOutlet weak var methodTipButton: ExpandedButton!
+    @IBOutlet weak var strengthTipButton: ExpandedButton!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var selectPhoto: UILabel!
     @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var styleTableViewCell: UITableViewCell!
     @IBOutlet weak var methodTableViewCell: UITableViewCell!
     @IBOutlet weak var strengthTableViewCell: UITableViewCell!
@@ -53,6 +53,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
+
+        star1.minimumHitWidth = 36
+        star1.minimumHitHeight = 36
+        star2.minimumHitWidth = 36
+        star2.minimumHitHeight = 36
+        star3.minimumHitWidth = 36
+        star3.minimumHitHeight = 36
+        styleTipButton.minimumHitWidth = 36
+        styleTipButton.minimumHitHeight = 36
+        methodTipButton.minimumHitWidth = 36
+        methodTipButton.minimumHitHeight = 36
+        strengthTipButton.minimumHitWidth = 36
+        strengthTipButton.minimumHitHeight = 36
 
         recipeName.text = recipe.recipeName
         recipeName.delegate = self

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,7 +61,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5t-8J-7pX">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5t-8J-7pX" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="333" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="KeG-kN-iw2"/>
@@ -106,7 +107,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ts-mH-DGs" userLabel="星1">
+                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ts-mH-DGs" userLabel="星1" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="257" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Zec-WO-MGT"/>
@@ -117,7 +118,7 @@
                                                         <action selector="star1Tapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="1pX-eY-pLZ"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxL-Nl-qZ9" userLabel="星2">
+                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxL-Nl-qZ9" userLabel="星2" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="295" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="PNV-pM-uZG"/>
@@ -128,7 +129,7 @@
                                                         <action selector="star2Tapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="JNp-wf-LSp"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hI-6j-UuT" userLabel="星3">
+                                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hI-6j-UuT" userLabel="星3" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="333" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="8yc-3n-lTP"/>
@@ -167,6 +168,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="bGR-cu-mS0"/>
                                                     </constraints>
+                                                    <viewLayoutGuide key="safeArea" id="s9W-zN-Req"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -180,11 +182,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExT-m2-7rC">
-                                                    <rect key="frame" x="81.5" y="13" width="24" height="24"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExT-m2-7rC" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="81.5" y="15" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="0XM-JS-4fw"/>
-                                                        <constraint firstAttribute="width" constant="24" id="715-1j-CN4"/>
+                                                        <constraint firstAttribute="height" constant="20" id="0XM-JS-4fw"/>
+                                                        <constraint firstAttribute="width" constant="20" id="715-1j-CN4"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -229,11 +231,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSZ-h7-jZu">
-                                                    <rect key="frame" x="47" y="16" width="24" height="24"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSZ-h7-jZu" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="47" y="18" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="6vF-tU-KId"/>
-                                                        <constraint firstAttribute="width" constant="24" id="cr9-7w-wBs"/>
+                                                        <constraint firstAttribute="height" constant="20" id="6vF-tU-KId"/>
+                                                        <constraint firstAttribute="width" constant="20" id="cr9-7w-wBs"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -278,11 +280,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-eR-jC5">
-                                                    <rect key="frame" x="133.5" y="16" width="24" height="24"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-eR-jC5" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="133.5" y="18" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="BpJ-SJ-E8K"/>
-                                                        <constraint firstAttribute="height" constant="24" id="xGw-mu-yZQ"/>
+                                                        <constraint firstAttribute="width" constant="20" id="BpJ-SJ-E8K"/>
+                                                        <constraint firstAttribute="height" constant="20" id="xGw-mu-yZQ"/>
                                                     </constraints>
                                                     <state key="normal" image="tip"/>
                                                     <connections>
@@ -363,7 +365,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-3V-dxg">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZO-3V-dxg" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="333" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="LQ8-Ee-ukb"/>
@@ -375,7 +377,7 @@
                                                         <action selector="madeNumPlusButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="IAl-59-jnt"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="188" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="JJh-TJ-P4J"/>

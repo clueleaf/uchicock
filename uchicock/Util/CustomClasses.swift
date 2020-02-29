@@ -178,3 +178,18 @@ class CustomLabel: UILabel{
 
 class CustomCAGradientLayer: CAGradientLayer{
 }
+
+class ExpandedButton: UIButton {
+    var minimumHitWidth : CGFloat = 44.0
+    var minimumHitHeight : CGFloat = 44.0
+
+    override open func point(inside point: CGPoint, with _: UIEvent?) -> Bool {
+        if self.isHidden || !self.isUserInteractionEnabled || self.alpha < 0.01 { return  false }
+
+        let buttonSize = self.bounds.size
+        let widthToAdd = max(minimumHitWidth - buttonSize.width, 0)
+        let heightToAdd = max(minimumHitHeight - buttonSize.height, 0)
+        let area = self.bounds.insetBy(dx: -widthToAdd / 2, dy: -heightToAdd / 2)
+        return area.contains(point)
+    }
+}

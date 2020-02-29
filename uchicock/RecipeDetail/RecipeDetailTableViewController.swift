@@ -14,21 +14,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CopyableLabel!
-    @IBOutlet weak var bookmarkButton: UIButton!
+    @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
-    @IBOutlet weak var styleTipButton: UIButton!
-    @IBOutlet weak var methodTipButton: UIButton!
-    @IBOutlet weak var strengthTipButton: UIButton!
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
+    @IBOutlet weak var star1: ExpandedButton!
+    @IBOutlet weak var star2: ExpandedButton!
+    @IBOutlet weak var star3: ExpandedButton!
+    @IBOutlet weak var styleTipButton: ExpandedButton!
+    @IBOutlet weak var methodTipButton: ExpandedButton!
+    @IBOutlet weak var strengthTipButton: ExpandedButton!
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
     @IBOutlet weak var memo: CopyableLabel!
-    @IBOutlet weak var madeNumPlusButton: UIButton!
-    @IBOutlet weak var madeNumMinusButton: UIButton!
+    @IBOutlet weak var madeNumPlusButton: ExpandedButton!
+    @IBOutlet weak var madeNumMinusButton: ExpandedButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
@@ -71,6 +71,25 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
+        
+        bookmarkButton.minimumHitWidth = 36
+        bookmarkButton.minimumHitHeight = 36
+        star1.minimumHitWidth = 36
+        star1.minimumHitHeight = 36
+        star2.minimumHitWidth = 36
+        star2.minimumHitHeight = 36
+        star3.minimumHitWidth = 36
+        star3.minimumHitHeight = 36
+        styleTipButton.minimumHitWidth = 36
+        styleTipButton.minimumHitHeight = 36
+        methodTipButton.minimumHitWidth = 36
+        methodTipButton.minimumHitHeight = 36
+        strengthTipButton.minimumHitWidth = 36
+        strengthTipButton.minimumHitHeight = 36
+        madeNumPlusButton.minimumHitWidth = 36
+        madeNumPlusButton.minimumHitHeight = 36
+        madeNumMinusButton.minimumHitWidth = 36
+        madeNumMinusButton.minimumHitHeight = 36
 
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
