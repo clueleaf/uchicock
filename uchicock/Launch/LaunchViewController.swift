@@ -135,7 +135,7 @@ class LaunchViewController: UIViewController {
             }
         }
         
-        FullscreenPopGesture.configuration()
+        BasicNavigationController.initializeFullScreenPopGesture()
         
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }

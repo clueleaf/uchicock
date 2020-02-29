@@ -9,12 +9,6 @@
 import Foundation
 import UIKit
 
-class FullscreenPopGesture {
-    class func configuration() {
-        UINavigationController.navInitialize()
-    }
-}
-
 // objc_getAssociatedObjectのkey
 private struct AssociatedObjectKey {
     static var fullscreenPopGestureRecognizer
@@ -26,7 +20,7 @@ private struct AssociatedObjectKey {
 
 class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
     
-    weak var navigationController: UINavigationController?
+    weak var navigationController: BasicNavigationController?
     
     // MARK: - UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -67,13 +61,12 @@ fileprivate extension DispatchQueue {
     
     private static var onceTracker = [String]()
     
-     /*
+    /*
      Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
      only execute the code once even in the presence of multithreaded calls.
-     
      - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
      - parameter block: Block to execute once
-     */
+    */
     class func once(token: String, block: () -> Void) {
         objc_sync_enter(self)
         defer {
@@ -88,8 +81,8 @@ fileprivate extension DispatchQueue {
     }
 }
 
-extension UINavigationController {
-    open class func navInitialize() {
+extension BasicNavigationController {
+    open class func initializeFullScreenPopGesture() {
         DispatchQueue.once(token: "com.UINavigationController.MethodSwizzling", block: {
             if let originalMethod = class_getInstanceMethod(self, #selector(pushViewController(_:animated:))),
                 let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledPushViewController(_:animated:))) {
