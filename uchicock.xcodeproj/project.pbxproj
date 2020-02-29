@@ -65,6 +65,7 @@
 		9B7BAA6A22B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */; };
 		9B93B31B1E75437C0046687A /* ReverseLookupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B31A1E75437C0046687A /* ReverseLookupTableViewController.swift */; };
 		9B93B3231E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */; };
+		9B9A7D9E240AC05700BC46DE /* FullScreenPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A7D9D240AC05700BC46DE /* FullScreenPop.swift */; };
 		9BA727A223DD5F6400CFFE78 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA727A123DD5F6400CFFE78 /* NotificationExtension.swift */; };
 		9BAC3F9A1CB695B700418665 /* IngredientDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */; };
 		9BAC3F9C1CB6B01500418665 /* RecipeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */; };
@@ -179,6 +180,7 @@
 		9B8E59D11CB819A8004D2C1A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9B93B31A1E75437C0046687A /* ReverseLookupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupTableViewController.swift; path = ReverseLookup/ReverseLookupTableViewController.swift; sourceTree = "<group>"; };
 		9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReverseLookupSelectIngredientTableViewCell.swift; path = ReverseLookup/ReverseLookupSelectIngredientTableViewCell.swift; sourceTree = "<group>"; };
+		9B9A7D9D240AC05700BC46DE /* FullScreenPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPop.swift; sourceTree = "<group>"; };
 		9BA727A123DD5F6400CFFE78 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		9BAC3F991CB695B700418665 /* IngredientDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientDetailTableViewController.swift; path = IngredientDetail/IngredientDetailTableViewController.swift; sourceTree = "<group>"; };
 		9BAC3F9B1CB6B01500418665 /* RecipeDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeDetailTableViewController.swift; path = RecipeDetail/RecipeDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				9B03D38D22FD823200E2AB86 /* PullToRefresh */,
 				9BF951A52302C68000C6A1CA /* MessageHUD */,
 				9BD91A5722BD04720088C146 /* Modal */,
+				9B9A7D9C240AC02800BC46DE /* FullScreenPop */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -398,6 +401,14 @@
 				9B93B3221E7558FE0046687A /* ReverseLookupSelectIngredientTableViewCell.swift */,
 			);
 			name = ReverseLookup;
+			sourceTree = "<group>";
+		};
+		9B9A7D9C240AC02800BC46DE /* FullScreenPop */ = {
+			isa = PBXGroup;
+			children = (
+				9B9A7D9D240AC05700BC46DE /* FullScreenPop.swift */,
+			);
+			path = FullScreenPop;
 			sourceTree = "<group>";
 		};
 		9BAAFB6F1C99953400E67791 /* RecipeDetail */ = {
@@ -814,6 +825,7 @@
 				9B3078DF1CA4220C0014CE7E /* IngredientListViewController.swift in Sources */,
 				9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */,
 				9B0E3DFF23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift in Sources */,
+				9B9A7D9E240AC05700BC46DE /* FullScreenPop.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
 				9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */,

@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UchicockStyle.loadTheme()
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
+        
+        FullscreenPopGesture.configuration()
 
         let manager = FileManager.default
         let realmPath = GlobalConstants.DocumentDir.appendingPathComponent("default.realm")
