@@ -57,38 +57,12 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
     }
 }
 
-fileprivate extension DispatchQueue {
-    
-    private static var onceTracker = [String]()
-    
-    /*
-     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
-     only execute the code once even in the presence of multithreaded calls.
-     - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
-     - parameter block: Block to execute once
-    */
-    class func once(token: String, block: () -> Void) {
-        objc_sync_enter(self)
-        defer {
-            objc_sync_exit(self)
-        }
-        
-        if onceTracker.contains(token) {
-            return
-        }
-        onceTracker.append(token)
-        block()
-    }
-}
-
 extension BasicNavigationController {
     open class func initializeFullScreenPopGesture() {
-        DispatchQueue.once(token: "com.UINavigationController.MethodSwizzling", block: {
-            if let originalMethod = class_getInstanceMethod(self, #selector(pushViewController(_:animated:))),
-                let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledPushViewController(_:animated:))) {
-                method_exchangeImplementations(originalMethod, swizzledMethod)
-            }
-        })
+        if let originalMethod = class_getInstanceMethod(self, #selector(pushViewController(_:animated:))),
+            let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledPushViewController(_:animated:))) {
+            method_exchangeImplementations(originalMethod, swizzledMethod)
+        }
     }
     
     // The gesture recognizer that actually handles interactive pop.
@@ -112,7 +86,6 @@ extension BasicNavigationController {
         return pan
     }
     
-    // MARK: Swizzeld
     @objc private func swizzledPushViewController(_ viewController: UIViewController, animated: Bool) {
         if interactivePopGestureRecognizer?.view?.gestureRecognizers?.contains(fullscreenPopGestureRecognizer) == false {
             interactivePopGestureRecognizer?.view?.addGestureRecognizer(fullscreenPopGestureRecognizer)
