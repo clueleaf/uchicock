@@ -196,10 +196,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     }
                     let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
                     detailVC.ingredientId = newIngredient.id
-                    let history = mainNavigationController?.viewControllers
-                    if var history = history{
-                        history.append(detailVC)
-                        mainNavigationController?.setViewControllers(history, animated: false)
+                    
+                    if mainNavigationController != nil {
+                        mainNavigationController!.pushViewController(detailVC, animated: false)
                         detailVC.closeEditVC(self)
                     }else{
                         self.dismiss(animated: true, completion: nil)
@@ -227,10 +226,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     }
                     let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
                     detailVC.ingredientId = ingredient.id
-                    let history = mainNavigationController?.viewControllers
-                    if var history = history{
-                        history.append(detailVC)
-                        mainNavigationController?.setViewControllers(history, animated: false)
+                    
+                    if mainNavigationController != nil {
+                        mainNavigationController!.pushViewController(detailVC, animated: false)
                         detailVC.closeEditVC(self)
                     }else{
                         self.dismiss(animated: true, completion: nil)

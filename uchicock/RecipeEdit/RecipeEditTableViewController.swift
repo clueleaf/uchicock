@@ -795,10 +795,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         MessageHUD.show("レシピを登録しました", for: 2.0, withCheckmark: true)
                     }
                    
-                    let history = mainNavigationController?.viewControllers
-                    if var history = history{
-                        history.append(detailVC)
-                        mainNavigationController?.setViewControllers(history, animated: false)
+                    if mainNavigationController != nil{
+                        mainNavigationController!.pushViewController(detailVC, animated: false)
                         detailVC.closeEditVC(self)
                     }else{
                         self.dismiss(animated: true, completion: nil)
@@ -868,10 +866,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         recipe.updateShortageNum()
                         MessageHUD.show("レシピを保存しました", for: 2.0, withCheckmark: true)
                     }
-                    let history = mainNavigationController?.viewControllers
-                    if var history = history{
-                        history.append(detailVC)
-                        mainNavigationController?.setViewControllers(history, animated: false)
+                    
+                    if mainNavigationController != nil {
+                        mainNavigationController?.pushViewController(detailVC, animated: false)
                         detailVC.closeEditVC(self)
                     }else{
                         self.dismiss(animated: true, completion: nil)
