@@ -95,22 +95,26 @@
                                                                     <action selector="favorite0CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Gro-hs-CCC"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☆☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-Tz-MLd" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBx-Ul-wnh">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="SYa-Ci-jSv"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ☆☆☆"/>
+                                                                <connections>
+                                                                    <action selector="favorite0ButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="sjx-pa-3Pg"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="TBx-Ul-wnh" secondAttribute="bottom" id="8lC-Xw-3AK"/>
                                                             <constraint firstItem="lz3-Oy-BNf" firstAttribute="top" secondItem="6m9-xK-4Qu" secondAttribute="top" id="Ah0-l1-qF6"/>
-                                                            <constraint firstItem="dI0-Tz-MLd" firstAttribute="leading" secondItem="lz3-Oy-BNf" secondAttribute="trailing" constant="4" id="GBn-vC-AQH"/>
-                                                            <constraint firstAttribute="bottom" secondItem="dI0-Tz-MLd" secondAttribute="bottom" id="Pgn-U1-Mfr"/>
+                                                            <constraint firstItem="TBx-Ul-wnh" firstAttribute="leading" secondItem="lz3-Oy-BNf" secondAttribute="trailing" id="KJA-so-Du5"/>
                                                             <constraint firstItem="lz3-Oy-BNf" firstAttribute="leading" secondItem="6m9-xK-4Qu" secondAttribute="leading" id="bAM-lt-Suu"/>
                                                             <constraint firstAttribute="bottom" secondItem="lz3-Oy-BNf" secondAttribute="bottom" id="fYp-KP-Hsc"/>
-                                                            <constraint firstAttribute="trailing" secondItem="dI0-Tz-MLd" secondAttribute="trailing" id="gFQ-uu-Ezm"/>
-                                                            <constraint firstItem="dI0-Tz-MLd" firstAttribute="top" secondItem="6m9-xK-4Qu" secondAttribute="top" id="w9e-ew-sfL"/>
+                                                            <constraint firstItem="TBx-Ul-wnh" firstAttribute="top" secondItem="6m9-xK-4Qu" secondAttribute="top" id="pvP-Y2-B5C"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ivv-eI-ioc">
@@ -126,22 +130,26 @@
                                                                     <action selector="favorite1CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="aJy-Oj-SHn"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★☆☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixL-eO-weg" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-LR-qoS">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="9H3-8c-8He"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ★☆☆"/>
+                                                                <connections>
+                                                                    <action selector="favorite1ButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="T5V-bD-5Ct"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="cKc-Dq-cxn" firstAttribute="top" secondItem="Ivv-eI-ioc" secondAttribute="top" id="6Te-uC-oLs"/>
-                                                            <constraint firstItem="ixL-eO-weg" firstAttribute="leading" secondItem="cKc-Dq-cxn" secondAttribute="trailing" constant="4" id="75Q-Bm-HMU"/>
+                                                            <constraint firstAttribute="bottom" secondItem="hWo-LR-qoS" secondAttribute="bottom" id="8AB-HX-gNB"/>
                                                             <constraint firstAttribute="bottom" secondItem="cKc-Dq-cxn" secondAttribute="bottom" id="L4N-sZ-kK2"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ixL-eO-weg" secondAttribute="bottom" id="Plr-DE-Ii8"/>
-                                                            <constraint firstAttribute="trailing" secondItem="ixL-eO-weg" secondAttribute="trailing" id="RJX-r4-4kH"/>
                                                             <constraint firstItem="cKc-Dq-cxn" firstAttribute="leading" secondItem="Ivv-eI-ioc" secondAttribute="leading" id="fsR-gr-CsH"/>
-                                                            <constraint firstItem="ixL-eO-weg" firstAttribute="top" secondItem="Ivv-eI-ioc" secondAttribute="top" id="gZJ-9P-p9n"/>
+                                                            <constraint firstItem="hWo-LR-qoS" firstAttribute="leading" secondItem="cKc-Dq-cxn" secondAttribute="trailing" id="thd-Rz-oF7"/>
+                                                            <constraint firstItem="hWo-LR-qoS" firstAttribute="top" secondItem="Ivv-eI-ioc" secondAttribute="top" id="uvG-f6-ftI"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -169,22 +177,26 @@
                                                                     <action selector="favorite2CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="JRf-df-9yY"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★☆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk5-qe-dX9" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqq-kC-UeV">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="9CE-Wv-Nv3"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ★★☆"/>
+                                                                <connections>
+                                                                    <action selector="favorite2ButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="TgE-Po-wk3"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="qqq-kC-UeV" secondAttribute="bottom" id="5gX-yO-rVw"/>
                                                             <constraint firstItem="SBM-ye-ueT" firstAttribute="top" secondItem="eHi-MG-Sfl" secondAttribute="top" id="AdQ-aA-jZy"/>
-                                                            <constraint firstAttribute="trailing" secondItem="xk5-qe-dX9" secondAttribute="trailing" id="PtR-Fg-muh"/>
+                                                            <constraint firstItem="qqq-kC-UeV" firstAttribute="leading" secondItem="SBM-ye-ueT" secondAttribute="trailing" id="Fzu-xC-BDw"/>
                                                             <constraint firstAttribute="bottom" secondItem="SBM-ye-ueT" secondAttribute="bottom" id="XmT-Bd-779"/>
-                                                            <constraint firstAttribute="bottom" secondItem="xk5-qe-dX9" secondAttribute="bottom" id="na5-vS-eGX"/>
                                                             <constraint firstItem="SBM-ye-ueT" firstAttribute="leading" secondItem="eHi-MG-Sfl" secondAttribute="leading" id="px1-7l-dyP"/>
-                                                            <constraint firstItem="xk5-qe-dX9" firstAttribute="top" secondItem="eHi-MG-Sfl" secondAttribute="top" id="uid-Xl-4wt"/>
-                                                            <constraint firstItem="xk5-qe-dX9" firstAttribute="leading" secondItem="SBM-ye-ueT" secondAttribute="trailing" constant="4" id="ytH-2W-aoX"/>
+                                                            <constraint firstItem="qqq-kC-UeV" firstAttribute="top" secondItem="eHi-MG-Sfl" secondAttribute="top" id="xq4-WK-903"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S19-Vh-aej">
@@ -200,22 +212,26 @@
                                                                     <action selector="favorite3CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="dkg-Ah-1Xi"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JP6-y9-Vmi" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-kx-A0E">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="a5w-su-EJt"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ★★★"/>
+                                                                <connections>
+                                                                    <action selector="favorite3ButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="uqv-dt-Lma"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="JP6-y9-Vmi" secondAttribute="bottom" id="EQE-k3-62P"/>
                                                             <constraint firstItem="Mfl-ku-sxM" firstAttribute="top" secondItem="S19-Vh-aej" secondAttribute="top" id="Gmh-Uf-aTX"/>
                                                             <constraint firstItem="Mfl-ku-sxM" firstAttribute="leading" secondItem="S19-Vh-aej" secondAttribute="leading" id="Ojr-5S-4IX"/>
-                                                            <constraint firstAttribute="trailing" secondItem="JP6-y9-Vmi" secondAttribute="trailing" id="XXc-9f-k0n"/>
-                                                            <constraint firstItem="JP6-y9-Vmi" firstAttribute="top" secondItem="S19-Vh-aej" secondAttribute="top" id="Z98-3x-sDz"/>
                                                             <constraint firstAttribute="bottom" secondItem="Mfl-ku-sxM" secondAttribute="bottom" id="hbZ-uM-G9P"/>
-                                                            <constraint firstItem="JP6-y9-Vmi" firstAttribute="leading" secondItem="Mfl-ku-sxM" secondAttribute="trailing" constant="4" id="hp7-wf-ucG"/>
+                                                            <constraint firstAttribute="bottom" secondItem="jOa-kx-A0E" secondAttribute="bottom" id="lQD-3a-VvW"/>
+                                                            <constraint firstItem="jOa-kx-A0E" firstAttribute="top" secondItem="S19-Vh-aej" secondAttribute="top" id="mtv-gt-PUR"/>
+                                                            <constraint firstItem="jOa-kx-A0E" firstAttribute="leading" secondItem="Mfl-ku-sxM" secondAttribute="trailing" id="zbE-Cw-3j7"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -279,22 +295,26 @@
                                                                     <action selector="styleLongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Sp4-X9-WRL"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJB-0g-twZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMI-dX-a7t">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="7LV-15-yuL"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ロング"/>
+                                                                <connections>
+                                                                    <action selector="styleLongButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="xeS-PB-sEW"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="TJB-0g-twZ" firstAttribute="top" secondItem="eiI-7z-Yeg" secondAttribute="top" id="4Rt-QT-3ML"/>
-                                                            <constraint firstAttribute="bottom" secondItem="TJB-0g-twZ" secondAttribute="bottom" id="GcX-2l-ukC"/>
+                                                            <constraint firstItem="jMI-dX-a7t" firstAttribute="top" secondItem="eiI-7z-Yeg" secondAttribute="top" id="Glg-Bu-YfI"/>
                                                             <constraint firstItem="9uG-DB-Puv" firstAttribute="top" secondItem="eiI-7z-Yeg" secondAttribute="top" id="K87-nt-Fdc"/>
-                                                            <constraint firstAttribute="trailing" secondItem="TJB-0g-twZ" secondAttribute="trailing" id="OaR-GN-KSK"/>
                                                             <constraint firstItem="9uG-DB-Puv" firstAttribute="leading" secondItem="eiI-7z-Yeg" secondAttribute="leading" id="Qk3-yg-ohd"/>
-                                                            <constraint firstItem="TJB-0g-twZ" firstAttribute="leading" secondItem="9uG-DB-Puv" secondAttribute="trailing" constant="4" id="Qn4-NC-J5M"/>
+                                                            <constraint firstAttribute="bottom" secondItem="jMI-dX-a7t" secondAttribute="bottom" id="bCz-CP-eWT"/>
                                                             <constraint firstAttribute="bottom" secondItem="9uG-DB-Puv" secondAttribute="bottom" id="nxv-ms-e0y"/>
+                                                            <constraint firstItem="jMI-dX-a7t" firstAttribute="leading" secondItem="9uG-DB-Puv" secondAttribute="trailing" id="yeP-Pc-Ub5"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMx-6C-x9N">
@@ -310,21 +330,25 @@
                                                                     <action selector="styleShortCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="UnG-1E-a5R"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショート" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnU-HU-DwO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6U-YG-0wh">
+                                                                <rect key="frame" x="28" y="0.0" width="61" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="uEo-Wa-5v7"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ショート"/>
+                                                                <connections>
+                                                                    <action selector="styleShortButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="h8G-C2-LS3"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="tnU-HU-DwO" secondAttribute="bottom" id="7sr-sY-urt"/>
                                                             <constraint firstItem="ipc-Dx-y1W" firstAttribute="leading" secondItem="jMx-6C-x9N" secondAttribute="leading" id="BGL-UP-hyN"/>
-                                                            <constraint firstItem="tnU-HU-DwO" firstAttribute="leading" secondItem="ipc-Dx-y1W" secondAttribute="trailing" constant="4" id="PbP-xk-kSV"/>
-                                                            <constraint firstAttribute="trailing" secondItem="tnU-HU-DwO" secondAttribute="trailing" id="Qec-2w-z7M"/>
-                                                            <constraint firstItem="tnU-HU-DwO" firstAttribute="top" secondItem="jMx-6C-x9N" secondAttribute="top" id="SAw-MS-gFH"/>
+                                                            <constraint firstItem="b6U-YG-0wh" firstAttribute="top" secondItem="jMx-6C-x9N" secondAttribute="top" id="PUN-F1-HVj"/>
                                                             <constraint firstItem="ipc-Dx-y1W" firstAttribute="top" secondItem="jMx-6C-x9N" secondAttribute="top" id="fvj-RU-Djf"/>
+                                                            <constraint firstItem="b6U-YG-0wh" firstAttribute="leading" secondItem="ipc-Dx-y1W" secondAttribute="trailing" id="h7c-bM-3wm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="b6U-YG-0wh" secondAttribute="bottom" id="nwU-l6-hn8"/>
                                                             <constraint firstAttribute="bottom" secondItem="ipc-Dx-y1W" secondAttribute="bottom" id="plT-Ro-aQ9"/>
                                                         </constraints>
                                                     </view>
@@ -353,21 +377,25 @@
                                                                     <action selector="styleHotCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="fBI-HE-sRR"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホット" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIm-JV-lWx" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sca-pX-hmU">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="dOc-Nx-tRx"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ホット"/>
+                                                                <connections>
+                                                                    <action selector="styleHotButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="lfH-T8-0x0"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="XIm-JV-lWx" secondAttribute="bottom" id="0Lz-i7-c7B"/>
+                                                            <constraint firstAttribute="bottom" secondItem="sca-pX-hmU" secondAttribute="bottom" id="20P-cc-7nE"/>
+                                                            <constraint firstItem="sca-pX-hmU" firstAttribute="leading" secondItem="33G-ax-QzN" secondAttribute="trailing" id="Eq8-Ja-ixx"/>
                                                             <constraint firstItem="33G-ax-QzN" firstAttribute="top" secondItem="zWh-tT-iie" secondAttribute="top" id="II0-w2-WO6"/>
                                                             <constraint firstAttribute="bottom" secondItem="33G-ax-QzN" secondAttribute="bottom" id="RbG-3N-6dA"/>
-                                                            <constraint firstItem="XIm-JV-lWx" firstAttribute="leading" secondItem="33G-ax-QzN" secondAttribute="trailing" constant="4" id="TC3-ZQ-Qta"/>
-                                                            <constraint firstAttribute="trailing" secondItem="XIm-JV-lWx" secondAttribute="trailing" id="US4-Mb-zq6"/>
-                                                            <constraint firstItem="XIm-JV-lWx" firstAttribute="top" secondItem="zWh-tT-iie" secondAttribute="top" id="qBF-8O-fBy"/>
+                                                            <constraint firstItem="sca-pX-hmU" firstAttribute="top" secondItem="zWh-tT-iie" secondAttribute="top" id="das-u1-GCP"/>
                                                             <constraint firstItem="33G-ax-QzN" firstAttribute="leading" secondItem="zWh-tT-iie" secondAttribute="leading" id="zbX-oM-3NC"/>
                                                         </constraints>
                                                     </view>
@@ -384,21 +412,25 @@
                                                                     <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="GWM-1k-wGD"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-5E-Oft" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-qt-JA5">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Y1B-XH-wFX"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" 未指定"/>
+                                                                <connections>
+                                                                    <action selector="styleNoneButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="7Tx-Ch-xzG"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="4ce-5E-Oft" secondAttribute="bottom" id="5ZZ-VU-fRJ"/>
-                                                            <constraint firstItem="4ce-5E-Oft" firstAttribute="top" secondItem="JEI-ux-pQb" secondAttribute="top" id="Fjf-S7-ItR"/>
-                                                            <constraint firstItem="4ce-5E-Oft" firstAttribute="leading" secondItem="h4h-AI-RrY" secondAttribute="trailing" constant="4" id="KaO-Js-ojb"/>
                                                             <constraint firstItem="h4h-AI-RrY" firstAttribute="leading" secondItem="JEI-ux-pQb" secondAttribute="leading" id="LAd-ti-eqv"/>
+                                                            <constraint firstItem="ua6-qt-JA5" firstAttribute="leading" secondItem="h4h-AI-RrY" secondAttribute="trailing" id="ZKv-dL-Qzq"/>
                                                             <constraint firstAttribute="bottom" secondItem="h4h-AI-RrY" secondAttribute="bottom" id="b4w-PC-KA9"/>
-                                                            <constraint firstAttribute="trailing" secondItem="4ce-5E-Oft" secondAttribute="trailing" id="h6L-ct-3WC"/>
+                                                            <constraint firstItem="ua6-qt-JA5" firstAttribute="top" secondItem="JEI-ux-pQb" secondAttribute="top" id="j5v-A4-3ob"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ua6-qt-JA5" secondAttribute="bottom" id="m7A-wy-q42"/>
                                                             <constraint firstItem="h4h-AI-RrY" firstAttribute="top" secondItem="JEI-ux-pQb" secondAttribute="top" id="vlW-te-pgh"/>
                                                         </constraints>
                                                     </view>
@@ -459,20 +491,24 @@
                                                                     <action selector="methodBuildCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="NCr-X4-aiw"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-Df-hyL" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TD-3V-LjX">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="MfJ-U5-3Sa"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ビルド"/>
+                                                                <connections>
+                                                                    <action selector="methodBuildButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="yoQ-23-7ij"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="hxJ-Df-hyL" firstAttribute="leading" secondItem="0pV-sU-VHa" secondAttribute="trailing" constant="4" id="7Ix-1h-Sen"/>
+                                                            <constraint firstAttribute="bottom" secondItem="2TD-3V-LjX" secondAttribute="bottom" id="5qf-GJ-ufB"/>
                                                             <constraint firstItem="0pV-sU-VHa" firstAttribute="leading" secondItem="PKc-mj-wbR" secondAttribute="leading" id="BeQ-rW-7St"/>
-                                                            <constraint firstAttribute="bottom" secondItem="hxJ-Df-hyL" secondAttribute="bottom" id="YhO-lF-xY1"/>
-                                                            <constraint firstAttribute="trailing" secondItem="hxJ-Df-hyL" secondAttribute="trailing" id="dkg-1B-qHQ"/>
-                                                            <constraint firstItem="hxJ-Df-hyL" firstAttribute="top" secondItem="PKc-mj-wbR" secondAttribute="top" id="fcd-x8-o9h"/>
+                                                            <constraint firstItem="2TD-3V-LjX" firstAttribute="top" secondItem="PKc-mj-wbR" secondAttribute="top" id="HYk-Ik-Rga"/>
+                                                            <constraint firstItem="2TD-3V-LjX" firstAttribute="leading" secondItem="0pV-sU-VHa" secondAttribute="trailing" id="cN1-8B-J8a"/>
                                                             <constraint firstItem="0pV-sU-VHa" firstAttribute="top" secondItem="PKc-mj-wbR" secondAttribute="top" id="w74-bb-AdN"/>
                                                             <constraint firstAttribute="bottom" secondItem="0pV-sU-VHa" secondAttribute="bottom" id="yR8-l2-SF7"/>
                                                         </constraints>
@@ -490,20 +526,24 @@
                                                                     <action selector="methodStirCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="poW-23-pfQ"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ステア" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQ4-Qf-v2h" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldD-Or-awA">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="P3q-Gw-qvf"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ステア"/>
+                                                                <connections>
+                                                                    <action selector="methodStirButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="eSm-J9-Oo8"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="MQ4-Qf-v2h" firstAttribute="leading" secondItem="n4D-6H-ZVp" secondAttribute="trailing" constant="4" id="5G9-V0-GXq"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ldD-Or-awA" secondAttribute="bottom" id="CXQ-LP-R68"/>
                                                             <constraint firstAttribute="bottom" secondItem="n4D-6H-ZVp" secondAttribute="bottom" id="GEo-tN-dEU"/>
-                                                            <constraint firstAttribute="bottom" secondItem="MQ4-Qf-v2h" secondAttribute="bottom" id="JFV-V8-whO"/>
-                                                            <constraint firstAttribute="trailing" secondItem="MQ4-Qf-v2h" secondAttribute="trailing" id="f4F-34-YNU"/>
-                                                            <constraint firstItem="MQ4-Qf-v2h" firstAttribute="top" secondItem="LBh-CS-SiA" secondAttribute="top" id="lXU-Xh-qmW"/>
+                                                            <constraint firstItem="ldD-Or-awA" firstAttribute="leading" secondItem="n4D-6H-ZVp" secondAttribute="trailing" id="N72-zT-g1y"/>
+                                                            <constraint firstItem="ldD-Or-awA" firstAttribute="top" secondItem="LBh-CS-SiA" secondAttribute="top" id="hXJ-gc-w16"/>
                                                             <constraint firstItem="n4D-6H-ZVp" firstAttribute="leading" secondItem="LBh-CS-SiA" secondAttribute="leading" id="la1-Vq-5Pz"/>
                                                             <constraint firstItem="n4D-6H-ZVp" firstAttribute="top" secondItem="LBh-CS-SiA" secondAttribute="top" id="uVw-Cs-edg"/>
                                                         </constraints>
@@ -521,22 +561,26 @@
                                                                     <action selector="methodShakeCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="iub-6B-U4y"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="シェイク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUN-dQ-5CQ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENK-ci-xj9">
+                                                                <rect key="frame" x="28" y="0.0" width="61" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Bin-dN-rJY"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" シェイク"/>
+                                                                <connections>
+                                                                    <action selector="methodShakeButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="Sk5-Pv-ebo"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="eUN-dQ-5CQ" secondAttribute="bottom" id="4Pq-Ic-T2g"/>
+                                                            <constraint firstItem="ENK-ci-xj9" firstAttribute="top" secondItem="tCM-ix-sSg" secondAttribute="top" id="9Ib-ky-fR5"/>
                                                             <constraint firstAttribute="bottom" secondItem="i1e-EW-FqB" secondAttribute="bottom" id="Cpm-2z-WbI"/>
-                                                            <constraint firstItem="eUN-dQ-5CQ" firstAttribute="top" secondItem="tCM-ix-sSg" secondAttribute="top" id="Ecr-io-Pem"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ENK-ci-xj9" secondAttribute="bottom" id="L9q-6J-caZ"/>
                                                             <constraint firstItem="i1e-EW-FqB" firstAttribute="top" secondItem="tCM-ix-sSg" secondAttribute="top" id="N1c-ys-EIC"/>
                                                             <constraint firstItem="i1e-EW-FqB" firstAttribute="leading" secondItem="tCM-ix-sSg" secondAttribute="leading" id="R4m-yh-5is"/>
-                                                            <constraint firstAttribute="trailing" secondItem="eUN-dQ-5CQ" secondAttribute="trailing" id="ZK5-hA-V2O"/>
-                                                            <constraint firstItem="eUN-dQ-5CQ" firstAttribute="leading" secondItem="i1e-EW-FqB" secondAttribute="trailing" constant="4" id="cCq-Th-cus"/>
+                                                            <constraint firstItem="ENK-ci-xj9" firstAttribute="leading" secondItem="i1e-EW-FqB" secondAttribute="trailing" id="zv1-py-QPx"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -564,21 +608,25 @@
                                                                     <action selector="methodBlendCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="rAB-aV-XB1"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブレンド" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-9X-uNw" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQz-N2-JOg">
+                                                                <rect key="frame" x="28" y="0.0" width="61" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="V0G-1s-yAw"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ブレンド"/>
+                                                                <connections>
+                                                                    <action selector="methodBlendButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="6sk-07-8i6"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="nvx-iM-f4h" secondAttribute="bottom" id="2Va-es-pcH"/>
-                                                            <constraint firstAttribute="trailing" secondItem="75Z-9X-uNw" secondAttribute="trailing" id="64P-jz-Zmy"/>
-                                                            <constraint firstItem="75Z-9X-uNw" firstAttribute="leading" secondItem="nvx-iM-f4h" secondAttribute="trailing" constant="4" id="dRJ-e8-osi"/>
-                                                            <constraint firstItem="75Z-9X-uNw" firstAttribute="top" secondItem="p3b-Hm-q1z" secondAttribute="top" id="gOu-i2-PIF"/>
+                                                            <constraint firstItem="yQz-N2-JOg" firstAttribute="top" secondItem="p3b-Hm-q1z" secondAttribute="top" id="b9M-fr-96U"/>
+                                                            <constraint firstItem="yQz-N2-JOg" firstAttribute="leading" secondItem="nvx-iM-f4h" secondAttribute="trailing" id="d7N-g0-85I"/>
+                                                            <constraint firstAttribute="bottom" secondItem="yQz-N2-JOg" secondAttribute="bottom" id="hSG-ql-zCj"/>
                                                             <constraint firstItem="nvx-iM-f4h" firstAttribute="leading" secondItem="p3b-Hm-q1z" secondAttribute="leading" id="i8M-EP-nbO"/>
-                                                            <constraint firstAttribute="bottom" secondItem="75Z-9X-uNw" secondAttribute="bottom" id="qXY-t6-2pA"/>
                                                             <constraint firstItem="nvx-iM-f4h" firstAttribute="top" secondItem="p3b-Hm-q1z" secondAttribute="top" id="uGH-sJ-W7T"/>
                                                         </constraints>
                                                     </view>
@@ -595,22 +643,26 @@
                                                                     <action selector="methodOthersCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="wim-n6-kx2"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="その他" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fiz-bx-XZN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pa-Oj-JQQ">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="qJT-Fq-oMZ"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" その他"/>
+                                                                <connections>
+                                                                    <action selector="methodOthersButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="9CH-Xl-O2Y"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Fiz-bx-XZN" secondAttribute="bottom" id="1NF-8N-cye"/>
                                                             <constraint firstItem="DMM-lq-DMJ" firstAttribute="top" secondItem="XyN-UW-QpP" secondAttribute="top" id="Pge-uV-Dzw"/>
                                                             <constraint firstAttribute="bottom" secondItem="DMM-lq-DMJ" secondAttribute="bottom" id="fkQ-Ia-UIY"/>
-                                                            <constraint firstItem="Fiz-bx-XZN" firstAttribute="top" secondItem="XyN-UW-QpP" secondAttribute="top" id="gyP-C7-0MS"/>
-                                                            <constraint firstItem="Fiz-bx-XZN" firstAttribute="leading" secondItem="DMM-lq-DMJ" secondAttribute="trailing" constant="4" id="hf5-gB-qj3"/>
                                                             <constraint firstItem="DMM-lq-DMJ" firstAttribute="leading" secondItem="XyN-UW-QpP" secondAttribute="leading" id="jH4-hZ-Bjy"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Fiz-bx-XZN" secondAttribute="trailing" id="v5q-Pi-suP"/>
+                                                            <constraint firstAttribute="bottom" secondItem="0Pa-Oj-JQQ" secondAttribute="bottom" id="jMY-ts-YN5"/>
+                                                            <constraint firstItem="0Pa-Oj-JQQ" firstAttribute="leading" secondItem="DMM-lq-DMJ" secondAttribute="trailing" id="mBf-nW-001"/>
+                                                            <constraint firstItem="0Pa-Oj-JQQ" firstAttribute="top" secondItem="XyN-UW-QpP" secondAttribute="top" id="qPo-jS-uI7"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -706,22 +758,26 @@
                                                                     <action selector="strengthNonAlcoholCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="meP-dm-CRd"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ノンアル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB0-lN-deO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0W-ce-hA3">
+                                                                <rect key="frame" x="28" y="0.0" width="61" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="0d7-uT-I64"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" ノンアル"/>
+                                                                <connections>
+                                                                    <action selector="strengthNonAlcoholButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="uRh-uG-Gbj"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="LB0-lN-deO" firstAttribute="top" secondItem="Jw3-ng-JbT" secondAttribute="top" id="KnP-Uu-gJt"/>
+                                                            <constraint firstAttribute="bottom" secondItem="N0W-ce-hA3" secondAttribute="bottom" id="1pN-UM-4m4"/>
                                                             <constraint firstItem="FFc-oQ-bKg" firstAttribute="leading" secondItem="Jw3-ng-JbT" secondAttribute="leading" id="POa-vd-p1n"/>
-                                                            <constraint firstAttribute="trailing" secondItem="LB0-lN-deO" secondAttribute="trailing" id="Qzs-jc-b8L"/>
                                                             <constraint firstAttribute="bottom" secondItem="FFc-oQ-bKg" secondAttribute="bottom" id="WrJ-8e-YqW"/>
-                                                            <constraint firstItem="LB0-lN-deO" firstAttribute="leading" secondItem="FFc-oQ-bKg" secondAttribute="trailing" constant="4" id="cb9-Lv-j8D"/>
-                                                            <constraint firstAttribute="bottom" secondItem="LB0-lN-deO" secondAttribute="bottom" id="eGK-CM-FPP"/>
+                                                            <constraint firstItem="N0W-ce-hA3" firstAttribute="leading" secondItem="FFc-oQ-bKg" secondAttribute="trailing" id="hwu-q9-j9U"/>
                                                             <constraint firstItem="FFc-oQ-bKg" firstAttribute="top" secondItem="Jw3-ng-JbT" secondAttribute="top" id="uqd-p6-QF3"/>
+                                                            <constraint firstItem="N0W-ce-hA3" firstAttribute="top" secondItem="Jw3-ng-JbT" secondAttribute="top" id="x6N-t6-YvG"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvL-Ze-KYz">
@@ -737,21 +793,25 @@
                                                                     <action selector="strengthWeakCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="UVa-c6-d4M"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弱い" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dk-oy-R3O" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1W-lc-9dc">
+                                                                <rect key="frame" x="28" y="0.0" width="33" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="JCv-GK-m71"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" 弱い"/>
+                                                                <connections>
+                                                                    <action selector="strengthWeakButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="5hF-qj-oCy"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="Q1W-lc-9dc" secondAttribute="bottom" id="62J-jx-Npe"/>
                                                             <constraint firstItem="hmV-nj-fcx" firstAttribute="leading" secondItem="TvL-Ze-KYz" secondAttribute="leading" id="CLk-dQ-vqA"/>
                                                             <constraint firstAttribute="bottom" secondItem="hmV-nj-fcx" secondAttribute="bottom" id="L5d-Vj-iiD"/>
-                                                            <constraint firstItem="4dk-oy-R3O" firstAttribute="top" secondItem="TvL-Ze-KYz" secondAttribute="top" id="Zqb-SG-xmV"/>
-                                                            <constraint firstAttribute="bottom" secondItem="4dk-oy-R3O" secondAttribute="bottom" id="hk1-No-tOR"/>
-                                                            <constraint firstItem="4dk-oy-R3O" firstAttribute="leading" secondItem="hmV-nj-fcx" secondAttribute="trailing" constant="4" id="irV-E8-qlv"/>
-                                                            <constraint firstAttribute="trailing" secondItem="4dk-oy-R3O" secondAttribute="trailing" id="lIQ-yg-8mX"/>
+                                                            <constraint firstItem="Q1W-lc-9dc" firstAttribute="top" secondItem="TvL-Ze-KYz" secondAttribute="top" id="Y3p-by-xY4"/>
+                                                            <constraint firstItem="Q1W-lc-9dc" firstAttribute="leading" secondItem="hmV-nj-fcx" secondAttribute="trailing" id="n05-ty-dSu"/>
                                                             <constraint firstItem="hmV-nj-fcx" firstAttribute="top" secondItem="TvL-Ze-KYz" secondAttribute="top" id="u9u-Vm-N0N"/>
                                                         </constraints>
                                                     </view>
@@ -768,22 +828,26 @@
                                                                     <action selector="strengthMediumCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="sni-BE-1PP"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="やや強い" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX2-zW-fXa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-4Z-Q7q">
+                                                                <rect key="frame" x="28" y="0.0" width="61" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="CbV-Ki-7Qj"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" やや強い"/>
+                                                                <connections>
+                                                                    <action selector="strengthMediumButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="l96-Md-N81"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Sku-NB-8Dj" secondAttribute="bottom" id="04P-iS-1V3"/>
-                                                            <constraint firstItem="UX2-zW-fXa" firstAttribute="leading" secondItem="Sku-NB-8Dj" secondAttribute="trailing" constant="4" id="13F-1x-R4Q"/>
-                                                            <constraint firstItem="UX2-zW-fXa" firstAttribute="top" secondItem="0te-4H-4nt" secondAttribute="top" id="DBy-nS-afa"/>
-                                                            <constraint firstAttribute="bottom" secondItem="UX2-zW-fXa" secondAttribute="bottom" id="Hiz-nI-Yto"/>
                                                             <constraint firstItem="Sku-NB-8Dj" firstAttribute="leading" secondItem="0te-4H-4nt" secondAttribute="leading" id="IWg-2L-Xca"/>
                                                             <constraint firstItem="Sku-NB-8Dj" firstAttribute="top" secondItem="0te-4H-4nt" secondAttribute="top" id="WdR-ma-2hf"/>
-                                                            <constraint firstAttribute="trailing" secondItem="UX2-zW-fXa" secondAttribute="trailing" id="Xqt-gL-XNi"/>
+                                                            <constraint firstItem="O9m-4Z-Q7q" firstAttribute="top" secondItem="0te-4H-4nt" secondAttribute="top" id="xUM-gS-YiB"/>
+                                                            <constraint firstItem="O9m-4Z-Q7q" firstAttribute="leading" secondItem="Sku-NB-8Dj" secondAttribute="trailing" id="xhs-tm-iiv"/>
+                                                            <constraint firstAttribute="bottom" secondItem="O9m-4Z-Q7q" secondAttribute="bottom" id="xuN-Lg-ghN"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -811,22 +875,26 @@
                                                                     <action selector="strengthStrongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="HpP-LD-HhV"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="強い" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhe-Zl-RSR" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="101" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH2-BN-3Xf">
+                                                                <rect key="frame" x="28" y="0.0" width="33" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="JRD-1f-yXU"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" 強い"/>
+                                                                <connections>
+                                                                    <action selector="strengthStrongButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="zNy-OX-vil"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="kDf-cj-YKw" firstAttribute="top" secondItem="fbu-ho-5XX" secondAttribute="top" id="BP4-ND-fyE"/>
-                                                            <constraint firstItem="lhe-Zl-RSR" firstAttribute="leading" secondItem="kDf-cj-YKw" secondAttribute="trailing" constant="4" id="Dp4-18-0Kh"/>
-                                                            <constraint firstAttribute="bottom" secondItem="lhe-Zl-RSR" secondAttribute="bottom" id="NG1-8N-EqF"/>
-                                                            <constraint firstAttribute="trailing" secondItem="lhe-Zl-RSR" secondAttribute="trailing" id="PLG-cK-ivm"/>
                                                             <constraint firstAttribute="bottom" secondItem="kDf-cj-YKw" secondAttribute="bottom" id="S4c-y4-LVB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="AH2-BN-3Xf" secondAttribute="bottom" id="aAV-a5-lOW"/>
                                                             <constraint firstItem="kDf-cj-YKw" firstAttribute="leading" secondItem="fbu-ho-5XX" secondAttribute="leading" id="ghV-lK-aIW"/>
-                                                            <constraint firstItem="lhe-Zl-RSR" firstAttribute="top" secondItem="fbu-ho-5XX" secondAttribute="top" id="vXx-0g-HIn"/>
+                                                            <constraint firstItem="AH2-BN-3Xf" firstAttribute="top" secondItem="fbu-ho-5XX" secondAttribute="top" id="oyt-Ro-Aj0"/>
+                                                            <constraint firstItem="AH2-BN-3Xf" firstAttribute="leading" secondItem="kDf-cj-YKw" secondAttribute="trailing" id="utl-tq-I5I"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKM-ca-3hS">
@@ -842,21 +910,25 @@
                                                                     <action selector="strengthNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="cwE-D6-ofl"/>
                                                                 </connections>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未指定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGc-nn-bOP" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="0.0" width="100.5" height="28"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJU-xN-jBd">
+                                                                <rect key="frame" x="28" y="0.0" width="47" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="6H1-gz-wc9"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <state key="normal" title=" 未指定"/>
+                                                                <connections>
+                                                                    <action selector="strengthNoneButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="PMc-69-xZg"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="DGc-nn-bOP" secondAttribute="bottom" id="dXG-v7-JxR"/>
+                                                            <constraint firstAttribute="bottom" secondItem="hJU-xN-jBd" secondAttribute="bottom" id="Ziy-I4-oCU"/>
                                                             <constraint firstItem="lBG-La-Mw3" firstAttribute="leading" secondItem="AKM-ca-3hS" secondAttribute="leading" id="g1a-BV-3ao"/>
-                                                            <constraint firstAttribute="trailing" secondItem="DGc-nn-bOP" secondAttribute="trailing" id="lMJ-he-tbY"/>
+                                                            <constraint firstItem="hJU-xN-jBd" firstAttribute="top" secondItem="AKM-ca-3hS" secondAttribute="top" id="mJC-Gp-1mC"/>
+                                                            <constraint firstItem="hJU-xN-jBd" firstAttribute="leading" secondItem="lBG-La-Mw3" secondAttribute="trailing" id="n0c-aF-WRP"/>
                                                             <constraint firstItem="lBG-La-Mw3" firstAttribute="top" secondItem="AKM-ca-3hS" secondAttribute="top" id="o3O-RB-xbv"/>
-                                                            <constraint firstItem="DGc-nn-bOP" firstAttribute="leading" secondItem="lBG-La-Mw3" secondAttribute="trailing" constant="4" id="rqn-SM-EVY"/>
-                                                            <constraint firstItem="DGc-nn-bOP" firstAttribute="top" secondItem="AKM-ca-3hS" secondAttribute="top" id="uQy-e0-tBg"/>
                                                             <constraint firstAttribute="bottom" secondItem="lBG-La-Mw3" secondAttribute="bottom" id="zMU-1k-SeQ"/>
                                                         </constraints>
                                                     </view>
@@ -1024,21 +1096,30 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favorite0Button" destination="TBx-Ul-wnh" id="fRA-vE-THS"/>
                         <outlet property="favorite0Checkbox" destination="lz3-Oy-BNf" id="MZm-QZ-pJm"/>
+                        <outlet property="favorite1Button" destination="hWo-LR-qoS" id="mEB-3Y-ksi"/>
                         <outlet property="favorite1Checkbox" destination="cKc-Dq-cxn" id="KDg-VR-UHV"/>
+                        <outlet property="favorite2Button" destination="qqq-kC-UeV" id="4QG-3a-gOJ"/>
                         <outlet property="favorite2Checkbox" destination="SBM-ye-ueT" id="q88-aU-ecW"/>
+                        <outlet property="favorite3Button" destination="jOa-kx-A0E" id="dEf-iq-SF9"/>
                         <outlet property="favorite3Checkbox" destination="Mfl-ku-sxM" id="z7Z-SH-0EC"/>
                         <outlet property="favoriteDeselectAllButton" destination="c9j-cX-vId" id="OIj-u1-e0p"/>
                         <outlet property="favoriteSelectAllButton" destination="ohL-L5-oAY" id="gZq-2e-vyM"/>
                         <outlet property="favoriteWarningImage" destination="5yr-IU-Lh3" id="qSi-eh-lr9"/>
                         <outlet property="favoriteWarningLabel" destination="3JK-0Y-guY" id="tCv-GA-Ccf"/>
                         <outlet property="filterExplanationLabel" destination="JAi-SP-GD8" id="cg3-vK-9hq"/>
+                        <outlet property="methodBlendButton" destination="yQz-N2-JOg" id="Yoq-n1-UxO"/>
                         <outlet property="methodBlendCheckbox" destination="nvx-iM-f4h" id="bXz-bb-NJx"/>
+                        <outlet property="methodBuildButton" destination="2TD-3V-LjX" id="aPO-yo-DBs"/>
                         <outlet property="methodBuildCheckbox" destination="0pV-sU-VHa" id="uq2-tg-3J7"/>
                         <outlet property="methodDeselectAllButton" destination="PJZ-kC-tff" id="6Kt-qO-QC6"/>
+                        <outlet property="methodOthersButton" destination="0Pa-Oj-JQQ" id="FKQ-hg-0NZ"/>
                         <outlet property="methodOthersCheckbox" destination="DMM-lq-DMJ" id="21L-4b-Id5"/>
                         <outlet property="methodSelectAllButton" destination="mJz-Oe-X6H" id="NlU-lC-8zw"/>
+                        <outlet property="methodShakeButton" destination="ENK-ci-xj9" id="EKh-k7-MHa"/>
                         <outlet property="methodShakeCheckbox" destination="i1e-EW-FqB" id="HJl-vN-dYm"/>
+                        <outlet property="methodStirButton" destination="ldD-Or-awA" id="PEf-W0-VQN"/>
                         <outlet property="methodStirCheckbox" destination="n4D-6H-ZVp" id="Vhx-av-9BZ"/>
                         <outlet property="methodWarningImage" destination="Kdm-nH-m23" id="oOC-FE-BUh"/>
                         <outlet property="methodWarningLabel" destination="rMN-DJ-JYj" id="ans-1u-Dd1"/>
@@ -1048,19 +1129,28 @@
                         <outlet property="searchButtonBackgroundView" destination="LlM-Sa-xRF" id="pRR-rs-VeS"/>
                         <outlet property="secondSeparator" destination="hmp-Z0-khX" id="zd6-Ip-Fq9"/>
                         <outlet property="strengthDeselectAllButton" destination="dg3-99-d6I" id="rRS-bR-mcH"/>
+                        <outlet property="strengthMediumButton" destination="O9m-4Z-Q7q" id="Rs6-Pp-RJg"/>
                         <outlet property="strengthMediumCheckbox" destination="Sku-NB-8Dj" id="nHA-gx-zki"/>
+                        <outlet property="strengthNonAlcoholButton" destination="N0W-ce-hA3" id="H1j-pi-gtz"/>
                         <outlet property="strengthNonAlcoholCheckbox" destination="FFc-oQ-bKg" id="Qe7-99-H1W"/>
+                        <outlet property="strengthNoneButton" destination="hJU-xN-jBd" id="6v1-Pf-sM5"/>
                         <outlet property="strengthNoneCheckbox" destination="lBG-La-Mw3" id="3NJ-0F-NDo"/>
                         <outlet property="strengthSelectAllButton" destination="TAR-Uv-uZx" id="LAJ-nV-bg7"/>
+                        <outlet property="strengthStrongButton" destination="AH2-BN-3Xf" id="4Us-DE-Z6I"/>
                         <outlet property="strengthStrongCheckbox" destination="kDf-cj-YKw" id="OOu-8h-I5S"/>
                         <outlet property="strengthWarningImage" destination="T03-eJ-pVH" id="Jh4-cb-3MV"/>
                         <outlet property="strengthWarningLabel" destination="4tc-4K-qlS" id="97k-rz-TXM"/>
+                        <outlet property="strengthWeakButton" destination="Q1W-lc-9dc" id="ZOc-1K-z5t"/>
                         <outlet property="strengthWeakCheckbox" destination="hmV-nj-fcx" id="QBc-wC-Lw8"/>
                         <outlet property="styleDeselectAllButton" destination="FFo-XM-N1Z" id="uUU-9G-ABh"/>
+                        <outlet property="styleHotButton" destination="sca-pX-hmU" id="teK-DQ-5kf"/>
                         <outlet property="styleHotCheckbox" destination="33G-ax-QzN" id="sL5-rW-iYC"/>
+                        <outlet property="styleLongButton" destination="jMI-dX-a7t" id="H34-lS-s9i"/>
                         <outlet property="styleLongCheckbox" destination="9uG-DB-Puv" id="fp8-iw-jYF"/>
+                        <outlet property="styleNoneButton" destination="ua6-qt-JA5" id="N0b-Ai-fNi"/>
                         <outlet property="styleNoneCheckbox" destination="h4h-AI-RrY" id="Qwx-Z7-fwc"/>
                         <outlet property="styleSelectAllButton" destination="0dZ-dA-pYT" id="otu-KP-HuK"/>
+                        <outlet property="styleShortButton" destination="b6U-YG-0wh" id="bRm-VV-hxT"/>
                         <outlet property="styleShortCheckbox" destination="ipc-Dx-y1W" id="4BS-bG-WHs"/>
                         <outlet property="styleWarningImage" destination="qI3-rD-XLv" id="lx7-Tl-AhQ"/>
                         <outlet property="styleWarningLabel" destination="VYO-ZV-iVt" id="2HA-hT-rev"/>

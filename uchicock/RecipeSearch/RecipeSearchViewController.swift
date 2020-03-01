@@ -873,7 +873,6 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setMethodWarningVisibility()
     }
     
-    
     @IBAction func strengthDeselectAllButtonTapped(_ sender: Any) {
         setCheckboxUnchecked(strengthNonAlcoholCheckbox)
         setCheckboxUnchecked(strengthWeakCheckbox)
