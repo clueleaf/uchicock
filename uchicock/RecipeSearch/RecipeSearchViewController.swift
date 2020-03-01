@@ -36,6 +36,10 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var favorite1Checkbox: CircularCheckbox!
     @IBOutlet weak var favorite2Checkbox: CircularCheckbox!
     @IBOutlet weak var favorite3Checkbox: CircularCheckbox!
+    @IBOutlet weak var favorite0Button: UIButton!
+    @IBOutlet weak var favorite1Button: UIButton!
+    @IBOutlet weak var favorite2Button: UIButton!
+    @IBOutlet weak var favorite3Button: UIButton!
     @IBOutlet weak var favoriteWarningImage: UIImageView!
     @IBOutlet weak var favoriteWarningLabel: UILabel!
     
@@ -45,6 +49,10 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var styleShortCheckbox: CircularCheckbox!
     @IBOutlet weak var styleHotCheckbox: CircularCheckbox!
     @IBOutlet weak var styleNoneCheckbox: CircularCheckbox!
+    @IBOutlet weak var styleLongButton: UIButton!
+    @IBOutlet weak var styleShortButton: UIButton!
+    @IBOutlet weak var styleHotButton: UIButton!
+    @IBOutlet weak var styleNoneButton: UIButton!
     @IBOutlet weak var styleWarningImage: UIImageView!
     @IBOutlet weak var styleWarningLabel: UILabel!
     
@@ -55,6 +63,11 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var methodShakeCheckbox: CircularCheckbox!
     @IBOutlet weak var methodBlendCheckbox: CircularCheckbox!
     @IBOutlet weak var methodOthersCheckbox: CircularCheckbox!
+    @IBOutlet weak var methodBuildButton: UIButton!
+    @IBOutlet weak var methodStirButton: UIButton!
+    @IBOutlet weak var methodShakeButton: UIButton!
+    @IBOutlet weak var methodBlendButton: UIButton!
+    @IBOutlet weak var methodOthersButton: UIButton!
     @IBOutlet weak var methodWarningImage: UIImageView!
     @IBOutlet weak var methodWarningLabel: UILabel!
     
@@ -65,6 +78,11 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var strengthMediumCheckbox: CircularCheckbox!
     @IBOutlet weak var strengthStrongCheckbox: CircularCheckbox!
     @IBOutlet weak var strengthNoneCheckbox: CircularCheckbox!
+    @IBOutlet weak var strengthNonAlcoholButton: UIButton!
+    @IBOutlet weak var strengthWeakButton: UIButton!
+    @IBOutlet weak var strengthMediumButton: UIButton!
+    @IBOutlet weak var strengthStrongButton: UIButton!
+    @IBOutlet weak var strengthNoneButton: UIButton!
     @IBOutlet weak var strengthWarningImage: UIImageView!
     @IBOutlet weak var strengthWarningLabel: UILabel!
     
@@ -227,24 +245,42 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
         favoriteSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         favoriteDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        favorite0Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        favorite1Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        favorite2Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        favorite3Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         favoriteWarningImage.tintColor = UchicockStyle.deleteColor
         favoriteWarningLabel.textColor = UchicockStyle.deleteColor
         setFavoriteWarningVisibility()
 
         styleSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         styleDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        styleLongButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        styleShortButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        styleHotButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        styleNoneButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         styleWarningImage.tintColor = UchicockStyle.deleteColor
         styleWarningLabel.textColor = UchicockStyle.deleteColor
         setStyleWarningVisibility()
 
         methodSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         methodDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        methodBuildButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        methodStirButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        methodShakeButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        methodBlendButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        methodOthersButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         methodWarningImage.tintColor = UchicockStyle.deleteColor
         methodWarningLabel.textColor = UchicockStyle.deleteColor
         setMethodWarningVisibility()
         
         strengthSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         strengthDeselectAllbutton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        strengthNonAlcoholButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        strengthWeakButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        strengthMediumButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        strengthStrongButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        strengthNoneButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         strengthWarningImage.tintColor = UchicockStyle.deleteColor
         strengthWarningLabel.textColor = UchicockStyle.deleteColor
         setStrengthWarningVisibility()
@@ -650,6 +686,42 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setFavoriteWarningVisibility()
     }
     
+    @IBAction func favorite0ButtonTapped(_ sender: UIButton) {
+        if favorite0Checkbox.checkState == .checked{
+            setCheckboxUnchecked(favorite0Checkbox)
+        }else if favorite0Checkbox.checkState == .unchecked{
+            setCheckboxChecked(favorite0Checkbox)
+        }
+        setFavoriteWarningVisibility()
+    }
+    
+    @IBAction func favorite1ButtonTapped(_ sender: UIButton) {
+        if favorite1Checkbox.checkState == .checked{
+            setCheckboxUnchecked(favorite1Checkbox)
+        }else if favorite1Checkbox.checkState == .unchecked{
+            setCheckboxChecked(favorite1Checkbox)
+        }
+        setFavoriteWarningVisibility()
+    }
+    
+    @IBAction func favorite2ButtonTapped(_ sender: UIButton) {
+        if favorite2Checkbox.checkState == .checked{
+            setCheckboxUnchecked(favorite2Checkbox)
+        }else if favorite2Checkbox.checkState == .unchecked{
+            setCheckboxChecked(favorite2Checkbox)
+        }
+        setFavoriteWarningVisibility()
+    }
+    
+    @IBAction func favorite3ButtonTapped(_ sender: UIButton) {
+        if favorite3Checkbox.checkState == .checked{
+            setCheckboxUnchecked(favorite3Checkbox)
+        }else if favorite3Checkbox.checkState == .unchecked{
+            setCheckboxChecked(favorite3Checkbox)
+        }
+        setFavoriteWarningVisibility()
+    }
+    
     @IBAction func styleDeselctAllButtonTapped(_ sender: UIButton) {
         setCheckboxUnchecked(styleLongCheckbox)
         setCheckboxUnchecked(styleShortCheckbox)
@@ -679,6 +751,42 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
+        setStyleWarningVisibility()
+    }
+    
+    @IBAction func styleLongButtonTapped(_ sender: UIButton) {
+        if styleLongCheckbox.checkState == .checked {
+            setCheckboxUnchecked(styleLongCheckbox)
+        }else if styleLongCheckbox.checkState == .unchecked{
+            setCheckboxChecked(styleLongCheckbox)
+        }
+        setStyleWarningVisibility()
+    }
+    
+    @IBAction func styleShortButtonTapped(_ sender: UIButton) {
+        if styleShortCheckbox.checkState == .checked {
+            setCheckboxUnchecked(styleShortCheckbox)
+        }else if styleShortCheckbox.checkState == .unchecked{
+            setCheckboxChecked(styleShortCheckbox)
+        }
+        setStyleWarningVisibility()
+    }
+    
+    @IBAction func styleHotButtonTapped(_ sender: UIButton) {
+        if styleHotCheckbox.checkState == .checked {
+            setCheckboxUnchecked(styleHotCheckbox)
+        }else if styleHotCheckbox.checkState == .unchecked{
+            setCheckboxChecked(styleHotCheckbox)
+        }
+        setStyleWarningVisibility()
+    }
+    
+    @IBAction func styleNoneButtonTapped(_ sender: UIButton) {
+        if styleNoneCheckbox.checkState == .checked {
+            setCheckboxUnchecked(styleNoneCheckbox)
+        }else if styleNoneCheckbox.checkState == .unchecked{
+            setCheckboxChecked(styleNoneCheckbox)
+        }
         setStyleWarningVisibility()
     }
     
@@ -720,6 +828,52 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setMethodWarningVisibility()
     }
     
+    @IBAction func methodBuildButtonTapped(_ sender: UIButton) {
+        if methodBuildCheckbox.checkState == .checked {
+            setCheckboxUnchecked(methodBuildCheckbox)
+        }else if methodBuildCheckbox.checkState == .unchecked{
+            setCheckboxChecked(methodBuildCheckbox)
+        }
+        setMethodWarningVisibility()
+    }
+    
+    @IBAction func methodStirButtonTapped(_ sender: UIButton) {
+        if methodStirCheckbox.checkState == .checked {
+            setCheckboxUnchecked(methodStirCheckbox)
+        }else if methodStirCheckbox.checkState == .unchecked{
+            setCheckboxChecked(methodStirCheckbox)
+        }
+        setMethodWarningVisibility()
+    }
+    
+    @IBAction func methodShakeButtonTapped(_ sender: UIButton) {
+        if methodShakeCheckbox.checkState == .checked {
+            setCheckboxUnchecked(methodShakeCheckbox)
+        }else if methodShakeCheckbox.checkState == .unchecked{
+            setCheckboxChecked(methodShakeCheckbox)
+        }
+        setMethodWarningVisibility()
+    }
+    
+    @IBAction func methodBlendButtonTapped(_ sender: UIButton) {
+        if methodBlendCheckbox.checkState == .checked {
+            setCheckboxUnchecked(methodBlendCheckbox)
+        }else if methodBlendCheckbox.checkState == .unchecked{
+            setCheckboxChecked(methodBlendCheckbox)
+        }
+        setMethodWarningVisibility()
+    }
+    
+    @IBAction func methodOthersButtonTapped(_ sender: UIButton) {
+        if methodOthersCheckbox.checkState == .checked {
+            setCheckboxUnchecked(methodOthersCheckbox)
+        }else if methodOthersCheckbox.checkState == .unchecked{
+            setCheckboxChecked(methodOthersCheckbox)
+        }
+        setMethodWarningVisibility()
+    }
+    
+    
     @IBAction func strengthDeselectAllButtonTapped(_ sender: Any) {
         setCheckboxUnchecked(strengthNonAlcoholCheckbox)
         setCheckboxUnchecked(strengthWeakCheckbox)
@@ -758,4 +912,48 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setStrengthWarningVisibility()
     }
     
+    @IBAction func strengthNonAlcoholButtonTapped(_ sender: UIButton) {
+        if strengthNonAlcoholCheckbox.checkState == .checked {
+            setCheckboxUnchecked(strengthNonAlcoholCheckbox)
+        }else if strengthNonAlcoholCheckbox.checkState == .unchecked{
+            setCheckboxChecked(strengthNonAlcoholCheckbox)
+        }
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthWeakButtonTapped(_ sender: UIButton) {
+        if strengthWeakCheckbox.checkState == .checked {
+            setCheckboxUnchecked(strengthWeakCheckbox)
+        }else if strengthWeakCheckbox.checkState == .unchecked{
+            setCheckboxChecked(strengthWeakCheckbox)
+        }
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthMediumButtonTapped(_ sender: UIButton) {
+        if strengthMediumCheckbox.checkState == .checked {
+            setCheckboxUnchecked(strengthMediumCheckbox)
+        }else if strengthMediumCheckbox.checkState == .unchecked{
+            setCheckboxChecked(strengthMediumCheckbox)
+        }
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthStrongButtonTapped(_ sender: UIButton) {
+        if strengthStrongCheckbox.checkState == .checked {
+            setCheckboxUnchecked(strengthStrongCheckbox)
+        }else if strengthStrongCheckbox.checkState == .unchecked{
+            setCheckboxChecked(strengthStrongCheckbox)
+        }
+        setStrengthWarningVisibility()
+    }
+    
+    @IBAction func strengthNoneButtonTapped(_ sender: UIButton) {
+        if strengthNoneCheckbox.checkState == .checked {
+            setCheckboxUnchecked(strengthNoneCheckbox)
+        }else if strengthNoneCheckbox.checkState == .unchecked{
+            setCheckboxChecked(strengthNoneCheckbox)
+        }
+        setStrengthWarningVisibility()
+    }
 }
