@@ -1108,7 +1108,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     @IBAction func searchConditionModifyButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "RecipeSearch", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
             self.setupVC()

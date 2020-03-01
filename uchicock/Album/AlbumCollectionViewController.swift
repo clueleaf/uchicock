@@ -487,7 +487,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     @IBAction func filterButtonTapped(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "AlbumFilter", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "AlbumFilterModalNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "AlbumFilterModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! AlbumFilterViewController
         vc.onDoneBlock = {
             self.setupVC()

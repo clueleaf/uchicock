@@ -426,7 +426,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
-            if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
+            if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? BasicNavigationController{
                 guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
                     return
                 }
@@ -438,7 +438,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
-                editVC.mainNavigationController = self.navigationController
+                editVC.mainNavigationController = self.navigationController as? BasicNavigationController
                 self.present(editNavi, animated: true, completion: nil)
                 completionHandler(true)
             }else{
@@ -578,14 +578,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? UINavigationController{
+        if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? BasicNavigationController{
             guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
                 return
             }
             
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
-            editVC.mainNavigationController = self.navigationController
+            editVC.mainNavigationController = self.navigationController as? BasicNavigationController
             self.present(editNavi, animated: true, completion: nil)
         }
     }
@@ -603,7 +603,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func ingredientRecommendButtonTapped(_ sender: UIButton) {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
         let storyboard = UIStoryboard(name: "IngredientRecommend", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
         vc.onDoneBlock = { selectedRecommendIngredientId in
             if let selectedRecommendIngredientId = selectedRecommendIngredientId{

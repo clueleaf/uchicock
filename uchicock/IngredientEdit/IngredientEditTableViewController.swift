@@ -16,7 +16,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CustomTextView!
 
-    weak var mainNavigationController : UINavigationController?
+    weak var mainNavigationController : BasicNavigationController?
     var ingredient = Ingredient()
     var isAddMode = true
     var showCancelAlert = false

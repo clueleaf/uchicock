@@ -948,7 +948,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! StyleTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -963,7 +963,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func methodTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! MethodTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -978,7 +978,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! StrengthTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -1155,7 +1155,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
             }
         }else if segue.identifier == "PushEditRecipe" {
-            let enc = segue.destination as! UINavigationController
+            let enc = segue.destination as! BasicNavigationController
             let evc = enc.visibleViewController as! RecipeEditTableViewController
             evc.recipe = self.recipe
         }

@@ -32,7 +32,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var memo: CustomTextView!
     @IBOutlet weak var addIngredientLabel: UILabel!
     
-    weak var mainNavigationController : UINavigationController?
+    weak var mainNavigationController : BasicNavigationController?
     var recipe = Recipe()
     var recipeFavorite = 0
     var isAddMode = true
@@ -883,7 +883,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func styleTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! StyleTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -901,7 +901,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func methodTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! MethodTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -919,7 +919,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! StrengthTipViewController
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

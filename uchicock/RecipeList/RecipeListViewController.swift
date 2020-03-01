@@ -738,7 +738,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
-            if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
+            if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? BasicNavigationController{
                 guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
                     return
                 }
@@ -750,7 +750,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
-                editVC.mainNavigationController = self.navigationController
+                editVC.mainNavigationController = self.navigationController as? BasicNavigationController
                 self.present(editNavi, animated: true, completion: nil)
                 completionHandler(true)
             }else{
@@ -856,14 +856,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? UINavigationController{
+        if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? BasicNavigationController{
             guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
                     return
             }
             
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
-            editVC.mainNavigationController = self.navigationController
+            editVC.mainNavigationController = self.navigationController as? BasicNavigationController
             self.present(editNavi, animated: true, completion: nil)
         }
     }
@@ -903,7 +903,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.setContentOffset(tableView.contentOffset, animated: false)
 
         let storyboard = UIStoryboard(name: "RecipeSearch", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! UINavigationController
+        let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
             self.setupVC()
