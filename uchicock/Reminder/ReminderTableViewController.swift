@@ -20,6 +20,7 @@ class ReminderTableViewController: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredient = Ingredient()
+    var shouldShowMessageHUD = false
     var reminderTypePreviousState = 0
     var interactor: Interactor?
 
@@ -224,6 +225,9 @@ class ReminderTableViewController: UITableViewController {
             let realm = try! Realm()
             try! realm.write {
                 ingredient.reminderSetDate = Date()
+            }
+            if shouldShowMessageHUD{
+                MessageHUD.show("リマインダーへ登録しました", for: 2.0, withCheckmark: true)
             }
             self.dismiss(animated: true, completion: nil)
         } else if reminderType.selectedSegmentIndex == 1{

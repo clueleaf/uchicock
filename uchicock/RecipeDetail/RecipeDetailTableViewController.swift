@@ -617,6 +617,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 return
             }
             vc.ingredient = self.recipe.recipeIngredients[indexPath.row].ingredient
+            vc.shouldShowMessageHUD = true
             vc.onDoneBlock = {
                 self.setupVC()
             }
