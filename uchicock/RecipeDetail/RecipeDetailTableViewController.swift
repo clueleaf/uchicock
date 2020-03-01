@@ -37,6 +37,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
     var hasRecipeDeleted = false
+    var shouldUpdateLastViewDate = true
     var coverView = UIView(frame: CGRect.zero)
     var deleteImageView = UIImageView(frame: CGRect.zero)
     
@@ -207,21 +208,25 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
             
-            let dateTimeFormatter: DateFormatter = DateFormatter()
-            dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-            let timeFormatter: DateFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
-            if let lastViewDate = recipe.lastViewDate{
-                let calendar = Calendar(identifier: .gregorian)
-                if calendar.isDateInToday(lastViewDate){
-                    lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
-                }else if calendar.isDateInYesterday(lastViewDate){
-                    lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
+            if shouldUpdateLastViewDate {
+                let dateTimeFormatter: DateFormatter = DateFormatter()
+                dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+                let timeFormatter: DateFormatter = DateFormatter()
+                timeFormatter.dateFormat = "HH:mm"
+                if let lastViewDate = recipe.lastViewDate{
+                    let calendar = Calendar(identifier: .gregorian)
+                    if calendar.isDateInToday(lastViewDate){
+                        lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
+                    }else if calendar.isDateInYesterday(lastViewDate){
+                        lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
+                    }else{
+                        lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
+                    }
                 }else{
-                    lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
+                    lastViewDateLabel.text = "最終閲覧：--"
                 }
-            }else{
-                lastViewDateLabel.text = "最終閲覧：--"
+
+                shouldUpdateLastViewDate = false
             }
 
             switch recipe.favorites{
