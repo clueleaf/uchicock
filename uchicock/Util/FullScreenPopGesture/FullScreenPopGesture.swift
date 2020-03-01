@@ -11,6 +11,9 @@ import UIKit
 
 // objc_getAssociatedObjectのkey
 private struct AssociatedObjectKey {
+    static var interactivePopEnabled
+        = "popGesture.pointerKey.interactivePopEnabled"
+    
     static var fullscreenPopGestureRecognizer
         = "popGesture.pointerKey.fullscreenPopGestureRecognizer"
     
@@ -20,7 +23,7 @@ private struct AssociatedObjectKey {
 
 class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDelegate {
     
-    weak var navigationController: BasicNavigationController?
+    weak var navigationController: UINavigationController?
     
     // MARK: - UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -29,6 +32,11 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
         }
         
         guard navigationController.viewControllers.count > 1 else {
+            return false
+        }
+        
+        // Disable when navigation controller doesn't allow interactive pop.
+        guard navigationController.interactivePopEnabled else {
             return false
         }
         
@@ -57,11 +65,23 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
     }
 }
 
-extension BasicNavigationController {
+extension UINavigationController {
     open class func initializeFullScreenPopGesture() {
         if let originalMethod = class_getInstanceMethod(self, #selector(pushViewController(_:animated:))),
             let swizzledMethod = class_getInstanceMethod(self, #selector(swizzledPushViewController(_:animated:))) {
             method_exchangeImplementations(originalMethod, swizzledMethod)
+        }
+    }
+    
+    public var interactivePopEnabled: Bool {
+        get {
+            guard let bools = objc_getAssociatedObject(self, &AssociatedObjectKey.interactivePopEnabled) as? Bool else {
+                return false
+            }
+            return bools
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedObjectKey.interactivePopEnabled, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
     

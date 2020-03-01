@@ -66,6 +66,12 @@ class CustomActivityController: UIActivityViewController{
 }
 
 class BasicNavigationController: UINavigationController {
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.interactivePopEnabled = true
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
