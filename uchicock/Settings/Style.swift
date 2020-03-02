@@ -70,7 +70,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.65, green:0.4, blue:0.0, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.37, green:0.28, blue:0.13, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
@@ -220,7 +220,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
-        tableViewCellSelectedBackgroundColor = FlatColor.coffeeDark
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.34, green:0.27, blue:0.22, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
@@ -245,7 +245,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         tableViewHeaderBackgroundColor = FlatColor.whiteDark
         tableViewHeaderTextColor = FlatColor.black
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.75, green:0.92, blue:0.89, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         labelTextColor = FlatColor.black
         labelTextColorLight = FlatColor.grayDark
@@ -345,7 +345,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         tableViewHeaderBackgroundColor = FlatColor.grayDark
         tableViewHeaderTextColor = FlatColor.black
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.33, blue:0.33, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.32, green:0.3, blue:0.3, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
@@ -520,7 +520,7 @@ struct UchicockStyle{
         basicBackgroundColor = UIColor.black
         tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.42, green:0.3, blue:0.1, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.33, green:0.27, blue:0.23, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
@@ -670,7 +670,7 @@ struct UchicockStyle{
         basicBackgroundColor = UIColor.black
         tableViewHeaderBackgroundColor = FlatColor.blackDark
         tableViewHeaderTextColor = FlatColor.white
-        tableViewCellSelectedBackgroundColor = FlatColor.black
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.30, green:0.16, blue:0.14, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         labelTextColor = FlatColor.white
         labelTextColorLight = FlatColor.gray
