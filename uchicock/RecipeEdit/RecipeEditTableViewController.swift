@@ -178,7 +178,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         addIngredientLabel.textColor = UchicockStyle.primaryColor
         addIngredientLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
 
-        let tipImage = UIImage(named: "tip")
+        let tipImage = UIImage(named: "button-tip")
         styleTipButton.setImage(tipImage, for: .normal)
         styleTipButton.tintColor = UchicockStyle.primaryColor
         methodTipButton.setImage(tipImage, for: .normal)

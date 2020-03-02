@@ -188,7 +188,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="0XM-JS-4fw"/>
                                                         <constraint firstAttribute="width" constant="20" id="715-1j-CN4"/>
                                                     </constraints>
-                                                    <state key="normal" image="tip"/>
+                                                    <state key="normal" image="button-tip"/>
                                                     <connections>
                                                         <action selector="styleTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="bvb-xj-l68"/>
                                                     </connections>
@@ -237,7 +237,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="6vF-tU-KId"/>
                                                         <constraint firstAttribute="width" constant="20" id="cr9-7w-wBs"/>
                                                     </constraints>
-                                                    <state key="normal" image="tip"/>
+                                                    <state key="normal" image="button-tip"/>
                                                     <connections>
                                                         <action selector="methodTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="5yw-Ff-lXm"/>
                                                     </connections>
@@ -286,7 +286,7 @@
                                                         <constraint firstAttribute="width" constant="20" id="BpJ-SJ-E8K"/>
                                                         <constraint firstAttribute="height" constant="20" id="xGw-mu-yZQ"/>
                                                     </constraints>
-                                                    <state key="normal" image="tip"/>
+                                                    <state key="normal" image="button-tip"/>
                                                     <connections>
                                                         <action selector="strengthTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="vJb-Wt-Rc1"/>
                                                     </connections>
@@ -637,7 +637,7 @@
         <image name="button-safari" width="240" height="240"/>
         <image name="button-share" width="24" height="24"/>
         <image name="button-star-empty" width="24" height="24"/>
+        <image name="button-tip" width="24" height="24"/>
         <image name="navigation-recipe-bookmark-off" width="24" height="24"/>
-        <image name="tip" width="24" height="24"/>
     </resources>
 </document>

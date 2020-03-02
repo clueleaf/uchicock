@@ -236,7 +236,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="材料" id="96t-nS-HfG">
                         <barButtonItem key="backBarButtonItem" title="材料" id="OrE-dN-45V"/>
-                        <barButtonItem key="leftBarButtonItem" image="button-reminder-empty" id="f1a-T6-kRA" customClass="BadgeBarButtonItem" customModule="uchicock" customModuleProvider="target">
+                        <barButtonItem key="leftBarButtonItem" image="navigation-reminder-empty" id="f1a-T6-kRA" customClass="BadgeBarButtonItem" customModule="uchicock" customModuleProvider="target">
                             <connections>
                                 <action selector="reminderButtonTapped:" destination="15U-YU-usX" id="b6s-XI-EOs"/>
                             </connections>
@@ -311,7 +311,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-reminder-empty" width="24" height="24"/>
+        <image name="navigation-reminder-empty" width="24" height="24"/>
         <image name="tabbar-ingredient" width="24" height="24"/>
     </resources>
 </document>

@@ -541,7 +541,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func changeToReminderMode(){
-        reminderButton.image = UIImage(named: "button-reminder-filled")
+        reminderButton.image = UIImage(named: "navigation-reminder-filled")
         searchBarHeightConstraint.constant = 0
         categoryHeightConstraint.constant = 0
         category.isHidden = true
@@ -559,7 +559,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func changeToIngredientMode(){
-        reminderButton.image = UIImage(named: "button-reminder-empty")
+        reminderButton.image = UIImage(named: "navigation-reminder-empty")
         searchBarHeightConstraint.constant = 44
         categoryHeightConstraint.constant = 28
         category.isHidden = false

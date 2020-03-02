@@ -289,7 +289,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 strength.text = "未指定"
             }
 
-            let tipImage = UIImage(named: "tip")
+            let tipImage = UIImage(named: "button-tip")
             styleTipButton.setImage(tipImage, for: .normal)
             styleTipButton.tintColor = UchicockStyle.primaryColor
             methodTipButton.setImage(tipImage, for: .normal)
@@ -633,7 +633,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.present(nvc, animated: true)
             completionHandler(true)
         })
-        reminder.image = UIImage(named: "button-reminder-empty")
+        reminder.image = UIImage(named: "navigation-reminder-empty")
         reminder.backgroundColor = UchicockStyle.primaryColor
 
         return UISwipeActionsConfiguration(actions: [reminder])
