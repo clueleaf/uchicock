@@ -32,7 +32,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
-    var selectedIndexPath: IndexPath? = nil
     var isTyping = false
     var isBookmarkMode = false
     
@@ -158,14 +157,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeList()
         tableView.reloadData()
 
-        if let path = selectedIndexPath {
-            if recipeBasicList.count > path.row{
-                let nowRecipeId = recipeBasicList[path.row].id
-                if selectedRecipeId != nil{
-                    if nowRecipeId == selectedRecipeId!{
+        if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
+            for indexPath in tableView.indexPathsForVisibleRows! {
+                if recipeBasicList.count > indexPath.row {
+                    if recipeBasicList[indexPath.row].id == selectedRecipeId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }
@@ -745,7 +744,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let realm = try! Realm()
                 let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
-                self.selectedIndexPath = indexPath
                 editVC.recipe = recipe
                     
                 editNavi.modalPresentationStyle = .fullScreen
@@ -941,7 +939,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = recipeBasicList[indexPath.row].id
-                selectedIndexPath = indexPath
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         }

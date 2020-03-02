@@ -39,7 +39,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
-    var selectedIndexPath: IndexPath? = nil
     var hasIngredientDeleted = false
 
     let interactor = Interactor()
@@ -75,14 +74,16 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         super.viewWillAppear(animated)
 
         setupVC()
-        if let path = selectedIndexPath {
-            if ingredientRecipeBasicList.count + 1 > path.row{
-                let nowRecipeId = ingredientRecipeBasicList[path.row - 1].id
-                if selectedRecipeId != nil{
-                    if nowRecipeId == selectedRecipeId!{
+        
+        if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
+            for indexPath in tableView.indexPathsForVisibleRows! {
+                if indexPath.section == 0 || indexPath.row == 0 { continue }
+                if ingredientRecipeBasicList.count + 1 > indexPath.row {
+                    if ingredientRecipeBasicList[indexPath.row - 1].id == selectedRecipeId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }
@@ -673,7 +674,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = ingredientRecipeBasicList[indexPath.row - 1].id
-                selectedIndexPath = indexPath
                 vc.recipeId = ingredientRecipeBasicList[indexPath.row - 1].id
             }
         }

@@ -119,18 +119,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         super.viewWillAppear(animated)
 
         setupVC()
-        if let index = indexPathForSelectedRow, recipe.isInvalidated == false {
-            if recipe.recipeIngredients.count > index.row{
-                let nowIngredientId = recipe.recipeIngredients[index.row].ingredient.id
-                if selectedIngredientId != nil{
-                    if nowIngredientId == selectedIngredientId!{
+        
+        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
+            for indexPath in tableView.indexPathsForVisibleRows! {
+                if indexPath.section == 0 { continue }
+                if recipe.recipeIngredients.count > indexPath.row {
+                    if recipe.recipeIngredients[indexPath.row].ingredient.id == selectedIngredientId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }

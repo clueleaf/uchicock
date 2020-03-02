@@ -26,7 +26,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var thirdIngredientName = ""
     var editingTextField: Int = -1
     var selectedRecipeId: String? = nil
-    var selectedIndexPath: IndexPath? = nil
     var recipeBasicList = Array<RecipeBasic>()
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
@@ -152,14 +151,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
 
-        if let path = selectedIndexPath {
-            if recipeBasicList.count > path.row{
-                let nowRecipeId = recipeBasicList[path.row].id
-                if selectedRecipeId != nil{
-                    if nowRecipeId == selectedRecipeId!{
+        if recipeTableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
+            for indexPath in recipeTableView.indexPathsForVisibleRows! {
+                if recipeBasicList.count > indexPath.row {
+                    if recipeBasicList[indexPath.row].id == selectedRecipeId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.recipeTableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            self.recipeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }
@@ -1146,7 +1145,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             let vc = segue.destination as! RecipeDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedRecipeId = recipeBasicList[indexPath.row].id
-                selectedIndexPath = indexPath
                 vc.recipeId = recipeBasicList[indexPath.row].id
             }
         }

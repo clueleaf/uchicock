@@ -36,7 +36,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    var selectedIndexPath: IndexPath? = nil
     var isTyping = false
     var isReminderMode = false
 
@@ -131,14 +130,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         reloadIngredientList()
         tableView.reloadData()
         
-        if let path = selectedIndexPath{
-            if ingredientBasicList.count > path.row{
-                let nowIngredientId = ingredientBasicList[path.row].id
-                if selectedIngredientId != nil{
-                    if nowIngredientId == selectedIngredientId!{
+        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil {
+            for indexPath in tableView.indexPathsForVisibleRows! {
+                if ingredientBasicList.count > indexPath.row {
+                    if ingredientBasicList[indexPath.row].id == selectedIngredientId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }
@@ -433,7 +432,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 let realm = try! Realm()
                 let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
                 self.selectedIngredientId = self.ingredientBasicList[indexPath.row].id
-                self.selectedIndexPath = indexPath
                 editVC.ingredient = ingredient
                 
                 editNavi.modalPresentationStyle = .fullScreen
@@ -648,7 +646,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? IndexPath{
                 selectedIngredientId = ingredientBasicList[indexPath.row].id
-                selectedIndexPath = indexPath
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }else if let id = sender as? String{
                 vc.ingredientId = id
