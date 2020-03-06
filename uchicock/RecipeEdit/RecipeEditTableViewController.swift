@@ -60,11 +60,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star2.minimumHitHeight = 36
         star3.minimumHitWidth = 36
         star3.minimumHitHeight = 36
-        styleTipButton.minimumHitWidth = 36
+        styleTipButton.minimumHitWidth = 50
         styleTipButton.minimumHitHeight = 36
-        methodTipButton.minimumHitWidth = 36
+        methodTipButton.minimumHitWidth = 50
         methodTipButton.minimumHitHeight = 36
-        strengthTipButton.minimumHitWidth = 36
+        strengthTipButton.minimumHitWidth = 50
         strengthTipButton.minimumHitHeight = 36
 
         recipeName.text = recipe.recipeName
