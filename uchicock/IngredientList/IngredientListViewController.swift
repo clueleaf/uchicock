@@ -648,6 +648,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 selectedIngredientId = ingredientBasicList[indexPath.row].id
                 vc.ingredientId = ingredientBasicList[indexPath.row].id
             }else if let id = sender as? String{
+                selectedIngredientId = id
                 vc.ingredientId = id
             }
         }
