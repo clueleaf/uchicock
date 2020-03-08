@@ -93,7 +93,7 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        tableViewHeaderBackgroundColor = FlatColor.white
+        tableViewHeaderBackgroundColor = UIColor(red:0.93, green:0.91, blue:0.93, alpha:1.0)
         tableViewHeaderTextColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
@@ -468,7 +468,7 @@ struct UchicockStyle{
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        tableViewHeaderBackgroundColor = FlatColor.white
+        tableViewHeaderBackgroundColor = UIColor(red:0.93, green:0.91, blue:0.93, alpha:1.0)
         tableViewHeaderTextColor = FlatColor.black
         tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
