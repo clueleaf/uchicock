@@ -171,6 +171,28 @@ class CustomNavigationBar: UINavigationBar{
 }
 
 class CustomSlider: UISlider{
+    var minimumHitWidth : CGFloat = 60.0
+    var minimumHitHeight : CGFloat = 44.0
+
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if self.isHidden || self.isUserInteractionEnabled == false || self.alpha < 0.01 { return  false }
+
+        let buttonSize = self.bounds.size
+        let widthToAdd = max(minimumHitWidth - buttonSize.width, 0)
+        let heightToAdd = max(minimumHitHeight - buttonSize.height, 0)
+        let area = self.bounds.insetBy(dx: -widthToAdd / 2, dy: -heightToAdd / 2)
+        return area.contains(point)
+    }
+
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        if self.isHidden || self.isUserInteractionEnabled == false || self.alpha < 0.01 { return  false }
+
+        let percentage = CGFloat((value - minimumValue) / (maximumValue - minimumValue))
+        let thumbSizeHeight = thumbRect(forBounds: bounds, trackRect:trackRect(forBounds: bounds), value:0).size.height
+        let thumbPosition = thumbSizeHeight / 2 + (percentage * (bounds.size.width - (thumbSizeHeight)))
+        let touchLocation = touch.location(in: self)
+        return touchLocation.x <= (thumbPosition + minimumHitWidth / 2) && touchLocation.x >= (thumbPosition - minimumHitWidth / 2)
+    }
 }
 
 class CustomTabBar: UITabBar{
@@ -190,7 +212,7 @@ class ExpandedButton: UIButton {
     var minimumHitHeight : CGFloat = 44.0
 
     override open func point(inside point: CGPoint, with _: UIEvent?) -> Bool {
-        if self.isHidden || !self.isUserInteractionEnabled || self.alpha < 0.01 { return  false }
+        if self.isHidden || self.isUserInteractionEnabled == false || self.alpha < 0.01 { return  false }
 
         let buttonSize = self.bounds.size
         let widthToAdd = max(minimumHitWidth - buttonSize.width, 0)
