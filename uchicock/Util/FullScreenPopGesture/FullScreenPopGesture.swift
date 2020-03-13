@@ -14,6 +14,9 @@ private struct AssociatedObjectKey {
     static var interactivePopEnabled
         = "popGesture.pointerKey.interactivePopEnabled"
     
+    static var maxAllowedInitialDistanceToLeftEdge
+        = "popGesture.pointerKey.maxAllowedInitialDistanceToLeftEdge"
+    
     static var fullscreenPopGestureRecognizer
         = "popGesture.pointerKey.fullscreenPopGestureRecognizer"
     
@@ -40,6 +43,11 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
             return false
         }
         
+        // Disable when the active view controller doesn't allow interactive pop.
+        guard let topViewController = navigationController.viewControllers.last else {
+            return false
+        }
+
         // Ignore pan gesture when the navigation controller is currently in transition.
         guard let trasition = navigationController.value(forKey: "_isTransitioning") as? Bool else {
             return false
@@ -53,6 +61,13 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
             return false
         }
         
+        // Ignore when the beginning location is beyond max allowed initial distance to left edge.
+        let beginningLocation = panGesture.location(in: panGesture.view)
+        let maxAllowedInitialDistance = topViewController.maxAllowedInitialDistanceToLeftEdge
+        guard maxAllowedInitialDistance <= 0 || CGFloat(beginningLocation.x) <= maxAllowedInitialDistance else {
+            return false
+        }
+        
         // Prevent calling the handler when the gesture begins in an opposite direction.
         let translation = panGesture.translation(in: gestureRecognizer.view)
         let isLeftToRight = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
@@ -63,6 +78,22 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
         
         return true
     }
+}
+
+extension UIViewController {
+    // Max allowed initial distance to left edge when you begin the interactive pop
+    // gesture. 0 by default, which means it will ignore this limit.
+    public var maxAllowedInitialDistanceToLeftEdge: CGFloat {
+        get {
+            guard let doubleNum = objc_getAssociatedObject(self, &AssociatedObjectKey.maxAllowedInitialDistanceToLeftEdge) as? Double else {
+                return 0.0
+            }
+            return CGFloat(doubleNum)
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedObjectKey.maxAllowedInitialDistanceToLeftEdge, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }    
 }
 
 extension UINavigationController {
