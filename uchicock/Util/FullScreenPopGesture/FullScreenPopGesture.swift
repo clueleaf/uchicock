@@ -64,7 +64,8 @@ class FullScreenPopGestureRecognizerDelegate: NSObject, UIGestureRecognizerDeleg
         // Ignore when the beginning location is beyond max allowed initial distance to left edge.
         let beginningLocation = panGesture.location(in: panGesture.view)
         let maxAllowedInitialDistance = topViewController.maxAllowedInitialDistanceToLeftEdge
-        guard maxAllowedInitialDistance <= 0 || CGFloat(beginningLocation.x) <= maxAllowedInitialDistance else {
+        let leftPadding = (UIApplication.shared.keyWindow?.safeAreaInsets.left)!
+        guard maxAllowedInitialDistance <= 0 || CGFloat(beginningLocation.x) <= maxAllowedInitialDistance + leftPadding else {
             return false
         }
         

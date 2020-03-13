@@ -31,7 +31,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.maxAllowedInitialDistanceToLeftEdge = 50.0
+        self.maxAllowedInitialDistanceToLeftEdge = 60.0
 
         self.navigationItem.title = "度数計算機"
         ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
