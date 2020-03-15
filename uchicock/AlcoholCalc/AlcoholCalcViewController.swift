@@ -9,13 +9,14 @@
 import UIKit
 import RealmSwift
 
-class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var totalAmountLabel: CustomLabel!
     @IBOutlet weak var alcoholAmountLabel: CustomLabel!
     @IBOutlet weak var alcoholPercentageLabel: CustomLabel!
     @IBOutlet weak var alcoholStrengthLabel: CustomLabel!
+    @IBOutlet weak var alcoholAmountTipButton: ExpandedButton!
     @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var fakeTableHeaderView: UIView!
     @IBOutlet weak var validNumLabel: UILabel!
@@ -24,6 +25,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     var hiddenLabel = UILabel()
     var calcIngredientList: Results<CalculatorIngredient>?
     
+    let interactor = Interactor()
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
@@ -32,6 +35,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         
         self.maxAllowedInitialDistanceToLeftEdge = 60.0
+
+        alcoholAmountTipButton.minimumHitWidth = 50
+        alcoholAmountTipButton.minimumHitHeight = 44
 
         self.navigationItem.title = "度数計算機"
         ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -52,6 +58,11 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
         
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
+        
+        let tipImage = UIImage(named: "button-tip")
+        alcoholAmountTipButton.setImage(tipImage, for: .normal)
+        alcoholAmountTipButton.tintColor = UchicockStyle.primaryColor
+
         fakeTableHeaderView.backgroundColor = UchicockStyle.tableViewHeaderBackgroundColor
         validNumLabel.textColor = UchicockStyle.tableViewHeaderTextColor
         updateValidNumLabel()
@@ -283,6 +294,21 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: - IBAction
+    @IBAction func alcoholAmountTipButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "AlcoholCalc", bundle: nil)
+        let nvc = storyboard.instantiateViewController(withIdentifier: "AlcoholAmountTipNavigationController") as! BasicNavigationController
+        let vc = nvc.visibleViewController as! AlcoholAmountTipViewController
+
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+            nvc.modalPresentationStyle = .formSheet
+        }else{
+            nvc.modalPresentationStyle = .custom
+            nvc.transitioningDelegate = self
+            vc.interactor = interactor
+        }
+        present(nvc, animated: true)
+    }
+    
     @IBAction func clearAllButtonTapped(_ sender: UIButton) {
         guard calcIngredientList != nil else{
             return
@@ -311,4 +337,25 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         calcAlcoholStrength()
         updateValidNumLabel()
     }
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        pc.xMargin = 60
+        pc.yMargin = 160
+        pc.canDismissWithOverlayViewTouch = true
+        return pc
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = DismissModalAnimator()
+        animator.xMargin = 60
+        animator.yMargin = 160
+        return animator
+    }
+
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
 }
+

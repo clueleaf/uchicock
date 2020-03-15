@@ -75,6 +75,7 @@
 		9BB98FAD1E648101009240FB /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */; };
 		9BB98FAF1E6484DA009240FB /* ChangeThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */; };
 		9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */; };
+		9BC49010241E83170004843E /* AlcoholAmountTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC4900F241E83170004843E /* AlcoholAmountTipViewController.swift */; };
 		9BC9A3151C783CAA0031F631 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9A3141C783CAA0031F631 /* AppDelegate.swift */; };
 		9BC9A31C1C783CAA0031F631 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC9A31B1C783CAA0031F631 /* Assets.xcassets */; };
 		9BCF1FB623F995BA007E5600 /* CalculatorIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF1FB523F995BA007E5600 /* CalculatorIngredient.swift */; };
@@ -190,6 +191,7 @@
 		9BB98FAC1E648101009240FB /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Settings/SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9BB98FAE1E6484DA009240FB /* ChangeThemeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeThemeTableViewController.swift; path = Settings/ChangeThemeTableViewController.swift; sourceTree = "<group>"; };
 		9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoFilterDismissalTransitioningHandler.swift; path = RecipeEdit/PhotoFilterDismissalTransitioningHandler.swift; sourceTree = "<group>"; };
+		9BC4900F241E83170004843E /* AlcoholAmountTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholAmountTipViewController.swift; sourceTree = "<group>"; };
 		9BC9A3111C783CAA0031F631 /* uchicock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uchicock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BC9A3141C783CAA0031F631 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BC9A31B1C783CAA0031F631 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				9B0E3DFA23FAD4A300D7F22A /* AlcoholCalc.storyboard */,
 				9B0E3DFC23FADB6200D7F22A /* AlcoholCalcViewController.swift */,
 				9B0E3DFE23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift */,
+				9BC4900F241E83170004843E /* AlcoholAmountTipViewController.swift */,
 			);
 			path = AlcoholCalc;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B2E83ED230A9F7A002E7946 /* ImageViewerDismissalInteractor.swift in Sources */,
+				9BC49010241E83170004843E /* AlcoholAmountTipViewController.swift in Sources */,
 				9BEC4C2D2351EC40004FE9B4 /* IngredientRecommendTableViewController.swift in Sources */,
 				9BD8A7091CC8F466001EB1A9 /* AlbumCollectionViewController.swift in Sources */,
 				9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */,
