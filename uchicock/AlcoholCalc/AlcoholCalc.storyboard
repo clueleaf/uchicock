@@ -375,6 +375,32 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM6-ae-QfV">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-j7-x6J">
+                                                <rect key="frame" x="141" y="8" width="33" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="QY0-Mt-R41"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="tav-ab-Dhn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title=" 女性"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-rh-i20">
+                                                <rect key="frame" x="208" y="8" width="33" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DhN-yK-eTC"/>
+                                                    <constraint firstAttribute="height" constant="20" id="haJ-d3-Mnk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title=" 男性"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-Wp-0tK" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="121" y="8" width="20" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="R0U-Ye-b0p"/>
+                                                    <constraint firstAttribute="width" constant="20" id="gZ3-5r-XRA"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZQ-1Q-GOF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="4" y="8" width="30" height="20"/>
                                                 <constraints>
@@ -385,80 +411,85 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5cF-oe-HFt">
-                                                <rect key="frame" x="50" y="8" width="262" height="20"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="td4-OC-vhm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="131" height="20"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-Wp-0tK" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="20" id="gZ3-5r-XRA"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-j7-x6J">
-                                                                <rect key="frame" x="20" y="-4.5" width="33" height="29"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="tav-ab-Dhn"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <state key="normal" title=" 女性"/>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="KAG-Wp-0tK" firstAttribute="leading" secondItem="td4-OC-vhm" secondAttribute="leading" id="P8e-lr-6kT"/>
-                                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="centerY" secondItem="td4-OC-vhm" secondAttribute="centerY" id="cl8-bA-C5s"/>
-                                                            <constraint firstAttribute="bottom" secondItem="KAG-Wp-0tK" secondAttribute="bottom" id="jTq-MV-SOg"/>
-                                                            <constraint firstItem="KAG-Wp-0tK" firstAttribute="top" secondItem="td4-OC-vhm" secondAttribute="top" id="uMC-xb-tH0"/>
-                                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="leading" secondItem="KAG-Wp-0tK" secondAttribute="trailing" id="z3o-Iv-9Yp"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ID-aJ-zyd">
-                                                        <rect key="frame" x="131" y="0.0" width="131" height="20"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBb-Qi-bUB" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="20" id="jxA-eo-99N"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-rh-i20">
-                                                                <rect key="frame" x="20" y="-4.5" width="33" height="29"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DhN-yK-eTC"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <state key="normal" title=" 男性"/>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="MBb-Qi-bUB" firstAttribute="top" secondItem="2ID-aJ-zyd" secondAttribute="top" id="Eqz-cK-RQb"/>
-                                                            <constraint firstItem="tEY-rh-i20" firstAttribute="centerY" secondItem="2ID-aJ-zyd" secondAttribute="centerY" id="FjD-HU-hUw"/>
-                                                            <constraint firstAttribute="bottom" secondItem="MBb-Qi-bUB" secondAttribute="bottom" id="KOl-b8-ReX"/>
-                                                            <constraint firstItem="tEY-rh-i20" firstAttribute="leading" secondItem="MBb-Qi-bUB" secondAttribute="trailing" id="fbM-KT-8EM"/>
-                                                            <constraint firstItem="MBb-Qi-bUB" firstAttribute="leading" secondItem="2ID-aJ-zyd" secondAttribute="leading" id="m0K-Ry-lwZ"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REv-27-hwp" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="4" y="44" width="30" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="6k3-w3-ejP"/>
+                                                    <constraint firstAttribute="height" constant="20" id="3xE-6y-Pgg"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LT2-Kp-bkT"/>
                                                 </constraints>
-                                            </stackView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jz-tz-PGV">
+                                                <rect key="frame" x="50" y="44" width="262" height="20"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RJ-jR-2Ap" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="111" y="1.5" width="40" height="17"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="5R9-eW-zZb"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-8g-9g3" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="71" y="0.0" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="AXf-2R-MHq"/>
+                                                            <constraint firstAttribute="width" constant="20" id="NwR-Id-X53"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <state key="normal" title="ー"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-Cs-wjP" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                        <rect key="frame" x="171" y="0.0" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="fsX-ZU-HPQ"/>
+                                                            <constraint firstAttribute="height" constant="20" id="gcA-xl-ZCv"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <state key="normal" title="＋"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="0Fc-9Q-Uxc"/>
+                                                    <constraint firstItem="iFc-Cs-wjP" firstAttribute="centerY" secondItem="8jz-tz-PGV" secondAttribute="centerY" id="5Mg-PS-tsA"/>
+                                                    <constraint firstItem="iFc-Cs-wjP" firstAttribute="leading" secondItem="4RJ-jR-2Ap" secondAttribute="trailing" constant="20" id="GfU-Nf-cPo"/>
+                                                    <constraint firstItem="4RJ-jR-2Ap" firstAttribute="leading" secondItem="WDa-8g-9g3" secondAttribute="trailing" constant="20" id="QIb-55-5Fr"/>
+                                                    <constraint firstItem="WDa-8g-9g3" firstAttribute="centerY" secondItem="8jz-tz-PGV" secondAttribute="centerY" id="Vlb-j3-tiy"/>
+                                                    <constraint firstItem="4RJ-jR-2Ap" firstAttribute="centerY" secondItem="8jz-tz-PGV" secondAttribute="centerY" id="Xul-7F-tVB"/>
+                                                    <constraint firstItem="4RJ-jR-2Ap" firstAttribute="centerX" secondItem="8jz-tz-PGV" secondAttribute="centerX" id="cjG-wP-Bvm"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBb-Qi-bUB" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="188" y="8" width="20" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="PTO-Gs-XBn"/>
+                                                    <constraint firstAttribute="width" constant="20" id="jxA-eo-99N"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="5cF-oe-HFt" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="21G-kl-XaG"/>
+                                            <constraint firstItem="tEY-rh-i20" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="2m1-ku-Mq7"/>
+                                            <constraint firstItem="REv-27-hwp" firstAttribute="top" secondItem="KZQ-1Q-GOF" secondAttribute="bottom" constant="16" id="9S7-ll-i5G"/>
+                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="CJA-WA-TOm"/>
+                                            <constraint firstItem="iFc-Cs-wjP" firstAttribute="trailing" secondItem="tEY-rh-i20" secondAttribute="trailing" id="E8V-IB-9Qb"/>
+                                            <constraint firstItem="8jz-tz-PGV" firstAttribute="leading" secondItem="REv-27-hwp" secondAttribute="trailing" constant="16" id="Fl6-fS-dm4"/>
+                                            <constraint firstItem="KAG-Wp-0tK" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="Fw4-9T-Rsk"/>
                                             <constraint firstItem="KZQ-1Q-GOF" firstAttribute="top" secondItem="yM6-ae-QfV" secondAttribute="top" constant="8" id="Hb6-dJ-2Lc"/>
-                                            <constraint firstItem="5cF-oe-HFt" firstAttribute="top" secondItem="yM6-ae-QfV" secondAttribute="top" constant="8" id="Sit-JY-zBi"/>
-                                            <constraint firstAttribute="trailing" secondItem="5cF-oe-HFt" secondAttribute="trailing" constant="8" id="gg9-yB-Bh7"/>
+                                            <constraint firstItem="WDa-8g-9g3" firstAttribute="leading" secondItem="KAG-Wp-0tK" secondAttribute="leading" id="I8N-r3-8fp"/>
+                                            <constraint firstItem="MBb-Qi-bUB" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="SLK-Xd-jAo"/>
+                                            <constraint firstItem="8jz-tz-PGV" firstAttribute="centerY" secondItem="REv-27-hwp" secondAttribute="centerY" id="cR5-5d-0o6"/>
+                                            <constraint firstAttribute="trailing" secondItem="8jz-tz-PGV" secondAttribute="trailing" constant="8" id="dJl-Jf-L8l"/>
+                                            <constraint firstItem="REv-27-hwp" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="em5-Oc-7Vg"/>
+                                            <constraint firstItem="tEY-rh-i20" firstAttribute="leading" secondItem="MBb-Qi-bUB" secondAttribute="trailing" id="gvS-l2-R3z"/>
                                             <constraint firstItem="KZQ-1Q-GOF" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="ijN-sm-Luf"/>
-                                            <constraint firstItem="5cF-oe-HFt" firstAttribute="leading" secondItem="KZQ-1Q-GOF" secondAttribute="trailing" constant="16" id="jDN-0j-ybp"/>
                                             <constraint firstAttribute="bottom" secondItem="KZQ-1Q-GOF" secondAttribute="bottom" constant="376" id="oHf-qL-xgp"/>
+                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="leading" secondItem="KAG-Wp-0tK" secondAttribute="trailing" id="uWb-Dy-iq2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
