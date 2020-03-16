@@ -373,55 +373,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM6-ae-QfV">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="314.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-j7-x6J">
-                                                <rect key="frame" x="141" y="8" width="33" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="QY0-Mt-R41"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="tav-ab-Dhn"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title=" 女性"/>
-                                                <connections>
-                                                    <action selector="femaleButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="WtH-9O-HdR"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-rh-i20">
-                                                <rect key="frame" x="208" y="8" width="33" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DhN-yK-eTC"/>
-                                                    <constraint firstAttribute="height" constant="20" id="haJ-d3-Mnk"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title=" 男性"/>
-                                                <connections>
-                                                    <action selector="maleButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="8AX-xt-iGo"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-Wp-0tK" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="121" y="8" width="20" height="20"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="R0U-Ye-b0p"/>
-                                                    <constraint firstAttribute="width" constant="20" id="gZ3-5r-XRA"/>
-                                                </constraints>
-                                                <connections>
-                                                    <action selector="femaleCheckboxTapped:" destination="0DO-Ah-rdc" eventType="valueChanged" id="KYU-9h-CWR"/>
-                                                </connections>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZQ-1Q-GOF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="8" width="30" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="mYu-Rx-20n"/>
-                                                    <constraint firstAttribute="height" constant="20" id="zqX-iQ-xoR"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REv-27-hwp" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="44" width="30" height="20"/>
+                                                <rect key="frame" x="4" y="8" width="30" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="3xE-6y-Pgg"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LT2-Kp-bkT"/>
@@ -431,7 +386,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jz-tz-PGV">
-                                                <rect key="frame" x="50" y="44" width="262" height="20"/>
+                                                <rect key="frame" x="50" y="8" width="262" height="20"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RJ-jR-2Ap" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="111" y="1.5" width="40" height="17"/>
@@ -478,19 +433,8 @@
                                                     <constraint firstItem="4RJ-jR-2Ap" firstAttribute="centerX" secondItem="8jz-tz-PGV" secondAttribute="centerX" id="cjG-wP-Bvm"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBb-Qi-bUB" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="188" y="8" width="20" height="20"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="PTO-Gs-XBn"/>
-                                                    <constraint firstAttribute="width" constant="20" id="jxA-eo-99N"/>
-                                                </constraints>
-                                                <connections>
-                                                    <action selector="maleCheckboxTapped:" destination="0DO-Ah-rdc" eventType="valueChanged" id="BTB-is-ZTV"/>
-                                                </connections>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="の方のアルコール分解速度の目安は..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-4b-KPU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="88" width="308" height="17"/>
+                                                <rect key="frame" x="4" y="52" width="308" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="Z8N-7f-qlG"/>
                                                 </constraints>
@@ -498,8 +442,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1時間あたり4ml〜8ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-bH-rWJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="121" width="308" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1時間あたり約4ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-bH-rWJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="4" y="85" width="308" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="eJb-Ar-AlV"/>
                                                 </constraints>
@@ -508,7 +452,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33x-Au-Ybr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="170" width="86" height="17"/>
+                                                <rect key="frame" x="4" y="134" width="86" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="NEN-gN-UvD"/>
                                                 </constraints>
@@ -517,7 +461,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tS-Dh-R7c" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="168" width="42" height="21"/>
+                                                <rect key="frame" x="90" y="132" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="shq-aQ-1fs"/>
                                                 </constraints>
@@ -526,7 +470,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="の場合、" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-Hq-Hjf" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="132" y="170" width="58" height="17"/>
+                                                <rect key="frame" x="132" y="134" width="58" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="xhe-rj-UU8"/>
                                                 </constraints>
@@ -535,7 +479,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分解にかかる時間の目安は..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4J-tK-yjO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="191" width="184" height="17"/>
+                                                <rect key="frame" x="4" y="155" width="184" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="cuj-rM-WIW"/>
                                                 </constraints>
@@ -543,8 +487,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.5時間〜5時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8J-CO-v1G" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="224" width="308" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="約2.5時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8J-CO-v1G" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                <rect key="frame" x="4" y="188" width="308" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="hy7-is-haQ"/>
                                                 </constraints>
@@ -553,7 +497,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※分解速度には個人差があり、体調によっても変わります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Na-E9-SCt" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="265" width="308" height="33.5"/>
+                                                <rect key="frame" x="4" y="229" width="308" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -564,38 +508,28 @@
                                             <constraint firstAttribute="bottom" secondItem="6Na-E9-SCt" secondAttribute="bottom" constant="16" id="0FN-Ak-R3R"/>
                                             <constraint firstItem="qfo-Hq-Hjf" firstAttribute="leading" secondItem="2tS-Dh-R7c" secondAttribute="trailing" id="0aF-h2-fyg"/>
                                             <constraint firstItem="6Na-E9-SCt" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="0pH-t1-o9W"/>
-                                            <constraint firstItem="tEY-rh-i20" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="2m1-ku-Mq7"/>
                                             <constraint firstItem="A8J-CO-v1G" firstAttribute="top" secondItem="q4J-tK-yjO" secondAttribute="bottom" constant="16" id="3hd-Yb-MBI"/>
                                             <constraint firstItem="A8J-CO-v1G" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="3o5-88-5KI"/>
-                                            <constraint firstItem="REv-27-hwp" firstAttribute="top" secondItem="KZQ-1Q-GOF" secondAttribute="bottom" constant="16" id="9S7-ll-i5G"/>
-                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="CJA-WA-TOm"/>
-                                            <constraint firstItem="iFc-Cs-wjP" firstAttribute="trailing" secondItem="tEY-rh-i20" secondAttribute="trailing" id="E8V-IB-9Qb"/>
                                             <constraint firstItem="byA-bH-rWJ" firstAttribute="top" secondItem="4wR-4b-KPU" secondAttribute="bottom" constant="16" id="Eds-YE-wfP"/>
                                             <constraint firstItem="8jz-tz-PGV" firstAttribute="leading" secondItem="REv-27-hwp" secondAttribute="trailing" constant="16" id="Fl6-fS-dm4"/>
-                                            <constraint firstItem="KAG-Wp-0tK" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="Fw4-9T-Rsk"/>
-                                            <constraint firstItem="KZQ-1Q-GOF" firstAttribute="top" secondItem="yM6-ae-QfV" secondAttribute="top" constant="8" id="Hb6-dJ-2Lc"/>
-                                            <constraint firstItem="WDa-8g-9g3" firstAttribute="leading" secondItem="KAG-Wp-0tK" secondAttribute="leading" id="I8N-r3-8fp"/>
                                             <constraint firstItem="q4J-tK-yjO" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="KgG-ab-19J"/>
                                             <constraint firstItem="4wR-4b-KPU" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="Qgw-0C-uFg"/>
                                             <constraint firstItem="4wR-4b-KPU" firstAttribute="top" secondItem="REv-27-hwp" secondAttribute="bottom" constant="24" id="Qtb-PE-Z7B"/>
                                             <constraint firstItem="2tS-Dh-R7c" firstAttribute="centerY" secondItem="33x-Au-Ybr" secondAttribute="centerY" id="S0X-KG-JAN"/>
-                                            <constraint firstItem="MBb-Qi-bUB" firstAttribute="centerY" secondItem="KZQ-1Q-GOF" secondAttribute="centerY" id="SLK-Xd-jAo"/>
                                             <constraint firstItem="6Na-E9-SCt" firstAttribute="top" secondItem="A8J-CO-v1G" secondAttribute="bottom" constant="16" id="VNI-2e-Tiq"/>
                                             <constraint firstAttribute="trailing" secondItem="4wR-4b-KPU" secondAttribute="trailing" constant="8" id="Wy9-pZ-1BP"/>
                                             <constraint firstItem="qfo-Hq-Hjf" firstAttribute="centerY" secondItem="33x-Au-Ybr" secondAttribute="centerY" id="Xd0-1H-oRz"/>
                                             <constraint firstItem="33x-Au-Ybr" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="bhk-MK-A24"/>
+                                            <constraint firstItem="REv-27-hwp" firstAttribute="top" secondItem="yM6-ae-QfV" secondAttribute="top" constant="8" id="c46-eu-wJh"/>
                                             <constraint firstItem="8jz-tz-PGV" firstAttribute="centerY" secondItem="REv-27-hwp" secondAttribute="centerY" id="cR5-5d-0o6"/>
                                             <constraint firstAttribute="trailing" secondItem="8jz-tz-PGV" secondAttribute="trailing" constant="8" id="dJl-Jf-L8l"/>
                                             <constraint firstItem="REv-27-hwp" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="em5-Oc-7Vg"/>
-                                            <constraint firstItem="tEY-rh-i20" firstAttribute="leading" secondItem="MBb-Qi-bUB" secondAttribute="trailing" id="gvS-l2-R3z"/>
                                             <constraint firstItem="2tS-Dh-R7c" firstAttribute="leading" secondItem="33x-Au-Ybr" secondAttribute="trailing" id="iSG-1o-J0V"/>
-                                            <constraint firstItem="KZQ-1Q-GOF" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="ijN-sm-Luf"/>
                                             <constraint firstAttribute="trailing" secondItem="6Na-E9-SCt" secondAttribute="trailing" constant="8" id="jPG-1N-mHP"/>
                                             <constraint firstAttribute="trailing" secondItem="byA-bH-rWJ" secondAttribute="trailing" constant="8" id="lvD-aP-DAf"/>
                                             <constraint firstAttribute="trailing" secondItem="A8J-CO-v1G" secondAttribute="trailing" constant="8" id="nmF-6o-ONU"/>
                                             <constraint firstItem="33x-Au-Ybr" firstAttribute="top" secondItem="byA-bH-rWJ" secondAttribute="bottom" constant="24" id="pRE-fd-rbY"/>
                                             <constraint firstItem="byA-bH-rWJ" firstAttribute="leading" secondItem="yM6-ae-QfV" secondAttribute="leading" constant="4" id="uNC-Jc-wxd"/>
-                                            <constraint firstItem="3FS-j7-x6J" firstAttribute="leading" secondItem="KAG-Wp-0tK" secondAttribute="trailing" id="uWb-Dy-iq2"/>
                                             <constraint firstItem="q4J-tK-yjO" firstAttribute="top" secondItem="33x-Au-Ybr" secondAttribute="bottom" constant="4" id="y5a-Xy-3cQ"/>
                                         </constraints>
                                     </view>
@@ -630,10 +564,6 @@
                         <outlet property="backgroundView" destination="yM6-ae-QfV" id="o5b-pU-4Wd"/>
                         <outlet property="decompositionSpeedLabel" destination="byA-bH-rWJ" id="okO-1l-qDO"/>
                         <outlet property="decompositionTimeLabel" destination="A8J-CO-v1G" id="xf3-Yo-3Mn"/>
-                        <outlet property="femaleButton" destination="3FS-j7-x6J" id="RWW-Mq-cfh"/>
-                        <outlet property="femaleCheckbox" destination="KAG-Wp-0tK" id="7wO-Nr-Apk"/>
-                        <outlet property="maleButton" destination="tEY-rh-i20" id="HL6-QI-uCb"/>
-                        <outlet property="maleCheckbox" destination="MBb-Qi-bUB" id="p1c-7f-mbu"/>
                         <outlet property="scrollView" destination="FgX-Ms-j5G" id="sMG-Qp-puR"/>
                         <outlet property="weightLabel" destination="4RJ-jR-2Ap" id="MtB-Ey-avb"/>
                         <outlet property="weightMinusButton" destination="WDa-8g-9g3" id="hfg-70-8CO"/>

@@ -12,10 +12,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var femaleCheckbox: CircularCheckbox!
-    @IBOutlet weak var femaleButton: UIButton!
-    @IBOutlet weak var maleCheckbox: CircularCheckbox!
-    @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var weightMinusButton: ExpandedButton!
     @IBOutlet weak var weightPlusButton: ExpandedButton!
     @IBOutlet weak var weightLabel: CustomLabel!
@@ -23,7 +19,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var alcoholAmountLabel: CustomLabel!
     @IBOutlet weak var decompositionTimeLabel: CustomLabel!
     
-    var isFemale = true
+    var alcoholAmount = 0
     var weight = 50
     
     var interactor: Interactor?
@@ -43,31 +39,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         }
         
         readUserDefaults()
-        
-        femaleCheckbox.boxLineWidth = 1.0
-        femaleCheckbox.stateChangeAnimation = .fade
-        femaleCheckbox.animationDuration = 0
-        maleCheckbox.boxLineWidth = 1.0
-        maleCheckbox.stateChangeAnimation = .fade
-        maleCheckbox.animationDuration = 0
-        if isFemale{
-            femaleCheckbox.setCheckState(.checked, animated: true)
-            maleCheckbox.setCheckState(.unchecked, animated: true)
-        }else{
-            femaleCheckbox.setCheckState(.unchecked, animated: true)
-            maleCheckbox.setCheckState(.checked, animated: true)
-        }
-        femaleCheckbox.tintColor = UchicockStyle.primaryColor
-        femaleCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        femaleCheckbox.animationDuration = 0.3
-        femaleCheckbox.stateChangeAnimation = .expand
-        femaleCheckbox.secondaryTintColor = UchicockStyle.primaryColor
-        maleCheckbox.tintColor = UchicockStyle.primaryColor
-        maleCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        maleCheckbox.animationDuration = 0.3
-        maleCheckbox.stateChangeAnimation = .expand
-        maleCheckbox.secondaryTintColor = UchicockStyle.primaryColor
-        
+                
         weightMinusButton.minimumHitWidth = 36
         weightMinusButton.minimumHitHeight = 36
         weightMinusButton.layer.cornerRadius = weightPlusButton.frame.size.width / 2
@@ -79,6 +51,8 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
 
         weightLabel.text = String(weight) + "kg"
         updateResultLabel()
+        
+        alcoholAmountLabel.text = String(alcoholAmount) + "ml"
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -88,9 +62,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
-        
-        femaleButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
-        maleButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         
         setWeightButtons()
     }
@@ -110,10 +81,8 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.AlcoholDecompositionFemaleKey : true])
         defaults.register(defaults: [GlobalConstants.AlcoholDecompositionWeightKey : 50])
 
-        isFemale = defaults.bool(forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
         weight = defaults.integer(forKey: GlobalConstants.AlcoholDecompositionWeightKey)
         weight = weight / 5
         if weight < 6{
@@ -147,7 +116,12 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func updateResultLabel(){
-        // TODO
+        let speed = Int(floor(Double(weight) * 0.125))
+        decompositionSpeedLabel.text = "1時間あたり約" + String(speed) +  "ml"
+        let hour = Double(alcoholAmount) / (Double(weight) * 0.125)
+        let hourInteger = Int(hour)
+        let minute = Int(hour.truncatingRemainder(dividingBy: 1) * 60.0)
+        decompositionTimeLabel.text = "約" + String(hourInteger) + "時間" + String(minute) + "分"
     }
 
     // MARK: - UIScrollViewDelegate
@@ -195,38 +169,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - IBAction
     @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func femaleCheckboxTapped(_ sender: CircularCheckbox) {
-        femaleCheckbox.setCheckState(.checked, animated: true)
-        maleCheckbox.setCheckState(.unchecked, animated: true)
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
-        updateResultLabel()
-    }
-    
-    @IBAction func femaleButtonTapped(_ sender: UIButton) {
-        femaleCheckbox.setCheckState(.checked, animated: true)
-        maleCheckbox.setCheckState(.unchecked, animated: true)
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
-        updateResultLabel()
-    }
-    
-    @IBAction func maleCheckboxTapped(_ sender: CircularCheckbox) {
-        femaleCheckbox.setCheckState(.unchecked, animated: true)
-        maleCheckbox.setCheckState(.checked, animated: true)
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
-        updateResultLabel()
-    }
-    
-    @IBAction func maleButtonTapped(_ sender: UIButton) {
-        femaleCheckbox.setCheckState(.unchecked, animated: true)
-        maleCheckbox.setCheckState(.checked, animated: true)
-        let defaults = UserDefaults.standard
-        defaults.set(false, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
-        updateResultLabel()
     }
     
     @IBAction func weightMinumButtonTapped(_ sender: ExpandedButton) {

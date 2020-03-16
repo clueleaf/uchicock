@@ -121,7 +121,6 @@ struct GlobalConstants{
     static let AlbumFilterStrengthNoneKey = "album-filter-strengthnone"
     
     // MARK: - Alcohol Calc Keys
-    static let AlcoholDecompositionFemaleKey = "AlcoholDecompositionFemale"
     static let AlcoholDecompositionWeightKey = "AlcoholDecompositionWeight"
 
     // MARK: - Introduction Descriptions

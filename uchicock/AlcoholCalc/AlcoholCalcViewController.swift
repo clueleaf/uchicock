@@ -24,6 +24,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     
     var hiddenLabel = UILabel()
     var calcIngredientList: Results<CalculatorIngredient>?
+    var alcoholAmountBackup = 0
     
     let interactor = Interactor()
 
@@ -120,9 +121,11 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         if hundredTimesAlcoholAmount > 0 && hundredTimesAlcoholAmount < 100{
             alcoholAmountLabel.text = "<1"
+            alcoholAmountBackup = 0
         }else{
             let alcoholAmount: Double = Double(hundredTimesAlcoholAmount) / 100.0
             alcoholAmountLabel.text = String(Int(floor(alcoholAmount)))
+            alcoholAmountBackup = Int(floor(alcoholAmount))
         }
         
         if ceil(alcoholPercentage) == 0{
@@ -306,6 +309,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             nvc.transitioningDelegate = self
             vc.interactor = interactor
         }
+        vc.alcoholAmount = alcoholAmountBackup
         present(nvc, animated: true)
     }
     
