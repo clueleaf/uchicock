@@ -13,7 +13,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
     @IBOutlet weak var ingredientName: CopyableLabel!
     @IBOutlet weak var reminderImage: UIImageView!
-    @IBOutlet weak var reminderMessageLabel: CopyableLabel!
+    @IBOutlet weak var reminderMessageLabel: CustomLabel!
     @IBOutlet weak var removeReminderButton: UIButton!
     @IBOutlet weak var stockRecommendLabel: UILabel!
     @IBOutlet weak var category: CustomLabel!
