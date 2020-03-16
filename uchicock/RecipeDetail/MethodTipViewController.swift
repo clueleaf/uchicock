@@ -39,6 +39,7 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
