@@ -119,6 +119,10 @@ struct GlobalConstants{
     static let AlbumFilterMediumKey = "album-filter-medium"
     static let AlbumFilterStrongKey = "album-filter-strong"
     static let AlbumFilterStrengthNoneKey = "album-filter-strengthnone"
+    
+    // MARK: - Alcohol Calc Keys
+    static let AlcoholDecompositionFemaleKey = "AlcoholDecompositionFemale"
+    static let AlcoholDecompositionWeightKey = "AlcoholDecompositionWeight"
 
     // MARK: - Introduction Descriptions
     static let IntroductionDescriptionThanks = "ダウンロードありがとうございます！\n「うちカク！」はあなたのおうちカクテルライフを強力にサポートするアプリです。\n\nこれから簡単に使い方を説明します。\nこの説明は後からでも確認できるので飛ばしていただいても構いません。"

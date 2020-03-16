@@ -12,6 +12,19 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var femaleCheckbox: CircularCheckbox!
+    @IBOutlet weak var femaleButton: UIButton!
+    @IBOutlet weak var maleCheckbox: CircularCheckbox!
+    @IBOutlet weak var maleButton: UIButton!
+    @IBOutlet weak var weightMinusButton: ExpandedButton!
+    @IBOutlet weak var weightPlusButton: ExpandedButton!
+    @IBOutlet weak var weightLabel: CustomLabel!
+    @IBOutlet weak var decompositionSpeedLabel: CustomLabel!
+    @IBOutlet weak var alcoholAmountLabel: CustomLabel!
+    @IBOutlet weak var decompositionTimeLabel: CustomLabel!
+    
+    var isFemale = true
+    var weight = 50
     
     var interactor: Interactor?
     
@@ -28,6 +41,44 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         if interactor != nil{
             scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
+        
+        readUserDefaults()
+        
+        femaleCheckbox.boxLineWidth = 1.0
+        femaleCheckbox.stateChangeAnimation = .fade
+        femaleCheckbox.animationDuration = 0
+        maleCheckbox.boxLineWidth = 1.0
+        maleCheckbox.stateChangeAnimation = .fade
+        maleCheckbox.animationDuration = 0
+        if isFemale{
+            femaleCheckbox.setCheckState(.checked, animated: true)
+            maleCheckbox.setCheckState(.unchecked, animated: true)
+        }else{
+            femaleCheckbox.setCheckState(.unchecked, animated: true)
+            maleCheckbox.setCheckState(.checked, animated: true)
+        }
+        femaleCheckbox.tintColor = UchicockStyle.primaryColor
+        femaleCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        femaleCheckbox.animationDuration = 0.3
+        femaleCheckbox.stateChangeAnimation = .expand
+        femaleCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        maleCheckbox.tintColor = UchicockStyle.primaryColor
+        maleCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        maleCheckbox.animationDuration = 0.3
+        maleCheckbox.stateChangeAnimation = .expand
+        maleCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        
+        weightMinusButton.minimumHitWidth = 36
+        weightMinusButton.minimumHitHeight = 36
+        weightMinusButton.layer.cornerRadius = weightPlusButton.frame.size.width / 2
+        weightMinusButton.layer.borderWidth = 1.5
+        weightPlusButton.minimumHitWidth = 36
+        weightPlusButton.minimumHitHeight = 36
+        weightPlusButton.layer.cornerRadius = weightPlusButton.frame.size.width / 2
+        weightPlusButton.layer.borderWidth = 1.5
+
+        weightLabel.text = String(weight) + "kg"
+        updateResultLabel()
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -37,6 +88,11 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
+        
+        femaleButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        maleButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        
+        setWeightButtons()
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -50,6 +106,48 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.onDoneBlock()
+    }
+    
+    private func readUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [GlobalConstants.AlcoholDecompositionFemaleKey : true])
+        defaults.register(defaults: [GlobalConstants.AlcoholDecompositionWeightKey : 50])
+
+        isFemale = defaults.bool(forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
+        weight = defaults.integer(forKey: GlobalConstants.AlcoholDecompositionWeightKey)
+        weight = weight / 5
+        if weight < 6{
+            weight = 6
+        }
+        if weight > 24{
+            weight = 24
+        }
+        weight = weight * 5
+    }
+    
+    private func setWeightButtons(){
+        if weight <= 30 {
+            weightMinusButton.isEnabled = false
+            weightMinusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
+            weightMinusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
+        } else {
+            weightMinusButton.isEnabled = true
+            weightMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+            weightMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        }
+        if weight >= 120 {
+            weightPlusButton.isEnabled = false
+            weightPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
+            weightPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
+        } else {
+            weightPlusButton.isEnabled = true
+            weightPlusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+            weightPlusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        }
+    }
+
+    private func updateResultLabel(){
+        // TODO
     }
 
     // MARK: - UIScrollViewDelegate
@@ -97,6 +195,59 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - IBAction
     @IBAction func closeButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
-    }    
-
+    }
+    
+    @IBAction func femaleCheckboxTapped(_ sender: CircularCheckbox) {
+        femaleCheckbox.setCheckState(.checked, animated: true)
+        maleCheckbox.setCheckState(.unchecked, animated: true)
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
+        updateResultLabel()
+    }
+    
+    @IBAction func femaleButtonTapped(_ sender: UIButton) {
+        femaleCheckbox.setCheckState(.checked, animated: true)
+        maleCheckbox.setCheckState(.unchecked, animated: true)
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
+        updateResultLabel()
+    }
+    
+    @IBAction func maleCheckboxTapped(_ sender: CircularCheckbox) {
+        femaleCheckbox.setCheckState(.unchecked, animated: true)
+        maleCheckbox.setCheckState(.checked, animated: true)
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
+        updateResultLabel()
+    }
+    
+    @IBAction func maleButtonTapped(_ sender: UIButton) {
+        femaleCheckbox.setCheckState(.unchecked, animated: true)
+        maleCheckbox.setCheckState(.checked, animated: true)
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: GlobalConstants.AlcoholDecompositionFemaleKey)
+        updateResultLabel()
+    }
+    
+    @IBAction func weightMinumButtonTapped(_ sender: ExpandedButton) {
+        if weight > 30 {
+            weight -= 5
+            weightLabel.text = String(weight) + "kg"
+            let defaults = UserDefaults.standard
+            defaults.set(weight, forKey: GlobalConstants.AlcoholDecompositionWeightKey)
+        }
+        setWeightButtons()
+        updateResultLabel()
+    }
+    
+    @IBAction func weightPlusButtonTapped(_ sender: ExpandedButton) {
+        if weight < 120 {
+            weight += 5
+            weightLabel.text = String(weight) + "kg"
+            let defaults = UserDefaults.standard
+            defaults.set(weight, forKey: GlobalConstants.AlcoholDecompositionWeightKey)
+        }
+        setWeightButtons()
+        updateResultLabel()
+    }
 }

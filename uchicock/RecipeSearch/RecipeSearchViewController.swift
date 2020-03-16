@@ -370,8 +370,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     }
 
     // MARK: - CircularCheckbox
-    private func initPrimaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState,
-                                     madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
+    private func initPrimaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState, madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
         initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
         initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
         initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
@@ -379,8 +378,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
     }
     
-    private func initSecondaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState,
-                                       madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
+    private func initSecondaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState, madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
         initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
         initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
         initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)

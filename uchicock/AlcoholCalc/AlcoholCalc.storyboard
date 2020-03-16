@@ -383,6 +383,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title=" 女性"/>
+                                                <connections>
+                                                    <action selector="femaleButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="WtH-9O-HdR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-rh-i20">
                                                 <rect key="frame" x="208" y="8" width="33" height="20"/>
@@ -392,6 +395,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title=" 男性"/>
+                                                <connections>
+                                                    <action selector="maleButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="8AX-xt-iGo"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-Wp-0tK" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="121" y="8" width="20" height="20"/>
@@ -400,6 +406,9 @@
                                                     <constraint firstAttribute="height" constant="20" id="R0U-Ye-b0p"/>
                                                     <constraint firstAttribute="width" constant="20" id="gZ3-5r-XRA"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="femaleCheckboxTapped:" destination="0DO-Ah-rdc" eventType="valueChanged" id="KYU-9h-CWR"/>
+                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZQ-1Q-GOF" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="4" y="8" width="30" height="20"/>
@@ -439,8 +448,11 @@
                                                             <constraint firstAttribute="height" constant="20" id="AXf-2R-MHq"/>
                                                             <constraint firstAttribute="width" constant="20" id="NwR-Id-X53"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="ー"/>
+                                                        <connections>
+                                                            <action selector="weightMinumButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="gVC-eu-YRo"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-Cs-wjP" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                         <rect key="frame" x="171" y="0.0" width="20" height="20"/>
@@ -448,8 +460,11 @@
                                                             <constraint firstAttribute="width" constant="20" id="fsX-ZU-HPQ"/>
                                                             <constraint firstAttribute="height" constant="20" id="gcA-xl-ZCv"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="＋"/>
+                                                        <connections>
+                                                            <action selector="weightPlusButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="2T9-eN-hX7"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -470,6 +485,9 @@
                                                     <constraint firstAttribute="height" constant="20" id="PTO-Gs-XBn"/>
                                                     <constraint firstAttribute="width" constant="20" id="jxA-eo-99N"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="maleCheckboxTapped:" destination="0DO-Ah-rdc" eventType="valueChanged" id="BTB-is-ZTV"/>
+                                                </connections>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="の方のアルコール分解速度の目安は..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-4b-KPU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="4" y="88" width="308" height="17"/>
@@ -608,8 +626,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="alcoholAmountLabel" destination="2tS-Dh-R7c" id="uy5-Q8-7RN"/>
                         <outlet property="backgroundView" destination="yM6-ae-QfV" id="o5b-pU-4Wd"/>
+                        <outlet property="decompositionSpeedLabel" destination="byA-bH-rWJ" id="okO-1l-qDO"/>
+                        <outlet property="decompositionTimeLabel" destination="A8J-CO-v1G" id="xf3-Yo-3Mn"/>
+                        <outlet property="femaleButton" destination="3FS-j7-x6J" id="RWW-Mq-cfh"/>
+                        <outlet property="femaleCheckbox" destination="KAG-Wp-0tK" id="7wO-Nr-Apk"/>
+                        <outlet property="maleButton" destination="tEY-rh-i20" id="HL6-QI-uCb"/>
+                        <outlet property="maleCheckbox" destination="MBb-Qi-bUB" id="p1c-7f-mbu"/>
                         <outlet property="scrollView" destination="FgX-Ms-j5G" id="sMG-Qp-puR"/>
+                        <outlet property="weightLabel" destination="4RJ-jR-2Ap" id="MtB-Ey-avb"/>
+                        <outlet property="weightMinusButton" destination="WDa-8g-9g3" id="hfg-70-8CO"/>
+                        <outlet property="weightPlusButton" destination="iFc-Cs-wjP" id="MLk-ue-epx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVK-oK-JXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
