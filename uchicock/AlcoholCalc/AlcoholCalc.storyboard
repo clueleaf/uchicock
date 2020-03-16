@@ -373,12 +373,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yM6-ae-QfV">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="288.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体重" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REv-27-hwp" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="8" width="30" height="20"/>
+                                                <rect key="frame" x="4" y="8" width="30" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="3xE-6y-Pgg"/>
+                                                    <constraint firstAttribute="height" constant="30" id="3xE-6y-Pgg"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LT2-Kp-bkT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -386,36 +386,36 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jz-tz-PGV">
-                                                <rect key="frame" x="50" y="8" width="262" height="20"/>
+                                                <rect key="frame" x="50" y="13" width="262" height="20"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RJ-jR-2Ap" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="111" y="1.5" width="40" height="17"/>
+                                                        <rect key="frame" x="111" y="0.0" width="40" height="20.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="5R9-eW-zZb"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-8g-9g3" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="71" y="0.0" width="20" height="20"/>
+                                                        <rect key="frame" x="61" y="-5" width="30" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="AXf-2R-MHq"/>
-                                                            <constraint firstAttribute="width" constant="20" id="NwR-Id-X53"/>
+                                                            <constraint firstAttribute="height" constant="30" id="AXf-2R-MHq"/>
+                                                            <constraint firstAttribute="width" constant="30" id="NwR-Id-X53"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="ー"/>
                                                         <connections>
                                                             <action selector="weightMinumButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="gVC-eu-YRo"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-Cs-wjP" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
-                                                        <rect key="frame" x="171" y="0.0" width="20" height="20"/>
+                                                        <rect key="frame" x="171" y="-5" width="30" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="20" id="fsX-ZU-HPQ"/>
-                                                            <constraint firstAttribute="height" constant="20" id="gcA-xl-ZCv"/>
+                                                            <constraint firstAttribute="width" constant="30" id="fsX-ZU-HPQ"/>
+                                                            <constraint firstAttribute="height" constant="30" id="gcA-xl-ZCv"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="＋"/>
                                                         <connections>
                                                             <action selector="weightPlusButtonTapped:" destination="0DO-Ah-rdc" eventType="touchUpInside" id="2T9-eN-hX7"/>
@@ -434,7 +434,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="の方のアルコール分解速度の目安は..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-4b-KPU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="52" width="308" height="17"/>
+                                                <rect key="frame" x="4" y="62" width="308" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="Z8N-7f-qlG"/>
                                                 </constraints>
@@ -443,7 +443,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1時間あたり約4ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-bH-rWJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="85" width="308" height="25"/>
+                                                <rect key="frame" x="4" y="95" width="308" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="eJb-Ar-AlV"/>
                                                 </constraints>
@@ -452,7 +452,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33x-Au-Ybr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="134" width="86" height="17"/>
+                                                <rect key="frame" x="4" y="144" width="86" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="NEN-gN-UvD"/>
                                                 </constraints>
@@ -461,7 +461,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tS-Dh-R7c" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="132" width="42" height="21"/>
+                                                <rect key="frame" x="90" y="142" width="42" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="shq-aQ-1fs"/>
                                                 </constraints>
@@ -470,7 +470,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="の場合、" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-Hq-Hjf" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="132" y="134" width="58" height="17"/>
+                                                <rect key="frame" x="132" y="144" width="58" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="xhe-rj-UU8"/>
                                                 </constraints>
@@ -479,7 +479,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分解にかかる時間の目安は..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4J-tK-yjO" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="155" width="184" height="17"/>
+                                                <rect key="frame" x="4" y="165" width="184" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="cuj-rM-WIW"/>
                                                 </constraints>
@@ -488,7 +488,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="約2.5時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8J-CO-v1G" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="188" width="308" height="25"/>
+                                                <rect key="frame" x="4" y="198" width="308" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="hy7-is-haQ"/>
                                                 </constraints>
@@ -497,7 +497,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※分解速度には個人差があり、体調によっても変わります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Na-E9-SCt" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="229" width="308" height="33.5"/>
+                                                <rect key="frame" x="4" y="239" width="308" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

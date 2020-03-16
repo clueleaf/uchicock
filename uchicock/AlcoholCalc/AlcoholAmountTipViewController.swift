@@ -40,12 +40,12 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         
         readUserDefaults()
                 
-        weightMinusButton.minimumHitWidth = 36
-        weightMinusButton.minimumHitHeight = 36
+        weightMinusButton.minimumHitWidth = 44
+        weightMinusButton.minimumHitHeight = 44
         weightMinusButton.layer.cornerRadius = weightPlusButton.frame.size.width / 2
         weightMinusButton.layer.borderWidth = 1.5
-        weightPlusButton.minimumHitWidth = 36
-        weightPlusButton.minimumHitHeight = 36
+        weightPlusButton.minimumHitWidth = 44
+        weightPlusButton.minimumHitHeight = 44
         weightPlusButton.layer.cornerRadius = weightPlusButton.frame.size.width / 2
         weightPlusButton.layer.borderWidth = 1.5
 
