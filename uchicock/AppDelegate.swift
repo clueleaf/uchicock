@@ -87,6 +87,108 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void){
+        var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
+        
+        var tabBarC = getTabBarController()
+        if tabBarC == nil{
+            tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController
+            self.window!.rootViewController = tabBarC
+        }else{
+            let currentVC = getVisibleViewController(nil)
+            if currentVC != nil{
+                if currentVC!.isKind(of: RecipeListViewController.self) ||
+                    currentVC!.isKind(of: IngredientListViewController.self) ||
+                    currentVC!.isKind(of: ReverseLookupTableViewController.self) ||
+                    currentVC!.isKind(of: AlbumCollectionViewController.self) ||
+                    currentVC!.isKind(of: SettingsTableViewController.self) ||
+                    currentVC!.isKind(of: RecipeDetailTableViewController.self) ||
+                    currentVC!.isKind(of: IngredientDetailTableViewController.self) ||
+                    currentVC!.isKind(of: ChangeThemeTableViewController.self) ||
+                    currentVC!.isKind(of: ChangeImageSizeTableViewController.self) ||
+                    currentVC!.isKind(of: AlcoholCalcViewController.self)
+                    {
+                    
+                }else{
+                    tabBarC!.selectedViewController!.dismiss(animated: false, completion: nil)
+                }
+            }
+        }
+        
+        switch shortcutItem.type{
+        case "ReverseLookup":
+            tabBarC!.selectedIndex = 2
+            let navC = tabBarC!.viewControllers![2] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+        case "Album":
+            tabBarC!.selectedIndex = 3
+            let navC = tabBarC!.viewControllers![3] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+        case "Calc":
+            tabBarC!.selectedIndex = 4
+            let navC = tabBarC!.viewControllers![4] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+        default:
+            break
+        }
+        
+    }
+    
+    private func getTabBarController() -> UITabBarController? {
+        let rootVC = self.window!.rootViewController!
+        
+        if rootVC.isKind(of: UITabBarController.self){
+            return rootVC as? UITabBarController
+        }else if rootVC.isKind(of: LaunchViewController.self) == false{
+            return nil
+        }
+        
+        if rootVC.presentedViewController == nil {
+            return nil
+        }
+
+        if let presented = rootVC.presentedViewController {
+            if presented.isKind(of: UITabBarController.self) {
+                let tabBarController = presented as! UITabBarController
+                return tabBarController
+            }
+        }
+        return nil
+    }
+    
+    func getVisibleViewController(_ rootViewController: UIViewController?) -> UIViewController? {
+        var rootVC = rootViewController
+        if rootVC == nil {
+            rootVC = self.window!.rootViewController!
+        }
+        
+        if rootVC!.isKind(of: UINavigationController.self){
+            let nav = rootVC as! UINavigationController
+            rootVC = nav.viewControllers.last!
+        }
+
+        if rootVC?.presentedViewController == nil {
+            return rootVC
+        }
+
+        if let presented = rootVC?.presentedViewController {
+            if presented.isKind(of: UINavigationController.self) {
+                let navigationController = presented as! UINavigationController
+                return getVisibleViewController(navigationController.viewControllers.last!)
+            }
+
+            if presented.isKind(of: UITabBarController.self) {
+                let tabBarController = presented as! UITabBarController
+                return getVisibleViewController(tabBarController.selectedViewController!)
+            }
+
+            return getVisibleViewController(presented)
+        }
+        return nil
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
     }
 

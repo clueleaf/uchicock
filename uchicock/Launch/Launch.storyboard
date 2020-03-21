@@ -52,7 +52,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="W8I-U9-Q9L">
             <objects>
-                <tabBarController id="w1V-m1-dXG" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="w1V-m1-dXG" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="pe0-Ac-2JV"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZnX-ix-bqW" customClass="CustomTabBar" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
