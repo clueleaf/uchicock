@@ -301,9 +301,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
         
-        print("didappear")
         if let path = recipeTableView.indexPathForSelectedRow{
-            print("deselect")
             self.recipeTableView.deselectRow(at: path, animated: true)
         }
         selectedRecipeId = nil
