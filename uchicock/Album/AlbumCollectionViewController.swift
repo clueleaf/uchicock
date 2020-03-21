@@ -23,6 +23,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
     
+    var selectedRecipeId: String? = nil
+    var highlightIndexPath : IndexPath? = nil
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
@@ -59,6 +61,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewDidLoad()
         
         self.collectionView.prefetchDataSource = self
+        self.collectionView.delaysContentTouches = false
 
         self.setFilterUserDefaults()
         self.reloadRecipeList()
@@ -207,6 +210,16 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
+        
+        if highlightIndexPath != nil{
+            if let cell = self.collectionView.cellForItem(at: self.highlightIndexPath!) as? AlbumCollectionViewCell {
+                UIView.animate(withDuration: 0.25, animations: {
+                    cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+                }, completion: nil)
+            }
+        }
+        highlightIndexPath = nil
+        selectedRecipeId = nil
     }
     
     func reloadRecipeList(){
@@ -367,7 +380,22 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
+            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+        }
         return true
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
+            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+        }
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
+            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+        }
     }
 
     @available(iOS 13.0, *)
@@ -398,6 +426,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             cell.recipeName.text = filteredRecipeBasicList[indexPath.row].name
             cell.recipeName.textColor = FlatColor.white
             cell.recipeName.backgroundColor = UIColor.clear
+            
+            if selectedRecipeId != nil && filteredRecipeBasicList[indexPath.row].id == selectedRecipeId!{
+                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                highlightIndexPath = indexPath
+            }else{
+                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+            }
             
             // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
             cell.recipeNameBackgroundView.layer.sublayers?.forEach {
@@ -568,6 +603,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if segue.identifier == "RecipeTapped" {
             let vc = segue.destination as! RecipeDetailTableViewController
             if let id = sender as? String{
+                selectedRecipeId = id
                 vc.recipeId = id
             }
         }

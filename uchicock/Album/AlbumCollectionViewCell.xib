@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +20,10 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JCL-R6-5Tt">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vi-vU-e0W">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmM-mJ-bJw">
                         <rect key="frame" x="0.0" y="30" width="100" height="70"/>
                         <subviews>
@@ -44,17 +46,22 @@
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="5vi-vU-e0W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BPs-zE-vtG"/>
                 <constraint firstAttribute="bottom" secondItem="JCL-R6-5Tt" secondAttribute="bottom" id="SZT-gj-GJ4"/>
+                <constraint firstAttribute="bottom" secondItem="5vi-vU-e0W" secondAttribute="bottom" id="Tq3-iT-pj6"/>
                 <constraint firstItem="JCL-R6-5Tt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Uei-tr-K5X"/>
                 <constraint firstAttribute="trailing" secondItem="HmM-mJ-bJw" secondAttribute="trailing" id="ZGq-iq-fiS"/>
                 <constraint firstItem="HmM-mJ-bJw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lPb-Xt-L0J"/>
                 <constraint firstAttribute="trailing" secondItem="JCL-R6-5Tt" secondAttribute="trailing" id="mz7-F1-xTe"/>
                 <constraint firstItem="JCL-R6-5Tt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sWr-Pz-LFt"/>
+                <constraint firstItem="5vi-vU-e0W" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vno-k8-dAb"/>
                 <constraint firstAttribute="bottom" secondItem="HmM-mJ-bJw" secondAttribute="bottom" id="vpH-Rs-yMl"/>
+                <constraint firstAttribute="trailing" secondItem="5vi-vU-e0W" secondAttribute="trailing" id="wMy-hp-LVQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="106" height="101"/>
             <connections>
+                <outlet property="highlightView" destination="5vi-vU-e0W" id="a9S-2G-OMS"/>
                 <outlet property="photo" destination="JCL-R6-5Tt" id="vA9-5J-sV6"/>
                 <outlet property="recipeName" destination="yxz-pI-3be" id="i8Y-vy-bt7"/>
                 <outlet property="recipeNameBackgroundView" destination="HmM-mJ-bJw" id="MZF-ST-8QC"/>
