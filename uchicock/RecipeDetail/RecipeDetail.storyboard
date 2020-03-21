@@ -321,21 +321,25 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4S-5H-eMf" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dM6-Pc-OLF">
                                                     <rect key="frame" x="8" y="44" width="355" height="34"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="750" constant="34" id="4Fj-Lw-Mq4"/>
+                                                    </constraints>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ePw-WK-61i" secondAttribute="trailing" constant="8" id="4VG-Bd-5Uk"/>
+                                                <constraint firstItem="dM6-Pc-OLF" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="CFh-tU-Y16"/>
                                                 <constraint firstItem="ePw-WK-61i" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="I9P-lk-f5r"/>
-                                                <constraint firstItem="K4S-5H-eMf" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="L8a-jg-aC7"/>
+                                                <constraint firstItem="dM6-Pc-OLF" firstAttribute="top" secondItem="ePw-WK-61i" secondAttribute="bottom" constant="8" id="MKg-3E-mps"/>
                                                 <constraint firstItem="ePw-WK-61i" firstAttribute="top" secondItem="OQn-A6-s3z" secondAttribute="top" constant="15" id="NDg-zg-e4f"/>
-                                                <constraint firstAttribute="trailing" secondItem="K4S-5H-eMf" secondAttribute="trailing" constant="12" id="P0d-gp-a5p"/>
-                                                <constraint firstItem="K4S-5H-eMf" firstAttribute="top" secondItem="ePw-WK-61i" secondAttribute="bottom" constant="8" id="pnk-CP-GdI"/>
-                                                <constraint firstAttribute="bottom" secondItem="K4S-5H-eMf" secondAttribute="bottom" constant="15" id="v02-JW-xQt"/>
+                                                <constraint firstAttribute="bottom" secondItem="dM6-Pc-OLF" secondAttribute="bottom" constant="15" id="ghf-BB-6gb"/>
+                                                <constraint firstAttribute="trailing" secondItem="dM6-Pc-OLF" secondAttribute="trailing" constant="12" id="zx9-Wr-44y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -591,7 +595,8 @@
                         <outlet property="madeNumCountUpLabel" destination="fiG-Md-KeZ" id="gC4-Da-50C"/>
                         <outlet property="madeNumMinusButton" destination="aTA-1P-aFO" id="E8x-3L-4a6"/>
                         <outlet property="madeNumPlusButton" destination="XZO-3V-dxg" id="Ieh-IX-idg"/>
-                        <outlet property="memo" destination="K4S-5H-eMf" id="oS5-4q-FQ1"/>
+                        <outlet property="memo" destination="dM6-Pc-OLF" id="eni-AH-DcW"/>
+                        <outlet property="memoHeightConstraint" destination="4Fj-Lw-Mq4" id="vMZ-OG-6hd"/>
                         <outlet property="method" destination="sca-mX-RzU" id="jRK-6m-p33"/>
                         <outlet property="methodTipButton" destination="KSZ-h7-jZu" id="vUd-DX-5PB"/>
                         <outlet property="openInSafariButton" destination="so1-Ff-BH9" id="TJa-xE-2IU"/>

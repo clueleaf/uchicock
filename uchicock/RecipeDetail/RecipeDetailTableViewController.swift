@@ -26,7 +26,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
-    @IBOutlet weak var memo: CopyableLabel!
+    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memoHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var madeNumPlusButton: ExpandedButton!
     @IBOutlet weak var madeNumMinusButton: ExpandedButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
@@ -73,6 +74,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
         
+        memo.isScrollEnabled = false
+        memo.textContainerInset = .zero
+        memo.textContainer.lineFragmentPadding = 0
+        memo.translatesAutoresizingMaskIntoConstraints = true
+
         bookmarkButton.minimumHitWidth = 36
         bookmarkButton.minimumHitHeight = 36
         star1.minimumHitWidth = 36
@@ -299,6 +305,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             memo.text = recipe.memo
             memo.textColor = UchicockStyle.labelTextColorLight
+            let memoWidth = memo.frame.size.width
+            let memoSize = memo.sizeThatFits(CGSize(width: memoWidth, height: CGFloat.greatestFiniteMagnitude))
+            memoHeightConstraint?.isActive = false
+            if recipe.memo.isEmpty {
+//                memoHeightConstraint.constant = 0
+                memo.frame.size.height = 0
+            }else{
+//                memoHeightConstraint.constant = memoSize.height
+//                memo.sizeToFit()
+//                memo.layoutIfNeeded()
+                memo.frame.size = CGSize(width: max(memoSize.width, memoWidth), height: memoSize.height)
+            }
+
             madeNum = recipe.madeNum
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()
