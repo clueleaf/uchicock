@@ -213,8 +213,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         if highlightIndexPath != nil{
             if let cell = self.collectionView.cellForItem(at: self.highlightIndexPath!) as? AlbumCollectionViewCell {
-                UIView.animate(withDuration: 0.25, animations: {
-                    cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+                UIView.animate(withDuration: 0.4, animations: {
+                    cell.highlightView.backgroundColor = UIColor.clear
                 }, completion: nil)
             }
         }
@@ -394,7 +394,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
-            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+            cell.highlightView.backgroundColor = UIColor.clear
         }
     }
 
@@ -431,7 +431,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
                 highlightIndexPath = indexPath
             }else{
-                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+                cell.highlightView.backgroundColor = UIColor.clear
             }
             
             // 重複して何重もグラデーションを付けないように、既存のグラデーションを取り除く
