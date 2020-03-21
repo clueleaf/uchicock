@@ -122,10 +122,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarC!.selectedIndex = 2
             let navC = tabBarC!.viewControllers![2] as! UINavigationController
             navC.popToRootViewController(animated: false)
+            let reverseVC = navC.visibleViewController as? ReverseLookupTableViewController
+            if reverseVC != nil{
+                reverseVC!.selectedRecipeId = nil
+            }
         case "Album":
             tabBarC!.selectedIndex = 3
             let navC = tabBarC!.viewControllers![3] as! UINavigationController
             navC.popToRootViewController(animated: false)
+            let albumVC = navC.visibleViewController as? AlbumCollectionViewController
+            if albumVC != nil{
+                albumVC!.selectedRecipeId = nil
+            }
         case "Calc":
             tabBarC!.selectedIndex = 4
             let navC = tabBarC!.viewControllers![4] as! UINavigationController
