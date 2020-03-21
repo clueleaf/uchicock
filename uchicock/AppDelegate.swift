@@ -130,6 +130,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarC!.selectedIndex = 4
             let navC = tabBarC!.viewControllers![4] as! UINavigationController
             navC.popToRootViewController(animated: false)
+            let settingsVC = navC.visibleViewController as? SettingsTableViewController
+            if settingsVC != nil{
+                settingsVC!.selectedIndexPath = IndexPath(row: 4, section: 0)
+            }
+            
+            let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
+            navC.pushViewController(calcVC, animated: false)
+
         default:
             break
         }
