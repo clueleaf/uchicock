@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>tabbar-reverse-lookup</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>逆引き</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ReverseLookup</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>tabbar-album</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>アルバム</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Album</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>settings-calc</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>度数計算機</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Calc</string>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ja_JP</string>
 	<key>CFBundleDisplayName</key>
