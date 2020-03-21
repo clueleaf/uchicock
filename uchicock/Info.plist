@@ -14,7 +14,7 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>tabbar-album</string>
+			<string>album-empty</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>アルバム</string>
 			<key>UIApplicationShortcutItemType</key>
