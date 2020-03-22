@@ -110,8 +110,10 @@ class LaunchViewController: UIViewController {
             }
         }
         
+        // どこでもスワイプで戻れるようにするための処理
         BasicNavigationController.initializeFullScreenPopGesture()
         
+        // 遷移
         let tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
         tabBarC.modalPresentationStyle = .fullScreen
         tabBarC.modalTransitionStyle = .crossDissolve
@@ -119,17 +121,10 @@ class LaunchViewController: UIViewController {
         switch shortcutItemType{
         case "ReverseLookup":
             tabBarC.selectedIndex = 2
-            shortcutItemType = nil
-            prepareMessage.alpha = 0.0
-            self.present(tabBarC, animated: false, completion: nil)
         case "Album":
             tabBarC.selectedIndex = 3
-            shortcutItemType = nil
-            prepareMessage.alpha = 0.0
-            self.present(tabBarC, animated: false, completion: nil)
         case "Calc":
             tabBarC.selectedIndex = 4
-            shortcutItemType = nil
             
             let navC = tabBarC.viewControllers![4] as! UINavigationController
             let settingsVC = navC.visibleViewController as? SettingsTableViewController
@@ -138,14 +133,12 @@ class LaunchViewController: UIViewController {
             }
             let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
             navC.pushViewController(calcVC, animated: false)
-            prepareMessage.alpha = 0.0
-            self.present(tabBarC, animated: false, completion: nil)
         default:
             tabBarC.selectedIndex = 0
-            shortcutItemType = nil
-            prepareMessage.alpha = 0.0
-            self.present(tabBarC, animated: false, completion: nil)
         }
+
+        shortcutItemType = nil
+        self.present(tabBarC, animated: false, completion: nil)
     }
     
     func dismissIntroductionAndPrepareToShowRecipeList(_ introduction: IntroductionPageViewController){
