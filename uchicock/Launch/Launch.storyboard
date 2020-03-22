@@ -151,7 +151,6 @@
                     <connections>
                         <outlet property="prepareMessage" destination="aIO-vX-mWa" id="7fI-Qu-odW"/>
                         <segue destination="fBk-2U-rzj" kind="presentation" identifier="usage" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="pco-jF-4js"/>
-                        <segue destination="w1V-m1-dXG" kind="presentation" identifier="ShowRecipeList" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="h5P-3K-SLl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zIs-ox-wPG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

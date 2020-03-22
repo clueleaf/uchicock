@@ -97,47 +97,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             launchVC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "launch") as? LaunchViewController
             self.window!.rootViewController = launchVC
         }else{
-            let currentVC = getVisibleViewController(nil)
-            if currentVC != nil{
-                if currentVC!.isKind(of: LaunchViewController.self) == false{
-                    launchVC!.dismiss(animated: false, completion: nil)
-                }
-            }
+            let tabBarC = getTabBarController()
+            tabBarC?.dismiss(animated: false, completion: nil)
         }
         launchVC!.shortcutItemType = shortcutItem.type
-        
-//        var tabBarC = getTabBarController()
-//        if tabBarC == nil{
-//            tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController
-//            self.window!.rootViewController = tabBarC
-//        }else{
-//            let currentVC = getVisibleViewController(nil)
-//            if currentVC != nil{
-//                if currentVC!.isKind(of: RecipeListViewController.self) ||
-//                    currentVC!.isKind(of: IngredientListViewController.self) ||
-//                    currentVC!.isKind(of: ReverseLookupTableViewController.self) ||
-//                    currentVC!.isKind(of: AlbumCollectionViewController.self) ||
-//                    currentVC!.isKind(of: SettingsTableViewController.self) ||
-//                    currentVC!.isKind(of: RecipeDetailTableViewController.self) ||
-//                    currentVC!.isKind(of: IngredientDetailTableViewController.self) ||
-//                    currentVC!.isKind(of: ChangeThemeTableViewController.self) ||
-//                    currentVC!.isKind(of: ChangeImageSizeTableViewController.self) ||
-//                    currentVC!.isKind(of: AlcoholCalcViewController.self)
-//                    {
-//
-//                }else{
-//                    tabBarC!.selectedViewController!.dismiss(animated: false, completion: nil)
-//                }
-//            }
-//        }
+    }
+    
+    private func getLaunchViewController() -> LaunchViewController? {
+        let rootVC = self.window!.rootViewController!
+        return rootVC as? LaunchViewController
     }
     
     private func getTabBarController() -> UITabBarController? {
         let rootVC = self.window!.rootViewController!
         
-        if rootVC.isKind(of: UITabBarController.self){
-            return rootVC as? UITabBarController
-        }else if rootVC.isKind(of: LaunchViewController.self) == false{
+        if rootVC.isKind(of: LaunchViewController.self) == false{
             return nil
         }
         
@@ -153,43 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return nil
     }
-    
-    private func getLaunchViewController() -> LaunchViewController? {
-        let rootVC = self.window!.rootViewController!
-        return rootVC as? LaunchViewController
-    }
-    
-    func getVisibleViewController(_ rootViewController: UIViewController?) -> UIViewController? {
-        var rootVC = rootViewController
-        if rootVC == nil {
-            rootVC = self.window!.rootViewController!
-        }
-        
-        if rootVC!.isKind(of: UINavigationController.self){
-            let nav = rootVC as! UINavigationController
-            rootVC = nav.viewControllers.last!
-        }
 
-        if rootVC?.presentedViewController == nil {
-            return rootVC
-        }
-
-        if let presented = rootVC?.presentedViewController {
-            if presented.isKind(of: UINavigationController.self) {
-                let navigationController = presented as! UINavigationController
-                return getVisibleViewController(navigationController.viewControllers.last!)
-            }
-
-            if presented.isKind(of: UITabBarController.self) {
-                let tabBarController = presented as! UITabBarController
-                return getVisibleViewController(tabBarController.selectedViewController!)
-            }
-
-            return getVisibleViewController(presented)
-        }
-        return nil
-    }
-    
     func applicationWillResignActive(_ application: UIApplication) {
     }
 
