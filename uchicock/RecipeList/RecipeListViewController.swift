@@ -99,7 +99,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setReminderBadge()
         setupVC()
     }
     
@@ -300,21 +299,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         selectedRecipeId = nil
         self.tableView.flashScrollIndicators()
-    }
-    
-    private func setReminderBadge(){
-        let realm = try! Realm()
-        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
-
-        if let tabItems = self.tabBarController?.tabBar.items {
-            let tabItem = tabItems[1]
-            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if reminderNum == 0{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "！"
-            }
-        }
     }
         
     func getTextFieldFromView(view: UIView) -> UITextField?{

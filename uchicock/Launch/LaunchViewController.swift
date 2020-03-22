@@ -145,10 +145,21 @@ class LaunchViewController: UIViewController {
             tabBarC.selectedIndex = 0
         }
 
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+        if let tabItems = tabBarC.tabBar.items {
+            let tabItem = tabItems[1]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = "！"
+            }
+        }
+
         shortcutItemType = nil
         self.present(tabBarC, animated: false, completion: nil)
     }
-    
+        
     func dismissIntroductionAndPrepareToShowRecipeList(_ introduction: IntroductionPageViewController){
         introduction.dismiss(animated: true, completion: {
             self.prepareToShowRecipeList()
