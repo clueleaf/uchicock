@@ -13,7 +13,7 @@ import Accounts
 class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var recipeName: UITextView!
+    @IBOutlet weak var recipeName: CustomTextView!
     @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
@@ -26,7 +26,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
-    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memo: CustomTextView!
     @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var madeNumPlusButton: ExpandedButton!
     @IBOutlet weak var madeNumMinusButton: ExpandedButton!
@@ -194,7 +194,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateImageView()
 
             recipeName.text = recipe.recipeName
-            recipeName.textColor = UchicockStyle.labelTextColor
 
             switch recipe.shortageNum {
             case 0:

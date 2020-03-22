@@ -11,7 +11,7 @@ import RealmSwift
 
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
-    @IBOutlet weak var ingredientName: UITextView!
+    @IBOutlet weak var ingredientName: CustomTextView!
     @IBOutlet weak var reminderImage: UIImageView!
     @IBOutlet weak var reminderMessageLabel: CustomLabel!
     @IBOutlet weak var removeReminderButton: UIButton!
@@ -19,7 +19,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var category: CustomLabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var stock: CircularCheckbox!
-    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memo: CustomTextView!
     @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
@@ -139,7 +139,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
-            ingredientName.textColor = UchicockStyle.labelTextColor
             
             updateIngredientRecommendLabel()
             
