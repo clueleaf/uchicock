@@ -16,6 +16,7 @@ class LaunchViewController: UIViewController {
     var recipeList: Results<Recipe>?
     var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
+    var initializedFullScreenPopGesture = false
     
     var shortcutItemType: String? = nil
 
@@ -111,7 +112,10 @@ class LaunchViewController: UIViewController {
         }
         
         // どこでもスワイプで戻れるようにするための処理
-        BasicNavigationController.initializeFullScreenPopGesture()
+        if initializedFullScreenPopGesture == false{
+            BasicNavigationController.initializeFullScreenPopGesture()
+            initializedFullScreenPopGesture = true
+        }
         
         // 遷移
         let tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
