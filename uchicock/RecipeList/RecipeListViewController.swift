@@ -173,7 +173,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func loadSearchUserDefaults(){
         let defaults = UserDefaults.standard
-
+        defaults.register(defaults: [GlobalConstants.RecipeSortPrimaryKey : 1])
+        defaults.register(defaults: [GlobalConstants.RecipeSortSecondaryKey : 0])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar0Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar1Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar2Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStar3Key : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterLongKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterShortKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterHotKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStyleNoneKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterBuildKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStirKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterNonAlcoholKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterWeakKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterMediumKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStrongKey : true])
+        defaults.register(defaults: [GlobalConstants.RecipeFilterStrengthNoneKey : true])
+        
         recipeSortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
         recipeSortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
         recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key)

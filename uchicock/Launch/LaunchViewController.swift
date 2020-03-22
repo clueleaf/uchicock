@@ -41,35 +41,6 @@ class LaunchViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadSearchUserDefaults()
-    }
-    
-    private func loadSearchUserDefaults(){
-        let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.RecipeSortPrimaryKey : 1])
-        defaults.register(defaults: [GlobalConstants.RecipeSortSecondaryKey : 0])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar0Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar1Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar2Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar3Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterLongKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterShortKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterHotKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStyleNoneKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterBuildKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStirKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterNonAlcoholKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterWeakKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterMediumKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStrongKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStrengthNoneKey : true])
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -155,10 +126,12 @@ class LaunchViewController: UIViewController {
         case "ReverseLookup":
             tabBarC.selectedIndex = 2
             shortcutItemType = nil
+            prepareMessage.alpha = 0.0
             self.present(tabBarC, animated: false, completion: nil)
         case "Album":
             tabBarC.selectedIndex = 3
             shortcutItemType = nil
+            prepareMessage.alpha = 0.0
             self.present(tabBarC, animated: false, completion: nil)
         case "Calc":
             tabBarC.selectedIndex = 4
@@ -171,10 +144,12 @@ class LaunchViewController: UIViewController {
             }
             let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
             navC.pushViewController(calcVC, animated: false)
+            prepareMessage.alpha = 0.0
             self.present(tabBarC, animated: false, completion: nil)
         default:
             tabBarC.selectedIndex = 0
             shortcutItemType = nil
+            prepareMessage.alpha = 0.0
             self.present(tabBarC, animated: false, completion: nil)
         }
     }
