@@ -77,9 +77,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         recipeName.isScrollEnabled = false
         recipeName.textContainerInset = .zero
         recipeName.textContainer.lineFragmentPadding = 0
+        recipeName.font = UIFont.systemFont(ofSize: 25.0)
         memo.isScrollEnabled = false
         memo.textContainerInset = .zero
         memo.textContainer.lineFragmentPadding = 0
+        memo.font = UIFont.systemFont(ofSize: 15.0)
 
         bookmarkButton.minimumHitWidth = 36
         bookmarkButton.minimumHitHeight = 36

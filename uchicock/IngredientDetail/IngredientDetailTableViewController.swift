@@ -56,9 +56,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         ingredientName.isScrollEnabled = false
         ingredientName.textContainerInset = .zero
         ingredientName.textContainer.lineFragmentPadding = 0
+        ingredientName.font = UIFont.systemFont(ofSize: 25.0)
         memo.isScrollEnabled = false
         memo.textContainerInset = .zero
         memo.textContainer.lineFragmentPadding = 0
+        memo.font = UIFont.systemFont(ofSize: 15.0)
         stock.boxLineWidth = 1.0
         
         stockRecommendLabel.isHidden = true
