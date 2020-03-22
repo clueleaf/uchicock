@@ -97,8 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             launchVC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "launch") as? LaunchViewController
             self.window!.rootViewController = launchVC
         }else{
-            let tabBarC = getTabBarController()
-            tabBarC?.dismiss(animated: false, completion: nil)
+            if isLaunchViewControllerCurrentViewController() == false {
+                launchVC!.dismiss(animated: false, completion: nil)
+            }
         }
         launchVC!.shortcutItemType = shortcutItem.type
     }
@@ -108,24 +109,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return rootVC as? LaunchViewController
     }
     
-    private func getTabBarController() -> UITabBarController? {
+    private func isLaunchViewControllerCurrentViewController() -> Bool{
         let rootVC = self.window!.rootViewController!
-        
-        if rootVC.isKind(of: LaunchViewController.self) == false{
-            return nil
-        }
-        
-        if rootVC.presentedViewController == nil {
-            return nil
-        }
 
-        if let presented = rootVC.presentedViewController {
-            if presented.isKind(of: UITabBarController.self) {
-                let tabBarController = presented as! UITabBarController
-                return tabBarController
-            }
+        if rootVC.presentedViewController == nil {
+            return rootVC.isKind(of: LaunchViewController.self)
+        }else{
+            return false
         }
-        return nil
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
