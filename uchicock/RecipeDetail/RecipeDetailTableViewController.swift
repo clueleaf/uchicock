@@ -309,11 +309,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if recipe.memo.isEmpty {
 //                memoHeightConstraint.constant = 0
                 memo.frame.size.height = 0
-                memo.layoutIfNeeded()
+//                memo.layoutIfNeeded()
             }else{
 //                memoHeightConstraint.constant = memoSize.height
                 memo.sizeToFit()
-                memo.layoutIfNeeded()
+//                memo.layoutIfNeeded()
 //                memo.frame.size = CGSize(width: max(memoSize.width, memoWidth), height: memoSize.height)
             }
 
