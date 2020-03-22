@@ -124,11 +124,13 @@ class LaunchViewController: UIViewController {
             let navC = tabBarC.viewControllers![0] as! UINavigationController
             let recipeVC = navC.visibleViewController as? RecipeListViewController
             recipeVC?.isBookmarkMode = true
+            recipeVC?.shouldShowBookmarkGuide = true
         case "Reminder":
             tabBarC.selectedIndex = 1
             let navC = tabBarC.viewControllers![1] as! UINavigationController
             let ingredientVC = navC.visibleViewController as? IngredientListViewController
             ingredientVC?.isReminderMode = true
+            ingredientVC?.shouldShowReminderGuide = true
         case "Album":
             tabBarC.selectedIndex = 3
         case "Calc":

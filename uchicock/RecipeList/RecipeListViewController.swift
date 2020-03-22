@@ -34,6 +34,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedRecipeId: String? = nil
     var isTyping = false
     var isBookmarkMode = false
+    var shouldShowBookmarkGuide = false
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -299,6 +300,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         selectedRecipeId = nil
         self.tableView.flashScrollIndicators()
+        
+        if shouldShowBookmarkGuide{
+            MessageHUD.show("←のボタンで表示切り替え", for: 2.0, withCheckmark: false)
+            shouldShowBookmarkGuide = false
+        }
     }
         
     func getTextFieldFromView(view: UIView) -> UITextField?{

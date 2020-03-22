@@ -38,6 +38,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var selectedIngredientId: String? = nil
     var isTyping = false
     var isReminderMode = false
+    var shouldShowReminderGuide = false
 
     let interactor = Interactor()
 
@@ -179,6 +180,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
         selectedIngredientId = nil
         self.tableView.flashScrollIndicators()
+        
+        if shouldShowReminderGuide{
+            MessageHUD.show("←のボタンで表示切り替え", for: 2.0, withCheckmark: false)
+            shouldShowReminderGuide = false
+        }
     }
     
     private func setReminderBadge(){
