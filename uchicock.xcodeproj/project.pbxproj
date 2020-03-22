@@ -115,10 +115,38 @@
 		9BEC4C3F2351EC9B004FE9B4 /* AlbumFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */; };
 		9BEC4C412351ECF1004FE9B4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */; };
 		9BEC4C432351ED51004FE9B4 /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */; };
+		9BEC8B1524283289009CF8CA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC8B1424283289009CF8CA /* NotificationCenter.framework */; };
+		9BEC8B1824283289009CF8CA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1724283289009CF8CA /* TodayViewController.swift */; };
+		9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1924283289009CF8CA /* MainInterface.storyboard */; };
+		9BEC8B1F24283289009CF8CA /* uchicock Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BEC8B1324283289009CF8CA /* uchicock Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9BEC8B1D24283289009CF8CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9BC9A3091C783CAA0031F631 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9BEC8B1224283289009CF8CA;
+			remoteInfo = "uchicock Widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9BEC8B2024283289009CF8CA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9BEC8B1F24283289009CF8CA /* uchicock Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uchicock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +261,11 @@
 		9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = AlbumFilter/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Settings/Settings.storyboard; sourceTree = "<group>"; };
 		9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Util/Introduction/Introduction.storyboard; sourceTree = "<group>"; };
+		9BEC8B1324283289009CF8CA /* uchicock Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "uchicock Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BEC8B1424283289009CF8CA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		9BEC8B1724283289009CF8CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		9BEC8B1A24283289009CF8CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9BEC8B1C24283289009CF8CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
@@ -247,6 +280,14 @@
 				9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */,
 				9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */,
 				257A3F75EA9DBB6F91E1B069 /* Pods_uchicock.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BEC8B1024283289009CF8CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BEC8B1524283289009CF8CA /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3131C783CAA0031F631 /* uchicock */,
+				9BEC8B1624283289009CF8CA /* uchicock Widget */,
 				9BC9A3121C783CAA0031F631 /* Products */,
 				D62374FCD504BC5EA91FCD15 /* Frameworks */,
 				8AAB004EAA3CB436D4CF50BE /* Pods */,
@@ -456,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3111C783CAA0031F631 /* uchicock.app */,
+				9BEC8B1324283289009CF8CA /* uchicock Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -592,6 +635,16 @@
 			name = AlbumFilter;
 			sourceTree = "<group>";
 		};
+		9BEC8B1624283289009CF8CA /* uchicock Widget */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC8B1724283289009CF8CA /* TodayViewController.swift */,
+				9BEC8B1924283289009CF8CA /* MainInterface.storyboard */,
+				9BEC8B1C24283289009CF8CA /* Info.plist */,
+			);
+			path = "uchicock Widget";
+			sourceTree = "<group>";
+		};
 		9BF951A52302C68000C6A1CA /* MessageHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +661,7 @@
 				9BEF8B261E68738E00F32DDB /* RealmSwift.framework */,
 				9B8E59D11CB819A8004D2C1A /* Social.framework */,
 				7A4C355CE7B8FD61AD9ABFAA /* Pods_uchicock.framework */,
+				9BEC8B1424283289009CF8CA /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -625,15 +679,34 @@
 				9BC9A30F1C783CAA0031F631 /* Resources */,
 				9B0CF99C1CA7ED410024AF40 /* ShellScript */,
 				DAB87728FE9EC64F4A7705F3 /* [CP] Embed Pods Frameworks */,
+				9BEC8B2024283289009CF8CA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9BEC8B1E24283289009CF8CA /* PBXTargetDependency */,
 			);
 			name = uchicock;
 			productName = uchicock;
 			productReference = 9BC9A3111C783CAA0031F631 /* uchicock.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9BEC8B1224283289009CF8CA /* uchicock Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Widget" */;
+			buildPhases = (
+				9BEC8B0F24283289009CF8CA /* Sources */,
+				9BEC8B1024283289009CF8CA /* Frameworks */,
+				9BEC8B1124283289009CF8CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "uchicock Widget";
+			productName = "uchicock Widget";
+			productReference = 9BEC8B1324283289009CF8CA /* uchicock Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -641,7 +714,7 @@
 		9BC9A3091C783CAA0031F631 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Kou;
 				TargetAttributes = {
@@ -649,6 +722,11 @@
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 98478E5868;
 						LastSwiftMigration = 1020;
+					};
+					9BEC8B1224283289009CF8CA = {
+						CreatedOnToolsVersion = 11.3.1;
+						DevelopmentTeam = 98478E5868;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -666,6 +744,7 @@
 			projectRoot = "";
 			targets = (
 				9BC9A3101C783CAA0031F631 /* uchicock */,
+				9BEC8B1224283289009CF8CA /* uchicock Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -703,6 +782,14 @@
 				9B59FFA822B409CB00FB6F44 /* README.md in Resources */,
 				9BEC4C432351ED51004FE9B4 /* Introduction.storyboard in Resources */,
 				9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BEC8B1124283289009CF8CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,7 +937,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9BEC8B0F24283289009CF8CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BEC8B1824283289009CF8CA /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9BEC8B1E24283289009CF8CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9BEC8B1224283289009CF8CA /* uchicock Widget */;
+			targetProxy = 9BEC8B1D24283289009CF8CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9BEC8B1924283289009CF8CA /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9BEC8B1A24283289009CF8CA /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9BC9A3371C783CAA0031F631 /* Debug */ = {
@@ -1013,6 +1127,60 @@
 			};
 			name = Release;
 		};
+		9BEC8B2124283289009CF8CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98478E5868;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "uchicock Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9BEC8B2224283289009CF8CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98478E5868;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "uchicock Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1030,6 +1198,15 @@
 			buildConfigurations = (
 				9BC9A33A1C783CAA0031F631 /* Debug */,
 				9BC9A33B1C783CAA0031F631 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9BEC8B2324283289009CF8CA /* Build configuration list for PBXNativeTarget "uchicock Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BEC8B2124283289009CF8CA /* Debug */,
+				9BEC8B2224283289009CF8CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
