@@ -330,13 +330,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if indexPath.section == 0 {
             if ingredient.reminderSetDate == nil{
                 if indexPath.row == 4{
-                    return super.tableView(tableView, heightForRowAt: indexPath)
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
                 }else{
                     return UITableView.automaticDimension
                 }
             }else{
                 if indexPath.row == 5{
-                    return super.tableView(tableView, heightForRowAt: indexPath)
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
                 }else{
                     return UITableView.automaticDimension
                 }
