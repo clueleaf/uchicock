@@ -144,11 +144,12 @@ public class MessageHUD : UIView {
         let labelRect = getStatusLabel().text?.boundingRect(with: CGSize.zero, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: getStatusLabel().font as Any], context: nil) ?? CGRect.zero
         let labelHeight = CGFloat(ceilf(Float(labelRect.height)))
         let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.origin.y ?? 0
+        let safeAreaLeft = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.origin.x ?? 0
         let posY = MessageHUDVerticalSpacing + labelHeight / 2.0 + safeAreaTop + MessageHUDTopSpacing
                 
         var newCenter = CGPoint.init(x: self.bounds.midX, y: posY)
         if isCenter == false{
-            newCenter = CGPoint.init(x: 120.0, y: posY)
+            newCenter = CGPoint.init(x: safeAreaLeft + 120.0, y: posY)
         }
         move(to: newCenter)
     }
