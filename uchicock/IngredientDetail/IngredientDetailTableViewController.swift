@@ -177,8 +177,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             memo.textColor = UchicockStyle.labelTextColorLight
             if ingredient.memo.isEmpty {
                 memoBottomConstraint.constant = 0
+                memo.isHidden = true
             }else{
                 memoBottomConstraint.constant = 15
+                memo.isHidden = false
             }
 
             editButton.backgroundColor = UchicockStyle.primaryColor
