@@ -311,8 +311,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             memo.textColor = UchicockStyle.labelTextColorLight
             if recipe.memo.isEmpty {
                 memoBottomConstraint.constant = 0
+                memo.isHidden = true
             }else{
                 memoBottomConstraint.constant = 15
+                memo.isHidden = false
             }
 
             madeNum = recipe.madeNum
@@ -753,16 +755,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         switch recipe.strength{
         case 0:
-            message += "アルコール度数：ノンアルコール\n\n"
+            message += "アルコール度数：ノンアルコール\n"
         case 1:
-            message += "アルコール度数：弱い\n\n"
+            message += "アルコール度数：弱い\n"
         case 2:
-            message += "アルコール度数：やや強い\n\n"
+            message += "アルコール度数：やや強い\n"
         case 3:
-            message += "アルコール度数：強い\n\n"
+            message += "アルコール度数：強い\n"
         default: break
         }
-        message += "材料：\n"
+        message += "\n材料：\n"
         for recipeIngredient in recipe.recipeIngredients{
             message += recipeIngredient.ingredient.ingredientName + " " + recipeIngredient.amount + "\n"
         }
