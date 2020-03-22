@@ -302,7 +302,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.flashScrollIndicators()
         
         if shouldShowBookmarkGuide{
-            MessageHUD.show("←のボタンで表示切り替え", for: 2.0, withCheckmark: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                MessageHUD.show("←レシピに戻る", for: 2.0, withCheckmark: false, isCenter: false)
+            }
             shouldShowBookmarkGuide = false
         }
     }

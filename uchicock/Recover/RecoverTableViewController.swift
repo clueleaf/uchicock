@@ -246,14 +246,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                         alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                             self.isRecovering = true
-                            MessageHUD.show("復元中...", for: nil, withCheckmark: false)
+                            MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
                             DispatchQueue.global(qos: .userInitiated).async {
                                 for i in 0..<self.recoverableSampleRecipeList.count {
                                     self.recoverableSampleRecipeList[i].recoverTarget = true
                                 }
                                 self.recover()
                                 DispatchQueue.main.async{
-                                    MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true)
+                                    MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true, isCenter: true)
                                     self.dismiss(animated: true, completion: nil)
                                 }
                             }
@@ -403,11 +403,11 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
                 alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                     self.isRecovering = true
-                    MessageHUD.show("復元中...", for: nil, withCheckmark: false)
+                    MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
                     DispatchQueue.global(qos: .userInitiated).async {
                         self.recover()
                         DispatchQueue.main.async{
-                            MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true)
+                            MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true, isCenter: true)
                             self.dismiss(animated: true, completion: nil)
                         }
                     }

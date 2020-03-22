@@ -432,7 +432,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(0))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
+                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
                     }
                     self.recipeIngredient.category = 0
                     self.isCancel = false
@@ -441,7 +441,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「ノンアルコール」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(1))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
+                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
                     }
                     self.recipeIngredient.category = 1
                     self.isCancel = false
@@ -450,7 +450,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 registAlertView.addAction(UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(2))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true)
+                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
                     }
                     self.recipeIngredient.category = 2
                     self.isCancel = false

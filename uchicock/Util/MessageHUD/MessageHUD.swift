@@ -64,9 +64,9 @@ public class MessageHUD : UIView {
     }()
     
     // MARK :- Setters
-    private func fadeIn(with duration: TimeInterval?) {
+    private func fadeIn(with duration: TimeInterval?, isCenter: Bool) {
         updateHUDFrame()
-        positionHUD()
+        positionHUD(isCenter: isCenter)
         getControlView().isUserInteractionEnabled = false
 
         if getBackGroundView().alpha != 1.0 {
@@ -136,7 +136,7 @@ public class MessageHUD : UIView {
         }
     }
     
-    private func positionHUD() {
+    private func positionHUD(isCenter: Bool) {
         if let window = UIApplication.shared.keyWindow {
             self.frame = window.bounds
         }
@@ -146,7 +146,10 @@ public class MessageHUD : UIView {
         let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.origin.y ?? 0
         let posY = MessageHUDVerticalSpacing + labelHeight / 2.0 + safeAreaTop + MessageHUDTopSpacing
                 
-        let newCenter = CGPoint.init(x: self.bounds.midX, y: posY)
+        var newCenter = CGPoint.init(x: self.bounds.midX, y: posY)
+        if isCenter == false{
+            newCenter = CGPoint.init(x: 120.0, y: posY)
+        }
         move(to: newCenter)
     }
     
@@ -177,7 +180,7 @@ public class MessageHUD : UIView {
         }
     }
     
-    private func show(status: String?, for duration: TimeInterval?, withCheckmark: Bool) {
+    private func show(status: String?, for duration: TimeInterval?, withCheckmark: Bool, isCenter: Bool) {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
             
@@ -202,7 +205,7 @@ public class MessageHUD : UIView {
             strongSelf.getStatusLabel().text = status
             
             // Fade in delayed if a grace time is set
-            strongSelf.fadeIn(with: duration)
+            strongSelf.fadeIn(with: duration, isCenter: isCenter)
         })
     }
     
@@ -267,8 +270,8 @@ public class MessageHUD : UIView {
         sharedView.defaultStyle = style
     }
     
-    public class func show(_ status: String?, for duration: TimeInterval?, withCheckmark: Bool) {
-        sharedView.show(status: status, for: duration, withCheckmark: withCheckmark)
+    public class func show(_ status: String?, for duration: TimeInterval?, withCheckmark: Bool, isCenter: Bool) {
+        sharedView.show(status: status, for: duration, withCheckmark: withCheckmark, isCenter: isCenter)
     }
 
     public class func dismissWithCompletion(_ completion: (() -> Void)?) {

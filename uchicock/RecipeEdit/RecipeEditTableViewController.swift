@@ -792,7 +792,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC.recipeId = newRecipe.id
                         newRecipe.updateShortageNum()
-                        MessageHUD.show("レシピを登録しました", for: 2.0, withCheckmark: true)
+                        MessageHUD.show("レシピを登録しました", for: 2.0, withCheckmark: true, isCenter: true)
                     }
                    
                     if mainNavigationController != nil{
@@ -864,7 +864,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                         detailVC.recipeId = recipe.id
                         recipe.updateShortageNum()
-                        MessageHUD.show("レシピを保存しました", for: 2.0, withCheckmark: true)
+                        MessageHUD.show("レシピを保存しました", for: 2.0, withCheckmark: true, isCenter: true)
                     }
                     
                     if mainNavigationController != nil {

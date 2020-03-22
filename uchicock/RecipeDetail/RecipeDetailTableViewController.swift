@@ -515,7 +515,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
                 let pasteboard: UIPasteboard = UIPasteboard.general
                 pasteboard.image = loadedImage!
-                MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true)
+                MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
             })
             alertView.addAction(UIAlertAction(title: "写真を共有",style: .default){ action in
                 let excludedActivityTypes = [
@@ -548,7 +548,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
         if error == nil{
-            MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true)
+            MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true, isCenter: true)
         }else{
             let alertView = CustomAlertController(title: "「写真」アプリへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -712,7 +712,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             try! realm.write {
                 recipe.bookmarkDate = Date()
             }
-            MessageHUD.show("ブックマークしました", for: 2.0, withCheckmark: true)
+            MessageHUD.show("ブックマークしました", for: 2.0, withCheckmark: true, isCenter: true)
         }else{
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.bookmarkButton.transform = .init(scaleX: 1.15, y: 1.15)
@@ -725,7 +725,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             try! realm.write {
                 recipe.bookmarkDate = nil
             }
-            MessageHUD.show("ブックマークを外しました", for: 2.0, withCheckmark: true)
+            MessageHUD.show("ブックマークを外しました", for: 2.0, withCheckmark: true, isCenter: true)
         }
     }
     

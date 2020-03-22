@@ -182,7 +182,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.flashScrollIndicators()
         
         if shouldShowReminderGuide{
-            MessageHUD.show("←のボタンで表示切り替え", for: 2.0, withCheckmark: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                MessageHUD.show("←材料に戻る", for: 2.0, withCheckmark: false, isCenter: false)
+            }
             shouldShowReminderGuide = false
         }
     }
@@ -325,7 +327,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                                 }
                                 self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
                             }else{
-                                MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true)
+                                MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true, isCenter: true)
                             }
                             self.setReminderBadge()
                         }
