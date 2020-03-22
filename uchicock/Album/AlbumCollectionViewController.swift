@@ -381,14 +381,22 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
-            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            if UchicockStyle.isBackgroundDark{
+                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            }else{
+                cell.highlightView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+            }
         }
         return true
     }
     
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell {
-            cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            if UchicockStyle.isBackgroundDark{
+                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            }else{
+                cell.highlightView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+            }
         }
     }
 
@@ -428,7 +436,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             cell.recipeName.backgroundColor = UIColor.clear
             
             if selectedRecipeId != nil && filteredRecipeBasicList[indexPath.row].id == selectedRecipeId!{
-                cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                if UchicockStyle.isBackgroundDark{
+                    cell.highlightView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                }else{
+                    cell.highlightView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                }
                 highlightIndexPath = indexPath
             }else{
                 cell.highlightView.backgroundColor = UIColor.clear
