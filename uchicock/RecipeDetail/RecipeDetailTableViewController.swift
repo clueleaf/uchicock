@@ -27,7 +27,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
     @IBOutlet weak var memo: UITextView!
-    @IBOutlet weak var memoHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var madeNumPlusButton: ExpandedButton!
     @IBOutlet weak var madeNumMinusButton: ExpandedButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
@@ -77,7 +76,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         memo.isScrollEnabled = false
         memo.textContainerInset = .zero
         memo.textContainer.lineFragmentPadding = 0
-        memo.translatesAutoresizingMaskIntoConstraints = true
 
         bookmarkButton.minimumHitWidth = 36
         bookmarkButton.minimumHitHeight = 36
@@ -305,17 +303,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             memo.text = recipe.memo
             memo.textColor = UchicockStyle.labelTextColorLight
-            let memoWidth = memo.frame.size.width
-            let memoSize = memo.sizeThatFits(CGSize(width: memoWidth, height: CGFloat.greatestFiniteMagnitude))
-            memoHeightConstraint?.isActive = false
+//            memo.translatesAutoresizingMaskIntoConstraints = true
+//            let memoWidth = memo.frame.size.width
+//            let memoSize = memo.sizeThatFits(CGSize(width: memoWidth, height: CGFloat.greatestFiniteMagnitude))
             if recipe.memo.isEmpty {
 //                memoHeightConstraint.constant = 0
                 memo.frame.size.height = 0
+                memo.layoutIfNeeded()
             }else{
 //                memoHeightConstraint.constant = memoSize.height
-//                memo.sizeToFit()
-//                memo.layoutIfNeeded()
-                memo.frame.size = CGSize(width: max(memoSize.width, memoWidth), height: memoSize.height)
+                memo.sizeToFit()
+                memo.layoutIfNeeded()
+//                memo.frame.size = CGSize(width: max(memoSize.width, memoWidth), height: memoSize.height)
             }
 
             madeNum = recipe.madeNum
