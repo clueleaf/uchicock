@@ -16,6 +16,8 @@ class LaunchViewController: UIViewController {
     var recipeList: Results<Recipe>?
     var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
+    
+    var shortcutItemType: String? = nil
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
@@ -31,7 +33,11 @@ class LaunchViewController: UIViewController {
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }else{
-            prepareMessage.alpha = 1.0
+            if shortcutItemType == nil {
+                prepareMessage.alpha = 1.0
+            }else{
+                prepareMessage.alpha = 0.0
+            }
         }
     }
     
@@ -76,7 +82,9 @@ class LaunchViewController: UIViewController {
     }
     
     func prepareToShowRecipeList(){
-        prepareMessage.alpha = 1.0
+        if shortcutItemType == nil {
+            prepareMessage.alpha = 1.0
+        }
         
         let realm = try! Realm()
 
@@ -137,6 +145,41 @@ class LaunchViewController: UIViewController {
         
         BasicNavigationController.initializeFullScreenPopGesture()
         
+        
+        switch shortcutItem.type{
+        case "ReverseLookup":
+            tabBarC!.selectedIndex = 2
+            let navC = tabBarC!.viewControllers![2] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+            let reverseVC = navC.visibleViewController as? ReverseLookupTableViewController
+            if reverseVC != nil{
+                reverseVC!.selectedRecipeId = nil
+            }
+        case "Album":
+            tabBarC!.selectedIndex = 3
+            let navC = tabBarC!.viewControllers![3] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+            let albumVC = navC.visibleViewController as? AlbumCollectionViewController
+            if albumVC != nil{
+                albumVC!.selectedRecipeId = nil
+            }
+        case "Calc":
+            tabBarC!.selectedIndex = 4
+            let navC = tabBarC!.viewControllers![4] as! UINavigationController
+            navC.popToRootViewController(animated: false)
+            let settingsVC = navC.visibleViewController as? SettingsTableViewController
+            if settingsVC != nil{
+                settingsVC!.selectedIndexPath = IndexPath(row: 4, section: 0)
+            }
+            
+            let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
+            navC.pushViewController(calcVC, animated: false)
+
+        default:
+            break
+        }
+        
+        shortcutItemType = nil
         performSegue(withIdentifier: "ShowRecipeList", sender: nil)
     }
     

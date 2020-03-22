@@ -92,64 +92,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
         
-        var tabBarC = getTabBarController()
-        if tabBarC == nil{
-            tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController
-            self.window!.rootViewController = tabBarC
+        var launchVC = getLaunchViewController()
+        if launchVC == nil{
+            launchVC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "launch") as? LaunchViewController
+            self.window!.rootViewController = launchVC
         }else{
             let currentVC = getVisibleViewController(nil)
             if currentVC != nil{
-                if currentVC!.isKind(of: RecipeListViewController.self) ||
-                    currentVC!.isKind(of: IngredientListViewController.self) ||
-                    currentVC!.isKind(of: ReverseLookupTableViewController.self) ||
-                    currentVC!.isKind(of: AlbumCollectionViewController.self) ||
-                    currentVC!.isKind(of: SettingsTableViewController.self) ||
-                    currentVC!.isKind(of: RecipeDetailTableViewController.self) ||
-                    currentVC!.isKind(of: IngredientDetailTableViewController.self) ||
-                    currentVC!.isKind(of: ChangeThemeTableViewController.self) ||
-                    currentVC!.isKind(of: ChangeImageSizeTableViewController.self) ||
-                    currentVC!.isKind(of: AlcoholCalcViewController.self)
-                    {
-                    
-                }else{
-                    tabBarC!.selectedViewController!.dismiss(animated: false, completion: nil)
+                if currentVC!.isKind(of: LaunchViewController.self) == false{
+                    launchVC!.dismiss(animated: false, completion: nil)
                 }
             }
         }
+        launchVC!.shortcutItemType = shortcutItem.type
         
-        switch shortcutItem.type{
-        case "ReverseLookup":
-            tabBarC!.selectedIndex = 2
-            let navC = tabBarC!.viewControllers![2] as! UINavigationController
-            navC.popToRootViewController(animated: false)
-            let reverseVC = navC.visibleViewController as? ReverseLookupTableViewController
-            if reverseVC != nil{
-                reverseVC!.selectedRecipeId = nil
-            }
-        case "Album":
-            tabBarC!.selectedIndex = 3
-            let navC = tabBarC!.viewControllers![3] as! UINavigationController
-            navC.popToRootViewController(animated: false)
-            let albumVC = navC.visibleViewController as? AlbumCollectionViewController
-            if albumVC != nil{
-                albumVC!.selectedRecipeId = nil
-            }
-        case "Calc":
-            tabBarC!.selectedIndex = 4
-            let navC = tabBarC!.viewControllers![4] as! UINavigationController
-            navC.popToRootViewController(animated: false)
-            let settingsVC = navC.visibleViewController as? SettingsTableViewController
-            if settingsVC != nil{
-                settingsVC!.selectedIndexPath = IndexPath(row: 4, section: 0)
-            }
-            
-            let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
-            navC.pushViewController(calcVC, animated: false)
-
-        default:
-            break
-        }
-        
+//        var tabBarC = getTabBarController()
+//        if tabBarC == nil{
+//            tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as? UITabBarController
+//            self.window!.rootViewController = tabBarC
+//        }else{
+//            let currentVC = getVisibleViewController(nil)
+//            if currentVC != nil{
+//                if currentVC!.isKind(of: RecipeListViewController.self) ||
+//                    currentVC!.isKind(of: IngredientListViewController.self) ||
+//                    currentVC!.isKind(of: ReverseLookupTableViewController.self) ||
+//                    currentVC!.isKind(of: AlbumCollectionViewController.self) ||
+//                    currentVC!.isKind(of: SettingsTableViewController.self) ||
+//                    currentVC!.isKind(of: RecipeDetailTableViewController.self) ||
+//                    currentVC!.isKind(of: IngredientDetailTableViewController.self) ||
+//                    currentVC!.isKind(of: ChangeThemeTableViewController.self) ||
+//                    currentVC!.isKind(of: ChangeImageSizeTableViewController.self) ||
+//                    currentVC!.isKind(of: AlcoholCalcViewController.self)
+//                    {
+//
+//                }else{
+//                    tabBarC!.selectedViewController!.dismiss(animated: false, completion: nil)
+//                }
+//            }
+//        }
     }
     
     private func getTabBarController() -> UITabBarController? {
@@ -172,6 +152,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return nil
+    }
+    
+    private func getLaunchViewController() -> LaunchViewController? {
+        let rootVC = self.window!.rootViewController!
+        return rootVC as? LaunchViewController
     }
     
     func getVisibleViewController(_ rootViewController: UIViewController?) -> UIViewController? {

@@ -92,7 +92,7 @@
         <!--Launch View Controller-->
         <scene sceneID="eQd-bv-Odn">
             <objects>
-                <viewController id="KzS-ee-6Ac" customClass="LaunchViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="launch" id="KzS-ee-6Ac" customClass="LaunchViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jm5-Fm-HrS"/>
                         <viewControllerLayoutGuide type="bottom" id="nCM-AS-ZJM"/>
