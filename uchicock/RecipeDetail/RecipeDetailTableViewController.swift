@@ -13,7 +13,7 @@ import Accounts
 class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var recipeName: CopyableLabel!
+    @IBOutlet weak var recipeName: CustomTextView!
     @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
@@ -26,7 +26,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
-    @IBOutlet weak var memo: CopyableLabel!
+    @IBOutlet weak var memo: CustomTextView!
+    @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var madeNumPlusButton: ExpandedButton!
     @IBOutlet weak var madeNumMinusButton: ExpandedButton!
     @IBOutlet weak var madeNumCountUpLabel: UILabel!
@@ -73,6 +74,15 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
         
+        recipeName.isScrollEnabled = false
+        recipeName.textContainerInset = .zero
+        recipeName.textContainer.lineFragmentPadding = 0
+        recipeName.font = UIFont.systemFont(ofSize: 25.0)
+        memo.isScrollEnabled = false
+        memo.textContainerInset = .zero
+        memo.textContainer.lineFragmentPadding = 0
+        memo.font = UIFont.systemFont(ofSize: 15.0)
+
         bookmarkButton.minimumHitWidth = 36
         bookmarkButton.minimumHitHeight = 36
         star1.minimumHitWidth = 36
@@ -186,7 +196,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateImageView()
 
             recipeName.text = recipe.recipeName
-            
+
             switch recipe.shortageNum {
             case 0:
                 shortageLabel.text = "すぐ作れる！"
@@ -299,6 +309,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             memo.text = recipe.memo
             memo.textColor = UchicockStyle.labelTextColorLight
+            if recipe.memo.isEmpty {
+                memoBottomConstraint.constant = 0
+            }else{
+                memoBottomConstraint.constant = 15
+            }
+
             madeNum = recipe.madeNum
             madeNumCountUpLabel.text = String(madeNum) + "回"
             setMadeNumButton()

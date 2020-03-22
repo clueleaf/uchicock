@@ -11,7 +11,7 @@ import RealmSwift
 
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
-    @IBOutlet weak var ingredientName: CopyableLabel!
+    @IBOutlet weak var ingredientName: CustomTextView!
     @IBOutlet weak var reminderImage: UIImageView!
     @IBOutlet weak var reminderMessageLabel: CustomLabel!
     @IBOutlet weak var removeReminderButton: UIButton!
@@ -19,7 +19,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var category: CustomLabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var stock: CircularCheckbox!
-    @IBOutlet weak var memo: CopyableLabel!
+    @IBOutlet weak var memo: CustomTextView!
+    @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
     @IBOutlet weak var amazonButton: UIButton!
@@ -52,6 +53,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         self.tableView.prefetchDataSource = self
 
+        ingredientName.isScrollEnabled = false
+        ingredientName.textContainerInset = .zero
+        ingredientName.textContainer.lineFragmentPadding = 0
+        ingredientName.font = UIFont.systemFont(ofSize: 25.0)
+        memo.isScrollEnabled = false
+        memo.textContainerInset = .zero
+        memo.textContainer.lineFragmentPadding = 0
+        memo.font = UIFont.systemFont(ofSize: 15.0)
         stock.boxLineWidth = 1.0
         
         stockRecommendLabel.isHidden = true
@@ -166,7 +175,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             memo.text = ingredient.memo
             memo.textColor = UchicockStyle.labelTextColorLight
-            
+            if ingredient.memo.isEmpty {
+                memoBottomConstraint.constant = 0
+            }else{
+                memoBottomConstraint.constant = 15
+            }
+
             editButton.backgroundColor = UchicockStyle.primaryColor
             editButton.tintColor = UchicockStyle.basicBackgroundColor
             reminderButton.backgroundColor = UchicockStyle.primaryColor
@@ -321,13 +335,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if indexPath.section == 0 {
             if ingredient.reminderSetDate == nil{
                 if indexPath.row == 4{
-                    return super.tableView(tableView, heightForRowAt: indexPath)
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
                 }else{
                     return UITableView.automaticDimension
                 }
             }else{
                 if indexPath.row == 5{
-                    return super.tableView(tableView, heightForRowAt: indexPath)
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
                 }else{
                     return UITableView.automaticDimension
                 }

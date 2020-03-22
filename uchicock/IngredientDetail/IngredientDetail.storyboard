@@ -26,18 +26,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps6-U7-0aD" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="304" height="40"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mxz-WJ-uXv" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="20" width="300" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ps6-U7-0aD" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3r1-c9-p54"/>
-                                                <constraint firstAttribute="bottom" secondItem="ps6-U7-0aD" secondAttribute="bottom" constant="20" id="AhX-ko-lRO"/>
-                                                <constraint firstAttribute="trailing" secondItem="ps6-U7-0aD" secondAttribute="trailing" constant="8" id="HXW-rm-x1y"/>
-                                                <constraint firstItem="ps6-U7-0aD" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="KyQ-1V-kJQ"/>
+                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3xi-Yz-gIq"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mxz-WJ-uXv" secondAttribute="bottom" constant="20" id="4jh-eo-qlh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mxz-WJ-uXv" secondAttribute="trailing" constant="12" id="TWj-m4-V76"/>
+                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="dju-FR-Roo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -178,11 +179,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="enb-W9-wRs">
-                                        <rect key="frame" x="0.0" y="282" width="320" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="59" id="enb-W9-wRs">
+                                        <rect key="frame" x="0.0" y="282" width="320" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="enb-W9-wRs" id="QhB-zD-uPo">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffu-Ky-BvZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -194,26 +195,27 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYC-Ar-0sn" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="300" height="34"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXF-5E-Wxs" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="44" width="300" height="0.0"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eYC-Ar-0sn" firstAttribute="top" secondItem="ffu-Ky-BvZ" secondAttribute="bottom" constant="8" id="1JL-9v-Q09"/>
+                                                <constraint firstAttribute="bottom" secondItem="IXF-5E-Wxs" secondAttribute="bottom" constant="15" id="EbB-wT-gVq"/>
+                                                <constraint firstItem="IXF-5E-Wxs" firstAttribute="top" secondItem="ffu-Ky-BvZ" secondAttribute="bottom" constant="8" id="EiA-RD-cq3"/>
                                                 <constraint firstAttribute="trailing" secondItem="ffu-Ky-BvZ" secondAttribute="trailing" constant="8" id="U9e-Sa-626"/>
+                                                <constraint firstAttribute="trailing" secondItem="IXF-5E-Wxs" secondAttribute="trailing" constant="12" id="YKq-fX-0NA"/>
+                                                <constraint firstItem="IXF-5E-Wxs" firstAttribute="leading" secondItem="QhB-zD-uPo" secondAttribute="leading" constant="8" id="ack-zT-ylj"/>
                                                 <constraint firstItem="ffu-Ky-BvZ" firstAttribute="leading" secondItem="QhB-zD-uPo" secondAttribute="leading" constant="8" id="cOl-85-nKL"/>
                                                 <constraint firstItem="ffu-Ky-BvZ" firstAttribute="top" secondItem="QhB-zD-uPo" secondAttribute="top" constant="15" id="eUP-pf-a6f"/>
-                                                <constraint firstAttribute="trailing" secondItem="eYC-Ar-0sn" secondAttribute="trailing" constant="12" id="g7r-AJ-ji5"/>
-                                                <constraint firstAttribute="bottom" secondItem="eYC-Ar-0sn" secondAttribute="bottom" constant="15" id="n5W-iQ-qg9"/>
-                                                <constraint firstItem="eYC-Ar-0sn" firstAttribute="leading" secondItem="QhB-zD-uPo" secondAttribute="leading" constant="8" id="xla-Sr-B9l"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="UzA-F4-XmK">
-                                        <rect key="frame" x="0.0" y="375" width="320" height="95"/>
+                                        <rect key="frame" x="0.0" y="341" width="320" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UzA-F4-XmK" id="d70-EG-7C3">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
@@ -368,7 +370,7 @@
                             <tableViewSection headerTitle="Section-2" id="tBY-75-L8T">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="9Hb-rp-acT">
-                                        <rect key="frame" x="0.0" y="526" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="492" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Hb-rp-acT" id="jGP-L0-puF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -407,8 +409,9 @@
                         <outlet property="deleteButtonLabel" destination="jqM-l2-1Yk" id="lSv-ko-xGL"/>
                         <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
-                        <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
-                        <outlet property="memo" destination="eYC-Ar-0sn" id="UTu-zz-dpX"/>
+                        <outlet property="ingredientName" destination="Mxz-WJ-uXv" id="26d-1d-aoh"/>
+                        <outlet property="memo" destination="IXF-5E-Wxs" id="nkg-Mj-h6i"/>
+                        <outlet property="memoBottomConstraint" destination="EbB-wT-gVq" id="PJJ-UO-2Tc"/>
                         <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
                         <outlet property="reminderImage" destination="p3g-RM-K5J" id="AVs-EA-BRe"/>
@@ -422,7 +425,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njQ-9w-Jog" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826.39999999999998" y="1782.4587706146929"/>
+            <point key="canvasLocation" x="-826.875" y="1782.0422535211267"/>
         </scene>
         <!--IngredientEdit-->
         <scene sceneID="hDv-8D-eZJ">

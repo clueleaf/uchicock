@@ -43,20 +43,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-bY-edz" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="317" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="246" text="最終閲覧：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fME-VJ-TZu">
-                                                    <rect key="frame" x="8" y="83" width="355" height="25"/>
+                                                    <rect key="frame" x="8" y="99" width="355" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex7-E5-r2A">
-                                                    <rect key="frame" x="8" y="58" width="355" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex7-E5-r2A">
+                                                    <rect key="frame" x="8" y="74" width="355" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -72,22 +66,29 @@
                                                         <action selector="bookmarkButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="3gc-VV-oUy"/>
                                                     </connections>
                                                 </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9sc-Sb-9J1" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="20" width="317" height="46"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ex7-E5-r2A" secondAttribute="trailing" constant="12" id="397-iX-oSe"/>
                                                 <constraint firstAttribute="trailing" secondItem="fME-VJ-TZu" secondAttribute="trailing" constant="12" id="ATN-XV-Bav"/>
-                                                <constraint firstItem="2c2-bY-edz" firstAttribute="top" secondItem="Rlu-1G-Kks" secondAttribute="top" constant="20" id="CuN-x0-GN0"/>
+                                                <constraint firstItem="9sc-Sb-9J1" firstAttribute="top" secondItem="Rlu-1G-Kks" secondAttribute="top" constant="20" id="D1h-45-W2f"/>
                                                 <constraint firstItem="ex7-E5-r2A" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="D9q-6W-aJD"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="top" secondItem="ex7-E5-r2A" secondAttribute="bottom" constant="8" id="H9U-PH-7pV"/>
-                                                <constraint firstItem="Q5t-8J-7pX" firstAttribute="leading" secondItem="2c2-bY-edz" secondAttribute="trailing" constant="8" id="OR7-Gp-yrq"/>
                                                 <constraint firstAttribute="trailing" secondItem="Q5t-8J-7pX" secondAttribute="trailing" constant="12" id="SoD-n8-aPW"/>
                                                 <constraint firstAttribute="bottom" secondItem="fME-VJ-TZu" secondAttribute="bottom" constant="12" id="UrX-ST-AcI"/>
+                                                <constraint firstItem="Q5t-8J-7pX" firstAttribute="top" secondItem="9sc-Sb-9J1" secondAttribute="top" id="WqT-UP-x7P"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="X4V-ks-QSk"/>
+                                                <constraint firstItem="ex7-E5-r2A" firstAttribute="top" secondItem="9sc-Sb-9J1" secondAttribute="bottom" constant="8" id="YmN-zD-ZlX"/>
                                                 <constraint firstAttribute="trailing" secondItem="fME-VJ-TZu" secondAttribute="trailing" constant="12" id="a7e-ju-3vG"/>
-                                                <constraint firstItem="2c2-bY-edz" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="c4e-nF-hNv"/>
                                                 <constraint firstItem="fME-VJ-TZu" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="do9-RL-eXY"/>
-                                                <constraint firstItem="Q5t-8J-7pX" firstAttribute="top" secondItem="2c2-bY-edz" secondAttribute="top" id="o8I-Xz-VV2"/>
-                                                <constraint firstItem="ex7-E5-r2A" firstAttribute="top" secondItem="2c2-bY-edz" secondAttribute="bottom" constant="8" id="s08-rc-7Hu"/>
+                                                <constraint firstItem="Q5t-8J-7pX" firstAttribute="leading" secondItem="9sc-Sb-9J1" secondAttribute="trailing" constant="8" id="oax-EB-ZUK"/>
+                                                <constraint firstItem="9sc-Sb-9J1" firstAttribute="leading" secondItem="Rlu-1G-Kks" secondAttribute="leading" constant="8" id="w2m-66-N9t"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -304,43 +305,44 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="OW8-XY-zTG">
-                                        <rect key="frame" x="0.0" y="460" width="375" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="59" id="OW8-XY-zTG">
+                                        <rect key="frame" x="0.0" y="460" width="375" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OW8-XY-zTG" id="OQn-A6-s3z">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePw-WK-61i" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="15" width="359" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="VNy-S0-oBf"/>
-                                                        <constraint firstAttribute="height" priority="750" constant="21" id="W2H-Aw-yhf"/>
+                                                        <constraint firstAttribute="height" constant="21" id="W2H-Aw-yhf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4S-5H-eMf" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="355" height="34"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dM6-Pc-OLF" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="44" width="355" height="0.0"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ePw-WK-61i" secondAttribute="trailing" constant="8" id="4VG-Bd-5Uk"/>
+                                                <constraint firstItem="dM6-Pc-OLF" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="CFh-tU-Y16"/>
                                                 <constraint firstItem="ePw-WK-61i" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="I9P-lk-f5r"/>
-                                                <constraint firstItem="K4S-5H-eMf" firstAttribute="leading" secondItem="OQn-A6-s3z" secondAttribute="leading" constant="8" id="L8a-jg-aC7"/>
+                                                <constraint firstItem="dM6-Pc-OLF" firstAttribute="top" secondItem="ePw-WK-61i" secondAttribute="bottom" constant="8" id="MKg-3E-mps"/>
                                                 <constraint firstItem="ePw-WK-61i" firstAttribute="top" secondItem="OQn-A6-s3z" secondAttribute="top" constant="15" id="NDg-zg-e4f"/>
-                                                <constraint firstAttribute="trailing" secondItem="K4S-5H-eMf" secondAttribute="trailing" constant="12" id="P0d-gp-a5p"/>
-                                                <constraint firstItem="K4S-5H-eMf" firstAttribute="top" secondItem="ePw-WK-61i" secondAttribute="bottom" constant="8" id="pnk-CP-GdI"/>
-                                                <constraint firstAttribute="bottom" secondItem="K4S-5H-eMf" secondAttribute="bottom" constant="15" id="v02-JW-xQt"/>
+                                                <constraint firstAttribute="bottom" secondItem="dM6-Pc-OLF" secondAttribute="bottom" constant="15" id="ghf-BB-6gb"/>
+                                                <constraint firstAttribute="trailing" secondItem="dM6-Pc-OLF" secondAttribute="trailing" constant="12" id="zx9-Wr-44y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Utp-kw-ek1">
-                                        <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="519" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Utp-kw-ek1" id="PCI-4g-lQs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -409,7 +411,7 @@
                             <tableViewSection headerTitle="Section-2" id="W49-nK-Sr8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeIngredientList" rowHeight="70" id="jnM-hH-qrL">
-                                        <rect key="frame" x="0.0" y="659" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="625" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jnM-hH-qrL" id="X73-0D-mYX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -421,7 +423,7 @@
                             <tableViewSection headerTitle="Section-3" id="xaO-J4-9C4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="T3w-Hh-tps">
-                                        <rect key="frame" x="0.0" y="785" width="375" height="95"/>
+                                        <rect key="frame" x="0.0" y="751" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3w-Hh-tps" id="IRB-Rl-Jq8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
@@ -591,12 +593,13 @@
                         <outlet property="madeNumCountUpLabel" destination="fiG-Md-KeZ" id="gC4-Da-50C"/>
                         <outlet property="madeNumMinusButton" destination="aTA-1P-aFO" id="E8x-3L-4a6"/>
                         <outlet property="madeNumPlusButton" destination="XZO-3V-dxg" id="Ieh-IX-idg"/>
-                        <outlet property="memo" destination="K4S-5H-eMf" id="oS5-4q-FQ1"/>
+                        <outlet property="memo" destination="dM6-Pc-OLF" id="eni-AH-DcW"/>
+                        <outlet property="memoBottomConstraint" destination="ghf-BB-6gb" id="MoR-lj-f6o"/>
                         <outlet property="method" destination="sca-mX-RzU" id="jRK-6m-p33"/>
                         <outlet property="methodTipButton" destination="KSZ-h7-jZu" id="vUd-DX-5PB"/>
                         <outlet property="openInSafariButton" destination="so1-Ff-BH9" id="TJa-xE-2IU"/>
                         <outlet property="photo" destination="XT8-og-tYP" id="QPM-5E-60F"/>
-                        <outlet property="recipeName" destination="2c2-bY-edz" id="CJw-Ne-S3U"/>
+                        <outlet property="recipeName" destination="9sc-Sb-9J1" id="wTA-6y-ITS"/>
                         <outlet property="shareButton" destination="eee-lT-yn7" id="Wt3-xe-ut2"/>
                         <outlet property="shortageLabel" destination="ex7-E5-r2A" id="zyY-mX-xKj"/>
                         <outlet property="star1" destination="6ts-mH-DGs" id="ZW1-0O-C8R"/>
