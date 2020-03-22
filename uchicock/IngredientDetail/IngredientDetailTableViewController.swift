@@ -19,7 +19,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var category: CustomLabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var stock: CircularCheckbox!
-    @IBOutlet weak var memo: CopyableLabel!
+    @IBOutlet weak var memo: UITextView!
+    @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var reminderButton: UIButton!
     @IBOutlet weak var amazonButton: UIButton!
@@ -52,6 +53,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         self.tableView.prefetchDataSource = self
 
+        memo.isScrollEnabled = false
+        memo.textContainerInset = .zero
+        memo.textContainer.lineFragmentPadding = 0
         stock.boxLineWidth = 1.0
         
         stockRecommendLabel.isHidden = true
@@ -166,7 +170,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             memo.text = ingredient.memo
             memo.textColor = UchicockStyle.labelTextColorLight
-            
+            if ingredient.memo.isEmpty {
+                memoBottomConstraint.constant = 0
+            }else{
+                memoBottomConstraint.constant = 15
+            }
+
             editButton.backgroundColor = UchicockStyle.primaryColor
             editButton.tintColor = UchicockStyle.basicBackgroundColor
             reminderButton.backgroundColor = UchicockStyle.primaryColor
