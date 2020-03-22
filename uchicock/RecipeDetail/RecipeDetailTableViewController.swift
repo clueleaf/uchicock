@@ -13,7 +13,7 @@ import Accounts
 class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var recipeName: CopyableLabel!
+    @IBOutlet weak var recipeName: UITextView!
     @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
@@ -74,6 +74,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
         
+        recipeName.isScrollEnabled = false
+        recipeName.textContainerInset = .zero
+        recipeName.textContainer.lineFragmentPadding = 0
         memo.isScrollEnabled = false
         memo.textContainerInset = .zero
         memo.textContainer.lineFragmentPadding = 0
@@ -191,7 +194,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateImageView()
 
             recipeName.text = recipe.recipeName
-            
+            recipeName.textColor = UchicockStyle.labelTextColor
+
             switch recipe.shortageNum {
             case 0:
                 shortageLabel.text = "すぐ作れる！"

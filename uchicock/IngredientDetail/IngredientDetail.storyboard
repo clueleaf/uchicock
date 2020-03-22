@@ -26,18 +26,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps6-U7-0aD" customClass="CopyableLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="304" height="40"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mxz-WJ-uXv">
+                                                    <rect key="frame" x="8" y="20" width="300" height="40"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ps6-U7-0aD" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3r1-c9-p54"/>
-                                                <constraint firstAttribute="bottom" secondItem="ps6-U7-0aD" secondAttribute="bottom" constant="20" id="AhX-ko-lRO"/>
-                                                <constraint firstAttribute="trailing" secondItem="ps6-U7-0aD" secondAttribute="trailing" constant="8" id="HXW-rm-x1y"/>
-                                                <constraint firstItem="ps6-U7-0aD" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="KyQ-1V-kJQ"/>
+                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3xi-Yz-gIq"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mxz-WJ-uXv" secondAttribute="bottom" constant="20" id="4jh-eo-qlh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mxz-WJ-uXv" secondAttribute="trailing" constant="12" id="TWj-m4-V76"/>
+                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="dju-FR-Roo"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -408,7 +409,7 @@
                         <outlet property="deleteButtonLabel" destination="jqM-l2-1Yk" id="lSv-ko-xGL"/>
                         <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
-                        <outlet property="ingredientName" destination="ps6-U7-0aD" id="xhh-mf-S0g"/>
+                        <outlet property="ingredientName" destination="Mxz-WJ-uXv" id="26d-1d-aoh"/>
                         <outlet property="memo" destination="IXF-5E-Wxs" id="nkg-Mj-h6i"/>
                         <outlet property="memoBottomConstraint" destination="EbB-wT-gVq" id="PJJ-UO-2Tc"/>
                         <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>

@@ -11,7 +11,7 @@ import RealmSwift
 
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
-    @IBOutlet weak var ingredientName: CopyableLabel!
+    @IBOutlet weak var ingredientName: UITextView!
     @IBOutlet weak var reminderImage: UIImageView!
     @IBOutlet weak var reminderMessageLabel: CustomLabel!
     @IBOutlet weak var removeReminderButton: UIButton!
@@ -53,6 +53,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         self.tableView.prefetchDataSource = self
 
+        ingredientName.isScrollEnabled = false
+        ingredientName.textContainerInset = .zero
+        ingredientName.textContainer.lineFragmentPadding = 0
         memo.isScrollEnabled = false
         memo.textContainerInset = .zero
         memo.textContainer.lineFragmentPadding = 0
@@ -136,6 +139,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             self.navigationItem.title = ingredient.ingredientName
             
             ingredientName.text = ingredient.ingredientName
+            ingredientName.textColor = UchicockStyle.labelTextColor
             
             updateIngredientRecommendLabel()
             
