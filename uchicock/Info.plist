@@ -6,11 +6,19 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>tabbar-reverse-lookup</string>
+			<string>navigation-recipe-bookmark-off</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>逆引き</string>
+			<string>ブックマーク</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>ReverseLookup</string>
+			<string>Bookmark</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>navigation-reminder-empty</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>購入リマインダー</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Reminder</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>

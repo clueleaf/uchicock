@@ -119,8 +119,16 @@ class LaunchViewController: UIViewController {
         tabBarC.modalTransitionStyle = .crossDissolve
 
         switch shortcutItemType{
-        case "ReverseLookup":
-            tabBarC.selectedIndex = 2
+        case "Bookmark":
+            tabBarC.selectedIndex = 0
+            let navC = tabBarC.viewControllers![0] as! UINavigationController
+            let recipeVC = navC.visibleViewController as? RecipeListViewController
+            recipeVC?.isBookmarkMode = true
+        case "Reminder":
+            tabBarC.selectedIndex = 1
+            let navC = tabBarC.viewControllers![1] as! UINavigationController
+            let ingredientVC = navC.visibleViewController as? IngredientListViewController
+            ingredientVC?.isReminderMode = true
         case "Album":
             tabBarC.selectedIndex = 3
         case "Calc":
