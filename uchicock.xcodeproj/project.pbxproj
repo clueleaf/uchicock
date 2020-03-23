@@ -642,8 +642,8 @@
 			children = (
 				9BEC8B1924283289009CF8CA /* MainInterface.storyboard */,
 				9BEC8B1724283289009CF8CA /* TodayViewController.swift */,
-				9BEC8B1C24283289009CF8CA /* Info.plist */,
 				9BEC8B24242835C3009CF8CA /* Media.xcassets */,
+				9BEC8B1C24283289009CF8CA /* Info.plist */,
 			);
 			path = "uchicock Widget";
 			sourceTree = "<group>";
@@ -1146,7 +1146,7 @@
 				DEVELOPMENT_TEAM = 98478E5868;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "uchicock Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1174,7 +1174,7 @@
 				DEVELOPMENT_TEAM = 98478E5868;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "uchicock Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";

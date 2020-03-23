@@ -22,42 +22,30 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.size.width / 2
         bookmarkButton.clipsToBounds = true
-        bookmarkButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        if #available(iOSApplicationExtension 13.0, *) {
-            bookmarkButton.tintColor = UIColor.label
-        } else {
-            bookmarkButton.tintColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
-        }
+        bookmarkButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        bookmarkButton.tintColor = UIColor.label
         
         reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
         reminderButton.clipsToBounds = true
-        reminderButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        if #available(iOSApplicationExtension 13.0, *) {
-            reminderButton.tintColor = UIColor.label
-        } else {
-            reminderButton.tintColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
-        }
-
+        reminderButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        reminderButton.tintColor = UIColor.label
+        
         albumButton.layer.cornerRadius = albumButton.frame.size.width / 2
         albumButton.clipsToBounds = true
-        albumButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        if #available(iOSApplicationExtension 13.0, *) {
-            albumButton.tintColor = UIColor.label
-        } else {
-            albumButton.tintColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
-        }
+        albumButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        albumButton.tintColor = UIColor.label
 
         calcButton.layer.cornerRadius = calcButton.frame.size.width / 2
         calcButton.clipsToBounds = true
-        calcButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        if #available(iOSApplicationExtension 13.0, *) {
-            calcButton.tintColor = UIColor.label
-        } else {
-            calcButton.tintColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
-        }
+        calcButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        calcButton.tintColor = UIColor.label
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
