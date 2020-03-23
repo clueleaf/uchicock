@@ -118,7 +118,8 @@
 		9BEC8B1524283289009CF8CA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC8B1424283289009CF8CA /* NotificationCenter.framework */; };
 		9BEC8B1824283289009CF8CA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1724283289009CF8CA /* TodayViewController.swift */; };
 		9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC8B1924283289009CF8CA /* MainInterface.storyboard */; };
-		9BEC8B1F24283289009CF8CA /* uchicock Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BEC8B1324283289009CF8CA /* uchicock Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9BEC8B1F24283289009CF8CA /* うちカク！.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BEC8B1324283289009CF8CA /* うちカク！.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9BEC8B25242835C3009CF8CA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC8B24242835C3009CF8CA /* Media.xcassets */; };
 		9BEF8B271E68738E00F32DDB /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B261E68738E00F32DDB /* RealmSwift.framework */; };
 		9BEF8B291E68739400F32DDB /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEF8B281E68739400F32DDB /* Realm.framework */; };
 		9BF93F6C1CCB36620000F7F8 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 9BF93F6B1CCB36620000F7F8 /* default.realm */; };
@@ -141,7 +142,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9BEC8B1F24283289009CF8CA /* uchicock Widget.appex in Embed App Extensions */,
+				9BEC8B1F24283289009CF8CA /* うちカク！.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,11 +262,12 @@
 		9BEC4C3D2351EC9B004FE9B4 /* AlbumFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumFilterViewController.swift; path = AlbumFilter/AlbumFilterViewController.swift; sourceTree = "<group>"; };
 		9BEC4C402351ECF1004FE9B4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Settings/Settings.storyboard; sourceTree = "<group>"; };
 		9BEC4C422351ED51004FE9B4 /* Introduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Introduction.storyboard; path = Util/Introduction/Introduction.storyboard; sourceTree = "<group>"; };
-		9BEC8B1324283289009CF8CA /* uchicock Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "uchicock Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BEC8B1324283289009CF8CA /* うちカク！.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "うちカク！.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BEC8B1424283289009CF8CA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9BEC8B1724283289009CF8CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		9BEC8B1A24283289009CF8CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9BEC8B1C24283289009CF8CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BEC8B24242835C3009CF8CA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		9BEF8B261E68738E00F32DDB /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		9BEF8B281E68739400F32DDB /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/uchicock-fpfjtbqsnjmxttaewoqilanvdaek/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
 		9BF93F6B1CCB36620000F7F8 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Database/default.realm; sourceTree = "<group>"; };
@@ -498,7 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC9A3111C783CAA0031F631 /* uchicock.app */,
-				9BEC8B1324283289009CF8CA /* uchicock Widget.appex */,
+				9BEC8B1324283289009CF8CA /* うちカク！.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -638,9 +640,10 @@
 		9BEC8B1624283289009CF8CA /* uchicock Widget */ = {
 			isa = PBXGroup;
 			children = (
-				9BEC8B1724283289009CF8CA /* TodayViewController.swift */,
 				9BEC8B1924283289009CF8CA /* MainInterface.storyboard */,
+				9BEC8B1724283289009CF8CA /* TodayViewController.swift */,
 				9BEC8B1C24283289009CF8CA /* Info.plist */,
+				9BEC8B24242835C3009CF8CA /* Media.xcassets */,
 			);
 			path = "uchicock Widget";
 			sourceTree = "<group>";
@@ -705,7 +708,7 @@
 			);
 			name = "uchicock Widget";
 			productName = "uchicock Widget";
-			productReference = 9BEC8B1324283289009CF8CA /* uchicock Widget.appex */;
+			productReference = 9BEC8B1324283289009CF8CA /* うちカク！.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -789,6 +792,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEC8B25242835C3009CF8CA /* Media.xcassets in Resources */,
 				9BEC8B1B24283289009CF8CA /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1147,7 +1151,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "うちカク！";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -1174,7 +1178,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.kou.uchicock.uchicock-Widget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "うちカク！";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
