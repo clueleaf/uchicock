@@ -29,22 +29,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.size.width / 2
         bookmarkButton.clipsToBounds = true
-        bookmarkButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        bookmarkButton.backgroundColor = UIColor(named: "buttonBackground")
         bookmarkButton.tintColor = UIColor.label
         
         reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
         reminderButton.clipsToBounds = true
-        reminderButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        reminderButton.backgroundColor = UIColor(named: "buttonBackground")
         reminderButton.tintColor = UIColor.label
         
         albumButton.layer.cornerRadius = albumButton.frame.size.width / 2
         albumButton.clipsToBounds = true
-        albumButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        albumButton.backgroundColor = UIColor(named: "buttonBackground")
         albumButton.tintColor = UIColor.label
 
         calcButton.layer.cornerRadius = calcButton.frame.size.width / 2
         calcButton.clipsToBounds = true
-        calcButton.backgroundColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 0.3)
+        calcButton.backgroundColor = UIColor(named: "buttonBackground")
         calcButton.tintColor = UIColor.label
     }
         
