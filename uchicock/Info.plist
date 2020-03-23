@@ -51,41 +51,6 @@
 	<string>レシピの写真を登録するために使います。</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>材料の購入予定をリマインダーに登録するために使います。</string>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>navigation-recipe-bookmark-off</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>ブックマーク</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>Bookmark</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>navigation-reminder-empty</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>購入リマインダー</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>Reminder</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>album-empty</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>アルバム</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>Album</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>settings-calc</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>度数計算機</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>Calc</string>
-		</dict>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
