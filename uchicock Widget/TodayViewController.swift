@@ -24,7 +24,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.size.width / 2
-        bookmarkButton.layer.borderWidth = 2.0
         bookmarkButton.clipsToBounds = true
         bookmarkButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         if #available(iOSApplicationExtension 13.0, *) {
@@ -34,7 +33,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         
         reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
-        reminderButton.layer.borderWidth = 2.0
         reminderButton.clipsToBounds = true
         reminderButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         if #available(iOSApplicationExtension 13.0, *) {
@@ -44,7 +42,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
 
         albumButton.layer.cornerRadius = albumButton.frame.size.width / 2
-        albumButton.layer.borderWidth = 2.0
         albumButton.clipsToBounds = true
         albumButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         if #available(iOSApplicationExtension 13.0, *) {
@@ -54,7 +51,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
 
         calcButton.layer.cornerRadius = calcButton.frame.size.width / 2
-        calcButton.layer.borderWidth = 2.0
         calcButton.clipsToBounds = true
         calcButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         if #available(iOSApplicationExtension 13.0, *) {
@@ -65,25 +61,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
-        completionHandler(NCUpdateResult.newData)
+        completionHandler(NCUpdateResult.noData)
     }
     
     @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
+        let url = URL(string: "uchicock://bookmark")!
+        extensionContext?.open(url, completionHandler: nil)
     }
     
     @IBAction func reminderButtonTapped(_ sender: UIButton) {
+        let url = URL(string: "uchicock://reminder")!
+        extensionContext?.open(url, completionHandler: nil)
     }
     
     @IBAction func albumButtonTapped(_ sender: UIButton) {
+        let url = URL(string: "uchicock://album")!
+        extensionContext?.open(url, completionHandler: nil)
     }
     
     @IBAction func calcButtonTapped(_ sender: UIButton) {
+        let url = URL(string: "uchicock://calc")!
+        extensionContext?.open(url, completionHandler: nil)
     }
     
 }

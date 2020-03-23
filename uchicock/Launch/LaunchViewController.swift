@@ -18,7 +18,7 @@ class LaunchViewController: UIViewController {
     var shouldShowIntroduction = false
     var initializedFullScreenPopGesture = false
     
-    var shortcutItemType: String? = nil
+    var widgetUrl: String? = nil
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
@@ -34,7 +34,7 @@ class LaunchViewController: UIViewController {
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }else{
-            if shortcutItemType == nil {
+            if widgetUrl == nil {
                 prepareMessage.alpha = 1.0
             }else{
                 prepareMessage.alpha = 0.0
@@ -54,7 +54,7 @@ class LaunchViewController: UIViewController {
     }
     
     func prepareToShowRecipeList(){
-        if shortcutItemType == nil {
+        if widgetUrl == nil {
             prepareMessage.alpha = 1.0
         }else{
             prepareMessage.alpha = 0.0
@@ -122,22 +122,22 @@ class LaunchViewController: UIViewController {
         tabBarC.modalPresentationStyle = .fullScreen
         tabBarC.modalTransitionStyle = .crossDissolve
 
-        switch shortcutItemType{
-        case "Bookmark":
+        switch widgetUrl{
+        case "uchicock://bookmark":
             tabBarC.selectedIndex = 0
             let navC = tabBarC.viewControllers![0] as! UINavigationController
             let recipeVC = navC.visibleViewController as? RecipeListViewController
             recipeVC?.isBookmarkMode = true
             recipeVC?.shouldShowBookmarkGuide = true
-        case "Reminder":
+        case "uchicock://reminder":
             tabBarC.selectedIndex = 1
             let navC = tabBarC.viewControllers![1] as! UINavigationController
             let ingredientVC = navC.visibleViewController as? IngredientListViewController
             ingredientVC?.isReminderMode = true
             ingredientVC?.shouldShowReminderGuide = true
-        case "Album":
+        case "uchicock://album":
             tabBarC.selectedIndex = 3
-        case "Calc":
+        case "uchicock://calc":
             tabBarC.selectedIndex = 4
             
             let navC = tabBarC.viewControllers![4] as! UINavigationController
@@ -162,7 +162,7 @@ class LaunchViewController: UIViewController {
             }
         }
 
-        shortcutItemType = nil
+        widgetUrl = nil
         self.present(tabBarC, animated: false, completion: nil)
     }
         
