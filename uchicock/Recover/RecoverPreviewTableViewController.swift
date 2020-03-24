@@ -10,7 +10,7 @@ import UIKit
 
 class RecoverPreviewTableViewController: UITableViewController {
 
-    @IBOutlet weak var recipeName: CustomLabel!
+    @IBOutlet weak var recipeName: CustomTextView!
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
@@ -31,6 +31,11 @@ class RecoverPreviewTableViewController: UITableViewController {
         if interactor != nil{
             tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
+        
+        recipeName.isScrollEnabled = false
+        recipeName.textContainerInset = .zero
+        recipeName.textContainer.lineFragmentPadding = 0
+        recipeName.font = UIFont.systemFont(ofSize: 25.0)
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -38,7 +43,8 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
-        recipeName.text = recipe.recipeName
+//        recipeName.text = recipe.recipeName
+        recipeName.text = "aaaaaaaaaaaaaaあああああああああいいいいいいいうううううううううえええええ"
         switch recipe.style{
         case 0:
             style.text = "ロング"
