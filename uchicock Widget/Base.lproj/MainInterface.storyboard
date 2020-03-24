@@ -23,9 +23,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ブックマーク" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuA-Wp-9Bb">
-                                                <rect key="frame" x="6.5" y="66" width="67.5" height="15"/>
+                                                <rect key="frame" x="6.5" y="66" width="67.5" height="14"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="15" id="lpQ-KY-wot"/>
+                                                    <constraint firstAttribute="height" constant="14" id="lpQ-KY-wot"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -47,8 +47,8 @@
                                             <constraint firstItem="Ie5-2v-pWI" firstAttribute="centerY" secondItem="ieW-AK-hJg" secondAttribute="centerY" constant="-16" id="7DR-AZ-xg4"/>
                                             <constraint firstItem="OuA-Wp-9Bb" firstAttribute="centerX" secondItem="ieW-AK-hJg" secondAttribute="centerX" id="Hoe-Qg-Yzm"/>
                                             <constraint firstItem="OuA-Wp-9Bb" firstAttribute="top" secondItem="Ie5-2v-pWI" secondAttribute="bottom" constant="4" id="N4p-Gb-tac"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OuA-Wp-9Bb" secondAttribute="bottom" constant="23" id="NF8-hU-AVr"/>
-                                            <constraint firstItem="Ie5-2v-pWI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ieW-AK-hJg" secondAttribute="top" constant="8" id="YfL-X8-Ukk"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OuA-Wp-9Bb" secondAttribute="bottom" constant="18" id="NF8-hU-AVr"/>
+                                            <constraint firstItem="Ie5-2v-pWI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ieW-AK-hJg" secondAttribute="top" constant="4" id="YfL-X8-Ukk"/>
                                             <constraint firstItem="Ie5-2v-pWI" firstAttribute="centerX" secondItem="ieW-AK-hJg" secondAttribute="centerX" id="c4V-AQ-yFT"/>
                                             <constraint firstItem="Ie5-2v-pWI" firstAttribute="height" relation="lessThanOrEqual" secondItem="ieW-AK-hJg" secondAttribute="height" multiplier="4:7" id="eRw-ov-6IS"/>
                                             <constraint firstItem="Ie5-2v-pWI" firstAttribute="width" relation="lessThanOrEqual" secondItem="ieW-AK-hJg" secondAttribute="width" multiplier="4:7" id="nzI-ot-Mf4"/>
@@ -68,9 +68,9 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6f-6I-84e">
-                                                <rect key="frame" x="6.5" y="66" width="67.5" height="30"/>
+                                                <rect key="frame" x="6.5" y="66" width="67.5" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="k8r-Ys-iVf"/>
+                                                    <constraint firstAttribute="height" constant="28" id="k8r-Ys-iVf"/>
                                                 </constraints>
                                                 <string key="text">購入
 リマインダー</string>
@@ -81,11 +81,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="q6f-6I-84e" secondAttribute="bottom" constant="4" id="0zQ-iZ-2Rj"/>
                                             <constraint firstItem="wN5-hd-qVn" firstAttribute="centerY" secondItem="4wU-dF-Fin" secondAttribute="centerY" constant="-16" id="Av2-Mg-oCg"/>
                                             <constraint firstItem="wN5-hd-qVn" firstAttribute="height" relation="lessThanOrEqual" secondItem="4wU-dF-Fin" secondAttribute="height" multiplier="4:7" id="GTE-HT-orQ"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="q6f-6I-84e" secondAttribute="bottom" constant="8" id="HQf-9s-k0q"/>
+                                            <constraint firstItem="wN5-hd-qVn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4wU-dF-Fin" secondAttribute="top" constant="4" id="Lb3-xf-zwt"/>
                                             <constraint firstItem="wN5-hd-qVn" firstAttribute="width" relation="lessThanOrEqual" secondItem="4wU-dF-Fin" secondAttribute="width" multiplier="4:7" id="Mnv-xp-ugU"/>
-                                            <constraint firstItem="wN5-hd-qVn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4wU-dF-Fin" secondAttribute="top" constant="8" id="QC9-Sy-ldp"/>
                                             <constraint firstItem="wN5-hd-qVn" firstAttribute="centerX" secondItem="4wU-dF-Fin" secondAttribute="centerX" id="fA6-fr-1VM"/>
                                             <constraint firstItem="q6f-6I-84e" firstAttribute="centerX" secondItem="4wU-dF-Fin" secondAttribute="centerX" id="nTq-4t-2dH"/>
                                             <constraint firstItem="q6f-6I-84e" firstAttribute="top" secondItem="wN5-hd-qVn" secondAttribute="bottom" constant="4" id="r4A-0h-m6P"/>
@@ -95,9 +95,9 @@
                                         <rect key="frame" x="160" y="0.0" width="80" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルバム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ya-tm-gfN">
-                                                <rect key="frame" x="17.5" y="66" width="45" height="15"/>
+                                                <rect key="frame" x="17.5" y="66" width="45" height="14"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="15" id="7x6-Qh-372"/>
+                                                    <constraint firstAttribute="height" constant="14" id="7x6-Qh-372"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
@@ -117,11 +117,11 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="6Ya-tm-gfN" firstAttribute="top" secondItem="PHR-0r-s76" secondAttribute="bottom" constant="4" id="3gw-VY-ehp"/>
+                                            <constraint firstItem="PHR-0r-s76" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eKA-7g-I3K" secondAttribute="top" constant="4" id="6nk-Vf-3IK"/>
                                             <constraint firstItem="PHR-0r-s76" firstAttribute="centerY" secondItem="eKA-7g-I3K" secondAttribute="centerY" constant="-16" id="AR9-sN-QKl"/>
-                                            <constraint firstItem="PHR-0r-s76" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eKA-7g-I3K" secondAttribute="top" constant="8" id="Cyl-A3-J77"/>
                                             <constraint firstItem="6Ya-tm-gfN" firstAttribute="centerX" secondItem="eKA-7g-I3K" secondAttribute="centerX" id="ddO-kv-hMC"/>
                                             <constraint firstItem="PHR-0r-s76" firstAttribute="width" relation="lessThanOrEqual" secondItem="eKA-7g-I3K" secondAttribute="width" multiplier="4:7" id="i2P-Qh-EYn"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6Ya-tm-gfN" secondAttribute="bottom" constant="23" id="miz-a2-oHT"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6Ya-tm-gfN" secondAttribute="bottom" constant="18" id="rlN-aP-0FG"/>
                                             <constraint firstItem="PHR-0r-s76" firstAttribute="height" relation="lessThanOrEqual" secondItem="eKA-7g-I3K" secondAttribute="height" multiplier="4:7" id="sIz-hh-h4N"/>
                                             <constraint firstItem="PHR-0r-s76" firstAttribute="centerX" secondItem="eKA-7g-I3K" secondAttribute="centerX" id="umZ-X6-qUh"/>
                                         </constraints>
@@ -130,16 +130,16 @@
                                         <rect key="frame" x="240" y="0.0" width="80" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="度数計算機" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzz-qm-rcT">
-                                                <rect key="frame" x="12" y="66" width="56.5" height="15"/>
+                                                <rect key="frame" x="12" y="69.5" width="56.5" height="14"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="15" id="hSc-va-EWY"/>
+                                                    <constraint firstAttribute="height" constant="14" id="hSc-va-EWY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHc-NA-5Xn">
-                                                <rect key="frame" x="17" y="16" width="46" height="46"/>
+                                                <rect key="frame" x="13.5" y="12.5" width="53" height="53"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="LHc-NA-5Xn" secondAttribute="height" multiplier="1:1" id="mUQ-t4-NPZ"/>
                                                 </constraints>
@@ -151,12 +151,12 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="height" relation="lessThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="height" multiplier="4:7" id="2Xn-Wk-FR9"/>
-                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="width" relation="lessThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="width" multiplier="4:7" id="59E-kl-eAp"/>
-                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="top" constant="8" id="NFW-sO-Q34"/>
+                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="height" relation="lessThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="height" multiplier="2:3" id="2Xn-Wk-FR9"/>
+                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="width" relation="lessThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="width" multiplier="2:3" id="59E-kl-eAp"/>
+                                            <constraint firstItem="LHc-NA-5Xn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AZt-j6-0U6" secondAttribute="top" constant="4" id="NFW-sO-Q34"/>
                                             <constraint firstItem="Mzz-qm-rcT" firstAttribute="top" secondItem="LHc-NA-5Xn" secondAttribute="bottom" constant="4" id="bjX-by-jWf"/>
                                             <constraint firstItem="LHc-NA-5Xn" firstAttribute="centerX" secondItem="AZt-j6-0U6" secondAttribute="centerX" id="dIp-Jg-rLF"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mzz-qm-rcT" secondAttribute="bottom" constant="23" id="i5g-4a-oIo"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mzz-qm-rcT" secondAttribute="bottom" constant="18" id="i5g-4a-oIo"/>
                                             <constraint firstItem="LHc-NA-5Xn" firstAttribute="centerY" secondItem="AZt-j6-0U6" secondAttribute="centerY" constant="-16" id="npN-Zx-WZV"/>
                                             <constraint firstItem="Mzz-qm-rcT" firstAttribute="centerX" secondItem="AZt-j6-0U6" secondAttribute="centerX" id="pOI-da-hAN"/>
                                         </constraints>
