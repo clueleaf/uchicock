@@ -12,7 +12,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
-    @IBOutlet weak var ingredientNameLabel: UILabel!
+    @IBOutlet weak var ingredientNameTextView: CustomTextView!
     @IBOutlet weak var optionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
@@ -33,7 +33,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     stockLabel.textColor = UchicockStyle.labelTextColorOnBadge
                     stockLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
                     stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                    ingredientNameLabel.textColor = UchicockStyle.labelTextColor
+                    ingredientNameTextView.textColor = UchicockStyle.labelTextColor
                     amountLabel.textColor = UchicockStyle.labelTextColor
                 }else{
                     stockLabel.isHidden = false
@@ -41,12 +41,12 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     stockLabel.textColor = UchicockStyle.primaryColor
                     stockLabel.layer.backgroundColor = UIColor.clear.cgColor
                     stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                    ingredientNameLabel.textColor = UchicockStyle.labelTextColorLight
+                    ingredientNameTextView.textColor = UchicockStyle.labelTextColorLight
                     amountLabel.textColor = UchicockStyle.labelTextColorLight
                 }
             }else{
                 stockLabel.isHidden = true
-                ingredientNameLabel.textColor = UchicockStyle.labelTextColor
+                ingredientNameTextView.textColor = UchicockStyle.labelTextColor
                 amountLabel.textColor = UchicockStyle.labelTextColor
             }
         }
@@ -67,8 +67,14 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     var ingredientName = String(){
         didSet{
-            ingredientNameLabel.text = ingredientName
-            ingredientNameLabel.clipsToBounds = true
+            ingredientNameTextView.text = ingredientName
+            ingredientNameTextView.clipsToBounds = true
+            ingredientNameTextView.isScrollEnabled = false
+            ingredientNameTextView.textContainerInset = .zero
+            ingredientNameTextView.textContainer.lineFragmentPadding = 0
+            ingredientNameTextView.font = UIFont.systemFont(ofSize: 15.0)
+            ingredientNameTextView.textContainer.maximumNumberOfLines = 1
+            ingredientNameTextView.textContainer.lineBreakMode = .byTruncatingTail
         }
     }
     

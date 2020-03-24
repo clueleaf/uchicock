@@ -43,8 +43,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
-//        recipeName.text = recipe.recipeName
-        recipeName.text = "aaaaaaaaaaaaaaあああああああああいいいいいいいうううううううううえええええ"
+        recipeName.text = recipe.recipeName
         switch recipe.style{
         case 0:
             style.text = "ロング"
@@ -172,6 +171,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.ingredientNameTextView.isSelectable = true
             cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
             cell.amountText = recipe.recipeIngredients[indexPath.row].amount
             cell.stock = nil
