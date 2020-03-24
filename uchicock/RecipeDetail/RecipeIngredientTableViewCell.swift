@@ -68,6 +68,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     var ingredientName = String(){
         didSet{
             ingredientNameTextView.text = ingredientName
+            ingredientNameTextView.backgroundColor = UIColor.clear
             ingredientNameTextView.clipsToBounds = true
             ingredientNameTextView.isScrollEnabled = false
             ingredientNameTextView.textContainerInset = .zero

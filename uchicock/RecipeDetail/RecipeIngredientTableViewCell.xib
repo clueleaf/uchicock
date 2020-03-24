@@ -53,7 +53,7 @@
                             <constraint firstAttribute="width" constant="13" id="oXt-EL-MmH"/>
                         </constraints>
                     </imageView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kI-pn-oNh" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
+                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kI-pn-oNh" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
                         <rect key="frame" x="84" y="8" width="228" height="21"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>

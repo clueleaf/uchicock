@@ -172,6 +172,7 @@ class RecoverPreviewTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
             cell.ingredientNameTextView.isSelectable = true
+            cell.ingredientNameTextView.isUserInteractionEnabled = true
             cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
             cell.amountText = recipe.recipeIngredients[indexPath.row].amount
             cell.stock = nil
