@@ -22,6 +22,48 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOSApplicationExtension 13.0, *) {
+            bookmarkButton.backgroundColor = UIColor(named: "buttonBackground")
+            bookmarkButton.tintColor = UIColor.label
+            bookmarkButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
+            bookmarkLabel.textColor = UIColor.label
+
+            reminderButton.backgroundColor = UIColor(named: "buttonBackground")
+            reminderButton.tintColor = UIColor.label
+            reminderButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
+            reminderLabel.textColor = UIColor.label
+
+            albumButton.backgroundColor = UIColor(named: "buttonBackground")
+            albumButton.tintColor = UIColor.label
+            albumButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
+            albumLabel.textColor = UIColor.label
+
+            calcButton.backgroundColor = UIColor(named: "buttonBackground")
+            calcButton.tintColor = UIColor.label
+            calcButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
+            calcLabel.textColor = UIColor.label
+        }else{
+            bookmarkButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            bookmarkButton.tintColor = UIColor.black
+            bookmarkButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
+            bookmarkLabel.textColor = UIColor.black
+
+            reminderButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            reminderButton.tintColor = UIColor.black
+            reminderButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
+            reminderLabel.textColor = UIColor.black
+
+            albumButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            albumButton.tintColor = UIColor.black
+            albumButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
+            albumLabel.textColor = UIColor.black
+
+            calcButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            calcButton.tintColor = UIColor.black
+            calcButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
+            calcLabel.textColor = UIColor.black
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,62 +72,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.size.width / 2
         bookmarkButton.clipsToBounds = true
         bookmarkButton.layer.borderWidth = bookmarkButton.frame.size.width / 30
-        if #available(iOSApplicationExtension 13.0, *) {
-            bookmarkButton.backgroundColor = UIColor(named: "buttonBackground")
-            bookmarkButton.tintColor = UIColor.label
-            bookmarkButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-            bookmarkLabel.textColor = UIColor.label
-        }else{
-            bookmarkButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
-            bookmarkButton.tintColor = UIColor.black
-            bookmarkButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
-            bookmarkLabel.textColor = UIColor.black
-        }
         
         reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
         reminderButton.clipsToBounds = true
         reminderButton.layer.borderWidth = reminderButton.frame.size.width / 30
-        if #available(iOSApplicationExtension 13.0, *) {
-            reminderButton.backgroundColor = UIColor(named: "buttonBackground")
-            reminderButton.tintColor = UIColor.label
-            reminderButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-            reminderLabel.textColor = UIColor.label
-        }else{
-            reminderButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
-            reminderButton.tintColor = UIColor.black
-            reminderButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
-            reminderLabel.textColor = UIColor.black
-        }
 
         albumButton.layer.cornerRadius = albumButton.frame.size.width / 2
         albumButton.clipsToBounds = true
         albumButton.layer.borderWidth = albumButton.frame.size.width / 30
-        if #available(iOSApplicationExtension 13.0, *) {
-            albumButton.backgroundColor = UIColor(named: "buttonBackground")
-            albumButton.tintColor = UIColor.label
-            albumButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-            albumLabel.textColor = UIColor.label
-        }else{
-            albumButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
-            albumButton.tintColor = UIColor.black
-            albumButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
-            albumLabel.textColor = UIColor.black
-        }
 
         calcButton.layer.cornerRadius = calcButton.frame.size.width / 2
         calcButton.clipsToBounds = true
         calcButton.layer.borderWidth = calcButton.frame.size.width / 30
-        if #available(iOSApplicationExtension 13.0, *) {
-            calcButton.backgroundColor = UIColor(named: "buttonBackground")
-            calcButton.tintColor = UIColor.label
-            calcButton.layer.borderColor = UIColor(named: "buttonBorder")!.cgColor
-            calcLabel.textColor = UIColor.label
-        }else{
-            calcButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
-            calcButton.tintColor = UIColor.black
-            calcButton.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.6).cgColor
-            calcLabel.textColor = UIColor.black
-        }
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
