@@ -296,6 +296,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        searchButton.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 18)
     }
     
     private func filterRecipeBasic(){
