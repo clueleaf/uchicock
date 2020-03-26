@@ -29,6 +29,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
+    var recipeBasicListForFilterModal = Array<RecipeBasic>()
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
@@ -919,6 +920,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.setupVC()
         }
         vc.userDefaultsPrefix = "recipe-"
+        
+        recipeBasicListForFilterModal.removeAll()
+        for recipe in recipeList!{
+            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+        }
+        if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+            recipeBasicListForFilterModal.removeAll{ !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
+        }
+
+        vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal
         searchBar.resignFirstResponder()
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

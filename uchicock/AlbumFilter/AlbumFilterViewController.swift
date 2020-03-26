@@ -94,6 +94,9 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     var recipeFilterMedium = true
     var recipeFilterStrong = true
     var recipeFilterStrengthNone = true
+    
+    var recipeBasicListForFilterModal = Array<RecipeBasic>()
+    var filteredRecipeBasic = Array<RecipeBasic>()
 
     var interactor: Interactor?
 
@@ -131,6 +134,8 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: recipeFilterMedium)
         initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: recipeFilterStrong)
         initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: recipeFilterStrengthNone)
+        
+        filterRecipeBasic()
     }
     
     private func readUserDefaults(){
@@ -215,6 +220,67 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = 20
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+    }
+    
+    private func filterRecipeBasic(){
+        filteredRecipeBasic = recipeBasicListForFilterModal
+        
+        if favorite0Checkbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.favorites == 0 }
+        }
+        if favorite1Checkbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.favorites == 1 }
+        }
+        if favorite2Checkbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.favorites == 2 }
+        }
+        if favorite3Checkbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.favorites == 3 }
+        }
+        if styleLongCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.style == 0 }
+        }
+        if styleShortCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.style == 1 }
+        }
+        if styleHotCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.style == 2 }
+        }
+        if styleNoneCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.style == 3 }
+        }
+        if methodBuildCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.method == 0 }
+        }
+        if methodStirCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.method == 1 }
+        }
+        if methodShakeCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.method == 2 }
+        }
+        if methodBlendCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.method == 3 }
+        }
+        if methodOthersCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.method == 4 }
+        }
+        if strengthNonAlcoholCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.strength == 0 }
+        }
+        if strengthWeakCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.strength == 1 }
+        }
+        if strengthMediumCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.strength == 2 }
+        }
+        if strengthStrongCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.strength == 3 }
+        }
+        if strengthNoneCheckbox.checkState == .unchecked{
+            filteredRecipeBasic.removeAll{ $0.strength == 4 }
+        }
+        
+        searchButton.setTitle("決定 (" + String(filteredRecipeBasic.count) +  "レシピ)", for: .normal)
     }
     
     private func setFavoriteWarningVisibility(){
@@ -407,6 +473,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(favorite2Checkbox)
         setCheckboxUnchecked(favorite3Checkbox)
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favoriteSelectAllButtonTapped(_ sender: UIButton) {
@@ -415,22 +482,27 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(favorite2Checkbox)
         setCheckboxChecked(favorite3Checkbox)
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite0CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite1CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite2CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite3CheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite0ButtonTapped(_ sender: UIButton) {
@@ -440,6 +512,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(favorite0Checkbox)
         }
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite1ButtonTapped(_ sender: UIButton) {
@@ -449,6 +522,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(favorite1Checkbox)
         }
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite2ButtonTapped(_ sender: UIButton) {
@@ -458,6 +532,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(favorite2Checkbox)
         }
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func favorite3ButtonTapped(_ sender: UIButton) {
@@ -467,6 +542,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(favorite3Checkbox)
         }
         setFavoriteWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleDeselectAllButtonTapped(_ sender: UIButton) {
@@ -475,6 +551,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(styleHotCheckbox)
         setCheckboxUnchecked(styleNoneCheckbox)
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleSelectAllButtonTapped(_ sender: UIButton) {
@@ -483,22 +560,27 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(styleHotCheckbox)
         setCheckboxChecked(styleNoneCheckbox)
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleLongCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleShortCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
 
     @IBAction func styleHotCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleLongButtonTapped(_ sender: UIButton) {
@@ -508,6 +590,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(styleLongCheckbox)
         }
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleShortButtonTapped(_ sender: UIButton) {
@@ -517,6 +600,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(styleShortCheckbox)
         }
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleHotButtonTapped(_ sender: UIButton) {
@@ -526,6 +610,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(styleHotCheckbox)
         }
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func styleNoneButtonTapped(_ sender: UIButton) {
@@ -535,6 +620,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(styleNoneCheckbox)
         }
         setStyleWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodDeselectAllButtonTapped(_ sender: UIButton) {
@@ -544,6 +630,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(methodBlendCheckbox)
         setCheckboxUnchecked(methodOthersCheckbox)
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodSelectAllButtonTapped(_ sender: UIButton) {
@@ -553,26 +640,32 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(methodBlendCheckbox)
         setCheckboxChecked(methodOthersCheckbox)
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodBuildCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodStirCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodShakeCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodBlendCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodOthersCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodBuildButtonTapped(_ sender: UIButton) {
@@ -582,6 +675,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(methodBuildCheckbox)
         }
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodStirButtonTapped(_ sender: UIButton) {
@@ -591,6 +685,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(methodStirCheckbox)
         }
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodShakeButtonTapped(_ sender: UIButton) {
@@ -600,6 +695,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(methodShakeCheckbox)
         }
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodBlendButtonTapped(_ sender: UIButton) {
@@ -609,6 +705,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(methodBlendCheckbox)
         }
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func methodOthersButtonTapped(_ sender: UIButton) {
@@ -618,6 +715,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(methodOthersCheckbox)
         }
         setMethodWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthDeselectAllButtonTapped(_ sender: UIButton) {
@@ -627,6 +725,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxUnchecked(strengthStrongCheckbox)
         setCheckboxUnchecked(strengthNoneCheckbox)
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthSelectAllButtonTapped(_ sender: UIButton) {
@@ -636,26 +735,32 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(strengthStrongCheckbox)
         setCheckboxChecked(strengthNoneCheckbox)
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthNonAlcoholCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthWeakCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthMediumCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthStrongCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthNoneCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthNonAlcoholButtonTapped(_ sender: UIButton) {
@@ -665,6 +770,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(strengthNonAlcoholCheckbox)
         }
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthWeakButtonTapped(_ sender: UIButton) {
@@ -674,6 +780,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(strengthWeakCheckbox)
         }
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthMediumButtonTapped(_ sender: UIButton) {
@@ -683,6 +790,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(strengthMediumCheckbox)
         }
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthStrongButtonTapped(_ sender: UIButton) {
@@ -692,6 +800,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(strengthStrongCheckbox)
         }
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
     
     @IBAction func strengthNoneButtonTapped(_ sender: UIButton) {
@@ -701,5 +810,6 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             setCheckboxChecked(strengthNoneCheckbox)
         }
         setStrengthWarningVisibility()
+        filterRecipeBasic()
     }
 }

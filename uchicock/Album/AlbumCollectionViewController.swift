@@ -540,6 +540,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.setupVC()
         }
         vc.userDefaultsPrefix = "album-"
+        vc.recipeBasicListForFilterModal = self.recipeBasicList
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet
