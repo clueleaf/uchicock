@@ -515,7 +515,30 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: - IBAction
-    @IBAction func searchButtonTapped(_ sender: UIButton) {
+    @IBAction func searchButtonTouchedDown(_ sender: UIButton) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        UchicockStyle.primaryColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        sender.setTitleColor(UIColor(red: red, green: green, blue: blue, alpha: 0.3), for: .normal)
+    }
+    
+    @IBAction func searchButtonDraggedInside(_ sender: UIButton) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        UchicockStyle.primaryColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        sender.setTitleColor(UIColor(red: red, green: green, blue: blue, alpha: 0.3), for: .normal)
+    }
+    
+    @IBAction func searchButtonDraggedOutside(_ sender: UIButton) {
+        sender.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+    }
+    
+    @IBAction func searchButtonTouchedUpInside(_ sender: UIButton) {
+        sender.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         self.saveUserDefaults()
         self.dismiss(animated: true, completion: nil)
     }

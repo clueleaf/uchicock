@@ -1418,7 +1418,10 @@
                                         </constraints>
                                         <state key="normal" title="検索実行"/>
                                         <connections>
-                                            <action selector="searchButtonTapped:" destination="iHW-kn-1ob" eventType="touchUpInside" id="p1k-Rs-1VR"/>
+                                            <action selector="searchButtonDraggedInside:" destination="iHW-kn-1ob" eventType="touchDragInside" id="DdE-WA-qYy"/>
+                                            <action selector="searchButtonDraggedOutside:" destination="iHW-kn-1ob" eventType="touchDragOutside" id="aLZ-fv-QHM"/>
+                                            <action selector="searchButtonTouchedDown:" destination="iHW-kn-1ob" eventType="touchDown" id="HYt-GW-gHa"/>
+                                            <action selector="searchButtonTouchedUpInside:" destination="iHW-kn-1ob" eventType="touchUpInside" id="Sfc-jv-UqA"/>
                                         </connections>
                                     </button>
                                 </subviews>

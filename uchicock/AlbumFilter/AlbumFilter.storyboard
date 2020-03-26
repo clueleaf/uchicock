@@ -1059,7 +1059,10 @@
                                         </constraints>
                                         <state key="normal" title="決定"/>
                                         <connections>
-                                            <action selector="doneButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="yc7-dc-EIw"/>
+                                            <action selector="searchButtonDraggedInside:" destination="jVM-Wp-2x7" eventType="touchDragInside" id="ZpO-L7-tst"/>
+                                            <action selector="searchButtonDraggedOutside:" destination="jVM-Wp-2x7" eventType="touchDragOutside" id="05y-4X-Gm7"/>
+                                            <action selector="searchButtonTouchedDown:" destination="jVM-Wp-2x7" eventType="touchDown" id="2NZ-KW-7bB"/>
+                                            <action selector="searchButtonTouchedUpInside:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="w1E-tv-Lmo"/>
                                         </connections>
                                     </button>
                                 </subviews>
