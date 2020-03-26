@@ -322,37 +322,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     func reloadRecipeList(){
-        recipeBasicList.removeAll()
-        
-        if ingredientTextField1.text != nil && ingredientTextField1.text!.withoutSpace() != ""{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: ingredientTextField3.text!.withoutSpace())
-                }else{
-                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
-                }else{
-                    createRecipeBasicList(text1: ingredientTextField1.text!.withoutSpace(), text2: nil, text3: nil)
-                }
-            }
-        }else{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicList(text1: ingredientTextField2.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
-                }else{
-                    createRecipeBasicList(text1: ingredientTextField2.text!.withoutSpace(), text2: nil, text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicList(text1: ingredientTextField3.text!.withoutSpace(), text2: nil, text3: nil)
-                }else{
-                    createRecipeBasicList()
-                }
-            }
-        }
+        createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicList)
         
         if recipeFilterStar0 == false{
             recipeBasicList.removeAll{ $0.favorites == 0 }
@@ -648,35 +618,69 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    private func createRecipeBasicList(){
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self)
-        for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
-        }
-    }
-    
-    private func createRecipeBasicList(text1: String, text2: String?, text3: String?){
-        let realm = try! Realm()
-        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
-        if ing.count > 0 {
-            for ri in ing.first!.recipeIngredients{
-                recipeBasicList.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
+    private func createRecipeBasicListWithIngredientTextField(recipeArray: inout Array<RecipeBasic>){
+        recipeArray.removeAll()
+        
+        if ingredientTextField1.text != nil && ingredientTextField1.text!.withoutSpace() != ""{
+            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: ingredientTextField3.text!.withoutSpace())
+                }else{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: nil)
+                }
+            }else{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
+                }else{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutSpace(), text2: nil, text3: nil)
+                }
             }
-            if let t2 = text2 {
-                deleteFromRecipeBasicList(withoutUse: t2)
-                if let t3 = text3{
-                    deleteFromRecipeBasicList(withoutUse: t3)
+        }else{
+            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField2.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
+                }else{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField2.text!.withoutSpace(), text2: nil, text3: nil)
+                }
+            }else{
+                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
+                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField3.text!.withoutSpace(), text2: nil, text3: nil)
+                }else{
+                    createRecipeBasicList(recipeArray: &recipeArray)
                 }
             }
         }
     }
     
-    private func deleteFromRecipeBasicList(withoutUse ingredientName: String){
+    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>){
         let realm = try! Realm()
-        for i in (0..<recipeBasicList.count).reversed(){
+        let recipeList = realm.objects(Recipe.self)
+        for recipe in recipeList{
+            recipeArray.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
+        }
+    }
+    
+    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>, text1: String, text2: String?, text3: String?){
+        let realm = try! Realm()
+        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
+        if ing.count > 0 {
+            for ri in ing.first!.recipeIngredients{
+                recipeArray.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
+            }
+            if let t2 = text2 {
+                deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t2)
+                if let t3 = text3{
+                    deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t3)
+                }
+            }
+        }
+    }
+    
+    private func deleteFromRecipeBasicList(recipeArray: inout Array<RecipeBasic>, withoutUse ingredientName: String){
+        let realm = try! Realm()
+        for i in (0..<recipeArray.count).reversed(){
             var hasIngredient = false
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[i].id)!
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeArray[i].id)!
             for ri in recipe.recipeIngredients{
                 if ri.ingredient.ingredientName == ingredientName{
                     hasIngredient = true
@@ -684,48 +688,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
             if hasIngredient == false{
-                recipeBasicList.remove(at: i)
-            }
-        }
-    }
-    
-    private func createRecipeBasicListForFilterModal(){
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self)
-        for recipe in recipeList{
-            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
-        }
-    }
-    
-    private func createRecipeBasicListForFilterModal(text1: String, text2: String?, text3: String?){
-        let realm = try! Realm()
-        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
-        if ing.count > 0 {
-            for ri in ing.first!.recipeIngredients{
-                recipeBasicListForFilterModal.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
-            }
-            if let t2 = text2 {
-                deleteFromRecipeBasicListForFilterModal(withoutUse: t2)
-                if let t3 = text3{
-                    deleteFromRecipeBasicListForFilterModal(withoutUse: t3)
-                }
-            }
-        }
-    }
-    
-    private func deleteFromRecipeBasicListForFilterModal(withoutUse ingredientName: String){
-        let realm = try! Realm()
-        for i in (0..<recipeBasicListForFilterModal.count).reversed(){
-            var hasIngredient = false
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicListForFilterModal[i].id)!
-            for ri in recipe.recipeIngredients{
-                if ri.ingredient.ingredientName == ingredientName{
-                    hasIngredient = true
-                    break
-                }
-            }
-            if hasIngredient == false{
-                recipeBasicListForFilterModal.remove(at: i)
+                recipeArray.remove(at: i)
             }
         }
     }
@@ -1156,37 +1119,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         vc.userDefaultsPrefix = "reverse-lookup-"
         
-        recipeBasicListForFilterModal.removeAll()
-        if ingredientTextField1.text != nil && ingredientTextField1.text!.withoutSpace() != ""{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: ingredientTextField3.text!.withoutSpace())
-                }else{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField2.text!.withoutSpace(), text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField1.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
-                }else{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField1.text!.withoutSpace(), text2: nil, text3: nil)
-                }
-            }
-        }else{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField2.text!.withoutSpace(), text2: ingredientTextField3.text!.withoutSpace(), text3: nil)
-                }else{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField2.text!.withoutSpace(), text2: nil, text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutSpace() != ""{
-                    createRecipeBasicListForFilterModal(text1: ingredientTextField3.text!.withoutSpace(), text2: nil, text3: nil)
-                }else{
-                    createRecipeBasicListForFilterModal()
-                }
-            }
-        }
-
+        createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicListForFilterModal)
         vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
