@@ -121,7 +121,9 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         decompositionSpeedLabel.text = "1時間あたり約" + String(speed) +  "ml"
         let hour = Double(alcoholAmount) / (Double(weight) * 0.125)
         let hourInteger = Int(hour)
-        let minute = Int(hour.truncatingRemainder(dividingBy: 1) * 60.0)
+        var minute = Int(hour.truncatingRemainder(dividingBy: 1) * 60.0)
+        let m : Double = ceil(Double(minute) / 10.0)
+        minute = Int(m) * 10
         decompositionTimeLabel.text = "約" + String(hourInteger) + "時間" + String(minute) + "分"
     }
 
