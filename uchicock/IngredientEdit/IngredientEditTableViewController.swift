@@ -12,10 +12,15 @@ import RealmSwift
 class IngredientEditTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var ingredientName: CustomTextField!
+    @IBOutlet weak var ingredientNameCounter: UILabel!
     @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CustomTextView!
-
+    @IBOutlet weak var memoCounter: UILabel!
+    
+    let ingredientNameMaximum = 30
+    let memoMaximum = 300
+    
     weak var mainNavigationController : BasicNavigationController?
     var ingredient = Ingredient()
     var isAddMode = true
@@ -87,6 +92,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         } else {
             category.selectedSegmentIndex = 2
         }
+        
+        updateIngredientNameCounter()
+        updateMemoCounter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,11 +119,35 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @objc func textFieldDidChange(_ notification: Notification){
         ingredientName.adjustClearButtonColor(with: 4)
         showCancelAlert = true
+        updateIngredientNameCounter()
+    }
+    
+    private func updateIngredientNameCounter(){
+        let num = ingredientName.text!.withoutSpace().count
+        ingredientNameCounter.text = String(num) + "/" + String(ingredientNameMaximum)
+        
+        if num > ingredientNameMaximum{
+            ingredientNameCounter.textColor = UchicockStyle.deleteColor
+        }else{
+            ingredientNameCounter.textColor = UchicockStyle.labelTextColorLight
+        }
     }
     
     // MARK: - UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         showCancelAlert = true
+        updateMemoCounter()
+    }
+    
+    private func updateMemoCounter(){
+        let num = memo.text.count
+        memoCounter.text = String(num) + "/" + String(memoMaximum)
+            
+        if num > memoMaximum{
+            memoCounter.textColor = UchicockStyle.deleteColor
+        }else{
+            memoCounter.textColor = UchicockStyle.labelTextColorLight
+        }
     }
     
     // MARK: - UITableView
@@ -168,10 +200,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if ingredientName.text == nil || ingredientName.text!.withoutSpace() == ""{
             presentAlert("材料名を入力してください")
-        }else if ingredientName.text!.withoutSpace().count > 30{
-            presentAlert("材料名を30文字以下にしてください")
-        }else if memo.text.count > 300{
-            presentAlert("メモを300文字以下にしてください")
+        }else if ingredientName.text!.withoutSpace().count > ingredientNameMaximum{
+            presentAlert("材料名を" + String(ingredientNameMaximum) + "文字以下にしてください")
+        }else if memo.text.count > memoMaximum{
+            presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
         }else{
             let realm = try! Realm()
             

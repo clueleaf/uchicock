@@ -13,6 +13,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeName: CustomTextField!
+    @IBOutlet weak var recipeNameCounter: UILabel!
     @IBOutlet weak var star1: ExpandedButton!
     @IBOutlet weak var star2: ExpandedButton!
     @IBOutlet weak var star3: ExpandedButton!
@@ -30,6 +31,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var strength: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
     @IBOutlet weak var memo: CustomTextView!
+    @IBOutlet weak var memoCounter: UILabel!
     @IBOutlet weak var addIngredientLabel: UILabel!
     
     weak var mainNavigationController : BasicNavigationController?
@@ -42,6 +44,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     let selectedCellBackgroundView = UIView()
     var showCancelAlert = false
     var selectedIndexPath: IndexPath? = nil
+    let recipeNameMaximum = 30
+    let memoMaximum = 1000
 
     let interactor = Interactor()
 
@@ -185,6 +189,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         methodTipButton.tintColor = UchicockStyle.primaryColor
         strengthTipButton.setImage(tipImage, for: .normal)
         strengthTipButton.tintColor = UchicockStyle.primaryColor
+        
+        updateRecipeNameCounter()
+        updateMemoCounter()
 
         self.tableView.reloadData()
         
@@ -242,11 +249,35 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @objc func textFieldDidChange(_ notification: Notification){
         recipeName.adjustClearButtonColor(with: 4)
         showCancelAlert = true
+        updateRecipeNameCounter()
+    }
+    
+    private func updateRecipeNameCounter(){
+        let num = recipeName.text!.withoutSpace().count
+        recipeNameCounter.text = String(num) + "/" + String(recipeNameMaximum)
+        
+        if num > recipeNameMaximum{
+            recipeNameCounter.textColor = UchicockStyle.deleteColor
+        }else{
+            recipeNameCounter.textColor = UchicockStyle.labelTextColorLight
+        }
     }
 
     // MARK: - UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         showCancelAlert = true
+        updateMemoCounter()
+    }
+    
+    private func updateMemoCounter(){
+        let num = memo.text.count
+        memoCounter.text = String(num) + "/" + String(memoMaximum)
+            
+        if num > memoMaximum{
+            memoCounter.textColor = UchicockStyle.deleteColor
+        }else{
+            memoCounter.textColor = UchicockStyle.labelTextColorLight
+        }
     }
     
     func isIngredientDuplicated() -> Bool {
@@ -737,10 +768,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if recipeName.text == nil || recipeName.text!.withoutSpace() == ""{
             presentAlert("レシピ名を入力してください")
-        }else if recipeName.text!.withoutSpace().count > 30{
-            presentAlert("レシピ名を30文字以下にしてください")
-        }else if memo.text.count > 1000 {
-            presentAlert("メモを1000文字以下にしてください")
+        }else if recipeName.text!.withoutSpace().count > recipeNameMaximum{
+            presentAlert("レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください")
+        }else if memo.text.count > memoMaximum {
+            presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
         }else if recipeIngredientList.count == 0{
             presentAlert("材料を一つ以上入力してください")
         }else if recipeIngredientList.count > 30{
