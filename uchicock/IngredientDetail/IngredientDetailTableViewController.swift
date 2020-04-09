@@ -485,20 +485,17 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 if indexPath.row == 0{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }
             }else{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                 return cell
             }

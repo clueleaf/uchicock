@@ -325,7 +325,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             cell.recoverableRecipeNum = recoverableSampleRecipeList.count
             cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         case 1:
             if indexPath.row == 0{

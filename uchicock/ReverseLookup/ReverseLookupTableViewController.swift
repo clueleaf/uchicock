@@ -1001,20 +1001,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if indexPath.section == 0{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.isUserInteractionEnabled = true
                 return cell
             }else if indexPath.section == 1{
                 if editingTextField == -1{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.isUserInteractionEnabled = true
                     return cell
                 }

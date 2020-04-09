@@ -662,7 +662,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             return cell
         case 1:
@@ -691,7 +690,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 2:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         default:

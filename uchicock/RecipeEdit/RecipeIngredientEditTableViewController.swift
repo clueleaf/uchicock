@@ -299,7 +299,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if isTypingName{
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
                 if indexPath.section == 0{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 }else{
@@ -310,13 +309,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 if indexPath.section == 0 && indexPath.row > 0{
                     let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     return cell
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
                     if indexPath.section == 0{
                         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     }else{
