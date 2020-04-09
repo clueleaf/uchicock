@@ -302,6 +302,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 if indexPath.section == 0{
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 }else{
+                    cell.selectedBackgroundView = selectedCellBackgroundView
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 }
                 return cell
@@ -314,6 +315,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 }else{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                    cell.selectedBackgroundView = selectedCellBackgroundView
                     if indexPath.section == 0{
                         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                     }else{
