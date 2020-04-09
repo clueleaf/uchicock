@@ -45,7 +45,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="レシピ名" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="4d9-80-LE4" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="359" height="44"/>
+                                                    <rect key="frame" x="8" y="8" width="355" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="qay-Mq-B0G"/>
                                                     </constraints>
@@ -53,7 +53,7 @@
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30/30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEU-Vr-bhM">
-                                                    <rect key="frame" x="330" y="56" width="37" height="17"/>
+                                                    <rect key="frame" x="326" y="56" width="37" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="dvj-Cf-6CO"/>
                                                     </constraints>
@@ -63,7 +63,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" constant="8" id="FJ4-It-JNc"/>
+                                                <constraint firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" constant="12" id="FJ4-It-JNc"/>
                                                 <constraint firstItem="LEU-Vr-bhM" firstAttribute="top" secondItem="4d9-80-LE4" secondAttribute="bottom" constant="4" id="NOV-Oc-dHX"/>
                                                 <constraint firstItem="4d9-80-LE4" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="8" id="RJR-QJ-Kql"/>
                                                 <constraint firstItem="LEU-Vr-bhM" firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" id="tOS-CQ-d3l"/>
@@ -338,7 +338,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auN-Kp-oTE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="355" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="hVU-F8-AZw"/>
                                                     </constraints>
@@ -371,7 +371,7 @@
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="El4-gg-rub"/>
                                                 <constraint firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="12" id="Vy5-v3-QCe"/>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="Zif-Qa-d7I"/>
-                                                <constraint firstAttribute="trailing" secondItem="auN-Kp-oTE" secondAttribute="trailing" constant="8" id="fRj-XN-6C3"/>
+                                                <constraint firstAttribute="trailing" secondItem="auN-Kp-oTE" secondAttribute="trailing" constant="12" id="fRj-XN-6C3"/>
                                                 <constraint firstItem="oIR-37-Yn9" firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" id="rQp-6h-ELy"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="top" secondItem="auN-Kp-oTE" secondAttribute="bottom" constant="8" id="uHX-sk-9OG"/>
                                             </constraints>

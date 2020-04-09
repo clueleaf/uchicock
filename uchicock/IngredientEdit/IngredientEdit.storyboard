@@ -157,7 +157,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dif-6D-K8y" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="15" width="355" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="zeO-aG-ov5"/>
                                                     </constraints>
@@ -190,7 +190,7 @@
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" id="BIg-Wr-vrR"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="top" secondItem="Wk1-PW-9Mn" secondAttribute="bottom" constant="4" id="EtA-xS-3aR"/>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="top" secondItem="axd-0N-ETE" secondAttribute="top" constant="15" id="Mtl-Ju-Vum"/>
-                                                <constraint firstAttribute="trailing" secondItem="Dif-6D-K8y" secondAttribute="trailing" constant="8" id="m0a-6E-eNT"/>
+                                                <constraint firstAttribute="trailing" secondItem="Dif-6D-K8y" secondAttribute="trailing" constant="12" id="m0a-6E-eNT"/>
                                                 <constraint firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="12" id="qnn-Yy-TW7"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="xj7-Ry-Lgh"/>
                                             </constraints>
