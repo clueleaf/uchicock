@@ -18,7 +18,8 @@ class RecipeIngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
     var ingredientId: String? = nil
-    
+    var isDuplicated = false
+
     var stock: Bool? = Bool(){
         didSet{
             stockLabel.backgroundColor = UIColor.clear
@@ -46,7 +47,11 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                 }
             }else{
                 stockLabel.isHidden = true
-                ingredientNameTextView.textColor = UchicockStyle.labelTextColor
+                if isDuplicated {
+                    ingredientNameTextView.textColor = UchicockStyle.deleteColor
+                }else{
+                    ingredientNameTextView.textColor = UchicockStyle.labelTextColor
+                }
                 amountLabel.textColor = UchicockStyle.labelTextColor
             }
         }
@@ -67,7 +72,11 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     var ingredientName = String(){
         didSet{
-            ingredientNameTextView.text = ingredientName
+            if isDuplicated {
+                ingredientNameTextView.text = "[重複]" + ingredientName
+            }else{
+                ingredientNameTextView.text = ingredientName
+            }
             ingredientNameTextView.backgroundColor = UIColor.clear
             ingredientNameTextView.clipsToBounds = true
             ingredientNameTextView.isScrollEnabled = false

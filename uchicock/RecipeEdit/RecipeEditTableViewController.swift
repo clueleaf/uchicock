@@ -46,6 +46,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var selectedIndexPath: IndexPath? = nil
     let recipeNameMaximum = 30
     let memoMaximum = 1000
+    var duplicatedIngredientList = Array<String>()
 
     let interactor = Interactor()
 
@@ -280,7 +281,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    func isIngredientDuplicated() -> Bool {
+    private func isIngredientDuplicated() -> Bool {
         for i in 0 ..< recipeIngredientList.count - 1{
             for j in i+1 ..< recipeIngredientList.count{
                 if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
@@ -289,6 +290,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         }
         return false
+    }
+    
+    private func updateDuplicatedIngredientList(){
+        duplicatedIngredientList.removeAll()
+
+        for i in 0 ..< recipeIngredientList.count - 1{
+            for j in i+1 ..< recipeIngredientList.count{
+                if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
+                    duplicatedIngredientList.append(recipeIngredientList[i].ingredientName)
+                    break
+                }
+            }
+        }
     }
     
     @objc func photoTapped(){
@@ -369,6 +383,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
+                            self.updateDuplicatedIngredientList()
                         }
                     }else{
                         if deleteFlag{
@@ -388,6 +403,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.showCancelAlert = true
                             }
                         }
+                        self.updateDuplicatedIngredientList()
                     }
                 }
                 self.setupVC()
@@ -425,6 +441,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.updateDuplicatedIngredientList()
+                tableView.reloadData()
                 completionHandler(true)
             }else{
                 completionHandler(false)
@@ -450,6 +468,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         } else if indexPath.section == 1{
             if indexPath.row < recipeIngredientList.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
+                if duplicatedIngredientList.contains(recipeIngredientList[indexPath.row].ingredientName){
+                    cell.isDuplicated = true
+                }else{
+                    cell.isDuplicated = false
+                }
                 cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
                 cell.amountText = recipeIngredientList[indexPath.row].amount
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
@@ -773,7 +796,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else if memo.text.count > memoMaximum {
             presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
         }else if recipeIngredientList.count == 0{
-            presentAlert("材料を一つ以上入力してください")
+            presentAlert("材料を一つ以上追加してください")
         }else if recipeIngredientList.count > 30{
             presentAlert("材料を30個以下にしてください")
         } else if isIngredientDuplicated() {
