@@ -132,7 +132,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName,style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(id: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category))
+                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(id: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
@@ -151,7 +151,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method, strength: recoverRecipe.strength)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag)
+                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag, displayOrder: recoverIngredient.displayOrder)
                     }
                     updateRecipeShortageNum(recipeName: recoverRecipe.name)
                 }
@@ -189,11 +189,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool){
+    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:String?){
         let realm = try! Realm()
         let recipeIngredientLink = RecipeIngredientLink()
         recipeIngredientLink.amount = amount
         recipeIngredientLink.mustFlag = mustFlag
+        recipeIngredientLink.displayOrder = displayOrder
         realm.add(recipeIngredientLink)
         
         let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName).first!
