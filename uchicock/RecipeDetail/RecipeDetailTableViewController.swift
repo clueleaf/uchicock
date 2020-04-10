@@ -357,6 +357,23 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     recipe.lastViewDate = Date()
                 }
             }
+            
+            setReminderBadge()
+        }
+    }
+    
+    private func setReminderBadge(){
+        let realm = try! Realm()
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = "！"
+            }
         }
     }
     
