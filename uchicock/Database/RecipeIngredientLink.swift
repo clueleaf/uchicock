@@ -20,7 +20,8 @@ class RecipeIngredientLink: Object {
     }
     @objc dynamic var amount = ""
     @objc dynamic var mustFlag = false
-    
+    @objc dynamic var displayOrder : String? = nil
+
     override class func primaryKey() -> String {
         return "id"
     }
