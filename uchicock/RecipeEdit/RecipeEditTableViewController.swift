@@ -147,9 +147,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.cornerRadius = 5.0
         recipeName.layer.borderWidth = 1
 
+        var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+            if ri.displayOrder < 0{
+                needInitializeDisplayOrder = true
+                break
+            }
         }
+        
+        if needInitializeDisplayOrder{
+            initializeDisplayOrder()
+        }
+        
+        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
@@ -158,6 +169,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
 
+    }
+    
+    private func initializeDisplayOrder(){
+        let realm = try! Realm()
+        try! realm.write{
+            for i in 0 ..< recipe.recipeIngredients.count {
+                recipe.recipeIngredients[i].displayOrder = i
+            }
+        }
+        
+        recipeIngredientList.removeAll()
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -379,7 +404,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
-                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category)
+                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
@@ -400,6 +425,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.recipeIngredientList[i].amount = amount
                                 self.recipeIngredientList[i].mustFlag = mustFlag
                                 self.recipeIngredientList[i].category = category
+                                self.recipeIngredientList[i].displayOrder = -1
                                 self.showCancelAlert = true
                             }
                         }
@@ -832,13 +858,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         newRecipe.memo = memo.text
                         realm.add(newRecipe)
                         
-                        for editingRecipeIngredient in recipeIngredientList{
+                        for i in 0 ..< recipeIngredientList.count {
                             let recipeIngredientLink = RecipeIngredientLink()
-                            recipeIngredientLink.amount = editingRecipeIngredient.amount
-                            recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag
+                            recipeIngredientLink.amount = recipeIngredientList[i].amount
+                            recipeIngredientLink.mustFlag = recipeIngredientList[i].mustFlag
+                            recipeIngredientLink.displayOrder = i
                             realm.add(recipeIngredientLink)
 
-                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",editingRecipeIngredient.ingredientName).first!
+                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",recipeIngredientList[i].ingredientName).first!
                             ingredient.recipeIngredients.append(recipeIngredientLink)
 
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",newRecipe.recipeName).first!
@@ -904,13 +931,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         recipe.strength = strength.selectedSegmentIndex
                         recipe.memo = memo.text
                         
-                        for editingRecipeIngredient in recipeIngredientList{
+                        for i in 0 ..< recipeIngredientList.count{
                             let recipeIngredientLink = RecipeIngredientLink()
-                            recipeIngredientLink.amount = editingRecipeIngredient.amount
-                            recipeIngredientLink.mustFlag = editingRecipeIngredient.mustFlag
+                            recipeIngredientLink.amount = recipeIngredientList[i].amount
+                            recipeIngredientLink.mustFlag = recipeIngredientList[i].mustFlag
+                            recipeIngredientLink.displayOrder = i
                             realm.add(recipeIngredientLink)
                             
-                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",editingRecipeIngredient.ingredientName).first!
+                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",recipeIngredientList[i].ingredientName).first!
                             ingredient.recipeIngredients.append(recipeIngredientLink)
                             
                             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",self.recipe.recipeName).first!

@@ -72,6 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         newObject!["strength"] = recipeName.withoutSpaceAndMiddleDot().cocktailStrengthNumber()
                     }
                 }
+                if (oldSchemaVersion < 12) {
+                    migration.enumerateObjects(ofType: RecipeIngredientLink.className()) { oldObject, newObject in
+                        newObject!["displayOrder"] = -1
+                    }
+                }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
             let tenMB = 10 * 1024 * 1024

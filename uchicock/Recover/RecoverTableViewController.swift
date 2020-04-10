@@ -189,7 +189,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:String?){
+    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:Int){
         let realm = try! Realm()
         let recipeIngredientLink = RecipeIngredientLink()
         recipeIngredientLink.amount = amount

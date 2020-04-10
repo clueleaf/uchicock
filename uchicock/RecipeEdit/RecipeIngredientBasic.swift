@@ -12,5 +12,5 @@ struct RecipeIngredientBasic{
     var amount : String
     var mustFlag : Bool
     var category : Int
-    var displayOrder : String?
+    var displayOrder : Int
 }
