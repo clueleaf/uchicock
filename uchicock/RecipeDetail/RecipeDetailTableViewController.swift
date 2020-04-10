@@ -138,7 +138,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if indexPath.section == 0 { continue }
                 if recipeIngredientList.count > indexPath.row {
-                    if recipeIngredientList[indexPath.row].id == selectedIngredientId! {
+                    if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
                             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
@@ -177,7 +177,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             var needInitializeDisplayOrder = false
             recipeIngredientList.removeAll()
             for ri in recipe.recipeIngredients {
-                recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+                recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
                 if ri.displayOrder < 0{
                     needInitializeDisplayOrder = true
                     break
@@ -387,7 +387,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
         }
     }
     
@@ -715,7 +715,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.accessoryView = accesoryImageView
 
             if recipe.isInvalidated == false{
-                cell.ingredientId = recipeIngredientList[indexPath.row].id
+                cell.ingredientId = recipeIngredientList[indexPath.row].ingredientId
                 cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
                 cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
                 cell.stock = recipeIngredientList[indexPath.row].stockFlag
@@ -1133,7 +1133,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             let realm = try! Realm()
             let deletingRecipeIngredientList = List<RecipeIngredientLink>()
             for i in 0 ..< self.recipeIngredientList.count {
-                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipeIngredientList[i].id)!
+                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipeIngredientList[i].recipeIngredientId)!
                 deletingRecipeIngredientList.append(recipeIngredient)
             }
             
@@ -1208,8 +1208,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? IndexPath{
-                selectedIngredientId = recipeIngredientList[indexPath.row].id
-                vc.ingredientId = recipeIngredientList[indexPath.row].id
+                selectedIngredientId = recipeIngredientList[indexPath.row].ingredientId
+                vc.ingredientId = recipeIngredientList[indexPath.row].ingredientId
             }
         }else if segue.identifier == "PushEditRecipe" {
             let enc = segue.destination as! BasicNavigationController

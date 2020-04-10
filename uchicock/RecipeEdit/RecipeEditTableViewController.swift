@@ -149,7 +149,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
             if ri.displayOrder < 0{
                 needInitializeDisplayOrder = true
                 break
@@ -181,7 +181,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
         }
     }
     
@@ -404,7 +404,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
-                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1, stockFlag: false)
+                            let recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1, stockFlag: false)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
@@ -413,14 +413,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }else{
                         if deleteFlag{
                             for i in 0 ..< self.recipeIngredientList.count where i < self.recipeIngredientList.count {
-                                if self.recipeIngredientList[i].id == recipeIngredientId{
+                                if self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                     self.recipeIngredientList.remove(at: i)
                                 }
                             }
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
                         }else{
-                            for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].id == recipeIngredientId{
+                            for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                 self.recipeIngredientList[i].ingredientName = ingredientName
                                 self.recipeIngredientList[i].amount = amount
                                 self.recipeIngredientList[i].mustFlag = mustFlag
@@ -435,8 +435,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.setupVC()
             }
             if indexPath.row < recipeIngredientList.count{
-                if self.recipeIngredientList[indexPath.row].id == ""{
-                    self.recipeIngredientList[indexPath.row].id = NSUUID().uuidString
+                if self.recipeIngredientList[indexPath.row].recipeIngredientId == ""{
+                    self.recipeIngredientList[indexPath.row].recipeIngredientId = NSUUID().uuidString
                 }
                 vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
                 vc.isAddMode = false

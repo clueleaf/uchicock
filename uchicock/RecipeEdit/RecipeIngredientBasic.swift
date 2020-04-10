@@ -7,7 +7,8 @@
 //
 
 struct RecipeIngredientBasic{
-    var id : String
+    var recipeIngredientId : String
+    var ingredientId : String
     var ingredientName : String
     var amount : String
     var mustFlag : Bool

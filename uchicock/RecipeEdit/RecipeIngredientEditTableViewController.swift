@@ -21,7 +21,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
-    var recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: "", amount: "", mustFlag: true, category: -1, displayOrder: -1, stockFlag: false)
+    var recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: "", amount: "", mustFlag: true, category: -1, displayOrder: -1, stockFlag: false)
     var ingredientList: Results<Ingredient>?
 
     var isCancel = true
@@ -126,7 +126,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.id)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.recipeIngredientId)
         NotificationCenter.default.removeObserver(self)
     }
 

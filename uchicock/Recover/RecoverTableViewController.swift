@@ -132,7 +132,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName,style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(id: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
