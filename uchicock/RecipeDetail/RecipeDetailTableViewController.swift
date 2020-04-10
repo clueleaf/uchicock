@@ -330,14 +330,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteButton.backgroundColor = UchicockStyle.deleteColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
-            let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
-            let url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-            if UIApplication.shared.canOpenURL(url!) {
-                openInSafariButton.isEnabled = true
-            }else{
-                openInSafariButton.isEnabled = false
-                openInSafariButton.backgroundColor = UchicockStyle.labelTextColorLight
-            }
             self.tableView.estimatedRowHeight = 70
             self.tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
@@ -1082,9 +1074,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func openInSafariButtonTapped(_ sender: UIButton) {
         let urlStr : String = "https://www.google.co.jp/search?q=" + recipe.recipeName + "+カクテル"
         let url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-        if UIApplication.shared.canOpenURL(url!){
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-        }
+        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
