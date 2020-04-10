@@ -633,9 +633,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }else{
             urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutSpaceAndMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
             url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
-            if UIApplication.shared.canOpenURL(url!){
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-            }
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
     }
     
