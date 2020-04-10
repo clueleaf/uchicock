@@ -16,7 +16,8 @@ class RecoverPreviewTableViewController: UITableViewController {
     @IBOutlet weak var strength: CustomLabel!
     
     var recipe = Recipe()
-    
+    var recipeIngredientList = Array<RecipeIngredientBasic>()
+
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,6 +33,11 @@ class RecoverPreviewTableViewController: UITableViewController {
             tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
         
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+        }
+        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+
         recipeName.isScrollEnabled = false
         recipeName.textContainerInset = .zero
         recipeName.textContainer.lineFragmentPadding = 0
@@ -129,7 +135,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
-        header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
+        header?.textLabel?.text = section == 1 ? "材料(\(String(recipeIngredientList.count)))" : ""
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,7 +155,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         if section == 0{
             return 4
         }else if section == 1{
-            return recipe.recipeIngredients.count
+            return recipeIngredientList.count
         }
         return 0
     }
@@ -170,13 +176,13 @@ class RecoverPreviewTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
-            cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
+            cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
             cell.ingredientNameTextView.isSelectable = true
             cell.ingredientNameTextView.isUserInteractionEnabled = true
-            cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
-            cell.amountText = recipe.recipeIngredients[indexPath.row].amount
+            cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
+            cell.amountText = recipeIngredientList[indexPath.row].amount
             cell.stock = nil
-            cell.category = recipe.recipeIngredients[indexPath.row].ingredient.category
+            cell.category = recipeIngredientList[indexPath.row].category
 
             cell.selectionStyle = .none
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
