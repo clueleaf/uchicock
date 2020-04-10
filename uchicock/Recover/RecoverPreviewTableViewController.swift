@@ -34,7 +34,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
         
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
         }
         recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
 

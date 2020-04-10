@@ -149,7 +149,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
             if ri.displayOrder < 0{
                 needInitializeDisplayOrder = true
                 break
@@ -181,7 +181,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder))
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
         }
     }
     
@@ -404,7 +404,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
-                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1)
+                            let recipeIngredient = RecipeIngredientBasic(id: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1, stockFlag: false)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true

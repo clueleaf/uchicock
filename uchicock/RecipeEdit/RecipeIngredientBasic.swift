@@ -13,4 +13,5 @@ struct RecipeIngredientBasic{
     var mustFlag : Bool
     var category : Int
     var displayOrder : Int
+    var stockFlag : Bool
 }

@@ -44,6 +44,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     var recipeId = String()
     var recipe = Recipe()
+    var recipeIngredientList = Array<RecipeIngredientBasic>()
     var madeNum = 0
     var headerView: UIView!
     var photoExists = false
@@ -136,8 +137,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if indexPath.section == 0 { continue }
-                if recipe.recipeIngredients.count > indexPath.row {
-                    if recipe.recipeIngredients[indexPath.row].ingredient.id == selectedIngredientId! {
+                if recipeIngredientList.count > indexPath.row {
+                    if recipeIngredientList[indexPath.row].id == selectedIngredientId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
                             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
@@ -173,6 +174,22 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             recipe = rec!
             self.navigationItem.title = recipe.recipeName
             
+            var needInitializeDisplayOrder = false
+            recipeIngredientList.removeAll()
+            for ri in recipe.recipeIngredients {
+                recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+                if ri.displayOrder < 0{
+                    needInitializeDisplayOrder = true
+                    break
+                }
+            }
+            
+            if needInitializeDisplayOrder{
+                initializeDisplayOrder()
+            }
+            
+            recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+
             if recipe.bookmarkDate == nil{
                 bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
             }else{
@@ -204,9 +221,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 var shortageName = ""
-                for recipeIngredient in recipe.recipeIngredients{
-                    if recipeIngredient.mustFlag && recipeIngredient.ingredient.stockFlag == false {
-                        shortageName = recipeIngredient.ingredient.ingredientName
+                for recipeIngredient in recipeIngredientList{
+                    if recipeIngredient.mustFlag && recipeIngredient.stockFlag == false {
+                        shortageName = recipeIngredient.ingredientName
                         break
                     }
                 }
@@ -340,6 +357,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     recipe.lastViewDate = Date()
                 }
             }
+        }
+    }
+    
+    private func initializeDisplayOrder(){
+        let realm = try! Realm()
+        try! realm.write{
+            for i in 0 ..< recipe.recipeIngredients.count {
+                recipe.recipeIngredients[i].displayOrder = i
+            }
+        }
+        
+        recipeIngredientList.removeAll()
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(id: ri.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
         }
     }
     
@@ -585,7 +616,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if recipe.isInvalidated == false{
-            header?.textLabel?.text = section == 1 ? "材料(\(String(recipe.recipeIngredients.count)))" : ""
+            header?.textLabel?.text = section == 1 ? "材料(\(String(recipeIngredientList.count)))" : ""
         }
     }
     
@@ -593,10 +624,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if section == 0{
             return super.tableView(tableView, numberOfRowsInSection: 0)
         }else if section == 1{
-            // 別タブでレシピを削除して戻ってきた時に存在しないレシピに
-            // アクセスしようとしてクラッシュしてしまう問題への対策
-            // （主に画面サイズ変更時にtableView再読み込みが発生するため）
-            return recipe.isInvalidated ? 0 : recipe.recipeIngredients.count
+            return recipeIngredientList.count
         }else if section == 2{
             return 1
         }else{
@@ -627,7 +655,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 completionHandler(false)
                 return
             }
-            vc.ingredient = self.recipe.recipeIngredients[indexPath.row].ingredient
+            for ri in self.recipe.recipeIngredients{
+                if ri.ingredient.ingredientName == self.recipeIngredientList[indexPath.row].ingredientName{
+                    vc.ingredient = ri.ingredient
+                }
+            }
             vc.shouldShowMessageHUD = true
             vc.onDoneBlock = {
                 self.setupVC()
@@ -666,12 +698,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.accessoryView = accesoryImageView
 
             if recipe.isInvalidated == false{
-                cell.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-                cell.ingredientName = recipe.recipeIngredients[indexPath.row].ingredient.ingredientName
-                cell.isOption = !recipe.recipeIngredients[indexPath.row].mustFlag
-                cell.stock = recipe.recipeIngredients[indexPath.row].ingredient.stockFlag
-                cell.amountText = recipe.recipeIngredients[indexPath.row].amount
-                cell.category = recipe.recipeIngredients[indexPath.row].ingredient.category
+                cell.ingredientId = recipeIngredientList[indexPath.row].id
+                cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
+                cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
+                cell.stock = recipeIngredientList[indexPath.row].stockFlag
+                cell.amountText = recipeIngredientList[indexPath.row].amount
+                cell.category = recipeIngredientList[indexPath.row].category
             }
 
             cell.selectionStyle = .default
@@ -755,8 +787,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         default: break
         }
         message += "\n材料：\n"
-        for recipeIngredient in recipe.recipeIngredients{
-            message += recipeIngredient.ingredient.ingredientName + " " + recipeIngredient.amount + "\n"
+        for recipeIngredient in recipeIngredientList{
+            message += recipeIngredient.ingredientName + " " + recipeIngredient.amount + "\n"
         }
         if recipe.memo != "" {
             message += "\n" + recipe.memo
@@ -1083,8 +1115,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             action in
             let realm = try! Realm()
             let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-            for i in 0 ..< self.recipe.recipeIngredients.count {
-                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipe.recipeIngredients[i].id)!
+            for i in 0 ..< self.recipeIngredientList.count {
+                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipeIngredientList[i].id)!
                 deletingRecipeIngredientList.append(recipeIngredient)
             }
             
@@ -1159,8 +1191,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
             if let indexPath = sender as? IndexPath{
-                selectedIngredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
-                vc.ingredientId = recipe.recipeIngredients[indexPath.row].ingredient.id
+                selectedIngredientId = recipeIngredientList[indexPath.row].id
+                vc.ingredientId = recipeIngredientList[indexPath.row].id
             }
         }else if segue.identifier == "PushEditRecipe" {
             let enc = segue.destination as! BasicNavigationController
