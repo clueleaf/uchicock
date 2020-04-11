@@ -31,8 +31,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
-    var transitioningSection1 = false
-    var shouldHideSearchCell = false
 
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -700,23 +698,21 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
-            transitioningSection1 = true
-            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
-            
-            setSearchTextToUserDefaults()
-            loadFromUserDefaults()
-            reloadRecipeList()
-            recipeTableView.reloadData()
-            
             ingredientTextField1.resignFirstResponder()
             ingredientTextField2.resignFirstResponder()
             ingredientTextField3.resignFirstResponder()
             editingTextField = -1
-            
-            shouldHideSearchCell = false
+            setSearchTextToUserDefaults()
+            loadFromUserDefaults()
+            reloadRecipeList()
+            recipeTableView.reloadData()
+
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .left)
-            transitioningSection1 = false
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
+            tableView.endUpdates()
+            
             // 逆引き画面の材料選択から戻った後のEmptyDataSetの文字の高さを正しくするために必要
             setTableBackgroundView()
             
@@ -754,16 +750,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         if editingTextField == -1{
-            shouldHideSearchCell = true
-            tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .left)
-            transitioningSection1 = true
-            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
-            
-            reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
+            reloadIngredientSuggestList(text: textField.text!)
 
-            transitioningSection1 = false
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .left)
+            tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .left)
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .right)
+            tableView.endUpdates()
+            
             self.ingredientSuggestTableView.flashScrollIndicators()
         }else{
             reloadIngredientSuggestList(text: textField.text!)
@@ -898,17 +893,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if tableView.tag == 0{
             if section == 0{
-                if shouldHideSearchCell{
+                if editingTextField != -1 {
                     return 1
                 }else{
                     return 2
                 }
             }else if section == 1{
-                if transitioningSection1{
-                    return 0
-                }else{
-                    return 1
-                }
+                return 1
             }
         }else if tableView.tag == 1{
             return recipeBasicList.count
@@ -931,7 +922,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return 44
                 }
             }else if indexPath.section == 1{
-                if shouldHideSearchCell {
+                if editingTextField != -1 {
                     if traitCollection.verticalSizeClass == .compact{
                         return view.frame.size.height - 35
                     }else{
@@ -1079,22 +1070,19 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        transitioningSection1 = true
-        tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
-        
         loadFromUserDefaults()
         reloadRecipeList()
         recipeTableView.reloadData()
-        
         ingredientTextField1.resignFirstResponder()
         ingredientTextField2.resignFirstResponder()
         ingredientTextField3.resignFirstResponder()
         editingTextField = -1
-        
-        shouldHideSearchCell = false
+
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
         tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .left)
-        transitioningSection1 = false
         tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .left)
+        tableView.endUpdates()
         
         // 逆引き画面の材料選択から戻った後のEmptyDataSetの文字の高さを正しくするために必要
         setTableBackgroundView()
