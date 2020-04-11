@@ -31,6 +31,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     var noItemText = ""
     var needsLayout = false
+    var itemMoveDistination = Array<Int>()
 
     var albumFilterStar0 = true
     var albumFilterStar1 = true
@@ -320,9 +321,29 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func refresh(){
+        var recipeIdList = Array<String>()
+        for frb in filteredRecipeBasicList{
+            recipeIdList.append(frb.id)
+        }
+        
         recipeBasicList.shuffle()
         filterRecipeBasicList()
-        self.collectionView.reloadData()
+        
+        itemMoveDistination.removeAll()
+        for rid in recipeIdList{
+            for i in 0 ..< filteredRecipeBasicList.count{
+                if rid == filteredRecipeBasicList[i].id{
+                    itemMoveDistination.append(i)
+                    break
+                }
+            }
+        }
+        collectionView.performBatchUpdates({
+            for i in 0 ..< itemMoveDistination.count{
+                collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: itemMoveDistination[i], section: 0))
+            }
+        }, completion: nil)
+        
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
             self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
@@ -555,9 +576,29 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
+            var recipeIdList = Array<String>()
+            for frb in self.filteredRecipeBasicList{
+                recipeIdList.append(frb.id)
+            }
+            
             self.reloadRecipeList()
             self.filterRecipeBasicList()
-            self.collectionView.reloadData()
+
+            self.itemMoveDistination.removeAll()
+            for rid in recipeIdList{
+                for i in 0 ..< self.filteredRecipeBasicList.count{
+                    if rid == self.filteredRecipeBasicList[i].id{
+                        self.itemMoveDistination.append(i)
+                        break
+                    }
+                }
+            }
+            self.collectionView.performBatchUpdates({
+                for i in 0 ..< self.itemMoveDistination.count{
+                    self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
+                }
+            }, completion: nil)
+
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
@@ -573,9 +614,29 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.setCollectionBackgroundView()
         }))
         alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
+            var recipeIdList = Array<String>()
+            for frb in self.filteredRecipeBasicList{
+                recipeIdList.append(frb.id)
+            }
+            
             self.recipeBasicList.shuffle()
             self.filterRecipeBasicList()
-            self.collectionView.reloadData()
+
+            self.itemMoveDistination.removeAll()
+            for rid in recipeIdList{
+                for i in 0 ..< self.filteredRecipeBasicList.count{
+                    if rid == self.filteredRecipeBasicList[i].id{
+                        self.itemMoveDistination.append(i)
+                        break
+                    }
+                }
+            }
+            self.collectionView.performBatchUpdates({
+                for i in 0 ..< self.itemMoveDistination.count{
+                    self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
+                }
+            }, completion: nil)
+
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
                 self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
