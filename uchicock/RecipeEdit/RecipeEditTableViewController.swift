@@ -318,7 +318,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.needUpdateCellIndexList.removeAll()
         
         if recipeIngredientList.count == 0 { return }
-        for i in 0 ..< recipeIngredientList.count - 1{ // TODO
+        for i in 0 ..< recipeIngredientList.count - 1 {
             if needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) { continue }
             for j in i+1 ..< recipeIngredientList.count{
                 if needUpdateCellIndexList.contains(IndexPath(row: j, section: 1)) { continue }
@@ -423,23 +423,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }else{
                         if deleteFlag{
                             // 既存材料削除
-                            self.createNeedUpdateCellIndexList()
-                            for i in 0 ..< self.recipeIngredientList.count where i < self.recipeIngredientList.count {
-                                if self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
-                                    self.recipeIngredientList.remove(at: i)
-                                    break
-                                }
-                            }
                             self.showCancelAlert = true
+                            self.createNeedUpdateCellIndexList()
+                            self.recipeIngredientList[self.selectedIndexPath!.row].ingredientName = ""
                             self.updateDuplicatedIngredientList()
-                            self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
                             for i in 0 ..< self.needUpdateCellIndexList.count {
-                                if self.needUpdateCellIndexList[i].row < self.selectedIndexPath!.row {
+                                if self.needUpdateCellIndexList[i].row != self.selectedIndexPath!.row {
                                     self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
-                                }else if self.needUpdateCellIndexList[i].row > self.selectedIndexPath!.row{
-                                    self.tableView.reloadRows(at: [IndexPath(row: self.needUpdateCellIndexList[i].row - 1, section: 1)], with: .none)
                                 }
                             }
+                            self.recipeIngredientList.remove(at: self.selectedIndexPath!.row)
+                            self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
                             self.selectedIndexPath = nil
                         }else{
                             // 既存材料編集
@@ -498,16 +492,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.createNeedUpdateCellIndexList()
-                self.recipeIngredientList.remove(at: indexPath.row)
+                self.recipeIngredientList[indexPath.row].ingredientName = ""
                 self.updateDuplicatedIngredientList()
-                tableView.deleteRows(at: [indexPath], with: .middle)
                 for i in 0 ..< self.needUpdateCellIndexList.count {
-                    if self.needUpdateCellIndexList[i].row < indexPath.row {
+                    if self.needUpdateCellIndexList[i].row != indexPath.row {
                         self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
-                    }else if self.needUpdateCellIndexList[i].row > indexPath.row{
-                        self.tableView.reloadRows(at: [IndexPath(row: self.needUpdateCellIndexList[i].row - 1, section: 1)], with: .none)
                     }
                 }
+                self.recipeIngredientList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .middle)
                 completionHandler(true)
             }else{
                 completionHandler(false)
