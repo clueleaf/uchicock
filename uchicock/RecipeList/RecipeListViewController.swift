@@ -777,7 +777,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
                 self.setTableBackgroundView()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.deleteRows(at: [indexPath], with: .middle)
                 if self.isBookmarkMode{
                     self.navigationItem.title = "ブックマーク(" + String(self.recipeBasicList.count) + ")"
                 }else{

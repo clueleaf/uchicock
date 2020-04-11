@@ -320,7 +320,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                             ingredient.reminderSetDate = nil
                             if self.isReminderMode{
                                 self.ingredientBasicList.remove(at: index.row)
-                                self.tableView.deleteRows(at: [index], with: .automatic)
+                                self.tableView.deleteRows(at: [index], with: .middle)
                                 if self.ingredientBasicList.count == 0{
                                     self.setTableBackgroundView()
                                     self.tableView.reloadData()
@@ -347,7 +347,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if self.isReminderMode == false{
                 if stockState.selectedSegmentIndex != 0{
                     ingredientBasicList.remove(at: index.row)
-                    tableView.deleteRows(at: [index], with: .automatic)
+                    tableView.deleteRows(at: [index], with: .middle)
                     if ingredientBasicList.count == 0{
                         setTableBackgroundView()
                         tableView.reloadData()
@@ -474,7 +474,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
                     self.setTableBackgroundView()
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.deleteRows(at: [indexPath], with: .middle)
                     if self.isReminderMode{
                         self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
                     }else{

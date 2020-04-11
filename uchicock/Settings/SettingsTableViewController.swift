@@ -144,7 +144,7 @@ class SettingsTableViewController: UITableViewController {
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "AlreadyWrittenReview")
                 self.alreadyWrittenReview = true
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tableView.deleteRows(at: [indexPath], with: .middle)
             }))
             alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle

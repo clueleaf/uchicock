@@ -220,15 +220,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         updateMemoCounter()
 
         self.tableView.reloadData()
-        
-        if let path = selectedIndexPath {
-            if tableView.numberOfRows(inSection: 1) > path.row{
-                tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.tableView.deselectRow(at: path, animated: true)
-                }
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -404,22 +395,30 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
+                            // 材料新規追加
                             let recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ingredientName, amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1, stockFlag: false)
                             self.recipeIngredientList.append(recipeIngredient)
                             self.selectedIndexPath = nil
                             self.showCancelAlert = true
                             self.updateDuplicatedIngredientList()
+                            self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
+                            self.tableView.reloadData()
                         }
                     }else{
                         if deleteFlag{
+                            // 既存材料削除
                             for i in 0 ..< self.recipeIngredientList.count where i < self.recipeIngredientList.count {
                                 if self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                     self.recipeIngredientList.remove(at: i)
                                 }
                             }
-                            self.selectedIndexPath = nil
                             self.showCancelAlert = true
+                            self.updateDuplicatedIngredientList()
+                            self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
+                            self.selectedIndexPath = nil
+                            self.tableView.reloadData()
                         }else{
+                            // 既存材料編集
                             for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                 self.recipeIngredientList[i].ingredientName = ingredientName
                                 self.recipeIngredientList[i].amount = amount
@@ -428,12 +427,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.recipeIngredientList[i].displayOrder = -1
                                 self.showCancelAlert = true
                             }
+                            self.updateDuplicatedIngredientList()
+                            self.tableView.reloadData()
                         }
-                        self.updateDuplicatedIngredientList()
                     }
                 }
-                self.setupVC()
+                if let path = self.selectedIndexPath {
+                    if self.tableView.numberOfRows(inSection: 1) > path.row{
+                        self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            self.tableView.deselectRow(at: path, animated: true)
+                        }
+                    }
+                }
             }
+            
             if indexPath.row < recipeIngredientList.count{
                 if self.recipeIngredientList[indexPath.row].recipeIngredientId == ""{
                     self.recipeIngredientList[indexPath.row].recipeIngredientId = NSUUID().uuidString
@@ -466,7 +474,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.recipeIngredientList.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.deleteRows(at: [indexPath], with: .middle)
                 self.updateDuplicatedIngredientList()
                 tableView.reloadData()
                 completionHandler(true)
