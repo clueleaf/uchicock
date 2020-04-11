@@ -314,27 +314,23 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    private func appendNeedUpdateCellIndexList(){
-        var temporaryList = Array<IndexPath>()
+    private func createNeedUpdateCellIndexList(){
+        self.needUpdateCellIndexList.removeAll()
         
         if recipeIngredientList.count == 0 { return }
         for i in 0 ..< recipeIngredientList.count - 1{ // TODO
-            if temporaryList.contains(IndexPath(row: i, section: 1)) { continue }
+            if needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) { continue }
             for j in i+1 ..< recipeIngredientList.count{
-                if temporaryList.contains(IndexPath(row: j, section: 1)) { continue }
+                if needUpdateCellIndexList.contains(IndexPath(row: j, section: 1)) { continue }
                 if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
-                    if temporaryList.contains(IndexPath(row: i, section: 1)) == false {
-                        temporaryList.append(IndexPath(row: i, section: 1))
+                    if needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) == false {
+                        needUpdateCellIndexList.append(IndexPath(row: i, section: 1))
                     }
-                    if temporaryList.contains(IndexPath(row: j, section: 1)) == false {
-                        temporaryList.append(IndexPath(row: j, section: 1))
+                    if needUpdateCellIndexList.contains(IndexPath(row: j, section: 1)) == false {
+                        needUpdateCellIndexList.append(IndexPath(row: j, section: 1))
                     }
                 }
             }
-        }
-        
-        for ip in temporaryList{
-            needUpdateCellIndexList.append(ip)
         }
     }
     
@@ -421,15 +417,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.showCancelAlert = true
                             self.updateDuplicatedIngredientList()
                             self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
-                            self.needUpdateCellIndexList.removeAll()
-                            self.appendNeedUpdateCellIndexList()
+                            self.createNeedUpdateCellIndexList()
                             self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
                         }
                     }else{
                         if deleteFlag{
                             // 既存材料削除
-                            self.needUpdateCellIndexList.removeAll()
-                            self.appendNeedUpdateCellIndexList()
+                            self.createNeedUpdateCellIndexList()
                             for i in 0 ..< self.recipeIngredientList.count where i < self.recipeIngredientList.count {
                                 if self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                     self.recipeIngredientList.remove(at: i)
@@ -449,8 +443,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.selectedIndexPath = nil
                         }else{
                             // 既存材料編集
-                            self.needUpdateCellIndexList.removeAll()
-                            self.appendNeedUpdateCellIndexList()
                             for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
                                 self.recipeIngredientList[i].ingredientName = ingredientName
                                 self.recipeIngredientList[i].amount = amount
@@ -460,8 +452,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.showCancelAlert = true
                             }
                             self.updateDuplicatedIngredientList()
-                            self.appendNeedUpdateCellIndexList()
-                            self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
+                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -506,8 +497,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
-                self.needUpdateCellIndexList.removeAll()
-                self.appendNeedUpdateCellIndexList()
+                self.createNeedUpdateCellIndexList()
                 self.recipeIngredientList.remove(at: indexPath.row)
                 self.updateDuplicatedIngredientList()
                 tableView.deleteRows(at: [indexPath], with: .middle)
