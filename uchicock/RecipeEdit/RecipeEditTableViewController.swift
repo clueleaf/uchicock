@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import RealmSwift
 
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
@@ -596,13 +597,28 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     func addPhoto() {
         let alert = CustomAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) && status != .restricted {
             alert.addAction(UIAlertAction(title: "写真を撮る", style: .default,handler:{
                 action in
-                self.ipc.sourceType = .camera
-                self.ipc.allowsEditing = false
-                self.ipc.modalPresentationStyle = .fullScreen
-                self.present(self.ipc, animated: true, completion: nil)
+                if status == .denied{
+                    let alertView = CustomAlertController(title: "カメラの起動に失敗しました", message: "「設定」→「うちカク！」にてカメラへのアクセス許可を確認してください", preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
+                    }))
+                    alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+                        if let url = URL(string:UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }))
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(alertView, animated: true, completion: nil)
+                }else{
+                    self.ipc.sourceType = .camera
+                    self.ipc.allowsEditing = false
+                    self.ipc.modalPresentationStyle = .fullScreen
+                    self.present(self.ipc, animated: true, completion: nil)
+                }
             }))
         }
         alert.addAction(UIAlertAction(title: "写真を選択",style: .default, handler:{
