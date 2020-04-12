@@ -28,6 +28,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
+    var isItemsMoving = false
     var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
     var noItemText = ""
     var needsLayout = false
@@ -338,11 +339,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
         }
+        isItemsMoving = true
         collectionView.performBatchUpdates({
             for i in 0 ..< itemMoveDistination.count{
                 collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: itemMoveDistination[i], section: 0))
             }
-        }, completion: nil)
+        }, completion: { _ in
+            self.isItemsMoving = false
+        })
         
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
@@ -536,20 +540,22 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: - IBAction
     @IBAction func nameButtonTapped(_ sender: UIBarButtonItem) {
-        if showNameFlag {
-            recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
-            showNameFlag = false
-            animationFlag = true
-            self.collectionView.reloadData()
-            self.collectionView.layoutIfNeeded()
-            animationFlag = false
-        }else{
-            recipeNameBarButton.image = UIImage(named: "navigation-album-name-on")
-            showNameFlag = true
-            animationFlag = true
-            self.collectionView.reloadData()
-            self.collectionView.layoutIfNeeded()
-            animationFlag = false
+        if isItemsMoving == false{
+            if showNameFlag {
+                recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
+                showNameFlag = false
+                animationFlag = true
+                self.collectionView.reloadData()
+                self.collectionView.layoutIfNeeded()
+                animationFlag = false
+            }else{
+                recipeNameBarButton.image = UIImage(named: "navigation-album-name-on")
+                showNameFlag = true
+                animationFlag = true
+                self.collectionView.reloadData()
+                self.collectionView.layoutIfNeeded()
+                animationFlag = false
+            }
         }
     }
     
@@ -593,11 +599,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     }
                 }
             }
+            self.isItemsMoving = true
             self.collectionView.performBatchUpdates({
                 for i in 0 ..< self.itemMoveDistination.count{
                     self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
                 }
-            }, completion: nil)
+            }, completion: { _ in
+                self.isItemsMoving = false
+            })
 
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
@@ -631,11 +640,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     }
                 }
             }
+            self.isItemsMoving = true
             self.collectionView.performBatchUpdates({
                 for i in 0 ..< self.itemMoveDistination.count{
                     self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
                 }
-            }, completion: nil)
+            }, completion: { _ in
+                self.isItemsMoving = false
+            })
 
             self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
             if self.recipeBasicList.count == 0{
