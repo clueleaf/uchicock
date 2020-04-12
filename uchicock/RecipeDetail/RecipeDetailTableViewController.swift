@@ -132,24 +132,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        setupVC()
-        
-        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
-            for indexPath in tableView.indexPathsForVisibleRows! {
-                if indexPath.section == 0 { continue }
-                if recipeIngredientList.count > indexPath.row {
-                    if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                        }
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
-    private func setupVC(){
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         self.tableView.separatorColor = UchicockStyle.labelTextColorLight
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
@@ -357,8 +339,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     recipe.lastViewDate = Date()
                 }
             }
-            
-            setReminderBadge()
+        }
+        
+        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
+            for indexPath in tableView.indexPathsForVisibleRows! {
+                if indexPath.section == 0 { continue }
+                if recipeIngredientList.count > indexPath.row {
+                    if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                        }
+                        break
+                    }
+                }
+            }
         }
     }
     
@@ -679,7 +673,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             vc.shouldShowMessageHUD = true
             vc.onDoneBlock = {
-                self.setupVC()
+                self.setReminderBadge()
             }
 
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

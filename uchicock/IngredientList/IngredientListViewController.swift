@@ -58,10 +58,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setReminderBadge()
-        setupVC()
-    }
-    
-    private func setupVC(){
+        
         isReminderMode ? changeToReminderMode() : changeToIngredientMode()
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
 
@@ -131,6 +128,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         reloadIngredientList()
         tableView.reloadData()
         
+        setupVC()
+    }
+    
+    private func setupVC(){
         if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if ingredientBasicList.count > indexPath.row {

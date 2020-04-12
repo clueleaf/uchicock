@@ -100,10 +100,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupVC()
-    }
-    
-    private func setupVC(){
+        
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -113,9 +110,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
         recipeTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-
-        loadFromUserDefaults()
-
+        
         ingredientTextField1.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientTextField2.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientTextField3.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
@@ -134,18 +129,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         hiddenLabel.textColor = UchicockStyle.labelTextColorLight
 
-        setSearchConditionButtonTitle()
-        reloadRecipeList()
-        recipeTableView.reloadData()
-        self.tableView.reloadData()
-        
+        setupVC()
+
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField3)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
-
+        
         if recipeTableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
             for indexPath in recipeTableView.indexPathsForVisibleRows! {
                 if recipeBasicList.count > indexPath.row {
@@ -158,10 +150,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }
             }
         }
-        
+
         // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
         // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
         showRecipeTableView()
+    }
+    
+    private func setupVC(){
+        loadFromUserDefaults()
+        setSearchConditionButtonTitle()
+        reloadRecipeList()
+        recipeTableView.reloadData()
+        self.tableView.reloadData()
     }
     
     private func loadFromUserDefaults(){

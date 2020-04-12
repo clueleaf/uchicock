@@ -101,10 +101,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupVC()
-    }
-    
-    private func setupVC(){
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
 
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
@@ -153,11 +149,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        loadSearchUserDefaults()
-        setSearchConditionButtonTitle()
-        reloadRecipeList()
-        tableView.reloadData()
-
+        setupVC()
+        
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if recipeBasicList.count > indexPath.row {
@@ -170,6 +163,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
+    }
+    
+    private func setupVC(){
+        loadSearchUserDefaults()
+        setSearchConditionButtonTitle()
+        reloadRecipeList()
+        tableView.reloadData()
     }
     
     private func loadSearchUserDefaults(){

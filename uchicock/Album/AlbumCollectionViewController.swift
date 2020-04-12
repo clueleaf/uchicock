@@ -129,11 +129,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
 
-        setupVC()
-        needsLayout = true
-    }
-    
-    private func setupVC(){
         self.collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
         self.collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.collectionView.refreshHeader.removeRefreshHeader()
@@ -143,6 +138,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.collectionView.refreshHeader.stopPullToRefresh()
         }
 
+        setupVC()
+        needsLayout = true
+    }
+    
+    private func setupVC(){
         self.loadFilterUserDefaults()
         self.setFilterImageState()
         self.filterRecipeBasicList()
