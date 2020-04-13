@@ -474,11 +474,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     // MARK: - Photo Header
     private func updateImageView(){
         if calcImageViewSizeTime > 0{
-            let minimumShownTableViewHeight: CGFloat = 80.0
+            let minimumShownTableViewHeight: CGFloat = 115.0
             if photoWidth == 0 {
                 imageViewNaturalHeight = 0
             }else{
-                imageViewNaturalHeight = min(tableView.bounds.width, tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * photoHeight / photoWidth)
+                imageViewNaturalHeight = min(tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * photoHeight / photoWidth)
             }
             imageViewMinHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, imageViewNaturalHeight)
             imageViewNaturalHeight = floor(imageViewNaturalHeight)
