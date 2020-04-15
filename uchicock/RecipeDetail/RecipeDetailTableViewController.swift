@@ -37,15 +37,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
     
-    var hasRecipeDeleted = false
-    var shouldUpdateLastViewDate = true
-    var coverView = UIView(frame: CGRect.zero)
-    var deleteImageView = UIImageView(frame: CGRect.zero)
-    
     var recipeId = String()
     var recipe = Recipe()
     var recipeIngredientList = Array<RecipeIngredientBasic>()
-    var madeNum = 0
+
+    var hasRecipeDeleted = false
+    var coverView = UIView(frame: CGRect.zero)
+    var deleteImageView = UIImageView(frame: CGRect.zero)
+    
     var headerView: UIView!
     var photoExists = false
     var photoWidth: CGFloat = 0
@@ -53,8 +52,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var imageViewNaturalHeight: CGFloat = 0.0
     var imageViewMinHeight: CGFloat = 0.0
     var calcImageViewSizeTime = 0
+
+    var madeNum = 0
+    var shouldUpdateLastViewDate = true
     var firstShow = true
     var fromContextualMenu = false
+
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
 
@@ -64,6 +67,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,6 +79,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
         
+        photo.clipsToBounds = true
+
         recipeName.isScrollEnabled = false
         recipeName.textContainerInset = .zero
         recipeName.textContainer.lineFragmentPadding = 0
@@ -126,15 +132,15 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         longPressRecognizer.minimumPressDuration = 0.2
         photo.addGestureRecognizer(longPressRecognizer)
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         headerView.backgroundColor = UchicockStyle.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         lastViewDateLabel.textColor = UchicockStyle.labelTextColorLight
@@ -179,7 +185,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             bookmarkButton.tintColor = UchicockStyle.primaryColor
 
-            photo.clipsToBounds = true
             if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false), fromContextualMenu == false{
                 photoExists = true
                 photo.image = recipeImage
@@ -191,7 +196,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 photoWidth = 0
                 photoHeight = 0
             }
-            calcImageViewSizeTime = 5
+            calcImageViewSizeTime = 3
             updateImageView()
 
             recipeName.text = recipe.recipeName
@@ -329,8 +334,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteButton.backgroundColor = UchicockStyle.deleteColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
-            self.tableView.estimatedRowHeight = 70
-            self.tableView.rowHeight = UITableView.automaticDimension
+            tableView.estimatedRowHeight = 70
+            tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
             
             if fromContextualMenu == false{
@@ -339,17 +344,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     recipe.lastViewDate = Date()
                 }
             }
-        }
-        
-        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
-            for indexPath in tableView.indexPathsForVisibleRows! {
-                if indexPath.section == 0 { continue }
-                if recipeIngredientList.count > indexPath.row {
-                    if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            
+            if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
+                for indexPath in tableView.indexPathsForVisibleRows! {
+                    if indexPath.section == 0 { continue }
+                    if recipeIngredientList.count > indexPath.row {
+                        if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
+                            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                            }
+                            break
                         }
-                        break
                     }
                 }
             }
@@ -387,16 +392,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        calcImageViewSizeTime = 5
+        calcImageViewSizeTime = 3
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         if hasRecipeDeleted{
             tableView.contentOffset.y = 0
             coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
             deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
-            self.tableView.bringSubviewToFront(coverView)
+            tableView.bringSubviewToFront(coverView)
         }else{
             updateImageView()
         }
@@ -423,6 +429,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         if recipe.isInvalidated == false, fromContextualMenu == false{
             let realm = try! Realm()
             try! realm.write {
@@ -540,6 +547,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         guard let imageFileName = self.recipe.imageFileName else{
             return
         }
+        
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         
@@ -602,11 +610,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 0
-        } else {
-            return 30
-        }
+        return section == 0 ? 0 : 30
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -638,9 +642,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return recipeIngredientList.count
         }else if section == 2{
             return 1
-        }else{
-            return 0
         }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
@@ -762,49 +765,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             MessageHUD.show("ブックマークを外しました", for: 2.0, withCheckmark: true, isCenter: true)
         }
-    }
-    
-    func createLongMessage() -> String{
-        var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
-        switch recipe.style{
-        case 0:
-            message += "スタイル：ロング\n"
-        case 1:
-            message += "スタイル：ショート\n"
-        case 2:
-            message += "スタイル：ホット\n"
-        default: break
-        }
-        switch recipe.method{
-        case 0:
-            message += "技法：ビルド\n"
-        case 1:
-            message += "技法：ステア\n"
-        case 2:
-            message += "技法：シェイク\n"
-        case 3:
-            message += "技法：ブレンド\n"
-        default: break
-        }
-        switch recipe.strength{
-        case 0:
-            message += "アルコール度数：ノンアルコール\n"
-        case 1:
-            message += "アルコール度数：弱い\n"
-        case 2:
-            message += "アルコール度数：やや強い\n"
-        case 3:
-            message += "アルコール度数：強い\n"
-        default: break
-        }
-        message += "\n材料：\n"
-        for recipeIngredient in recipeIngredientList{
-            message += recipeIngredient.ingredientName + " " + recipeIngredient.amount + "\n"
-        }
-        if recipe.memo != "" {
-            message += "\n" + recipe.memo
-        }
-        return message
     }
     
     @IBAction func star1Tapped(_ sender: UIButton) {
@@ -1091,7 +1051,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             UIActivity.ActivityType.openInIBooks
         ]
         
-        let shareText = createLongMessage()
+        let shareText = createShareText()
         if photoExists, let image = photo.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             activityVC.excludedActivityTypes = excludedActivityTypes
@@ -1112,6 +1072,49 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             self.present(activityVC, animated: true, completion: nil)
         }        
+    }
+    
+    private func createShareText() -> String{
+        var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
+        switch recipe.style{
+        case 0:
+            message += "スタイル：ロング\n"
+        case 1:
+            message += "スタイル：ショート\n"
+        case 2:
+            message += "スタイル：ホット\n"
+        default: break
+        }
+        switch recipe.method{
+        case 0:
+            message += "技法：ビルド\n"
+        case 1:
+            message += "技法：ステア\n"
+        case 2:
+            message += "技法：シェイク\n"
+        case 3:
+            message += "技法：ブレンド\n"
+        default: break
+        }
+        switch recipe.strength{
+        case 0:
+            message += "アルコール度数：ノンアルコール\n"
+        case 1:
+            message += "アルコール度数：弱い\n"
+        case 2:
+            message += "アルコール度数：やや強い\n"
+        case 3:
+            message += "アルコール度数：強い\n"
+        default: break
+        }
+        message += "\n材料：\n"
+        for recipeIngredient in recipeIngredientList{
+            message += recipeIngredient.ingredientName + " " + recipeIngredient.amount + "\n"
+        }
+        if recipe.memo != "" {
+            message += "\n" + recipe.memo
+        }
+        return message
     }
     
     @IBAction func openInSafariButtonTapped(_ sender: UIButton) {
@@ -1146,7 +1149,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }
                 realm.delete(self.recipe)
             }
-            _ = self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         })
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle

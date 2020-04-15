@@ -185,7 +185,7 @@
 		9B2E83F0230A9FCB002E7946 /* PullToRefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PullToRefreshHeaderView.swift; path = Util/PullToRefresh/PullToRefreshHeaderView.swift; sourceTree = "<group>"; };
 		9B30125122BB8A7300288DEE /* RecipeIngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientTableViewCell.swift; path = RecipeDetail/RecipeIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		9B30125222BB8A7300288DEE /* RecipeIngredientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeIngredientTableViewCell.xib; path = RecipeDetail/RecipeIngredientTableViewCell.xib; sourceTree = "<group>"; };
-		9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeIngredientBasic.swift; path = RecipeEdit/RecipeIngredientBasic.swift; sourceTree = "<group>"; };
+		9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientBasic.swift; sourceTree = "<group>"; };
 		9B3078C51CA421660014CE7E /* RecipeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeListViewController.swift; path = RecipeList/RecipeListViewController.swift; sourceTree = "<group>"; };
 		9B3078C81CA421AE0014CE7E /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Database/Ingredient.swift; sourceTree = "<group>"; };
 		9B3078C91CA421AE0014CE7E /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = Database/Recipe.swift; sourceTree = "<group>"; };
@@ -320,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */,
+				9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,7 +390,6 @@
 				9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */,
 				9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */,
 				9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */,
-				9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */,
 				9B112E2D1FF285650014BABA /* PhotoFilterViewController.swift */,
 				9BBAB622230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift */,
 				9B7BAA6922B4EB8B005BB3F7 /* PhotoFilterCollectionViewCell.swift */,
