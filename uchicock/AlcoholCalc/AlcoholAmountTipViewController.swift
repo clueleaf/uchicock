@@ -30,6 +30,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     
     var onDoneBlock = {}
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,11 +54,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         updateResultLabel()
         
         alcoholAmountLabel.text = String(alcoholAmount) + "ml"
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor

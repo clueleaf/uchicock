@@ -25,7 +25,6 @@ class CustomActivityController: UIActivityViewController{
 }
 
 class BasicNavigationController: UINavigationController {
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.interactivePopEnabled = true
@@ -38,7 +37,6 @@ class BasicNavigationController: UINavigationController {
     override var childForStatusBarStyle: UIViewController? {
         return self.visibleViewController
     }
-    
 }
 
 class CustomTextView: UITextView{

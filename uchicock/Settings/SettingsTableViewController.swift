@@ -31,6 +31,7 @@ class SettingsTableViewController: UITableViewController {
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -91,6 +92,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         let y = ((tableView.frame.height - 60 * 5) / 2)
         stayHomeLabel.frame = CGRect(x: 0, y: y + 60 * 5, width: tableView.frame.width, height: 20)
     }
@@ -146,7 +148,7 @@ class SettingsTableViewController: UITableViewController {
                 self.alreadyWrittenReview = true
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
             }))
-            alertView.addAction(UIAlertAction(title: "今はしない", style: .cancel){action in})
+            alertView.addAction(UIAlertAction(title: "また今度", style: .cancel){action in})
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
@@ -162,7 +164,6 @@ class SettingsTableViewController: UITableViewController {
         accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
         accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         cell.accessoryView = accesoryImageView
-
         cell.selectedBackgroundView = selectedCellBackgroundView
         cell.backgroundColor = UchicockStyle.basicBackgroundColor
         return cell
@@ -176,7 +177,7 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    func introductions() -> [introductionInfo]{
+    private func introductions() -> [introductionInfo]{
         var infos: [introductionInfo] = []
 
         let info1 = introductionInfo(title: "レシピ",
@@ -197,5 +198,4 @@ class SettingsTableViewController: UITableViewController {
         infos.append(info4)
         return infos
     }
-
 }

@@ -41,7 +41,28 @@ class IngredientRecommendTableViewController: UITableViewController {
         createIngredientBasicList()
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.reloadData()
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        
+        if isContributionMode {
+            descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになるのでおすすめです！"
+        }else{
+            if ingredientBasicList.count == 0{
+                descriptionLabel.text = "おすすめできる材料はありません..."
+            }else{
+                if stockingIngredientList != nil {
+                    if stockingIngredientList!.count <= 10 {
+                        descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょう？"
+                    }else{
+                        descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
+                    }
+                }else{
+                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
+                }
+            }
+        }
     }
     
     private func createIngredientBasicList(){
@@ -74,34 +95,6 @@ class IngredientRecommendTableViewController: UITableViewController {
                 ingredientBasicList.removeAll{ $0.category == 2 }
             }
             ingredientBasicList.sort(by: { $0.usedRecipeNum > $1.usedRecipeNum })
-        }
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
-        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
-        
-        if isContributionMode {
-            descriptionLabel.text = "以下の材料を入手すると、より多くのレシピを作れるようになるのでおすすめです！"
-        }else{
-            if ingredientBasicList.count == 0{
-                descriptionLabel.text = "おすすめできる材料はありません..."
-            }else{
-                if stockingIngredientList != nil {
-                    if stockingIngredientList!.count <= 10 {
-                        descriptionLabel.text = "まだあまり材料を持っていないようですね。\n\nまずは多くのレシピに使われている以下の材料から始めるのはいかがでしょう？"
-                    }else{
-                        descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
-                    }
-                }else{
-                    descriptionLabel.text = "以下の材料は多くのレシピで使われているのでおすすめです！"
-                }
-            }
         }
     }
     

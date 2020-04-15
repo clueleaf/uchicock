@@ -49,18 +49,14 @@ class ChangeThemeTableViewController: UITableViewController {
         "ブラッディメアリー - ダーク",
     ]
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
     }
     
     override func viewDidLayoutSubviews() {
@@ -168,5 +164,4 @@ class ChangeThemeTableViewController: UITableViewController {
 
         return cell
     }
-    
 }

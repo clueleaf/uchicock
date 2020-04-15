@@ -144,5 +144,4 @@ struct FlatColor{
         let luminance = red + green + blue
         return luminance > 0.6
     }
-    
 }

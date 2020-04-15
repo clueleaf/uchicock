@@ -9,7 +9,6 @@
 import UIKit
 
 class AlcoholCalcIngredientTableViewCell: UITableViewCell {
-
     @IBOutlet weak var ingredientNumberLabel: CustomLabel!
     @IBOutlet weak var validCheckbox: CircularCheckbox!
     @IBOutlet weak var validLabel: CustomLabel!

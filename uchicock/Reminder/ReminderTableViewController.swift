@@ -20,8 +20,10 @@ class ReminderTableViewController: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredient = Ingredient()
+    
     var shouldShowMessageHUD = false
     var reminderTypePreviousState = 0
+
     var interactor: Interactor?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -30,6 +32,7 @@ class ReminderTableViewController: UITableViewController {
     
     var onDoneBlock = {}
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,21 +51,17 @@ class ReminderTableViewController: UITableViewController {
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         if #available(iOS 13.0, *) {
         }else{
             reminderType.layer.cornerRadius = 14.0
         }
+
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         reminderType.layer.borderColor = UchicockStyle.primaryColor.cgColor
         reminderType.layer.borderWidth = 1.0
         reminderType.layer.masksToBounds = true
@@ -88,6 +87,7 @@ class ReminderTableViewController: UITableViewController {
         self.onDoneBlock()
     }
     
+    // MARK: - Handle Reminder
     private func showError(_ type: String){
         let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -102,7 +102,7 @@ class ReminderTableViewController: UITableViewController {
         self.present(alertView, animated: true, completion: nil)
     }
     
-    func createReminder(eventStore: EKEventStore, title: String) {
+    private func createReminder(eventStore: EKEventStore, title: String) {
         let reminder = EKReminder(eventStore: eventStore)
         
         reminder.title = title
@@ -123,7 +123,7 @@ class ReminderTableViewController: UITableViewController {
         }
     }
     
-    func createEvent(eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) {
+    private func createEvent(eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) {
         let event = EKEvent(eventStore: eventStore)
         
         event.title = title
@@ -326,5 +326,4 @@ class ReminderTableViewController: UITableViewController {
             tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
         }
     }
-    
 }

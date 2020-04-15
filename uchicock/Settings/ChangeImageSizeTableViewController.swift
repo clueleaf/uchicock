@@ -22,29 +22,25 @@ class ChangeImageSizeTableViewController: UITableViewController {
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-
-        setSizeExplanationText()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableView.automaticDimension
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
         explanationLabel.textColor = UchicockStyle.labelTextColor
         sizeExplanationLabel.textColor = UchicockStyle.labelTextColor
+
+        setSizeExplanationText()
     }
     
-    func setSizeExplanationText(){
+    private func setSizeExplanationText(){
         let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
         if saveImageSize == 1{
             self.sizeExplanationLabel.text = largeSizeExplanationText
@@ -158,5 +154,4 @@ class ChangeImageSizeTableViewController: UITableViewController {
             return UITableViewCell()
         }
     }
-
 }

@@ -32,6 +32,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,12 +56,6 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             addSampleCalcIngredient()
         }
 
-        calcAlcoholStrength()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         
         let tipImage = UIImage(named: "button-tip")
@@ -81,6 +76,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         self.ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
         self.ingredientTableView.separatorColor = UchicockStyle.labelTextColorLight
+        
+        calcAlcoholStrength()
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,6 +85,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         hiddenLabel.frame = CGRect(x: 0, y: -90, width: ingredientTableView.frame.width, height: 20)
     }
     
+    // MARK: - Calc
     private func addSampleCalcIngredient(){
         addCalcIngredient(id: "0", degree: 40, amount: 45, valid: true)
         addCalcIngredient(id: "1", degree: 0, amount: 90, valid: true)
@@ -393,4 +391,3 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return interactor.hasStarted ? interactor : nil
     }
 }
-

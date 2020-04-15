@@ -31,16 +31,17 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var recipeOrderLabel: UILabel!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
-    var coverView = UIView(frame: CGRect.zero)
-    var deleteImageView = UIImageView(frame: CGRect.zero)
-    
     var ingredientId = String()
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<RecipeBasic>()
+
+    var hasIngredientDeleted = false
+    var coverView = UIView(frame: CGRect.zero)
+    var deleteImageView = UIImageView(frame: CGRect.zero)
+
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
     var selectedRecipeId: String? = nil
-    var hasIngredientDeleted = false
 
     let interactor = Interactor()
 
@@ -48,11 +49,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.prefetchDataSource = self
-
         ingredientName.isScrollEnabled = false
         ingredientName.textContainerInset = .zero
         ingredientName.textContainer.lineFragmentPadding = 0
@@ -63,8 +63,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         memo.font = UIFont.systemFont(ofSize: 15.0)
         stock.boxLineWidth = 1.0
         
-        stockRecommendLabel.isHidden = true
-        
+        removeReminderButton.layer.borderWidth = 1.0
+        removeReminderButton.layer.cornerRadius = 12
+
         editButton.layer.cornerRadius = editButton.frame.size.width / 2
         editButton.clipsToBounds = true
         reminderButton.layer.cornerRadius = reminderButton.frame.size.width / 2
@@ -74,25 +75,24 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
         deleteButton.clipsToBounds = true
 
-        self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        recipeOrderLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
 
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
         reminderImage.tintColor = UchicockStyle.primaryColor
         reminderMessageLabel.textColor = UchicockStyle.primaryColor
         removeReminderButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         removeReminderButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        removeReminderButton.layer.borderWidth = 1.0
-        removeReminderButton.layer.cornerRadius = 12
         removeReminderButton.backgroundColor = UchicockStyle.basicBackgroundColor
 
         stock.secondaryTintColor = UchicockStyle.primaryColor
@@ -102,7 +102,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         deleteButtonLabel.textColor = UchicockStyle.deleteColor
 
         recipeOrderLabel.textColor = UchicockStyle.primaryColor
-        recipeOrderLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
         
         let realm = try! Realm()
         let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
@@ -186,9 +185,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 deleteContainerView.isHidden = false
             }
             
-            self.tableView.estimatedRowHeight = 70
-            self.tableView.rowHeight = UITableView.automaticDimension
-            self.tableView.reloadData()
+            tableView.estimatedRowHeight = 70
+            tableView.rowHeight = UITableView.automaticDimension
+            tableView.reloadData()
         }
         
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
@@ -208,16 +207,18 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         if hasIngredientDeleted{
             tableView.contentOffset.y = 0
             coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
             deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
-            self.tableView.bringSubviewToFront(coverView)
+            tableView.bringSubviewToFront(coverView)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if hasIngredientDeleted{
             let noIngredientAlertView = CustomAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
@@ -226,12 +227,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             noIngredientAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noIngredientAlertView, animated: true, completion: nil)
+        }else{
+            if let path = tableView.indexPathForSelectedRow{
+                self.tableView.deselectRow(at: path, animated: true)
+            }
+            selectedRecipeId = nil
         }
-        
-        if let path = tableView.indexPathForSelectedRow{
-            self.tableView.deselectRow(at: path, animated: true)
-        }
-        selectedRecipeId = nil
     }
     
     // MARK: - Set Style
@@ -264,8 +265,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
     }
     
-    func reloadIngredientRecipeBasicList(){
+    private func reloadIngredientRecipeBasicList(){
         ingredientRecipeBasicList.removeAll()
+        
         for recipeIngredient in ingredient.recipeIngredients{
             ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
         }
@@ -320,11 +322,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1{
-            return 30
-        } else {
-            return 0
-        }
+        return section == 1 ? 30 : 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -499,8 +497,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if ingredient.recipeIngredients.count > 0{
                 if indexPath.row > 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
+                    
                     let realm = try! Realm()
                     let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].id)!
+
                     if recipeOrder == 3{
                         cell.subInfoType = 1
                     }else if recipeOrder == 5{
@@ -592,7 +592,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "PushEditIngredient", sender: UIBarButtonItem())
+        performSegue(withIdentifier: "PushEditIngredient", sender: nil)
     }
     
     @IBAction func reminderButtonTapped(_ sender: UIButton) {
@@ -688,5 +688,4 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     func closeEditVC(_ editVC: IngredientEditTableViewController){
         editVC.dismiss(animated: true, completion: nil)
     }
-
 }

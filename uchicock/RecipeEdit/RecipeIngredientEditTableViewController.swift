@@ -40,6 +40,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     var onDoneBlock: ((Bool, Bool, Bool, String, String, Int, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,12 +87,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.nameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.amountTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.amount)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.amountTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.amount)
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+        
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         self.tableView.separatorColor = UchicockStyle.labelTextColorLight
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black

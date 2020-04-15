@@ -18,17 +18,20 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var memo: CustomTextView!
     @IBOutlet weak var memoCounter: UILabel!
     
+    weak var mainNavigationController : BasicNavigationController?
+    
+    var ingredient = Ingredient()
+
     let ingredientNameMaximum = 30
     let memoMaximum = 300
-    
-    weak var mainNavigationController : BasicNavigationController?
-    var ingredient = Ingredient()
     var isAddMode = true
     var showCancelAlert = false
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,19 +62,15 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+
 
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-
         ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
@@ -156,10 +155,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 4
-        }
-        return 0
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -189,7 +185,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
-    func presentAlert(_ message: String){
+    private func presentAlert(_ message: String){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -281,5 +277,4 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-
 }

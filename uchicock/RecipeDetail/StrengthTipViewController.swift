@@ -21,6 +21,7 @@ class StrengthTipViewController: UIViewController, UIScrollViewDelegate {
     
     var onDoneBlock = {}
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,11 +29,6 @@ class StrengthTipViewController: UIViewController, UIScrollViewDelegate {
         if interactor != nil{
             scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
