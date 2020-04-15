@@ -28,6 +28,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     
     var onDoneBlock: ((String?) -> Void) = {ingredientId in}
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,11 +126,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return UITableView.automaticDimension
-        }else{
-            return 75
-        }
+        return indexPath.row == 0 ? UITableView.automaticDimension : 75
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -137,11 +134,7 @@ class IngredientRecommendTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ingredientBasicList.count <= 5{
-            return ingredientBasicList.count + 1
-        }else{
-            return 6
-        }
+        return  ingredientBasicList.count <= 5 ? ingredientBasicList.count + 1 : 6
     }
 
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
@@ -150,8 +143,8 @@ class IngredientRecommendTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0{
+            selectedRecommendIngredientId = self.ingredientBasicList[indexPath.row - 1].id
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.selectedRecommendIngredientId = self.ingredientBasicList[indexPath.row - 1].id
                 self.dismiss(animated: true, completion: nil)
             }
         }
@@ -223,5 +216,4 @@ class IngredientRecommendTableViewController: UITableViewController {
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
