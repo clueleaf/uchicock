@@ -22,4 +22,3 @@ struct RecipeBasic{
     var imageFileName: String?
     var bookmarkDate : Date?
 }
-

@@ -532,11 +532,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }else{
                     cell.isDuplicated = false
                 }
-                cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
-                cell.amountText = recipeIngredientList[indexPath.row].amount
-                cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
-                cell.stock = nil
-                cell.category = recipeIngredientList[indexPath.row].category
+                cell.shouldDisplayStock = false
+                cell.isNameTextViewSelectable = false
+                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: false)
 
                 let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
                 let accesoryImageView = UIImageView(image: disclosureIndicator)

@@ -712,12 +712,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.accessoryView = accesoryImageView
 
             if recipe.isInvalidated == false{
-                cell.ingredientId = recipeIngredientList[indexPath.row].ingredientId
-                cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
-                cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
-                cell.stock = recipeIngredientList[indexPath.row].stockFlag
-                cell.amountText = recipeIngredientList[indexPath.row].amount
-                cell.category = recipeIngredientList[indexPath.row].category
+                cell.isDuplicated = false
+                cell.shouldDisplayStock = true
+                cell.isNameTextViewSelectable = false
+                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: recipeIngredientList[indexPath.row].stockFlag)
             }
 
             cell.selectionStyle = .default

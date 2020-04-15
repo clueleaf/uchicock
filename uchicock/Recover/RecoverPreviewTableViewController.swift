@@ -176,13 +176,10 @@ class RecoverPreviewTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
-            cell.ingredientName = recipeIngredientList[indexPath.row].ingredientName
-            cell.ingredientNameTextView.isSelectable = true
-            cell.ingredientNameTextView.isUserInteractionEnabled = true
-            cell.isOption = !recipeIngredientList[indexPath.row].mustFlag
-            cell.amountText = recipeIngredientList[indexPath.row].amount
-            cell.stock = nil
-            cell.category = recipeIngredientList[indexPath.row].category
+            cell.isDuplicated = false
+            cell.shouldDisplayStock = false
+            cell.isNameTextViewSelectable = true
+            cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: false)
 
             cell.selectionStyle = .none
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
