@@ -10,29 +10,31 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: CustomSearchBar!
+
     @IBOutlet weak var searchContainer: UIView!
+    @IBOutlet weak var searchBar: CustomSearchBar!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
-    @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchBarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchConditionModifyButtonHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var containerSeparatorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var tableView: UITableView!
+    let selectedCellBackgroundView = UIView()
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
     var recipeBasicListForFilterModal = Array<RecipeBasic>()
-    var scrollBeginingYPoint: CGFloat = 0.0
-    let selectedCellBackgroundView = UIView()
+
     var selectedRecipeId: String? = nil
+
+    var scrollBeginningYPoint: CGFloat = 0.0
+
     var isTyping = false
     var isBookmarkMode = false
     var shouldShowBookmarkGuide = false
@@ -64,6 +66,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UchicockStyle.statusBarStyle
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,13 +74,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.backgroundImage = UIImage()
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.prefetchDataSource = self
-        self.tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.layer.borderWidth = 1.0
+            searchBar.searchTextField.layer.cornerRadius = 8.0
+        }
+
+        searchConditionModifyButton.layer.borderWidth = 1.5
+        searchConditionModifyButton.layer.cornerRadius = 15
+
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
     }
     
-    func requestReview(){
+    private func requestReview(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.FirstRequestReviewKey : false, GlobalConstants.LaunchCountAfterReviewKey : 0])
 
@@ -98,13 +109,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             defaults.set(NSDate(), forKey: GlobalConstants.LaunchDateAfterReviewKey)
         }
     }
+    
+    private func getTextFieldFromView(view: UIView) -> UITextField? {
+        for subview in view.subviews{
+            if subview is UITextField{
+                return subview as? UITextField
+            }else{
+                let textField = self.getTextFieldFromView(view: subview)
+                if textField != nil{
+                    return textField
+                }
+            }
+        }
+        return nil
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
 
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
-        searchBar.backgroundImage = UIImage()
         
         let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
@@ -113,8 +138,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-            searchBar.searchTextField.layer.borderWidth = 1.0
-            searchBar.searchTextField.layer.cornerRadius = 8.0
         }else{
             for view in searchBar.subviews {
                 for subview in view.subviews {
@@ -134,22 +157,33 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    for subsubview in subview.subviews{
+                        if subsubview is UILabel{
+                            let placeholderLabel = subsubview as! UILabel
+                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
+                        }
+                    }
+                }
+            }
+        }
+        
         searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        searchConditionModifyButton.layer.borderWidth = 1.5
-        searchConditionModifyButton.layer.cornerRadius = 15
         searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
         containerSeparator.backgroundColor = UchicockStyle.labelTextColorLight
 
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        setupVC()
+        setTableViewData()
         
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! {
@@ -165,7 +199,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private func setupVC(){
+    private func setTableViewData(){
         loadSearchUserDefaults()
         setSearchConditionButtonTitle()
         reloadRecipeList()
@@ -268,6 +302,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        
         if traitCollection.verticalSizeClass == .compact && isTyping {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }else{
@@ -277,31 +312,20 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.setTableBackgroundView()
+        setTableBackgroundView()
         super.viewDidAppear(animated)
         
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                        }
-                    }
-                }
-            }
-        }
         if let path = tableView.indexPathForSelectedRow{
-            self.tableView.deselectRow(at: path, animated: true)
+            tableView.deselectRow(at: path, animated: true)
         }
         selectedRecipeId = nil
-        self.tableView.flashScrollIndicators()
-        
+                
+        tableView.flashScrollIndicators()
+
         if shouldShowBookmarkGuide{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 MessageHUD.show("←レシピに戻る", for: 2.0, withCheckmark: false, isCenter: false)
@@ -309,21 +333,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             shouldShowBookmarkGuide = false
         }
     }
-        
-    func getTextFieldFromView(view: UIView) -> UITextField?{
-        for subview in view.subviews{
-            if subview is UITextField{
-                return subview as? UITextField
-            }else{
-                let textField = self.getTextFieldFromView(view: subview)
-                if textField != nil{
-                    return textField
-                }
-            }
-        }
-        return nil
-    }
     
+    // MARK: - Manage Data
     private func deleteRecipe(id: String) {
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: id)!
@@ -335,6 +346,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         ImageUtil.remove(imageFileName: recipe.imageFileName)
+        
         try! realm.write{
             for ri in deletingRecipeIngredientList{
                 let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
@@ -359,301 +371,310 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
-        for recipe in recipeList!{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
-        }
         
         if isBookmarkMode{
-            recipeBasicList.removeAll{ $0.bookmarkDate == nil }
+            for recipe in recipeList! {
+                if recipe.bookmarkDate != nil{
+                    recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+                }
+            }
+            
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
+            for recipe in recipeList! {
+                recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            }
+            
             if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
-                recipeBasicList.removeAll{ !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
-            }
-                
-            if recipeFilterStar0 == false{
-                recipeBasicList.removeAll{ $0.favorites == 0 }
-            }
-            if recipeFilterStar1 == false{
-                recipeBasicList.removeAll{ $0.favorites == 1 }
-            }
-            if recipeFilterStar2 == false{
-                recipeBasicList.removeAll{ $0.favorites == 2 }
-            }
-            if recipeFilterStar3 == false{
-                recipeBasicList.removeAll{ $0.favorites == 3 }
-            }
-            if recipeFilterLong == false{
-                recipeBasicList.removeAll{ $0.style == 0 }
-            }
-            if recipeFilterShort == false{
-                recipeBasicList.removeAll{ $0.style == 1 }
-            }
-            if recipeFilterHot == false{
-                recipeBasicList.removeAll{ $0.style == 2 }
-            }
-            if recipeFilterStyleNone == false{
-                recipeBasicList.removeAll{ $0.style == 3 }
-            }
-            if recipeFilterBuild == false{
-                recipeBasicList.removeAll{ $0.method == 0 }
-            }
-            if recipeFilterStir == false{
-                recipeBasicList.removeAll{ $0.method == 1 }
-            }
-            if recipeFilterShake == false{
-                recipeBasicList.removeAll{ $0.method == 2 }
-            }
-            if recipeFilterBlend == false{
-                recipeBasicList.removeAll{ $0.method == 3 }
-            }
-            if recipeFilterOthers == false{
-                recipeBasicList.removeAll{ $0.method == 4 }
-            }
-            if recipeFilterNonAlcohol == false{
-                recipeBasicList.removeAll{ $0.strength == 0 }
-            }
-            if recipeFilterWeak == false{
-                recipeBasicList.removeAll{ $0.strength == 1 }
-            }
-            if recipeFilterMedium == false{
-                recipeBasicList.removeAll{ $0.strength == 2 }
-            }
-            if recipeFilterStrong == false{
-                recipeBasicList.removeAll{ $0.strength == 3 }
-            }
-            if recipeFilterStrengthNone == false{
-                recipeBasicList.removeAll{ $0.strength == 4 }
+                recipeBasicList.removeAll{ $0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) == false }
             }
 
-            switch recipeSortPrimary{
-            case 1: // 名前順
-                recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-            case 2:
-                switch recipeSortSecondary{
-                case 1: // 作れる順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.shortageNum == b.shortageNum {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.shortageNum < b.shortageNum
-                        }
-                    })
-                case 3: // 作れる順 > 作った回数順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.shortageNum == b.shortageNum {
-                            if a.madeNum == b.madeNum{
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.madeNum > b.madeNum
-                            }
-                        } else {
-                            return a.shortageNum < b.shortageNum
-                        }
-                    })
-                case 4: // 作れる順 > お気に入り順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.shortageNum == b.shortageNum {
-                            if a.favorites == b.favorites{
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.favorites > b.favorites
-                            }
-                        } else {
-                            return a.shortageNum < b.shortageNum
-                        }
-                    })
-                case 5: // 作れる順 > 最近見た順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.shortageNum == b.shortageNum {
-                            if a.lastViewDate == nil{
-                                if b.lastViewDate == nil{
-                                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                                }else{
-                                    return false
-                                }
-                            }else{
-                                if b.lastViewDate == nil{
-                                    return true
-                                }else{
-                                    return a.lastViewDate! > b.lastViewDate!
-                                }
-                            }
-                        } else {
-                            return a.shortageNum < b.shortageNum
-                        }
-                    })
-                default: // 作れる順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.shortageNum == b.shortageNum {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.shortageNum < b.shortageNum
-                        }
-                    })
-                }
-            case 3:
-                switch recipeSortSecondary{
-                case 1: // 作った回数順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.madeNum == b.madeNum {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.madeNum > b.madeNum
-                        }
-                    })
-                case 2: // 作った回数順 > 作れる順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.madeNum == b.madeNum {
-                            if a.shortageNum == b.shortageNum{
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.shortageNum < b.shortageNum
-                            }
-                        } else {
-                            return a.madeNum > b.madeNum
-                        }
-                    })
-                case 4: // 作った回数順 > お気に入り順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.madeNum == b.madeNum {
-                            if a.favorites == b.favorites{
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.favorites > b.favorites
-                            }
-                        } else {
-                            return a.madeNum > b.madeNum
-                        }
-                    })
-                case 5: // 作った回数順 > 最近見た順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.madeNum == b.madeNum {
-                            if a.lastViewDate == nil{
-                                if b.lastViewDate == nil{
-                                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                                }else{
-                                    return false
-                                }
-                            }else{
-                                if b.lastViewDate == nil{
-                                    return true
-                                }else{
-                                    return a.lastViewDate! > b.lastViewDate!
-                                }
-                            }
-                        } else {
-                            return a.madeNum > b.madeNum
-                        }
-                    })
-                default: // 作った回数順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.madeNum == b.madeNum {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.madeNum > b.madeNum
-                        }
-                    })
-                }
-            case 4:
-                switch recipeSortSecondary{
-                case 1: // お気に入り順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.favorites == b.favorites {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.favorites > b.favorites
-                        }
-                    })
-                case 2: // お気に入り順 > 作れる順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.favorites == b.favorites {
-                            if a.shortageNum == b.shortageNum{
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.shortageNum < b.shortageNum
-                            }
-                        } else {
-                            return a.favorites > b.favorites
-                        }
-                    })
-                case 3: // お気に入り順 > 作った回数順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.favorites == b.favorites {
-                            if a.madeNum == b.madeNum {
-                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                            }else{
-                                return a.madeNum > b.madeNum
-                            }
-                        } else {
-                            return a.favorites > b.favorites
-                        }
-                    })
-                case 5: // お気に入り順 > 最近見た順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.favorites == b.favorites {
-                            if a.lastViewDate == nil{
-                                if b.lastViewDate == nil{
-                                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                                }else{
-                                    return false
-                                }
-                            }else{
-                                if b.lastViewDate == nil{
-                                    return true
-                                }else{
-                                    return a.lastViewDate! > b.lastViewDate!
-                                }
-                            }
-                        } else {
-                            return a.favorites > b.favorites
-                        }
-                    })
-                default: // お気に入り順 > 名前順
-                    recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                        if a.favorites == b.favorites {
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        } else {
-                            return a.favorites > b.favorites
-                        }
-                    })
-                }
-            case 5: // 最近見た順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.lastViewDate == nil{
-                        if b.lastViewDate == nil{
-                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
-                        }else{
-                            return false
-                        }
-                    }else{
-                        if b.lastViewDate == nil{
-                            return true
-                        }else{
-                            return a.lastViewDate! > b.lastViewDate!
-                        }
-                    }
-                })
-            default: // 名前順
-                recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-            }
+            filterRecipeBasicList()
+            sortRecipeBasicList()
                 
-            if let allRecipeNum = recipeList?.count{
-                self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(allRecipeNum) + ")"
-            }else{
-                self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + ")"
-            }
+            self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(recipeList!.count) + ")"
         }
+        
         setTableBackgroundView()
-
     }
     
-    func setTableBackgroundView(){
+    private func filterRecipeBasicList(){
+        if recipeFilterStar0 == false{
+            recipeBasicList.removeAll{ $0.favorites == 0 }
+        }
+        if recipeFilterStar1 == false{
+            recipeBasicList.removeAll{ $0.favorites == 1 }
+        }
+        if recipeFilterStar2 == false{
+            recipeBasicList.removeAll{ $0.favorites == 2 }
+        }
+        if recipeFilterStar3 == false{
+            recipeBasicList.removeAll{ $0.favorites == 3 }
+        }
+        if recipeFilterLong == false{
+            recipeBasicList.removeAll{ $0.style == 0 }
+        }
+        if recipeFilterShort == false{
+            recipeBasicList.removeAll{ $0.style == 1 }
+        }
+        if recipeFilterHot == false{
+            recipeBasicList.removeAll{ $0.style == 2 }
+        }
+        if recipeFilterStyleNone == false{
+            recipeBasicList.removeAll{ $0.style == 3 }
+        }
+        if recipeFilterBuild == false{
+            recipeBasicList.removeAll{ $0.method == 0 }
+        }
+        if recipeFilterStir == false{
+            recipeBasicList.removeAll{ $0.method == 1 }
+        }
+        if recipeFilterShake == false{
+            recipeBasicList.removeAll{ $0.method == 2 }
+        }
+        if recipeFilterBlend == false{
+            recipeBasicList.removeAll{ $0.method == 3 }
+        }
+        if recipeFilterOthers == false{
+            recipeBasicList.removeAll{ $0.method == 4 }
+        }
+        if recipeFilterNonAlcohol == false{
+            recipeBasicList.removeAll{ $0.strength == 0 }
+        }
+        if recipeFilterWeak == false{
+            recipeBasicList.removeAll{ $0.strength == 1 }
+        }
+        if recipeFilterMedium == false{
+            recipeBasicList.removeAll{ $0.strength == 2 }
+        }
+        if recipeFilterStrong == false{
+            recipeBasicList.removeAll{ $0.strength == 3 }
+        }
+        if recipeFilterStrengthNone == false{
+            recipeBasicList.removeAll{ $0.strength == 4 }
+        }
+    }
+    
+    private func sortRecipeBasicList(){
+        switch recipeSortPrimary{
+        case 1: // 名前順
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        case 2:
+            switch recipeSortSecondary{
+            case 1: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 3: // 作れる順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.madeNum == b.madeNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 4: // 作れる順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            case 5: // 作れる順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            default: // 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.shortageNum == b.shortageNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.shortageNum < b.shortageNum
+                    }
+                })
+            }
+        case 3:
+            switch recipeSortSecondary{
+            case 1: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 2: // 作った回数順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 4: // 作った回数順 > お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.favorites == b.favorites{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.favorites > b.favorites
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            case 5: // 作った回数順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            default: // 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.madeNum == b.madeNum {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.madeNum > b.madeNum
+                    }
+                })
+            }
+        case 4:
+            switch recipeSortSecondary{
+            case 1: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 2: // お気に入り順 > 作れる順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.shortageNum == b.shortageNum{
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.shortageNum < b.shortageNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 3: // お気に入り順 > 作った回数順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.madeNum == b.madeNum {
+                            return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        }else{
+                            return a.madeNum > b.madeNum
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            case 5: // お気に入り順 > 最近見た順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        if a.lastViewDate == nil{
+                            if b.lastViewDate == nil{
+                                return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                            }else{
+                                return false
+                            }
+                        }else{
+                            if b.lastViewDate == nil{
+                                return true
+                            }else{
+                                return a.lastViewDate! > b.lastViewDate!
+                            }
+                        }
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            default: // お気に入り順 > 名前順
+                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                    if a.favorites == b.favorites {
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    } else {
+                        return a.favorites > b.favorites
+                    }
+                })
+            }
+        case 5: // 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    }else{
+                        return false
+                    }
+                }else{
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
+                }
+            })
+        default: // 名前順
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        }
+    }
+    
+    private func setTableBackgroundView(){
         if recipeBasicList.count == 0{
-            self.tableView.backgroundView = UIView()
-            self.tableView.isScrollEnabled = false
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
+            tableView.backgroundView = UIView()
+            tableView.isScrollEnabled = false
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height / 5, width: tableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -672,24 +693,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
             
-            self.tableView.backgroundView?.addSubview(noDataLabel)
+            tableView.backgroundView?.addSubview(noDataLabel)
         }else{
-            self.tableView.backgroundView = nil
-            self.tableView.isScrollEnabled = true
+            tableView.backgroundView = nil
+            tableView.isScrollEnabled = true
         }
     }
 
     // MARK: - UIScrollViewDelegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y >= 0{
-            scrollBeginingYPoint = scrollView.contentOffset.y
+            scrollBeginningYPoint = scrollView.contentOffset.y
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50, isBookmarkMode == false{
             searchBar.becomeFirstResponder()
-        }else if scrollBeginingYPoint < scrollView.contentOffset.y {
+        }else if scrollBeginningYPoint < scrollView.contentOffset.y {
             searchBar.resignFirstResponder()
         }
     }
@@ -715,8 +736,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
-            self.reloadRecipeBasicList()
-            self.tableView.reloadData()
+            reloadRecipeBasicList()
+            tableView.reloadData()
         }
     }
     
@@ -730,13 +751,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if section == 0 {
-            if recipeList == nil{
-                reloadRecipeList()
-            }
-            return recipeBasicList.count
+        if recipeList == nil{
+            reloadRecipeList()
         }
-        return 0
+        return recipeBasicList.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -754,6 +772,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
                     return
                 }
+                
                 let realm = try! Realm()
                 let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
@@ -777,15 +796,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
                 self.setTableBackgroundView()
-                tableView.deleteRows(at: [indexPath], with: .middle)
+                self.tableView.deleteRows(at: [indexPath], with: .middle)
                 if self.isBookmarkMode{
                     self.navigationItem.title = "ブックマーク(" + String(self.recipeBasicList.count) + ")"
                 }else{
-                    if let allRecipeNum = self.recipeList?.count{
-                        self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(allRecipeNum) + ")"
-                    }else{
-                        self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + ")"
-                    }
+                    self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
                 }
                 completionHandler(true)
             }))
@@ -804,7 +819,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-
         let previewProvider: () -> RecipeDetailTableViewController? = {
             let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
             vc.fromContextualMenu = true
@@ -917,7 +931,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.setupVC()
+            self.setTableViewData()
         }
         vc.userDefaultsPrefix = "recipe-"
         

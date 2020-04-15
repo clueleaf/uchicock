@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,9 +85,9 @@
             <connections>
                 <outlet property="bookmarkBackImage" destination="cFc-30-8ce" id="Mxj-Oh-aUa"/>
                 <outlet property="bookmarkFrontImage" destination="lEv-KR-b4f" id="3wH-Pa-PLC"/>
-                <outlet property="photo" destination="nIA-Y5-AVb" id="HGT-tu-G3u"/>
-                <outlet property="recipeName" destination="W2V-21-ykG" id="fSF-KH-KA4"/>
-                <outlet property="shortage" destination="Ehs-ln-8g3" id="dZg-td-qsS"/>
+                <outlet property="photoImageView" destination="nIA-Y5-AVb" id="RMy-m2-DbN"/>
+                <outlet property="recipeNameLabel" destination="W2V-21-ykG" id="e41-Ol-Sr2"/>
+                <outlet property="shortageLabel" destination="Ehs-ln-8g3" id="oLa-h9-OXD"/>
                 <outlet property="subInfoLabel" destination="Ja5-zr-t38" id="fm0-xo-fCk"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="79.6875"/>

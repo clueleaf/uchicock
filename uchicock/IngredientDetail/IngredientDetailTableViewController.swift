@@ -508,7 +508,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     }else{
                         cell.subInfoType = 0
                     }
-                    cell.hightlightRecipeNameOnlyAvailable = true
+                    cell.shouldHighlightOnlyWhenAvailable = true
                     cell.recipe = recipe
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView

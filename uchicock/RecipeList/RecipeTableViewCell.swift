@@ -10,14 +10,14 @@ import UIKit
 
 class RecipeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var bookmarkBackImage: UIImageView!
     @IBOutlet weak var bookmarkFrontImage: UIImageView!
-    @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var subInfoLabel: UILabel!
-    @IBOutlet weak var shortage: UILabel!
+    @IBOutlet weak var shortageLabel: UILabel!
     
-    var hightlightRecipeNameOnlyAvailable = false
+    var shouldHighlightOnlyWhenAvailable = false
     var subInfoType = 0
     
     var recipe: Recipe = Recipe(){
@@ -29,35 +29,26 @@ class RecipeTableViewCell: UITableViewCell {
             self.accessoryView = accesoryImageView
 
             if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: true){
-                self.photo.image = image
+                photoImageView.image = image
             }else{
-                photo.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))
+                photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))
                 if UchicockStyle.isDark{
-                    photo.tintColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+                    photoImageView.tintColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
                 }else{
-                    photo.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
+                    photoImageView.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
                 }
             }
             
             bookmarkBackImage.tintColor = UchicockStyle.primaryColor
             bookmarkFrontImage.tintColor = UchicockStyle.primaryColor
-            if recipe.bookmarkDate == nil{
-                bookmarkBackImage.isHidden = true
-                bookmarkFrontImage.isHidden = true
+            bookmarkBackImage.isHidden = recipe.bookmarkDate == nil ? true : false
+            bookmarkFrontImage.isHidden = recipe.bookmarkDate == nil ? true : false
+
+            recipeNameLabel.text = recipe.recipeName
+            if shouldHighlightOnlyWhenAvailable == false ||  recipe.shortageNum == 0 {
+                recipeNameLabel.textColor = UchicockStyle.labelTextColor
             }else{
-                bookmarkBackImage.isHidden = false
-                bookmarkFrontImage.isHidden = false
-            }
-            
-            recipeName.text = recipe.recipeName
-            if hightlightRecipeNameOnlyAvailable {
-                if recipe.shortageNum == 0{
-                    recipeName.textColor = UchicockStyle.labelTextColor
-                }else{
-                    recipeName.textColor = UchicockStyle.labelTextColorLight
-                }
-            }else{
-                recipeName.textColor = UchicockStyle.labelTextColor
+                recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
             }
 
             switch subInfoType{
@@ -118,9 +109,9 @@ class RecipeTableViewCell: UITableViewCell {
             
             switch recipe.shortageNum {
             case 0:
-                shortage.text = "すぐ作れる！"
-                shortage.textColor = UchicockStyle.primaryColor
-                shortage.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
+                shortageLabel.text = "すぐ作れる！"
+                shortageLabel.textColor = UchicockStyle.primaryColor
+                shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
             case 1:
                 var shortageName = ""
                 for recipeIngredient in recipe.recipeIngredients{
@@ -129,17 +120,16 @@ class RecipeTableViewCell: UITableViewCell {
                         break
                     }
                 }
-                shortage.text = shortageName + "が足りません"
-                shortage.textColor = UchicockStyle.labelTextColorLight
-                shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.text = shortageName + "が足りません"
+                shortageLabel.textColor = UchicockStyle.labelTextColorLight
+                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             default:
-                shortage.text = "材料が" + String(recipe.shortageNum) + "個足りません"
-                shortage.textColor = UchicockStyle.labelTextColorLight
-                shortage.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
+                shortageLabel.textColor = UchicockStyle.labelTextColorLight
+                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
             }
             
             self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
         }
     }
-    
 }

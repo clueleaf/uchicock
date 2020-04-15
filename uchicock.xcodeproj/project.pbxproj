@@ -199,7 +199,7 @@
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ImageViewer.storyboard; path = Util/ImageViewer/ImageViewer.storyboard; sourceTree = "<group>"; };
 		9B6BC1B22003BC4800CF8722 /* AmazonProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AmazonProduct.swift; path = IngredientDetail/AmazonProduct.swift; sourceTree = "<group>"; };
-		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeBasic.swift; path = RecipeList/RecipeBasic.swift; sourceTree = "<group>"; };
+		9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeBasic.swift; sourceTree = "<group>"; };
 		9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientBasic.swift; path = IngredientList/IngredientBasic.swift; sourceTree = "<group>"; };
 		9B70B08F22B68533008A5591 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeTableViewCell.swift; path = RecipeList/RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		9B70B09022B68533008A5591 /* RecipeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RecipeTableViewCell.xib; path = RecipeList/RecipeTableViewCell.xib; sourceTree = "<group>"; };
@@ -314,6 +314,14 @@
 			);
 			name = PullToRefresh;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		9B09389724467EE600519033 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9B0E3DF923FAD48900D7F22A /* AlcoholCalc */ = {
@@ -528,6 +536,7 @@
 				9B0E3DF923FAD48900D7F22A /* AlcoholCalc */,
 				9B1638BB22A7E17000B7C3A7 /* Util */,
 				9B2AED061C9B5CD700B255C9 /* Database */,
+				9B09389724467EE600519033 /* Model */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
 				9BC9A3201C783CAA0031F631 /* Info.plist */,
@@ -540,7 +549,6 @@
 			children = (
 				9BEC4C172351EA73004FE9B4 /* RecipeList.storyboard */,
 				9B3078C51CA421660014CE7E /* RecipeListViewController.swift */,
-				9B6D67CB1CD0F064001E8079 /* RecipeBasic.swift */,
 				9B70B09022B68533008A5591 /* RecipeTableViewCell.xib */,
 				9B70B08F22B68533008A5591 /* RecipeTableViewCell.swift */,
 			);
