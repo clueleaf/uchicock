@@ -22,6 +22,14 @@ class IngredientListItemTableViewCell: UITableViewCell {
     
     var ingredient: Ingredient = Ingredient(){
         didSet{
+            stock.stateChangeAnimation = .fade
+            stock.animationDuration = 0
+            if ingredient.stockFlag{
+                stock.setCheckState(.checked, animated: true)
+            }else{
+                stock.setCheckState(.unchecked, animated: true)
+            }
+
             recipeNum.backgroundColor = UIColor.clear
             recipeNum.layer.borderWidth = 1
             if ingredient.recipeIngredients.count == 0{
@@ -66,5 +74,4 @@ class IngredientListItemTableViewCell: UITableViewCell {
             }
         }
     }
-
 }

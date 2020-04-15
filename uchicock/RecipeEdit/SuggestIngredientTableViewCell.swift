@@ -32,5 +32,4 @@ class SuggestIngredientTableViewCell: UITableViewCell {
             }
         }
     }
-
 }

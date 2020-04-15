@@ -18,4 +18,3 @@ struct IngredientBasic{
     var usedRecipeNum : Int
     var reminderSetDate : Date?
 }
-

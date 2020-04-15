@@ -36,19 +36,23 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var addIngredientLabel: UILabel!
     
     weak var mainNavigationController : BasicNavigationController?
-    var recipe = Recipe()
-    var recipeFavorite = 0
-    var isAddMode = true
-    var recipeIngredientList = Array<RecipeIngredientBasic>()
     var ipc = UIImagePickerController()
-    var focusRecipeNameFlag = false
-    let selectedCellBackgroundView = UIView()
-    var showCancelAlert = false
-    var selectedIndexPath: IndexPath? = nil
-    let recipeNameMaximum = 30
-    let memoMaximum = 1000
+
+    var recipe = Recipe()
+    var recipeIngredientList = Array<RecipeIngredientBasic>()
     var duplicatedIngredientList = Array<String>()
     var needUpdateCellIndexList = Array<IndexPath>()
+
+    var recipeFavorite = 0
+    let recipeNameMaximum = 30
+    let memoMaximum = 1000
+
+    var isAddMode = true
+    var focusRecipeNameFlag = false
+    var showCancelAlert = false
+
+    let selectedCellBackgroundView = UIView()
+    var selectedIndexPath: IndexPath? = nil
 
     let interactor = Interactor()
 
@@ -56,6 +60,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,10 +78,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         methodTipButton.minimumHitHeight = 36
         strengthTipButton.minimumHitWidth = 50
         strengthTipButton.minimumHitHeight = 36
+        star1.tintColor = UchicockStyle.primaryColor
+        star2.tintColor = UchicockStyle.primaryColor
+        star3.tintColor = UchicockStyle.primaryColor
 
         recipeName.text = recipe.recipeName
         recipeName.delegate = self
-        
+        recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        recipeName.layer.cornerRadius = 5.0
+        recipeName.layer.borderWidth = 1
+        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        recipeName.adjustClearButtonColor(with: 4)
+
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
             photo.image = image
         }
@@ -87,6 +100,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             selectPhoto.text = "写真を変更"
             photo.isHidden = false
         }
+        selectPhoto.textColor = UchicockStyle.primaryColor
+
         let photoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeEditTableViewController.photoTapped))
         self.photo.addGestureRecognizer(photoTapGestureRecognizer)
         
@@ -146,8 +161,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
-        recipeName.layer.cornerRadius = 5.0
-        recipeName.layer.borderWidth = 1
+        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
@@ -164,27 +179,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
         
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-
         focusRecipeNameFlag = true
         
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
         
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeName.adjustClearButtonColor(with: 4)
-        selectPhoto.textColor = UchicockStyle.primaryColor
-        star1.tintColor = UchicockStyle.primaryColor
-        star2.tintColor = UchicockStyle.primaryColor
-        star3.tintColor = UchicockStyle.primaryColor
-        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
         addIngredientLabel.textColor = UchicockStyle.primaryColor
         addIngredientLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
 
@@ -289,6 +294,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    // MARK: - Manage Data
     private func isIngredientDuplicated() -> Bool {
         if recipeIngredientList.count == 0 { return false }
         for i in 0 ..< recipeIngredientList.count - 1{
@@ -355,11 +361,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 30
-        }else {
-            return 0
-        }
+        return section == 1 ? 30 : 0
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -451,6 +453,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                     }
                 }
+                
                 if let path = self.selectedIndexPath {
                     if self.tableView.numberOfRows(inSection: 1) > path.row{
                         self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
@@ -481,7 +484,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
             recipeName.resignFirstResponder()
             memo.resignFirstResponder()
-            self.selectedIndexPath = indexPath
+            selectedIndexPath = indexPath
             present(nvc, animated: true)
         }
     }
@@ -852,7 +855,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    func presentAlert(_ message: String){
+    private func presentAlert(_ message: String){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -1071,7 +1074,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func strengthSegmentedControlTapped(_ sender: CustomSegmentedControl) {
         self.showCancelAlert = true
     }
-    
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)

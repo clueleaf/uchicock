@@ -9,7 +9,7 @@
 import UIKit
 
 class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
-
+    
     var image : UIImage!
     var originalImageView: UIImageView!
     var smallCIImage : CIImage?
@@ -41,10 +41,9 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         "CILinearToSRGBToneCurve",
         ]
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imageScrollView.delegate = self
         
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1.0
@@ -60,7 +59,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         setupTransitions()
     }
     
-    func setupScrollView() {
+    private func setupScrollView() {
         filterScrollView.indicatorStyle = .white
         imageScrollView.indicatorStyle = .white
         imageScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
@@ -68,14 +67,14 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         imageScrollView.alwaysBounceHorizontal = true
     }
     
-    func setupGestureRecognizers() {
+    private func setupGestureRecognizers() {
         let doubleTapGestureRecognizer = UITapGestureRecognizer()
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.addTarget(self, action: #selector(imageViewDoubleTapped))
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
     }
     
-    func setupTransitions() {
+    private func setupTransitions() {
         transitionHandler = PhotoFilterDismissalTransitioningHandler(fromImageView: self.imageView, toImageView: originalImageView)
         self.transitioningDelegate = transitionHandler
     }
@@ -130,6 +129,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
+    // MARK: - IBAction
     @objc func filterButtonTapped(sender: UIButton){
         guard let ciim = CIImage(image: self.image) else{ return }
         DispatchQueue.main.async {
@@ -158,6 +158,17 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         }
     }
     
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
+        originalImageView.isHidden = true
+
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
+            self.imageScrollView.setZoomScale(self.imageScrollView.minimumZoomScale, animated: false)
+        }, completion: { _ in
+            self.performSegue(withIdentifier: "FilterFinished", sender: self)
+        })
+
+    }
+    
     // MARK: - UIScrollViewDelegate
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
@@ -172,7 +183,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     }
 
     // MARK: - Process Image
-    func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
+    private func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
         let ciContext = CIContext(options: nil)
         var filteredImageData : CIImage? = nil
         
@@ -205,13 +216,13 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         }
     }
     
-    func getColorImage( red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1.0, rect: CGRect) -> CIImage {
+    private func getColorImage( red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1.0, rect: CGRect) -> CIImage {
         let color = CIColor(red: red, green: green, blue: blue, alpha: alpha)
         return CIImage(color: color).cropped(to: rect)
     }
 
     // MARK: - Original Filters
-    func applyNashvilleFilter(foregroundImage: CIImage) -> CIImage? {
+    private func applyNashvilleFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
             red: 0.97, green: 0.77, blue: 0.72, alpha: 0.56, rect: foregroundImage.extent)
         let backgroundImage2 = getColorImage(
@@ -233,7 +244,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 ])
     }
     
-    func applyClarendonFilter(foregroundImage: CIImage) -> CIImage? {
+    private func applyClarendonFilter(foregroundImage: CIImage) -> CIImage? {
         let backgroundImage = getColorImage(
             red: 0.35, green: 0.55, blue: 0.68, alpha: 0.2, rect: foregroundImage.extent)
         return foregroundImage
@@ -247,7 +258,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 ])
     }
     
-    func apply1977Filter(ciImage: CIImage) -> CIImage? {
+    private func apply1977Filter(ciImage: CIImage) -> CIImage? {
         let filterImage = getColorImage(
             red: 0.80, green: 0.35, blue: 0.60, alpha: 0.1, rect: ciImage.extent)
         let backgroundImage = ciImage
@@ -272,7 +283,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 ])
     }
     
-    func applyToasterFilter(ciImage: CIImage) -> CIImage? {
+    private func applyToasterFilter(ciImage: CIImage) -> CIImage? {
         let width = ciImage.extent.width
         let height = ciImage.extent.height
         let centerWidth = width / 2.0
@@ -300,17 +311,4 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 "inputBackgroundImage": circle!,
                 ])
     }
-    
-    // MARK: - IBAction
-    @IBAction func doneButtonTapped(_ sender: UIButton) {
-        originalImageView.isHidden = true
-
-        UIView.animate(withDuration: 0.2, delay: 0, animations: {
-            self.imageScrollView.setZoomScale(self.imageScrollView.minimumZoomScale, animated: false)
-        }, completion: { _ in
-            self.performSegue(withIdentifier: "FilterFinished", sender: self)
-        })
-
-    }
-
 }

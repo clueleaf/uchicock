@@ -513,6 +513,9 @@
                                     <constraint firstItem="Tmq-S1-NNA" firstAttribute="top" secondItem="NDD-c8-lC5" secondAttribute="top" id="hC8-t7-CIM"/>
                                     <constraint firstItem="Tmq-S1-NNA" firstAttribute="height" secondItem="NDD-c8-lC5" secondAttribute="height" id="pWP-3U-k8u"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="f6s-1V-srL" id="n7m-dT-8P9"/>
+                                </connections>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZb-7W-fcr">
                                 <rect key="frame" x="0.0" y="547" width="375" height="120"/>

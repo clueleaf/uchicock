@@ -33,6 +33,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
+    
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
@@ -46,19 +47,26 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
         searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.backgroundImage = UIImage()
+        
+        category.layer.borderWidth = 1.0
+        category.layer.masksToBounds = true
+        stockState.layer.borderWidth = 1.0
+        stockState.layer.masksToBounds = true
 
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setReminderBadge()
-        
+
+        setReminderBadge()
         isReminderMode ? changeToReminderMode() : changeToIngredientMode()
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
 
@@ -68,8 +76,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
-        searchBar.backgroundImage = UIImage()
-        
         let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
@@ -97,6 +103,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
+        
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview is UITextField {
+                    for subsubview in subview.subviews{
+                        if subsubview is UILabel{
+                            let placeholderLabel = subsubview as! UILabel
+                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
+                        }
+                    }
+                }
+            }
+        }
 
         let font = UIFont.systemFont(ofSize: 12)
         let boldFont = UIFont.boldSystemFont(ofSize: 12)
@@ -111,11 +130,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
 
         category.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        category.layer.borderWidth = 1.0
-        category.layer.masksToBounds = true
         stockState.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        stockState.layer.borderWidth = 1.0
-        stockState.layer.masksToBounds = true
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
@@ -128,10 +143,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         reloadIngredientList()
         tableView.reloadData()
         
-        setupVC()
+        highlightSelectedRow()
     }
     
-    private func setupVC(){
+    private func highlightSelectedRow(){
         if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if ingredientBasicList.count > indexPath.row {
@@ -157,30 +172,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
 
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                        }
-                    }
-                }
-            }
-        }
         if let path = tableView.indexPathForSelectedRow{
-            self.tableView.deselectRow(at: path, animated: true)
+            tableView.deselectRow(at: path, animated: true)
         }
         selectedIngredientId = nil
-        self.tableView.flashScrollIndicators()
+        tableView.flashScrollIndicators()
         
         if shouldShowReminderGuide{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -205,10 +208,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 reminderButton.badgeText = "！"
             }
         }
-        
     }
     
-    func getTextFieldFromView(_ view: UIView) -> UITextField?{
+    private func getTextFieldFromView(_ view: UIView) -> UITextField?{
         for subview in view.subviews{
             if subview is UITextField {
                 return subview as? UITextField
@@ -222,13 +224,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         return nil
     }
     
-    func reloadIngredientList(){
+    // MARK: - Manage Data
+    private func reloadIngredientList(){
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
         reloadIngredientBasicList()
     }
     
-    func reloadIngredientBasicList(){
+    private func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
             ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
@@ -262,17 +265,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
             ingredientBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
 
-            if let allIngredientNum = ingredientList?.count{
-                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
-            }else{
-                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
-            }
+            self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }
         
         setTableBackgroundView()
     }
     
-    func setTableBackgroundView(){
+    private func setTableBackgroundView(){
         if ingredientBasicList.count == 0{
             self.tableView.backgroundView  = UIView()
             self.tableView.isScrollEnabled = false
@@ -353,11 +352,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         setTableBackgroundView()
                         tableView.reloadData()
                     }
-                    if let allIngredientNum = ingredientList?.count{
-                        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
-                    }else{
-                        self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + ")"
-                    }
+                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
                 }
             }
         }
@@ -479,11 +474,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     if self.isReminderMode{
                         self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
                     }else{
-                        if let allIngredientNum = self.ingredientList?.count{
-                            self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(allIngredientNum) + ")"
-                        }else{
-                            self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + ")"
-                        }
+                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(self.ingredientList!.count) + ")"
                     }
                     self.setReminderBadge()
                     completionHandler(true)
@@ -509,35 +500,25 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell
-            
-            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-            let accesoryImageView = UIImageView(image: disclosureIndicator)
-            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
-            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-            cell.accessoryView = accesoryImageView
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientListItem") as! IngredientListItemTableViewCell
+        cell.selectedBackgroundView = selectedCellBackgroundView
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
 
-            cell.stockState = stockState.selectedSegmentIndex
-            cell.stock.stateChangeAnimation = .fade
-            cell.stock.animationDuration = 0
-            
-            let realm = try! Realm()
-            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+        let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
+        let accesoryImageView = UIImageView(image: disclosureIndicator)
+        accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
+        accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        cell.accessoryView = accesoryImageView
 
-            if ingredient.stockFlag{
-                cell.stock.setCheckState(.checked, animated: true)
-            }else{
-                cell.stock.setCheckState(.unchecked, animated: true)
-            }
-            cell.ingredient = ingredient
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
-            
-            cell.selectedBackgroundView = selectedCellBackgroundView
-            return cell
-        }
-        return UITableViewCell()
+        cell.stockState = stockState.selectedSegmentIndex
+        
+        let realm = try! Realm()
+        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+        cell.ingredient = ingredient
+
+        cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
+        
+        return cell
     }
     
     // MARK: - IBAction
@@ -612,6 +593,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let storyboard = UIStoryboard(name: "IngredientRecommend", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "IngredientRecommendNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! IngredientRecommendTableViewController
+        
         vc.onDoneBlock = { selectedRecommendIngredientId in
             if let selectedRecommendIngredientId = selectedRecommendIngredientId{
                 let realm = try! Realm()
@@ -620,7 +602,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     self.performSegue(withIdentifier: "PushIngredientDetail", sender: selectedRecommendIngredientId)
                 }
             }
-            self.setupVC()
+            self.highlightSelectedRow()
         }
         
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

@@ -19,5 +19,4 @@ class PhotoFilterDismissalTransitioningHandler: NSObject, UIViewControllerTransi
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return dismissalTransition
     }
-    
 }
