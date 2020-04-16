@@ -31,15 +31,9 @@ class RecoverTargetTableViewCell: UITableViewCell {
             if recipeName.isNewRecipe(){
                 newRecipeLabel.isHidden = false
                 newRecipeLabelWidthConstraint.constant = 28
-                newRecipeLabelTrailingConstraint.constant = 4
+                newRecipeLabelTrailingConstraint.constant = 2
                 newRecipeLabel.backgroundColor = UIColor.clear
-                newRecipeLabel.layer.cornerRadius = 7
-                newRecipeLabel.clipsToBounds = true
-                newRecipeLabel.textAlignment = NSTextAlignment.center
-                newRecipeLabel.layer.borderWidth = 1
-                newRecipeLabel.layer.borderColor = UchicockStyle.alertColor.cgColor
-                newRecipeLabel.textColor = UIColor.white
-                newRecipeLabel.layer.backgroundColor = UchicockStyle.alertColor.cgColor
+                newRecipeLabel.textColor = UchicockStyle.alertColor
             }else{
                 newRecipeLabel.isHidden = true
                 newRecipeLabelWidthConstraint.constant = 0
