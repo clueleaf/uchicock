@@ -180,9 +180,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czv-rF-4bn">
-                                            <rect key="frame" x="56" y="18" width="28" height="14"/>
+                                            <rect key="frame" x="56" y="18" width="30" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="28" id="em0-s1-0uV"/>
+                                                <constraint firstAttribute="width" constant="30" id="em0-s1-0uV"/>
                                                 <constraint firstAttribute="height" constant="14" id="klx-vm-wqa"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -196,7 +196,7 @@
                                         <constraint firstItem="cXv-FQ-6Oe" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="4l8-oH-84n"/>
                                         <constraint firstItem="cXv-FQ-6Oe" firstAttribute="leading" secondItem="zbY-XP-0TA" secondAttribute="leading" constant="8" id="91L-XF-DMg"/>
                                         <constraint firstItem="1T6-YH-IUS" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="NuN-Jg-qoe"/>
-                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="leading" secondItem="czv-rF-4bn" secondAttribute="trailing" constant="2" id="PIU-dZ-Ph7"/>
+                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="leading" secondItem="czv-rF-4bn" secondAttribute="trailing" id="PIU-dZ-Ph7"/>
                                         <constraint firstItem="czv-rF-4bn" firstAttribute="leading" secondItem="cXv-FQ-6Oe" secondAttribute="trailing" constant="8" id="bQq-dr-uRs"/>
                                         <constraint firstItem="rTS-ZV-ggy" firstAttribute="leading" secondItem="1T6-YH-IUS" secondAttribute="trailing" constant="8" id="jb5-Rs-3CV"/>
                                         <constraint firstAttribute="trailing" secondItem="rTS-ZV-ggy" secondAttribute="trailing" id="jxS-qt-vP6"/>
@@ -205,7 +205,6 @@
                                 <connections>
                                     <outlet property="isTarget" destination="cXv-FQ-6Oe" id="IOH-U7-Etl"/>
                                     <outlet property="newRecipeLabel" destination="czv-rF-4bn" id="aud-mv-lgD"/>
-                                    <outlet property="newRecipeLabelTrailingConstraint" destination="PIU-dZ-Ph7" id="HcR-t6-ZP1"/>
                                     <outlet property="newRecipeLabelWidthConstraint" destination="em0-s1-0uV" id="fat-yw-d6Y"/>
                                     <outlet property="previewLabel" destination="rTS-ZV-ggy" id="xlZ-UW-6aP"/>
                                     <outlet property="recipeNameLabel" destination="1T6-YH-IUS" id="G8T-V4-InH"/>

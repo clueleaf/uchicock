@@ -14,7 +14,6 @@ class RecoverTargetTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeNameLabel: CustomLabel!
     @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var newRecipeLabel: UILabel!
-    @IBOutlet weak var newRecipeLabelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
     
     var isRecoverable: Bool = Bool(){
@@ -30,14 +29,12 @@ class RecoverTargetTableViewCell: UITableViewCell {
             recipeNameLabel.text = recipeName
             if recipeName.isNewRecipe(){
                 newRecipeLabel.isHidden = false
-                newRecipeLabelWidthConstraint.constant = 28
-                newRecipeLabelTrailingConstraint.constant = 2
+                newRecipeLabelWidthConstraint.constant = 30
                 newRecipeLabel.backgroundColor = UIColor.clear
                 newRecipeLabel.textColor = UchicockStyle.alertColor
             }else{
                 newRecipeLabel.isHidden = true
                 newRecipeLabelWidthConstraint.constant = 0
-                newRecipeLabelTrailingConstraint.constant = 0
             }
         }
     }
