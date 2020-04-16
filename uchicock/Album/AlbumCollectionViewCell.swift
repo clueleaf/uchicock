@@ -16,7 +16,6 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         highlightView.backgroundColor = UIColor.clear
     }
 }

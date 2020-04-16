@@ -25,14 +25,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     var selectedRecipeId: String? = nil
     var highlightIndexPath : IndexPath? = nil
+    var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
+    var itemMoveDistination = Array<Int>()
+
     let leastWaitTime = 0.15
     var showNameFlag = false
     var animationFlag = false
     var isItemsMoving = false
-    var gradationFrame = CGRect(x: 0, y: 0, width: 0, height: 85)
-    var noItemText = ""
     var needsLayout = false
-    var itemMoveDistination = Array<Int>()
 
     var albumFilterStar0 = true
     var albumFilterStar1 = true
@@ -59,14 +59,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.prefetchDataSource = self
-        self.collectionView.delaysContentTouches = false
+        collectionView.delaysContentTouches = false
 
-        self.setFilterUserDefaults()
-        self.reloadRecipeList()
+        setFilterUserDefaults()
+        reloadRecipeList()
 
         collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
 
@@ -98,9 +98,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        noItemText = ""
-        setCollectionBackgroundView()
-
+        
         let realm = try! Realm()
         for i in (0..<self.recipeBasicList.count).reversed() {
             let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
@@ -129,12 +127,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
 
-        self.collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.collectionView.refreshHeader.removeRefreshHeader()
-        self.collectionView.refreshHeader.addPullToRefresh {
+        collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
+        collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        collectionView.refreshHeader.removeRefreshHeader()
+        collectionView.refreshHeader.addPullToRefresh {
             [unowned self] in
-            self.refresh()
+            self.refresh(shouldShuffle: true)
             self.collectionView.refreshHeader.stopPullToRefresh()
         }
 
@@ -143,23 +141,25 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setupVC(){
-        self.loadFilterUserDefaults()
-        self.setFilterImageState()
-        self.filterRecipeBasicList()
-        self.collectionView.reloadData()
+        loadFilterUserDefaults()
+        setFilterImageState()
+        filterRecipeBasicList()
+        collectionView.reloadData()
+        updateButton()
+        setCollectionBackgroundView()
+    }
+    
+    private func updateButton(){
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
-            self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
             self.recipeNameBarButton.isEnabled = false
             self.albumFilterBarButton.isEnabled = false
             self.orderBarButton.isEnabled = false
         }else{
-            self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
             self.recipeNameBarButton.isEnabled = true
             self.albumFilterBarButton.isEnabled = true
             self.orderBarButton.isEnabled = true
         }
-        self.setCollectionBackgroundView()
     }
     
     private func loadFilterUserDefaults(){
@@ -193,7 +193,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
+        setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
         
         // iPhone X系（横にすると横にSafe Areaがある端末）において、
         // 横向きでアルバムを表示（3列）し、詳細へ遷移 -> 縦向きにする
@@ -224,7 +224,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         selectedRecipeId = nil
     }
     
-    func reloadRecipeList(){
+    private func reloadRecipeList(){
         recipeBasicList.removeAll()
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
@@ -234,10 +234,14 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
     
-    func setCollectionBackgroundView(){
+    private func setCollectionBackgroundView(){
         if self.filteredRecipeBasicList.count == 0{
             let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
-            noDataLabel.text = noItemText
+            if recipeBasicList.count == 0{
+                noDataLabel.text = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
+            }else{
+                noDataLabel.text = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+            }
             noDataLabel.numberOfLines = 0
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -321,13 +325,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    private func refresh(){
+    private func refresh(shouldShuffle: Bool){
         var recipeIdList = Array<String>()
         for frb in filteredRecipeBasicList{
             recipeIdList.append(frb.id)
         }
         
-        recipeBasicList.shuffle()
+        if shouldShuffle{
+            recipeBasicList.shuffle()
+        }else{
+            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        }
         filterRecipeBasicList()
         
         itemMoveDistination.removeAll()
@@ -347,20 +355,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }, completion: { _ in
             self.isItemsMoving = false
         })
-        
-        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
-        if self.recipeBasicList.count == 0{
-            self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
-            self.recipeNameBarButton.isEnabled = false
-            self.albumFilterBarButton.isEnabled = false
-            self.orderBarButton.isEnabled = false
-        }else{
-            self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-            self.recipeNameBarButton.isEnabled = true
-            self.albumFilterBarButton.isEnabled = true
-            self.orderBarButton.isEnabled = true
-        }
-        self.setCollectionBackgroundView()
     }
     
     // MARK: - UICollectionView
@@ -535,7 +529,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 ImageUtil.saveToCache(imageFileName: imageFileName)
             }
         }
-        
     }
     
     // MARK: - IBAction
@@ -545,15 +538,15 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 recipeNameBarButton.image = UIImage(named: "navigation-album-name-off")
                 showNameFlag = false
                 animationFlag = true
-                self.collectionView.reloadData()
-                self.collectionView.layoutIfNeeded()
+                collectionView.reloadData()
+                collectionView.layoutIfNeeded()
                 animationFlag = false
             }else{
                 recipeNameBarButton.image = UIImage(named: "navigation-album-name-on")
                 showNameFlag = true
                 animationFlag = true
-                self.collectionView.reloadData()
-                self.collectionView.layoutIfNeeded()
+                collectionView.reloadData()
+                collectionView.layoutIfNeeded()
                 animationFlag = false
             }
         }
@@ -582,87 +575,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
-            var recipeIdList = Array<String>()
-            for frb in self.filteredRecipeBasicList{
-                recipeIdList.append(frb.id)
-            }
-            
-            self.reloadRecipeList()
-            self.filterRecipeBasicList()
-
-            self.itemMoveDistination.removeAll()
-            for rid in recipeIdList{
-                for i in 0 ..< self.filteredRecipeBasicList.count{
-                    if rid == self.filteredRecipeBasicList[i].id{
-                        self.itemMoveDistination.append(i)
-                        break
-                    }
-                }
-            }
-            self.isItemsMoving = true
-            self.collectionView.performBatchUpdates({
-                for i in 0 ..< self.itemMoveDistination.count{
-                    self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
-                }
-            }, completion: { _ in
-                self.isItemsMoving = false
-            })
-
-            self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
-            if self.recipeBasicList.count == 0{
-                self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
-                self.recipeNameBarButton.isEnabled = false
-                self.albumFilterBarButton.isEnabled = false
-                self.orderBarButton.isEnabled = false
-            }else{
-                self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-                self.recipeNameBarButton.isEnabled = true
-                self.albumFilterBarButton.isEnabled = true
-                self.orderBarButton.isEnabled = true
-            }
-            self.setCollectionBackgroundView()
+            self.refresh(shouldShuffle: false)
         }))
+        
         alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
-            var recipeIdList = Array<String>()
-            for frb in self.filteredRecipeBasicList{
-                recipeIdList.append(frb.id)
-            }
-            
-            self.recipeBasicList.shuffle()
-            self.filterRecipeBasicList()
-
-            self.itemMoveDistination.removeAll()
-            for rid in recipeIdList{
-                for i in 0 ..< self.filteredRecipeBasicList.count{
-                    if rid == self.filteredRecipeBasicList[i].id{
-                        self.itemMoveDistination.append(i)
-                        break
-                    }
-                }
-            }
-            self.isItemsMoving = true
-            self.collectionView.performBatchUpdates({
-                for i in 0 ..< self.itemMoveDistination.count{
-                    self.collectionView.moveItem(at: IndexPath(row: i, section: 0), to: IndexPath(row: self.itemMoveDistination[i], section: 0))
-                }
-            }, completion: { _ in
-                self.isItemsMoving = false
-            })
-
-            self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
-            if self.recipeBasicList.count == 0{
-                self.noItemText = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
-                self.recipeNameBarButton.isEnabled = false
-                self.albumFilterBarButton.isEnabled = false
-                self.orderBarButton.isEnabled = false
-            }else{
-                self.noItemText = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-                self.recipeNameBarButton.isEnabled = true
-                self.albumFilterBarButton.isEnabled = true
-                self.orderBarButton.isEnabled = true
-            }
-            self.setCollectionBackgroundView()
+            self.refresh(shouldShuffle: true)
         }))
+        
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -694,5 +613,4 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
     }
-    
 }

@@ -234,7 +234,7 @@
 		9BD91A5F22BD3A740088C146 /* MethodTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MethodTipViewController.swift; path = RecipeDetail/MethodTipViewController.swift; sourceTree = "<group>"; };
 		9BD91A6122BD3A840088C146 /* StyleTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StyleTipViewController.swift; path = RecipeDetail/StyleTipViewController.swift; sourceTree = "<group>"; };
 		9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverDescriptionTableViewCell.swift; path = Recover/RecoverDescriptionTableViewCell.swift; sourceTree = "<group>"; };
-		9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverRecipeBasic.swift; path = Recover/RecoverRecipeBasic.swift; sourceTree = "<group>"; };
+		9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverRecipeBasic.swift; sourceTree = "<group>"; };
 		9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPreviewTableViewController.swift; path = Recover/RecoverPreviewTableViewController.swift; sourceTree = "<group>"; };
 		9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientSuggestBasic.swift; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +323,7 @@
 				9B30125522BB96EE00288DEE /* RecipeIngredientBasic.swift */,
 				9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */,
 				9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */,
+				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,7 +368,6 @@
 				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
 				9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */,
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
-				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
 			);
 			name = Recover;
 			sourceTree = "<group>";

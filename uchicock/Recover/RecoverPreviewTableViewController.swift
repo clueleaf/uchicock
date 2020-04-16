@@ -26,6 +26,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     
     var onDoneBlock = {}
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -92,16 +93,11 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
         if UchicockStyle.isBackgroundDark{
-            self.tableView.indicatorStyle = .white
+            tableView.indicatorStyle = .white
         }else{
-            self.tableView.indicatorStyle = .black
+            tableView.indicatorStyle = .black
         }
     }
     
@@ -122,11 +118,7 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0{
-            return 0
-        } else {
-            return 30
-        }
+        return section == 0 ? 0 : 30
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -226,5 +218,4 @@ class RecoverPreviewTableViewController: UITableViewController {
     @IBAction func returnButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

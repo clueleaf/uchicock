@@ -21,5 +21,4 @@ class RecoverTargetTableViewCell: UITableViewCell {
             previewLabel.textColor = UchicockStyle.labelTextColorLight
         }
     }
-
 }

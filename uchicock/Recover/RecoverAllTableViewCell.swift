@@ -17,5 +17,4 @@ class RecoverAllTableViewCell: UITableViewCell {
         
         recoverAll.textColor = UchicockStyle.primaryColor
     }
-
 }

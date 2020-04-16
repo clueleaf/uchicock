@@ -47,5 +47,4 @@ class RecoverDescriptionTableViewCell: UITableViewCell {
         unableRecover.secondaryTintColor = UchicockStyle.primaryColor
         unableRecover.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
     }
-
 }

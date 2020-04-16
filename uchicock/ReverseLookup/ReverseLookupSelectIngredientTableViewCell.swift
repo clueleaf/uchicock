@@ -49,5 +49,4 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             self.separatorInset = UIEdgeInsets(top: 0, left: 66, bottom: 0, right: 0)
         }
     }
-
 }

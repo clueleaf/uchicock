@@ -23,8 +23,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadUserRecipe()
         
         var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
@@ -39,7 +41,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.separatorColor = UchicockStyle.labelTextColorLight
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
     }
     
     private func cellDeselectAnimation(){
@@ -48,19 +50,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-    }
-    
-    func changeToUserDb(){
+    // MARK: - Manage Data
+    private func changeToUserDb(){
         var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
         Realm.Configuration.defaultConfiguration = config
     }
 
-    func loadUserRecipe(){
+    private func loadUserRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for ur in recipeList{
@@ -68,7 +65,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func loadSampleRecipe(){
+    private func loadSampleRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
         for sr in recipeList{
@@ -91,7 +88,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         unrecoverableSampleRecipeList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
     }
     
-    func setNavigationTitle(){
+    private func setNavigationTitle(){
         var recoverCount = 0
         for rr in recoverableSampleRecipeList{
             if rr.recoverTarget{
@@ -123,7 +120,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func recover(){
+    private func recover(){
         var recoverRecipeList = Array<RecoverRecipe>()
         for rr in recoverableSampleRecipeList{
             if rr.recoverTarget{
@@ -159,7 +156,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addRecipe(recipeName:String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
+    private func addRecipe(recipeName:String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
         if rec.count < 1 {
@@ -175,7 +172,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addIngredient(ingredientName: String, stockFlag: Bool, memo: String, category: Int){
+    private func addIngredient(ingredientName: String, stockFlag: Bool, memo: String, category: Int){
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName)
         if ing.count < 1 {
@@ -189,7 +186,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:Int){
+    private func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:Int){
         let realm = try! Realm()
         let recipeIngredientLink = RecipeIngredientLink()
         recipeIngredientLink.amount = amount
@@ -204,31 +201,22 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         recipe.recipeIngredients.append(recipeIngredientLink)
     }
     
-    func updateRecipeShortageNum(recipeName: String){
+    private func updateRecipeShortageNum(recipeName: String){
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
         if rec.count > 0 {
             let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
             recipe.updateShortageNum()
         }
-
     }
     
     // MARK: - Table view
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1{
-            return 30
-        } else {
-            return 0
-        }
+        return section == 1 ? 30 : 0
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return UITableView.automaticDimension
-        }else{
-            return 50
-        }
+        return indexPath.section == 0 ? UITableView.automaticDimension : 50
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -433,5 +421,4 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
-
 }
