@@ -126,7 +126,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameCounter.text = String(num) + "/" + String(ingredientNameMaximum)
         
         if num > ingredientNameMaximum{
-            ingredientNameCounter.textColor = UchicockStyle.deleteColor
+            ingredientNameCounter.textColor = UchicockStyle.alertColor
         }else{
             ingredientNameCounter.textColor = UchicockStyle.labelTextColorLight
         }
@@ -143,7 +143,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memoCounter.text = String(num) + "/" + String(memoMaximum)
             
         if num > memoMaximum{
-            memoCounter.textColor = UchicockStyle.deleteColor
+            memoCounter.textColor = UchicockStyle.alertColor
         }else{
             memoCounter.textColor = UchicockStyle.labelTextColorLight
         }

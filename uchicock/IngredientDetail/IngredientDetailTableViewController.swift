@@ -99,7 +99,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         stockRecommendLabel.textColor = UchicockStyle.primaryColor
         alcoholIconImage.tintColor = UchicockStyle.primaryColor
-        deleteButtonLabel.textColor = UchicockStyle.deleteColor
+        deleteButtonLabel.textColor = UchicockStyle.alertColor
 
         recipeOrderLabel.textColor = UchicockStyle.primaryColor
         
@@ -168,7 +168,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             reminderButton.tintColor = UchicockStyle.basicBackgroundColor
             amazonButton.backgroundColor = UchicockStyle.primaryColor
             amazonButton.tintColor = UchicockStyle.basicBackgroundColor
-            deleteButton.backgroundColor = UchicockStyle.deleteColor
+            deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
             reloadIngredientRecipeBasicList()

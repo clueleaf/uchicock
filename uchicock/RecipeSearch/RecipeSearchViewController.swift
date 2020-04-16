@@ -220,45 +220,45 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterExplanationLabel.textColor = UchicockStyle.labelTextColorLight
 
         favoriteSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        favoriteDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        favoriteDeselectAllButton.setTitleColor(UchicockStyle.alertColor, for: .normal)
         favorite0Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         favorite1Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         favorite2Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         favorite3Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
-        favoriteWarningImage.tintColor = UchicockStyle.deleteColor
-        favoriteWarningLabel.textColor = UchicockStyle.deleteColor
+        favoriteWarningImage.tintColor = UchicockStyle.alertColor
+        favoriteWarningLabel.textColor = UchicockStyle.alertColor
         setFavoriteWarningVisibility()
 
         styleSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        styleDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        styleDeselectAllButton.setTitleColor(UchicockStyle.alertColor, for: .normal)
         styleLongButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         styleShortButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         styleHotButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         styleNoneButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
-        styleWarningImage.tintColor = UchicockStyle.deleteColor
-        styleWarningLabel.textColor = UchicockStyle.deleteColor
+        styleWarningImage.tintColor = UchicockStyle.alertColor
+        styleWarningLabel.textColor = UchicockStyle.alertColor
         setStyleWarningVisibility()
 
         methodSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        methodDeselectAllButton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        methodDeselectAllButton.setTitleColor(UchicockStyle.alertColor, for: .normal)
         methodBuildButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         methodStirButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         methodShakeButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         methodBlendButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         methodOthersButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
-        methodWarningImage.tintColor = UchicockStyle.deleteColor
-        methodWarningLabel.textColor = UchicockStyle.deleteColor
+        methodWarningImage.tintColor = UchicockStyle.alertColor
+        methodWarningLabel.textColor = UchicockStyle.alertColor
         setMethodWarningVisibility()
         
         strengthSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        strengthDeselectAllbutton.setTitleColor(UchicockStyle.deleteColor, for: .normal)
+        strengthDeselectAllbutton.setTitleColor(UchicockStyle.alertColor, for: .normal)
         strengthNonAlcoholButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         strengthWeakButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         strengthMediumButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         strengthStrongButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
         strengthNoneButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
-        strengthWarningImage.tintColor = UchicockStyle.deleteColor
-        strengthWarningLabel.textColor = UchicockStyle.deleteColor
+        strengthWarningImage.tintColor = UchicockStyle.alertColor
+        strengthWarningLabel.textColor = UchicockStyle.alertColor
         setStrengthWarningVisibility()
 
         secondSeparator.backgroundColor = UchicockStyle.labelTextColor

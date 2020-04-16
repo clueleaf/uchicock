@@ -488,7 +488,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = UchicockStyle.deleteColor
+        del.backgroundColor = UchicockStyle.alertColor
         
         let realm = try! Realm()
         let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!

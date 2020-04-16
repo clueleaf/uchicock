@@ -105,7 +105,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         option.secondaryTintColor = UchicockStyle.primaryColor
         option.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         optionDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
-        deleteLabel.textColor = UchicockStyle.deleteColor
+        deleteLabel.textColor = UchicockStyle.alertColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

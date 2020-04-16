@@ -47,7 +47,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             }else{
                 stockLabel.isHidden = true
                 if isDuplicated {
-                    ingredientNameTextView.textColor = UchicockStyle.deleteColor
+                    ingredientNameTextView.textColor = UchicockStyle.alertColor
                 }else{
                     ingredientNameTextView.textColor = UchicockStyle.labelTextColor
                 }

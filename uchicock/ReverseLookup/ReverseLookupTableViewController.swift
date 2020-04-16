@@ -743,9 +743,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 let realm = try! Realm()
                 let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
-                    textField.layer.borderColor = UchicockStyle.deleteColor.cgColor
-                    textField.tintColor = UchicockStyle.deleteColor
-                    textField.textColor = UchicockStyle.deleteColor
+                    textField.layer.borderColor = UchicockStyle.alertColor.cgColor
+                    textField.tintColor = UchicockStyle.alertColor
+                    textField.textColor = UchicockStyle.alertColor
                 }
             }
         }

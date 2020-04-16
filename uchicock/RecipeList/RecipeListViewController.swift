@@ -812,7 +812,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.present(alertView, animated: true, completion: nil)
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = UchicockStyle.deleteColor
+        del.backgroundColor = UchicockStyle.alertColor
 
         return isBookmarkMode ? UISwipeActionsConfiguration(actions: [edit]) : UISwipeActionsConfiguration(actions: [del, edit])
     }

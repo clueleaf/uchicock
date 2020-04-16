@@ -144,7 +144,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         headerView.backgroundColor = UchicockStyle.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         lastViewDateLabel.textColor = UchicockStyle.labelTextColorLight
-        deleteButtonLabel.textColor = UchicockStyle.deleteColor
+        deleteButtonLabel.textColor = UchicockStyle.alertColor
         
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
@@ -331,7 +331,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             shareButton.tintColor = UchicockStyle.basicBackgroundColor
             openInSafariButton.backgroundColor = UchicockStyle.primaryColor
             openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
-            deleteButton.backgroundColor = UchicockStyle.deleteColor
+            deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
             tableView.estimatedRowHeight = 70

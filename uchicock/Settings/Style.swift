@@ -26,7 +26,7 @@ struct UchicockStyle{
     static var labelTextColorLight = FlatColor.grayDark
     static var labelTextColorOnBadge = FlatColor.white
     static var filterContainerBackgroundColor = FlatColor.sand
-    static var deleteColor = FlatColor.red
+    static var alertColor = FlatColor.red
     static var tabBarTintColor = FlatColor.orange
     static var tabBarBarTintColor = FlatColor.white
     static var tabBarUnselectedItemTintColor = FlatColor.gray
@@ -51,7 +51,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.sand
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.orange
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
@@ -76,7 +76,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.watermelonDark
+        alertColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.yellowDark
         tabBarUnselectedItemTintColor = FlatColor.black
@@ -101,7 +101,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = UIColor(red:0.35, green:0.2, blue:0.3, alpha:1.0)
         tabBarBarTintColor = FlatColor.pink
         tabBarUnselectedItemTintColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
@@ -126,7 +126,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.blackDark
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.pinkDark
         tabBarUnselectedItemTintColor = FlatColor.black
@@ -151,7 +151,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = UIColor(red:0.2, green:0.2, blue:0.3, alpha:1.0)
         tabBarBarTintColor = FlatColor.skyBlue
         tabBarUnselectedItemTintColor = FlatColor.white
@@ -176,7 +176,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.skyBlueDark
         tabBarUnselectedItemTintColor = FlatColor.black
@@ -201,7 +201,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.mint
-        deleteColor = FlatColor.watermelon
+        alertColor = FlatColor.watermelon
         tabBarTintColor = FlatColor.black
         tabBarBarTintColor = FlatColor.mint
         tabBarUnselectedItemTintColor = FlatColor.white
@@ -226,7 +226,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.watermelonDark
+        alertColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.coffeeDark
         tabBarUnselectedItemTintColor = FlatColor.black
@@ -251,7 +251,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.watermelonDark
+        alertColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.mint
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
@@ -276,7 +276,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.black
         tabBarBarTintColor = FlatColor.watermelonDark
         tabBarUnselectedItemTintColor = FlatColor.white
@@ -301,7 +301,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.black
         filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.limeDark
         tabBarUnselectedItemTintColor = FlatColor.blackDark
@@ -326,7 +326,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.whiteDark
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.black
         tabBarBarTintColor = FlatColor.grayDark
         tabBarUnselectedItemTintColor = FlatColor.white
@@ -351,7 +351,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.black
-        deleteColor = FlatColor.watermelonDark
+        alertColor = FlatColor.watermelonDark
         tabBarTintColor = FlatColor.watermelonDark
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.black
@@ -376,7 +376,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.skyBlueDark
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -401,7 +401,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.skyBlueDark
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -426,7 +426,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.orange
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -451,7 +451,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.yellowDark
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -476,7 +476,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         filterContainerBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.pinkDark
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -501,7 +501,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.pinkDark
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -526,7 +526,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.white
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.coffee
@@ -551,7 +551,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.watermelon
+        alertColor = FlatColor.watermelon
         tabBarTintColor = FlatColor.green
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -576,7 +576,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.green
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -601,7 +601,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.white
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.purpleDark
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
@@ -626,7 +626,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.redDark
+        alertColor = FlatColor.redDark
         tabBarTintColor = FlatColor.magenta
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
@@ -651,7 +651,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.grayDark
         labelTextColorOnBadge = FlatColor.white
         filterContainerBackgroundColor = FlatColor.powderBlue
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.blueDark
         tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tabBarUnselectedItemTintColor = FlatColor.gray
@@ -676,7 +676,7 @@ struct UchicockStyle{
         labelTextColorLight = FlatColor.gray
         labelTextColorOnBadge = UIColor.black
         filterContainerBackgroundColor = UIColor.black
-        deleteColor = FlatColor.red
+        alertColor = FlatColor.red
         tabBarTintColor = FlatColor.red
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark

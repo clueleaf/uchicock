@@ -271,7 +271,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeNameCounter.text = String(num) + "/" + String(recipeNameMaximum)
         
         if num > recipeNameMaximum{
-            recipeNameCounter.textColor = UchicockStyle.deleteColor
+            recipeNameCounter.textColor = UchicockStyle.alertColor
         }else{
             recipeNameCounter.textColor = UchicockStyle.labelTextColorLight
         }
@@ -288,7 +288,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memoCounter.text = String(num) + "/" + String(memoMaximum)
             
         if num > memoMaximum{
-            memoCounter.textColor = UchicockStyle.deleteColor
+            memoCounter.textColor = UchicockStyle.alertColor
         }else{
             memoCounter.textColor = UchicockStyle.labelTextColorLight
         }
@@ -511,7 +511,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
         })
         del.image = UIImage(named: "button-delete")
-        del.backgroundColor = UchicockStyle.deleteColor
+        del.backgroundColor = UchicockStyle.alertColor
 
         return UISwipeActionsConfiguration(actions: [del])
     }
