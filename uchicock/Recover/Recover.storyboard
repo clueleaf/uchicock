@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fv3-ks-9ou">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fv3-ks-9ou">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -171,7 +171,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-YH-IUS" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="14.5" width="288.5" height="21"/>
+                                            <rect key="frame" x="88" y="14.5" width="256.5" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="3cp-oL-IcY"/>
                                             </constraints>
@@ -179,21 +179,36 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czv-rF-4bn">
+                                            <rect key="frame" x="56" y="18" width="28" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="em0-s1-0uV"/>
+                                                <constraint firstAttribute="height" constant="14" id="klx-vm-wqa"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="rTS-ZV-ggy" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="2c4-Am-eC9"/>
+                                        <constraint firstItem="czv-rF-4bn" firstAttribute="centerY" secondItem="1T6-YH-IUS" secondAttribute="centerY" id="2xx-Sx-6uM"/>
                                         <constraint firstItem="cXv-FQ-6Oe" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="4l8-oH-84n"/>
                                         <constraint firstItem="cXv-FQ-6Oe" firstAttribute="leading" secondItem="zbY-XP-0TA" secondAttribute="leading" constant="8" id="91L-XF-DMg"/>
                                         <constraint firstItem="1T6-YH-IUS" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="NuN-Jg-qoe"/>
-                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="leading" secondItem="cXv-FQ-6Oe" secondAttribute="trailing" constant="8" id="a9C-rV-whl"/>
+                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="leading" secondItem="czv-rF-4bn" secondAttribute="trailing" constant="4" id="PIU-dZ-Ph7"/>
+                                        <constraint firstItem="czv-rF-4bn" firstAttribute="leading" secondItem="cXv-FQ-6Oe" secondAttribute="trailing" constant="8" id="bQq-dr-uRs"/>
                                         <constraint firstItem="rTS-ZV-ggy" firstAttribute="leading" secondItem="1T6-YH-IUS" secondAttribute="trailing" constant="8" id="jb5-Rs-3CV"/>
                                         <constraint firstAttribute="trailing" secondItem="rTS-ZV-ggy" secondAttribute="trailing" id="jxS-qt-vP6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="isTarget" destination="cXv-FQ-6Oe" id="IOH-U7-Etl"/>
+                                    <outlet property="newRecipeLabel" destination="czv-rF-4bn" id="aud-mv-lgD"/>
+                                    <outlet property="newRecipeLabelTrailingConstraint" destination="PIU-dZ-Ph7" id="HcR-t6-ZP1"/>
+                                    <outlet property="newRecipeLabelWidthConstraint" destination="em0-s1-0uV" id="fat-yw-d6Y"/>
                                     <outlet property="previewLabel" destination="rTS-ZV-ggy" id="xlZ-UW-6aP"/>
-                                    <outlet property="recipeName" destination="1T6-YH-IUS" id="n94-ci-rzC"/>
+                                    <outlet property="recipeNameLabel" destination="1T6-YH-IUS" id="G8T-V4-InH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

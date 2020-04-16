@@ -161,11 +161,24 @@ class LaunchViewController: UIViewController {
                 tabItem.badgeValue = "！"
             }
         }
+        
+        let defaults = UserDefaults.standard
+        let version73newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
+        if let tabItems = tabBarC.tabBar.items {
+            let tabItem = tabItems[4]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
+            if version73newRecipeViewed{
+                tabItem.badgeValue = nil
+                
+            }else{
+                tabItem.badgeValue = "N"
+            }
+        }
 
         widgetUrl = nil
         self.present(tabBarC, animated: false, completion: nil)
     }
-        
+    
     func dismissIntroductionAndPrepareToShowRecipeList(_ introduction: IntroductionPageViewController){
         introduction.dismiss(animated: true, completion: {
             self.prepareToShowRecipeList()

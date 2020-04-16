@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var alcoholCalcImage: UIImageView!
     @IBOutlet weak var reviewImage: UIImageView!
     @IBOutlet weak var currentImageSizeLabel: UILabel!
+    @IBOutlet weak var newRecipeLabel: UILabel!
     
     var selectedIndexPath: IndexPath? = nil
     let defaults = UserDefaults.standard
@@ -71,12 +72,37 @@ class SettingsTableViewController: UITableViewController {
         }
         
         stayHomeLabel.textColor = UchicockStyle.labelTextColorLight
-
+        setNewRecipeBadge()
+        
         tableView.reloadData()
         
         if let path = selectedIndexPath{
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+            }
+        }
+    }
+    
+    private func setNewRecipeBadge(){
+        let defaults = UserDefaults.standard
+        let version73newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[4]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
+            if version73newRecipeViewed{
+                tabItem.badgeValue = nil
+                newRecipeLabel.isHidden = true
+            }else{
+                tabItem.badgeValue = "N"
+                newRecipeLabel.isHidden = false
+                newRecipeLabel.backgroundColor = UIColor.clear
+                newRecipeLabel.layer.cornerRadius = 8
+                newRecipeLabel.clipsToBounds = true
+                newRecipeLabel.textAlignment = NSTextAlignment.center
+                newRecipeLabel.layer.borderWidth = 1
+                newRecipeLabel.layer.borderColor = UchicockStyle.alertColor.cgColor
+                newRecipeLabel.textColor = UIColor.white
+                newRecipeLabel.layer.backgroundColor = UchicockStyle.alertColor.cgColor
             }
         }
     }

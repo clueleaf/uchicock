@@ -937,4 +937,11 @@ extension String {
         default: return 4
         }
     }
+    
+    func isNewRecipe() -> Bool {
+        switch self{
+        case "カイピリーニャ": return true
+        default: return false
+        }
+    }
 }

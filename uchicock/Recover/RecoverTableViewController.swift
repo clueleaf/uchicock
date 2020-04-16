@@ -42,6 +42,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: GlobalConstants.Version73NewRecipeViewedKey)
     }
     
     private func cellDeselectAnimation(){
@@ -339,7 +342,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
                 if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    cell.recipeName.text = recoverableSampleRecipeList[indexPath.row - 1].name
+                    cell.recipeName = recoverableSampleRecipeList[indexPath.row - 1].name
                     cell.isTarget.isEnabled = true
                     cell.isTarget.tintColor = UchicockStyle.primaryColor
                     if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
@@ -350,7 +353,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     cell.isRecoverable = true
                     cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
                 }else{
-                    cell.recipeName.text = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
+                    cell.recipeName = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
                     cell.isTarget.isEnabled = false
                     cell.isTarget.tintColor = UchicockStyle.labelTextColorLight
                     cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor

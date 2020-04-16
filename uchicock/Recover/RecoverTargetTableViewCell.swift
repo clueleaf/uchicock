@@ -11,14 +11,40 @@ import UIKit
 class RecoverTargetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var isTarget: CircularCheckbox!
-    @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet weak var recipeNameLabel: CustomLabel!
     @IBOutlet weak var previewLabel: UILabel!
+    @IBOutlet weak var newRecipeLabel: UILabel!
+    @IBOutlet weak var newRecipeLabelTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
     
     var isRecoverable: Bool = Bool(){
         didSet{
             isTarget.stateChangeAnimation = .expand
             isTarget.animationDuration = 0.3
             previewLabel.textColor = UchicockStyle.labelTextColorLight
+        }
+    }
+    
+    var recipeName = String(){
+        didSet{
+            recipeNameLabel.text = recipeName
+            if recipeName.isNewRecipe(){
+                newRecipeLabel.isHidden = false
+                newRecipeLabelWidthConstraint.constant = 28
+                newRecipeLabelTrailingConstraint.constant = 4
+                newRecipeLabel.backgroundColor = UIColor.clear
+                newRecipeLabel.layer.cornerRadius = 7
+                newRecipeLabel.clipsToBounds = true
+                newRecipeLabel.textAlignment = NSTextAlignment.center
+                newRecipeLabel.layer.borderWidth = 1
+                newRecipeLabel.layer.borderColor = UchicockStyle.alertColor.cgColor
+                newRecipeLabel.textColor = UIColor.white
+                newRecipeLabel.layer.backgroundColor = UchicockStyle.alertColor.cgColor
+            }else{
+                newRecipeLabel.isHidden = true
+                newRecipeLabelWidthConstraint.constant = 0
+                newRecipeLabelTrailingConstraint.constant = 0
+            }
         }
     }
 }
