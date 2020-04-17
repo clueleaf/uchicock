@@ -36,6 +36,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     var ingredientRecipeBasicList = Array<RecipeBasic>()
 
     var hasIngredientDeleted = false
+    var isOnReminder = false
     var coverView = UIView(frame: CGRect.zero)
     var deleteImageView = UIImageView(frame: CGRect.zero)
 
@@ -118,6 +119,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             hasIngredientDeleted = false
             ingredient = ing!
             self.navigationItem.title = ingredient.ingredientName
+            
+            isOnReminder = ingredient.reminderSetDate != nil
             
             ingredientName.text = ingredient.ingredientName
             
@@ -557,6 +560,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         try! realm.write {
             ingredient.reminderSetDate = nil
         }
+        isOnReminder = false
         tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
         
         setReminderBadge()
@@ -578,6 +582,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 try! realm.write {
                     self.ingredient.reminderSetDate = nil
                 }
+                self.isOnReminder = false
                 self.tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
                 self.setReminderBadge()
             }))
@@ -606,7 +611,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         vc.ingredient = self.ingredient
         vc.onDoneBlock = {
             self.setReminderBadge()
-            self.tableView.reloadData()
+            if self.isOnReminder == false && self.ingredient.reminderSetDate != nil {
+                self.isOnReminder = true
+                self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .middle)
+            }
         }
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
