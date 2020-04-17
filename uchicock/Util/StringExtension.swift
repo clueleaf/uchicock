@@ -941,6 +941,20 @@ extension String {
     func isNewRecipe() -> Bool {
         switch self{
         case "カイピリーニャ": return true
+        case "ココナッツドリーム": return true
+        case "チョコレートカイピリーニャ": return true
+        case "イタリアンカイピリーニャ": return true
+        case "ブルーカイピリーニャ": return true
+        case "ミドリカイピリーニャ": return true
+        case "アーントアガサ": return true
+        case "ジャングル": return true
+        case "ホットシャルトリューズ": return true
+        case "チャイニーズレディ": return true
+        case "アラスカ": return true
+        case "イエローパロット": return true
+        case "グリーンアラスカ": return true
+        case "シャルトリューズトニック": return true
+        case "モンマルトル": return true
         default: return false
         }
     }
