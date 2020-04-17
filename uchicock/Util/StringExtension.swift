@@ -940,21 +940,41 @@ extension String {
     
     func isNewRecipe() -> Bool {
         switch self{
-        case "カイピリーニャ": return true
-        case "ココナッツドリーム": return true
-        case "チョコレートカイピリーニャ": return true
-        case "イタリアンカイピリーニャ": return true
-        case "ブルーカイピリーニャ": return true
-        case "ミドリカイピリーニャ": return true
         case "アーントアガサ": return true
-        case "ジャングル": return true
-        case "ホットシャルトリューズ": return true
-        case "チャイニーズレディ": return true
+        case "アイリッシュルシアン": return true
         case "アラスカ": return true
         case "イエローパロット": return true
+        case "イタリアンカイピリーニャ": return true
+        case "ウォッカトニック": return true
+        case "カイピリーニャ": return true
+        case "カシスグレープフルーツ": return true
+        case "カシスソーダ": return true
+        case "カシスミルク": return true
+        case "カルーアオレンジ": return true
+        case "カンパリトニック": return true
+        case "ギネスカシス": return true
         case "グリーンアラスカ": return true
+        case "クレオパトラ": return true
+        case "クレビヨン": return true
+        case "ココナッツドリーム": return true
         case "シャルトリューズトニック": return true
+        case "ジャングル": return true
+        case "ソノラ": return true
+        case "チャイニーズレディ": return true
+        case "チョコカシスソーダ": return true
+        case "チョコレートカイピリーニャ": return true
+        case "デプスボム": return true
+        case "ドンキホーテ": return true
+        case "ハーバードクーラー": return true
+        case "ブラックベルベット": return true
+        case "ブルーカイピリーニャ": return true
+        case "ホットシャルトリューズ": return true
+        case "マネッティ": return true
+        case "ミドリカイピリーニャ": return true
+        case "モッキンバード": return true
         case "モンマルトル": return true
+        case "ラムトニック": return true
+
         default: return false
         }
     }
