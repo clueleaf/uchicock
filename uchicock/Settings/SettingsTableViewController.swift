@@ -206,22 +206,26 @@ class SettingsTableViewController: UITableViewController {
     private func introductions() -> [introductionInfo]{
         var infos: [introductionInfo] = []
 
-        let info1 = introductionInfo(title: "レシピ",
+        let info1 = introductionInfo(title: "このアプリについて",
+                                     description: GlobalConstants.IntroductionAboutThisApp,
+                                    image: nil)
+        let info2 = introductionInfo(title: "レシピ",
                                      description: GlobalConstants.IntroductionDescriptionRecipe,
                                      image: UIImage(named:"screen-recipe"))
-        let info2 = introductionInfo(title: "材料",
+        let info3 = introductionInfo(title: "材料",
                                      description: GlobalConstants.IntroductionDescriptionIngredient,
                                      image: UIImage(named:"screen-ingredient"))
-        let info3 = introductionInfo(title: "逆引き",
+        let info4 = introductionInfo(title: "逆引き",
                                      description: GlobalConstants.IntroductionDescriptionReverseLookup,
                                      image: UIImage(named:"screen-reverse-lookup"))
-        let info4 = introductionInfo(title: "アルバム",
+        let info5 = introductionInfo(title: "アルバム",
                                     description: GlobalConstants.IntroductionDescriptionAlbum,
                                     image: UIImage(named:"screen-album"))
         infos.append(info1)
         infos.append(info2)
         infos.append(info3)
         infos.append(info4)
+        infos.append(info5)
         return infos
     }
 }
