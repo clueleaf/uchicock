@@ -940,8 +940,10 @@ extension String {
     
     func isNewRecipe() -> Bool {
         switch self{
+        case "アーティスツスペシャル": return true
         case "アーントアガサ": return true
         case "アイオープナー": return true
+        case "アイリッシュブラックソーン": return true
         case "アイリッシュルシアン": return true
         case "アラスカ": return true
         case "アルゴンキン": return true
@@ -951,6 +953,7 @@ extension String {
         case "イタリアンカイピリーニャ": return true
         case "ウィスキーサイドカー": return true
         case "ウィスキーリッキー": return true
+        case "ウォッカコリンズ": return true
         case "ウォッカトニック": return true
         case "オーロラ": return true
         case "カイピリーニャ": return true
@@ -960,6 +963,7 @@ extension String {
         case "カシスソーダ": return true
         case "カシスミルク": return true
         case "カフェロワイヤル": return true
+        case "カプリ": return true
         case "カルーアウーロン": return true
         case "カルーアオレンジ": return true
         case "カルーアベリー": return true
@@ -985,17 +989,22 @@ extension String {
         case "シルビア": return true
         case "ジンサワー": return true
         case "ジンライム": return true
+        case "ゼウス": return true
         case "セプテンバーモーン": return true
         case "ソノラ": return true
         case "ダンロップ": return true
         case "チャイニーズレディ": return true
         case "チョコカシスソーダ": return true
         case "チョコレートカイピリーニャ": return true
+        case "ディタエイジア": return true
+        case "ディタクランベリールージュ": return true
         case "ティファナサンライズ": return true
+        case "ティフィンレモンソーダ": return true
         case "テキーニ": return true
         case "テキーラトニック": return true
         case "デプスボム": return true
         case "ドンキホーテ": return true
+        case "ナインティーンスホール": return true
         case "ニノチカ": return true
         case "ハーバードクーラー": return true
         case "パイナップルフィズ": return true
@@ -1006,6 +1015,7 @@ extension String {
         case "ピーチフィズ": return true
         case "ピエールコリンズ": return true
         case "ビューティフル": return true
+        case "ピンクパイナップル": return true
         case "ブザムカレッサー": return true
         case "ブラックアンドホワイト": return true
         case "ブラックベルベット": return true
@@ -1013,13 +1023,17 @@ extension String {
         case "ブルーカイピリーニャ": return true
         case "ブルーレディ": return true
         case "ブレイブブル": return true
+        case "ペイトンプレイス": return true
         case "ベルベットキッス": return true
         case "ベルモットキュラソー": return true
+        case "ポーラーショートカット": return true
         case "ホットシャルトリューズ": return true
+        case "ボヘミアンドリーム": return true
         case "ボルガ": return true
         case "ボルガボートマン": return true
         case "ホワイトリリー": return true
         case "マウントフジ": return true
+        case "マッドスライド": return true
         case "マネッティ": return true
         case "ミッドナイトサン": return true
         case "ミドリカイピリーニャ": return true
@@ -1030,8 +1044,10 @@ extension String {
         case "ラムトニック": return true
         case "ルシアンバレエ": return true
         case "ルビーカシス": return true
+        case "レイククイーン": return true
         case "レッドライオン": return true
         case "ロイヤルルシアン": return true
+        case "ロバートバーンズ": return true
         case "ワイルドミュール": return true
 
         default: return false
