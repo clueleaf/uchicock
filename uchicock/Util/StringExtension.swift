@@ -946,7 +946,6 @@ extension String {
         case "アラスカ": return true
         case "アルゴンキン": return true
         case "アンダルシア": return true
-        case "イーストインディアン": return true
         case "イエローパロット": return true
         case "イグアナ": return true
         case "イタリアンカイピリーニャ": return true
