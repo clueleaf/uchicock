@@ -16,6 +16,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var isRecovering = false
     let selectedCellBackgroundView = UIView()
+    var version73NewDownload = false
     
     let interactor = Interactor()
 
@@ -45,6 +46,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: GlobalConstants.Version73NewRecipeViewedKey)
+        version73NewDownload = defaults.bool(forKey: GlobalConstants.Version73NewNewDownloadKey)
     }
     
     private func cellDeselectAnimation(){
@@ -334,6 +336,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView
 
+                cell.version73NewDownload = self.version73NewDownload
                 cell.isTarget.stateChangeAnimation = .fade
                 cell.isTarget.animationDuration = 0.0
                 cell.isTarget.backgroundColor = UIColor.clear

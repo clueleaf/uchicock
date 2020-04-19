@@ -140,4 +140,5 @@ struct GlobalConstants{
     static let SaveImageSizeKey = "ImageSize"
     static let AlreadyWrittenReviewKey = "AlreadyWrittenReview"
     static let Version73NewRecipeViewedKey = "Version73NewRecipeViewed"
+    static let Version73NewNewDownloadKey = "Version73NewNewDownload"
 }

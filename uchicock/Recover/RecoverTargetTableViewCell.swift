@@ -16,6 +16,8 @@ class RecoverTargetTableViewCell: UITableViewCell {
     @IBOutlet weak var newRecipeLabel: UILabel!
     @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
     
+    var version73NewDownload = false
+
     var isRecoverable: Bool = Bool(){
         didSet{
             isTarget.stateChangeAnimation = .expand
@@ -27,7 +29,7 @@ class RecoverTargetTableViewCell: UITableViewCell {
     var recipeName = String(){
         didSet{
             recipeNameLabel.text = recipeName
-            if recipeName.isNewRecipe(){
+            if recipeName.isNewRecipe() && version73NewDownload == false {
                 newRecipeLabel.isHidden = false
                 newRecipeLabelWidthConstraint.constant = 30
                 newRecipeLabel.backgroundColor = UIColor.clear
