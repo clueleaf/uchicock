@@ -945,12 +945,15 @@ extension String {
         case "アイオープナー": return true
         case "アイリッシュブラックソーン": return true
         case "アイリッシュルシアン": return true
+        case "アプリコットフィズ": return true
         case "アラスカ": return true
         case "アルゴンキン": return true
         case "アンダルシア": return true
         case "イエローパロット": return true
         case "イグアナ": return true
+        case "イスラデピノス": return true
         case "イタリアンカイピリーニャ": return true
+        case "インペリアルフィズ": return true
         case "ウィスキーサイドカー": return true
         case "ウィスキーリッキー": return true
         case "ウォッカコリンズ": return true
@@ -972,10 +975,13 @@ extension String {
         case "ギネスカシス": return true
         case "クエーカーズ": return true
         case "クォーターデック": return true
+        case "クリームフィズ": return true
         case "グリーンアラスカ": return true
         case "クレオパトラ": return true
         case "クレッチマ": return true
+        case "グレナデンフィズ": return true
         case "クレビヨン": return true
+        case "ゴールデンフィズ": return true
         case "ココナッツドリーム": return true
         case "コロラドブルドッグ": return true
         case "サケサワー": return true
@@ -986,13 +992,17 @@ extension String {
         case "シャルトリューズトニック": return true
         case "シャンギロンゴ": return true
         case "ジャングル": return true
+        case "ジョージアミントジュレップ": return true
         case "シルビア": return true
         case "ジンサワー": return true
+        case "ジンジュレップ": return true
         case "ジンライム": return true
         case "ゼウス": return true
         case "セプテンバーモーン": return true
         case "ソノラ": return true
+        case "ダービーフィズ": return true
         case "ダンロップ": return true
+        case "チェリーラムフィズ": return true
         case "チャイニーズレディ": return true
         case "チョコカシスソーダ": return true
         case "チョコレートカイピリーニャ": return true
@@ -1003,10 +1013,12 @@ extension String {
         case "テキーニ": return true
         case "テキーラトニック": return true
         case "デプスボム": return true
+        case "トロピカルファジーネーブル": return true
         case "ドンキホーテ": return true
         case "ナインティーンスホール": return true
         case "ニノチカ": return true
         case "ハーバードクーラー": return true
+        case "バイオレットフィズ": return true
         case "パイナップルフィズ": return true
         case "ハイランドクーラー": return true
         case "バレエリュス": return true
@@ -1037,6 +1049,7 @@ extension String {
         case "マネッティ": return true
         case "ミッドナイトサン": return true
         case "ミドリカイピリーニャ": return true
+        case "ミドリマルガリータ": return true
         case "メキシカン・エル・ディアブロ": return true
         case "モッキンバード": return true
         case "モンマルトル": return true
@@ -1044,8 +1057,10 @@ extension String {
         case "ラムトニック": return true
         case "ルシアンバレエ": return true
         case "ルビーカシス": return true
+        case "ルビーフィズ": return true
         case "レイククイーン": return true
         case "レッドライオン": return true
+        case "ロイヤルフィズ": return true
         case "ロイヤルルシアン": return true
         case "ロバートバーンズ": return true
         case "ワイルドミュール": return true
