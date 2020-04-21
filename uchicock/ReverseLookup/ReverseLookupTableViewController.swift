@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
+class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching, Scrollable {
 
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -312,6 +312,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func scrollToTop() {
+        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
     }
 
     private func setSearchTextToUserDefaults(){

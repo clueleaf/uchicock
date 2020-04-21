@@ -39,6 +39,46 @@ class BasicNavigationController: UINavigationController {
     }
 }
 
+class BasicTabBarController: UITabBarController, UITabBarControllerDelegate {
+
+    var shouldScroll = false
+    var lastSelectedIndex = 0
+    
+    override func viewDidLoad() {
+        self.delegate = self
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        self.shouldScroll = false
+        if let navigationController: UINavigationController = viewController as? UINavigationController {
+            let visibleVC = navigationController.visibleViewController!
+            if let index = navigationController.viewControllers.firstIndex(of: visibleVC), index == 0 {
+                shouldScroll = true
+            }
+        }
+        return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)  {
+        let indexCache = lastSelectedIndex
+        self.lastSelectedIndex = tabBarController.selectedIndex
+        guard self.shouldScroll else { return }
+
+        if indexCache == tabBarController.selectedIndex  {
+            if let navigationController: UINavigationController = viewController as? UINavigationController {
+                let visibleVC = navigationController.visibleViewController!
+                if let scrollableVC = visibleVC as? Scrollable {
+                    scrollableVC.scrollToTop()
+                }
+            }
+        }
+    }
+}
+
+protocol Scrollable {
+    func scrollToTop()
+}
+
 class CustomTextView: UITextView{
 }
 

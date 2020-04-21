@@ -118,28 +118,32 @@ class LaunchViewController: UIViewController {
         }
         
         // 遷移
-        let tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+        let tabBarC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "tabBar") as! BasicTabBarController
         tabBarC.modalPresentationStyle = .fullScreen
         tabBarC.modalTransitionStyle = .crossDissolve
 
         switch widgetUrl{
         case "uchicock://bookmark":
             tabBarC.selectedIndex = 0
+            tabBarC.lastSelectedIndex = 0
             let navC = tabBarC.viewControllers![0] as! UINavigationController
             let recipeVC = navC.visibleViewController as? RecipeListViewController
             recipeVC?.isBookmarkMode = true
             recipeVC?.shouldShowBookmarkGuide = true
         case "uchicock://reminder":
             tabBarC.selectedIndex = 1
+            tabBarC.lastSelectedIndex = 1
             let navC = tabBarC.viewControllers![1] as! UINavigationController
             let ingredientVC = navC.visibleViewController as? IngredientListViewController
             ingredientVC?.isReminderMode = true
             ingredientVC?.shouldShowReminderGuide = true
         case "uchicock://album":
             tabBarC.selectedIndex = 3
+            tabBarC.lastSelectedIndex = 3
         case "uchicock://calc":
             tabBarC.selectedIndex = 4
-            
+            tabBarC.lastSelectedIndex = 4
+
             let navC = tabBarC.viewControllers![4] as! UINavigationController
             let settingsVC = navC.visibleViewController as? SettingsTableViewController
             if settingsVC != nil{
@@ -149,6 +153,7 @@ class LaunchViewController: UIViewController {
             navC.pushViewController(calcVC, animated: false)
         default:
             tabBarC.selectedIndex = 0
+            tabBarC.lastSelectedIndex = 0
         }
 
         let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate, Scrollable {
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!
@@ -332,6 +332,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             shouldShowBookmarkGuide = false
         }
+    }
+    
+    func scrollToTop() {
+        tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
     // MARK: - Manage Data

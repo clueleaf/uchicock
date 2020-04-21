@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, Scrollable {
 
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!
@@ -123,6 +123,10 @@ class SettingsTableViewController: UITableViewController {
         stayHomeLabel.frame = CGRect(x: 0, y: y + 60 * 5, width: tableView.frame.width, height: 20)
     }
     
+    func scrollToTop() {
+        tableView?.setContentOffset(CGPoint.zero, animated: true)
+    }
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

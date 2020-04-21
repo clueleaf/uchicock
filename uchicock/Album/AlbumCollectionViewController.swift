@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate, UICollectionViewDataSourcePrefetching {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate, UICollectionViewDataSourcePrefetching, Scrollable {
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
@@ -222,6 +222,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
         highlightIndexPath = nil
         selectedRecipeId = nil
+    }
+    
+    func scrollToTop() {
+        collectionView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
     private func reloadRecipeList(){

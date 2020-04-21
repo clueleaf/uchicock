@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, Scrollable {
 
     @IBOutlet weak var reminderButton: BadgeBarButtonItem!
     @IBOutlet weak var addIngredientButton: UIBarButtonItem!
@@ -191,6 +191,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             shouldShowReminderGuide = false
         }
+    }
+    
+    func scrollToTop() {
+        tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
     private func setReminderBadge(){
