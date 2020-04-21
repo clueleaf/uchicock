@@ -949,6 +949,7 @@ extension String {
         case "アラスカ": return true
         case "アルゴンキン": return true
         case "アンダルシア": return true
+        case "アンバードリーム": return true
         case "イエローパロット": return true
         case "イグアナ": return true
         case "イスラデピノス": return true
@@ -980,8 +981,10 @@ extension String {
         case "グリーンアラスカ": return true
         case "クレオパトラ": return true
         case "クレッチマ": return true
+        case "グレナデントニック": return true
         case "グレナデンフィズ": return true
         case "クレビヨン": return true
+        case "クロンダイクハイボール": return true
         case "ゴールデンフィズ": return true
         case "ココナッツドリーム": return true
         case "コパデオロ": return true
@@ -990,6 +993,7 @@ extension String {
         case "サケサワー": return true
         case "サンフランシスコ": return true
         case "シェリーフリップ": return true
+        case "ジェントルブル": return true
         case "ジャーナリスト": return true
         case "シャルトリューズオレンジ": return true
         case "シャルトリューズトニック": return true
@@ -1002,8 +1006,11 @@ extension String {
         case "ジンライム": return true
         case "スコッチキルト": return true
         case "スタンレー": return true
+        case "スプリングフィーリング": return true
+        case "スマイリング": return true
         case "ゼウス": return true
         case "セプテンバーモーン": return true
+        case "センチュリー": return true
         case "ソノラ": return true
         case "ダービーフィズ": return true
         case "ダンロップ": return true
@@ -1013,6 +1020,7 @@ extension String {
         case "チョコレートカイピリーニャ": return true
         case "ディタエイジア": return true
         case "ディタクランベリールージュ": return true
+        case "ティツィアーノ": return true
         case "ティファナサンライズ": return true
         case "ティフィンレモンソーダ": return true
         case "テキーニ": return true
@@ -1027,6 +1035,8 @@ extension String {
         case "パイナップルフィズ": return true
         case "ハイランドクーラー": return true
         case "バレエリュス": return true
+        case "バロン": return true
+        case "パンチョビラ": return true
         case "バンブー": return true
         case "ピーチツリートニック": return true
         case "ピーチフィズ": return true
@@ -1048,12 +1058,14 @@ extension String {
         case "ペイトンプレイス": return true
         case "ベルベットキッス": return true
         case "ベルモットキュラソー": return true
+        case "ベレッタ": return true
         case "ポーラーショートカット": return true
         case "ホットシャルトリューズ": return true
         case "ボヘミアンドリーム": return true
         case "ボルガ": return true
         case "ボルガボートマン": return true
         case "ホワイトリリー": return true
+        case "マイラ": return true
         case "マウントフジ": return true
         case "マッドスライド": return true
         case "マネッティ": return true
@@ -1062,6 +1074,7 @@ extension String {
         case "ミドリマルガリータ": return true
         case "メキシカン・エル・ディアブロ": return true
         case "メキシカンコーヒー": return true
+        case "メキシコローズ": return true
         case "モッキンバード": return true
         case "モンマルトル": return true
         case "ヤングマン": return true
@@ -1075,10 +1088,13 @@ extension String {
         case "レッドライオン": return true
         case "ロイヤルフィズ": return true
         case "ロイヤルルシアン": return true
+        case "ローマホリデー": return true
         case "ロバートバーンズ": return true
         case "ロブソン": return true
+        case "ワイオミングスイング": return true
         case "ワイルドミュール": return true
         case "ワシントン": return true
+
 
         default: return false
         }
