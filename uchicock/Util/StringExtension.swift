@@ -941,7 +941,7 @@ extension String {
     func isNewRecipe() -> Bool {
         switch self{
         case "アーティスツスペシャル": return true
-        case "アーントアガサ": return true
+        case "アーント・アガサ": return true
         case "アイオープナー": return true
         case "アイリッシュブラックソーン": return true
         case "アイリッシュルシアン": return true
@@ -952,7 +952,7 @@ extension String {
         case "アンバードリーム": return true
         case "イエローパロット": return true
         case "イグアナ": return true
-        case "イスラデピノス": return true
+        case "イスラ・デ・ピノス": return true
         case "イタリアンカイピリーニャ": return true
         case "インペリアルフィズ": return true
         case "ウィスキーサイドカー": return true
@@ -987,7 +987,7 @@ extension String {
         case "クロンダイクハイボール": return true
         case "ゴールデンフィズ": return true
         case "ココナッツドリーム": return true
-        case "コパデオロ": return true
+        case "コパ・デ・オロ": return true
         case "コロラドブルドッグ": return true
         case "サウスオブザボーダー": return true
         case "サケサワー": return true
@@ -1034,16 +1034,16 @@ extension String {
         case "バイオレットフィズ": return true
         case "パイナップルフィズ": return true
         case "ハイランドクーラー": return true
-        case "バレエリュス": return true
+        case "バレエ・リュス": return true
         case "バロン": return true
-        case "パンチョビラ": return true
+        case "パンチョ・ビラ": return true
         case "バンブー": return true
         case "ピーチツリートニック": return true
         case "ピーチフィズ": return true
         case "ピエールコリンズ": return true
         case "ビューティフル": return true
         case "ピンクパイナップル": return true
-        case "ブザムカレッサー": return true
+        case "ブザム・カレッサー": return true
         case "ブラックアンドホワイト": return true
         case "ブラックベルベット": return true
         case "ブランデーエッグノッグ": return true
@@ -1079,7 +1079,7 @@ extension String {
         case "モンマルトル": return true
         case "ヤングマン": return true
         case "ラムクーラー": return true
-        case "ラムスウィズル": return true
+        case "ラム・スウィズル": return true
         case "ラムトニック": return true
         case "ルシアンバレエ": return true
         case "ルビーカシス": return true
@@ -1091,7 +1091,7 @@ extension String {
         case "ローマホリデー": return true
         case "ロバートバーンズ": return true
         case "ロブソン": return true
-        case "ワイオミングスイング": return true
+        case "ワイオミング・スイング": return true
         case "ワイルドミュール": return true
         case "ワシントン": return true
 
