@@ -66,7 +66,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         collectionView.delaysContentTouches = false
 
         setFilterUserDefaults()
-        reloadRecipeList()
+        reloadRecipeBasicList()
 
         collectionView.register(UINib(nibName: "AlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCell")
 
@@ -141,7 +141,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setupVC(){
-        loadFilterUserDefaults()
+        loadSearchUserDefaults()
         setFilterImageState()
         filterRecipeBasicList()
         collectionView.reloadData()
@@ -162,7 +162,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    private func loadFilterUserDefaults(){
+    private func loadSearchUserDefaults(){
         let defaults = UserDefaults.standard
         albumFilterStar0 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar0Key)
         albumFilterStar1 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar1Key)
@@ -229,7 +229,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         collectionView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
-    private func reloadRecipeList(){
+    private func reloadRecipeBasicList(){
         recipeBasicList.removeAll()
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
