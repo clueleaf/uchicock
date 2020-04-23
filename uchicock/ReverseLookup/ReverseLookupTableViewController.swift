@@ -150,6 +150,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }
 
+        loadFromUserDefaults()
         // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
         // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
         showRecipeTableView(shouldSetToUserDefaults: false)
@@ -162,7 +163,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         setSearchConditionButtonTitle()
         reloadRecipeList()
         recipeTableView.reloadData()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     private func loadFromUserDefaults(){
