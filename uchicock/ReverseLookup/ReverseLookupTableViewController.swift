@@ -130,8 +130,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         
         hiddenLabel.textColor = UchicockStyle.labelTextColorLight
 
-        setupData()
-
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField1)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField3)
@@ -155,6 +153,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
         // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
         showRecipeTableView(shouldSetToUserDefaults: false)
+        setSearchConditionButtonTitle()
+        tableView.reloadData()
     }
     
     private func setupData(){
