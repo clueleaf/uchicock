@@ -335,6 +335,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func scrollToTop() {
+        tableView?.flashScrollIndicators()
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
