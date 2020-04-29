@@ -194,7 +194,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func scrollToTop() {
-        tableView?.flashScrollIndicators()
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     

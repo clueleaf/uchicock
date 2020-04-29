@@ -225,7 +225,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func scrollToTop() {
-        collectionView?.flashScrollIndicators()
         collectionView?.setContentOffset(CGPoint.zero, animated: true)
     }
     

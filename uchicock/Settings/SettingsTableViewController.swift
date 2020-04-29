@@ -124,7 +124,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     }
     
     func scrollToTop() {
-        tableView?.flashScrollIndicators()
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
 
