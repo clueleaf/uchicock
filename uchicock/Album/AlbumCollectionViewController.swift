@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate, UICollectionViewDataSourcePrefetching, Scrollable {
+class AlbumCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIViewControllerTransitioningDelegate, UICollectionViewDataSourcePrefetching, ScrollableToTop {
 
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!

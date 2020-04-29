@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController, Scrollable {
+class SettingsTableViewController: UITableViewController, ScrollableToTop {
 
     @IBOutlet weak var introductionImage: UIImageView!
     @IBOutlet weak var recoverImage: UIImageView!

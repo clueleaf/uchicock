@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate, Scrollable {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate, ScrollableToTop {
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!

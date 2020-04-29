@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching, Scrollable {
+class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching, ScrollableToTop {
 
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!

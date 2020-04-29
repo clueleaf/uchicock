@@ -67,7 +67,7 @@ class BasicTabBarController: UITabBarController, UITabBarControllerDelegate {
         if indexCache == tabBarController.selectedIndex  {
             if let navigationController: UINavigationController = viewController as? UINavigationController {
                 let visibleVC = navigationController.visibleViewController!
-                if let scrollableVC = visibleVC as? Scrollable {
+                if let scrollableVC = visibleVC as? ScrollableToTop {
                     scrollableVC.scrollToTop()
                 }
             }
@@ -75,7 +75,7 @@ class BasicTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
-protocol Scrollable {
+protocol ScrollableToTop {
     func scrollToTop()
 }
 

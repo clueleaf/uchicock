@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, Scrollable {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ScrollableToTop {
 
     @IBOutlet weak var reminderButton: BadgeBarButtonItem!
     @IBOutlet weak var addIngredientButton: UIBarButtonItem!
