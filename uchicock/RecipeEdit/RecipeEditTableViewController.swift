@@ -422,6 +422,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
                             self.createNeedUpdateCellIndexList()
                             self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
+                            self.tableView.scrollToRow(at: IndexPath(row: self.recipeIngredientList.count, section: indexPath.section), at: .bottom, animated: true)
                         }
                     }else{
                         if deleteFlag{
