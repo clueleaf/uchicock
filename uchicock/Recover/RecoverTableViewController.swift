@@ -16,8 +16,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var isRecovering = false
     let selectedCellBackgroundView = UIView()
-    var version73NewDownload = false
-    
+    var shouldAdd73Badge = false
+    var shouldAdd74Badge = false
+
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,8 +46,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.Version73NewRecipeViewedKey)
-        version73NewDownload = defaults.bool(forKey: GlobalConstants.Version73NewNewDownloadKey)
+        defaults.set(true, forKey: GlobalConstants.Version74NewRecipeViewedKey)
+        shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
+        shouldAdd74Badge = !defaults.bool(forKey: GlobalConstants.Version74NewDownloadKey)
     }
     
     private func cellDeselectAnimation(){
@@ -336,7 +338,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView
 
-                cell.version73NewDownload = self.version73NewDownload
+                
+                cell.shouldAdd73Badge = self.shouldAdd73Badge
+                cell.shouldAdd74Badge = self.shouldAdd74Badge
                 cell.isTarget.stateChangeAnimation = .fade
                 cell.isTarget.animationDuration = 0.0
                 cell.isTarget.backgroundColor = UIColor.clear

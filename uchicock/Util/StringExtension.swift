@@ -938,7 +938,7 @@ extension String {
         }
     }
     
-    func isNewRecipe() -> Bool {
+    func isNewRecipe73() -> Bool {
         switch self{
         case "アーティスツスペシャル": return true
         case "アーント・アガサ": return true
@@ -1137,6 +1137,12 @@ extension String {
 
 
         default: return false
+        }
+    }
+    
+    func isNewRecipe74() -> Bool {
+        switch self{
+            default: return false
         }
     }
 }

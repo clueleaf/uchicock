@@ -168,13 +168,12 @@ class LaunchViewController: UIViewController {
         }
         
         let defaults = UserDefaults.standard
-        let version73newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
+        let version74newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version74NewRecipeViewedKey)
         if let tabItems = tabBarC.tabBar.items {
             let tabItem = tabItems[4]
             tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if version73newRecipeViewed{
+            if version74newRecipeViewed{
                 tabItem.badgeValue = nil
-                
             }else{
                 tabItem.badgeValue = "N"
             }

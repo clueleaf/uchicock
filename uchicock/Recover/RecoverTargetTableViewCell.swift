@@ -16,7 +16,8 @@ class RecoverTargetTableViewCell: UITableViewCell {
     @IBOutlet weak var newRecipeLabel: UILabel!
     @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
     
-    var version73NewDownload = false
+    var shouldAdd73Badge = false
+    var shouldAdd74Badge = false
 
     var isRecoverable: Bool = Bool(){
         didSet{
@@ -29,7 +30,15 @@ class RecoverTargetTableViewCell: UITableViewCell {
     var recipeName = String(){
         didSet{
             recipeNameLabel.text = recipeName
-            if recipeName.isNewRecipe() && version73NewDownload == false {
+            
+            var shouldAddNewBadge = false
+            if shouldAdd73Badge && recipeName.isNewRecipe73(){
+                shouldAddNewBadge = true
+            }else if shouldAdd74Badge && recipeName.isNewRecipe74(){
+                shouldAddNewBadge = true
+            }
+
+            if shouldAddNewBadge{
                 newRecipeLabel.isHidden = false
                 newRecipeLabelWidthConstraint.constant = 30
                 newRecipeLabel.backgroundColor = UIColor.clear
