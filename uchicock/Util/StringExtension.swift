@@ -1142,7 +1142,45 @@ extension String {
     
     func isNewRecipe74() -> Bool {
         switch self{
-            default: return false
+        case "アカシア": return true
+        case "アライズ": return true
+        case "イエロー・ラットラー": return true
+        case "ウォッカギブソン": return true
+        case "ウォッカマティーニ": return true
+        case "エクストラドライマティーニ": return true
+
+        case "ギブソン": return true
+        case "キャロル": return true
+        case "キルシュカシス": return true
+        case "グリーンドラゴン": return true
+        case "ケル・ヴィー": return true
+        case "ゴールデンキャデラック": return true
+        case "ゴールデンドリーム": return true
+
+        case "サケリーニャ": return true
+        case "ジプシー": return true
+        case "ジャーマンコーヒー": return true
+        case "シルバーブレット": return true
+        case "シンデレラハネムーン": return true
+
+        case "タワーリシチ": return true
+
+        case "ナップフラッペ": return true
+        
+        case "パーフェクトマティーニ": return true
+        case "ハーベイウォールバンガー": return true
+        case "ハネムーン": return true
+        case "ビーアンドビー": return true
+        case "フロープ": return true
+        case "ベネディクト": return true
+        case "ホットバタード・ラム": return true
+        case "ホットバタード・ラム・カウ": return true
+        case "ホワイトサテン": return true
+
+        case "モンテカルロ": return true
+
+            
+        default: return false
         }
     }
 }
