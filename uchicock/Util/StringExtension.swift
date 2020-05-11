@@ -1142,13 +1142,23 @@ extension String {
     
     func isNewRecipe74() -> Bool {
         switch self{
+        case "アイアンレディー": return true
         case "アカシア": return true
+        case "アップルシャワー": return true
+        case "アメリカンビューティ": return true
         case "アライズ": return true
         case "イエロー・ラットラー": return true
+        case "ウィスキーコブラー": return true
+        case "ウィスキースウィズル": return true
+        case "ウィスキースマッシュ": return true
+        case "ウィスキーデイジー": return true
+        case "ウェディングベル": return true
         case "ウォッカギブソン": return true
         case "ウォッカマティーニ": return true
         case "エクストラドライマティーニ": return true
+        case "エルクスオウン": return true
 
+        case "キスフロムヘブン": return true
         case "ギブソン": return true
         case "キャロル": return true
         case "キルシュカシス": return true
@@ -1156,14 +1166,23 @@ extension String {
         case "ケル・ヴィー": return true
         case "ゴールデンキャデラック": return true
         case "ゴールデンドリーム": return true
+        case "コールドデッキ": return true
 
         case "サケリーニャ": return true
         case "ジプシー": return true
         case "ジャーマンコーヒー": return true
+        case "シャンパンジュレップ": return true
+        case "シャンパンピックミーアップ": return true
         case "シルバーブレット": return true
+        case "ジンアンドフレンチ": return true
+        case "ジンコブラー": return true
+        case "ジンスウィズル": return true
         case "シンデレラハネムーン": return true
+        case "ジンフィックス": return true
 
         case "タワーリシチ": return true
+        case "チョコレートソルジャー": return true
+        case "デビルズ": return true
 
         case "ナップフラッペ": return true
         
@@ -1171,15 +1190,23 @@ extension String {
         case "ハーベイウォールバンガー": return true
         case "ハネムーン": return true
         case "ビーアンドビー": return true
+        case "プリンストン": return true
+        case "フローズンダイキリ": return true
+        case "フローズンマルガリータ": return true
+        case "フローズンピーチマルガリータ": return true
         case "フロープ": return true
         case "ベネディクト": return true
+        case "ポートフリップ": return true
         case "ホットバタード・ラム": return true
         case "ホットバタード・ラム・カウ": return true
         case "ホワイトサテン": return true
 
+        case "マリアンヌ": return true
+        case "ミドリアレキサンダー": return true
+        case "モンタナ": return true
         case "モンテカルロ": return true
 
-            
+                        
         default: return false
         }
     }
