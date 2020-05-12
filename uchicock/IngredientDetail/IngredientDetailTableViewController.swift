@@ -277,11 +277,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         switch  recipeOrder {
         case 1:
-            ingredientRecipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
         case 2:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
@@ -289,7 +289,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         case 3:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
-                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
@@ -297,7 +297,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         case 4:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
-                    return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
                 }else{
                     return a.favorites > b.favorites
                 }
@@ -306,7 +306,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             ingredientRecipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.name.localizedStandardCompare(b.name) == .orderedAscending
+                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
                     }else{
                         return false
                     }
@@ -319,7 +319,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 }
             })
         default:
-            ingredientRecipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
         }
     }
     

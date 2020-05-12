@@ -84,15 +84,15 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
             }
 
-            let srb = SampleRecipeBasic(name: sr.recipeName, recoverable: isRecoverable, recoverTarget: false)
+            let srb = SampleRecipeBasic(name: sr.recipeName, katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch, recoverable: isRecoverable, recoverTarget: false)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
-        unrecoverableSampleRecipeList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        recoverableSampleRecipeList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+        unrecoverableSampleRecipeList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
     }
     
     private func setNavigationTitle(){

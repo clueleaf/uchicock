@@ -164,7 +164,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
         }
         
-        suggestList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        suggestList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
         suggestTableView.reloadData()
     }
     

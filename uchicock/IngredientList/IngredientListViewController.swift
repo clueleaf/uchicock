@@ -267,7 +267,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
 
-            ingredientBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+            ingredientBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
 
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }

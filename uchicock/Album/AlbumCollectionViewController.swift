@@ -235,7 +235,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         for recipe in recipeList{
             recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
         }
-        recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+        recipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
     }
     
     private func setCollectionBackgroundView(){
@@ -338,7 +338,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if shouldShuffle{
             recipeBasicList.shuffle()
         }else{
-            recipeBasicList.sort(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
+            recipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
         }
         filterRecipeBasicList()
         

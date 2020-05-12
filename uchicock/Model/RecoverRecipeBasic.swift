@@ -8,6 +8,7 @@
 
 struct SampleRecipeBasic{
     var name : String
+    var katakanaLowercasedNameForSearch : String
     var recoverable : Bool
     var recoverTarget : Bool
 }
