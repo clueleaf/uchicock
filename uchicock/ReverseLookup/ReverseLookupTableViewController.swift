@@ -856,9 +856,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
         }
         
+        let textForSearch = text.katakanaLowercasedForSearch()
         if text.withoutEndsSpace() != "" {
-            ingredientSuggestList.removeAll{ // TODO
-                !$0.katakanaLowercasedNameForSearch.contains(text.katakanaLowercasedForSearch())
+            ingredientSuggestList.removeAll{
+                ($0.katakanaLowercasedNameForSearch.contains(textForSearch) == false) &&
+                ($0.name.contains(textForSearch) == false)
             }
         }
         

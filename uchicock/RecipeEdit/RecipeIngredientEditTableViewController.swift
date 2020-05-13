@@ -158,10 +158,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.append(suggest)
         }
         
-        // TODO
+        let textForSearch = ingredientName.text!.katakanaLowercasedForSearch()
         if ingredientName.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             suggestList.removeAll{
-                !$0.katakanaLowercasedNameForSearch.contains(ingredientName.text!.katakanaLowercasedForSearch())
+                ($0.katakanaLowercasedNameForSearch.contains(textForSearch) == false) &&
+                ($0.name.contains(textForSearch) == false)
             }
         }
         

@@ -246,10 +246,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            // TODO
+            let searchBarTextForSearch = searchBar.text!.katakanaLowercasedForSearch()
             if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 ingredientBasicList.removeAll{
-                    !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch())
+                    ($0.katakanaLowercasedNameForSearch.contains(searchBarTextForSearch) == false) &&
+                    ($0.name.contains(searchBarTextForSearch) == false)
                 }
             }
             
