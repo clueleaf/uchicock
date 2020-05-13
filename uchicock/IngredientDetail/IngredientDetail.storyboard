@@ -3,7 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,18 +27,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="材料名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mxz-WJ-uXv" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="300" height="40"/>
+                                                    <rect key="frame" x="8" y="22" width="300" height="38"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ヨミガナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DM-xv-7qc">
+                                                    <rect key="frame" x="8" y="8" width="300" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="Gcx-sD-gml"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Mxz-WJ-uXv" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="3xi-Yz-gIq"/>
                                                 <constraint firstAttribute="bottom" secondItem="Mxz-WJ-uXv" secondAttribute="bottom" constant="20" id="4jh-eo-qlh"/>
+                                                <constraint firstItem="0DM-xv-7qc" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="8" id="9nu-EL-uNZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Mxz-WJ-uXv" secondAttribute="trailing" constant="12" id="TWj-m4-V76"/>
-                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="top" secondItem="S9O-AN-bvG" secondAttribute="top" constant="20" id="dju-FR-Roo"/>
+                                                <constraint firstAttribute="trailing" secondItem="0DM-xv-7qc" secondAttribute="trailing" constant="12" id="b9U-Zj-doW"/>
+                                                <constraint firstItem="Mxz-WJ-uXv" firstAttribute="top" secondItem="0DM-xv-7qc" secondAttribute="bottom" id="f58-Jg-tNg"/>
+                                                <constraint firstItem="0DM-xv-7qc" firstAttribute="leading" secondItem="S9O-AN-bvG" secondAttribute="leading" constant="8" id="vyc-ke-3Ss"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -411,6 +423,7 @@
                         <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
                         <outlet property="ingredientName" destination="Mxz-WJ-uXv" id="26d-1d-aoh"/>
+                        <outlet property="ingredientNameYomiLabel" destination="0DM-xv-7qc" id="zft-sF-fm5"/>
                         <outlet property="memo" destination="IXF-5E-Wxs" id="nkg-Mj-h6i"/>
                         <outlet property="memoBottomConstraint" destination="EbB-wT-gVq" id="PJJ-UO-2Tc"/>
                         <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>

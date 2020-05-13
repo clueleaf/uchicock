@@ -11,6 +11,7 @@ import UIKit
 class RecoverPreviewTableViewController: UITableViewController {
 
     @IBOutlet weak var recipeName: CustomTextView!
+    @IBOutlet weak var recipeNameYomiLabel: UILabel!
     @IBOutlet weak var style: CustomLabel!
     @IBOutlet weak var method: CustomLabel!
     @IBOutlet weak var strength: CustomLabel!
@@ -51,6 +52,15 @@ class RecoverPreviewTableViewController: UITableViewController {
         self.navigationItem.title = "プレビュー"
 
         recipeName.text = recipe.recipeName
+        
+        recipeNameYomiLabel.text = recipe.recipeNameYomi
+        recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+        if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi{
+            recipeNameYomiLabel.isHidden = true
+        }else{
+            recipeNameYomiLabel.isHidden = false
+        }
+
         switch recipe.style{
         case 0:
             style.text = "ロング"

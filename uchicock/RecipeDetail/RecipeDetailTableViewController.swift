@@ -14,6 +14,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var recipeName: CustomTextView!
+    @IBOutlet weak var recipeNameYomiLabel: UILabel!
     @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
@@ -200,12 +201,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateImageView()
 
             recipeName.text = recipe.recipeName
+            recipeNameYomiLabel.text = recipe.recipeNameYomi
+            recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+            if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi{
+                recipeNameYomiLabel.isHidden = true
+            }else{
+                recipeNameYomiLabel.isHidden = false
+            }
 
             switch recipe.shortageNum {
             case 0:
                 shortageLabel.text = "すぐ作れる！"
                 shortageLabel.textColor = UchicockStyle.primaryColor
-                shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             case 1:
                 var shortageName = ""
                 for recipeIngredient in recipeIngredientList{
@@ -216,11 +224,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }
                 shortageLabel.text = shortageName + "が足りません"
                 shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             default:
                 shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
                 shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             }
             
             if shouldUpdateLastViewDate {

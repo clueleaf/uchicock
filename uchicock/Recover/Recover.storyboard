@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -255,18 +255,30 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="レシピ名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="my3-m3-HcH" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="20" width="394" height="40"/>
+                                                    <rect key="frame" x="8" y="22" width="394" height="38"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ヨミガナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FR2-Yn-hlq">
+                                                    <rect key="frame" x="8" y="8" width="394" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="999-TH-RY9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="my3-m3-HcH" firstAttribute="top" secondItem="FR2-Yn-hlq" secondAttribute="bottom" id="L72-23-by6"/>
                                                 <constraint firstItem="my3-m3-HcH" firstAttribute="leading" secondItem="VYI-Ii-Pbc" secondAttribute="leading" constant="8" id="PgU-QK-9Yh"/>
                                                 <constraint firstAttribute="bottom" secondItem="my3-m3-HcH" secondAttribute="bottom" constant="20" id="TQk-z4-n1j"/>
                                                 <constraint firstAttribute="trailing" secondItem="my3-m3-HcH" secondAttribute="trailing" constant="12" id="UC9-fh-j62"/>
-                                                <constraint firstItem="my3-m3-HcH" firstAttribute="top" secondItem="VYI-Ii-Pbc" secondAttribute="top" constant="20" id="r4M-SM-9Oy"/>
+                                                <constraint firstItem="FR2-Yn-hlq" firstAttribute="top" secondItem="VYI-Ii-Pbc" secondAttribute="top" constant="8" id="Vlv-M8-Hl5"/>
+                                                <constraint firstAttribute="trailing" secondItem="FR2-Yn-hlq" secondAttribute="trailing" constant="12" id="nx7-t0-8pJ"/>
+                                                <constraint firstItem="FR2-Yn-hlq" firstAttribute="leading" secondItem="VYI-Ii-Pbc" secondAttribute="leading" constant="8" id="pio-RA-TQY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -416,6 +428,7 @@
                     <connections>
                         <outlet property="method" destination="OS4-y0-mXq" id="fAW-QH-p0B"/>
                         <outlet property="recipeName" destination="my3-m3-HcH" id="WBZ-St-9RI"/>
+                        <outlet property="recipeNameYomiLabel" destination="FR2-Yn-hlq" id="OWF-HD-jBA"/>
                         <outlet property="strength" destination="jSw-zp-kx2" id="h7V-JV-j8E"/>
                         <outlet property="style" destination="DXP-JM-xoE" id="EVl-RW-U6d"/>
                     </connections>

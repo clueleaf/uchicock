@@ -12,6 +12,7 @@ import RealmSwift
 class IngredientDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching {
 
     @IBOutlet weak var ingredientName: CustomTextView!
+    @IBOutlet weak var ingredientNameYomiLabel: UILabel!
     @IBOutlet weak var reminderImage: UIImageView!
     @IBOutlet weak var reminderMessageLabel: CustomLabel!
     @IBOutlet weak var removeReminderButton: UIButton!
@@ -124,6 +125,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             ingredientName.text = ingredient.ingredientName
             
+            ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
+            ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+            if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi{
+                ingredientNameYomiLabel.isHidden = true
+            }else{
+                ingredientNameYomiLabel.isHidden = false
+            }
+
             updateIngredientRecommendLabel()
             
             switch ingredient.category{
