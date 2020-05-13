@@ -26,7 +26,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var ingredient = Ingredient()
 
     let ingredientNameMaximum = 30
-    let ingredientNameYomiMaximum = 30
+    let ingredientNameYomiMaximum = 50
     let memoMaximum = 300
     var isAddMode = true
     var showCancelAlert = false
