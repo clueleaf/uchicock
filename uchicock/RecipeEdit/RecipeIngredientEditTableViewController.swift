@@ -154,17 +154,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            let suggest = IngredientSuggestBasic(name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, category: ingredient.category)
+            let suggest = IngredientSuggestBasic(name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, category: ingredient.category)
             suggestList.append(suggest)
         }
         
-        if ingredientName.text!.withoutSpaceAndMiddleDot() != ""{
+        // TODO
+        if ingredientName.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             suggestList.removeAll{
                 !$0.katakanaLowercasedNameForSearch.contains(ingredientName.text!.katakanaLowercasedForSearch())
             }
         }
         
-        suggestList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+        suggestList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         suggestTableView.reloadData()
     }
     
@@ -401,6 +402,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         present(alertView, animated: true, completion: nil)
     }
     
+    // TODO
     private func setIngredient(_ categoryNum: Int) -> Ingredient{
         let ingredient = Ingredient()
         ingredient.ingredientName = self.ingredientName.text!.withoutEndsSpace()

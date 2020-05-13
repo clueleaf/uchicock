@@ -238,7 +238,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     private func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
         }
         
         if isReminderMode{
@@ -246,7 +246,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+            // TODO
+            if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 ingredientBasicList.removeAll{
                     !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch())
                 }
@@ -267,7 +268,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
 
-            ingredientBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+            ingredientBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
 
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }

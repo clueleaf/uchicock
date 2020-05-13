@@ -10,6 +10,7 @@ import UIKit
 
 struct IngredientSuggestBasic{
     var name : String
+    var nameYomi : String
     var katakanaLowercasedNameForSearch : String
     var category : Int
 }

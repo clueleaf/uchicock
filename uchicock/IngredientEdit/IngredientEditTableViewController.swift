@@ -208,6 +208,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 if sameNameIngredient.count != 0{
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
+                    // TODO
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = ingredientName.text!.withoutEndsSpace()
                     newIngredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
@@ -238,6 +239,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
                     try! realm.write {
+                        // TODO
                         ingredient.ingredientName = ingredientName.text!.withoutEndsSpace()
                         ingredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
                         ingredient.category = category.selectedSegmentIndex

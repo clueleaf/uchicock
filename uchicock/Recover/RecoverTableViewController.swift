@@ -84,15 +84,15 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
             }
 
-            let srb = SampleRecipeBasic(name: sr.recipeName, katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch, recoverable: isRecoverable, recoverTarget: false)
+            let srb = SampleRecipeBasic(name: sr.recipeName, nameYomi: sr.recipeNameYomi, katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch, recoverable: isRecoverable, recoverTarget: false)
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
-        unrecoverableSampleRecipeList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+        recoverableSampleRecipeList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+        unrecoverableSampleRecipeList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
     }
     
     private func setNavigationTitle(){
@@ -134,7 +134,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
                 
-                var recoverRecipe = RecoverRecipe(name: recipe.recipeName,style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
+                var recoverRecipe = RecoverRecipe(name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
                 for ri in recipe.recipeIngredients{
                     recoverRecipe.ingredientList.append(RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
                 }
@@ -169,7 +169,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         if rec.count < 1 {
             let recipe = Recipe()
             recipe.recipeName = recipeName
-            recipe.katakanaLowercasedNameForSearch = recipeName.katakanaLowercasedForSearch()
+            recipe.katakanaLowercasedNameForSearch = recipeName.katakanaLowercasedForSearch() //TODO
             recipe.favorites = favorites
             recipe.memo = memo
             recipe.style = style
@@ -185,7 +185,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         if ing.count < 1 {
             let ingredient = Ingredient()
             ingredient.ingredientName = ingredientName
-            ingredient.katakanaLowercasedNameForSearch = ingredientName.katakanaLowercasedForSearch()
+            ingredient.katakanaLowercasedNameForSearch = ingredientName.katakanaLowercasedForSearch() //TODO
             ingredient.stockFlag = stockFlag
             ingredient.memo = memo
             ingredient.category = category

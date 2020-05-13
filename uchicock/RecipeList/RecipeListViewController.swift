@@ -379,7 +379,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if isBookmarkMode{
             for recipe in recipeList! {
                 if recipe.bookmarkDate != nil{
-                    recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+                    recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
                 }
             }
             
@@ -387,9 +387,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
             for recipe in recipeList! {
-                recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+                recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
             }
             
+            // TODO
             if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 recipeBasicList.removeAll{ $0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) == false }
             }
@@ -463,13 +464,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func sortRecipeBasicList(){
         switch recipeSortPrimary{
         case 1: // 名前順
-            recipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         case 2:
             switch recipeSortSecondary{
             case 1: // 作れる順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.shortageNum == b.shortageNum {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.shortageNum < b.shortageNum
                     }
@@ -478,7 +479,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.shortageNum == b.shortageNum {
                         if a.madeNum == b.madeNum{
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.madeNum > b.madeNum
                         }
@@ -490,7 +491,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.shortageNum == b.shortageNum {
                         if a.favorites == b.favorites{
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.favorites > b.favorites
                         }
@@ -503,7 +504,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     if a.shortageNum == b.shortageNum {
                         if a.lastViewDate == nil{
                             if b.lastViewDate == nil{
-                                return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                             }else{
                                 return false
                             }
@@ -521,7 +522,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             default: // 作れる順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.shortageNum == b.shortageNum {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.shortageNum < b.shortageNum
                     }
@@ -532,7 +533,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             case 1: // 作った回数順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.madeNum == b.madeNum {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.madeNum > b.madeNum
                     }
@@ -541,7 +542,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.madeNum == b.madeNum {
                         if a.shortageNum == b.shortageNum{
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.shortageNum < b.shortageNum
                         }
@@ -553,7 +554,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.madeNum == b.madeNum {
                         if a.favorites == b.favorites{
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.favorites > b.favorites
                         }
@@ -566,7 +567,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     if a.madeNum == b.madeNum {
                         if a.lastViewDate == nil{
                             if b.lastViewDate == nil{
-                                return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                             }else{
                                 return false
                             }
@@ -584,7 +585,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             default: // 作った回数順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.madeNum == b.madeNum {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.madeNum > b.madeNum
                     }
@@ -595,7 +596,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             case 1: // お気に入り順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.favorites == b.favorites {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.favorites > b.favorites
                     }
@@ -604,7 +605,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.favorites == b.favorites {
                         if a.shortageNum == b.shortageNum{
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.shortageNum < b.shortageNum
                         }
@@ -616,7 +617,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.favorites == b.favorites {
                         if a.madeNum == b.madeNum {
-                            return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                         }else{
                             return a.madeNum > b.madeNum
                         }
@@ -629,7 +630,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     if a.favorites == b.favorites {
                         if a.lastViewDate == nil{
                             if b.lastViewDate == nil{
-                                return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                             }else{
                                 return false
                             }
@@ -647,7 +648,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             default: // お気に入り順 > 名前順
                 recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                     if a.favorites == b.favorites {
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     } else {
                         return a.favorites > b.favorites
                     }
@@ -657,7 +658,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     }else{
                         return false
                     }
@@ -670,7 +671,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             })
         default: // 名前順
-            recipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         }
     }
     
@@ -941,10 +942,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         recipeBasicListForFilterModal.removeAll()
         for recipe in recipeList!{
-            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-            recipeBasicListForFilterModal.removeAll{ !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
+            recipeBasicListForFilterModal.removeAll{ // TODO
+                !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
         }
 
         vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal

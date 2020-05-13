@@ -888,6 +888,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
                         let newRecipe = Recipe()
+                        // TODO
                         newRecipe.recipeName = recipeName.text!.withoutEndsSpace()
                         newRecipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
 
@@ -959,7 +960,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         for ri in deletingRecipeIngredientList{
                             realm.delete(ri)
                         }
-
+                        // TODO
                         recipe.recipeName = recipeName.text!.withoutEndsSpace()
                         recipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
                         

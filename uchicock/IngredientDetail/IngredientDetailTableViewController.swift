@@ -176,7 +176,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             reloadIngredientRecipeBasicList()
             
-            if Amazon.product.contains(ingredient.ingredientName.withoutSpaceAndMiddleDot()){
+            if Amazon.product.contains(ingredient.ingredientName.withoutMiddleSpaceAndMiddleDot()){
                 amazonContainerView.isHidden = false
             }else{
                 amazonContainerView.isHidden = true
@@ -272,16 +272,16 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         ingredientRecipeBasicList.removeAll()
         
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
+            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, nameYomi: recipeIngredient.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
         }
         
         switch  recipeOrder {
         case 1:
-            ingredientRecipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         case 2:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
-                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
@@ -289,7 +289,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         case 3:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
-                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
@@ -297,7 +297,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         case 4:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
-                    return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.favorites > b.favorites
                 }
@@ -306,7 +306,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             ingredientRecipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
-                        return a.katakanaLowercasedNameForSearch.localizedStandardCompare(b.katakanaLowercasedNameForSearch) == .orderedAscending
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                     }else{
                         return false
                     }
@@ -319,7 +319,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 }
             })
         default:
-            ingredientRecipeBasicList.sort(by: { $0.katakanaLowercasedNameForSearch.localizedStandardCompare($1.katakanaLowercasedNameForSearch) == .orderedAscending })
+            ingredientRecipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         }
     }
     
@@ -628,13 +628,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func amazonButtonTapped(_ sender: UIButton) {
-        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutSpaceAndMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
+        var urlStr : String = "com.amazon.mobile.shopping://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutMiddleSpaceAndMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
         var url = URL(string:urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
 
         if UIApplication.shared.canOpenURL(url!) {
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }else{
-            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutSpaceAndMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
+            urlStr = "https://www.amazon.co.jp/s/ref=as_li_ss_tl?url=search-alias=aps&field-keywords=" + ingredient.ingredientName.withoutMiddleSpaceAndMiddleDot() + "&linkCode=sl2&tag=uchicock-22"
             url = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }

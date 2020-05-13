@@ -11,6 +11,7 @@ import UIKit
 struct IngredientBasic{
     var id : String
     var name : String
+    var nameYomi : String
     var katakanaLowercasedNameForSearch : String
     var stockFlag : Bool
     var category : Int
