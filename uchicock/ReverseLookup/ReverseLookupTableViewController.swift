@@ -889,7 +889,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if tableView.tag == 1 {
-            header?.textLabel?.text = "上の材料(完全一致)をすべて使うレシピ(\(String(self.recipeBasicList.count)))"
+            header?.textLabel?.text = "上の材料を全て使うレシピ(\(String(self.recipeBasicList.count)))"
         }else if tableView.tag == 2{
             header?.textLabel?.text = "材料候補"
         }else{

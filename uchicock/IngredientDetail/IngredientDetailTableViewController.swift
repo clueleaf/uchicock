@@ -368,7 +368,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if section == 1 {
             if ingredient.isInvalidated == false {
                 if ingredient.recipeIngredients.count > 0 {
-                    header?.textLabel?.text = "この材料を使うレシピ(\(String(ingredient.recipeIngredients.count)))"
+                    header?.textLabel?.text = "\(String(ingredient.recipeIngredients.count))個のレシピで使われています"
                 }else {
                     header?.textLabel?.text = "この材料を使うレシピはありません"
                 }
