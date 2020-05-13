@@ -122,7 +122,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutSpace(), self.amount.text!.withoutSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.recipeIngredientId)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutEndsSpace(), self.amount.text!.withoutEndsSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.recipeIngredientId)
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -403,7 +403,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     private func setIngredient(_ categoryNum: Int) -> Ingredient{
         let ingredient = Ingredient()
-        ingredient.ingredientName = self.ingredientName.text!.withoutSpace()
+        ingredient.ingredientName = self.ingredientName.text!.withoutEndsSpace()
         ingredient.katakanaLowercasedNameForSearch = self.ingredientName.text!.katakanaLowercasedForSearch()
         ingredient.stockFlag = false
         ingredient.memo = ""
@@ -412,15 +412,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        if ingredientName.text!.withoutSpace() == "" {
+        if ingredientName.text!.withoutEndsSpace() == "" {
             presentAlert("材料名を入力してください")
-        }else if ingredientName.text!.withoutSpace().count > 30{
+        }else if ingredientName.text!.withoutEndsSpace().count > 30{
             presentAlert("材料名を30文字以下にしてください")
-        }else if amount.text!.withoutSpace().count > 30{
+        }else if amount.text!.withoutEndsSpace().count > 30{
             presentAlert("分量を30文字以下にしてください")
         }else{
             let realm = try! Realm()
-            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName.text!.withoutSpace())
+            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName.text!.withoutEndsSpace())
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)

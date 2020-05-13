@@ -37,20 +37,20 @@ extension String {
 //        return str
 //    }
     
-    func withoutSpace() -> String{
+    func withoutEndsSpace() -> String{
         return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
-    func withoutSpaceAndMiddleDot() -> String{
+    func withoutMiddleSpaceAndMiddleDot() -> String{
         // 半角スペース、全角スペース、中黒は取り除く
         let passedUnicodeScalars = self.unicodeScalars.filter { [0x0020,0x3000,0x30FB].contains($0.value) == false }
-        return String(String.UnicodeScalarView(passedUnicodeScalars)).withoutSpace()
+        return String(String.UnicodeScalarView(passedUnicodeScalars)).withoutEndsSpace()
     }
     
     func katakanaLowercasedForSearch() -> String{
         var convertedString = ""
 
-        let passedUnicodeScalars = self.withoutSpaceAndMiddleDot().unicodeScalars
+        let passedUnicodeScalars = self.withoutMiddleSpaceAndMiddleDot().unicodeScalars
 
         for unicodeScalar in passedUnicodeScalars {
             var convertedUnicodeScalar = unicodeScalar
@@ -93,6 +93,64 @@ extension String {
         }
         
         return convertedString.lowercased()
+    }
+    
+    private func withoutEndsSpaceAndMiddleDot() -> String{
+        // 中黒は取り除く
+        let passedUnicodeScalars = self.unicodeScalars.filter { [0x30FB].contains($0.value) == false }
+        return String(String.UnicodeScalarView(passedUnicodeScalars)).withoutEndsSpace()
+    }
+
+    private func convertJapaneseToYomi() -> String{
+        let input = self.withoutEndsSpaceAndMiddleDot()
+
+        var output = ""
+        let locale = CFLocaleCreate(kCFAllocatorDefault, CFLocaleCreateCanonicalLanguageIdentifierFromString(kCFAllocatorDefault, "ja" as CFString))
+        let range = CFRangeMake(0, input.utf16.count)
+        let tokenizer = CFStringTokenizerCreate(kCFAllocatorDefault, input as CFString, range, kCFStringTokenizerUnitWordBoundary, locale)
+
+        var tokenType = CFStringTokenizerGoToTokenAtIndex(tokenizer, 0)
+        while (tokenType.rawValue != 0) {
+            if let text = (CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription) as? NSString).map({ $0.mutableCopy() }) {
+                CFStringTransform((text as! CFMutableString), nil, kCFStringTransformLatinKatakana, false)
+                output.append(text as! String)
+            }
+            tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
+        }
+        return output
+    }
+        
+    func convertToYomi() -> String{
+        var output = self.withoutEndsSpaceAndMiddleDot().lowercased()
+
+        let sakePattern = "日本酒"
+        let sakeRegex = try! NSRegularExpression(pattern: sakePattern, options: [])
+        let sakeResults = sakeRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+
+        for result in sakeResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: "ニホンシュ")
+        }
+
+        let sugarPattern = "角砂糖"
+        let sugarRegex = try! NSRegularExpression(pattern: sugarPattern, options: [])
+        let sugarResults = sugarRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+
+        for result in sugarResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: "カクザトウ")
+        }
+
+        let englishPattern = "[^a-zA-Z 　]+"
+        let englishRegex = try! NSRegularExpression(pattern: englishPattern, options: [])
+        let englishResults = englishRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+        
+        for result in englishResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: subStr.convertJapaneseToYomi())
+        }
+
+        return output
     }
     
     func categoryNumber() -> Int {

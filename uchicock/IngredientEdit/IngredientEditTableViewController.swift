@@ -122,7 +122,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     private func updateIngredientNameCounter(){
-        let num = ingredientName.text!.withoutSpace().count
+        let num = ingredientName.text!.withoutEndsSpace().count
         ingredientNameCounter.text = String(num) + "/" + String(ingredientNameMaximum)
         
         if num > ingredientNameMaximum{
@@ -194,9 +194,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        if ingredientName.text == nil || ingredientName.text!.withoutSpace() == ""{
+        if ingredientName.text == nil || ingredientName.text!.withoutEndsSpace() == ""{
             presentAlert("材料名を入力してください")
-        }else if ingredientName.text!.withoutSpace().count > ingredientNameMaximum{
+        }else if ingredientName.text!.withoutEndsSpace().count > ingredientNameMaximum{
             presentAlert("材料名を" + String(ingredientNameMaximum) + "文字以下にしてください")
         }else if memo.text.count > memoMaximum{
             presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
@@ -204,12 +204,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             let realm = try! Realm()
             
             if isAddMode {
-                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutSpace())
+                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
                 if sameNameIngredient.count != 0{
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
                     let newIngredient = Ingredient()
-                    newIngredient.ingredientName = ingredientName.text!.withoutSpace()
+                    newIngredient.ingredientName = ingredientName.text!.withoutEndsSpace()
                     newIngredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
                     newIngredient.category = category.selectedSegmentIndex
                     if stock.checkState == .checked{
@@ -233,12 +233,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     }
                 }
             }else{
-                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutSpace())
-                if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientName.text!.withoutSpace(){
+                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
+                if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientName.text!.withoutEndsSpace(){
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
                     try! realm.write {
-                        ingredient.ingredientName = ingredientName.text!.withoutSpace()
+                        ingredient.ingredientName = ingredientName.text!.withoutEndsSpace()
                         ingredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
                         ingredient.category = category.selectedSegmentIndex
                         if stock.checkState == .checked{

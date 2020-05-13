@@ -38,13 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if (oldSchemaVersion < 3) {
                     migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
                         let ingredientName = oldObject!["ingredientName"] as! String
-                        newObject!["category"] = ingredientName.withoutSpaceAndMiddleDot().categoryNumber()
+                        newObject!["category"] = ingredientName.withoutMiddleSpaceAndMiddleDot().categoryNumber()
                     }
                 }
                 if (oldSchemaVersion < 7) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
                         let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["style"] = recipeName.withoutSpaceAndMiddleDot().cocktailStyleNumber()
+                        newObject!["style"] = recipeName.withoutMiddleSpaceAndMiddleDot().cocktailStyleNumber()
                     }
                 }
                 if (oldSchemaVersion < 8) {
@@ -60,25 +60,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                 }
-                if (oldSchemaVersion < 10) {
-                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
-                        let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["katakanaLowercasedNameForSearch"] = recipeName.katakanaLowercasedForSearch()
-                    }
-                    migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
-                        let ingredientName = oldObject!["ingredientName"] as! String
-                        newObject!["katakanaLowercasedNameForSearch"] = ingredientName.katakanaLowercasedForSearch()
-                    }
-                }
                 if (oldSchemaVersion < 11) {
                     migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
                         let recipeName = oldObject!["recipeName"] as! String
-                        newObject!["strength"] = recipeName.withoutSpaceAndMiddleDot().cocktailStrengthNumber()
+                        newObject!["strength"] = recipeName.withoutMiddleSpaceAndMiddleDot().cocktailStrengthNumber()
                     }
                 }
                 if (oldSchemaVersion < 12) {
                     migration.enumerateObjects(ofType: RecipeIngredientLink.className()) { oldObject, newObject in
                         newObject!["displayOrder"] = -1
+                    }
+                }
+                if (oldSchemaVersion < 13) {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        let yomi = (oldObject!["recipeName"] as! String).convertToYomi()
+                        newObject!["recipeNameYomi"] = yomi
+                        newObject!["katakanaLowercasedNameForSearch"] = yomi.katakanaLowercasedForSearch()
+                    }
+                    migration.enumerateObjects(ofType: Ingredient.className()) { oldObject, newObject in
+                        let yomi = (oldObject!["ingredientName"] as! String).convertToYomi()
+                        newObject!["ingredientNameYomi"] = yomi
+                        newObject!["katakanaLowercasedNameForSearch"] = yomi.katakanaLowercasedForSearch()
                     }
                 }
             },

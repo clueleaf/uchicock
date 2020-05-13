@@ -11,6 +11,7 @@ import RealmSwift
 class Recipe: Object {
     @objc dynamic var id = NSUUID().uuidString
     @objc dynamic var recipeName = ""
+    @objc dynamic var recipeNameYomi = ""
     @objc dynamic var katakanaLowercasedNameForSearch = ""
     @objc dynamic var strength = 4
     @objc dynamic var favorites = 0

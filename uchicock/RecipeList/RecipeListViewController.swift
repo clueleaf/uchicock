@@ -390,7 +390,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
             }
             
-            if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+            if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 recipeBasicList.removeAll{ $0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) == false }
             }
 
@@ -943,7 +943,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         for recipe in recipeList!{
             recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
-        if searchBar.text!.withoutSpaceAndMiddleDot() != ""{
+        if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             recipeBasicListForFilterModal.removeAll{ !$0.katakanaLowercasedNameForSearch.contains(searchBar.text!.katakanaLowercasedForSearch()) }
         }
 

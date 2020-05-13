@@ -11,6 +11,7 @@ import RealmSwift
 class Ingredient: Object {
     @objc dynamic var id = NSUUID().uuidString
     @objc dynamic var ingredientName = ""
+    @objc dynamic var ingredientNameYomi = ""
     @objc dynamic var katakanaLowercasedNameForSearch = ""
     @objc dynamic var stockFlag = false
     @objc dynamic var memo = ""
