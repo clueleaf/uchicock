@@ -15,6 +15,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
     @IBOutlet weak var recipeName: CustomTextField!
     @IBOutlet weak var recipeNameCounter: UILabel!
+    @IBOutlet weak var recipeNameYomiLabel: UILabel!
+    @IBOutlet weak var recipeNameYomi: CustomTextField!
+    @IBOutlet weak var recipeNameYomiCounter: UILabel!
     @IBOutlet weak var star1: ExpandedButton!
     @IBOutlet weak var star2: ExpandedButton!
     @IBOutlet weak var star3: ExpandedButton!
@@ -45,6 +48,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     var recipeFavorite = 0
     let recipeNameMaximum = 30
+    let recipeNameYomiMaximum = 50
     let memoMaximum = 1000
 
     var isAddMode = true
@@ -89,6 +93,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.borderWidth = 1
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
+        
+        recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+        recipeNameYomi.text = recipe.recipeNameYomi
+        recipeNameYomi.delegate = self
+        recipeNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        recipeNameYomi.layer.cornerRadius = 5.0
+        recipeNameYomi.layer.borderWidth = 1
+        recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        recipeNameYomi.adjustClearButtonColor(with: 4)
+
 
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
             photo.image = image
@@ -181,9 +195,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         focusRecipeNameFlag = true
         
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
-        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
-        
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeNameYomi)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeNameYomi)
+
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.labelTextColorLight
@@ -202,6 +218,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         strengthTipButton.tintColor = UchicockStyle.primaryColor
         
         updateRecipeNameCounter()
+        updateRecipeNameYomiCounter()
         updateMemoCounter()
     }
     
@@ -257,13 +274,23 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         recipeName.resignFirstResponder()
+        recipeNameYomi.resignFirstResponder()
         return true
     }
     
-    @objc func textFieldDidChange(_ notification: Notification){
+    @objc func recipeNameTextFieldDidChange(_ notification: Notification){
         recipeName.adjustClearButtonColor(with: 4)
+        recipeNameYomi.text = recipeName.text!.convertToYomi()
+        recipeNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateRecipeNameCounter()
+        updateRecipeNameYomiCounter()
+    }
+    
+    @objc func recipeNameYomiTextFieldDidChange(_ notification: Notification){
+        recipeNameYomi.adjustClearButtonColor(with: 4)
+        showCancelAlert = true
+        updateRecipeNameYomiCounter()
     }
     
     private func updateRecipeNameCounter(){
@@ -274,6 +301,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             recipeNameCounter.textColor = UchicockStyle.alertColor
         }else{
             recipeNameCounter.textColor = UchicockStyle.labelTextColorLight
+        }
+    }
+
+    private func updateRecipeNameYomiCounter(){
+        let num = recipeNameYomi.text!.withoutEndsSpace().count
+        recipeNameYomiCounter.text = String(num) + "/" + String(recipeNameYomiMaximum)
+        
+        if num > recipeNameYomiMaximum{
+            recipeNameYomiCounter.textColor = UchicockStyle.alertColor
+        }else{
+            recipeNameYomiCounter.textColor = UchicockStyle.labelTextColorLight
         }
     }
 
@@ -484,6 +522,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
 
             recipeName.resignFirstResponder()
+            recipeNameYomi.resignFirstResponder()
             memo.resignFirstResponder()
             selectedIndexPath = indexPath
             present(nvc, animated: true)
@@ -869,6 +908,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             presentAlert("レシピ名を入力してください")
         }else if recipeName.text!.withoutEndsSpace().count > recipeNameMaximum{
             presentAlert("レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください")
+        }else if recipeNameYomi.text == nil || recipeNameYomi.text!.withoutEndsSpace() == ""{
+                presentAlert("ヨミガナを入力してください")
+        }else if recipeNameYomi.text!.withoutEndsSpace().count > recipeNameYomiMaximum{
+                presentAlert("ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください")
         }else if memo.text.count > memoMaximum {
             presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
         }else if recipeIngredientList.count == 0{
@@ -888,9 +931,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
                         let newRecipe = Recipe()
-                        // TODO
                         newRecipe.recipeName = recipeName.text!.withoutEndsSpace()
-                        newRecipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
+                        newRecipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
+                        newRecipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
 
                         newRecipe.favorites = recipeFavorite
 
@@ -960,9 +1003,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         for ri in deletingRecipeIngredientList{
                             realm.delete(ri)
                         }
-                        // TODO
                         recipe.recipeName = recipeName.text!.withoutEndsSpace()
-                        recipe.katakanaLowercasedNameForSearch = recipeName.text!.katakanaLowercasedForSearch()
+                        recipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
+                        recipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
                         
                         recipe.favorites = recipeFavorite
                         
@@ -1025,6 +1068,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
 
         recipeName.resignFirstResponder()
+        recipeNameYomi.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
     }
@@ -1043,6 +1087,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
 
         recipeName.resignFirstResponder()
+        recipeNameYomi.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
     }
@@ -1061,6 +1106,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
 
         recipeName.resignFirstResponder()
+        recipeNameYomi.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
     }

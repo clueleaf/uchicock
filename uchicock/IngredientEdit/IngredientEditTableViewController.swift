@@ -13,6 +13,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     @IBOutlet weak var ingredientName: CustomTextField!
     @IBOutlet weak var ingredientNameCounter: UILabel!
+    @IBOutlet weak var ingredientNameYomiLabel: UILabel!
+    @IBOutlet weak var ingredientNameYomi: CustomTextField!
+    @IBOutlet weak var ingredientNameYomiCounter: UILabel!
     @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stock: CircularCheckbox!
     @IBOutlet weak var memo: CustomTextView!
@@ -23,6 +26,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var ingredient = Ingredient()
 
     let ingredientNameMaximum = 30
+    let ingredientNameYomiMaximum = 30
     let memoMaximum = 300
     var isAddMode = true
     var showCancelAlert = false
@@ -47,6 +51,18 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientName.delegate = self
         ingredientName.layer.cornerRadius = 5.0
         ingredientName.layer.borderWidth = 1
+        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientName.adjustClearButtonColor(with: 4)
+
+        ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+        ingredientNameYomi.text = ingredient.ingredientNameYomi
+        ingredientNameYomi.delegate = self
+        ingredientNameYomi.layer.cornerRadius = 5.0
+        ingredientNameYomi.layer.borderWidth = 1
+        ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientNameYomi.adjustClearButtonColor(with: 4)
 
         stock.boxLineWidth = 1.0
         stock.stateChangeAnimation = .expand
@@ -67,13 +83,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         tableView.separatorColor = UchicockStyle.labelTextColorLight
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomi)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameYomi)
 
-        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
-        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientName)
-        
-        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientName.adjustClearButtonColor(with: 4)
         if #available(iOS 13.0, *) {
         }else{
             category.layer.cornerRadius = 14.0
@@ -93,6 +107,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
         
         updateIngredientNameCounter()
+        updateIngredientNameYomiCounter()
         updateMemoCounter()
     }
     
@@ -112,13 +127,23 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         ingredientName.resignFirstResponder()
+        ingredientNameYomi.resignFirstResponder()
         return true
     }
     
-    @objc func textFieldDidChange(_ notification: Notification){
+    @objc func ingredientNameTextFieldDidChange(_ notification: Notification){
         ingredientName.adjustClearButtonColor(with: 4)
+        ingredientNameYomi.text = ingredientName.text!.convertToYomi()
+        ingredientNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateIngredientNameCounter()
+        updateIngredientNameYomiCounter()
+    }
+    
+    @objc func ingredientNameYomiTextFieldDidChange(_ notification: Notification){
+        ingredientNameYomi.adjustClearButtonColor(with: 4)
+        showCancelAlert = true
+        updateIngredientNameYomiCounter()
     }
     
     private func updateIngredientNameCounter(){
@@ -129,6 +154,17 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             ingredientNameCounter.textColor = UchicockStyle.alertColor
         }else{
             ingredientNameCounter.textColor = UchicockStyle.labelTextColorLight
+        }
+    }
+    
+    private func updateIngredientNameYomiCounter(){
+        let num = ingredientNameYomi.text!.withoutEndsSpace().count
+        ingredientNameYomiCounter.text = String(num) + "/" + String(ingredientNameYomiMaximum)
+        
+        if num > ingredientNameYomiMaximum{
+            ingredientNameYomiCounter.textColor = UchicockStyle.alertColor
+        }else{
+            ingredientNameYomiCounter.textColor = UchicockStyle.labelTextColorLight
         }
     }
     
@@ -198,6 +234,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             presentAlert("材料名を入力してください")
         }else if ingredientName.text!.withoutEndsSpace().count > ingredientNameMaximum{
             presentAlert("材料名を" + String(ingredientNameMaximum) + "文字以下にしてください")
+        }else if ingredientNameYomi.text == nil || ingredientNameYomi.text!.withoutEndsSpace() == ""{
+            presentAlert("ヨミガナを入力してください")
+        }else if ingredientNameYomi.text!.withoutEndsSpace().count > ingredientNameYomiMaximum{
+            presentAlert("ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください")
         }else if memo.text.count > memoMaximum{
             presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
         }else{
@@ -208,10 +248,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                 if sameNameIngredient.count != 0{
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
-                    // TODO
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = ingredientName.text!.withoutEndsSpace()
-                    newIngredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
+                    newIngredient.ingredientNameYomi = ingredientNameYomi.text!.withoutEndsSpace()
+                    newIngredient.katakanaLowercasedNameForSearch = ingredientNameYomi.text!.katakanaLowercasedForSearch()
                     newIngredient.category = category.selectedSegmentIndex
                     if stock.checkState == .checked{
                         newIngredient.stockFlag = true
@@ -239,9 +279,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
                     presentAlert("同じ名前の材料が既に登録されています")
                 }else{
                     try! realm.write {
-                        // TODO
                         ingredient.ingredientName = ingredientName.text!.withoutEndsSpace()
-                        ingredient.katakanaLowercasedNameForSearch = ingredientName.text!.katakanaLowercasedForSearch()
+                        ingredient.ingredientNameYomi = ingredientNameYomi.text!.withoutEndsSpace()
+                        ingredient.katakanaLowercasedNameForSearch = ingredientNameYomi.text!.katakanaLowercasedForSearch()
                         ingredient.category = category.selectedSegmentIndex
                         if stock.checkState == .checked{
                             ingredient.stockFlag = true
