@@ -136,7 +136,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 
                 var recoverRecipe = RecoverRecipe(name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
@@ -150,9 +150,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             if rec.count < 1 {
                 try! realm.write {
                     for recoverIngredient in recoverRecipe.ingredientList{
-                        addIngredient(ingredientName: recoverIngredient.ingredientName, stockFlag: false, memo: "", category: recoverIngredient.category)
+                        addIngredient(ingredientName: recoverIngredient.ingredientName, ingredientNameYomi: recoverIngredient.ingredientNameYomi, stockFlag: false, memo: "", category: recoverIngredient.category)
                     }
-                    addRecipe(recipeName: recoverRecipe.name, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method, strength: recoverRecipe.strength)
+                    addRecipe(recipeName: recoverRecipe.name, recipeNameYomi: recoverRecipe.nameYomi, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method, strength: recoverRecipe.strength)
                     
                     for recoverIngredient in recoverRecipe.ingredientList{
                         addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag, displayOrder: recoverIngredient.displayOrder)
@@ -163,13 +163,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    private func addRecipe(recipeName:String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
+    private func addRecipe(recipeName:String, recipeNameYomi: String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
         let realm = try! Realm()
         let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
         if rec.count < 1 {
             let recipe = Recipe()
             recipe.recipeName = recipeName
-            recipe.katakanaLowercasedNameForSearch = recipeName.katakanaLowercasedForSearch() //TODO
+            recipe.recipeNameYomi = recipeNameYomi
+            recipe.katakanaLowercasedNameForSearch = recipeNameYomi.katakanaLowercasedForSearch()
             recipe.favorites = favorites
             recipe.memo = memo
             recipe.style = style
@@ -179,13 +180,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
     }
     
-    private func addIngredient(ingredientName: String, stockFlag: Bool, memo: String, category: Int){
+    private func addIngredient(ingredientName: String, ingredientNameYomi: String, stockFlag: Bool, memo: String, category: Int){
         let realm = try! Realm()
         let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName)
         if ing.count < 1 {
             let ingredient = Ingredient()
             ingredient.ingredientName = ingredientName
-            ingredient.katakanaLowercasedNameForSearch = ingredientName.katakanaLowercasedForSearch() //TODO
+            ingredient.ingredientNameYomi = ingredientNameYomi
+            ingredient.katakanaLowercasedNameForSearch = ingredientNameYomi.katakanaLowercasedForSearch()
             ingredient.stockFlag = stockFlag
             ingredient.memo = memo
             ingredient.category = category

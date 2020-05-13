@@ -10,6 +10,7 @@ struct RecipeIngredientBasic{
     var recipeIngredientId : String
     var ingredientId : String
     var ingredientName : String
+    var ingredientNameYomi : String
     var amount : String
     var mustFlag : Bool
     var category : Int

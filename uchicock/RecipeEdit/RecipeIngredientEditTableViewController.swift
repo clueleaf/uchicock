@@ -21,7 +21,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
-    var recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: "", amount: "", mustFlag: true, category: -1, displayOrder: -1, stockFlag: false)
+    var recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: "", ingredientNameYomi: "", amount: "", mustFlag: true, category: -1, displayOrder: -1, stockFlag: false)
     var ingredientList: Results<Ingredient>?
 
     var isCancel = true

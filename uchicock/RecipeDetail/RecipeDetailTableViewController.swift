@@ -165,7 +165,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             var needInitializeDisplayOrder = false
             recipeIngredientList.removeAll()
             for ri in recipe.recipeIngredients {
-                recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+                recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
                 if ri.displayOrder < 0{
                     needInitializeDisplayOrder = true
                     break
@@ -386,7 +386,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
         }
     }
     
@@ -715,7 +715,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 cell.isDuplicated = false
                 cell.shouldDisplayStock = true
                 cell.isNameTextViewSelectable = false
-                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: recipeIngredientList[indexPath.row].stockFlag)
+                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: recipeIngredientList[indexPath.row].stockFlag)
             }
 
             cell.selectionStyle = .default
