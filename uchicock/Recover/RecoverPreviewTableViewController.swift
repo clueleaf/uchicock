@@ -55,7 +55,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         
         recipeNameYomiLabel.text = recipe.recipeNameYomi
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
-        if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi{
+        if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi.katakanaLowercasedForSearch(){
             recipeNameYomiLabel.isHidden = true
         }else{
             recipeNameYomiLabel.isHidden = false

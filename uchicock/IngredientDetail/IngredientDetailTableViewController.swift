@@ -127,7 +127,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
             ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
-            if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi{
+            if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi.katakanaLowercasedForSearch(){
                 ingredientNameYomiLabel.isHidden = true
             }else{
                 ingredientNameYomiLabel.isHidden = false

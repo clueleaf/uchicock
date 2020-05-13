@@ -390,11 +390,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
             }
             
-            let searchBarTextForSearch = searchBar.text!.katakanaLowercasedForSearch()
             if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 recipeBasicList.removeAll{
-                    ($0.katakanaLowercasedNameForSearch.contains(searchBarTextForSearch) == false) &&
-                    ($0.name.contains(searchBarTextForSearch) == false)
+                    $0.katakanaLowercasedNameForSearch.contains(searchBar.text!.convertToYomi().katakanaLowercasedForSearch()) == false
                 }
             }
 
@@ -948,11 +946,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
-        let searchBarTextForSearch = searchBar.text!.katakanaLowercasedForSearch()
         if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             recipeBasicListForFilterModal.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(searchBarTextForSearch) == false) &&
-                ($0.name.contains(searchBarTextForSearch) == false)
+                $0.katakanaLowercasedNameForSearch.contains(searchBar.text!.convertToYomi().katakanaLowercasedForSearch()) == false
             }
         }
 

@@ -158,11 +158,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             suggestList.append(suggest)
         }
         
-        let textForSearch = ingredientName.text!.katakanaLowercasedForSearch()
         if ingredientName.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             suggestList.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(textForSearch) == false) &&
-                ($0.name.contains(textForSearch) == false)
+                $0.katakanaLowercasedNameForSearch.contains(ingredientName.text!.convertToYomi().katakanaLowercasedForSearch()) == false
             }
         }
         
@@ -403,11 +401,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         present(alertView, animated: true, completion: nil)
     }
     
-    // TODO
     private func setIngredient(_ categoryNum: Int) -> Ingredient{
         let ingredient = Ingredient()
-        ingredient.ingredientName = self.ingredientName.text!.withoutEndsSpace()
-        ingredient.katakanaLowercasedNameForSearch = self.ingredientName.text!.katakanaLowercasedForSearch()
+        let name = self.ingredientName.text!.withoutEndsSpace()
+        ingredient.ingredientName = name
+        ingredient.ingredientNameYomi = name.convertToYomi()
+        ingredient.katakanaLowercasedNameForSearch = name.convertToYomi().katakanaLowercasedForSearch()
         ingredient.stockFlag = false
         ingredient.memo = ""
         ingredient.category = categoryNum
