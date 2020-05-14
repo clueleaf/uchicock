@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fv3-ks-9ou">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -12,20 +12,20 @@
             <objects>
                 <tableViewController id="ybj-gZ-9Tq" customClass="RecoverTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8wF-kh-ZoF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverDescription" rowHeight="300" id="1Z2-4P-p5c" customClass="RecoverDescriptionTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Z2-4P-p5c" id="bED-5f-mQg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVX-L9-aDN" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="8" width="394" height="87"/>
+                                            <rect key="frame" x="8" y="8" width="300" height="87"/>
                                             <string key="text">サンプルレシピを選択して復元します。
 
 同名のレシピが保存されている場合、内容が違っても復元できません。復元したい場合は先に同名のレシピを削除するか、名前を変更してください。</string>
@@ -57,7 +57,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xG9-WX-Brt" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="124.5" width="346" height="21"/>
+                                            <rect key="frame" x="56" y="124.5" width="252" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="J8O-iA-jWM"/>
                                             </constraints>
@@ -66,7 +66,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元対象でない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQh-L8-lkc" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="172.5" width="346" height="21"/>
+                                            <rect key="frame" x="56" y="172.5" width="252" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="0oA-pe-4b9"/>
                                             </constraints>
@@ -75,13 +75,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同じ名前のレシピがあるため復元できません。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjU-3z-1vE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="56" y="222" width="346" height="18"/>
+                                            <rect key="frame" x="56" y="213" width="252" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLW-GK-Oop" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="271" width="398" height="21"/>
+                                            <rect key="frame" x="8" y="271" width="304" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="lGO-sv-Eck"/>
                                             </constraints>
@@ -123,15 +123,15 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverAll" id="aD7-Tu-rDv" customClass="RecoverAllTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="328" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="328" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aD7-Tu-rDv" id="Dz2-TD-B80">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元できる全レシピを復元する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9j-eI-uue">
-                                            <rect key="frame" x="64.5" y="10" width="285.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="復元できる888レシピを全て復元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9j-eI-uue">
+                                            <rect key="frame" x="30.5" y="11.5" width="259.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -145,45 +145,68 @@
                                     <outlet property="recoverAll" destination="p9j-eI-uue" id="UGl-Sf-8hy"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="WQQ-lv-7d4" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="371.5" width="414" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverSelected" rowHeight="50" id="WQQ-lv-7d4" userLabel="RecoverSelected" customClass="RecoverSelectedTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="371.5" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WQQ-lv-7d4" id="zbY-XP-0TA">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXv-FQ-6Oe" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選択した0レシピのみを復元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn5-gy-FVS">
+                                            <rect key="frame" x="50.5" y="15" width="219.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" red="0.17254901959999999" green="0.57647058819999997" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Dn5-gy-FVS" firstAttribute="centerX" secondItem="zbY-XP-0TA" secondAttribute="centerX" id="Roo-Uc-RHQ"/>
+                                        <constraint firstItem="Dn5-gy-FVS" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="eAw-IF-w3T"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recoverSelectedLabel" destination="Dn5-gy-FVS" id="7mO-UG-yCt"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecoverTarget" rowHeight="50" id="FN2-05-PcB" customClass="RecoverTargetTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="421.5" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FN2-05-PcB" id="EFc-x3-x1y">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jD-px-sCa" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
                                             <rect key="frame" x="8" y="5" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="2d6-lS-tPu"/>
-                                                <constraint firstAttribute="height" constant="40" id="Bbp-Xe-TsF"/>
+                                                <constraint firstAttribute="width" constant="40" id="rya-Jn-vip"/>
+                                                <constraint firstAttribute="height" constant="40" id="vOt-gv-DdZ"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTS-ZV-ggy">
-                                            <rect key="frame" x="352.5" y="14.5" width="61.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プレビュー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMg-8W-FyB">
+                                            <rect key="frame" x="258.5" y="14.5" width="61.5" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="6PK-iv-OVd"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="GjI-WW-58K"/>
+                                                <constraint firstAttribute="height" constant="21" id="2uA-F7-zEK"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="JRZ-TJ-dGE"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1T6-YH-IUS" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                            <rect key="frame" x="86" y="14.5" width="258.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSt-48-5qf" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                            <rect key="frame" x="86" y="14.5" width="164.5" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="3cp-oL-IcY"/>
+                                                <constraint firstAttribute="height" constant="21" id="wml-Kn-h6c"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czv-rF-4bn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-14-Jyl">
                                             <rect key="frame" x="56" y="18" width="30" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="em0-s1-0uV"/>
-                                                <constraint firstAttribute="height" constant="14" id="klx-vm-wqa"/>
+                                                <constraint firstAttribute="height" constant="14" id="2hR-ZS-7Sg"/>
+                                                <constraint firstAttribute="width" constant="30" id="fiE-Bs-QXq"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -191,23 +214,23 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="rTS-ZV-ggy" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="2c4-Am-eC9"/>
-                                        <constraint firstItem="czv-rF-4bn" firstAttribute="centerY" secondItem="1T6-YH-IUS" secondAttribute="centerY" id="2xx-Sx-6uM"/>
-                                        <constraint firstItem="cXv-FQ-6Oe" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="4l8-oH-84n"/>
-                                        <constraint firstItem="cXv-FQ-6Oe" firstAttribute="leading" secondItem="zbY-XP-0TA" secondAttribute="leading" constant="8" id="91L-XF-DMg"/>
-                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="centerY" secondItem="zbY-XP-0TA" secondAttribute="centerY" id="NuN-Jg-qoe"/>
-                                        <constraint firstItem="1T6-YH-IUS" firstAttribute="leading" secondItem="czv-rF-4bn" secondAttribute="trailing" id="PIU-dZ-Ph7"/>
-                                        <constraint firstItem="czv-rF-4bn" firstAttribute="leading" secondItem="cXv-FQ-6Oe" secondAttribute="trailing" constant="8" id="bQq-dr-uRs"/>
-                                        <constraint firstItem="rTS-ZV-ggy" firstAttribute="leading" secondItem="1T6-YH-IUS" secondAttribute="trailing" constant="8" id="jb5-Rs-3CV"/>
-                                        <constraint firstAttribute="trailing" secondItem="rTS-ZV-ggy" secondAttribute="trailing" id="jxS-qt-vP6"/>
+                                        <constraint firstItem="3jD-px-sCa" firstAttribute="centerY" secondItem="EFc-x3-x1y" secondAttribute="centerY" id="76L-UV-4f4"/>
+                                        <constraint firstItem="jSt-48-5qf" firstAttribute="centerY" secondItem="EFc-x3-x1y" secondAttribute="centerY" id="8EN-59-URR"/>
+                                        <constraint firstItem="qMg-8W-FyB" firstAttribute="leading" secondItem="jSt-48-5qf" secondAttribute="trailing" constant="8" id="Ixw-Yq-G6z"/>
+                                        <constraint firstItem="EsN-14-Jyl" firstAttribute="centerY" secondItem="jSt-48-5qf" secondAttribute="centerY" id="Ndv-pB-bt1"/>
+                                        <constraint firstItem="3jD-px-sCa" firstAttribute="leading" secondItem="EFc-x3-x1y" secondAttribute="leading" constant="8" id="f3w-76-rF2"/>
+                                        <constraint firstItem="jSt-48-5qf" firstAttribute="leading" secondItem="EsN-14-Jyl" secondAttribute="trailing" id="hUT-LP-nd2"/>
+                                        <constraint firstAttribute="trailing" secondItem="qMg-8W-FyB" secondAttribute="trailing" id="mQA-rc-QpH"/>
+                                        <constraint firstItem="qMg-8W-FyB" firstAttribute="centerY" secondItem="EFc-x3-x1y" secondAttribute="centerY" id="wcd-cU-Zgb"/>
+                                        <constraint firstItem="EsN-14-Jyl" firstAttribute="leading" secondItem="3jD-px-sCa" secondAttribute="trailing" constant="8" id="ycU-l0-kc8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="isTarget" destination="cXv-FQ-6Oe" id="IOH-U7-Etl"/>
-                                    <outlet property="newRecipeLabel" destination="czv-rF-4bn" id="aud-mv-lgD"/>
-                                    <outlet property="newRecipeLabelWidthConstraint" destination="em0-s1-0uV" id="fat-yw-d6Y"/>
-                                    <outlet property="previewLabel" destination="rTS-ZV-ggy" id="xlZ-UW-6aP"/>
-                                    <outlet property="recipeNameLabel" destination="1T6-YH-IUS" id="G8T-V4-InH"/>
+                                    <outlet property="isTarget" destination="3jD-px-sCa" id="MGS-MB-Zx8"/>
+                                    <outlet property="newRecipeLabel" destination="EsN-14-Jyl" id="LjU-NX-QOB"/>
+                                    <outlet property="newRecipeLabelWidthConstraint" destination="fiE-Bs-QXq" id="Zc8-0X-Dzy"/>
+                                    <outlet property="previewLabel" destination="qMg-8W-FyB" id="EVe-xh-Stq"/>
+                                    <outlet property="recipeNameLabel" destination="jSt-48-5qf" id="ijE-yq-BMs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -224,11 +247,6 @@
                                 <action selector="cancelButtonTapped:" destination="ybj-gZ-9Tq" id="9ig-ke-QFj"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="復元" id="7BG-kB-x2N">
-                            <connections>
-                                <action selector="recoverButtonTapped:" destination="ybj-gZ-9Tq" id="j5b-my-CFu"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZDE-64-X0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,7 +258,7 @@
             <objects>
                 <tableViewController id="lbP-ID-z1L" customClass="RecoverPreviewTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2xJ-U1-ynr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="12" maxY="0.0"/>
@@ -248,21 +266,21 @@
                             <tableViewSection headerTitle="Section-1" id="7Sk-WV-EYt">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="80" id="Pb0-zs-Fal">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pb0-zs-Fal" id="VYI-Ii-Pbc">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="レシピ名" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="my3-m3-HcH" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="22" width="394" height="38"/>
+                                                    <rect key="frame" x="8" y="22" width="300" height="38"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ヨミガナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FR2-Yn-hlq">
-                                                    <rect key="frame" x="8" y="8" width="394" height="14"/>
+                                                    <rect key="frame" x="8" y="8" width="300" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="999-TH-RY9"/>
                                                     </constraints>
@@ -283,14 +301,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="jQe-YS-Pkd">
-                                        <rect key="frame" x="0.0" y="108" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jQe-YS-Pkd" id="RKh-QO-P5g">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="スタイル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFL-8p-56o" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15.5" width="274" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="180" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Otg-YL-qbm"/>
                                                     </constraints>
@@ -299,7 +317,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXP-JM-xoE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="302" y="17.5" width="100" height="21"/>
+                                                    <rect key="frame" x="208" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Fjy-fW-oee"/>
                                                     </constraints>
@@ -320,14 +338,14 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="9T3-04-7CX">
-                                        <rect key="frame" x="0.0" y="164" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="164" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9T3-04-7CX" id="zIo-iN-6ED">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSr-N0-xge" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15.5" width="274" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="180" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Yi6-i8-9F2"/>
                                                     </constraints>
@@ -336,7 +354,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS4-y0-mXq" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="302" y="17.5" width="100" height="21"/>
+                                                    <rect key="frame" x="208" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="iSL-NR-Jzz"/>
                                                     </constraints>
@@ -357,14 +375,14 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="dzR-jc-h9F">
-                                        <rect key="frame" x="0.0" y="220" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="220" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzR-jc-h9F" id="0uS-Hx-l1f">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkc-zJ-9Ok" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15.5" width="274" height="25"/>
+                                                    <rect key="frame" x="8" y="15.5" width="180" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="jqw-Vm-JWg"/>
                                                     </constraints>
@@ -373,7 +391,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弱い" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSw-zp-kx2" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="302" y="17.5" width="100" height="21"/>
+                                                    <rect key="frame" x="208" y="17.5" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="9ed-Ap-n8s"/>
                                                     </constraints>
@@ -398,10 +416,10 @@
                             <tableViewSection headerTitle="Section-2" id="Bba-7w-RZZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RecoverPreviewIngredient" rowHeight="70" id="z4V-X6-TR5">
-                                        <rect key="frame" x="0.0" y="332" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="332" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z4V-X6-TR5" id="CuJ-uY-M44">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -416,7 +434,7 @@
                     <navigationItem key="navigationItem" id="sk3-oA-zF0">
                         <barButtonItem key="rightBarButtonItem" id="VJG-1l-IE7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z8b-AK-A3b">
-                                <rect key="frame" x="311" y="7" width="83" height="30"/>
+                                <rect key="frame" x="221" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="閉じる"/>
                                 <connections>
@@ -442,7 +460,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RecoverPreviewNavigationController" id="20c-Ws-HFh" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="G4z-fy-RiH" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -458,7 +476,7 @@
             <objects>
                 <navigationController id="Fv3-ks-9ou" customClass="BasicNavigationController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qe4-9S-W4o" customClass="CustomNavigationBar" customModule="uchicock" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

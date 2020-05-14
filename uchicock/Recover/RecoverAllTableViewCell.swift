@@ -12,9 +12,18 @@ class RecoverAllTableViewCell: UITableViewCell {
 
     @IBOutlet weak var recoverAll: UILabel!
     
+    var recoverableRecipeNum : Int = Int() {
+        didSet{
+            recoverAll.text = "復元できる" + String(recoverableRecipeNum) + "レシピを全て復元"
+            if recoverableRecipeNum == 0{
+                recoverAll.textColor = UchicockStyle.labelTextColorLight
+            }else{
+                recoverAll.textColor = UchicockStyle.primaryColor
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        recoverAll.textColor = UchicockStyle.primaryColor
     }
 }

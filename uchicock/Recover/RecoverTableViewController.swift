@@ -37,7 +37,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         Realm.Configuration.defaultConfiguration = config
 
         loadSampleRecipe()
-        setNavigationTitle()
         isRecovering = false
         
         tableView.separatorColor = UchicockStyle.labelTextColorLight
@@ -95,34 +94,24 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         unrecoverableSampleRecipeList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
     }
     
-    private func setNavigationTitle(){
-        var recoverCount = 0
-        for rr in recoverableSampleRecipeList{
-            if rr.recoverTarget{
-                recoverCount += 1
-            }
-        }
-        self.navigationItem.title = "レシピ復元(" + String(recoverCount) + ")"
-    }
-    
     @objc func isTargetTapped(_ sender: CircularCheckbox){
-        if isRecovering == false {
-            var view = sender.superview
-            while (view! is RecoverTargetTableViewCell) == false{
-                view = view!.superview
-            }
-            let cell = view as! RecoverTargetTableViewCell
-            let touchIndex = self.tableView.indexPath(for: cell)
-            
-            if let index = touchIndex{
-                if index.row - 1 < recoverableSampleRecipeList.count{
-                    if sender.checkState == .checked{
-                        recoverableSampleRecipeList[index.row - 1].recoverTarget = true
-                    }else if sender.checkState == .unchecked{
-                        recoverableSampleRecipeList[index.row - 1].recoverTarget = false
-                    }
-                    setNavigationTitle()
+        guard isRecovering == false else { return }
+
+        var view = sender.superview
+        while (view! is RecoverTargetTableViewCell) == false{
+            view = view!.superview
+        }
+        let cell = view as! RecoverTargetTableViewCell
+        let touchIndex = self.tableView.indexPath(for: cell)
+        
+        if let index = touchIndex{
+            if index.row < recoverableSampleRecipeList.count{
+                if sender.checkState == .checked{
+                    recoverableSampleRecipeList[index.row].recoverTarget = true
+                }else if sender.checkState == .unchecked{
+                    recoverableSampleRecipeList[index.row].recoverTarget = false
                 }
+                self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
             }
         }
     }
@@ -229,67 +218,92 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            if indexPath.row == 0 {
-                tableView.deselectRow(at: indexPath, animated: true)
-                if isRecovering == false {
-                    if recoverableSampleRecipeList.count == 0{
-                        let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
-                        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                        }))
-                        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                        alertView.modalPresentationCapturesStatusBarAppearance = true
-                        self.present(alertView, animated: true, completion: nil)
-                    }else{
-                        let alertView = CustomAlertController(title: nil, message: String(recoverableSampleRecipeList.count) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
-                        alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
-                            self.isRecovering = true
-                            MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
-                            DispatchQueue.global(qos: .userInitiated).async {
-                                for i in 0..<self.recoverableSampleRecipeList.count {
-                                    self.recoverableSampleRecipeList[i].recoverTarget = true
-                                }
-                                self.recover()
-                                DispatchQueue.main.async{
-                                    MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true, isCenter: true)
-                                    self.dismiss(animated: true, completion: nil)
-                                }
+        guard isRecovering == false else { return }
+
+        if indexPath.section == 0{
+            tableView.deselectRow(at: indexPath, animated: true)
+            if indexPath.row == 1{
+                if recoverableSampleRecipeList.count == 0{
+                    let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                    }))
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(alertView, animated: true, completion: nil)
+                }else{
+                    let recipeNum = recoverableSampleRecipeList.count
+                    let alertView = CustomAlertController(title: nil, message: String(recipeNum) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
+                        self.isRecovering = true
+                        MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            for i in 0..<self.recoverableSampleRecipeList.count {
+                                self.recoverableSampleRecipeList[i].recoverTarget = true
                             }
-                        }))
-                        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                        alertView.modalPresentationCapturesStatusBarAppearance = true
-                        self.present(alertView, animated: true, completion: nil)
+                            self.recover()
+                            DispatchQueue.main.async{
+                                MessageHUD.show(String(recipeNum) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }))
+                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(alertView, animated: true, completion: nil)
+                }
+            }else if indexPath.row == 2{
+                var recoverCount = 0
+                for rr in recoverableSampleRecipeList{
+                    if rr.recoverTarget{
+                        recoverCount += 1
                     }
                 }
-            }else{
-                if isRecovering == false {
-                    let storyboard = UIStoryboard(name: "Recover", bundle: nil)
-                    let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
-                    let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
-                    let realm = try! Realm()
-                    if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                        let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row - 1].name).first!
-                        vc.recipe = recipe
-                    }else{
-                        let recipe = realm.objects(Recipe.self).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name).first!
-                        vc.recipe = recipe
-                    }
-                    vc.onDoneBlock = {
-                        self.cellDeselectAnimation()
-                    }
                     
-                    if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-                        nvc.modalPresentationStyle = .pageSheet
-                    }else{
-                        nvc.modalPresentationStyle = .custom
-                        nvc.transitioningDelegate = self
-                        vc.interactor = interactor
-                    }
-
-                    present(nvc, animated: true)
+                if recoverCount > 0{
+                    let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "個のサンプルレシピを復元します", preferredStyle: .alert)
+                    alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
+                        self.isRecovering = true
+                        MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            self.recover()
+                            DispatchQueue.main.async{
+                                MessageHUD.show(String(recoverCount) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }
+                    }))
+                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                    alertView.modalPresentationCapturesStatusBarAppearance = true
+                    self.present(alertView, animated: true, completion: nil)
                 }
             }
+        }else if indexPath.section == 1{
+            let storyboard = UIStoryboard(name: "Recover", bundle: nil)
+            let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
+            let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
+            let realm = try! Realm()
+            if indexPath.row < recoverableSampleRecipeList.count{
+                let recipe = realm.objects(Recipe.self).filter("recipeName == %@", recoverableSampleRecipeList[indexPath.row].name).first!
+                vc.recipe = recipe
+            }else{
+                let recipe = realm.objects(Recipe.self).filter("recipeName == %@", unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name).first!
+                vc.recipe = recipe
+            }
+            vc.onDoneBlock = {
+                self.cellDeselectAnimation()
+            }
+            
+            if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
+                nvc.modalPresentationStyle = .pageSheet
+            }else{
+                nvc.modalPresentationStyle = .custom
+                nvc.transitioningDelegate = self
+                vc.interactor = interactor
+            }
+
+            present(nvc, animated: true)
         }
     }
     
@@ -308,9 +322,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return 1
+            return 3
         }else if section == 1{
-            return recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count + 1
+            return recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
         }else{
             return 0
         }
@@ -319,61 +333,79 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
-            cell.recoverableRecipeNum = recoverableSampleRecipeList.count
-            cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            return cell
-        case 1:
             if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
+                cell.recoverableRecipeNum = recoverableSampleRecipeList.count
+                cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                return cell
+            }else if indexPath.row == 1{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                cell.recoverableRecipeNum = recoverableSampleRecipeList.count
                 return cell
-            }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
-                
-                let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-                let accesoryImageView = UIImageView(image: disclosureIndicator)
-                accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
-                accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-                cell.accessoryView = accesoryImageView
-
-                
-                cell.shouldAdd73Badge = self.shouldAdd73Badge
-                cell.shouldAdd74Badge = self.shouldAdd74Badge
-                cell.isTarget.stateChangeAnimation = .fade
-                cell.isTarget.animationDuration = 0.0
-                cell.isTarget.backgroundColor = UIColor.clear
-                cell.isTarget.boxLineWidth = 1.0
-                cell.isTarget.secondaryTintColor = UchicockStyle.primaryColor
-                cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-
-                if indexPath.row - 1 < recoverableSampleRecipeList.count{
-                    cell.recipeName = recoverableSampleRecipeList[indexPath.row - 1].name
-                    cell.isTarget.isEnabled = true
-                    cell.isTarget.tintColor = UchicockStyle.primaryColor
-                    if recoverableSampleRecipeList[indexPath.row - 1].recoverTarget{
-                        cell.isTarget.setCheckState(.checked, animated: true)
-                    }else{
-                        cell.isTarget.setCheckState(.unchecked, animated: true)
-                    }
-                    cell.isRecoverable = true
-                    cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
-                }else{
-                    cell.recipeName = unrecoverableSampleRecipeList[indexPath.row - 1 - recoverableSampleRecipeList.count].name
-                    cell.isTarget.isEnabled = false
-                    cell.isTarget.tintColor = UchicockStyle.labelTextColorLight
-                    cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-                    cell.isTarget.setCheckState(.mixed, animated: true)
-                    cell.isRecoverable = false
-                }
+            }else if indexPath.row == 2{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverSelected") as! RecoverSelectedTableViewCell
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                
+                var recoverCount = 0
+                for rr in recoverableSampleRecipeList{
+                    if rr.recoverTarget{
+                        recoverCount += 1
+                    }
+                }
+                cell.selectedRecipeNum = recoverCount
                 return cell
+            }else{
+                return UITableViewCell()
             }
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
+            
+            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
+            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+            cell.accessoryView = accesoryImageView
+
+            
+            cell.shouldAdd73Badge = self.shouldAdd73Badge
+            cell.shouldAdd74Badge = self.shouldAdd74Badge
+            cell.isTarget.stateChangeAnimation = .fade
+            cell.isTarget.animationDuration = 0.0
+            cell.isTarget.backgroundColor = UIColor.clear
+            cell.isTarget.boxLineWidth = 1.0
+            cell.isTarget.secondaryTintColor = UchicockStyle.primaryColor
+            cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+
+            if indexPath.row < recoverableSampleRecipeList.count{
+                cell.recipeName = recoverableSampleRecipeList[indexPath.row].name
+                cell.isTarget.isEnabled = true
+                cell.isTarget.tintColor = UchicockStyle.primaryColor
+                if recoverableSampleRecipeList[indexPath.row].recoverTarget{
+                    cell.isTarget.setCheckState(.checked, animated: true)
+                }else{
+                    cell.isTarget.setCheckState(.unchecked, animated: true)
+                }
+                cell.isRecoverable = true
+                cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
+            }else{
+                cell.recipeName = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name
+                cell.isTarget.isEnabled = false
+                cell.isTarget.tintColor = UchicockStyle.labelTextColorLight
+                cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+                cell.isTarget.setCheckState(.mixed, animated: true)
+                cell.isRecoverable = false
+            }
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
+            return cell
         default:
             return UITableViewCell()
         }
@@ -386,40 +418,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    @IBAction func recoverButtonTapped(_ sender: UIBarButtonItem) {
-        if isRecovering == false{
-            var recoverCount = 0
-            for rr in recoverableSampleRecipeList{
-                if rr.recoverTarget{
-                    recoverCount += 1
-                }
-            }
-            
-            if recoverCount == 0{
-                changeToUserDb()
-                self.dismiss(animated: true, completion: nil)
-            }else{
-                let alertView = CustomAlertController(title: nil, message: String(recoverCount) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
-                alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
-                    self.isRecovering = true
-                    MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        self.recover()
-                        DispatchQueue.main.async{
-                            MessageHUD.show("復元が完了しました", for: 2.0, withCheckmark: true, isCenter: true)
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    }
-                }))
-                alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                alertView.modalPresentationCapturesStatusBarAppearance = true
-                self.present(alertView, animated: true, completion: nil)
-            }
-        }
-    }
-    
+        
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)

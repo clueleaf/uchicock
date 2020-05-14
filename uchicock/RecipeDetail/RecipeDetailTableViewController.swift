@@ -682,7 +682,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     vc.ingredient = ri.ingredient
                 }
             }
-            vc.shouldShowMessageHUD = true
             vc.onDoneBlock = {
                 self.setReminderBadge()
             }

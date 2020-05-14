@@ -51,6 +51,7 @@
 		9B3078F21CA422630014CE7E /* RecipeEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */; };
 		9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */; };
 		9B3078F71CA42F460014CE7E /* SuggestIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */; };
+		9B41A982246DCD9E00856EA1 /* RecoverSelectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41A981246DCD9E00856EA1 /* RecoverSelectedTableViewCell.swift */; };
 		9B41B2AA1E65729E00EF2CEF /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B41B2A91E65729E00EF2CEF /* Style.swift */; };
 		9B59FFA822B409CB00FB6F44 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B59FFA722B409CA00FB6F44 /* README.md */; };
 		9B63E0AA230E8F78004E6B50 /* ImageViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */; };
@@ -195,6 +196,7 @@
 		9B3078EE1CA422630014CE7E /* RecipeEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeEditTableViewController.swift; path = RecipeEdit/RecipeEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F41CA422890014CE7E /* IngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientEditTableViewController.swift; path = IngredientEdit/IngredientEditTableViewController.swift; sourceTree = "<group>"; };
 		9B3078F61CA42F460014CE7E /* SuggestIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestIngredientTableViewCell.swift; path = RecipeEdit/SuggestIngredientTableViewCell.swift; sourceTree = "<group>"; };
+		9B41A981246DCD9E00856EA1 /* RecoverSelectedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecoverSelectedTableViewCell.swift; path = Recover/RecoverSelectedTableViewCell.swift; sourceTree = "<group>"; };
 		9B41B2A91E65729E00EF2CEF /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = Settings/Style.swift; sourceTree = "<group>"; };
 		9B59FFA722B409CA00FB6F44 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		9B63E0A9230E8F78004E6B50 /* ImageViewer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ImageViewer.storyboard; path = Util/ImageViewer/ImageViewer.storyboard; sourceTree = "<group>"; };
@@ -364,10 +366,11 @@
 			children = (
 				9B746DBA2351EFA200507530 /* Recover.storyboard */,
 				9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */,
-				9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */,
 				9BDB39331CD4448900CE3175 /* RecoverDescriptionTableViewCell.swift */,
 				9BADE7121CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift */,
+				9B41A981246DCD9E00856EA1 /* RecoverSelectedTableViewCell.swift */,
 				9B18128F1CD3C63C00717E4F /* RecoverTargetTableViewCell.swift */,
+				9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */,
 			);
 			name = Recover;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				9BA727A223DD5F6400CFFE78 /* NotificationExtension.swift in Sources */,
 				9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */,
 				9BADE7131CD4FEB900D0BC39 /* RecoverAllTableViewCell.swift in Sources */,
+				9B41A982246DCD9E00856EA1 /* RecoverSelectedTableViewCell.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,

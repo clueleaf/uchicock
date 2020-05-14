@@ -21,7 +21,6 @@ class ReminderTableViewController: UITableViewController {
     
     var ingredient = Ingredient()
     
-    var shouldShowMessageHUD = false
     var reminderTypePreviousState = 0
 
     var interactor: Interactor?
@@ -226,9 +225,7 @@ class ReminderTableViewController: UITableViewController {
             try! realm.write {
                 ingredient.reminderSetDate = Date()
             }
-            if shouldShowMessageHUD{
-                MessageHUD.show("リマインダーへ登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-            }
+            MessageHUD.show("リマインダーへ登録しました", for: 2.0, withCheckmark: true, isCenter: true)
             self.dismiss(animated: true, completion: nil)
         } else if reminderType.selectedSegmentIndex == 1{
             if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
