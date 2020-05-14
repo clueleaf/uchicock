@@ -205,7 +205,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
         addIngredientLabel.textColor = UchicockStyle.primaryColor
-        addIngredientLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
 
         let tipImage = UIImage(named: "button-tip")
         styleTipButton.setImage(tipImage, for: .normal)
