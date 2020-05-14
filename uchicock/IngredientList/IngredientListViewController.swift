@@ -208,8 +208,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 tabItem.badgeValue = nil
                 reminderButton.badgeText = nil
             }else{
-                tabItem.badgeValue = "！"
-                reminderButton.badgeText = "！"
+                tabItem.badgeValue = "!"
+                reminderButton.badgeText = "!"
             }
         }
     }

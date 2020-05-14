@@ -163,7 +163,7 @@ class LaunchViewController: UIViewController {
             if reminderNum == 0{
                 tabItem.badgeValue = nil
             }else{
-                tabItem.badgeValue = "！"
+                tabItem.badgeValue = "!"
             }
         }
         
