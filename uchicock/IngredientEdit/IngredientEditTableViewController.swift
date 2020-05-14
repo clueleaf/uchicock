@@ -62,7 +62,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomi.layer.borderWidth = 1
         ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientNameYomi.adjustClearButtonColor(with: 4)
 
         stock.boxLineWidth = 1.0
         stock.stateChangeAnimation = .expand

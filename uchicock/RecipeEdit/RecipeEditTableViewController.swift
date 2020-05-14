@@ -101,8 +101,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeNameYomi.layer.cornerRadius = 5.0
         recipeNameYomi.layer.borderWidth = 1
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeNameYomi.adjustClearButtonColor(with: 4)
-
 
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
             photo.image = image
