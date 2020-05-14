@@ -892,8 +892,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    private func presentAlert(_ message: String){
-        let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
+    private func presentAlert(title: String, message: String?){
+        let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -902,28 +902,28 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if recipeName.text == nil || recipeName.text!.withoutEndsSpace() == ""{
-            presentAlert("レシピ名を入力してください")
+            presentAlert(title: "レシピ名を入力してください", message: nil)
         }else if recipeName.text!.withoutEndsSpace().count > recipeNameMaximum{
-            presentAlert("レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください")
+            presentAlert(title: "レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください", message: nil)
         }else if recipeNameYomi.text == nil || recipeNameYomi.text!.withoutEndsSpace() == ""{
-                presentAlert("ヨミガナを入力してください")
+            presentAlert(title: "ヨミガナを入力してください", message: nil)
         }else if recipeNameYomi.text!.withoutEndsSpace().count > recipeNameYomiMaximum{
-                presentAlert("ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください")
+            presentAlert(title: "ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください", message: nil)
         }else if memo.text.count > memoMaximum {
-            presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
+            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil)
         }else if recipeIngredientList.count == 0{
-            presentAlert("材料を一つ以上追加してください")
+            presentAlert(title: "材料を一つ以上追加してください", message: nil)
         }else if recipeIngredientList.count > 30{
-            presentAlert("材料を30個以下にしてください")
+            presentAlert(title: "材料を30個以下にしてください", message: nil)
         } else if isIngredientDuplicated() {
-            presentAlert("重複している材料があります")
+            presentAlert(title: "重複している材料があります", message: nil)
         }else{
             let realm = try! Realm()
             
             if isAddMode {
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
                 if sameNameRecipe.count != 0{
-                    presentAlert("同じ名前のレシピが既に登録されています")
+                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください")
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
@@ -977,7 +977,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
                 if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.withoutEndsSpace(){
-                    presentAlert("同じ名前のレシピが既に登録されています")
+                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください")
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write {

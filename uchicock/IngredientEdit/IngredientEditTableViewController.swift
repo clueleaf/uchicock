@@ -220,8 +220,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
-    private func presentAlert(_ message: String){
-        let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
+    private func presentAlert(title: String, message: String?){
+        let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -230,22 +230,22 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         if ingredientName.text == nil || ingredientName.text!.withoutEndsSpace() == ""{
-            presentAlert("材料名を入力してください")
+            presentAlert(title: "材料名を入力してください", message: nil)
         }else if ingredientName.text!.withoutEndsSpace().count > ingredientNameMaximum{
-            presentAlert("材料名を" + String(ingredientNameMaximum) + "文字以下にしてください")
+            presentAlert(title: "材料名を" + String(ingredientNameMaximum) + "文字以下にしてください", message: nil)
         }else if ingredientNameYomi.text == nil || ingredientNameYomi.text!.withoutEndsSpace() == ""{
-            presentAlert("ヨミガナを入力してください")
+            presentAlert(title: "ヨミガナを入力してください", message: nil)
         }else if ingredientNameYomi.text!.withoutEndsSpace().count > ingredientNameYomiMaximum{
-            presentAlert("ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください")
+            presentAlert(title: "ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください", message: nil)
         }else if memo.text.count > memoMaximum{
-            presentAlert("メモを" + String(memoMaximum) + "文字以下にしてください")
+            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil)
         }else{
             let realm = try! Realm()
             
             if isAddMode {
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
                 if sameNameIngredient.count != 0{
-                    presentAlert("同じ名前の材料が既に登録されています")
+                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください")
                 }else{
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = ingredientName.text!.withoutEndsSpace()
@@ -275,7 +275,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             }else{
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
                 if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientName.text!.withoutEndsSpace(){
-                    presentAlert("同じ名前の材料が既に登録されています")
+                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください")
                 }else{
                     try! realm.write {
                         ingredient.ingredientName = ingredientName.text!.withoutEndsSpace()
