@@ -11,6 +11,13 @@ import RealmSwift
 
 class RecoverTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
+    @IBOutlet weak var recoverTargetCheckbox: CircularCheckbox!
+    @IBOutlet weak var nonRecoverTargetCheckbox: CircularCheckbox!
+    @IBOutlet weak var unableRecoverCheckbox: CircularCheckbox!
+    @IBOutlet weak var recoverableNumberLabel: CustomLabel!
+    @IBOutlet weak var recoverAllLabel: UILabel!
+    @IBOutlet weak var recoverSelectedLabel: UILabel!
+    
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
@@ -44,6 +51,54 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         
+        recoverTargetCheckbox.stateChangeAnimation = .expand
+        recoverTargetCheckbox.isEnabled = false
+        recoverTargetCheckbox.setCheckState(.checked, animated: true)
+        recoverTargetCheckbox.boxLineWidth = 1.0
+        recoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        recoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+
+        nonRecoverTargetCheckbox.stateChangeAnimation = .expand
+        nonRecoverTargetCheckbox.isEnabled = false
+        nonRecoverTargetCheckbox.setCheckState(.unchecked, animated: true)
+        nonRecoverTargetCheckbox.boxLineWidth = 1.0
+        nonRecoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        nonRecoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+
+        unableRecoverCheckbox.stateChangeAnimation = .expand
+        unableRecoverCheckbox.isEnabled = false
+        unableRecoverCheckbox.setCheckState(.mixed, animated: true)
+        unableRecoverCheckbox.tintColor = UchicockStyle.labelTextColorLight
+        unableRecoverCheckbox.boxLineWidth = 1.0
+        unableRecoverCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        unableRecoverCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+        
+        let sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
+        let recoverableRecipeNum = recoverableSampleRecipeList.count
+        recoverableNumberLabel.text = "全" + String(sampleRecipeNum) + "レシピの内、" + String(recoverableRecipeNum) + "レシピを復元できます。"
+        
+        recoverAllLabel.text = "復元できる" + String(recoverableRecipeNum) + "レシピを全て復元"
+        if recoverableRecipeNum == 0{
+            recoverAllLabel.textColor = UchicockStyle.labelTextColorLight
+        }else{
+            recoverAllLabel.textColor = UchicockStyle.primaryColor
+        }
+        
+        var recoverCount = 0
+        for rr in recoverableSampleRecipeList{
+            if rr.recoverTarget{
+                recoverCount += 1
+            }
+        }
+
+        recoverSelectedLabel.text = "選択した0レシピのみを復元"
+        recoverSelectedLabel.textColor = UchicockStyle.labelTextColorLight
+        
+        tableView.register(UINib(nibName: "RecoverTableViewCell", bundle: nil), forCellReuseIdentifier: "RecoverCell")
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableView.automaticDimension
+
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: GlobalConstants.Version74NewRecipeViewedKey)
         shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
@@ -98,10 +153,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         guard isRecovering == false else { return }
 
         var view = sender.superview
-        while (view! is RecoverTargetTableViewCell) == false{
+        while (view! is RecoverTableViewCell) == false{
             view = view!.superview
         }
-        let cell = view as! RecoverTargetTableViewCell
+        let cell = view as! RecoverTableViewCell
         let touchIndex = self.tableView.indexPath(for: cell)
         
         if let index = touchIndex{
@@ -111,7 +166,19 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }else if sender.checkState == .unchecked{
                     recoverableSampleRecipeList[index.row].recoverTarget = false
                 }
-                self.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
+                
+                var recoverCount = 0
+                for rr in recoverableSampleRecipeList{
+                    if rr.recoverTarget{
+                        recoverCount += 1
+                    }
+                }
+                recoverSelectedLabel.text = "選択した" + String(recoverCount) + "レシピのみを復元"
+                if recoverCount == 0{
+                    recoverSelectedLabel.textColor = UchicockStyle.labelTextColorLight
+                }else{
+                    recoverSelectedLabel.textColor = UchicockStyle.primaryColor
+                }
             }
         }
     }
@@ -215,6 +282,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? UITableView.automaticDimension : 50
+    }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -333,39 +404,13 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
-            if indexPath.row == 0{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverDescription") as! RecoverDescriptionTableViewCell
-                cell.recoverableRecipeNum = recoverableSampleRecipeList.count
-                cell.sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                return cell
-            }else if indexPath.row == 1{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverAll") as! RecoverAllTableViewCell
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                cell.recoverableRecipeNum = recoverableSampleRecipeList.count
-                return cell
-            }else if indexPath.row == 2{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverSelected") as! RecoverSelectedTableViewCell
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                
-                var recoverCount = 0
-                for rr in recoverableSampleRecipeList{
-                    if rr.recoverTarget{
-                        recoverCount += 1
-                    }
-                }
-                cell.selectedRecipeNum = recoverCount
-                return cell
-            }else{
-                return UITableViewCell()
-            }
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverTarget") as! RecoverTargetTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverCell") as! RecoverTableViewCell
             
             let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
             let accesoryImageView = UIImageView(image: disclosureIndicator)

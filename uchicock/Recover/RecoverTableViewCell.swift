@@ -1,17 +1,18 @@
 //
-//  RecoverTargetTableViewCell.swift
+//  RecoverTableViewCell.swift
 //  uchicock
 //
-//  Created by Kou Kinyo on 2016/04/30.
-//  Copyright © 2016年 Kou. All rights reserved.
+//  Created by Kou Kinyo on 2020-05-14.
+//  Copyright © 2020 Kou. All rights reserved.
 //
 
 import UIKit
 
-class RecoverTargetTableViewCell: UITableViewCell {
+class RecoverTableViewCell: UITableViewCell {
 
     @IBOutlet weak var isTarget: CircularCheckbox!
     @IBOutlet weak var recipeNameLabel: CustomLabel!
+
     @IBOutlet weak var previewLabel: UILabel!
     @IBOutlet weak var newRecipeLabel: UILabel!
     @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
