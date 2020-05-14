@@ -50,6 +50,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     let recipeNameMaximum = 30
     let recipeNameYomiMaximum = 50
     let memoMaximum = 1000
+    let ingredientMaximum = 30
 
     var isAddMode = true
     var focusRecipeNameFlag = false
@@ -204,8 +205,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        addIngredientLabel.textColor = UchicockStyle.primaryColor
-
+        setAddIngredientLabel()
+        
         let tipImage = UIImage(named: "button-tip")
         styleTipButton.setImage(tipImage, for: .normal)
         styleTipButton.tintColor = UchicockStyle.primaryColor
@@ -268,6 +269,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
 
+    private func setAddIngredientLabel(){
+        if recipeIngredientList.count >= ingredientMaximum {
+            addIngredientLabel.text = "これ以上材料を追加できません"
+            addIngredientLabel.textColor = UchicockStyle.labelTextColorLight
+        }else{
+            addIngredientLabel.text = "材料を追加"
+            addIngredientLabel.textColor = UchicockStyle.primaryColor
+        }
+    }
+    
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         recipeName.resignFirstResponder()
@@ -438,10 +449,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             tableView.deselectRow(at: indexPath, animated: true)
             addPhoto()
         }else if indexPath.section == 1{
+            if indexPath.row == recipeIngredientList.count && recipeIngredientList.count >= ingredientMaximum {
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
+            
             let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
             let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
 
+            if indexPath.row < recipeIngredientList.count{
+                if self.recipeIngredientList[indexPath.row].recipeIngredientId == ""{
+                    self.recipeIngredientList[indexPath.row].recipeIngredientId = NSUUID().uuidString
+                }
+                vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
+                vc.isAddMode = false
+            }else if indexPath.row == recipeIngredientList.count{
+                vc.isAddMode = true
+            }
+            
             vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in
                 if isCancel == false{
                     if isAddMode{
@@ -457,6 +483,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
                             self.createNeedUpdateCellIndexList()
                             self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
+                            self.setAddIngredientLabel()
                             self.tableView.scrollToRow(at: IndexPath(row: self.recipeIngredientList.count, section: indexPath.section), at: .bottom, animated: true)
                         }
                     }else{
@@ -474,6 +501,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.recipeIngredientList.remove(at: self.selectedIndexPath!.row)
                             self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
                             self.selectedIndexPath = nil
+                            self.setAddIngredientLabel()
                         }else{
                             // 既存材料編集
                             for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
@@ -498,16 +526,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         }
                     }
                 }
-            }
-            
-            if indexPath.row < recipeIngredientList.count{
-                if self.recipeIngredientList[indexPath.row].recipeIngredientId == ""{
-                    self.recipeIngredientList[indexPath.row].recipeIngredientId = NSUUID().uuidString
-                }
-                vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
-                vc.isAddMode = false
-            }else if indexPath.row == recipeIngredientList.count{
-                vc.isAddMode = true
             }
             
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -542,6 +560,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .middle)
+                self.setAddIngredientLabel()
                 completionHandler(true)
             }else{
                 completionHandler(false)
@@ -913,8 +932,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil)
         }else if recipeIngredientList.count == 0{
             presentAlert(title: "材料を一つ以上追加してください", message: nil)
-        }else if recipeIngredientList.count > 30{
-            presentAlert(title: "材料を30個以下にしてください", message: nil)
+        }else if recipeIngredientList.count > ingredientMaximum{
+            presentAlert(title: "材料を" + String(ingredientMaximum) + "個以下にしてください", message: nil)
         } else if isIngredientDuplicated() {
             presentAlert(title: "重複している材料があります", message: nil)
         }else{
