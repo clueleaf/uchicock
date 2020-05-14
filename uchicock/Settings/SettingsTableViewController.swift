@@ -26,7 +26,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
     
     let selectedCellBackgroundView = UIView()
-    var stayHomeLabel = UILabel()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
@@ -39,11 +38,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         let defaults = UserDefaults.standard
         firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
-
-        stayHomeLabel.font = UIFont.systemFont(ofSize: 14.0)
-        stayHomeLabel.text = "#うちで過ごそう"
-        stayHomeLabel.textAlignment = .center
-        tableView.addSubview(stayHomeLabel)
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -71,7 +65,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             currentImageSizeLabel.text = "中"
         }
         
-        stayHomeLabel.textColor = UchicockStyle.labelTextColorLight
         setNewRecipeBadge()
         
         tableView.reloadData()
@@ -120,7 +113,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         super.viewDidLayoutSubviews()
         
         let y = ((tableView.frame.height - 60 * 5) / 2)
-        stayHomeLabel.frame = CGRect(x: 0, y: y + 60 * 5, width: tableView.frame.width, height: 20)
     }
     
     func scrollToTop() {
