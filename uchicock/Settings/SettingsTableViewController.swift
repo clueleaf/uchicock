@@ -109,12 +109,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         selectedIndexPath = nil
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        let y = ((tableView.frame.height - 60 * 5) / 2)
-    }
-    
     func scrollToTop() {
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
