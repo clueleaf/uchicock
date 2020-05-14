@@ -382,6 +382,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - UISearchBarDelegate
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if tableView.contentOffset.y > 0{
+            tableView.setContentOffset(tableView.contentOffset, animated: false)
+        }
         self.isTyping = true
         if traitCollection.verticalSizeClass == .compact{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
