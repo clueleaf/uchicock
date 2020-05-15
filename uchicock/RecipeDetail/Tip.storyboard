@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,6 +135,9 @@
                                     <constraint firstItem="Zmk-Bd-9DY" firstAttribute="leading" secondItem="Lon-CN-hEc" secondAttribute="leading" id="Mwu-OB-F7C"/>
                                     <constraint firstAttribute="trailing" secondItem="Zmk-Bd-9DY" secondAttribute="trailing" id="lP9-h1-hcR"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="06P-na-LIH" id="u4T-LV-24K"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -344,6 +347,9 @@
                                     <constraint firstAttribute="bottom" secondItem="ToU-Va-VQs" secondAttribute="bottom" id="a7z-08-qpi"/>
                                     <constraint firstItem="ToU-Va-VQs" firstAttribute="leading" secondItem="MpG-T2-Slx" secondAttribute="leading" id="vOQ-NG-eFN"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Z1J-D1-IAp" id="iMy-NF-aad"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -408,7 +414,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-IZ-4fa" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="8" width="394" height="334.5"/>
-                                                <mutableString key="text">このアプリでは、カクテルのアルコール度数を
+                                                <string key="text">このアプリでは、カクテルのアルコール度数を
 
 1%未満→「ノンアルコール」
 1%以上10%未満→「弱い」
@@ -420,7 +426,7 @@
 
 アルコール度数が強すぎる/弱すぎると感じたら、材料の分量を自分好みに変えてみるのも良いかもしれない。本来のレシピとは味が変わってしまうが、自由にアレンジできるのはおうちカクテルならではの楽しみ方。
 
-自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機を活用しよう！</mutableString>
+自作レシピや、カスタマイズしたレシピのアルコール度数を知りたい場合は、「いろいろ」メニューにあるアルコール度数計算機を活用しよう！</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -441,6 +447,9 @@
                                     <constraint firstItem="zq6-cv-qGg" firstAttribute="top" secondItem="3Xu-qL-fiD" secondAttribute="top" id="uDz-Pm-Tnp"/>
                                     <constraint firstAttribute="trailing" secondItem="zq6-cv-qGg" secondAttribute="trailing" id="zt3-RD-fww"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="8By-U8-1Cc" id="XTh-m8-NU5"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

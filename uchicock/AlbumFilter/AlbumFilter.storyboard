@@ -1052,6 +1052,9 @@
                                     <constraint firstAttribute="bottom" secondItem="A7H-1K-glc" secondAttribute="bottom" id="eFw-D3-Tik"/>
                                     <constraint firstItem="A7H-1K-glc" firstAttribute="top" secondItem="1su-8v-MT6" secondAttribute="top" id="txa-ZT-9NP"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="jVM-Wp-2x7" id="ud0-t3-za5"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlM-Sa-xRF">
                                 <rect key="frame" x="0.0" y="701" width="414" height="73"/>

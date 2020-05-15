@@ -37,8 +37,6 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.delegate = self
-        
         imageView.image = originalImageView?.image
         doneButton.setTitleColor(UIColor(white: 0.9, alpha: 0.9), for: .normal)
         doneButton.layer.cornerRadius = 13.0

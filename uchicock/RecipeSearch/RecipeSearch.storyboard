@@ -1411,6 +1411,9 @@
                                     <constraint firstItem="M4p-Iq-Bmw" firstAttribute="leading" secondItem="9Tf-GF-vKs" secondAttribute="leading" id="aNi-nJ-mIH"/>
                                     <constraint firstAttribute="trailing" secondItem="M4p-Iq-Bmw" secondAttribute="trailing" id="tt5-ZL-Aei"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="iHW-kn-1ob" id="rfP-Yc-EGx"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vza-Iu-W6Q">
                                 <rect key="frame" x="0.0" y="1223" width="1024" height="73"/>

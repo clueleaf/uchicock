@@ -88,7 +88,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star3.tintColor = UchicockStyle.primaryColor
 
         recipeName.text = recipe.recipeName
-        recipeName.delegate = self
         recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         recipeName.layer.cornerRadius = 5.0
         recipeName.layer.borderWidth = 1
@@ -97,7 +96,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         recipeNameYomi.text = recipe.recipeNameYomi
-        recipeNameYomi.delegate = self
         recipeNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         recipeNameYomi.layer.cornerRadius = 5.0
         recipeNameYomi.layer.borderWidth = 1
@@ -170,7 +168,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         memo.text = recipe.memo
-        memo.delegate = self
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1

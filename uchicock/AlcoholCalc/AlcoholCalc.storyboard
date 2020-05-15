@@ -3,7 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -540,6 +540,9 @@
                                     <constraint firstItem="yM6-ae-QfV" firstAttribute="leading" secondItem="FgX-Ms-j5G" secondAttribute="leading" id="Ncu-aM-Hdy"/>
                                     <constraint firstAttribute="trailing" secondItem="yM6-ae-QfV" secondAttribute="trailing" id="lSf-Na-aIn"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="0DO-Ah-rdc" id="nP8-hA-eay"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

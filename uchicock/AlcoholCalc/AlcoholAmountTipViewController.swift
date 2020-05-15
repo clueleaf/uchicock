@@ -34,7 +34,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrollView.delegate = self
         if interactor != nil{
             scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }

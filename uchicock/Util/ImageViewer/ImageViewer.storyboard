@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +30,9 @@
                                     <constraint firstItem="Byk-DK-WPt" firstAttribute="leading" secondItem="taq-h6-rRo" secondAttribute="leading" id="WLb-lU-ZUN"/>
                                     <constraint firstAttribute="trailing" secondItem="Byk-DK-WPt" secondAttribute="trailing" id="pyX-wF-Aqt"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="6Gu-3J-StH" id="t8t-8E-key"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErY-FR-a9q">
                                 <rect key="frame" x="0.0" y="761" width="414" height="135"/>

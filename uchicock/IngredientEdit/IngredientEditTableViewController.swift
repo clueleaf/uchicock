@@ -48,7 +48,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         ingredientName.text = ingredient.ingredientName
-        ingredientName.delegate = self
         ingredientName.layer.cornerRadius = 5.0
         ingredientName.layer.borderWidth = 1
         ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
@@ -57,7 +56,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientNameYomi.text = ingredient.ingredientNameYomi
-        ingredientNameYomi.delegate = self
         ingredientNameYomi.layer.cornerRadius = 5.0
         ingredientNameYomi.layer.borderWidth = 1
         ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
@@ -72,7 +70,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         memo.text = ingredient.memo
-        memo.delegate = self
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
         memo.layer.borderWidth = 1
