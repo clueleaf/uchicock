@@ -423,7 +423,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.row < recipeIngredientList.count{
                 return 70
             } else if indexPath.row == recipeIngredientList.count{
-                return super.tableView(tableView, heightForRowAt: IndexPath(row: 1, section: 1))
+                return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
             }
         }
         return 0
@@ -609,7 +609,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
                 return cell
             }else if indexPath.row == recipeIngredientList.count{
-                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 1))
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 cell.selectedBackgroundView = selectedCellBackgroundView
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

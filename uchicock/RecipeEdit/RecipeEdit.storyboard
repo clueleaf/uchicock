@@ -412,16 +412,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeEditIngredient" rowHeight="70" id="jyH-pc-vUs">
-                                        <rect key="frame" x="0.0" y="843" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jyH-pc-vUs" id="a61-fJ-Odk">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lFs-ko-xD7">
-                                        <rect key="frame" x="0.0" y="913" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="843" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
