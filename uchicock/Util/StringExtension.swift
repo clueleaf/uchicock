@@ -1200,7 +1200,7 @@ extension String {
     
     func isNewRecipe74() -> Bool {
         switch self{
-        case "アイアンレディー": return true
+        case "アイアンレディ": return true
         case "アカシア": return true
         case "アップルシャワー": return true
         case "アプリコットクーラー": return true
