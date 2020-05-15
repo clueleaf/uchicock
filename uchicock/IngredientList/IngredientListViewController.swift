@@ -9,11 +9,11 @@
 import UIKit
 import RealmSwift
 
-class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIViewControllerTransitioningDelegate, ScrollableToTop {
+class IngredientListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIViewControllerTransitioningDelegate, ScrollableToTop {
 
     @IBOutlet weak var reminderButton: BadgeBarButtonItem!
     @IBOutlet weak var addIngredientButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: CustomSearchBar!
+    @IBOutlet weak var searchTextField: CustomTextField!
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var category: CustomSegmentedControl!
     @IBOutlet weak var stockState: CustomSegmentedControl!
@@ -21,7 +21,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSeparator: UIView!
     
-    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoryHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var categoryBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var stockStateHeightConstraint: NSLayoutConstraint!
@@ -51,10 +53,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getTextFieldFromView(searchBar)?.enablesReturnKeyAutomatically = false
-        searchBar.returnKeyType = UIReturnKeyType.done
-        searchBar.backgroundImage = UIImage()
-        
+        searchTextField.layer.cornerRadius = 8.0
+        searchTextField.layer.borderWidth = 1
+        searchTextField.clipsToBounds = true
+
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true
         stockState.layer.borderWidth = 1.0
@@ -76,46 +78,15 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
-        let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
-        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-        glassIconView?.tintColor = UchicockStyle.labelTextColorLight
+        searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        searchTextField.tintColor = UchicockStyle.labelTextColor
+        searchTextField.textColor = UchicockStyle.labelTextColor
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "材料名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        searchTextField.adjustClearButtonColor(with: 4)
+        searchTextField.setSearchIcon()
 
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-            searchBar.searchTextField.layer.borderWidth = 1.0
-            searchBar.searchTextField.layer.cornerRadius = 8.0
-        }else{
-            for view in searchBar.subviews {
-                for subview in view.subviews {
-                    if subview is UITextField {
-                        let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-                        textField.layer.borderWidth = 1.0
-                        textField.layer.cornerRadius = 8.0
-                        for subsubview in subview.subviews{
-                            if subsubview is UILabel{
-                                let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                        }
-                    }
-                }
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
 
         let font = UIFont.systemFont(ofSize: 12)
         let boldFont = UIFont.boldSystemFont(ofSize: 12)
@@ -193,6 +164,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func scrollToTop() {
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
@@ -214,20 +190,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    private func getTextFieldFromView(_ view: UIView) -> UITextField?{
-        for subview in view.subviews{
-            if subview is UITextField {
-                return subview as? UITextField
-            }else{
-                let textField = self.getTextFieldFromView(subview)
-                if textField != nil{
-                    return textField
-                }
-            }
-        }
-        return nil
-    }
-    
     // MARK: - Manage Data
     private func reloadIngredientList(){
         let realm = try! Realm()
@@ -246,9 +208,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            let searchText = searchBar.text!
-            let convertedSearchText = searchBar.text!.convertToYomi().katakanaLowercasedForSearch()
-            if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+            let searchText = searchTextField.text!
+            let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
+            if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
                 ingredientBasicList.removeAll{
                     ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
                     ($0.name.contains(searchText) == false)
@@ -374,14 +336,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50, isReminderMode == false{
-            searchBar.becomeFirstResponder()
+            searchTextField.becomeFirstResponder()
         }else if scrollBeginingYPoint < scrollView.contentOffset.y {
-            searchBar.resignFirstResponder()
+            searchTextField.resignFirstResponder()
         }
     }
     
-    // MARK: - UISearchBarDelegate
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    // MARK: - UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField){
         if tableView.contentOffset.y > 0{
             tableView.setContentOffset(tableView.contentOffset, animated: false)
         }
@@ -391,32 +353,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         self.isTyping = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        searchTextField.resignFirstResponder()
         reloadIngredientBasicList()
         tableView.reloadData()
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            self.reloadIngredientBasicList()
-            self.tableView.reloadData()
-        }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            self.reloadIngredientBasicList()
-            self.tableView.reloadData()
-        }
         return true
     }
-    
+
+    @objc func searchTextFieldDidChange(_ notification: Notification){
+        searchTextField.adjustClearButtonColor(with: 4)
+        self.reloadIngredientBasicList()
+        self.tableView.reloadData()
+    }
+
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -433,7 +387,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
         performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
     }
     
@@ -542,7 +496,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func changeToReminderMode(){
         reminderButton.image = UIImage(named: "navigation-reminder-filled")
-        searchBarHeightConstraint.constant = 0
+        searchTextFieldTopConstraint.constant = 0
+        searchTextFieldHeightConstraint.constant = 0
+        searchTextFieldBottomConstraint.constant = 0
         categoryHeightConstraint.constant = 0
         category.isHidden = true
         categoryBottomConstraint.constant = 0
@@ -555,12 +511,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         containerSeparatorLandscapeTopConstraint.constant = 0
         containerSeparatorHeightConstraint.constant = 0
         addIngredientButton.isEnabled = false
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
     }
     
     private func changeToIngredientMode(){
         reminderButton.image = UIImage(named: "navigation-reminder-empty")
-        searchBarHeightConstraint.constant = 44
+        searchTextFieldTopConstraint.constant = 4
+        searchTextFieldHeightConstraint.constant = 36
+        searchTextFieldBottomConstraint.constant = 4
         categoryHeightConstraint.constant = 28
         category.isHidden = false
         categoryBottomConstraint.constant = 4
@@ -623,7 +581,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             vc.interactor = interactor
         }
         
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
         present(nvc, animated: true)
     }
     

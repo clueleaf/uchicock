@@ -10,17 +10,19 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UISearchBarDelegate, UIViewControllerTransitioningDelegate, ScrollableToTop {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UIViewControllerTransitioningDelegate, UITextFieldDelegate, ScrollableToTop {
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!
 
     @IBOutlet weak var searchContainer: UIView!
-    @IBOutlet weak var searchBar: CustomSearchBar!
+    @IBOutlet weak var searchTextField: CustomTextField!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     @IBOutlet weak var containerSeparator: UIView!
-    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var searchBarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchTextFieldLandscapeBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchConditionModifyButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerSeparatorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
@@ -71,15 +73,10 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         requestReview()
-
-        getTextFieldFromView(view: searchBar)?.enablesReturnKeyAutomatically = false
-        searchBar.returnKeyType = UIReturnKeyType.done
-        searchBar.backgroundImage = UIImage()
         
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderWidth = 1.0
-            searchBar.searchTextField.layer.cornerRadius = 8.0
-        }
+        searchTextField.layer.cornerRadius = 8.0
+        searchTextField.layer.borderWidth = 1.0
+        searchTextField.clipsToBounds = true
 
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = 15
@@ -110,20 +107,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private func getTextFieldFromView(view: UIView) -> UITextField? {
-        for subview in view.subviews{
-            if subview is UITextField{
-                return subview as? UITextField
-            }else{
-                let textField = self.getTextFieldFromView(view: subview)
-                if textField != nil{
-                    return textField
-                }
-            }
-        }
-        return nil
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -131,45 +114,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
         
-        let textFieldInSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        let glassIconView = textFieldInSearchBar?.leftView as? UIImageView
-        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
-        glassIconView?.tintColor = UchicockStyle.labelTextColorLight
+        searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        searchTextField.tintColor = UchicockStyle.labelTextColor
+        searchTextField.textColor = UchicockStyle.labelTextColor
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        searchTextField.adjustClearButtonColor(with: 4)
+        searchTextField.setSearchIcon()
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
 
-        if #available(iOS 13.0, *) {
-            searchBar.searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        }else{
-            for view in searchBar.subviews {
-                for subview in view.subviews {
-                    if subview is UITextField {
-                        let textField: UITextField = subview as! UITextField
-                        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-                        textField.layer.borderWidth = 1.0
-                        textField.layer.cornerRadius = 8.0
-                        for subsubview in subview.subviews{
-                            if subsubview is UILabel{
-                                let placeholderLabel = subsubview as! UILabel
-                                placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview is UITextField {
-                    for subsubview in subview.subviews{
-                        if subsubview is UILabel{
-                            let placeholderLabel = subsubview as! UILabel
-                            placeholderLabel.textColor = UchicockStyle.labelTextColorLight
-                        }
-                    }
-                }
-            }
-        }
-        
         searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -334,6 +289,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func scrollToTop() {
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
@@ -390,9 +350,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
             }
             
-            let searchText = searchBar.text!
-            let convertedSearchText = searchBar.text!.convertToYomi().katakanaLowercasedForSearch()
-            if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+            let searchText = searchTextField.text!
+            let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+            if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
                 recipeBasicList.removeAll{
                     ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
                     ($0.name.contains(searchText) == false)
@@ -718,14 +678,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50, isBookmarkMode == false{
-            searchBar.becomeFirstResponder()
+            searchTextField.becomeFirstResponder()
         }else if scrollBeginningYPoint < scrollView.contentOffset.y {
-            searchBar.resignFirstResponder()
+            searchTextField.resignFirstResponder()
         }
     }
     
-    // MARK: - UISearchBarDelegate
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    // MARK: - UITextFieldDelegate
+    func textFieldDidBeginEditing(_ textField: UITextField){
         if tableView.contentOffset.y > 0{
             tableView.setContentOffset(tableView.contentOffset, animated: false)
         }
@@ -735,30 +695,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         self.isTyping = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        searchTextField.resignFirstResponder()
         reloadRecipeBasicList()
         tableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            reloadRecipeBasicList()
-            tableView.reloadData()
-        }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            self.reloadRecipeBasicList()
-            self.tableView.reloadData()
-        }
         return true
+    }
+    
+    @objc func searchTextFieldDidChange(_ notification: Notification){
+        searchTextField.adjustClearButtonColor(with: 4)
+        reloadRecipeBasicList()
+        tableView.reloadData()
     }
     
     // MARK: - UITableView
@@ -774,7 +726,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
         performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
     }
     
@@ -915,20 +867,24 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func changeToBookmarkMode(){
         bookmarkButton.image = UIImage(named: "navigation-recipe-bookmark-on")
-        searchBarHeightConstraint.constant = 0
-        searchBarBottomConstraint.constant = 0
+        searchTextFieldTopConstraint.constant = 0
+        searchTextFieldHeightConstraint.constant = 0
+        searchTextFieldBottomConstraint.constant = 0
+        searchTextFieldLandscapeBottomConstraint.constant = 0
         searchConditionModifyButtonHeightConstraint.constant = 0
         searchConditionModifyButton.isHidden = true
         containerSeparatorTopConstraint.constant = 0
         containerSeparatorHeightConstraint.constant = 0
         addRecipeButton.isEnabled = false
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
     }
     
     private func changeToRecipeMode(){
         bookmarkButton.image = UIImage(named: "navigation-recipe-bookmark-off")
-        searchBarHeightConstraint.constant = 44
-        searchBarBottomConstraint.constant = 4
+        searchTextFieldTopConstraint.constant = 4
+        searchTextFieldHeightConstraint.constant = 36
+        searchTextFieldBottomConstraint.constant = 8
+        searchTextFieldLandscapeBottomConstraint.constant = 4
         searchConditionModifyButtonHeightConstraint.constant = 30
         searchConditionModifyButton.isHidden = false
         containerSeparatorTopConstraint.constant = 8
@@ -952,9 +908,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
-        let searchText = searchBar.text!
-        let convertedSearchText = searchBar.text!.convertToYomi().katakanaLowercasedForSearch()
-        if searchBar.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             recipeBasicListForFilterModal.removeAll{
                 ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
                 ($0.name.contains(searchText) == false)
@@ -962,7 +918,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal
-        searchBar.resignFirstResponder()
+        searchTextField.resignFirstResponder()
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet

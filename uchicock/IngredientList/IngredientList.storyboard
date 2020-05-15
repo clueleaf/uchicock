@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vnn-gI-eCW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vnn-gI-eCW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,16 +105,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lua-m4-zJA" userLabel="Container">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" placeholder="材料名で検索" translatesAutoresizingMaskIntoConstraints="NO" id="pzt-xa-LwF" customClass="CustomSearchBar" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="WNZ-hg-Syb"/>
-                                        </constraints>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="15U-YU-usX" id="Jyp-ln-qhR"/>
-                                        </connections>
-                                    </searchBar>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PAy-Yc-Fde" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="76" width="398" height="29"/>
                                         <constraints>
@@ -151,7 +141,7 @@
                                             <constraint firstAttribute="height" constant="1" id="YxM-PQ-fdV"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxa-Lv-rSY">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxa-Lv-rSY">
                                         <rect key="frame" x="117" y="112" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Ovy-gO-1LM"/>
@@ -163,49 +153,60 @@
                                             <action selector="ingredientRecommendButtonTapped:" destination="15U-YU-usX" eventType="touchUpInside" id="22d-lh-ZxY"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名で検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vac-u9-Ht5" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="4" width="398" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="myG-v3-qn1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="15U-YU-usX" id="CoR-Ep-Kpf"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="byH-fO-srn" secondAttribute="bottom" id="0Rd-v0-4Gx"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="top" secondItem="PAy-Yc-Fde" secondAttribute="bottom" constant="8" id="0Yx-52-nQT"/>
+                                    <constraint firstItem="Vac-u9-Ht5" firstAttribute="centerY" secondItem="dxa-Lv-rSY" secondAttribute="centerY" id="2rY-g4-sz9"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="leading" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="6GQ-dn-bEh"/>
+                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="leading" secondItem="Vac-u9-Ht5" secondAttribute="trailing" constant="16" id="6Ts-HW-hUE"/>
+                                    <constraint firstItem="Vac-u9-Ht5" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="7e4-1Q-iw8"/>
+                                    <constraint firstItem="Vac-u9-Ht5" firstAttribute="top" secondItem="Lua-m4-zJA" secondAttribute="top" constant="4" id="7wY-Yl-Zwe"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="4" id="9bS-Nc-pdt"/>
-                                    <constraint firstItem="pzt-xa-LwF" firstAttribute="centerY" secondItem="dxa-Lv-rSY" secondAttribute="centerY" id="AYx-jV-zWj"/>
-                                    <constraint firstItem="TSf-wI-n9h" firstAttribute="top" secondItem="pzt-xa-LwF" secondAttribute="bottom" id="Dan-ah-vYC"/>
                                     <constraint firstAttribute="trailing" secondItem="byH-fO-srn" secondAttribute="trailing" id="Ewf-C2-osx"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="trailing" secondItem="m5h-bx-XfI" secondAttribute="trailing" constant="-8" id="FvY-sC-UZE"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="centerY" secondItem="TSf-wI-n9h" secondAttribute="centerY" id="Gcp-LE-ibB"/>
-                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="leading" secondItem="pzt-xa-LwF" secondAttribute="trailing" constant="8" id="KTd-Hz-Gsn"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="centerX" secondItem="Lua-m4-zJA" secondAttribute="centerX" id="NcL-Hp-XOp"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="width" secondItem="TSf-wI-n9h" secondAttribute="width" id="OHl-pn-gGU"/>
+                                    <constraint firstItem="TSf-wI-n9h" firstAttribute="top" secondItem="Vac-u9-Ht5" secondAttribute="bottom" constant="4" id="V9x-Q3-WUq"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="leading" secondItem="Lua-m4-zJA" secondAttribute="leading" id="aLm-WH-RQY"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="4" id="adq-im-gbd"/>
-                                    <constraint firstItem="pzt-xa-LwF" firstAttribute="top" secondItem="Lua-m4-zJA" secondAttribute="top" id="afO-rp-feR"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="dxa-Lv-rSY" secondAttribute="bottom" constant="6" id="fg1-LP-gop"/>
                                     <constraint firstItem="TSf-wI-n9h" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="inu-Pv-EEd"/>
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="jgZ-yb-d1j"/>
-                                    <constraint firstItem="m5h-bx-XfI" firstAttribute="leading" secondItem="pzt-xa-LwF" secondAttribute="leading" id="lMu-xD-STm"/>
-                                    <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="pzt-xa-LwF" secondAttribute="trailing" id="mcA-WI-EWD"/>
+                                    <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="Vac-u9-Ht5" secondAttribute="trailing" constant="8" id="p4n-0Q-703"/>
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="PAy-Yc-Fde" secondAttribute="trailing" constant="8" id="tUw-0c-cMN"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="thL-54-8Xe"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="m5h-bx-XfI"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="AYx-jV-zWj"/>
+                                        <exclude reference="2rY-g4-sz9"/>
                                         <exclude reference="6GQ-dn-bEh"/>
                                         <exclude reference="Gcp-LE-ibB"/>
                                         <exclude reference="OHl-pn-gGU"/>
                                         <exclude reference="9bS-Nc-pdt"/>
+                                        <exclude reference="6Ts-HW-hUE"/>
                                         <exclude reference="FvY-sC-UZE"/>
-                                        <exclude reference="KTd-Hz-Gsn"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="jgZ-yb-d1j"/>
-                                        <exclude reference="mcA-WI-EWD"/>
-                                        <include reference="AYx-jV-zWj"/>
+                                        <exclude reference="p4n-0Q-703"/>
+                                        <include reference="2rY-g4-sz9"/>
                                         <include reference="6GQ-dn-bEh"/>
                                         <include reference="Gcp-LE-ibB"/>
                                         <include reference="OHl-pn-gGU"/>
@@ -214,8 +215,8 @@
                                         <include reference="9bS-Nc-pdt"/>
                                         <exclude reference="fg1-LP-gop"/>
                                         <exclude reference="0Yx-52-nQT"/>
+                                        <include reference="6Ts-HW-hUE"/>
                                         <include reference="FvY-sC-UZE"/>
-                                        <include reference="KTd-Hz-Gsn"/>
                                         <exclude reference="NcL-Hp-XOp"/>
                                     </mask>
                                 </variation>
@@ -259,8 +260,10 @@
                         <outlet property="ingredientRecommendButton" destination="dxa-Lv-rSY" id="8pq-ao-HeU"/>
                         <outlet property="ingredientRecommendButtonHeightConstraint" destination="Ovy-gO-1LM" id="nFS-9G-EzC"/>
                         <outlet property="reminderButton" destination="f1a-T6-kRA" id="1Jj-x7-hic"/>
-                        <outlet property="searchBar" destination="pzt-xa-LwF" id="nNr-ul-9jY"/>
-                        <outlet property="searchBarHeightConstraint" destination="WNZ-hg-Syb" id="FuU-vn-aX7"/>
+                        <outlet property="searchTextField" destination="Vac-u9-Ht5" id="PPl-W1-qFK"/>
+                        <outlet property="searchTextFieldBottomConstraint" destination="V9x-Q3-WUq" id="n1l-HU-Tqc"/>
+                        <outlet property="searchTextFieldHeightConstraint" destination="myG-v3-qn1" id="7wl-0e-Snf"/>
+                        <outlet property="searchTextFieldTopConstraint" destination="7wY-Yl-Zwe" id="QfM-Nb-jwq"/>
                         <outlet property="segmentedControlContainer" destination="Lua-m4-zJA" id="aCT-96-MB8"/>
                         <outlet property="stockState" destination="PAy-Yc-Fde" id="MZ1-HH-7Cs"/>
                         <outlet property="stockStateBottomConstraint" destination="0Yx-52-nQT" id="K2i-Ww-aw7"/>

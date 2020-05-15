@@ -743,7 +743,6 @@ struct UchicockStyle{
         // 注意：UILabel, TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
         customizeButton()
         customizeNavigationBar()
-        customizeSearchBar()
         customizeSegmentedControl()
         customizeCircularCheckbox()
         customizeTextField()
@@ -770,12 +769,6 @@ struct UchicockStyle{
         CustomNavigationBar.appearance().shadowImage = UIImage()
     }
     
-    static private func customizeSearchBar(){
-        CustomSearchBar.appearance().backgroundColor = filterContainerBackgroundColor
-        CustomSearchBar.appearance().tintColor = labelTextColor
-        CustomSearchBar.appearance().barTintColor = filterContainerBackgroundColor        
-    }
-    
     static private func customizeSegmentedControl(){
         CustomSegmentedControl.appearance().backgroundColor = basicBackgroundColor
         if #available(iOS 13.0, *) {
@@ -796,16 +789,6 @@ struct UchicockStyle{
         CustomTextField.appearance().backgroundColor = basicBackgroundColor
         CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
-        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).backgroundColor = basicBackgroundColor
-        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).tintColor = labelTextColor
-        UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).textColor = labelTextColor
-        if isDark{
-            CustomTextField.appearance().keyboardAppearance = .dark
-            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .dark
-        }else{
-            CustomTextField.appearance().keyboardAppearance = .light
-            UITextField.appearance(whenContainedInInstancesOf: [CustomSearchBar.self]).keyboardAppearance = .light
-        }
     }
     
     static private func customizeTextView(){

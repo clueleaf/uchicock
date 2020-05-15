@@ -62,9 +62,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ingredientTextField1.delegate = self
-        ingredientTextField2.delegate = self
-        ingredientTextField3.delegate = self
         ingredientTextField1.tag = 0
         ingredientTextField2.tag = 1
         ingredientTextField3.tag = 2
@@ -753,7 +750,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    // MARK: - UITextField
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         showRecipeTableView(shouldSetToUserDefaults: true)
         return true

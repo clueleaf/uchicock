@@ -103,6 +103,24 @@ class CustomTextField: UITextField{
         self.text = ""
         NotificationCenter.default.post(name: .textFieldClearButtonTappedNotification, object: self)        
     }
+    
+    func setSearchIcon() {
+        let searchIcon = UIImageView()
+        searchIcon.image = UIImage(named: "tabbar-reverse-lookup")?.withAlignmentRectInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 0))
+        searchIcon.contentMode = .scaleAspectFit
+        searchIcon.tintColor = UchicockStyle.labelTextColorLight
+        self.leftViewMode = .always
+        self.leftView = searchIcon
+    }
+    
+    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.leftViewRect(forBounds: bounds)
+        rect.origin.x = 8
+        rect.origin.y = 10
+        rect.size.height = self.frame.height - (rect.origin.y * 2)
+        rect.size.width = rect.size.height
+        return rect
+    }
 }
 
 public class BadgeBarButtonItem: UIBarButtonItem {
@@ -159,9 +177,6 @@ public class BadgeBarButtonItem: UIBarButtonItem {
     deinit {
         self.removeObserver(self, forKeyPath: "view")
     }
-}
-
-class CustomSearchBar: UISearchBar{
 }
 
 class CustomNavigationBar: UINavigationBar{
