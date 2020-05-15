@@ -1209,7 +1209,7 @@ extension String {
         case "アライズ": return true
         case "イエロー・ラットラー": return true
         case "ウィスキーコブラー": return true
-        case "ウィスキースウィズル": return true
+        case "ウィスキー・スウィズル": return true
         case "ウィスキースマッシュ": return true
         case "ウィスキーデイジー": return true
         case "ウェディングベル": return true
@@ -1220,7 +1220,7 @@ extension String {
         case "エッグサワー": return true
         case "エルクスオウン": return true
 
-        case "キスフロムヘブン": return true
+        case "キッスフロムヘブン": return true
         case "ギブソン": return true
         case "キャロル": return true
         case "キルシュカシス": return true
@@ -1238,7 +1238,7 @@ extension String {
         case "シルバーブレット": return true
         case "ジンアンドフレンチ": return true
         case "ジンコブラー": return true
-        case "ジンスウィズル": return true
+        case "ジン・スウィズル": return true
         case "シンデレラハネムーン": return true
         case "ジンフィックス": return true
 
@@ -1258,8 +1258,8 @@ extension String {
         case "ビーアンドビー": return true
         case "プリンストン": return true
         case "フローズンダイキリ": return true
-        case "フローズンマルガリータ": return true
         case "フローズンピーチマルガリータ": return true
+        case "フローズンマルガリータ": return true
         case "フロープ": return true
         case "ベネディクト": return true
         case "ポートフリップ": return true
