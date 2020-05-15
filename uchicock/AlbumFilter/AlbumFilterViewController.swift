@@ -14,6 +14,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollBackgroundView: UIView!
     
     @IBOutlet weak var filterExplanationLabel: UILabel!
+    @IBOutlet weak var filterSelectAllButton: UIButton!
     
     @IBOutlet weak var favoriteDeselectAllButton: UIButton!
     @IBOutlet weak var favoriteSelectAllButton: UIButton!
@@ -144,7 +145,8 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         scrollBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
 
         filterExplanationLabel.textColor = UchicockStyle.labelTextColorLight
-        
+        filterSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+
         favoriteDeselectAllButton.setTitleColor(UchicockStyle.alertColor, for: .normal)
         favoriteSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         favorite0Button.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
@@ -486,6 +488,36 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = UchicockStyle.primaryColor
+    }
+    
+    @IBAction func filterSelectAllButtonTapped(_ sender: UIButton) {
+        setCheckboxChecked(favorite0Checkbox)
+        setCheckboxChecked(favorite1Checkbox)
+        setCheckboxChecked(favorite2Checkbox)
+        setCheckboxChecked(favorite3Checkbox)
+        setFavoriteWarningVisibility()
+
+        setCheckboxChecked(styleLongCheckbox)
+        setCheckboxChecked(styleShortCheckbox)
+        setCheckboxChecked(styleHotCheckbox)
+        setCheckboxChecked(styleNoneCheckbox)
+        setStyleWarningVisibility()
+
+        setCheckboxChecked(methodBuildCheckbox)
+        setCheckboxChecked(methodStirCheckbox)
+        setCheckboxChecked(methodShakeCheckbox)
+        setCheckboxChecked(methodBlendCheckbox)
+        setCheckboxChecked(methodOthersCheckbox)
+        setMethodWarningVisibility()
+
+        setCheckboxChecked(strengthNonAlcoholCheckbox)
+        setCheckboxChecked(strengthWeakCheckbox)
+        setCheckboxChecked(strengthMediumCheckbox)
+        setCheckboxChecked(strengthStrongCheckbox)
+        setCheckboxChecked(strengthNoneCheckbox)
+        setStrengthWarningVisibility()
+
+        filterRecipeBasic()
     }
     
     @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {

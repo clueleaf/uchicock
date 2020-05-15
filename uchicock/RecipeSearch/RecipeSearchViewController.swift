@@ -28,6 +28,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var firstSeparator: UIView!
     
+    @IBOutlet weak var filterSelectAllButton: UIButton!
     @IBOutlet weak var filterExplanationLabel: UILabel!
     
     @IBOutlet weak var favoriteDeselectAllButton: UIButton!
@@ -218,6 +219,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         firstSeparator.backgroundColor = UchicockStyle.labelTextColor
         
         filterExplanationLabel.textColor = UchicockStyle.labelTextColorLight
+        filterSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
 
         favoriteSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         favoriteDeselectAllButton.setTitleColor(UchicockStyle.alertColor, for: .normal)
@@ -738,6 +740,36 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
     }
     
+    @IBAction func filterSelectAllbuttonTapped(_ sender: UIButton) {
+        setCheckboxChecked(favorite0Checkbox)
+        setCheckboxChecked(favorite1Checkbox)
+        setCheckboxChecked(favorite2Checkbox)
+        setCheckboxChecked(favorite3Checkbox)
+        setFavoriteWarningVisibility()
+
+        setCheckboxChecked(styleLongCheckbox)
+        setCheckboxChecked(styleShortCheckbox)
+        setCheckboxChecked(styleHotCheckbox)
+        setCheckboxChecked(styleNoneCheckbox)
+        setStyleWarningVisibility()
+
+        setCheckboxChecked(methodBuildCheckbox)
+        setCheckboxChecked(methodStirCheckbox)
+        setCheckboxChecked(methodShakeCheckbox)
+        setCheckboxChecked(methodBlendCheckbox)
+        setCheckboxChecked(methodOthersCheckbox)
+        setMethodWarningVisibility()
+
+        setCheckboxChecked(strengthNonAlcoholCheckbox)
+        setCheckboxChecked(strengthWeakCheckbox)
+        setCheckboxChecked(strengthMediumCheckbox)
+        setCheckboxChecked(strengthStrongCheckbox)
+        setCheckboxChecked(strengthNoneCheckbox)
+        setStrengthWarningVisibility()
+
+        filterRecipeBasic()
+    }
+    
     @IBAction func favoriteDeselectAllButtonTapped(_ sender: UIButton) {
         setCheckboxUnchecked(favorite0Checkbox)
         setCheckboxUnchecked(favorite1Checkbox)
@@ -816,7 +848,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func styleDeselctAllButtonTapped(_ sender: UIButton) {
+    @IBAction func styleDeselectAllButtonTapped(_ sender: UIButton) {
         setCheckboxUnchecked(styleLongCheckbox)
         setCheckboxUnchecked(styleShortCheckbox)
         setCheckboxUnchecked(styleHotCheckbox)
