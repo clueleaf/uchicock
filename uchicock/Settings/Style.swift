@@ -789,6 +789,11 @@ struct UchicockStyle{
         CustomTextField.appearance().backgroundColor = basicBackgroundColor
         CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
+        if isDark{
+            CustomTextField.appearance().keyboardAppearance = .dark
+        }else{
+            CustomTextField.appearance().keyboardAppearance = .light
+        }
     }
     
     static private func customizeTextView(){
