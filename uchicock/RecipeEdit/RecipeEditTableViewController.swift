@@ -289,14 +289,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @objc func recipeNameTextFieldDidChange(_ notification: Notification){
         recipeName.adjustClearButtonColor(with: 4)
         recipeNameYomi.text = recipeName.text!.convertToYomi()
-        recipeNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateRecipeNameCounter()
         updateRecipeNameYomiCounter()
     }
     
     @objc func recipeNameYomiTextFieldDidChange(_ notification: Notification){
-        recipeNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateRecipeNameYomiCounter()
     }

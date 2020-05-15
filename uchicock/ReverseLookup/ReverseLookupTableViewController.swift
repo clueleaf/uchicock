@@ -11,7 +11,6 @@ import RealmSwift
 
 class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching, ScrollableToTop {
 
-    @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var recipeTableView: UITableView!
     @IBOutlet weak var ingredientSuggestTableView: UITableView!
@@ -97,7 +96,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self)
         
-        clearButton.isEnabled = true
         cancelButton.isEnabled = false
     }
     
@@ -732,7 +730,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             
             recipeTableView.flashScrollIndicators()
         }
-        clearButton.isEnabled = true
         cancelButton.isEnabled = false
         setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false)
         setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false)
@@ -778,7 +775,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
         }
-        clearButton.isEnabled = false
         cancelButton.isEnabled = true
         setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
         setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
@@ -1065,20 +1061,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
 
     // MARK: - IBAction
-    @IBAction func clearButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: nil, message: "入力した材料名をクリアします", preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "クリア", style: .default, handler: {action in
-            self.ingredientTextField1.text = ""
-            self.ingredientTextField2.text = ""
-            self.ingredientTextField3.text = ""
-            self.showRecipeTableView(shouldSetToUserDefaults: true)
-        }))
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-        alertView.modalPresentationCapturesStatusBarAppearance = true
-        self.present(alertView, animated: true, completion: nil)
-    }
-
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         showRecipeTableView(shouldSetToUserDefaults: false)
     }

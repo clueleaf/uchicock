@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,15 +213,9 @@
                                 <action selector="cancelButtonTapped:" destination="Cy2-49-Afi" id="fqK-PX-BiW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="クリア" id="sow-qs-5Cq">
-                            <connections>
-                                <action selector="clearButtonTapped:" destination="Cy2-49-Afi" id="3gU-gx-ni9"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="Bw4-Re-wQG" id="gKq-5n-LAF"/>
-                        <outlet property="clearButton" destination="sow-qs-5Cq" id="Yum-ll-EbU"/>
                         <outlet property="ingredientSuggestTableView" destination="4Ys-67-cyM" id="uf2-CE-Rly"/>
                         <outlet property="ingredientTextField1" destination="zOf-6H-wLN" id="6No-sw-8TR"/>
                         <outlet property="ingredientTextField2" destination="gQ4-ff-7oM" id="eEC-l2-UFh"/>

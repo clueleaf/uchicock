@@ -133,14 +133,12 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @objc func ingredientNameTextFieldDidChange(_ notification: Notification){
         ingredientName.adjustClearButtonColor(with: 4)
         ingredientNameYomi.text = ingredientName.text!.convertToYomi()
-        ingredientNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateIngredientNameCounter()
         updateIngredientNameYomiCounter()
     }
     
     @objc func ingredientNameYomiTextFieldDidChange(_ notification: Notification){
-        ingredientNameYomi.adjustClearButtonColor(with: 4)
         showCancelAlert = true
         updateIngredientNameYomiCounter()
     }
