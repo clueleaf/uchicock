@@ -38,6 +38,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var scrollBeginningYPoint: CGFloat = 0.0
 
     var isTyping = false
+    var hasRecipeAtAll = true
+    var textFieldHasSearchResult = false
     var isBookmarkMode = false
     var shouldShowBookmarkGuide = false
     
@@ -347,6 +349,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
             }
             
+            hasRecipeAtAll = recipeBasicList.count > 0
+            
             let searchText = searchTextField.text!
             let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
             if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
@@ -355,6 +359,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     ($0.name.contains(searchText) == false)
                 }
             }
+            
+            textFieldHasSearchResult = recipeBasicList.count > 0
+            setTextFieldColor(textField: searchTextField)
 
             filterRecipeBasicList()
             sortRecipeBasicList()
@@ -649,13 +656,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if isBookmarkMode{
                 noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
             }else{
-                noDataLabel.text = "条件にあてはまるレシピはありません"
-                if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-                    recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-                    recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
-                    recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
+                if hasRecipeAtAll{
+                    if textFieldHasSearchResult{
+                        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
+                            noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+                        }else{
+                            noDataLabel.text = "入力したレシピ名のレシピはありましたが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                        }
+                    }else{
+                        noDataLabel.text = "検索文字列にあてはまるレシピはありません"
+                    }
                 }else{
-                    noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
+                    noDataLabel.text = "レシピはありません"
                 }
             }
             
@@ -699,15 +711,32 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         searchTextField.resignFirstResponder()
+        searchTextField.adjustClearButtonColor(with: 4)
         reloadRecipeBasicList()
         tableView.reloadData()
+        setTextFieldColor(textField: searchTextField)
         return true
     }
-    
+
     @objc func searchTextFieldDidChange(_ notification: Notification){
         searchTextField.adjustClearButtonColor(with: 4)
         reloadRecipeBasicList()
         tableView.reloadData()
+        setTextFieldColor(textField: searchTextField)
+    }
+    
+    private func setTextFieldColor(textField: UITextField){
+        if textFieldHasSearchResult == false {
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textField.tintColor = UchicockStyle.alertColor
+            textField.textColor = UchicockStyle.alertColor
+        }else{
+            textField.layer.borderWidth = 0
+            textField.layer.borderColor = UIColor.clear.cgColor
+            textField.tintColor = UchicockStyle.labelTextColor
+            textField.textColor = UchicockStyle.labelTextColor
+        }
     }
     
     // MARK: - UITableView
@@ -756,6 +785,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
+
+                var rl = Array<RecipeBasic>()
+                for recipe in self.recipeList! {
+                    rl.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+                }
+                self.hasRecipeAtAll = rl.count > 0
+                let searchText = self.searchTextField.text!
+                let convertedSearchText = self.searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+                if self.searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+                    rl.removeAll{
+                        ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
+                        ($0.name.contains(searchText) == false)
+                    }
+                }
+                self.textFieldHasSearchResult = rl.count > 0
+                
+                self.setTextFieldColor(textField: self.searchTextField)
                 self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
                 if self.isBookmarkMode{

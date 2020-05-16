@@ -39,6 +39,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
+    var hasIngredientAtAll = true
+    var textFieldHasSearchResult = false
     var isTyping = false
     var isReminderMode = false
     var shouldShowReminderGuide = false
@@ -191,15 +193,23 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func reloadIngredientBasicList(){
         ingredientBasicList.removeAll()
-        for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
-        }
         
         if isReminderMode{
-            ingredientBasicList.removeAll{ $0.reminderSetDate == nil }
+            for ingredient in ingredientList!{
+                if ingredient.reminderSetDate != nil{
+                    ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+                }
+            }
+            
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
+            for ingredient in ingredientList!{
+                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+            }
+            
+            hasIngredientAtAll = ingredientBasicList.count > 0
+
             let searchText = searchTextField.text!
             let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
             if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
@@ -208,6 +218,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     ($0.name.contains(searchText) == false)
                 }
             }
+            
+            textFieldHasSearchResult = ingredientBasicList.count > 0
+            setTextFieldColor(textField: searchTextField)
             
             switch stockState.selectedSegmentIndex{
             case 1:
@@ -245,6 +258,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if isReminderMode{
                 noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
             }else{
+                if hasIngredientAtAll{
+                    if textFieldHasSearchResult{
+                        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
+                            noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
+                        }else{
+                            noDataLabel.text = "入力した材料名の材料はありましたが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                        }
+                    }else{
+                        noDataLabel.text = "検索文字列にあてはまる材料はありません"
+                    }
+                }else{
+                    noDataLabel.text = "材料はありません"
+                }
                 noDataLabel.text = "条件にあてはまる材料はありません"
             }
             self.tableView.backgroundView?.addSubview(noDataLabel)
@@ -262,59 +288,78 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let cell = view as! IngredientListItemTableViewCell
         let touchIndex = self.tableView.indexPath(for: cell)
         
-        if let index = touchIndex {
-            let realm = try! Realm()
-            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientBasicList[index.row].id)!
-            if ingredient.stockFlag {
-                try! realm.write {
-                    ingredient.stockFlag = false
-                }
-            }else{
-                try! realm.write {
-                    ingredient.stockFlag = true
-                }
-                if ingredient.reminderSetDate != nil{
-                    let alertView = CustomAlertController(title: nil, message: ingredient.ingredientName + "は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
-                    alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
-                    alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
-                        try! realm.write {
-                            ingredient.reminderSetDate = nil
-                            if self.isReminderMode{
-                                self.ingredientBasicList.remove(at: index.row)
-                                self.tableView.deleteRows(at: [index], with: .middle)
-                                if self.ingredientBasicList.count == 0{
-                                    self.setTableBackgroundView()
-                                    self.tableView.reloadData()
-                                }
-                                self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
-                            }else{
-                                MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true, isCenter: true)
-                            }
-                            self.setReminderBadge()
-                        }
-                    }))
-                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                    alertView.modalPresentationCapturesStatusBarAppearance = true
-                    self.present(alertView, animated: true, completion: nil)
-                }
-            }
-            
+        guard let index = touchIndex else { return }
+
+        let realm = try! Realm()
+        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientBasicList[index.row].id)!
+        if ingredient.stockFlag {
             try! realm.write {
-                for ri in ingredient.recipeIngredients{
-                    ri.recipe.updateShortageNum()
-                }
+                ingredient.stockFlag = false
             }
-            
-            if self.isReminderMode == false{
-                if stockState.selectedSegmentIndex != 0{
-                    ingredientBasicList.remove(at: index.row)
-                    tableView.deleteRows(at: [index], with: .middle)
-                    if ingredientBasicList.count == 0{
-                        setTableBackgroundView()
-                        tableView.reloadData()
+        }else{
+            try! realm.write {
+                ingredient.stockFlag = true
+            }
+            if ingredient.reminderSetDate != nil{
+                let alertView = CustomAlertController(title: nil, message: ingredient.ingredientName + "は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
+                alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
+                    try! realm.write {
+                        ingredient.reminderSetDate = nil
+                        if self.isReminderMode{
+                            self.ingredientBasicList.remove(at: index.row)
+                            self.tableView.deleteRows(at: [index], with: .middle)
+                            if self.ingredientBasicList.count == 0{
+                                self.setTableBackgroundView()
+                                self.tableView.reloadData()
+                            }
+                            self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
+                        }else{
+                            MessageHUD.show("リマインダーを解除しました", for: 2.0, withCheckmark: true, isCenter: true)
+                        }
+                        self.setReminderBadge()
                     }
-                    self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
+                }))
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                alertView.modalPresentationCapturesStatusBarAppearance = true
+                self.present(alertView, animated: true, completion: nil)
+            }
+        }
+        
+        try! realm.write {
+            for ri in ingredient.recipeIngredients{
+                ri.recipe.updateShortageNum()
+            }
+        }
+        
+        if self.isReminderMode == false{
+            if stockState.selectedSegmentIndex != 0{
+                ingredientBasicList.remove(at: index.row)
+                tableView.deleteRows(at: [index], with: .middle)
+                if ingredientBasicList.count == 0{
+                    var il = Array<IngredientBasic>()
+                    for ingredient in ingredientList!{
+                        il.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+                    }
+                    
+                    hasIngredientAtAll = il.count > 0
+
+                    let searchText = searchTextField.text!
+                    let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
+                    if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
+                        il.removeAll{
+                            ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
+                            ($0.name.contains(searchText) == false)
+                        }
+                    }
+                    
+                    textFieldHasSearchResult = il.count > 0
+                    setTextFieldColor(textField: searchTextField)
+                    
+                    setTableBackgroundView()
+                    tableView.reloadData()
                 }
+                self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
             }
         }
     }
@@ -352,8 +397,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         searchTextField.resignFirstResponder()
+        searchTextField.adjustClearButtonColor(with: 4)
         reloadIngredientBasicList()
         tableView.reloadData()
+        setTextFieldColor(textField: searchTextField)
         return true
     }
 
@@ -361,6 +408,21 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchTextField.adjustClearButtonColor(with: 4)
         self.reloadIngredientBasicList()
         self.tableView.reloadData()
+        setTextFieldColor(textField: searchTextField)
+    }
+    
+    private func setTextFieldColor(textField: UITextField){
+        if textFieldHasSearchResult == false {
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textField.tintColor = UchicockStyle.alertColor
+            textField.textColor = UchicockStyle.alertColor
+        }else{
+            textField.layer.borderWidth = 0
+            textField.layer.borderColor = UIColor.clear.cgColor
+            textField.tintColor = UchicockStyle.labelTextColor
+            textField.textColor = UchicockStyle.labelTextColor
+        }
     }
 
     // MARK: - UITableView
@@ -425,6 +487,24 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         realm.delete(ingredient)
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
+                    var il = Array<IngredientBasic>()
+                    for ingredient in self.ingredientList!{
+                        il.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+                    }
+                    
+                    self.hasIngredientAtAll = il.count > 0
+
+                    let searchText = self.searchTextField.text!
+                    let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
+                    if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
+                        il.removeAll{
+                            ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
+                            ($0.name.contains(searchText) == false)
+                        }
+                    }
+                    
+                    self.textFieldHasSearchResult = il.count > 0
+                    self.setTextFieldColor(textField: self.searchTextField)
                     self.setTableBackgroundView()
                     tableView.deleteRows(at: [indexPath], with: .middle)
                     if self.isReminderMode{

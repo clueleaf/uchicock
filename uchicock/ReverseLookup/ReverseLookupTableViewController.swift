@@ -31,6 +31,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var ingredientSuggestList = Array<IngredientBasic>()
     let selectedCellBackgroundView = UIView()
 
+    var textFieldHasSearchResult = false
+    var hasNonExistingIngredient = false
+
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
     var recipeFilterStar0 = true
@@ -323,6 +326,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     private func reloadRecipeList(){
         createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicList)
+        textFieldHasSearchResult = recipeBasicList.count > 0
         filterRecipeBasicList()
         sortRecipeBasicList()
         setTableBackgroundView()
@@ -676,15 +680,20 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     private func setTableBackgroundView(){
         if recipeBasicList.count == 0{
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.recipeTableView.bounds.size.height / 3, width: self.recipeTableView.bounds.size.width, height: 60))
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.recipeTableView.bounds.size.height / 3, width: self.recipeTableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
-            noDataLabel.text = "条件にあてはまるレシピはありません"
-            if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-                recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-                recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
-                recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
+            if hasNonExistingIngredient{
+                noDataLabel.text = "存在しない材料が指定されています"
             }else{
-                noDataLabel.text! += "\n絞り込み条件を変えると見つかるかもしれません"
+                if textFieldHasSearchResult{
+                    if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
+                        noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+                    }else{
+                        noDataLabel.text = "入力した材料を使うレシピはありましたが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                    }
+                }else{
+                    noDataLabel.text = "入力した材料を全て使うレシピはありません"
+                }
             }
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -734,6 +743,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
+        hasNonExistingIngredient = false
         textField.layer.borderWidth = 0
         textField.layer.borderColor = UIColor.clear.cgColor
         textField.tintColor = UchicockStyle.labelTextColor
@@ -743,6 +753,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 let realm = try! Realm()
                 let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
+                    hasNonExistingIngredient = true
                     textField.layer.borderWidth = 1
                     textField.layer.borderColor = UchicockStyle.alertColor.cgColor
                     textField.tintColor = UchicockStyle.alertColor
@@ -799,6 +810,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
         }
         ingredientTextField1.adjustClearButtonColor(with: 5)
+        setTableBackgroundView()
     }
     
     @objc func textFieldDidChange2(_ notification: Notification){
@@ -820,6 +832,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
         }
         ingredientTextField2.adjustClearButtonColor(with: 5)
+        setTableBackgroundView()
     }
 
     @objc func textFieldDidChange3(_ notification: Notification){
@@ -841,6 +854,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
         }
         ingredientTextField3.adjustClearButtonColor(with: 5)
+        setTableBackgroundView()
     }
 
     private func reloadIngredientSuggestList(text: String){
