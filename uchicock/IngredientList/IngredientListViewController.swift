@@ -53,7 +53,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTextField.layer.cornerRadius = 8.0
+        searchTextField.layer.cornerRadius = 18.0
         searchTextField.layer.borderWidth = 1
         searchTextField.clipsToBounds = true
 
@@ -61,6 +61,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         category.layer.masksToBounds = true
         stockState.layer.borderWidth = 1.0
         stockState.layer.masksToBounds = true
+        
+        if #available(iOS 13.0, *) {
+            category.selectedSegmentTintColor = .clear
+            stockState.selectedSegmentTintColor = .clear
+        }
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }

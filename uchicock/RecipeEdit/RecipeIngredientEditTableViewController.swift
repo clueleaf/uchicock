@@ -56,9 +56,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
-        ingredientName.layer.cornerRadius = 5.0
+        ingredientName.layer.cornerRadius = 20.0
         ingredientName.layer.borderWidth = 1
-        amount.layer.cornerRadius = 5.0
+        amount.layer.cornerRadius = 20.0
         amount.layer.borderWidth = 1
         
         option.boxLineWidth = 1.0
@@ -99,9 +99,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.clipsToBounds = true
+        ingredientName.setLeftPadding()
+        
         amount.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         amount.adjustClearButtonColor(with: 4)
+        amount.clipsToBounds = true
+        amount.setLeftPadding()
+        
         option.secondaryTintColor = UchicockStyle.primaryColor
         option.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         optionDescriptionLabel.textColor = UchicockStyle.labelTextColorLight

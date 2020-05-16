@@ -71,6 +71,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
+        if #available(iOS 13.0, *) {
+            style.selectedSegmentTintColor = .clear
+            method.selectedSegmentTintColor = .clear
+            strength.selectedSegmentTintColor = .clear
+        }
+
         star1.minimumHitWidth = 36
         star1.minimumHitHeight = 36
         star2.minimumHitWidth = 36
@@ -89,17 +95,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         recipeName.text = recipe.recipeName
         recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        recipeName.layer.cornerRadius = 5.0
+        recipeName.layer.cornerRadius = 22.0
         recipeName.layer.borderWidth = 1
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
+        recipeName.clipsToBounds = true
+        recipeName.setLeftPadding()
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         recipeNameYomi.text = recipe.recipeNameYomi
         recipeNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        recipeNameYomi.layer.cornerRadius = 5.0
+        recipeNameYomi.layer.cornerRadius = 15.0
         recipeNameYomi.layer.borderWidth = 1
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        recipeNameYomi.clipsToBounds = true
+        recipeNameYomi.setLeftPadding()
 
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
             photo.image = image

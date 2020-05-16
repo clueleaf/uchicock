@@ -39,6 +39,10 @@ class ReminderTableViewController: UITableViewController {
             tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
         
+        if #available(iOS 13.0, *) {
+            reminderType.selectedSegmentTintColor = .clear
+        }
+        
         self.navigationItem.title = "リマインダー"
         titleLabel.text = "対象材料"
         reminderTitle.text = ingredient.ingredientName

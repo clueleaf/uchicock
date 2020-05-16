@@ -104,7 +104,10 @@ class CustomTextField: UITextField{
         NotificationCenter.default.post(name: .textFieldClearButtonTappedNotification, object: self)        
     }
     
+    var hasLeftIcon = false
+    
     func setSearchIcon() {
+        self.hasLeftIcon = true
         let searchIcon = UIImageView()
         searchIcon.image = UIImage(named: "tabbar-reverse-lookup")?.withAlignmentRectInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 0))
         searchIcon.contentMode = .scaleAspectFit
@@ -113,12 +116,19 @@ class CustomTextField: UITextField{
         self.leftView = searchIcon
     }
     
+    func setLeftPadding(){
+        self.hasLeftIcon = false
+        let leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 2.0))
+        self.leftView = leftView
+        self.leftViewMode = .always
+    }
+    
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
         rect.origin.x = 8
         rect.origin.y = 10
         rect.size.height = self.frame.height - (rect.origin.y * 2)
-        rect.size.width = rect.size.height
+        rect.size.width = hasLeftIcon ? rect.size.height : 0
         return rect
     }
 }
@@ -189,6 +199,26 @@ class CustomTabBar: UITabBar{
 }
 
 class CustomSegmentedControl: UISegmentedControl{
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if #available(iOS 13.0, *) {
+            layer.cornerRadius = self.bounds.size.height / 2.0
+            layer.borderColor = UchicockStyle.primaryColor.cgColor
+            layer.borderWidth = 1.0
+            layer.masksToBounds = true
+            clipsToBounds = true
+
+            for i in 0...subviews.count - 1{
+                if let subview = subviews[i] as? UIImageView{
+                    if i == self.selectedSegmentIndex {
+                        subview.backgroundColor = UchicockStyle.primaryColor
+                    }else{
+                        subview.backgroundColor = .clear
+                    }
+                }
+            }
+        }
+    }
 }
 
 class CustomLabel: UILabel{

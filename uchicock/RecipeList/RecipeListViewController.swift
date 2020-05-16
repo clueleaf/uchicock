@@ -74,7 +74,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         requestReview()
         
-        searchTextField.layer.cornerRadius = 8.0
+        searchTextField.layer.cornerRadius = 18.0
         searchTextField.layer.borderWidth = 1.0
         searchTextField.clipsToBounds = true
 

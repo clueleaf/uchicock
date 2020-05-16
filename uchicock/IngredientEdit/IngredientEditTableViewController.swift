@@ -39,6 +39,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            category.selectedSegmentTintColor = .clear
+        }
+
         if ingredient.ingredientName == "" {
             self.navigationItem.title = "材料登録"
             isAddMode = true
@@ -48,18 +52,22 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         ingredientName.text = ingredient.ingredientName
-        ingredientName.layer.cornerRadius = 5.0
+        ingredientName.layer.cornerRadius = 22.0
         ingredientName.layer.borderWidth = 1
         ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.clipsToBounds = true
+        ingredientName.setLeftPadding()
 
         ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientNameYomi.text = ingredient.ingredientNameYomi
-        ingredientNameYomi.layer.cornerRadius = 5.0
+        ingredientNameYomi.layer.cornerRadius = 15.0
         ingredientNameYomi.layer.borderWidth = 1
         ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientNameYomi.clipsToBounds = true
+        ingredientNameYomi.setLeftPadding()
 
         stock.boxLineWidth = 1.0
         stock.stateChangeAnimation = .expand
