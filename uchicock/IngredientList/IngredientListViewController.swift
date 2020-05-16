@@ -271,7 +271,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }else{
                     noDataLabel.text = "材料はありません"
                 }
-                noDataLabel.text = "条件にあてはまる材料はありません"
             }
             self.tableView.backgroundView?.addSubview(noDataLabel)
         }else{
