@@ -746,7 +746,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         hasNonExistingIngredient = false
         textField.layer.borderWidth = 0
         textField.layer.borderColor = UIColor.clear.cgColor
-        textField.tintColor = UchicockStyle.labelTextColor
         textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
             if textField.text != ""{
@@ -756,7 +755,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     hasNonExistingIngredient = true
                     textField.layer.borderWidth = 1
                     textField.layer.borderColor = UchicockStyle.alertColor.cgColor
-                    textField.tintColor = UchicockStyle.alertColor
                     textField.textColor = UchicockStyle.alertColor
                 }
             }

@@ -414,12 +414,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if textFieldHasSearchResult == false {
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UchicockStyle.alertColor.cgColor
-            textField.tintColor = UchicockStyle.alertColor
             textField.textColor = UchicockStyle.alertColor
         }else{
             textField.layer.borderWidth = 0
             textField.layer.borderColor = UIColor.clear.cgColor
-            textField.tintColor = UchicockStyle.labelTextColor
             textField.textColor = UchicockStyle.labelTextColor
         }
     }
