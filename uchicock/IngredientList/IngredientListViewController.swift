@@ -204,23 +204,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            for ingredient in ingredientList!{
-                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
-            }
-            
-            hasIngredientAtAll = ingredientBasicList.count > 0
-
-            let searchText = searchTextField.text!
-            let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
-            if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
-                ingredientBasicList.removeAll{
-                    ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                    ($0.name.contains(searchText) == false)
-                }
-            }
-            
-            textFieldHasSearchResult = ingredientBasicList.count > 0
-            setTextFieldColor(textField: searchTextField)
+            // TODO
+            createSearchedIngredientBaiscList(list: &ingredientBasicList)
             
             switch stockState.selectedSegmentIndex{
             case 1:
@@ -238,11 +223,30 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
 
             ingredientBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }
         
         setTableBackgroundView()
+    }
+    
+    private func createSearchedIngredientBaiscList(list: inout Array<IngredientBasic>){
+        for ingredient in ingredientList!{
+            list.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+        }
+        
+        hasIngredientAtAll = list.count > 0
+
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
+        if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
+            list.removeAll{
+                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
+                ($0.name.contains(searchText) == false)
+            }
+        }
+        
+        textFieldHasSearchResult = list.count > 0
+        setTextFieldColor(textField: searchTextField)
     }
     
     private func setTableBackgroundView(){
@@ -337,24 +341,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 tableView.deleteRows(at: [index], with: .middle)
                 if ingredientBasicList.count == 0{
                     var il = Array<IngredientBasic>()
-                    for ingredient in ingredientList!{
-                        il.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
-                    }
-                    
-                    hasIngredientAtAll = il.count > 0
-
-                    let searchText = searchTextField.text!
-                    let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
-                    if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
-                        il.removeAll{
-                            ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                            ($0.name.contains(searchText) == false)
-                        }
-                    }
-                    
-                    textFieldHasSearchResult = il.count > 0
-                    setTextFieldColor(textField: searchTextField)
-                    
+                    self.createSearchedIngredientBaiscList(list: &il)
                     setTableBackgroundView()
                     tableView.reloadData()
                 }
@@ -484,24 +471,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         realm.delete(ingredient)
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
+                    // TODO
                     var il = Array<IngredientBasic>()
-                    for ingredient in self.ingredientList!{
-                        il.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
-                    }
-                    
-                    self.hasIngredientAtAll = il.count > 0
-
-                    let searchText = self.searchTextField.text!
-                    let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
-                    if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
-                        il.removeAll{
-                            ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                            ($0.name.contains(searchText) == false)
-                        }
-                    }
-                    
-                    self.textFieldHasSearchResult = il.count > 0
-                    self.setTextFieldColor(textField: self.searchTextField)
+                    self.createSearchedIngredientBaiscList(list: &il)
                     self.setTableBackgroundView()
                     tableView.deleteRows(at: [indexPath], with: .middle)
                     if self.isReminderMode{

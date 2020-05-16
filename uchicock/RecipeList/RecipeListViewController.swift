@@ -345,31 +345,33 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
-            for recipe in recipeList! {
-                recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
-            }
-            
-            hasRecipeAtAll = recipeBasicList.count > 0
-            
-            let searchText = searchTextField.text!
-            let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-            if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-                recipeBasicList.removeAll{
-                    ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                    ($0.name.contains(searchText) == false)
-                }
-            }
-            
-            textFieldHasSearchResult = recipeBasicList.count > 0
-            setTextFieldColor(textField: searchTextField)
-
+            createSearchedRecipeBaiscList(list: &recipeBasicList)
             filterRecipeBasicList()
             sortRecipeBasicList()
-                
             self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(recipeList!.count) + ")"
         }
         
         setTableBackgroundView()
+    }
+    
+    private func createSearchedRecipeBaiscList(list: inout Array<RecipeBasic>){
+        for recipe in recipeList! {
+            list.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+        }
+        
+        hasRecipeAtAll = list.count > 0
+        
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+            list.removeAll{
+                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
+                ($0.name.contains(searchText) == false)
+            }
+        }
+        
+        textFieldHasSearchResult = list.count > 0
+        setTextFieldColor(textField: searchTextField)
     }
     
     private func filterRecipeBasicList(){
@@ -785,21 +787,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.recipeBasicList.remove(at: indexPath.row)
 
                 var rl = Array<RecipeBasic>()
-                for recipe in self.recipeList! {
-                    rl.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
-                }
-                self.hasRecipeAtAll = rl.count > 0
-                let searchText = self.searchTextField.text!
-                let convertedSearchText = self.searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-                if self.searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-                    rl.removeAll{
-                        ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                        ($0.name.contains(searchText) == false)
-                    }
-                }
-                self.textFieldHasSearchResult = rl.count > 0
-                
-                self.setTextFieldColor(textField: self.searchTextField)
+                self.createSearchedRecipeBaiscList(list: &rl)
+
                 self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
                 if self.isBookmarkMode{
