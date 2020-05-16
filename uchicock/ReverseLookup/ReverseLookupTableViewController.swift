@@ -32,7 +32,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     let selectedCellBackgroundView = UIView()
 
     var textFieldHasSearchResult = false
-    var hasNonExistingIngredient = false
+    var hasNonExistingIngredient1 = false
+    var hasNonExistingIngredient2 = false
+    var hasNonExistingIngredient3 = false
 
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -682,7 +684,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if recipeBasicList.count == 0{
             let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.recipeTableView.bounds.size.height / 3, width: self.recipeTableView.bounds.size.width, height: 100))
             noDataLabel.numberOfLines = 0
-            if hasNonExistingIngredient{
+            if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
                 noDataLabel.text = "存在しない材料が指定されています"
             }else{
                 if textFieldHasSearchResult{
@@ -737,12 +739,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             recipeTableView.flashScrollIndicators()
         }
         cancelButton.isEnabled = false
-        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false)
-        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false)
-        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false)
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient1)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient2)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient3)
     }
     
-    private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
+    private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool, hasNonExistingIngredient: inout Bool){
         hasNonExistingIngredient = false
         textField.layer.borderWidth = 0
         textField.layer.borderColor = UIColor.clear.cgColor
@@ -784,9 +786,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             editingTextField = textField.tag
         }
         cancelButton.isEnabled = true
-        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
-        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
-        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient1)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient2)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient3)
     }
     
     @objc func textFieldDidChange1(_ notification: Notification){
@@ -805,7 +807,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 reloadRecipeList()
                 recipeTableView.reloadData()
             }
-            setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true)
+            setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient1)
         }
         ingredientTextField1.adjustClearButtonColor(with: 5)
         setTableBackgroundView()
@@ -827,7 +829,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 reloadRecipeList()
                 recipeTableView.reloadData()
             }
-            setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true)
+            setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient2)
         }
         ingredientTextField2.adjustClearButtonColor(with: 5)
         setTableBackgroundView()
@@ -849,7 +851,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 reloadRecipeList()
                 recipeTableView.reloadData()
             }
-            setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true)
+            setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient3)
         }
         ingredientTextField3.adjustClearButtonColor(with: 5)
         setTableBackgroundView()
