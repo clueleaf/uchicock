@@ -62,8 +62,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         alcoholAmountTipButton.setImage(tipImage, for: .normal)
         alcoholAmountTipButton.tintColor = UchicockStyle.primaryColor
 
-        fakeTableHeaderView.backgroundColor = UchicockStyle.tableViewHeaderBackgroundColor
-        validNumLabel.textColor = UchicockStyle.tableViewHeaderTextColor
+        fakeTableHeaderView.backgroundColor = UchicockStyle.basicBackgroundColorLight
+        validNumLabel.textColor = UchicockStyle.labelTextColor
         updateValidNumLabel()
         clearAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         clearAllButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -75,7 +75,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.ingredientTableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         
         calcAlcoholStrength()
     }

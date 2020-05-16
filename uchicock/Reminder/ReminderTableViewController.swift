@@ -55,7 +55,7 @@ class ReminderTableViewController: UITableViewController {
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
         
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)

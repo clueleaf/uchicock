@@ -47,7 +47,7 @@ class RecoverPreviewTableViewController: UITableViewController {
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.navigationItem.title = "プレビュー"
 
@@ -132,10 +132,10 @@ class RecoverPreviewTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "材料(\(String(recipeIngredientList.count)))" : ""
     }

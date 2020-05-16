@@ -75,7 +75,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         requestReview()
         
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
-        searchTextField.layer.borderWidth = 1.0
         searchTextField.clipsToBounds = true
 
         searchConditionModifyButton.layer.borderWidth = 1.5
@@ -114,9 +113,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
         
-        searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        searchTextField.tintColor = UchicockStyle.labelTextColor
-        searchTextField.textColor = UchicockStyle.labelTextColor
+        searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         searchTextField.adjustClearButtonColor(with: 4)
         searchTextField.setSearchIcon()
@@ -133,7 +130,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor

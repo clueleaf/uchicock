@@ -94,9 +94,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star3.tintColor = UchicockStyle.primaryColor
 
         recipeName.text = recipe.recipeName
-        recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         recipeName.layer.cornerRadius = recipeName.frame.size.height / 2
-        recipeName.layer.borderWidth = 1
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
         recipeName.clipsToBounds = true
@@ -104,9 +102,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         recipeNameYomi.text = recipe.recipeNameYomi
-        recipeNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         recipeNameYomi.layer.cornerRadius = recipeNameYomi.frame.size.height / 2
-        recipeNameYomi.layer.borderWidth = 1
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeNameYomi.clipsToBounds = true
         recipeNameYomi.setLeftPadding()
@@ -172,11 +168,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         memo.text = recipe.memo
+        memo.backgroundColor = UchicockStyle.basicBackgroundColorLight
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
-        memo.layer.borderWidth = 1
-        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
+        memo.layer.borderWidth = 0
         memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
+        memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
@@ -202,7 +199,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
@@ -410,9 +407,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "材料編集" : ""
     }

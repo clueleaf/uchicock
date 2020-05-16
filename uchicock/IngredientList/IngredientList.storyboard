@@ -153,7 +153,7 @@
                                             <action selector="ingredientRecommendButtonTapped:" destination="15U-YU-usX" eventType="touchUpInside" id="22d-lh-ZxY"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="材料名で検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vac-u9-Ht5" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料名で検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vac-u9-Ht5" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="8" y="4" width="398" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="myG-v3-qn1"/>

@@ -46,7 +46,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         loadSampleRecipe()
         isRecovering = false
         
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
@@ -379,10 +379,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = section == 1 ? "復元したいレシピを選んでください" : ""
     }

@@ -53,8 +53,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientName.text = ingredient.ingredientName
         ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
-        ingredientName.layer.borderWidth = 1
-        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
         ingredientName.clipsToBounds = true
@@ -63,8 +61,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientNameYomi.text = ingredient.ingredientNameYomi
         ingredientNameYomi.layer.cornerRadius = ingredientNameYomi.frame.size.height / 2
-        ingredientNameYomi.layer.borderWidth = 1
-        ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientNameYomi.clipsToBounds = true
         ingredientNameYomi.setLeftPadding()
@@ -78,13 +74,16 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         memo.text = ingredient.memo
+        memo.backgroundColor = UchicockStyle.basicBackgroundColorLight
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 5.0
-        memo.layer.borderWidth = 1
-        
+        memo.layer.borderWidth = 0
+        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
+        memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientName)
@@ -97,8 +96,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         category.layer.masksToBounds = true
         stock.secondaryTintColor = UchicockStyle.primaryColor
         stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        memo.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             category.selectedSegmentIndex = ingredient.category

@@ -29,7 +29,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableView.automaticDimension
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor

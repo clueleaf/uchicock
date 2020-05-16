@@ -57,9 +57,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestTableView.tag = 1
         
         ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
-        ingredientName.layer.borderWidth = 1
         amount.layer.cornerRadius = amount.frame.size.height / 2
-        amount.layer.borderWidth = 1
         
         option.boxLineWidth = 1.0
         option.stateChangeAnimation = .expand
@@ -89,20 +87,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.amountTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.amount)
         
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         self.suggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.suggestTableView.separatorColor = UchicockStyle.labelTextColorLight
+        self.suggestTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         self.suggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor(with: 4)
         ingredientName.clipsToBounds = true
         ingredientName.setLeftPadding()
         
-        amount.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         amount.adjustClearButtonColor(with: 4)
         amount.clipsToBounds = true
@@ -214,10 +210,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         header?.textLabel?.text = (tableView.tag == 1 && section == 0) ? "材料候補" : ""
     }

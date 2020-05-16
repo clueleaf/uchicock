@@ -48,7 +48,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
 
         introductionImage.tintColor = UchicockStyle.primaryColor
         recoverImage.tintColor = UchicockStyle.primaryColor

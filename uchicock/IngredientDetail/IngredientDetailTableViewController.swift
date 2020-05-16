@@ -87,7 +87,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         super.viewWillAppear(animated)
 
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
@@ -369,10 +369,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if section == 1 {
             if ingredient.isInvalidated == false {

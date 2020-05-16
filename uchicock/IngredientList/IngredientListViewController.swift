@@ -54,7 +54,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
-        searchTextField.layer.borderWidth = 1
         searchTextField.clipsToBounds = true
 
         category.layer.borderWidth = 1.0
@@ -79,13 +78,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         segmentedControlContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        tableView.separatorColor = UchicockStyle.labelTextColorLight
+        tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
-        searchTextField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        searchTextField.tintColor = UchicockStyle.labelTextColor
-        searchTextField.textColor = UchicockStyle.labelTextColor
+        searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "材料名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         searchTextField.adjustClearButtonColor(with: 4)
         searchTextField.setSearchIcon()

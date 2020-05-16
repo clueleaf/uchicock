@@ -68,9 +68,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.layer.cornerRadius = ingredientTextField1.frame.size.height / 2
         ingredientTextField2.layer.cornerRadius = ingredientTextField2.frame.size.height / 2
         ingredientTextField3.layer.cornerRadius = ingredientTextField3.frame.size.height / 2
-        ingredientTextField1.layer.borderWidth = 1
-        ingredientTextField2.layer.borderWidth = 1
-        ingredientTextField3.layer.borderWidth = 1
         ingredientTextField1.clipsToBounds = true
         ingredientTextField2.clipsToBounds = true
         ingredientTextField3.clipsToBounds = true
@@ -108,16 +105,13 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        recipeTableView.separatorColor = UchicockStyle.labelTextColorLight
-        ingredientSuggestTableView.separatorColor = UchicockStyle.labelTextColorLight
+        recipeTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        ingredientSuggestTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         recipeTableView.backgroundColor = UchicockStyle.basicBackgroundColor
         ingredientSuggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
         recipeTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         ingredientSuggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         
-        ingredientTextField1.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        ingredientTextField2.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        ingredientTextField3.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
@@ -740,7 +734,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
-        textField.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         textField.tintColor = UchicockStyle.labelTextColor
         textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
@@ -884,10 +877,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UchicockStyle.tableViewHeaderBackgroundColor
+        view.tintColor = UchicockStyle.basicBackgroundColorLight
         
         let header = view as? UITableViewHeaderFooterView
-        header?.textLabel?.textColor = UchicockStyle.tableViewHeaderTextColor
+        header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if tableView.tag == 1 {
             header?.textLabel?.text = "上の材料を全て使うレシピ(\(String(self.recipeBasicList.count)))"
