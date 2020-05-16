@@ -1243,7 +1243,6 @@ extension String {
         case "シェリーコブラー": return true
         case "ジプシー": return true
         case "ジャーマンコーヒー": return true
-        case "ジャマイカンコーヒー": return true
         case "シャンパンジュレップ": return true
         case "シャンパンピックミーアップ": return true
         case "シルバーフィズ": return true
@@ -1278,7 +1277,6 @@ extension String {
         case "ブランデースカッファ": return true
         case "ブランデースマッシュ": return true
         case "ブランデーデイジー": return true
-        case "ブランデーフィズ": return true
         case "ブランデーフィックス": return true
         case "ブランデーミルクパンチ": return true
         case "プリンストン": return true
