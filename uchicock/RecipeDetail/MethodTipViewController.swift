@@ -39,10 +39,10 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        firstSeparator.backgroundColor = UchicockStyle.labelTextColor
-        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
-        thirdSeparator.backgroundColor = UchicockStyle.labelTextColor
-        fourthSeparator.backgroundColor = UchicockStyle.labelTextColor
+        firstSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
+        secondSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
+        thirdSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
+        fourthSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

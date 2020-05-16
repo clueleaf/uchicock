@@ -188,7 +188,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         strengthWarningLabel.textColor = UchicockStyle.alertColor
         setStrengthWarningVisibility()
 
-        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
+        secondSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
         searchButtonBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         searchButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5

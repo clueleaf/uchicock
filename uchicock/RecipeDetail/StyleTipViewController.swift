@@ -37,8 +37,8 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        firstSeparator.backgroundColor = UchicockStyle.labelTextColor
-        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
+        firstSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
+        secondSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意

@@ -215,7 +215,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         scrollBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
 
         sortExplanationLabel.textColor = UchicockStyle.labelTextColorLight
-        firstSeparator.backgroundColor = UchicockStyle.labelTextColor
+        firstSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
         
         filterExplanationLabel.textColor = UchicockStyle.labelTextColorLight
         filterSelectAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
@@ -262,7 +262,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         strengthWarningLabel.textColor = UchicockStyle.alertColor
         setStrengthWarningVisibility()
 
-        secondSeparator.backgroundColor = UchicockStyle.labelTextColor
+        secondSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
         searchButtonBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         searchButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5

@@ -128,7 +128,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        containerSeparator.backgroundColor = UchicockStyle.labelTextColorLight
+        containerSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
 
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor

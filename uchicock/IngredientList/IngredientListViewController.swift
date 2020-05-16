@@ -103,7 +103,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         ingredientRecommendButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         ingredientRecommendButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        containerSeparator.backgroundColor = UchicockStyle.labelTextColorLight
+        containerSeparator.backgroundColor = UchicockStyle.tableViewSeparatorColor
         
         reloadIngredientList()
         tableView.reloadData()
