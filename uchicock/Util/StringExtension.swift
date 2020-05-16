@@ -1203,10 +1203,15 @@ extension String {
         case "アイアンレディ": return true
         case "アカシア": return true
         case "アップルシャワー": return true
+        case "アップルパイ": return true
+        case "アビエーション": return true
+        case "アフターサパー": return true
         case "アプリコットクーラー": return true
         case "アプリコットサワー": return true
+        case "アペタイザー": return true
         case "アメリカンビューティ": return true
         case "アライズ": return true
+        case "アレン": return true
         case "イエロー・ラットラー": return true
         case "ウィスキーコブラー": return true
         case "ウィスキー・スウィズル": return true
@@ -1224,30 +1229,41 @@ extension String {
         case "ギブソン": return true
         case "キャロル": return true
         case "キルシュカシス": return true
+        case "グリーンティーフィズ": return true
         case "グリーンドラゴン": return true
+        case "ゲーリックコーヒー": return true
         case "ケル・ヴィー": return true
         case "ゴールデンキャデラック": return true
         case "ゴールデンドリーム": return true
         case "コールドデッキ": return true
+        case "コロニアル": return true
 
+        case "サードレール": return true
         case "サケリーニャ": return true
+        case "シェリーコブラー": return true
         case "ジプシー": return true
         case "ジャーマンコーヒー": return true
+        case "ジャマイカンコーヒー": return true
         case "シャンパンジュレップ": return true
         case "シャンパンピックミーアップ": return true
+        case "シルバーフィズ": return true
         case "シルバーブレット": return true
         case "ジンアンドフレンチ": return true
         case "ジンコブラー": return true
         case "ジン・スウィズル": return true
+        case "ジンスマッシュ": return true
         case "シンデレラハネムーン": return true
         case "ジンフィックス": return true
+        case "スロージンフィズ": return true
 
         case "タワーリシチ": return true
         case "チョコレートソルジャー": return true
+        case "デービス": return true
         case "テキーラバック": return true
         case "テキーラフィズ": return true
         case "テキーラリッキー": return true
         case "デビルズ": return true
+        case "デュボネフィズ": return true
 
         case "ナップフラッペ": return true
         
@@ -1256,24 +1272,37 @@ extension String {
         case "パイナップルミントクーラー": return true
         case "ハネムーン": return true
         case "ビーアンドビー": return true
+        case "ビューティスポット": return true
+        case "ブランデーコブラー": return true
+        case "ブランデー・スウィズル": return true
+        case "ブランデースカッファ": return true
+        case "ブランデースマッシュ": return true
+        case "ブランデーデイジー": return true
+        case "ブランデーフィズ": return true
+        case "ブランデーフィックス": return true
+        case "ブランデーミルクパンチ": return true
         case "プリンストン": return true
         case "フローズンダイキリ": return true
         case "フローズンピーチマルガリータ": return true
         case "フローズンマルガリータ": return true
         case "フロープ": return true
+        case "ブロンクスシルバー": return true
         case "ベネディクト": return true
         case "ポートフリップ": return true
         case "ホットバタード・ラム": return true
         case "ホットバタード・ラム・カウ": return true
         case "ホワイトサテン": return true
 
+        case "マウンテン": return true
         case "マリアンヌ": return true
         case "ミドリアレキサンダー": return true
         case "ミントクーラー": return true
         case "モンタナ": return true
+        case "モンクスコーヒー": return true
         case "モンテカルロ": return true
             
         case "ラムコブラー": return true
+        case "ラムスマッシュ": return true
         case "ラムデイジー": return true
         case "ラムバック": return true
         case "ラムフリップ": return true
