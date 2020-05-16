@@ -118,7 +118,7 @@ class CustomTextField: UITextField{
     
     func setLeftPadding(){
         self.hasLeftIcon = false
-        let leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 2.0))
+        let leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 2.0))
         self.leftView = leftView
         self.leftViewMode = .always
     }
@@ -128,7 +128,7 @@ class CustomTextField: UITextField{
         rect.origin.x = 8
         rect.origin.y = 10
         rect.size.height = self.frame.height - (rect.origin.y * 2)
-        rect.size.width = hasLeftIcon ? rect.size.height : 0
+        rect.size.width = hasLeftIcon ? rect.size.height + 12.0 : 6.0
         return rect
     }
 }
