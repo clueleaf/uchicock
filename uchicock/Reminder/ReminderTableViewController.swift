@@ -58,11 +58,6 @@ class ReminderTableViewController: UITableViewController {
         tableView.separatorColor = UchicockStyle.labelTextColorLight
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        if #available(iOS 13.0, *) {
-        }else{
-            reminderType.layer.cornerRadius = 14.0
-        }
-
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         reminderType.layer.borderColor = UchicockStyle.primaryColor.cgColor

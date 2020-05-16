@@ -201,8 +201,9 @@ class CustomTabBar: UITabBar{
 class CustomSegmentedControl: UISegmentedControl{
     override func layoutSubviews() {
         super.layoutSubviews()
+        layer.cornerRadius = self.bounds.size.height / 2.0
+
         if #available(iOS 13.0, *) {
-            layer.cornerRadius = self.bounds.size.height / 2.0
             layer.borderColor = UchicockStyle.primaryColor.cgColor
             layer.borderWidth = 1.0
             layer.masksToBounds = true

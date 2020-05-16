@@ -74,12 +74,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         requestReview()
         
-        searchTextField.layer.cornerRadius = 18.0
+        searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
         searchTextField.layer.borderWidth = 1.0
         searchTextField.clipsToBounds = true
 
         searchConditionModifyButton.layer.borderWidth = 1.5
-        searchConditionModifyButton.layer.cornerRadius = 15
+        searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")

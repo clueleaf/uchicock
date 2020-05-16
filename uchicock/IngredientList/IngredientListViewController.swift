@@ -53,7 +53,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTextField.layer.cornerRadius = 18.0
+        searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
         searchTextField.layer.borderWidth = 1
         searchTextField.clipsToBounds = true
 
@@ -93,18 +93,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
 
-        let font = UIFont.systemFont(ofSize: 12)
-        let boldFont = UIFont.boldSystemFont(ofSize: 12)
-        if #available(iOS 13.0, *) {
-            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorOnBadge, NSAttributedString.Key.font: boldFont], for: .selected)
-            category.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColor, NSAttributedString.Key.font: font], for: .normal)
-        }else{
-            category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .selected)
-            category.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-            category.layer.cornerRadius = 14.0
-            stockState.layer.cornerRadius = 14.0
-        }
-
         category.layer.borderColor = UchicockStyle.primaryColor.cgColor
         category.layoutSubviews()
         stockState.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -112,7 +100,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
-        ingredientRecommendButton.layer.cornerRadius = 15
+        ingredientRecommendButton.layer.cornerRadius = ingredientRecommendButton.frame.size.height / 2
         ingredientRecommendButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         ingredientRecommendButton.backgroundColor = UchicockStyle.basicBackgroundColor
         

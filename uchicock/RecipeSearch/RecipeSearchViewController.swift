@@ -266,7 +266,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         searchButtonBackgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         searchButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchButton.layer.borderWidth = 1.5
-        searchButton.layer.cornerRadius = 20
+        searchButton.layer.cornerRadius = searchButton.frame.size.height / 2
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         searchButton.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 18)
     }

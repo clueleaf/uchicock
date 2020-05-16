@@ -52,7 +52,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         ingredientName.text = ingredient.ingredientName
-        ingredientName.layer.cornerRadius = 22.0
+        ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
         ingredientName.layer.borderWidth = 1
         ingredientName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
@@ -62,7 +62,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
         ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientNameYomi.text = ingredient.ingredientNameYomi
-        ingredientNameYomi.layer.cornerRadius = 15.0
+        ingredientNameYomi.layer.cornerRadius = ingredientNameYomi.frame.size.height / 2
         ingredientNameYomi.layer.borderWidth = 1
         ingredientNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
         ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
@@ -92,10 +92,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomi)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameYomi)
 
-        if #available(iOS 13.0, *) {
-        }else{
-            category.layer.cornerRadius = 14.0
-        }
         category.layer.borderColor = UchicockStyle.primaryColor.cgColor
         category.layer.borderWidth = 1.0
         category.layer.masksToBounds = true

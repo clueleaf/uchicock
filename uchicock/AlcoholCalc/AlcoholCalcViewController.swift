@@ -68,7 +68,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         clearAllButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         clearAllButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         clearAllButton.layer.borderWidth = 1.0
-        clearAllButton.layer.cornerRadius = 12
+        clearAllButton.layer.cornerRadius = clearAllButton.frame.size.height / 2
         clearAllButton.backgroundColor = UchicockStyle.basicBackgroundColor
 
         hiddenLabel.textColor = UchicockStyle.labelTextColorLight

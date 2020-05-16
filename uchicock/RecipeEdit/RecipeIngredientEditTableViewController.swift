@@ -56,9 +56,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
-        ingredientName.layer.cornerRadius = 20.0
+        ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
         ingredientName.layer.borderWidth = 1
-        amount.layer.cornerRadius = 20.0
+        amount.layer.cornerRadius = amount.frame.size.height / 2
         amount.layer.borderWidth = 1
         
         option.boxLineWidth = 1.0

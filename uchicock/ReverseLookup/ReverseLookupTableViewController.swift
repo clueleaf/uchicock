@@ -65,9 +65,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.tag = 0
         ingredientTextField2.tag = 1
         ingredientTextField3.tag = 2
-        ingredientTextField1.layer.cornerRadius = 14.5
-        ingredientTextField2.layer.cornerRadius = 14.5
-        ingredientTextField3.layer.cornerRadius = 14.5
+        ingredientTextField1.layer.cornerRadius = ingredientTextField1.frame.size.height / 2
+        ingredientTextField2.layer.cornerRadius = ingredientTextField2.frame.size.height / 2
+        ingredientTextField3.layer.cornerRadius = ingredientTextField3.frame.size.height / 2
         ingredientTextField1.layer.borderWidth = 1
         ingredientTextField2.layer.borderWidth = 1
         ingredientTextField3.layer.borderWidth = 1
@@ -92,7 +92,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.addSubview(hiddenLabel)
         
         searchConditionModifyButton.layer.borderWidth = 1.5
-        searchConditionModifyButton.layer.cornerRadius = 15
+        searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
 
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         

@@ -66,7 +66,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stock.boxLineWidth = 1.0
         
         removeReminderButton.layer.borderWidth = 1.0
-        removeReminderButton.layer.cornerRadius = 12
+        removeReminderButton.layer.cornerRadius = removeReminderButton.frame.size.height / 2
 
         editButton.layer.cornerRadius = editButton.frame.size.width / 2
         editButton.clipsToBounds = true

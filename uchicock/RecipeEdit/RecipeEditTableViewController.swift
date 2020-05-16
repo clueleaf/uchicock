@@ -95,7 +95,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         recipeName.text = recipe.recipeName
         recipeName.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        recipeName.layer.cornerRadius = 22.0
+        recipeName.layer.cornerRadius = recipeName.frame.size.height / 2
         recipeName.layer.borderWidth = 1
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor(with: 4)
@@ -105,7 +105,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         recipeNameYomi.text = recipe.recipeNameYomi
         recipeNameYomi.layer.borderColor = UchicockStyle.textFieldBorderColor.cgColor
-        recipeNameYomi.layer.cornerRadius = 15.0
+        recipeNameYomi.layer.cornerRadius = recipeNameYomi.frame.size.height / 2
         recipeNameYomi.layer.borderWidth = 1
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeNameYomi.clipsToBounds = true
@@ -128,12 +128,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         ipc.delegate = self
         
-        if #available(iOS 13.0, *) {
-        }else{
-            style.layer.cornerRadius = 14.0
-            method.layer.cornerRadius = 14.0
-            strength.layer.cornerRadius = 14.0
-        }
         style.layer.borderColor = UchicockStyle.primaryColor.cgColor
         style.layer.borderWidth = 1.0
         style.layer.masksToBounds = true

@@ -310,7 +310,7 @@ public class MessageHUD : UIView {
             self.addSubview(hudView!)
         }
         
-        hudView?.layer.cornerRadius = 14.0
+        hudView?.layer.cornerRadius = hudView == nil ? 14.0 : hudView!.frame.size.height / 2
         return hudView!
     }
     
