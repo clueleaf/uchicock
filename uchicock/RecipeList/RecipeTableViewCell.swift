@@ -32,11 +32,7 @@ class RecipeTableViewCell: UITableViewCell {
                 photoImageView.image = image
             }else{
                 photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))
-                if UchicockStyle.isDark{
-                    photoImageView.tintColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
-                }else{
-                    photoImageView.tintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
-                }
+                photoImageView.tintColor = UchicockStyle.noPhotoColor
             }
             
             bookmarkBackImage.tintColor = UchicockStyle.primaryColor

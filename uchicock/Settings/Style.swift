@@ -32,6 +32,7 @@ struct UchicockStyle{
     static var tabBarBarTintColor = FlatColor.white
     static var tabBarUnselectedItemTintColor = FlatColor.gray
     static var badgeBackgroundColor = FlatColor.red
+    static var noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
 
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
@@ -57,6 +58,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func tequilaSunriseDark(){
@@ -82,6 +84,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.yellowDark
         tabBarUnselectedItemTintColor = FlatColor.black
         badgeBackgroundColor = FlatColor.watermelonDark
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
     static func seaBreezeLight(){
@@ -107,6 +110,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.pink
         tabBarUnselectedItemTintColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.80, green:0.77, blue:0.80, alpha:1.0)
     }
     
     static func seaBreezeDark(){
@@ -132,6 +136,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.pinkDark
         tabBarUnselectedItemTintColor = FlatColor.black
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
 
     static func chinaBlueLight(){
@@ -157,6 +162,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.skyBlue
         tabBarUnselectedItemTintColor = FlatColor.white
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
     static func chinaBlueDark(){
@@ -182,6 +188,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.skyBlueDark
         tabBarUnselectedItemTintColor = FlatColor.black
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
 
     static func grasshopperLight(){
@@ -207,6 +214,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.mint
         tabBarUnselectedItemTintColor = FlatColor.white
         badgeBackgroundColor = FlatColor.watermelon
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
     static func irishCoffeeDark(){
@@ -232,6 +240,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.coffeeDark
         tabBarUnselectedItemTintColor = FlatColor.black
         badgeBackgroundColor = FlatColor.watermelonDark
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
     static func mojitoLight(){
@@ -257,6 +266,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         badgeBackgroundColor = FlatColor.watermelonDark
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func redEyeLight(){
@@ -282,6 +292,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.watermelonDark
         tabBarUnselectedItemTintColor = FlatColor.white
         badgeBackgroundColor = FlatColor.black
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func cubaLibreDark(){
@@ -307,6 +318,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.limeDark
         tabBarUnselectedItemTintColor = FlatColor.blackDark
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
     static func silverWingLight(){
@@ -332,6 +344,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.grayDark
         tabBarUnselectedItemTintColor = FlatColor.white
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func americanLemonadeDark(){
@@ -357,6 +370,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.black
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)
     }
     
     static func blueLagoonLight(){
@@ -382,6 +396,7 @@ struct UchicockStyle{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func blueLagoonDark(){
@@ -393,8 +408,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -407,6 +422,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
     
     static func mimosaLight(){
@@ -432,6 +448,7 @@ struct UchicockStyle{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func mimosaDark(){
@@ -443,8 +460,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.yellowDark
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -457,6 +474,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
 
     static func pinkLadyLight(){
@@ -482,6 +500,7 @@ struct UchicockStyle{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.79, green:0.77, blue:0.79, alpha:1.0)
     }
     
     static func pinkLadyDark(){
@@ -493,8 +512,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.pinkDark
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -507,6 +526,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
     
     static func blackRussianDark(){
@@ -518,8 +538,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.coffee
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = UIColor(red:0.33, green:0.27, blue:0.23, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -532,6 +552,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.coffee
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
     
     static func shoyoJulingLight(){
@@ -557,6 +578,7 @@ struct UchicockStyle{
         tabBarBarTintColor = UIColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.watermelon
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
     
     static func shoyoJulingDark(){
@@ -568,8 +590,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.greenDark
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -582,6 +604,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
     
     static func unionJackLight(){
@@ -607,6 +630,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.white
         tabBarUnselectedItemTintColor = FlatColor.gray
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.77, green:0.79, blue:0.79, alpha:1.0)
     }
 
     static func unionJackDark(){
@@ -618,8 +642,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.magenta
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = FlatColor.black
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -632,6 +656,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.redDark
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
 
     static func blueMoonLight(){
@@ -657,6 +682,7 @@ struct UchicockStyle{
         tabBarBarTintColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)
         tabBarUnselectedItemTintColor = FlatColor.gray
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.76, green:0.80, blue:0.85, alpha:1.0)
     }
     
     static func bloodyMaryDark(){
@@ -668,8 +694,8 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.red
         basicBackgroundColor = UIColor.black
-        basicBackgroundColorLight = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         tableViewCellSelectedBackgroundColor = UIColor(red:0.30, green:0.16, blue:0.14, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.49, green:0.49, blue:0.50, alpha:1.0)
@@ -682,6 +708,7 @@ struct UchicockStyle{
         tabBarBarTintColor = FlatColor.black
         tabBarUnselectedItemTintColor = FlatColor.grayDark
         badgeBackgroundColor = FlatColor.red
+        noPhotoColor = UIColor(red:0.23, green:0.23, blue:0.23, alpha:1.0)
     }
 
     // MARK: - Manage Theme
