@@ -734,6 +734,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool){
+        textField.layer.borderWidth = 0
+        textField.layer.borderColor = UIColor.clear.cgColor
         textField.tintColor = UchicockStyle.labelTextColor
         textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
@@ -741,6 +743,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 let realm = try! Realm()
                 let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
+                    textField.layer.borderWidth = 1
                     textField.layer.borderColor = UchicockStyle.alertColor.cgColor
                     textField.tintColor = UchicockStyle.alertColor
                     textField.textColor = UchicockStyle.alertColor

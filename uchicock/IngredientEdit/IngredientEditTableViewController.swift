@@ -27,7 +27,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     let ingredientNameMaximum = 30
     let ingredientNameYomiMaximum = 50
-    let memoMaximum = 300
+    let memoMaximum = 30
     var isAddMode = true
     var showCancelAlert = false
 
@@ -103,6 +103,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             category.selectedSegmentIndex = 2
         }
         
+        setTextFieldColor(textField: ingredientName, maximum: ingredientNameMaximum)
+        setTextFieldColor(textField: ingredientNameYomi, maximum: ingredientNameYomiMaximum)
+        setTextViewColor(textView: memo, maximum: memoMaximum)
         updateIngredientNameCounter()
         updateIngredientNameYomiCounter()
         updateMemoCounter()
@@ -134,11 +137,14 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         showCancelAlert = true
         updateIngredientNameCounter()
         updateIngredientNameYomiCounter()
+        setTextFieldColor(textField: ingredientName, maximum: ingredientNameMaximum)
+        setTextFieldColor(textField: ingredientNameYomi, maximum: ingredientNameYomiMaximum)
     }
     
     @objc func ingredientNameYomiTextFieldDidChange(_ notification: Notification){
         showCancelAlert = true
         updateIngredientNameYomiCounter()
+        setTextFieldColor(textField: ingredientNameYomi, maximum: ingredientNameYomiMaximum)
     }
     
     private func updateIngredientNameCounter(){
@@ -163,10 +169,25 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    private func setTextFieldColor(textField: UITextField, maximum: Int){
+        if textField.text!.withoutEndsSpace().count > maximum {
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textField.tintColor = UchicockStyle.alertColor
+            textField.textColor = UchicockStyle.alertColor
+        }else{
+            textField.layer.borderWidth = 0
+            textField.layer.borderColor = UIColor.clear.cgColor
+            textField.tintColor = UchicockStyle.labelTextColor
+            textField.textColor = UchicockStyle.labelTextColor
+        }
+    }
+    
     // MARK: - UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         showCancelAlert = true
         updateMemoCounter()
+        setTextViewColor(textView: textView, maximum: memoMaximum)
     }
     
     private func updateMemoCounter(){
@@ -177,6 +198,20 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             memoCounter.textColor = UchicockStyle.alertColor
         }else{
             memoCounter.textColor = UchicockStyle.labelTextColorLight
+        }
+    }
+    
+    private func setTextViewColor(textView: UITextView, maximum: Int){
+        if textView.text!.count > maximum {
+            textView.layer.borderWidth = 1
+            textView.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textView.tintColor = UchicockStyle.alertColor
+            textView.textColor = UchicockStyle.alertColor
+        }else{
+            textView.layer.borderWidth = 0
+            textView.layer.borderColor = UIColor.clear.cgColor
+            textView.tintColor = UchicockStyle.labelTextColor
+            textView.textColor = UchicockStyle.labelTextColor
         }
     }
     

@@ -213,6 +213,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         strengthTipButton.setImage(tipImage, for: .normal)
         strengthTipButton.tintColor = UchicockStyle.primaryColor
         
+        setTextFieldColor(textField: recipeName, maximum: recipeNameMaximum)
+        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
+        setTextViewColor(textView: memo, maximum: memoMaximum)
         updateRecipeNameCounter()
         updateRecipeNameYomiCounter()
         updateMemoCounter()
@@ -290,11 +293,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         showCancelAlert = true
         updateRecipeNameCounter()
         updateRecipeNameYomiCounter()
+        setTextFieldColor(textField: recipeName, maximum: recipeNameMaximum)
+        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
     }
     
     @objc func recipeNameYomiTextFieldDidChange(_ notification: Notification){
         showCancelAlert = true
         updateRecipeNameYomiCounter()
+        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
     }
     
     private func updateRecipeNameCounter(){
@@ -319,10 +325,25 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
 
+    private func setTextFieldColor(textField: UITextField, maximum: Int){
+        if textField.text!.withoutEndsSpace().count > maximum {
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textField.tintColor = UchicockStyle.alertColor
+            textField.textColor = UchicockStyle.alertColor
+        }else{
+            textField.layer.borderWidth = 0
+            textField.layer.borderColor = UIColor.clear.cgColor
+            textField.tintColor = UchicockStyle.labelTextColor
+            textField.textColor = UchicockStyle.labelTextColor
+        }
+    }
+    
     // MARK: - UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         showCancelAlert = true
         updateMemoCounter()
+        setTextViewColor(textView: textView, maximum: memoMaximum)
     }
     
     private func updateMemoCounter(){
@@ -333,6 +354,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             memoCounter.textColor = UchicockStyle.alertColor
         }else{
             memoCounter.textColor = UchicockStyle.labelTextColorLight
+        }
+    }
+    
+    private func setTextViewColor(textView: UITextView, maximum: Int){
+        if textView.text!.count > maximum {
+            textView.layer.borderWidth = 1
+            textView.layer.borderColor = UchicockStyle.alertColor.cgColor
+            textView.tintColor = UchicockStyle.alertColor
+            textView.textColor = UchicockStyle.alertColor
+        }else{
+            textView.layer.borderWidth = 0
+            textView.layer.borderColor = UIColor.clear.cgColor
+            textView.tintColor = UchicockStyle.labelTextColor
+            textView.textColor = UchicockStyle.labelTextColor
         }
     }
     
