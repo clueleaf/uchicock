@@ -56,7 +56,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30/30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEU-Vr-bhM">
-                                                    <rect key="frame" x="326" y="54" width="37" height="15"/>
+                                                    <rect key="frame" x="310" y="54" width="37" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="dvj-Cf-6CO"/>
                                                     </constraints>
@@ -76,13 +76,13 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ヨミガナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U16-Zi-7pu">
-                                                    <rect key="frame" x="8" y="64" width="355" height="16"/>
+                                                    <rect key="frame" x="22" y="64" width="341" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jce-vx-fK9">
-                                                    <rect key="frame" x="326" y="114" width="37" height="15"/>
+                                                    <rect key="frame" x="310" y="114" width="37" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="7le-Fm-CCa"/>
                                                     </constraints>
@@ -100,10 +100,10 @@
                                                 <constraint firstItem="LEU-Vr-bhM" firstAttribute="top" secondItem="4d9-80-LE4" secondAttribute="bottom" constant="2" id="NOV-Oc-dHX"/>
                                                 <constraint firstAttribute="trailing" secondItem="U16-Zi-7pu" secondAttribute="trailing" constant="12" id="QqQ-gq-cgN"/>
                                                 <constraint firstItem="4d9-80-LE4" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="8" id="RJR-QJ-Kql"/>
-                                                <constraint firstItem="U16-Zi-7pu" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="8" id="lbE-zn-VSf"/>
+                                                <constraint firstItem="U16-Zi-7pu" firstAttribute="leading" secondItem="YTp-7E-VbT" secondAttribute="leading" constant="22" id="lbE-zn-VSf"/>
                                                 <constraint firstAttribute="trailing" secondItem="FSq-fZ-pbo" secondAttribute="trailing" constant="12" id="nHk-8T-m4g"/>
-                                                <constraint firstItem="LEU-Vr-bhM" firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" id="tOS-CQ-d3l"/>
-                                                <constraint firstItem="jce-vx-fK9" firstAttribute="trailing" secondItem="FSq-fZ-pbo" secondAttribute="trailing" id="xfA-na-L2K"/>
+                                                <constraint firstItem="LEU-Vr-bhM" firstAttribute="trailing" secondItem="4d9-80-LE4" secondAttribute="trailing" constant="-16" id="tOS-CQ-d3l"/>
+                                                <constraint firstItem="jce-vx-fK9" firstAttribute="trailing" secondItem="FSq-fZ-pbo" secondAttribute="trailing" constant="-16" id="xfA-na-L2K"/>
                                                 <constraint firstItem="4d9-80-LE4" firstAttribute="top" secondItem="YTp-7E-VbT" secondAttribute="top" constant="8" id="xhd-0P-fnP"/>
                                             </constraints>
                                         </tableViewCellContentView>

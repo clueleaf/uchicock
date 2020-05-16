@@ -55,7 +55,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30/30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wl-CG-Ffz">
-                                                    <rect key="frame" x="326" y="54" width="37" height="15"/>
+                                                    <rect key="frame" x="310" y="54" width="37" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="QZI-q8-mVC"/>
                                                     </constraints>
@@ -64,7 +64,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ヨミガナ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qp3-QI-o7O">
-                                                    <rect key="frame" x="8" y="64" width="355" height="16"/>
+                                                    <rect key="frame" x="22" y="64" width="341" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-BL-EbW">
-                                                    <rect key="frame" x="326" y="114" width="37" height="15"/>
+                                                    <rect key="frame" x="310" y="114" width="37" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="F18-wU-EWu"/>
                                                     </constraints>
@@ -96,12 +96,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="iEF-Bz-gzx" secondAttribute="trailing" constant="12" id="CoG-5J-RXi"/>
                                                 <constraint firstItem="qp3-QI-o7O" firstAttribute="top" secondItem="QW8-dZ-Qcr" secondAttribute="bottom" constant="12" id="FZZ-lY-2Lc"/>
                                                 <constraint firstAttribute="trailing" secondItem="QW8-dZ-Qcr" secondAttribute="trailing" constant="12" id="L9w-dT-Xq7"/>
-                                                <constraint firstItem="4wl-CG-Ffz" firstAttribute="trailing" secondItem="QW8-dZ-Qcr" secondAttribute="trailing" id="MXy-h3-Zve"/>
-                                                <constraint firstItem="mH9-BL-EbW" firstAttribute="trailing" secondItem="iEF-Bz-gzx" secondAttribute="trailing" id="RBi-6r-qg8"/>
+                                                <constraint firstItem="4wl-CG-Ffz" firstAttribute="trailing" secondItem="QW8-dZ-Qcr" secondAttribute="trailing" constant="-16" id="MXy-h3-Zve"/>
+                                                <constraint firstItem="mH9-BL-EbW" firstAttribute="trailing" secondItem="iEF-Bz-gzx" secondAttribute="trailing" constant="-16" id="RBi-6r-qg8"/>
                                                 <constraint firstItem="4wl-CG-Ffz" firstAttribute="top" secondItem="QW8-dZ-Qcr" secondAttribute="bottom" constant="2" id="W4Y-HP-Jux"/>
                                                 <constraint firstItem="iEF-Bz-gzx" firstAttribute="top" secondItem="qp3-QI-o7O" secondAttribute="bottom" constant="2" id="eqo-eQ-XOZ"/>
                                                 <constraint firstItem="mH9-BL-EbW" firstAttribute="top" secondItem="iEF-Bz-gzx" secondAttribute="bottom" constant="2" id="pXn-Av-5zk"/>
-                                                <constraint firstItem="qp3-QI-o7O" firstAttribute="leading" secondItem="i8h-eV-cUI" secondAttribute="leading" constant="8" id="t4U-9V-EbJ"/>
+                                                <constraint firstItem="qp3-QI-o7O" firstAttribute="leading" secondItem="i8h-eV-cUI" secondAttribute="leading" constant="22" id="t4U-9V-EbJ"/>
                                                 <constraint firstItem="iEF-Bz-gzx" firstAttribute="leading" secondItem="i8h-eV-cUI" secondAttribute="leading" constant="8" id="vYz-e0-ZmF"/>
                                                 <constraint firstItem="QW8-dZ-Qcr" firstAttribute="top" secondItem="i8h-eV-cUI" secondAttribute="top" constant="8" id="zUJ-Q9-LDR"/>
                                             </constraints>
