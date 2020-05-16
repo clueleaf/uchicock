@@ -106,7 +106,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
 
         category.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        category.layoutSubviews()
         stockState.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        stockState.layoutSubviews()
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         ingredientRecommendButton.layer.borderWidth = 1.5
