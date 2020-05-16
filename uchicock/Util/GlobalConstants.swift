@@ -141,6 +141,6 @@ struct GlobalConstants{
     static let AlreadyWrittenReviewKey = "AlreadyWrittenReview"
     static let Version73NewRecipeViewedKey = "Version73NewRecipeViewed"
     static let Version73NewNewDownloadKey = "Version73NewNewDownload"
-    static let Version74NewRecipeViewedKey = "Version74NewRecipeViewed"
-    static let Version74NewDownloadKey = "Version74NewDownload"
+    static let Version80NewRecipeViewedKey = "Version80NewRecipeViewed"
+    static let Version80NewDownloadKey = "Version80NewDownload"
 }

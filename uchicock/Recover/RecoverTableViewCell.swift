@@ -18,7 +18,7 @@ class RecoverTableViewCell: UITableViewCell {
     @IBOutlet weak var newRecipeLabelWidthConstraint: NSLayoutConstraint!
     
     var shouldAdd73Badge = false
-    var shouldAdd74Badge = false
+    var shouldAdd80Badge = false
 
     var isRecoverable: Bool = Bool(){
         didSet{
@@ -35,7 +35,7 @@ class RecoverTableViewCell: UITableViewCell {
             var shouldAddNewBadge = false
             if shouldAdd73Badge && recipeName.isNewRecipe73(){
                 shouldAddNewBadge = true
-            }else if shouldAdd74Badge && recipeName.isNewRecipe74(){
+            }else if shouldAdd80Badge && recipeName.isNewRecipe80(){
                 shouldAddNewBadge = true
             }
 

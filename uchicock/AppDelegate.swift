@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! manager.copyItem(atPath: seedFilePath!, toPath: realmPath.path)
             let defaults = UserDefaults.standard
             defaults.set(true, forKey: GlobalConstants.Version73NewRecipeViewedKey)
-            defaults.set(true, forKey: GlobalConstants.Version74NewRecipeViewedKey)
-            defaults.set(true, forKey: GlobalConstants.Version74NewDownloadKey)
+            defaults.set(true, forKey: GlobalConstants.Version80NewRecipeViewedKey)
+            defaults.set(true, forKey: GlobalConstants.Version80NewDownloadKey)
         }
 
         var config = Realm.Configuration(

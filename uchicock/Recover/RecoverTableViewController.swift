@@ -24,7 +24,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var isRecovering = false
     let selectedCellBackgroundView = UIView()
     var shouldAdd73Badge = false
-    var shouldAdd74Badge = false
+    var shouldAdd80Badge = false
 
     let interactor = Interactor()
 
@@ -100,9 +100,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.rowHeight = UITableView.automaticDimension
 
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.Version74NewRecipeViewedKey)
+        defaults.set(true, forKey: GlobalConstants.Version80NewRecipeViewedKey)
         shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
-        shouldAdd74Badge = !defaults.bool(forKey: GlobalConstants.Version74NewDownloadKey)
+        shouldAdd80Badge = !defaults.bool(forKey: GlobalConstants.Version80NewDownloadKey)
     }
     
     private func cellDeselectAnimation(){
@@ -420,7 +420,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
 
             
             cell.shouldAdd73Badge = self.shouldAdd73Badge
-            cell.shouldAdd74Badge = self.shouldAdd74Badge
+            cell.shouldAdd80Badge = self.shouldAdd80Badge
             cell.isTarget.stateChangeAnimation = .fade
             cell.isTarget.animationDuration = 0.0
             cell.isTarget.backgroundColor = UIColor.clear

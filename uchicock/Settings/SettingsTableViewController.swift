@@ -78,11 +78,11 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     
     private func setNewRecipeBadge(){
         let defaults = UserDefaults.standard
-        let version74newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version74NewRecipeViewedKey)
+        let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[4]
             tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if version74newRecipeViewed{
+            if version80newRecipeViewed{
                 tabItem.badgeValue = nil
                 newRecipeLabel.isHidden = true
             }else{
