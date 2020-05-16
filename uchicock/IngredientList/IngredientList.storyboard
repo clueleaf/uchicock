@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cpd-Fl-ZaY">
-                                <rect key="frame" x="0.0" y="149" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="153" width="414" height="655"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="38" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -103,10 +103,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lua-m4-zJA" userLabel="Container">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PAy-Yc-Fde" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="76" width="398" height="29"/>
+                                        <rect key="frame" x="8" y="82" width="398" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="ovn-Nt-HBQ"/>
                                         </constraints>
@@ -120,7 +120,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TSf-wI-n9h" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="44" width="398" height="29"/>
+                                        <rect key="frame" x="8" y="48" width="398" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="eF9-ls-XPO"/>
                                         </constraints>
@@ -135,14 +135,14 @@
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-fO-srn">
-                                        <rect key="frame" x="0.0" y="148" width="414" height="1"/>
+                                        <rect key="frame" x="0.0" y="152" width="414" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="YxM-PQ-fdV"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxa-Lv-rSY">
-                                        <rect key="frame" x="117" y="112" width="180" height="30"/>
+                                        <rect key="frame" x="117" y="116" width="180" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Ovy-gO-1LM"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="jXu-ed-Isy"/>
@@ -154,7 +154,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料名で検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vac-u9-Ht5" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="4" width="398" height="36"/>
+                                        <rect key="frame" x="8" y="6" width="398" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="myG-v3-qn1"/>
                                         </constraints>
@@ -168,21 +168,21 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="byH-fO-srn" secondAttribute="bottom" id="0Rd-v0-4Gx"/>
-                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="top" secondItem="PAy-Yc-Fde" secondAttribute="bottom" constant="8" id="0Yx-52-nQT"/>
+                                    <constraint firstItem="dxa-Lv-rSY" firstAttribute="top" secondItem="PAy-Yc-Fde" secondAttribute="bottom" constant="6" id="0Yx-52-nQT"/>
                                     <constraint firstItem="Vac-u9-Ht5" firstAttribute="centerY" secondItem="dxa-Lv-rSY" secondAttribute="centerY" id="2rY-g4-sz9"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="leading" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="6GQ-dn-bEh"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="leading" secondItem="Vac-u9-Ht5" secondAttribute="trailing" constant="16" id="6Ts-HW-hUE"/>
                                     <constraint firstItem="Vac-u9-Ht5" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="7e4-1Q-iw8"/>
-                                    <constraint firstItem="Vac-u9-Ht5" firstAttribute="top" secondItem="Lua-m4-zJA" secondAttribute="top" constant="4" id="7wY-Yl-Zwe"/>
-                                    <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="4" id="9bS-Nc-pdt"/>
+                                    <constraint firstItem="Vac-u9-Ht5" firstAttribute="top" secondItem="Lua-m4-zJA" secondAttribute="top" constant="6" id="7wY-Yl-Zwe"/>
+                                    <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="6" id="9bS-Nc-pdt"/>
                                     <constraint firstAttribute="trailing" secondItem="byH-fO-srn" secondAttribute="trailing" id="Ewf-C2-osx"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="trailing" secondItem="m5h-bx-XfI" secondAttribute="trailing" constant="-8" id="FvY-sC-UZE"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="centerY" secondItem="TSf-wI-n9h" secondAttribute="centerY" id="Gcp-LE-ibB"/>
                                     <constraint firstItem="dxa-Lv-rSY" firstAttribute="centerX" secondItem="Lua-m4-zJA" secondAttribute="centerX" id="NcL-Hp-XOp"/>
                                     <constraint firstItem="PAy-Yc-Fde" firstAttribute="width" secondItem="TSf-wI-n9h" secondAttribute="width" id="OHl-pn-gGU"/>
-                                    <constraint firstItem="TSf-wI-n9h" firstAttribute="top" secondItem="Vac-u9-Ht5" secondAttribute="bottom" constant="4" id="V9x-Q3-WUq"/>
+                                    <constraint firstItem="TSf-wI-n9h" firstAttribute="top" secondItem="Vac-u9-Ht5" secondAttribute="bottom" constant="6" id="V9x-Q3-WUq"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="leading" secondItem="Lua-m4-zJA" secondAttribute="leading" id="aLm-WH-RQY"/>
-                                    <constraint firstItem="PAy-Yc-Fde" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="4" id="adq-im-gbd"/>
+                                    <constraint firstItem="PAy-Yc-Fde" firstAttribute="top" secondItem="TSf-wI-n9h" secondAttribute="bottom" constant="6" id="adq-im-gbd"/>
                                     <constraint firstItem="byH-fO-srn" firstAttribute="top" secondItem="dxa-Lv-rSY" secondAttribute="bottom" constant="6" id="fg1-LP-gop"/>
                                     <constraint firstItem="TSf-wI-n9h" firstAttribute="leading" secondItem="m5h-bx-XfI" secondAttribute="leading" constant="8" id="inu-Pv-EEd"/>
                                     <constraint firstItem="m5h-bx-XfI" firstAttribute="trailing" secondItem="TSf-wI-n9h" secondAttribute="trailing" constant="8" id="jgZ-yb-d1j"/>

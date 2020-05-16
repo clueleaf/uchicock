@@ -585,19 +585,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func changeToIngredientMode(){
         reminderButton.image = UIImage(named: "navigation-reminder-empty")
-        searchTextFieldTopConstraint.constant = 4
+        searchTextFieldTopConstraint.constant = 6
         searchTextFieldHeightConstraint.constant = 36
-        searchTextFieldBottomConstraint.constant = 4
+        searchTextFieldBottomConstraint.constant = 6
         categoryHeightConstraint.constant = 28
         category.isHidden = false
-        categoryBottomConstraint.constant = 4
+        categoryBottomConstraint.constant = 6
         stockStateHeightConstraint.constant = 28
         stockState.isHidden = false
-        stockStateBottomConstraint.constant = 8
+        stockStateBottomConstraint.constant = 6
         ingredientRecommendButtonHeightConstraint.constant = 30
         ingredientRecommendButton.isHidden = false
         containerSeparatorTopConstraint.constant = 6
-        containerSeparatorLandscapeTopConstraint.constant = 4
+        containerSeparatorLandscapeTopConstraint.constant = 6
         containerSeparatorHeightConstraint.constant = 1
         addIngredientButton.isEnabled = true
     }

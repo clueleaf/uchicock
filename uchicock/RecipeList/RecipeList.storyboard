@@ -67,7 +67,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="レシピ名で検索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Hb-qV-gPL" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="4" width="398" height="36"/>
+                                        <rect key="frame" x="8" y="6" width="398" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Ut7-gL-qqQ"/>
                                         </constraints>
@@ -83,16 +83,16 @@
                                     <constraint firstItem="C6C-Wr-wLe" firstAttribute="trailing" secondItem="Cpa-pr-wyV" secondAttribute="trailing" constant="-8" id="1ul-5L-zVy"/>
                                     <constraint firstItem="C6C-Wr-wLe" firstAttribute="centerX" secondItem="q0K-82-yQs" secondAttribute="centerX" id="59i-DR-9t4"/>
                                     <constraint firstItem="8Hb-qV-gPL" firstAttribute="leading" secondItem="Cpa-pr-wyV" secondAttribute="leading" constant="8" id="Ayc-Pi-hv8"/>
-                                    <constraint firstItem="gcp-nL-VZR" firstAttribute="top" secondItem="8Hb-qV-gPL" secondAttribute="bottom" constant="4" id="Jbf-cF-gby"/>
+                                    <constraint firstItem="gcp-nL-VZR" firstAttribute="top" secondItem="8Hb-qV-gPL" secondAttribute="bottom" constant="6" id="Jbf-cF-gby"/>
                                     <constraint firstItem="gcp-nL-VZR" firstAttribute="top" secondItem="C6C-Wr-wLe" secondAttribute="bottom" constant="8" id="L0Z-bq-LLO"/>
                                     <constraint firstItem="gcp-nL-VZR" firstAttribute="leading" secondItem="q0K-82-yQs" secondAttribute="leading" id="S7W-b0-h5b"/>
-                                    <constraint firstItem="8Hb-qV-gPL" firstAttribute="top" secondItem="q0K-82-yQs" secondAttribute="top" constant="4" id="Uec-sd-oYy"/>
+                                    <constraint firstItem="8Hb-qV-gPL" firstAttribute="top" secondItem="q0K-82-yQs" secondAttribute="top" constant="6" id="Uec-sd-oYy"/>
                                     <constraint firstItem="Cpa-pr-wyV" firstAttribute="trailing" secondItem="8Hb-qV-gPL" secondAttribute="trailing" constant="8" id="WsF-4f-3Rb"/>
                                     <constraint firstAttribute="bottom" secondItem="gcp-nL-VZR" secondAttribute="bottom" id="h7C-IF-8Ac"/>
                                     <constraint firstItem="C6C-Wr-wLe" firstAttribute="leading" secondItem="8Hb-qV-gPL" secondAttribute="trailing" constant="16" id="h82-Wj-brj"/>
                                     <constraint firstItem="8Hb-qV-gPL" firstAttribute="centerY" secondItem="C6C-Wr-wLe" secondAttribute="centerY" id="hGM-Vc-wnQ"/>
                                     <constraint firstAttribute="trailing" secondItem="gcp-nL-VZR" secondAttribute="trailing" id="js8-Rr-rYq"/>
-                                    <constraint firstItem="C6C-Wr-wLe" firstAttribute="top" secondItem="8Hb-qV-gPL" secondAttribute="bottom" constant="8" id="kug-EE-e8W"/>
+                                    <constraint firstItem="C6C-Wr-wLe" firstAttribute="top" secondItem="8Hb-qV-gPL" secondAttribute="bottom" constant="6" id="kug-EE-e8W"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Cpa-pr-wyV"/>
                                 <variation key="default">

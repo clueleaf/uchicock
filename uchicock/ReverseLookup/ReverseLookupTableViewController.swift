@@ -932,25 +932,25 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if indexPath.section == 0 {
                 if indexPath.row == 0 {
                     if traitCollection.verticalSizeClass == .compact{
-                        return 35
+                        return 38
                     }else{
-                        return 105
+                        return 108
                     }
                 }else{
-                    return 44
+                    return 39
                 }
             }else if indexPath.section == 1{
                 if editingTextField != -1 {
                     if traitCollection.verticalSizeClass == .compact{
-                        return view.frame.size.height - 35
+                        return view.frame.size.height - 38
                     }else{
-                        return view.frame.size.height - 105
+                        return view.frame.size.height - 108
                     }
                 }else{
                     if traitCollection.verticalSizeClass == .compact{
-                        return view.frame.size.height - 35 - 44
+                        return view.frame.size.height - 38 - 39
                     }else{
-                        return view.frame.size.height - 105 - 44
+                        return view.frame.size.height - 108 - 39
                     }
                 }
             }

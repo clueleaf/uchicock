@@ -922,13 +922,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func changeToRecipeMode(){
         bookmarkButton.image = UIImage(named: "navigation-recipe-bookmark-off")
-        searchTextFieldTopConstraint.constant = 4
+        searchTextFieldTopConstraint.constant = 6
         searchTextFieldHeightConstraint.constant = 36
-        searchTextFieldBottomConstraint.constant = 8
-        searchTextFieldLandscapeBottomConstraint.constant = 4
+        searchTextFieldBottomConstraint.constant = 6
+        searchTextFieldLandscapeBottomConstraint.constant = 6
         searchConditionModifyButtonHeightConstraint.constant = 30
         searchConditionModifyButton.isHidden = false
-        containerSeparatorTopConstraint.constant = 8
+        containerSeparatorTopConstraint.constant = 6
         containerSeparatorHeightConstraint.constant = 1
         addRecipeButton.isEnabled = true
     }
