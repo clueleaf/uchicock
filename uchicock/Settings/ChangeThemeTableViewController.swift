@@ -112,6 +112,7 @@ class ChangeThemeTableViewController: UITableViewController {
         UIView.animate(withDuration: animationDuration, animations: {
             self.setNeedsStatusBarAppearanceUpdate()
             self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+            self.tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         }, completion: nil)
 
         UIView.transition(with: self.navigationController!.navigationBar, duration: animationDuration, options: [.beginFromCurrentState, .transitionCrossDissolve], animations: {
