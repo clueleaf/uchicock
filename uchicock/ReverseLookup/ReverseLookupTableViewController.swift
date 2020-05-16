@@ -691,7 +691,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
                         noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
                     }else{
-                        noDataLabel.text = "入力した材料を使うレシピはありましたが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                        noDataLabel.text = "入力した材料を使うレシピはありますが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
                     }
                 }else{
                     noDataLabel.text = "入力した材料を全て使うレシピはありません"

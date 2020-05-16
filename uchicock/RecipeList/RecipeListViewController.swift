@@ -663,7 +663,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
                             noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
                         }else{
-                            noDataLabel.text = "入力したレシピ名のレシピはありましたが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                            noDataLabel.text = "入力したレシピ名のレシピはありますが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
                         }
                     }else{
                         noDataLabel.text = "検索文字列にあてはまるレシピはありません"
