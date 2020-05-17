@@ -608,11 +608,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func categoryTapped(_ sender: UISegmentedControl) {
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
         reloadIngredientBasicList()
         tableView.reloadData()
     }
     
     @IBAction func stockStateTapped(_ sender: UISegmentedControl) {
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
         reloadIngredientBasicList()
         tableView.reloadData()
     }
