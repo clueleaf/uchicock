@@ -396,7 +396,7 @@
                                                     </connections>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000/1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIR-37-Yn9">
-                                                    <rect key="frame" x="298" y="168" width="65" height="17"/>
+                                                    <rect key="frame" x="286" y="168" width="65" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="7fO-aY-0v6"/>
                                                     </constraints>
@@ -412,7 +412,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="12" id="Vy5-v3-QCe"/>
                                                 <constraint firstItem="auN-Kp-oTE" firstAttribute="leading" secondItem="eA2-mF-Eye" secondAttribute="leading" constant="8" id="Zif-Qa-d7I"/>
                                                 <constraint firstAttribute="trailing" secondItem="auN-Kp-oTE" secondAttribute="trailing" constant="12" id="fRj-XN-6C3"/>
-                                                <constraint firstItem="oIR-37-Yn9" firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" id="rQp-6h-ELy"/>
+                                                <constraint firstItem="oIR-37-Yn9" firstAttribute="trailing" secondItem="xlb-Rh-A1C" secondAttribute="trailing" constant="-12" id="rQp-6h-ELy"/>
                                                 <constraint firstItem="xlb-Rh-A1C" firstAttribute="top" secondItem="auN-Kp-oTE" secondAttribute="bottom" constant="8" id="uHX-sk-9OG"/>
                                             </constraints>
                                         </tableViewCellContentView>

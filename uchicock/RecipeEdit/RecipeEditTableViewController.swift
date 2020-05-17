@@ -93,10 +93,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star2.tintColor = UchicockStyle.primaryColor
         star3.tintColor = UchicockStyle.primaryColor
 
+        recipeName.clearButtonEdgeInset = 4.0
         recipeName.text = recipe.recipeName
         recipeName.layer.cornerRadius = recipeName.frame.size.height / 2
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeName.adjustClearButtonColor(with: 4)
+        recipeName.adjustClearButtonColor()
         recipeName.clipsToBounds = true
         recipeName.setLeftPadding()
         
@@ -106,6 +107,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeNameYomi.clipsToBounds = true
         recipeNameYomi.setLeftPadding()
+        recipeNameYomi.setRightPadding()
 
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
             photo.image = image
@@ -288,7 +290,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @objc func recipeNameTextFieldDidChange(_ notification: Notification){
-        recipeName.adjustClearButtonColor(with: 4)
+        recipeName.adjustClearButtonColor()
         recipeNameYomi.text = recipeName.text!.convertToYomi()
         showCancelAlert = true
         updateRecipeNameCounter()

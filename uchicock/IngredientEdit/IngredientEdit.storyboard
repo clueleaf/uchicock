@@ -215,7 +215,7 @@
                                                     </connections>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300/300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSJ-oo-XZO">
-                                                    <rect key="frame" x="310" y="288" width="53" height="17"/>
+                                                    <rect key="frame" x="298" y="288" width="53" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="rFi-Rm-AL0"/>
                                                     </constraints>
@@ -227,7 +227,7 @@
                                             <constraints>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="leading" secondItem="axd-0N-ETE" secondAttribute="leading" constant="8" id="2RT-Ja-du1"/>
                                                 <constraint firstItem="Wk1-PW-9Mn" firstAttribute="top" secondItem="Dif-6D-K8y" secondAttribute="bottom" constant="8" id="9Vq-IC-P7m"/>
-                                                <constraint firstItem="KSJ-oo-XZO" firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" id="BIg-Wr-vrR"/>
+                                                <constraint firstItem="KSJ-oo-XZO" firstAttribute="trailing" secondItem="Wk1-PW-9Mn" secondAttribute="trailing" constant="-12" id="BIg-Wr-vrR"/>
                                                 <constraint firstItem="KSJ-oo-XZO" firstAttribute="top" secondItem="Wk1-PW-9Mn" secondAttribute="bottom" constant="4" id="EtA-xS-3aR"/>
                                                 <constraint firstItem="Dif-6D-K8y" firstAttribute="top" secondItem="axd-0N-ETE" secondAttribute="top" constant="15" id="Mtl-Ju-Vum"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dif-6D-K8y" secondAttribute="trailing" constant="12" id="m0a-6E-eNT"/>

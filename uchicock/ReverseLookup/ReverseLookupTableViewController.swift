@@ -67,6 +67,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ingredientTextField1.clearButtonEdgeInset = 5.0
+        ingredientTextField2.clearButtonEdgeInset = 5.0
+        ingredientTextField3.clearButtonEdgeInset = 5.0
         ingredientTextField1.tag = 0
         ingredientTextField2.tag = 1
         ingredientTextField3.tag = 2
@@ -120,9 +123,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientTextField1.adjustClearButtonColor(with: 5)
-        ingredientTextField2.adjustClearButtonColor(with: 5)
-        ingredientTextField3.adjustClearButtonColor(with: 5)
+        ingredientTextField1.adjustClearButtonColor()
+        ingredientTextField2.adjustClearButtonColor()
+        ingredientTextField3.adjustClearButtonColor()
 
         searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
@@ -226,9 +229,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             defaults.set("", forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
         }
         
-        ingredientTextField1.adjustClearButtonColor(with: 5)
-        ingredientTextField2.adjustClearButtonColor(with: 5)
-        ingredientTextField3.adjustClearButtonColor(with: 5)
+        ingredientTextField1.adjustClearButtonColor()
+        ingredientTextField2.adjustClearButtonColor()
+        ingredientTextField3.adjustClearButtonColor()
     }
     
     private func setSearchConditionButtonTitle(){
@@ -809,7 +812,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient1)
         }
-        ingredientTextField1.adjustClearButtonColor(with: 5)
+        ingredientTextField1.adjustClearButtonColor()
         setTableBackgroundView()
     }
     
@@ -831,7 +834,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient2)
         }
-        ingredientTextField2.adjustClearButtonColor(with: 5)
+        ingredientTextField2.adjustClearButtonColor()
         setTableBackgroundView()
     }
 
@@ -853,7 +856,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
             setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient3)
         }
-        ingredientTextField3.adjustClearButtonColor(with: 5)
+        ingredientTextField3.adjustClearButtonColor()
         setTableBackgroundView()
     }
 

@@ -58,6 +58,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
         searchTextField.clipsToBounds = true
 
@@ -92,7 +93,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "材料名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        searchTextField.adjustClearButtonColor(with: 4)
+        searchTextField.adjustClearButtonColor()
         searchTextField.setSearchIcon()
 
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
@@ -386,7 +387,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         searchTextField.resignFirstResponder()
-        searchTextField.adjustClearButtonColor(with: 4)
+        searchTextField.adjustClearButtonColor()
         reloadIngredientBasicList()
         tableView.reloadData()
         setTextFieldColor(textField: searchTextField)
@@ -394,7 +395,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
 
     @objc func searchTextFieldDidChange(_ notification: Notification){
-        searchTextField.adjustClearButtonColor(with: 4)
+        searchTextField.adjustClearButtonColor()
         self.reloadIngredientBasicList()
         self.tableView.reloadData()
         setTextFieldColor(textField: searchTextField)

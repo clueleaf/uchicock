@@ -51,10 +51,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             isAddMode = false
         }
 
+        ingredientName.clearButtonEdgeInset = 4.0
         ingredientName.text = ingredient.ingredientName
         ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.adjustClearButtonColor()
         ingredientName.clipsToBounds = true
         ingredientName.setLeftPadding()
 
@@ -64,6 +65,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomi.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientNameYomi.clipsToBounds = true
         ingredientNameYomi.setLeftPadding()
+        ingredientNameYomi.setRightPadding()
 
         stock.boxLineWidth = 1.0
         stock.stateChangeAnimation = .expand
@@ -132,7 +134,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     @objc func ingredientNameTextFieldDidChange(_ notification: Notification){
-        ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.adjustClearButtonColor()
         ingredientNameYomi.text = ingredientName.text!.convertToYomi()
         showCancelAlert = true
         updateIngredientNameCounter()

@@ -83,11 +83,26 @@ class CustomTextView: UITextView{
 }
 
 class CustomTextField: UITextField{
-    func adjustClearButtonColor(with edgeInset: CGFloat) {
+    var hasLeftIcon = false
+    var hasRightIcon = false
+    var clearButtonEdgeInset : CGFloat = 4.0
+    
+    func setSearchIcon() {
+        self.hasLeftIcon = true
+        let searchIcon = UIImageView()
+        searchIcon.image = UIImage(named: "tabbar-reverse-lookup")?.withAlignmentRectInsets(UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 0))
+        searchIcon.contentMode = .scaleAspectFit
+        searchIcon.tintColor = UchicockStyle.labelTextColorLight
+        self.leftViewMode = .always
+        self.leftView = searchIcon
+    }
+
+    func adjustClearButtonColor() {
+        self.hasRightIcon = true
         let clearButton = UIButton(type: .custom)
         clearButton.setImage(UIImage(named: "button-clear"), for: .normal)
         clearButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        clearButton.imageEdgeInsets = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: edgeInset * 2)
+        clearButton.imageEdgeInsets = UIEdgeInsets(top: clearButtonEdgeInset, left: clearButtonEdgeInset, bottom: clearButtonEdgeInset, right: clearButtonEdgeInset)
         clearButton.contentMode = .scaleAspectFit
         clearButton.tintColor = UchicockStyle.labelTextColorLight
         clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
@@ -104,31 +119,35 @@ class CustomTextField: UITextField{
         NotificationCenter.default.post(name: .textFieldClearButtonTappedNotification, object: self)        
     }
     
-    var hasLeftIcon = false
-    
-    func setSearchIcon() {
-        self.hasLeftIcon = true
-        let searchIcon = UIImageView()
-        searchIcon.image = UIImage(named: "tabbar-reverse-lookup")?.withAlignmentRectInsets(UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 0))
-        searchIcon.contentMode = .scaleAspectFit
-        searchIcon.tintColor = UchicockStyle.labelTextColorLight
-        self.leftViewMode = .always
-        self.leftView = searchIcon
-    }
-    
     func setLeftPadding(){
         self.hasLeftIcon = false
         let leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 2.0))
-        self.leftView = leftView
         self.leftViewMode = .always
+        self.leftView = leftView
+    }
+    
+    func setRightPadding(){
+        self.hasLeftIcon = false
+        let rightView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 6.0, height: 2.0))
+        self.rightViewMode = .always
+        self.rightView = rightView
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
-        rect.origin.x = 8
-        rect.origin.y = 10
-        rect.size.height = self.frame.height - (rect.origin.y * 2)
-        rect.size.width = hasLeftIcon ? rect.size.height + 12.0 : 6.0
+        rect.size.height = bounds.height / 2
+        rect.origin.y = (bounds.height - rect.size.height) / 2
+        rect.size.width = hasLeftIcon ? rect.size.height + 8 : 8
+        rect.origin.x = 6
+        return rect
+    }
+
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.rightViewRect(forBounds: bounds)
+        rect.size.height = min(bounds.height / 2, 16) + clearButtonEdgeInset * 2
+        rect.origin.y = (bounds.height - rect.size.height) / 2
+        rect.size.width = hasRightIcon ? rect.size.height : 8
+        rect.origin.x = bounds.width - rect.size.width - 6
         return rect
     }
 }

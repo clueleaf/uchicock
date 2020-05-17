@@ -94,13 +94,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.suggestTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         self.suggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
+        ingredientName.clearButtonEdgeInset = 4.0
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.adjustClearButtonColor()
         ingredientName.clipsToBounds = true
         ingredientName.setLeftPadding()
         
+        amount.clearButtonEdgeInset = 4.0
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        amount.adjustClearButtonColor(with: 4)
+        amount.adjustClearButtonColor()
         amount.clipsToBounds = true
         amount.setLeftPadding()
         
@@ -144,12 +146,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @objc func nameTextFieldDidChange(_ notification: Notification){
-        ingredientName.adjustClearButtonColor(with: 4)
+        ingredientName.adjustClearButtonColor()
         reloadSuggestList()
     }
     
     @objc func amountTextFieldDidChange(_ notification: Notification){
-        amount.adjustClearButtonColor(with: 4)
+        amount.adjustClearButtonColor()
     }
 
     func reloadSuggestList(){
@@ -291,7 +293,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }else if tableView.tag == 1{
             tableView.deselectRow(at: indexPath, animated: true)
             ingredientName.text = suggestList[indexPath.row].name
-            ingredientName.adjustClearButtonColor(with: 4)
+            ingredientName.adjustClearButtonColor()
         }
     }
     
@@ -382,7 +384,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     // MARK: - IBAction
     @IBAction func amountSliderValueChanged(_ sender: UISlider) {
-        amount.adjustClearButtonColor(with: 4)
+        amount.adjustClearButtonColor()
         switch floor(sender.value) {
         case 0:
             amount.text = "少々"
