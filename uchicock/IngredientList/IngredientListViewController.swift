@@ -36,6 +36,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
     
+    var ingredientTableOffset: CGFloat? = nil
+    var reminderTableOffset: CGFloat? = nil
+
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
@@ -528,10 +531,26 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - IBAction
     @IBAction func reminderButtonTapped(_ sender: UIBarButtonItem) {
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
         isReminderMode.toggle()
-        
+        if isReminderMode{
+            ingredientTableOffset = max(tableView.contentOffset.y, 0)
+        }else{
+            reminderTableOffset = max(tableView.contentOffset.y, 0)
+        }
+
         isReminderMode ? changeToReminderMode() : changeToIngredientMode()
         reloadIngredientBasicList()
+        
+        if isReminderMode{
+            if let offset = reminderTableOffset{
+                tableView.contentOffset.y = offset
+            }
+        }else{
+            if let offset = ingredientTableOffset{
+                tableView.contentOffset.y = offset
+            }
+        }
         tableView.reloadData()
     }
     

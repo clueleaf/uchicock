@@ -34,6 +34,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeBasicListForFilterModal = Array<RecipeBasic>()
 
     var selectedRecipeId: String? = nil
+    var recipeTableOffset: CGFloat? = nil
+    var bookmarkTableOffset: CGFloat? = nil
 
     var scrollBeginningYPoint: CGFloat = 0.0
 
@@ -888,10 +890,26 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func bookmarkButtonTapped(_ sender: UIBarButtonItem) {
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
         isBookmarkMode.toggle()
+        if isBookmarkMode{
+            recipeTableOffset = max(tableView.contentOffset.y, 0)
+        }else{
+            bookmarkTableOffset = max(tableView.contentOffset.y, 0)
+        }
         
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
         reloadRecipeBasicList()
+        
+        if isBookmarkMode{
+            if let offset = bookmarkTableOffset{
+                tableView.contentOffset.y = offset
+            }
+        }else{
+            if let offset = recipeTableOffset{
+                tableView.contentOffset.y = offset
+            }
+        }
         tableView.reloadData()
     }
     
