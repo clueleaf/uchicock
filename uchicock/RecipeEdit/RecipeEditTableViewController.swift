@@ -170,7 +170,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.text = recipe.memo
         memo.backgroundColor = UchicockStyle.basicBackgroundColorLight
         memo.layer.masksToBounds = true
-        memo.layer.cornerRadius = 5.0
+        memo.layer.cornerRadius = 12
         memo.layer.borderWidth = 0
         memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
         memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
