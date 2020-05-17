@@ -92,7 +92,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暖かいカクテルはロングともショートとも言いがたいため、このアプリでは便宜的に「ホット」として扱う。ホットコーヒーやお湯などの温かい材料を使い、冬場など寒い日にうってつけ。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-X1-1ND" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温かいカクテルはロングともショートとも言いがたいため、このアプリでは便宜的に「ホット」として扱う。ホットコーヒーやお湯などの温かい材料を使い、冬場など寒い日にうってつけ。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-X1-1ND" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="344.5" width="394" height="67"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>

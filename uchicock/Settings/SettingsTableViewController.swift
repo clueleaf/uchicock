@@ -149,7 +149,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             performSegue(withIdentifier: "AlcoholCalc", sender: nil)
         case 5:
             self.tableView.deselectRow(at: indexPath, animated: true)
-            let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ暖かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
+            let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ温かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
             let alertView = CustomAlertController(title: "", message: message, preferredStyle: .alert)
             alertView.addAction(UIAlertAction(title: "レビューを書く", style: .default, handler: {action in
                 if let url = self.appStoreReviewURL {
