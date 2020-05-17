@@ -599,6 +599,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             cell.selectedBackgroundView = selectedCellBackgroundView
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }else if indexPath.row > 2 && indexPath.row < 5{
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             }else{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             }
