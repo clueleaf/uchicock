@@ -125,12 +125,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             
             ingredientName.text = ingredient.ingredientName
             
-            ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
             ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
             if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi.katakanaLowercasedForSearch(){
                 ingredientNameYomiLabel.isHidden = true
+                ingredientNameYomiLabel.text = " "
             }else{
                 ingredientNameYomiLabel.isHidden = false
+                ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
             }
 
             updateIngredientRecommendLabel()

@@ -201,12 +201,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             updateImageView()
 
             recipeName.text = recipe.recipeName
-            recipeNameYomiLabel.text = recipe.recipeNameYomi
             recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
             if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi.katakanaLowercasedForSearch(){
                 recipeNameYomiLabel.isHidden = true
+                recipeNameYomiLabel.text = " "
             }else{
                 recipeNameYomiLabel.isHidden = false
+                recipeNameYomiLabel.text = recipe.recipeNameYomi
             }
 
             switch recipe.shortageNum {
