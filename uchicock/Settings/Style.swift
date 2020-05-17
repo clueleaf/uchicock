@@ -19,8 +19,8 @@ struct UchicockStyle{
     static var primaryColor = FlatColor.skyBlueDark
     static var basicBackgroundColor = FlatColor.white
     static var basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-    static var searchTextViewBackgroundColor = UIColor(red:0.90, green:0.90, blue:0.87, alpha:1.0)
-    static var tableViewCellSelectedBackgroundColor = FlatColor.whiteDark
+    static var searchTextViewBackgroundColor = UIColor(red:0.94, green:0.93, blue:0.92, alpha:1.0)
+    static var tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
     static var tableViewCellEditBackgroundColor = FlatColor.gray
     static var tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
     static var labelTextColor = FlatColor.black
@@ -45,8 +45,8 @@ struct UchicockStyle{
         primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.90, green:0.90, blue:0.87, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.94, green:0.93, blue:0.92, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -72,7 +72,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.37, green:0.28, blue:0.13, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.32, green:0.27, blue:0.16, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -96,9 +96,9 @@ struct UchicockStyle{
         navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
-        basicBackgroundColorLight = UIColor(red:0.93, green:0.90, blue:0.93, alpha:1.0)
-        searchTextViewBackgroundColor = UIColor(red:0.93, green:0.90, blue:0.93, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
+        basicBackgroundColorLight = UIColor(red:0.94, green:0.89, blue:0.94, alpha:1.0)
+        searchTextViewBackgroundColor = UIColor(red:0.94, green:0.89, blue:0.94, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:1.0, green:0.85, blue:0.94, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.75, green:0.73, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -124,7 +124,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.blackDark
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -150,7 +150,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -176,7 +176,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -202,7 +202,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -228,7 +228,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.34, green:0.27, blue:0.22, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.33, green:0.29, blue:0.27, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -254,7 +254,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.75, green:0.92, blue:0.89, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.75, green:0.91, blue:0.88, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -306,7 +306,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.3, green:0.35, blue:0.1, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.28, green:0.32, blue:0.15, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -358,7 +358,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.black
         basicBackgroundColorLight = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.32, green:0.3, blue:0.3, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.39, green:0.39, blue:0.40, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -384,7 +384,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -436,7 +436,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.82, blue:0.82, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.83, green:0.85, blue:0.85, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -488,7 +488,7 @@ struct UchicockStyle{
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
         basicBackgroundColorLight = UIColor(red:0.93, green:0.90, blue:0.93, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.93, green:0.90, blue:0.93, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.97, green:0.8, blue:0.93, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:1.0, green:0.85, blue:0.94, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.75, green:0.73, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
@@ -540,7 +540,7 @@ struct UchicockStyle{
         basicBackgroundColor = UIColor.black
         basicBackgroundColorLight = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.33, green:0.27, blue:0.23, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.30, green:0.24, blue:0.20, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.grayDark
         tableViewSeparatorColor = UIColor(red:0.29, green:0.29, blue:0.30, alpha:1.0)
         labelTextColor = FlatColor.white
@@ -566,7 +566,7 @@ struct UchicockStyle{
         basicBackgroundColor = FlatColor.white
         basicBackgroundColorLight = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
         searchTextViewBackgroundColor = UIColor(red:0.87, green:0.89, blue:0.89, alpha:1.0)
-        tableViewCellSelectedBackgroundColor = UIColor(red:0.8, green:0.9, blue:0.85, alpha:1.0)
+        tableViewCellSelectedBackgroundColor = UIColor(red:0.73, green:0.90, blue:0.80, alpha:1.0)
         tableViewCellEditBackgroundColor = FlatColor.gray
         tableViewSeparatorColor = UIColor(red:0.73, green:0.74, blue:0.75, alpha:1.0)
         labelTextColor = FlatColor.black
