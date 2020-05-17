@@ -361,12 +361,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if textView.text!.count > maximum {
             textView.layer.borderWidth = 1
             textView.layer.borderColor = UchicockStyle.alertColor.cgColor
-            textView.tintColor = UchicockStyle.alertColor
             textView.textColor = UchicockStyle.alertColor
         }else{
             textView.layer.borderWidth = 0
             textView.layer.borderColor = UIColor.clear.cgColor
-            textView.tintColor = UchicockStyle.labelTextColor
             textView.textColor = UchicockStyle.labelTextColor
         }
     }
