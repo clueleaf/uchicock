@@ -66,6 +66,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         stockState.layer.borderWidth = 1.0
         stockState.layer.masksToBounds = true
         
+        ingredientRecommendButton.layer.borderWidth = 1.5
+        ingredientRecommendButton.layer.cornerRadius = ingredientRecommendButton.frame.size.height / 2
+
         if #available(iOS 13.0, *) {
             category.selectedSegmentTintColor = .clear
             stockState.selectedSegmentTintColor = .clear
@@ -101,8 +104,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         stockState.layoutSubviews()
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        ingredientRecommendButton.layer.borderWidth = 1.5
-        ingredientRecommendButton.layer.cornerRadius = ingredientRecommendButton.frame.size.height / 2
         ingredientRecommendButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
         ingredientRecommendButton.backgroundColor = UchicockStyle.basicBackgroundColor
         
