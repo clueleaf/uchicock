@@ -370,30 +370,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     // MARK: - Manage Data
-    private func isIngredientDuplicated() -> Bool {
-        if recipeIngredientList.count == 0 { return false }
-        for i in 0 ..< recipeIngredientList.count - 1{
-            for j in i+1 ..< recipeIngredientList.count{
-                if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
-                    return true
-                }
-            }
-        }
-        return false
-    }
-    
-    private func updateDuplicatedIngredientList(){
+    private func updateDuplicatedIngredientList() -> Bool {
         duplicatedIngredientList.removeAll()
 
-        if recipeIngredientList.count == 0 { return }
+        if recipeIngredientList.count == 0 { return false }
+        var result = false
         for i in 0 ..< recipeIngredientList.count - 1{
             for j in i+1 ..< recipeIngredientList.count{
                 if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
                     duplicatedIngredientList.append(recipeIngredientList[i].ingredientName)
+                    result = true
                     break
                 }
             }
         }
+        return result
     }
     
     private func createNeedUpdateCellIndexList(){
@@ -508,7 +499,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.selectedIndexPath = IndexPath(row: self.selectedIndexPath!.row + 1, section: self.selectedIndexPath!.section)
                             }
                             self.showCancelAlert = true
-                            self.updateDuplicatedIngredientList()
+                            _ = self.updateDuplicatedIngredientList()
                             self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
                             self.createNeedUpdateCellIndexList()
                             self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
@@ -521,7 +512,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.showCancelAlert = true
                             self.createNeedUpdateCellIndexList()
                             self.recipeIngredientList[self.selectedIndexPath!.row].ingredientName = ""
-                            self.updateDuplicatedIngredientList()
+                            _ = self.updateDuplicatedIngredientList()
                             for i in 0 ..< self.needUpdateCellIndexList.count {
                                 if self.needUpdateCellIndexList[i].row != self.selectedIndexPath!.row {
                                     self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
@@ -541,7 +532,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                                 self.recipeIngredientList[i].displayOrder = -1
                                 self.showCancelAlert = true
                             }
-                            self.updateDuplicatedIngredientList()
+                            _ = self.updateDuplicatedIngredientList()
                             self.tableView.reloadData()
                         }
                     }
@@ -581,7 +572,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.createNeedUpdateCellIndexList()
                 self.recipeIngredientList[indexPath.row].ingredientName = ""
-                self.updateDuplicatedIngredientList()
+                _ = self.updateDuplicatedIngredientList()
                 for i in 0 ..< self.needUpdateCellIndexList.count {
                     if self.needUpdateCellIndexList[i].row != indexPath.row {
                         self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
@@ -940,38 +931,82 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    private func presentAlert(title: String, message: String?){
+    private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            action?()
+        }))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        recipeName.resignFirstResponder()
+        recipeNameYomi.resignFirstResponder()
+        memo.resignFirstResponder()
         if recipeName.text == nil || recipeName.text!.withoutEndsSpace() == ""{
-            presentAlert(title: "レシピ名を入力してください", message: nil)
+            presentAlert(title: "レシピ名を入力してください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.recipeName.becomeFirstResponder()
+            })
         }else if recipeName.text!.withoutEndsSpace().count > recipeNameMaximum{
-            presentAlert(title: "レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.recipeName.becomeFirstResponder()
+            })
         }else if recipeNameYomi.text == nil || recipeNameYomi.text!.withoutEndsSpace() == ""{
-            presentAlert(title: "ヨミガナを入力してください", message: nil)
+            presentAlert(title: "ヨミガナを入力してください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.recipeNameYomi.becomeFirstResponder()
+            })
         }else if recipeNameYomi.text!.withoutEndsSpace().count > recipeNameYomiMaximum{
-            presentAlert(title: "ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.recipeNameYomi.becomeFirstResponder()
+            })
         }else if memo.text.count > memoMaximum {
-            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 6, section: 0), at: .middle, animated: true)
+                self.memo.becomeFirstResponder()
+            })
         }else if recipeIngredientList.count == 0{
-            presentAlert(title: "材料を一つ以上追加してください", message: nil)
+            presentAlert(title: "材料を一つ以上追加してください", message: nil, action: {
+                self.tableView.selectRow(at: IndexPath(row: 0, section: 1), animated: true, scrollPosition: .bottom)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.tableView.deselectRow(at: IndexPath(row: 0, section: 1), animated: true)
+                }
+            })
         }else if recipeIngredientList.count > ingredientMaximum{
-            presentAlert(title: "材料を" + String(ingredientMaximum) + "個以下にしてください", message: nil)
-        } else if isIngredientDuplicated() {
-            presentAlert(title: "重複している材料があります", message: nil)
+            presentAlert(title: "材料を" + String(ingredientMaximum) + "個以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+            })
+        } else if updateDuplicatedIngredientList() {
+            presentAlert(title: "重複している材料があります", message: nil, action: {
+                var idp = IndexPath(row: 0, section: 1)
+                if self.duplicatedIngredientList.count > 0{
+                    for i in 0 ..< self.recipeIngredientList.count{
+                        if self.recipeIngredientList[i].ingredientName == self.duplicatedIngredientList[0]{
+                            idp = IndexPath(row: i, section: 1)
+                            break
+                        }
+                    }
+                }
+                self.tableView.selectRow(at: idp, animated: true, scrollPosition: .middle)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.tableView.deselectRow(at: idp, animated: true)
+                }
+            })
         }else{
             let realm = try! Realm()
             
             if isAddMode {
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
                 if sameNameRecipe.count != 0{
-                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください")
+                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.recipeName.becomeFirstResponder()
+                    })
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write{
@@ -1025,7 +1060,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
                 if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.withoutEndsSpace(){
-                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください")
+                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.recipeName.becomeFirstResponder()
+                    })
                 }else{
                     let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
                     try! realm.write {

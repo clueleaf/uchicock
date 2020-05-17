@@ -27,7 +27,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     let ingredientNameMaximum = 30
     let ingredientNameYomiMaximum = 50
-    let memoMaximum = 30
+    let memoMaximum = 300
     var isAddMode = true
     var showCancelAlert = false
 
@@ -249,32 +249,55 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
-    private func presentAlert(title: String, message: String?){
+    private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            action?()
+        }))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
 
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        ingredientName.resignFirstResponder()
+        ingredientNameYomi.resignFirstResponder()
+        memo.resignFirstResponder()
         if ingredientName.text == nil || ingredientName.text!.withoutEndsSpace() == ""{
-            presentAlert(title: "材料名を入力してください", message: nil)
+            presentAlert(title: "材料名を入力してください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientName.becomeFirstResponder()
+            })
         }else if ingredientName.text!.withoutEndsSpace().count > ingredientNameMaximum{
-            presentAlert(title: "材料名を" + String(ingredientNameMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "材料名を" + String(ingredientNameMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientName.becomeFirstResponder()
+            })
         }else if ingredientNameYomi.text == nil || ingredientNameYomi.text!.withoutEndsSpace() == ""{
-            presentAlert(title: "ヨミガナを入力してください", message: nil)
+            presentAlert(title: "ヨミガナを入力してください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientNameYomi.becomeFirstResponder()
+            })
         }else if ingredientNameYomi.text!.withoutEndsSpace().count > ingredientNameYomiMaximum{
-            presentAlert(title: "ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientNameYomi.becomeFirstResponder()
+            })
         }else if memo.text.count > memoMaximum{
-            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil)
+            presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil, action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 3, section: 0), at: .bottom, animated: true)
+                self.memo.becomeFirstResponder()
+            })
         }else{
             let realm = try! Realm()
             
             if isAddMode {
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
                 if sameNameIngredient.count != 0{
-                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください")
+                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください", action: {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.ingredientName.becomeFirstResponder()
+                    })
                 }else{
                     let newIngredient = Ingredient()
                     newIngredient.ingredientName = ingredientName.text!.withoutEndsSpace()
@@ -304,7 +327,10 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             }else{
                 let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientName.text!.withoutEndsSpace())
                 if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientName.text!.withoutEndsSpace(){
-                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください")
+                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください", action: {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.ingredientName.becomeFirstResponder()
+                    })
                 }else{
                     try! realm.write {
                         ingredient.ingredientName = ingredientName.text!.withoutEndsSpace()

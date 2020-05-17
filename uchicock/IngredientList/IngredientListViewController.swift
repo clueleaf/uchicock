@@ -208,7 +208,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            // TODO
             createSearchedIngredientBaiscList(list: &ingredientBasicList)
             
             switch stockState.selectedSegmentIndex{
@@ -475,7 +474,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         realm.delete(ingredient)
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
-                    // TODO
+
                     var il = Array<IngredientBasic>()
                     self.createSearchedIngredientBaiscList(list: &il)
                     self.setTableBackgroundView()

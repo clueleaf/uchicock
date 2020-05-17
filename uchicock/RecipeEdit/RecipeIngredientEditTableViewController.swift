@@ -398,9 +398,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.dismiss(animated: true, completion: nil)
     }
     
-    func presentAlert(_ message: String){
+    private func presentAlert(_ message: String, action: (() -> Void)?){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            action?()
+        }))
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
@@ -419,12 +421,23 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        ingredientName.resignFirstResponder()
+        amount.resignFirstResponder()
         if ingredientName.text!.withoutEndsSpace() == "" {
-            presentAlert("材料名を入力してください")
+            presentAlert("材料名を入力してください", action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientName.becomeFirstResponder()
+            })
         }else if ingredientName.text!.withoutEndsSpace().count > 30{
-            presentAlert("材料名を30文字以下にしてください")
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            presentAlert("材料名を30文字以下にしてください", action: {
+                self.ingredientName.becomeFirstResponder()
+            })
         }else if amount.text!.withoutEndsSpace().count > 30{
-            presentAlert("分量を30文字以下にしてください")
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            presentAlert("分量を30文字以下にしてください", action: {
+                self.amount.becomeFirstResponder()
+            })
         }else{
             let realm = try! Realm()
             let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName.text!.withoutEndsSpace())
