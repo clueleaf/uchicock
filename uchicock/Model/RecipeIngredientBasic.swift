@@ -11,6 +11,7 @@ struct RecipeIngredientBasic{
     var ingredientId : String
     var ingredientName : String
     var ingredientNameYomi : String
+    var katakanaLowercasedNameForSearch : String
     var amount : String
     var mustFlag : Bool
     var category : Int

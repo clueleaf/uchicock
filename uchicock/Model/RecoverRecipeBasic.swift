@@ -17,6 +17,7 @@ struct SampleRecipeBasic{
 struct RecoverRecipe{
     var name : String
     var nameYomi : String
+    var katakanaLowercasedNameForSearch : String
     var style: Int
     var method : Int
     var strength : Int
