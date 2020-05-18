@@ -257,7 +257,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if ingredientBasicList.count == 0{
             self.tableView.backgroundView  = UIView()
             self.tableView.isScrollEnabled = false
-            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height / 5, width: self.tableView.bounds.size.width, height: 100))
+            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 10, width: self.tableView.bounds.size.width, height: 60))
             noDataLabel.numberOfLines = 0
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -271,7 +271,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
                             noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
                         }else{
-                            noDataLabel.text = "入力した材料名の材料はありますが、\n絞り込み条件には該当しません\n\n絞り込み条件を変更してください"
+                            noDataLabel.text = "入力した材料名の材料はありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
                         }
                     }else{
                         noDataLabel.text = "検索文字列にあてはまる材料はありません"

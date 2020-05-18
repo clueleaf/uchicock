@@ -145,11 +145,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         setFilterImageState()
         filterRecipeBasicList()
         collectionView.reloadData()
-        updateButton()
+        updateNavigationBar()
         setCollectionBackgroundView()
     }
     
-    private func updateButton(){
+    private func updateNavigationBar(){
         self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
         if self.recipeBasicList.count == 0{
             self.recipeNameBarButton.isEnabled = false
