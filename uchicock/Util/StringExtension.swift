@@ -1283,10 +1283,8 @@ extension String {
         case "ハーベイウォールバンガー": return true
         case "パイナップルミントクーラー": return true
         case "ハネムーン": return true
-        case "ハンディキャッパーズ・チョイス": return true
         case "ビーアンドビー": return true
         case "ビューティスポット": return true
-        case "フランケンジャック": return true
         case "ブランデーコブラー": return true
         case "ブランデー・スウィズル": return true
         case "ブランデースカッファ": return true
@@ -1304,7 +1302,7 @@ extension String {
         case "ポートフリップ": return true
         case "ホットバタード・ラム": return true
         case "ホットバタード・ラム・カウ": return true
-        case "ホップトード": return true
+        case "ホップ・トード": return true
         case "ホワイトサテン": return true
 
         case "マウンテン": return true
