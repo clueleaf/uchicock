@@ -1057,7 +1057,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             let realm = try! Realm()
             let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
             cell.ingredient = ingredient
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 61, bottom: 0, right: 0)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 66, bottom: 0, right: 0)
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }

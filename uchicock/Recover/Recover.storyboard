@@ -83,7 +83,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLW-GK-Oop" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="274" width="304" height="18"/>
+                                                    <rect key="frame" x="8" y="274" width="300" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                                 <constraint firstItem="34q-Qn-0rC" firstAttribute="top" secondItem="Opp-LW-fat" secondAttribute="bottom" constant="8" id="Ovi-pW-MHS"/>
                                                 <constraint firstAttribute="trailing" secondItem="gVX-L9-aDN" secondAttribute="trailing" constant="12" id="S1n-lC-XVU"/>
                                                 <constraint firstItem="oQh-L8-lkc" firstAttribute="centerY" secondItem="34q-Qn-0rC" secondAttribute="centerY" id="S2t-jG-7Qg"/>
-                                                <constraint firstAttribute="trailing" secondItem="tLW-GK-Oop" secondAttribute="trailing" constant="8" id="UOo-KL-QlJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="tLW-GK-Oop" secondAttribute="trailing" constant="12" id="UOo-KL-QlJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="xjU-3z-1vE" secondAttribute="trailing" constant="12" id="fvy-bj-U1F"/>
                                                 <constraint firstItem="34q-Qn-0rC" firstAttribute="leading" secondItem="bED-5f-mQg" secondAttribute="leading" constant="8" id="hd6-Gj-Bwu"/>
                                                 <constraint firstItem="gVX-L9-aDN" firstAttribute="leading" secondItem="bED-5f-mQg" secondAttribute="leading" constant="8" id="jPO-Vk-yEW"/>

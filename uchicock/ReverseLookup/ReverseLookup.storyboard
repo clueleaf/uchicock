@@ -149,18 +149,18 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrJ-QD-jb5">
-                                                                        <rect key="frame" x="8" y="4.5" width="45" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在庫あり" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrJ-QD-jb5">
+                                                                        <rect key="frame" x="8" y="4.5" width="50" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="Jrd-CZ-fGq"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Yew-44-040"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Yew-44-040"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8K-dd-Ezf" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                                        <rect key="frame" x="74" y="4.5" width="332" height="21"/>
+                                                                        <rect key="frame" x="79" y="4.5" width="323" height="21"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="3cj-vk-RCX"/>
                                                                         </constraints>
@@ -169,7 +169,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-ingredient" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-ci-cco">
-                                                                        <rect key="frame" x="61" y="6.5" width="13" height="17"/>
+                                                                        <rect key="frame" x="66" y="6.5" width="13" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="X2h-8D-W0t"/>
                                                                             <constraint firstAttribute="width" constant="13" id="gY2-Rv-Nax"/>
@@ -182,7 +182,7 @@
                                                                     <constraint firstItem="gg0-ci-cco" firstAttribute="centerY" secondItem="ZrJ-QD-jb5" secondAttribute="centerY" id="6g8-Kz-48G"/>
                                                                     <constraint firstItem="D8K-dd-Ezf" firstAttribute="leading" secondItem="gg0-ci-cco" secondAttribute="trailing" id="NvM-XB-rbk"/>
                                                                     <constraint firstItem="ZrJ-QD-jb5" firstAttribute="leading" secondItem="yLW-Ef-JNp" secondAttribute="leading" constant="8" id="fVq-nf-ata"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="D8K-dd-Ezf" secondAttribute="trailing" constant="8" id="hm0-Kn-cON"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="D8K-dd-Ezf" secondAttribute="trailing" constant="12" id="hm0-Kn-cON"/>
                                                                     <constraint firstItem="gg0-ci-cco" firstAttribute="leading" secondItem="ZrJ-QD-jb5" secondAttribute="trailing" constant="8" id="sqJ-dX-Y04"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
