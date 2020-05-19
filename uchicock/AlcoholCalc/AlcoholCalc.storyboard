@@ -212,7 +212,7 @@
                                 <rect key="frame" x="0.0" y="159" width="320" height="409"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="110" id="Roo-nX-eys" customClass="AlcoholCalcIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" rowHeight="110" id="Roo-nX-eys" customClass="AlcoholCalcIngredientTableViewCell" customModule="uchicock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Roo-nX-eys" id="6ak-Zs-XJU">
@@ -256,15 +256,15 @@
                                                     </constraints>
                                                 </view>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XoQ-hs-X9z" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="59" y="21" width="247" height="31"/>
+                                                    <rect key="frame" x="59" y="34" width="247" height="5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="PGO-n2-fOc"/>
+                                                        <constraint firstAttribute="height" constant="4" id="PGO-n2-fOc"/>
                                                     </constraints>
                                                 </slider>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="4Se-uj-K8v" customClass="CustomSlider" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="59" y="76" width="247" height="31"/>
+                                                    <rect key="frame" x="59" y="89" width="247" height="5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="5yf-Zm-dXO"/>
+                                                        <constraint firstAttribute="height" constant="4" id="5yf-Zm-dXO"/>
                                                     </constraints>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="有効" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t6-vt-G21" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -282,20 +282,20 @@
                                                 <constraint firstAttribute="trailing" secondItem="L7Q-tA-EoB" secondAttribute="trailing" constant="16" id="ARs-Eo-cIr"/>
                                                 <constraint firstItem="2m5-gB-9nE" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="4" id="CL0-ZQ-Q5x"/>
                                                 <constraint firstItem="fkI-Nm-0dv" firstAttribute="centerX" secondItem="6t6-vt-G21" secondAttribute="centerX" id="D8f-7S-ODG"/>
-                                                <constraint firstItem="L7Q-tA-EoB" firstAttribute="top" secondItem="XoQ-hs-X9z" secondAttribute="bottom" constant="8" id="JZg-hj-8l7"/>
+                                                <constraint firstItem="L7Q-tA-EoB" firstAttribute="top" secondItem="XoQ-hs-X9z" secondAttribute="bottom" constant="21" id="JZg-hj-8l7"/>
                                                 <constraint firstAttribute="trailing" secondItem="XoQ-hs-X9z" secondAttribute="trailing" constant="16" id="LBd-Sd-d3m"/>
                                                 <constraint firstItem="fkI-Nm-0dv" firstAttribute="centerY" secondItem="6ak-Zs-XJU" secondAttribute="centerY" id="Qjt-W7-iYa"/>
                                                 <constraint firstItem="fn4-6s-z1B" firstAttribute="leading" secondItem="6ak-Zs-XJU" secondAttribute="leading" constant="8" id="R97-BG-X47"/>
                                                 <constraint firstItem="XoQ-hs-X9z" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="SLo-QX-loc"/>
                                                 <constraint firstItem="fn4-6s-z1B" firstAttribute="top" secondItem="6ak-Zs-XJU" secondAttribute="top" constant="4" id="UrJ-sB-BL2"/>
-                                                <constraint firstItem="XoQ-hs-X9z" firstAttribute="top" secondItem="2m5-gB-9nE" secondAttribute="bottom" id="Vt3-Hw-R1v"/>
+                                                <constraint firstItem="XoQ-hs-X9z" firstAttribute="top" secondItem="2m5-gB-9nE" secondAttribute="bottom" constant="13" id="Vt3-Hw-R1v"/>
                                                 <constraint firstItem="L7Q-tA-EoB" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="b2m-d9-USE"/>
                                                 <constraint firstItem="2m5-gB-9nE" firstAttribute="leading" secondItem="fn4-6s-z1B" secondAttribute="trailing" constant="8" id="cwM-aD-6C5"/>
                                                 <constraint firstAttribute="trailing" secondItem="2m5-gB-9nE" secondAttribute="trailing" constant="16" id="ncp-PU-riQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Se-uj-K8v" secondAttribute="trailing" constant="16" id="qKd-g9-ilq"/>
                                                 <constraint firstItem="fkI-Nm-0dv" firstAttribute="leading" secondItem="fn4-6s-z1B" secondAttribute="leading" id="rn6-gF-TYH"/>
                                                 <constraint firstItem="4Se-uj-K8v" firstAttribute="leading" secondItem="2m5-gB-9nE" secondAttribute="leading" id="uvg-ek-DUs"/>
-                                                <constraint firstItem="4Se-uj-K8v" firstAttribute="top" secondItem="L7Q-tA-EoB" secondAttribute="bottom" id="xaA-ZK-SS3"/>
+                                                <constraint firstItem="4Se-uj-K8v" firstAttribute="top" secondItem="L7Q-tA-EoB" secondAttribute="bottom" constant="13" id="xaA-ZK-SS3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>

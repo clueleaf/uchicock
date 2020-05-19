@@ -22,6 +22,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var validNumLabel: UILabel!
     @IBOutlet weak var clearAllButton: UIButton!
     
+    let selectedCellBackgroundView = UIView()
     var hiddenLabel = UILabel()
     var calcIngredientList: Results<CalculatorIngredient>?
     var alcoholAmountBackup = 0
@@ -73,6 +74,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
 
         hiddenLabel.textColor = UchicockStyle.labelTextColorLight
         
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+
         self.ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         self.ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
         self.ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
@@ -177,6 +180,24 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: - Cell Target Action
+    private func setCellValid(cell: AlcoholCalcIngredientTableViewCell?){
+        cell?.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
+        cell?.validLabel.textColor = UchicockStyle.labelTextColor
+        cell?.strengthLabel.textColor = UchicockStyle.labelTextColor
+        cell?.strengthSlider.isEnabled = true
+        cell?.amountLabel.textColor = UchicockStyle.labelTextColor
+        cell?.amountSlider.isEnabled = true
+    }
+    
+    private func setCellInvalid(cell: AlcoholCalcIngredientTableViewCell?){
+        cell?.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
+        cell?.validLabel.textColor = UchicockStyle.labelTextColorLight
+        cell?.strengthLabel.textColor = UchicockStyle.labelTextColorLight
+        cell?.strengthSlider.isEnabled = false
+        cell?.amountLabel.textColor = UchicockStyle.labelTextColorLight
+        cell?.amountSlider.isEnabled = false
+    }
+    
     @objc func cellValidCheckboxTapped(_ sender: CircularCheckbox){
         var view = sender.superview
         while (view! is AlcoholCalcIngredientTableViewCell) == false{
@@ -185,29 +206,20 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = view as! AlcoholCalcIngredientTableViewCell
         let touchIndex = self.ingredientTableView.indexPath(for: cell)
         
+        guard calcIngredientList != nil else{ return }
+
         if let index = touchIndex {
             let realm = try! Realm()
-            let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
-            if calcIngredient.valid {
+            if calcIngredientList![index.row].valid {
                 try! realm.write {
-                    calcIngredient.valid = false
+                    calcIngredientList![index.row].valid = false
                 }
-                cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
-                cell.validLabel.textColor = UchicockStyle.labelTextColorLight
-                cell.strengthLabel.textColor = UchicockStyle.labelTextColorLight
-                cell.strengthSlider.isEnabled = false
-                cell.amountLabel.textColor = UchicockStyle.labelTextColorLight
-                cell.amountSlider.isEnabled = false
+                setCellInvalid(cell: cell)
             }else{
                 try! realm.write {
-                    calcIngredient.valid = true
+                    calcIngredientList![index.row].valid = true
                 }
-                cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
-                cell.validLabel.textColor = UchicockStyle.labelTextColor
-                cell.strengthLabel.textColor = UchicockStyle.labelTextColor
-                cell.strengthSlider.isEnabled = true
-                cell.amountLabel.textColor = UchicockStyle.labelTextColor
-                cell.amountSlider.isEnabled = true
+                setCellValid(cell: cell)
             }
             calcAlcoholStrength()
             updateValidNumLabel()
@@ -283,6 +295,31 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         return 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard calcIngredientList != nil else{ return }
+
+        let realm = try! Realm()
+        let cell = tableView.cellForRow(at: indexPath) as! AlcoholCalcIngredientTableViewCell
+
+        if calcIngredientList![indexPath.row].valid {
+            cell.validCheckbox.setCheckState(.unchecked, animated: true)
+            try! realm.write {
+                calcIngredientList![indexPath.row].valid = false
+            }
+            setCellInvalid(cell: cell)
+        }else{
+            cell.validCheckbox.setCheckState(.checked, animated: true)
+            try! realm.write {
+                calcIngredientList![indexPath.row].valid = true
+            }
+            setCellValid(cell: cell)
+        }
+        calcAlcoholStrength()
+        updateValidNumLabel()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell") as! AlcoholCalcIngredientTableViewCell
         cell.ingredientNumberLabel.text = "材料" + String(indexPath.row + 1)
@@ -294,21 +331,11 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.validCheckbox.animationDuration = 0.3
 
         if calcIngredient.valid{
-            cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
             cell.validCheckbox.checkState = .checked
-            cell.validLabel.textColor = UchicockStyle.labelTextColor
-            cell.strengthLabel.textColor = UchicockStyle.labelTextColor
-            cell.strengthSlider.isEnabled = true
-            cell.amountLabel.textColor = UchicockStyle.labelTextColor
-            cell.amountSlider.isEnabled = true
+            setCellValid(cell: cell)
         }else{
-            cell.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
             cell.validCheckbox.checkState = .unchecked
-            cell.validLabel.textColor = UchicockStyle.labelTextColorLight
-            cell.strengthLabel.textColor = UchicockStyle.labelTextColorLight
-            cell.strengthSlider.isEnabled = false
-            cell.amountLabel.textColor = UchicockStyle.labelTextColorLight
-            cell.amountSlider.isEnabled = false
+            setCellInvalid(cell: cell)
         }
         
         cell.strengthLabel.text = "度数 " + String(calcIngredient.degree) + "%"
@@ -322,6 +349,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.amountSlider.addTarget(self, action: #selector(AlcoholCalcViewController.cellAmountSliderTapped(sender:event:)), for: UIControl.Event.valueChanged)
 
         cell.backgroundColor = UchicockStyle.basicBackgroundColor
+        cell.selectedBackgroundView = selectedCellBackgroundView
         return cell
     }
     
@@ -343,9 +371,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func clearAllButtonTapped(_ sender: UIButton) {
-        guard calcIngredientList != nil else{
-            return
-        }
+        guard calcIngredientList != nil else{ return }
         
         let realm = try! Realm()
         try! realm.write {
@@ -357,13 +383,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         for (index, _) in calcIngredientList!.enumerated() {
             let cell = ingredientTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlcoholCalcIngredientTableViewCell
             if cell != nil{
-                cell?.ingredientNumberLabel.textColor = UchicockStyle.labelTextColorLight
                 cell?.validCheckbox.setCheckState(.unchecked, animated: true)
-                cell?.validLabel.textColor = UchicockStyle.labelTextColorLight
-                cell?.strengthLabel.textColor = UchicockStyle.labelTextColorLight
-                cell?.strengthSlider.isEnabled = false
-                cell?.amountLabel.textColor = UchicockStyle.labelTextColorLight
-                cell?.amountSlider.isEnabled = false
+                setCellInvalid(cell: cell)
             }
         }
         
