@@ -1059,7 +1059,6 @@ extension String {
         case "ゴールデンフィズ": return true
         case "ココナッツドリーム": return true
         case "コパ・デ・オロ": return true
-        case "コモドアー": return true
         case "コロラドブルドッグ": return true
         case "コンカドロ": return true
         case "サウスオブザボーダー": return true
@@ -1223,7 +1222,6 @@ extension String {
         case "ウィスキーデイジー": return true
         case "ウェディングベル": return true
         case "ウォッカギブソン": return true
-        case "ウォッカバック": return true
         case "ウォッカマティーニ": return true
         case "エクストラドライマティーニ": return true
         case "エッグサワー": return true
@@ -1275,7 +1273,6 @@ extension String {
         case "チョコレートソルジャー": return true
         case "デービス": return true
         case "テカドール": return true
-        case "テキーラバック": return true
         case "テキーラフィズ": return true
         case "テキーラリッキー": return true
         case "デビルズ": return true
@@ -1334,7 +1331,6 @@ extension String {
         case "ラムコブラー": return true
         case "ラムスマッシュ": return true
         case "ラムデイジー": return true
-        case "ラムバック": return true
         case "ラムフリップ": return true
         case "ラムリッキー": return true
         case "レブヒート": return true
