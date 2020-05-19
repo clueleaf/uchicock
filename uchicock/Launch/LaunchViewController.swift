@@ -111,6 +111,9 @@ class LaunchViewController: UIViewController {
             }
         }
         
+        // レシピ修正処理
+        correct_v_8_0()
+        
         // どこでもスワイプで戻れるようにするための処理
         if initializedFullScreenPopGesture == false{
             BasicNavigationController.initializeFullScreenPopGesture()
@@ -187,6 +190,42 @@ class LaunchViewController: UIViewController {
         introduction.dismiss(animated: true, completion: {
             self.prepareToShowRecipeList()
         })
+    }
+    
+    // MARK: - Correction
+    // コモドアーはコモドールと一緒なので消す
+    func correct_v_8_0(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [GlobalConstants.Version80CorrectedKey: false])
+        if defaults.bool(forKey: GlobalConstants.Version80CorrectedKey) == false {
+            defaults.set(true, forKey: GlobalConstants.Version80CorrectedKey)
+
+            let realm = try! Realm()
+            let rec = realm.objects(Recipe.self).filter("recipeName == %@", "コモドアー")
+            if rec.count > 0{
+                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+                for ri in rec.first!.recipeIngredients{
+                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
+                    deletingRecipeIngredientList.append(recipeIngredient)
+                }
+                ImageUtil.remove(imageFileName: rec.first!.imageFileName)
+
+                try! realm.write{
+                    for ri in deletingRecipeIngredientList{
+                        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                        for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
+                            if ingredient.recipeIngredients[i].id == ri.id{
+                                ingredient.recipeIngredients.remove(at: i)
+                            }
+                        }
+                    }
+                    for ri in deletingRecipeIngredientList{
+                        realm.delete(ri)
+                    }
+                    realm.delete(rec.first!)
+                }
+            }
+        }
     }
     
     // MARK: - Navigation

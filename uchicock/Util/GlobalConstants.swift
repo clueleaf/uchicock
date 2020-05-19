@@ -30,7 +30,8 @@ struct GlobalConstants{
     static let Version23CorrectedKey = "corrected_v2.3"
     static let Version32CorrectedKey = "corrected_v3.2"
     static let Version41CorrectedKey = "corrected_v4.1"
-    
+    static let Version80CorrectedKey = "corrected_v8.0"
+
     // MARK: - Recipe Search General Keys
     static let SortPrimaryKey = "sort-primary"
     static let SortSecondaryKey = "sort-secondary"
