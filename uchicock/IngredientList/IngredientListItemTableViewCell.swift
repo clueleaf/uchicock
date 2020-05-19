@@ -37,13 +37,13 @@ class IngredientListItemTableViewCell: UITableViewCell {
                 recipeNum.layer.backgroundColor = UIColor.clear.cgColor
                 recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.textColor = UchicockStyle.primaryColor
-            }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 100 {
+            }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 1000 {
                 recipeNum.text = String(ingredient.recipeIngredients.count)
                 recipeNum.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.textColor = UchicockStyle.labelTextColorOnBadge
             }else{
-                recipeNum.text = "99+"
+                recipeNum.text = "999"
                 recipeNum.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.textColor = UchicockStyle.labelTextColorOnBadge

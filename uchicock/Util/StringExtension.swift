@@ -1205,7 +1205,6 @@ extension String {
         case "アップルシャワー": return true
         case "アップルパイ": return true
         case "アビエーション": return true
-        case "アフターサパー": return true
         case "アプリコットクーラー": return true
         case "アプリコットサワー": return true
         case "アペタイザー": return true
