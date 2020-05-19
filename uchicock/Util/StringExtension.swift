@@ -1286,10 +1286,8 @@ extension String {
 
         case "ナイトキャップ": return true
         case "ナップフラッペ": return true
-        case "ネイキッドレディ": return true
         case "ノースサイドスペシャル": return true
 
-        case "パーソンズスペシャル": return true
         case "バーテンダー": return true
         case "パーフェクトマティーニ": return true
         case "パーフェクトマンハッタン": return true
@@ -1306,7 +1304,6 @@ extension String {
         case "ブランデーフィックス": return true
         case "ブランデーミルクパンチ": return true
         case "プリンストン": return true
-        case "ブレックファストエッグノッグ": return true
         case "フローズンダイキリ": return true
         case "フローズンピーチマルガリータ": return true
         case "フローズンマルガリータ": return true
