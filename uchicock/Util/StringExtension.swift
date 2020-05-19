@@ -1216,6 +1216,7 @@ extension String {
         case "イエロー・ラットラー": return true
         case "イングリッシュブラックソーン": return true
         case "インディアンリバー": return true
+        case "ヴァージンブリーズ": return true
         case "ウィスキーコブラー": return true
         case "ウィスキー・スウィズル": return true
         case "ウィスキースマッシュ": return true
@@ -1225,6 +1226,7 @@ extension String {
         case "ウォッカマティーニ": return true
         case "エクストラドライマティーニ": return true
         case "エッグサワー": return true
+        case "エバーグリーン": return true
         case "エルクスオウン": return true
         case "エンジェルフェイス": return true
 
@@ -1249,6 +1251,7 @@ extension String {
         case "サーウォルター": return true
         case "サードレール": return true
         case "サケリーニャ": return true
+        case "サブマリノ": return true
         case "サンジェルマン": return true
         case "シェリーコブラー": return true
         case "ジプシー": return true
@@ -1257,7 +1260,6 @@ extension String {
         case "ジャパニーズスリッパー": return true
         case "シャンゼリゼ": return true
         case "シャンパンジュレップ": return true
-        case "シャンパンピックミーアップ": return true
         case "シルバーフィズ": return true
         case "シルバーブレット": return true
         case "ジンアンドフレンチ": return true
@@ -1266,8 +1268,12 @@ extension String {
         case "ジンスマッシュ": return true
         case "シンデレラハネムーン": return true
         case "ジンフィックス": return true
+        case "スターズアンドストライプス": return true
+        case "スティンガーロイヤル": return true
+        case "スパニッシュタウン": return true
         case "スロージンフィズ": return true
 
+        case "タキシード": return true
         case "タワーリシチ": return true
         case "チャーリー・チャップリン": return true
         case "チョコレートソルジャー": return true
@@ -1285,14 +1291,19 @@ extension String {
         case "ノースサイドスペシャル": return true
 
         case "バーテンダー": return true
+        case "ハープーン": return true
         case "パーフェクトマティーニ": return true
         case "パーフェクトマンハッタン": return true
         case "ハーベイウォールバンガー": return true
         case "パイナップルミントクーラー": return true
         case "ハネムーン": return true
+        case "バラクーダ": return true
+        case "パロマ": return true
         case "ビーアンドビー": return true
         case "ビューティスポット": return true
+        case "ピンポン": return true
         case "ブランデーコブラー": return true
+        case "プランテーション": return true
         case "ブランデー・スウィズル": return true
         case "ブランデースカッファ": return true
         case "ブランデースマッシュ": return true
@@ -1300,6 +1311,8 @@ extension String {
         case "ブランデーフィックス": return true
         case "ブランデーミルクパンチ": return true
         case "プリンストン": return true
+        case "フレンチ125": return true
+        case "フレンチ95": return true
         case "フローズンダイキリ": return true
         case "フローズンピーチマルガリータ": return true
         case "フローズンマルガリータ": return true
@@ -1317,12 +1330,16 @@ extension String {
         case "ホワイトサテン": return true
 
         case "マウンテン": return true
+        case "マリアテレサ": return true
         case "マリアンヌ": return true
         case "ミドリアレキサンダー": return true
+        case "ミドリスプモーニ": return true
         case "ミントクーラー": return true
         case "ムラータ": return true
         case "メキシカンバナナ": return true
+        case "モーニングカクテル": return true
         case "モンタナ": return true
+        case "モンキーレンチ": return true
         case "モンクスコーヒー": return true
         case "モンテカルロ": return true
             
@@ -1340,7 +1357,8 @@ extension String {
         case "ロングアイランド・ビーチ": return true
 
         case "ワインコブラー": return true
-
+        case "十六夜": return true
+            
 
         default: return false
         }
