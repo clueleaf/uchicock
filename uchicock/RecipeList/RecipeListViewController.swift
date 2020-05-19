@@ -712,6 +712,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.isTyping = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        textField.text = textField.text!.withoutEndsSpace()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
