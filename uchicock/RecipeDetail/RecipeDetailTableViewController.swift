@@ -62,6 +62,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
+    
+    let similarRecipeList: [String] = [
+        "カシスオレンジ",
+        "ソノラ",
+        "ロングアイランド・アイスティー",
+        "アクア",
+        "青い珊瑚礁",
+    ]
 
     let interactor = Interactor()
 
@@ -126,6 +134,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         deleteButton.clipsToBounds = true
 
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
+        similarRecipeCollectionView.register(UINib(nibName: "SimilarRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RecipeNameCell")
+
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
         photo.addGestureRecognizer(tapRecognizer)
@@ -1247,37 +1257,35 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return similarRecipeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        var labelWidth: CGFloat = 0.0
+
+        let constraintSize = CGSize(width: 200.0, height: 300.0)
+        let labelRect = similarRecipeList[indexPath.row].boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil) 
+        labelWidth = CGFloat(ceilf(Float(labelRect.width )))
+
+        return CGSize(width: labelWidth, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-    }
-
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return nil
-    }
-    
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-    }
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+//        return nil
+//    }
+//
+//    @available(iOS 13.0, *)
+//    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return SimilarRecipeCollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
+        cell.recipeName = similarRecipeList[indexPath.row]
+        return cell
     }
 
 }

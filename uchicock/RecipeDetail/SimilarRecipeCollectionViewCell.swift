@@ -10,9 +10,16 @@ import UIKit
 
 class SimilarRecipeCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    @IBOutlet weak var recipeNameLabel: CustomLabel!
+    var recipeId = ""
+    
+    var recipeName : String = String(){
+        didSet{
+            recipeNameLabel.backgroundColor = UchicockStyle.basicBackgroundColorLight
+            recipeNameLabel.layer.cornerRadius = 10
+            recipeNameLabel.clipsToBounds = true
+            recipeNameLabel.text = recipeName
+            recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+        }
+    }    
 }
