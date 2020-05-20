@@ -37,6 +37,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBOutlet weak var openInSafariButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deleteButtonLabel: UILabel!
+    @IBOutlet weak var similarRecipeCollectionView: UICollectionView!
     
     var recipeId = String()
     var recipe = Recipe()
@@ -1224,4 +1225,47 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func closeEditVC(_ editVC: RecipeEditTableViewController){
         editVC.dismiss(animated: true, completion: nil)
     }    
+}
+
+extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    // MARK: - CollectionView
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return nil
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return SimilarRecipeCollectionViewCell()
+    }
+
 }

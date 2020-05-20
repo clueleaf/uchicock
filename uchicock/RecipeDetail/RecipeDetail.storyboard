@@ -576,6 +576,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Section-4" id="rgZ-Mp-wYE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="T67-Ym-OZs">
+                                        <rect key="frame" x="0.0" y="832" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T67-Ym-OZs" id="Ukl-6f-kOR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slu-dQ-NoQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hap-R1-DME">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="ZVL-2s-yCx" id="ynM-l6-yym"/>
+                                                        <outlet property="delegate" destination="ZVL-2s-yCx" id="0Qf-7s-0wd"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="slu-dQ-NoQ" secondAttribute="bottom" id="B7P-tJ-brQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="slu-dQ-NoQ" secondAttribute="trailing" id="n3Q-yh-Xls"/>
+                                                <constraint firstItem="slu-dQ-NoQ" firstAttribute="top" secondItem="Ukl-6f-kOR" secondAttribute="top" id="qXj-u8-dLR"/>
+                                                <constraint firstItem="slu-dQ-NoQ" firstAttribute="leading" secondItem="Ukl-6f-kOR" secondAttribute="leading" id="sgR-iw-0yC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="ZVL-2s-yCx" id="lIm-BJ-HsF"/>
@@ -603,6 +638,7 @@
                         <outlet property="recipeNameYomiLabel" destination="w0U-iU-Pie" id="4oy-6R-X7w"/>
                         <outlet property="shareButton" destination="eee-lT-yn7" id="Wt3-xe-ut2"/>
                         <outlet property="shortageLabel" destination="ex7-E5-r2A" id="zyY-mX-xKj"/>
+                        <outlet property="similarRecipeCollectionView" destination="slu-dQ-NoQ" id="rqQ-yL-XTR"/>
                         <outlet property="star1" destination="6ts-mH-DGs" id="ZW1-0O-C8R"/>
                         <outlet property="star2" destination="gxL-Nl-qZ9" id="uje-HJ-ILt"/>
                         <outlet property="star3" destination="7hI-6j-UuT" id="dC4-ka-KWF"/>
