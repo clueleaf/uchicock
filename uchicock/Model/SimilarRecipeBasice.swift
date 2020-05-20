@@ -10,5 +10,6 @@ struct SimilarRecipeBasic{
     var id : String
     var name : String
     var point : Float
+    var shortageNum : Int
 }
 

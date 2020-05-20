@@ -15,9 +15,7 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
     
     var recipeName : String = String(){
         didSet{
-            recipeNameButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
             recipeNameButton.setTitle(recipeName, for: .normal)
-            recipeNameButton.backgroundColor = UchicockStyle.basicBackgroundColorLight
             recipeNameButton.layer.cornerRadius = recipeNameButton.frame.size.height / 2
             recipeNameButton.clipsToBounds = true
         }

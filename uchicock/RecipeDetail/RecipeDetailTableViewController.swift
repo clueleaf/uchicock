@@ -352,34 +352,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
-            if fromContextualMenu == false{
-                queue.async {
-                    let realmBT = try! Realm()
-                    self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
-                    self.allRecipeList = realmBT.objects(Recipe.self)
-
-                    self.rateSimilarity()
-
-                    DispatchQueue.main.async {
-                        if self.similarRecipeList.count > 0 && self.hasSimilarRecipe{
-                            self.hasSimilarRecipe = true
-                            self.tableView.reloadSections(IndexSet(integer: 2), with: .none)
-                        }else if self.similarRecipeList.count > 0 && self.hasSimilarRecipe == false{
-                            self.hasSimilarRecipe = true
-                            self.tableView.insertSections(IndexSet(integer: 2), with: .top)
-                        }else if self.similarRecipeList.count == 0 && self.hasSimilarRecipe{
-                            self.hasSimilarRecipe = false
-                            self.tableView.deleteSections(IndexSet(integer: 2), with: .top)
-                        }else {
-                            self.hasSimilarRecipe = false
-                        }
-                    }
-                }
-            }
-            
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
+            similarRecipeCollectionView.reloadData()
             
             if fromContextualMenu == false{
                 let realm = try! Realm()
@@ -468,6 +444,31 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.tableView.deselectRow(at: path, animated: true)
         }
         selectedIngredientId = nil
+        
+        if fromContextualMenu == false{
+            queue.async {
+                let realmBT = try! Realm()
+                self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
+                self.allRecipeList = realmBT.objects(Recipe.self)
+
+                self.rateSimilarity()
+
+                DispatchQueue.main.async {
+                    if self.similarRecipeList.count > 0 && self.hasSimilarRecipe{
+                        self.hasSimilarRecipe = true
+                        self.similarRecipeCollectionView.reloadData()
+                    }else if self.similarRecipeList.count > 0 && self.hasSimilarRecipe == false{
+                        self.hasSimilarRecipe = true
+                        self.tableView.insertSections(IndexSet(integer: 2), with: .top)
+                    }else if self.similarRecipeList.count == 0 && self.hasSimilarRecipe{
+                        self.hasSimilarRecipe = false
+                        self.tableView.deleteSections(IndexSet(integer: 2), with: .top)
+                    }else {
+                        self.hasSimilarRecipe = false
+                    }
+                }
+            }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -1331,7 +1332,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             }
 
             if point >= 0.6 {
-                let similarRecipe = SimilarRecipeBasic(id: r.id, name: r.recipeName, point: point)
+                let similarRecipe = SimilarRecipeBasic(id: r.id, name: r.recipeName, point: point, shortageNum: r.shortageNum)
                 similarRecipeList.append(similarRecipe)
             }
         }
@@ -1352,8 +1353,8 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         var buttonWidth: CGFloat = 0.0
 
         let constraintSize = CGSize(width: 200.0, height: 30.0)
-        let buttonRect = similarRecipeList[indexPath.row].name.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil)
-        buttonWidth = min(CGFloat(ceilf(Float(buttonRect.width ))) + 30, 200)
+        let buttonRect = (String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":" + similarRecipeList[indexPath.row].name).boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil) //TODO
+        buttonWidth = min(CGFloat(ceilf(Float(buttonRect.width))) + 30, 200)
 
         return CGSize(width: buttonWidth, height: 50)
     }
@@ -1372,8 +1373,15 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
-        cell.recipeName = similarRecipeList[indexPath.row].name
+        cell.recipeName = String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":" + similarRecipeList[indexPath.row].name  //TODO
         cell.recipeNameButton.addTarget(self, action: #selector(RecipeDetailTableViewController.similarRecipeTapped(_:)), for: UIButton.Event.touchUpInside)
+        if similarRecipeList[indexPath.row].shortageNum == 0{
+            cell.recipeNameButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+        }else{
+            cell.recipeNameButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
+        }
+        print("reloading...")
+        cell.recipeNameButton.backgroundColor = UchicockStyle.basicBackgroundColorLight
 
         return cell
     }
