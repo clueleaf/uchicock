@@ -628,10 +628,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return UITableView.automaticDimension
         }else if indexPath.section == 1{
             return 70
-        }else if indexPath.section == 2{
-            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 2))
+        }else{
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
-        return 0
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -641,7 +640,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         if recipe.isInvalidated == false{
-            header?.textLabel?.text = section == 1 ? "材料(\(String(recipeIngredientList.count)))" : ""
+            if section == 1{
+                header?.textLabel?.text = "材料(\(String(recipeIngredientList.count)))"
+            }else if section == 2{
+                header?.textLabel?.text = "似ているかもしれないレシピ"
+            }else{
+                header?.textLabel?.text = ""
+            }
         }
     }
     
@@ -651,6 +656,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }else if section == 1{
             return recipeIngredientList.count
         }else if section == 2{
+            return 1
+        }else if section == 3{
             return 1
         }
         return 0
@@ -733,6 +740,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
+            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return cell
+        case 3:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
