@@ -101,19 +101,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-tequila-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="ezn-Ow-6Ow">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pC-1A-RWY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="うちカク!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTh-88-J54">
                                 <rect key="frame" x="141" y="396.5" width="132" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
-                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="0.66666666666666663" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ouchi Cocktail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7f-CM-Ndf">
                                 <rect key="frame" x="145.5" y="436.5" width="123" height="23"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
-                                <color key="textColor" red="0.76089900730000004" green="0.25649610160000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="0.66666666666666663" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIO-vX-mWa">
@@ -122,13 +123,13 @@
 時間がかかる場合があります
 このままお待ちください</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.58431372549019611" green="0.64313725490196072" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お酒は楽しくほどほどに" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oB7-hD-8mm">
                                 <rect key="frame" x="123" y="848" width="168.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="0.66666666666666663" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -137,15 +138,15 @@
                             <constraint firstItem="aIO-vX-mWa" firstAttribute="top" secondItem="C7f-CM-Ndf" secondAttribute="bottom" constant="24" id="1Gl-rz-DV3"/>
                             <constraint firstItem="aIO-vX-mWa" firstAttribute="centerX" secondItem="B56-iD-zki" secondAttribute="centerX" id="6gM-j2-WUc"/>
                             <constraint firstItem="C7f-CM-Ndf" firstAttribute="top" secondItem="TTh-88-J54" secondAttribute="bottom" constant="4" id="8hR-3S-Quh"/>
+                            <constraint firstItem="5pC-1A-RWY" firstAttribute="leading" secondItem="B56-iD-zki" secondAttribute="leading" id="EOy-s0-loi"/>
+                            <constraint firstItem="5pC-1A-RWY" firstAttribute="top" secondItem="B56-iD-zki" secondAttribute="top" id="Fv4-9T-aqA"/>
                             <constraint firstAttribute="bottom" secondItem="oB7-hD-8mm" secondAttribute="bottom" constant="30" id="GzI-yW-A4t"/>
-                            <constraint firstAttribute="trailing" secondItem="ezn-Ow-6Ow" secondAttribute="trailing" id="Mmd-lY-IwM"/>
                             <constraint firstItem="C7f-CM-Ndf" firstAttribute="centerX" secondItem="B56-iD-zki" secondAttribute="centerX" id="PSv-Nb-6ar"/>
-                            <constraint firstItem="ezn-Ow-6Ow" firstAttribute="leading" secondItem="B56-iD-zki" secondAttribute="leading" id="RT0-PY-cWj"/>
                             <constraint firstItem="C7f-CM-Ndf" firstAttribute="centerY" secondItem="B56-iD-zki" secondAttribute="centerY" id="gKG-5W-cRl"/>
                             <constraint firstItem="oB7-hD-8mm" firstAttribute="centerX" secondItem="B56-iD-zki" secondAttribute="centerX" id="gN8-0J-eiW"/>
                             <constraint firstItem="TTh-88-J54" firstAttribute="centerX" secondItem="B56-iD-zki" secondAttribute="centerX" id="gyV-sV-SAm"/>
-                            <constraint firstAttribute="bottom" secondItem="ezn-Ow-6Ow" secondAttribute="bottom" id="t9t-3K-iWE"/>
-                            <constraint firstItem="ezn-Ow-6Ow" firstAttribute="top" secondItem="B56-iD-zki" secondAttribute="top" id="v1B-1w-Qw8"/>
+                            <constraint firstAttribute="bottom" secondItem="5pC-1A-RWY" secondAttribute="bottom" id="mw6-Qq-YLJ"/>
+                            <constraint firstAttribute="trailing" secondItem="5pC-1A-RWY" secondAttribute="trailing" id="oSQ-ks-x2A"/>
                         </constraints>
                     </view>
                     <connections>
@@ -158,7 +159,4 @@
             <point key="canvasLocation" x="-5034.5070422535209" y="1839.375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="background-tequila-sunrise" width="1998" height="1998"/>
-    </resources>
 </document>
