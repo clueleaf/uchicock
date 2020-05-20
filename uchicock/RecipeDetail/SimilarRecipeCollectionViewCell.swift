@@ -10,16 +10,16 @@ import UIKit
 
 class SimilarRecipeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var recipeNameLabel: CustomLabel!
+    @IBOutlet weak var recipeNameButton: UIButton!
     var recipeId = ""
     
     var recipeName : String = String(){
         didSet{
-            recipeNameLabel.backgroundColor = UchicockStyle.basicBackgroundColorLight
-            recipeNameLabel.layer.cornerRadius = 10
-            recipeNameLabel.clipsToBounds = true
-            recipeNameLabel.text = recipeName
-            recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+            recipeNameButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
+            recipeNameButton.setTitle(recipeName, for: .normal)
+            recipeNameButton.backgroundColor = UchicockStyle.basicBackgroundColorLight
+            recipeNameButton.layer.cornerRadius = recipeNameButton.frame.size.height / 2
+            recipeNameButton.clipsToBounds = true
         }
     }    
 }

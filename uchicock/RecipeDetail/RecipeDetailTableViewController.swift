@@ -63,14 +63,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     
-    let similarRecipeList: [String] = [
-        "カシスオレンジ",
-        "ソノラ",
-        "ロングアイランド・アイスティー",
-        "アクア",
-        "青い珊瑚礁",
-    ]
-
+    var allRecipeList: Results<Recipe>?
+    var similarRecipeList = Array<SimilarRecipeBasic>()
+    var selfRecipe = Recipe()
+    let queue = DispatchQueue(label: "queue", qos: .userInteractive)
+    var hasSimilarRecipe = false
+    
     let interactor = Interactor()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -353,6 +351,31 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
             deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
+            
+            if fromContextualMenu == false{
+                queue.async {
+                    let realmBT = try! Realm()
+                    self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
+                    self.allRecipeList = realmBT.objects(Recipe.self)
+
+                    self.rateSimilarity()
+
+                    DispatchQueue.main.async {
+                        if self.similarRecipeList.count > 0 && self.hasSimilarRecipe{
+                            self.hasSimilarRecipe = true
+                            self.tableView.reloadSections(IndexSet(integer: 2), with: .none)
+                        }else if self.similarRecipeList.count > 0 && self.hasSimilarRecipe == false{
+                            self.hasSimilarRecipe = true
+                            self.tableView.insertSections(IndexSet(integer: 2), with: .top)
+                        }else if self.similarRecipeList.count == 0 && self.hasSimilarRecipe{
+                            self.hasSimilarRecipe = false
+                            self.tableView.deleteSections(IndexSet(integer: 2), with: .top)
+                        }else {
+                            self.hasSimilarRecipe = false
+                        }
+                    }
+                }
+            }
             
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
@@ -638,9 +661,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return UITableView.automaticDimension
         }else if indexPath.section == 1{
             return 70
-        }else{
-            return super.tableView(tableView, heightForRowAt: indexPath)
+        }else if indexPath.section == 2{
+            if hasSimilarRecipe{
+                return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 2))
+            }else{
+                return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 3))
+            }
+        }else if indexPath.section == 3{
+            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 3))
         }
+        return 0
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return hasSimilarRecipe ? 4 : 3
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -653,7 +687,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if section == 1{
                 header?.textLabel?.text = "材料(\(String(recipeIngredientList.count)))"
             }else if section == 2{
-                header?.textLabel?.text = "似ているかもしれないレシピ"
+                if hasSimilarRecipe {
+                    header?.textLabel?.text = "似ているかもしれないレシピ"
+                }else{
+                    header?.textLabel?.text = ""
+                }
             }else{
                 header?.textLabel?.text = ""
             }
@@ -750,12 +788,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
         case 2:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            return cell
+            if hasSimilarRecipe{
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 2))
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                return cell
+            }else{
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 3))
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                return cell
+            }
         case 3:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
+            let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 3))
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
@@ -1249,7 +1294,50 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }    
 }
 
-extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func rateSimilarity(){
+        similarRecipeList.removeAll()
+        
+        guard allRecipeList != nil else { return }
+        
+        for r in allRecipeList!{
+            if r.recipeName == selfRecipe.recipeName { continue }
+            
+            var point : Float = 0
+            var sameIngredientNum = 0
+            let largerIngredientNum = max(selfRecipe.recipeIngredients.count, r.recipeIngredients.count)
+            for selfri in selfRecipe.recipeIngredients{
+                for ri in r.recipeIngredients{
+                    if ri.ingredient.ingredientName == selfri.ingredient.ingredientName{
+                        sameIngredientNum += 1
+                        break
+                    }
+                }
+            }
+            
+            if largerIngredientNum == 0{
+                point = 0
+            }else{
+                point = Float(sameIngredientNum) / Float(largerIngredientNum)
+            }
+            
+            if selfRecipe.method != 4 && r.method == selfRecipe.method {
+                point += 0.1
+            }
+
+            if selfRecipe.style != 3 && r.style == selfRecipe.style {
+                point += 0.1
+            }
+
+            if point >= 0.6 {
+                let similarRecipe = SimilarRecipeBasic(id: r.id, name: r.recipeName, point: point)
+                similarRecipeList.append(similarRecipe)
+            }
+        }
+        
+        similarRecipeList.sort(by: { $0.point > $1.point })
+    }
     
     // MARK: - CollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -1257,17 +1345,17 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return similarRecipeList.count
+        return min(similarRecipeList.count, 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var labelWidth: CGFloat = 0.0
+        var buttonWidth: CGFloat = 0.0
 
-        let constraintSize = CGSize(width: 200.0, height: 300.0)
-        let labelRect = similarRecipeList[indexPath.row].boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil) 
-        labelWidth = CGFloat(ceilf(Float(labelRect.width )))
+        let constraintSize = CGSize(width: 200.0, height: 30.0)
+        let buttonRect = similarRecipeList[indexPath.row].name.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil)
+        buttonWidth = min(CGFloat(ceilf(Float(buttonRect.width ))) + 30, 200)
 
-        return CGSize(width: labelWidth, height: 50)
+        return CGSize(width: buttonWidth, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1284,8 +1372,25 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
-        cell.recipeName = similarRecipeList[indexPath.row]
+        cell.recipeName = similarRecipeList[indexPath.row].name
+        cell.recipeNameButton.addTarget(self, action: #selector(RecipeDetailTableViewController.similarRecipeTapped(_:)), for: UIButton.Event.touchUpInside)
+
         return cell
+    }
+    
+    @objc func similarRecipeTapped(_ sender: UIButton){
+        var view = sender.superview
+        while (view! is SimilarRecipeCollectionViewCell) == false{
+            view = view!.superview
+        }
+        let cell = view as! SimilarRecipeCollectionViewCell
+        let touchIndex = self.similarRecipeCollectionView.indexPath(for: cell)
+        
+        if let index = touchIndex {
+            let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+            vc.recipeId = similarRecipeList[index.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }
