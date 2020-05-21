@@ -352,22 +352,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
-            var ingredientList = Array<String>()
-            for ing in recipe.recipeIngredients{
-                ingredientList.append(ing.ingredient.ingredientName)
-            }
-            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
-
-            allRecipeList = realm.objects(Recipe.self)
-            similarRecipeList.removeAll()
-            for rcp in allRecipeList!{
-                var ingredientList = Array<String>()
-                for ing in rcp.recipeIngredients{
-                    ingredientList.append(ing.ingredient.ingredientName)
-                }
-                similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
-            }
-
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
@@ -460,12 +444,31 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         selectedIngredientId = nil
         
-        queue.async {
-            self.rateSimilarity()
+        if recipe.isInvalidated == false{
+            var ingredientList = Array<String>()
+            for ing in recipe.recipeIngredients{
+                ingredientList.append(ing.ingredient.ingredientName)
+            }
+            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
 
-            DispatchQueue.main.async {
-                self.similarRecipeCollectionView.reloadData()
-                self.setCollectionBackgroundView()
+            let realm = try! Realm()
+            allRecipeList = realm.objects(Recipe.self)
+            similarRecipeList.removeAll()
+            for rcp in allRecipeList!{
+                var ingredientList = Array<String>()
+                for ing in rcp.recipeIngredients{
+                    ingredientList.append(ing.ingredient.ingredientName)
+                }
+                similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
+            }
+            
+            queue.async {
+                self.rateSimilarity()
+
+                DispatchQueue.main.async {
+                    self.similarRecipeCollectionView.reloadData()
+                    self.setCollectionBackgroundView()
+                }
             }
         }
     }
