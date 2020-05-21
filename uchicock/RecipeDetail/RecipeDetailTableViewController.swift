@@ -70,7 +70,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     var selectedRecipeId: String? = nil
     var highlightIndexPath: IndexPath? = nil
-    var shouldFadeSimilarRecipeHighlight = false
     
     let interactor = Interactor()
 
@@ -358,7 +357,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
-            shouldFadeSimilarRecipeHighlight = false
             similarRecipeCollectionView.reloadData()
 
             if fromContextualMenu == false{
@@ -473,11 +471,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 DispatchQueue.main.async {
                     self.similarRecipeCollectionView.reloadData()
                     self.setCollectionBackgroundView()
-                    self.shouldFadeSimilarRecipeHighlight = true
+                    self.similarRecipeCollectionView.layoutIfNeeded()
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
-                            UIView.animate(withDuration: 4.4, animations: {
-                                cell.recipeNameLabel.backgroundColor = UchicockStyle.basicBackgroundColorLight
+                            UIView.animate(withDuration: 0.4, animations: {
+                                cell.recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
                             }, completion: nil)
                         }
                     }
@@ -1374,9 +1372,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
         }
         return true
@@ -1385,18 +1383,16 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            if shouldFadeSimilarRecipeHighlight {
-                cell.recipeNameLabel.backgroundColor  = UchicockStyle.basicBackgroundColorLight
-            }
+            cell.recipeNameLabel.layer.backgroundColor  = UchicockStyle.basicBackgroundColorLight.cgColor
         }
     }
     
@@ -1426,13 +1422,13 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         
         if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
             highlightIndexPath = indexPath
         }else{
-            cell.recipeNameLabel.backgroundColor = UchicockStyle.basicBackgroundColorLight
+            cell.recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
         }
 
         return cell
