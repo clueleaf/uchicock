@@ -355,7 +355,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
-            
+            similarRecipeCollectionView.reloadData()
+
             if fromContextualMenu == false{
                 let realm = try! Realm()
                 try! realm.write {
