@@ -11,7 +11,6 @@ import UIKit
 class SimilarRecipeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var recipeNameLabel: UILabel!
-    var recipeId = ""
     
     var recipeName : String = String(){
         didSet{
