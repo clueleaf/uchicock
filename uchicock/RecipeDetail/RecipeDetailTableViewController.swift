@@ -1352,6 +1352,33 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            if UchicockStyle.isBackgroundDark{
+                cell.recipeNameLabel.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            }else{
+                cell.recipeNameLabel.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+            }
+        }
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            if UchicockStyle.isBackgroundDark{
+                cell.recipeNameLabel.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+            }else{
+                cell.recipeNameLabel.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            cell.recipeNameLabel.backgroundColor  = UchicockStyle.basicBackgroundColorLight
+        }
+    }
+    
 //    @available(iOS 13.0, *)
 //    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
 //        return nil
