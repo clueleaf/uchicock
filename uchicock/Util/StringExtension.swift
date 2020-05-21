@@ -1203,11 +1203,14 @@ extension String {
         case "アカシア": return true
         case "アップルシャワー": return true
         case "アップルパイ": return true
+        case "アティ－": return true
+        case "アビー": return true
         case "アビエーション": return true
         case "アプリコットクーラー": return true
         case "アプリコットサワー": return true
         case "アペタイザー": return true
         case "アメリカンビューティ": return true
+        case "アメリカンフィズ": return true
         case "アライズ": return true
         case "アレキサンダーズシスター": return true
         case "アレン": return true
@@ -1215,9 +1218,11 @@ extension String {
         case "イエロージン": return true
         case "イエローバード": return true
         case "イエロー・ラットラー": return true
+        case "イビサ": return true
         case "イングリッシュブラックソーン": return true
         case "インディアンリバー": return true
         case "ヴァージンブリーズ": return true
+        case "ヴァージンメアリー": return true
         case "ウィスキーコブラー": return true
         case "ウィスキー・スウィズル": return true
         case "ウィスキースマッシュ": return true
@@ -1232,12 +1237,16 @@ extension String {
         case "エバーグリーン": return true
         case "エルクスオウン": return true
         case "エンジェルフェイス": return true
+        case "オアシスクーラー": return true
 
+        case "カピストラーノ": return true
+        case "カリフォルニアサンセット": return true
         case "カルーソー": return true
         case "カンピーノ": return true
         case "キッスフロムヘブン": return true
         case "ギブソン": return true
         case "キャロル": return true
+        case "キューバニート": return true
         case "キューバン": return true
         case "キューバンカクテル": return true
         case "キルシュカシス": return true
@@ -1251,12 +1260,14 @@ extension String {
         case "ゴールデンキャデラック": return true
         case "ゴールデンドリーム": return true
         case "コールドデッキ": return true
+        case "コパカバーナ": return true
         case "コロニアル": return true
 
         case "サーウォルター": return true
         case "サードレール": return true
         case "サケリーニャ": return true
         case "サゼラック": return true
+        case "サファリングバスタード": return true
         case "サブマリノ": return true
         case "サンジェルマン": return true
         case "サンセバスチャン": return true
@@ -1285,6 +1296,7 @@ extension String {
         case "スロージンフィズ": return true
 
         case "タキシード": return true
+        case "タヒチアンゴールド": return true
         case "タワーリシチ": return true
         case "チャーリー・チャップリン": return true
         case "チャイニーズ": return true
@@ -1301,6 +1313,7 @@ extension String {
         case "ナイトキャップ": return true
         case "ナップフラッペ": return true
         case "ノースサイドスペシャル": return true
+        case "ノーチェ・ド・パリ": return true
 
         case "バーテンダー": return true
         case "ハープーン": return true
@@ -1308,16 +1321,21 @@ extension String {
         case "パーフェクトマンハッタン": return true
         case "ハーベイウォールバンガー": return true
         case "パイナップルミントクーラー": return true
+        case "ハイハット": return true
         case "バナナブリス": return true
         case "ハネムーン": return true
         case "バラクーダ": return true
         case "パロマ": return true
+        case "ビアバスター": return true
         case "ビー52": return true
         case "ビーアンドビー": return true
+        case "ビーハイブ": return true
         case "ビューティスポット": return true
         case "ピンポン": return true
         case "ファーマーズワイフ": return true
         case "フォールンエンジェル": return true
+        case "フライングスコッツマン": return true
+        case "フランセス・アン": return true
         case "ブランデーコブラー": return true
         case "プランテーション": return true
         case "ブランデー・スウィズル": return true
@@ -1327,6 +1345,7 @@ extension String {
         case "ブランデーフィックス": return true
         case "ブランデーミルクパンチ": return true
         case "プリンストン": return true
+        case "ブルーエンジェル": return true
         case "ブルーハワイアン": return true
         case "ブルドッグハイボール": return true
         case "フレンチ125": return true
@@ -1355,6 +1374,7 @@ extension String {
         case "ミントクーラー": return true
         case "ムラータ": return true
         case "メキシカンバナナ": return true
+        case "メランコリーベビー": return true
         case "モーニングカクテル": return true
         case "モンタナ": return true
         case "モンキーレンチ": return true
@@ -1380,7 +1400,6 @@ extension String {
         case "ワインコブラー": return true
         case "十六夜": return true
             
-
         default: return false
         }
     }
