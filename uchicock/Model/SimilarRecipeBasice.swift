@@ -10,6 +10,9 @@ struct SimilarRecipeBasic{
     var id : String
     var name : String
     var point : Float
+    var method : Int
+    var style: Int
     var shortageNum : Int
+    var ingredientList = Array<String>()
 }
 

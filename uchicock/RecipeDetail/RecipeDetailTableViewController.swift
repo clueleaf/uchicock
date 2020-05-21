@@ -65,7 +65,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     var allRecipeList: Results<Recipe>?
     var similarRecipeList = Array<SimilarRecipeBasic>()
-    var selfRecipe = Recipe()
+    var selfRecipe : SimilarRecipeBasic? = nil
     let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     var hasSimilarRecipe = false
     
@@ -352,10 +352,27 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteButton.backgroundColor = UchicockStyle.alertColor
             deleteButton.tintColor = UchicockStyle.basicBackgroundColor
             
+            if fromContextualMenu == false{
+                var ingredientList = Array<String>()
+                for ing in recipe.recipeIngredients{
+                    ingredientList.append(ing.ingredient.ingredientName)
+                }
+                selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
+
+                allRecipeList = realm.objects(Recipe.self)
+                similarRecipeList.removeAll()
+                for rcp in allRecipeList!{
+                    var ingredientList = Array<String>()
+                    for ing in rcp.recipeIngredients{
+                        ingredientList.append(ing.ingredient.ingredientName)
+                    }
+                    similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
+                }
+            }
+            
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
-            similarRecipeCollectionView.reloadData()
             
             if fromContextualMenu == false{
                 let realm = try! Realm()
@@ -1295,23 +1312,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func rateSimilarity(){
-        let realmBT = try! Realm()
-        self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
-        self.allRecipeList = realmBT.objects(Recipe.self)
+        guard let selfRecipe = selfRecipe else { return }
 
-        similarRecipeList.removeAll()
-        
-        guard allRecipeList != nil else { return }
-        
-        for r in allRecipeList!{
-            if r.recipeName == selfRecipe.recipeName { continue }
+        for i in 0 ..< similarRecipeList.count {
+            if similarRecipeList[i].name == selfRecipe.name { continue }
             
             var point : Float = 0
             var sameIngredientNum = 0
-            let largerIngredientNum = max(selfRecipe.recipeIngredients.count, r.recipeIngredients.count)
-            for selfri in selfRecipe.recipeIngredients{
-                for ri in r.recipeIngredients{
-                    if ri.ingredient.ingredientName == selfri.ingredient.ingredientName{
+            let largerIngredientNum = max(selfRecipe.ingredientList.count,  similarRecipeList[i].ingredientList.count)
+            for selfiname in selfRecipe.ingredientList{
+                for iname in  similarRecipeList[i].ingredientList{
+                    if iname == selfiname{
                         sameIngredientNum += 1
                         break
                     }
@@ -1324,20 +1335,17 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 point = Float(sameIngredientNum) / Float(largerIngredientNum)
             }
             
-            if selfRecipe.method != 4 && r.method == selfRecipe.method {
+            if selfRecipe.method != 4 &&  similarRecipeList[i].method == selfRecipe.method {
                 point += 0.1
             }
 
-            if selfRecipe.style != 3 && r.style == selfRecipe.style {
+            if selfRecipe.style != 3 &&  similarRecipeList[i].style == selfRecipe.style {
                 point += 0.1
             }
-
-            if point >= 0.6 {
-                let similarRecipe = SimilarRecipeBasic(id: r.id, name: r.recipeName, point: point, shortageNum: r.shortageNum)
-                similarRecipeList.append(similarRecipe)
-            }
+            
+            similarRecipeList[i].point = point
         }
-        
+        similarRecipeList.removeAll{ $0.point < 0.6 }
         similarRecipeList.sort(by: { $0.point > $1.point })
     }
     
