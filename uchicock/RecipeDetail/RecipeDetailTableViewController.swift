@@ -447,10 +447,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         if fromContextualMenu == false{
             queue.async {
-                let realmBT = try! Realm()
-                self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
-                self.allRecipeList = realmBT.objects(Recipe.self)
-
                 self.rateSimilarity()
 
                 DispatchQueue.main.async {
@@ -460,6 +456,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     }else if self.similarRecipeList.count > 0 && self.hasSimilarRecipe == false{
                         self.hasSimilarRecipe = true
                         self.tableView.insertSections(IndexSet(integer: 2), with: .top)
+                        self.similarRecipeCollectionView.reloadData()
                     }else if self.similarRecipeList.count == 0 && self.hasSimilarRecipe{
                         self.hasSimilarRecipe = false
                         self.tableView.deleteSections(IndexSet(integer: 2), with: .top)
@@ -1298,6 +1295,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func rateSimilarity(){
+        let realmBT = try! Realm()
+        self.selfRecipe = realmBT.object(ofType: Recipe.self, forPrimaryKey: self.recipeId)!
+        self.allRecipeList = realmBT.objects(Recipe.self)
+
         similarRecipeList.removeAll()
         
         guard allRecipeList != nil else { return }
@@ -1380,7 +1381,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         }else{
             cell.recipeNameButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
         }
-        print("reloading...")
+        cell.recipeNameButton.titleLabel?.font =  UIFont.systemFont(ofSize: 14)
         cell.recipeNameButton.backgroundColor = UchicockStyle.basicBackgroundColorLight
 
         return cell
