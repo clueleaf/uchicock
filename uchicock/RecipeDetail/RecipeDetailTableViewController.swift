@@ -1362,8 +1362,8 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         var buttonWidth: CGFloat = 0.0
 
         let constraintSize = CGSize(width: 200.0, height: 30.0)
-        let buttonRect = (String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":" + similarRecipeList[indexPath.row].name).boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil) //TODO
-        buttonWidth = min(CGFloat(ceilf(Float(buttonRect.width))) + 30, 200)
+        let buttonRect = (String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":  " + similarRecipeList[indexPath.row].name + "  ").boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil) //TODO
+        buttonWidth = min(CGFloat(ceilf(Float(buttonRect.width))), 200)
 
         return CGSize(width: buttonWidth, height: 50)
     }
@@ -1382,7 +1382,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
-        cell.recipeName = String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":" + similarRecipeList[indexPath.row].name  //TODO
+        cell.recipeName = String(floor(similarRecipeList[indexPath.row].point*100)/100) + ":  " + similarRecipeList[indexPath.row].name + "  " //TODO
         cell.recipeNameButton.addTarget(self, action: #selector(RecipeDetailTableViewController.similarRecipeTapped(_:)), for: UIButton.Event.touchUpInside)
         if similarRecipeList[indexPath.row].shortageNum == 0{
             cell.recipeNameButton.setTitleColor(UchicockStyle.labelTextColor, for: .normal)
