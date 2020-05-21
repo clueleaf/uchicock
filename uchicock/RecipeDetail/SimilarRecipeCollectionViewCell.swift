@@ -10,14 +10,14 @@ import UIKit
 
 class SimilarRecipeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var recipeNameButton: UIButton!
+    @IBOutlet weak var recipeNameLabel: UILabel!
     var recipeId = ""
     
     var recipeName : String = String(){
         didSet{
-            recipeNameButton.setTitle(recipeName, for: .normal)
-            recipeNameButton.layer.cornerRadius = recipeNameButton.frame.size.height / 2
-            recipeNameButton.clipsToBounds = true
+            recipeNameLabel.text = recipeName
+            recipeNameLabel.layer.cornerRadius = recipeNameLabel.frame.size.height / 2
+            recipeNameLabel.clipsToBounds = true
         }
     }    
 }

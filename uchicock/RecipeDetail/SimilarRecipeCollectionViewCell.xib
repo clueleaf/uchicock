@@ -17,24 +17,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9Z-ha-xVA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLm-uK-t4Z">
                         <rect key="frame" x="4" y="10" width="172" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="Button"/>
-                    </button>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="b9Z-ha-xVA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="0kM-61-3Fi"/>
-                <constraint firstAttribute="bottom" secondItem="b9Z-ha-xVA" secondAttribute="bottom" constant="10" id="BHh-6B-f5n"/>
-                <constraint firstItem="b9Z-ha-xVA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="SVM-k5-OY0"/>
-                <constraint firstAttribute="trailing" secondItem="b9Z-ha-xVA" secondAttribute="trailing" constant="4" id="urv-a7-ENQ"/>
+                <constraint firstItem="gLm-uK-t4Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="JiE-Sa-J1y"/>
+                <constraint firstAttribute="bottom" secondItem="gLm-uK-t4Z" secondAttribute="bottom" constant="10" id="lHA-Sv-kL3"/>
+                <constraint firstAttribute="trailing" secondItem="gLm-uK-t4Z" secondAttribute="trailing" constant="4" id="n57-bq-AR7"/>
+                <constraint firstItem="gLm-uK-t4Z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="pCZ-hA-hzy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="251" height="58"/>
             <connections>
-                <outlet property="recipeNameButton" destination="b9Z-ha-xVA" id="IFD-ix-kdU"/>
+                <outlet property="recipeNameLabel" destination="gLm-uK-t4Z" id="qTU-k4-MUU"/>
             </connections>
             <point key="canvasLocation" x="62.318840579710148" y="127.23214285714285"/>
         </collectionViewCell>
