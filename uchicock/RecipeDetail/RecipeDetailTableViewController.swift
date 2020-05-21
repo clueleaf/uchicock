@@ -1355,7 +1355,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             text = String(text[..<text.index(text.startIndex, offsetBy: 15)] + "…")
         }
 
-        let constraintSize = CGSize(width: 200.0, height: 30.0)
+        let constraintSize = CGSize(width: 300.0, height: 30.0)
         let buttonRect = text.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil)
         buttonWidth = CGFloat(ceilf(Float(buttonRect.width))) + 30
 
