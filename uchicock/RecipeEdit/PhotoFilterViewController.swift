@@ -20,7 +20,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var filterScrollView: UIScrollView!
+    @IBOutlet weak var filterScrollView: CustomScrollView!
     @IBOutlet weak var filterStackView: UIStackView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

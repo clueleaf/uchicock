@@ -247,6 +247,16 @@ class CustomLabel: UILabel{
 class CustomCAGradientLayer: CAGradientLayer{
 }
 
+class CustomScrollView: UIScrollView{
+    override func touchesShouldCancel(in view: UIView) -> Bool {
+        if view.isKind(of: UIButton.self) {
+          return true
+        }
+
+        return super.touchesShouldCancel(in: view)
+    }    
+}
+
 class ExpandedButton: UIButton {
     var minimumHitWidth : CGFloat = 44.0
     var minimumHitHeight : CGFloat = 44.0

@@ -10,7 +10,7 @@ import UIKit
 
 class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: CustomScrollView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var weightMinusButton: ExpandedButton!
     @IBOutlet weak var weightPlusButton: ExpandedButton!

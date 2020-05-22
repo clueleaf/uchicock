@@ -10,7 +10,7 @@ import UIKit
 
 class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: CustomScrollView!
     @IBOutlet weak var scrollBackgroundView: UIView!
 
     @IBOutlet weak var sortExplanationLabel: UILabel!
