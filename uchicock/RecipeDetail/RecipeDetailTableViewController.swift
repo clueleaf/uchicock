@@ -118,6 +118,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         madeNumPlusButton.minimumHitHeight = 36
         madeNumMinusButton.minimumHitWidth = 36
         madeNumMinusButton.minimumHitHeight = 36
+        
+        let tipImage = UIImage(named: "button-tip")
+        styleTipButton.setImage(tipImage, for: .normal)
+        methodTipButton.setImage(tipImage, for: .normal)
+        strengthTipButton.setImage(tipImage, for: .normal)
 
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
@@ -323,12 +328,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 strength.text = "未指定"
             }
 
-            let tipImage = UIImage(named: "button-tip")
-            styleTipButton.setImage(tipImage, for: .normal)
             styleTipButton.tintColor = UchicockStyle.primaryColor
-            methodTipButton.setImage(tipImage, for: .normal)
             methodTipButton.tintColor = UchicockStyle.primaryColor
-            strengthTipButton.setImage(tipImage, for: .normal)
             strengthTipButton.tintColor = UchicockStyle.primaryColor
 
             memo.text = recipe.memo
@@ -359,13 +360,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.reloadData()
             similarRecipeCollectionView.reloadData()
 
-            if fromContextualMenu == false{
-                let realm = try! Realm()
-                try! realm.write {
-                    recipe.lastViewDate = Date()
-                }
-            }
-            
             if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
                 for indexPath in tableView.indexPathsForVisibleRows! {
                     if indexPath.section == 0 { continue }
@@ -440,21 +434,25 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             noRecipeAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
-        }
+        }else{
+            let realm = try! Realm()
+            if fromContextualMenu == false{
+                try! realm.write {
+                    recipe.lastViewDate = Date()
+                }
+            }
+            
+            if let path = tableView.indexPathForSelectedRow{
+                self.tableView.deselectRow(at: path, animated: true)
+            }
+            selectedIngredientId = nil
 
-        if let path = tableView.indexPathForSelectedRow{
-            self.tableView.deselectRow(at: path, animated: true)
-        }
-        selectedIngredientId = nil
-        
-        if recipe.isInvalidated == false{
             var ingredientList = Array<String>()
             for ing in recipe.recipeIngredients{
                 ingredientList.append(ing.ingredient.ingredientName)
             }
             selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
 
-            let realm = try! Realm()
             allRecipeList = realm.objects(Recipe.self)
             similarRecipeList.removeAll()
             for rcp in allRecipeList!{
@@ -1297,7 +1295,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
 extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    func rateSimilarity(){
+    private func rateSimilarity(){
         displaySimilarRecipeList.removeAll()
         guard let selfRecipe = selfRecipe else { return }
 
@@ -1316,19 +1314,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 }
             }
             
-            if largerIngredientNum == 0{
-                point = 0
-            }else{
-                point = Float(sameIngredientNum) / Float(largerIngredientNum)
-            }
-            
-            if selfRecipe.method != 4 &&  r.method == selfRecipe.method {
-                point += 0.1
-            }
-
-            if selfRecipe.style != 3 &&  r.style == selfRecipe.style {
-                point += 0.1
-            }
+            point = largerIngredientNum == 0 ? 0 : Float(sameIngredientNum) / Float(largerIngredientNum)
+            if selfRecipe.method != 4 &&  r.method == selfRecipe.method { point += 0.1 }
+            if selfRecipe.style != 3 &&  r.style == selfRecipe.style { point += 0.1 }
             
             if point >= 0.6{
                 displaySimilarRecipeList.append(SimilarRecipeBasic(id: r.id, name: r.name, point: point, method: r.method, style: r.style, shortageNum: r.shortageNum))
@@ -1347,8 +1335,6 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var buttonWidth: CGFloat = 0.0
-
         // TODO
         var text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
         if text.count > 18 {
@@ -1357,7 +1343,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
 
         let constraintSize = CGSize(width: 300.0, height: 30.0)
         let buttonRect = text.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil)
-        buttonWidth = CGFloat(ceilf(Float(buttonRect.width))) + 30
+        let buttonWidth = CGFloat(ceilf(Float(buttonRect.width))) + 30
 
         return CGSize(width: buttonWidth, height: 50)
     }
@@ -1396,15 +1382,6 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         }
     }
     
-//    @available(iOS 13.0, *)
-//    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        return nil
-//    }
-//
-//    @available(iOS 13.0, *)
-//    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
         // TODO
@@ -1434,7 +1411,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         return cell
     }
 
-    func setCollectionBackgroundView(){
+    private func setCollectionBackgroundView(){
         if displaySimilarRecipeList.count == 0{
             similarRecipeCollectionView.backgroundView = UIView()
             similarRecipeCollectionView.isScrollEnabled = false
