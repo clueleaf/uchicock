@@ -129,12 +129,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
         collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        collectionView.refreshHeader.removeRefreshHeader()
-        collectionView.refreshHeader.addPullToRefresh {
-            [unowned self] in
-            self.refresh(shouldShuffle: true)
-            self.collectionView.refreshHeader.stopPullToRefresh()
-        }
 
         setupVC()
         needsLayout = true
@@ -213,6 +207,13 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
         
+        collectionView.refreshHeader.removeRefreshHeader()
+        collectionView.refreshHeader.addPullToRefresh {
+            [unowned self] in
+            self.refresh(shouldShuffle: true)
+            self.collectionView.refreshHeader.stopPullToRefresh()
+        }
+
         if highlightIndexPath != nil{
             if let cell = self.collectionView.cellForItem(at: self.highlightIndexPath!) as? AlbumCollectionViewCell {
                 UIView.animate(withDuration: 0.4, animations: {

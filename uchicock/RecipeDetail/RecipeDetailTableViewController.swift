@@ -265,7 +265,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 }else{
                     lastViewDateLabel.text = "最終閲覧：--"
                 }
-
                 shouldUpdateLastViewDate = false
             }
 

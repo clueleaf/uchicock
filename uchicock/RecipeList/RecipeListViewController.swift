@@ -124,7 +124,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchTextField.setSearchIcon()
         
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
 
         searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor

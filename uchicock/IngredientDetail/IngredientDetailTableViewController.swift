@@ -102,7 +102,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         stockRecommendLabel.textColor = UchicockStyle.primaryColor
         alcoholIconImage.tintColor = UchicockStyle.primaryColor
         deleteButtonLabel.textColor = UchicockStyle.alertColor
-
         recipeOrderLabel.textColor = UchicockStyle.primaryColor
         
         let realm = try! Realm()
