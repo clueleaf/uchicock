@@ -1,25 +1,25 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
-      "filename" : "Simulator Screen Shot - iPhone 11 Pro Max iOS 13.3 - 2020-02-23 at 17.17.05_framed.png"
+      "filename" : "Simulator Screen Shot - iPhone 11 Pro Max iOS 13.4 - 2020-05-21 at 20.47.49Ingredient_framed.png",
+      "idiom" : "iphone"
     },
     {
-      "idiom" : "iphone",
-      "filename" : "Simulator Screen Shot - iPhone 11 Pro Max iOS 13.3 - 2020-02-23 at 17.17.34_framed.png",
-      "height-class" : "compact"
+      "filename" : "Simulator Screen Shot - iPhone 11 Pro Max iOS 13.4 - 2020-05-21 at 20.47.54_framed.png",
+      "height-class" : "compact",
+      "idiom" : "iphone"
     },
     {
-      "idiom" : "ipad",
-      "filename" : "Simulator Screen Shot - iPad Pro (12.9-inch) (3rd generation) iOS 13.3 - 2020-02-23 at 17.20.41_framed.png"
+      "filename" : "Simulator Screen Shot - iPad Pro (12.9-inch) (3rd generation) iOS 13.4 - 2020-05-21 at 20.57.43Ingredient_framed.png",
+      "idiom" : "ipad"
     },
     {
-      "idiom" : "ipad",
-      "height-class" : "compact"
+      "height-class" : "compact",
+      "idiom" : "ipad"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
