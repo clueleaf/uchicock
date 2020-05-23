@@ -1397,7 +1397,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
 
-        return UITargetedPreview(view: cell, parameters: parameters)
+        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
     }
     
     @available(iOS 13.0, *)
@@ -1415,7 +1415,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
 
-        return UITargetedPreview(view: cell, parameters: parameters)
+        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
     }
 
     @available(iOS 13.0, *)
