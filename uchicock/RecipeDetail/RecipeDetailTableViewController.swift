@@ -704,7 +704,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }else if section == 2{
                 header?.textLabel?.text = ""
             }else{
-                header?.textLabel?.text = "似ているかもしれないレシピ"
+                header?.textLabel?.text = "似ているかも？"
             }
         }
     }
@@ -1469,11 +1469,11 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             similarRecipeCollectionView.backgroundView = UIView()
             similarRecipeCollectionView.isScrollEnabled = false
             let noDataLabel = UILabel(frame: CGRect(x: 8, y: 0, width: similarRecipeCollectionView.bounds.size.width - 16, height: similarRecipeCollectionView.bounds.size.height))
-            noDataLabel.numberOfLines = 1
+            noDataLabel.numberOfLines = 2
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
             noDataLabel.textAlignment = .center
-            noDataLabel.text = "見つかりませんでした..."
+            noDataLabel.text = "似ているレシピは\n見つかりませんでした..."
             similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
         }else{
             similarRecipeCollectionView.backgroundView = nil
