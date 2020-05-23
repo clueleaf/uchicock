@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar-recipe" translatesAutoresizingMaskIntoConstraints="NO" id="Iue-HB-2wG">
-                                <rect key="frame" x="18" y="18" width="50" height="50"/>
+                                <rect key="frame" x="18" y="22" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Iue-HB-2wG" secondAttribute="height" multiplier="1:1" id="PdL-Hn-ThD"/>
                                 </constraints>
@@ -50,7 +50,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Iue-HB-2wG" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" constant="18" id="3Ve-6G-mge"/>
+                            <constraint firstItem="Iue-HB-2wG" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" constant="22" id="3Ve-6G-mge"/>
                             <constraint firstAttribute="bottom" secondItem="7KP-BH-GUV" secondAttribute="bottom" id="63M-WA-KFJ"/>
                             <constraint firstItem="Iue-HB-2wG" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" constant="18" id="Bc7-M4-aFw"/>
                             <constraint firstItem="7KP-BH-GUV" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" id="Dag-fq-mvA"/>
