@@ -10,13 +10,14 @@ import UIKit
 
 class SimilarRecipeCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var backgroundContainer: UIView!
     @IBOutlet weak var recipeNameLabel: UILabel!
+    @IBOutlet weak var recipeImageView: UIImageView!
     
     var recipeName : String = String(){
         didSet{
             recipeNameLabel.text = recipeName
-            recipeNameLabel.layer.cornerRadius = recipeNameLabel.frame.size.height / 2
-            recipeNameLabel.clipsToBounds = true
+            backgroundContainer.layer.cornerRadius = 15
         }
     }    
 }

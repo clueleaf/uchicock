@@ -472,7 +472,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
                             UIView.animate(withDuration: 0.4, animations: {
-                                cell.recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+                                cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
                             }, completion: nil)
                         }
                     }
@@ -696,9 +696,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if section == 1{
                 header?.textLabel?.text = "材料(\(String(recipeIngredientList.count)))"
             }else if section == 2{
-                header?.textLabel?.text = "似ているかもしれないレシピ"
-            }else{
                 header?.textLabel?.text = ""
+            }else{
+                header?.textLabel?.text = "似ているかもしれないレシピ"
             }
         }
     }
@@ -1334,17 +1334,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // TODO
-        var text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
-        if text.count > 18 {
-            text = String(text[..<text.index(text.startIndex, offsetBy: 15)] + "…")
-        }
-
-        let constraintSize = CGSize(width: 300.0, height: 30.0)
-        let buttonRect = text.boundingRect(with: constraintSize, options: [.usesFontLeading, .truncatesLastVisibleLine, .usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14) as Any], context: nil)
-        let buttonWidth = CGFloat(ceilf(Float(buttonRect.width))) + 30
-
-        return CGSize(width: buttonWidth, height: 50)
+        return CGSize(width: 100, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1357,9 +1347,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
         }
         return true
@@ -1368,26 +1358,23 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            cell.recipeNameLabel.layer.backgroundColor  = UchicockStyle.basicBackgroundColorLight.cgColor
+            cell.backgroundContainer.layer.backgroundColor  = UchicockStyle.basicBackgroundColorLight.cgColor
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
         // TODO
-        var text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
-        if text.count > 18 {
-            text = String(text[..<text.index(text.startIndex, offsetBy: 15)] + "…")
-        }
+        let text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
 
         cell.recipeName = text
         if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
@@ -1398,13 +1385,26 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         
         if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
             if UchicockStyle.isBackgroundDark{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
             }else{
-                cell.recipeNameLabel.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             }
             highlightIndexPath = indexPath
         }else{
-            cell.recipeNameLabel.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+            cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+        }
+        
+        // todo
+        cell.recipeImageView.clipsToBounds = true
+        if let image = ImageUtil.loadImageOf(recipeId: displaySimilarRecipeList[indexPath.row].id, forList: true){
+            cell.recipeImageView.layer.cornerRadius = 35
+            cell.recipeImageView.contentMode = .scaleAspectFill
+            cell.recipeImageView.image = image
+        }else{
+            cell.recipeImageView.layer.cornerRadius = 0
+            cell.recipeImageView.contentMode = .scaleAspectFit
+            cell.recipeImageView.image = UIImage(named: "tabbar-recipe")//?.withAlignmentRectInsets(UIEdgeInsets(top: -8, left: -8, bottom: -8, right: -8))
+            cell.recipeImageView.tintColor = UchicockStyle.noPhotoColor
         }
 
         return cell
@@ -1414,11 +1414,11 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         if displaySimilarRecipeList.count == 0{
             similarRecipeCollectionView.backgroundView = UIView()
             similarRecipeCollectionView.isScrollEnabled = false
-            let noDataLabel = UILabel(frame: CGRect(x: 8, y: 0, width: similarRecipeCollectionView.bounds.size.width - 8, height: similarRecipeCollectionView.bounds.size.height))
+            let noDataLabel = UILabel(frame: CGRect(x: 8, y: 0, width: similarRecipeCollectionView.bounds.size.width - 16, height: similarRecipeCollectionView.bounds.size.height))
             noDataLabel.numberOfLines = 1
             noDataLabel.textColor = UchicockStyle.labelTextColorLight
             noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .left
+            noDataLabel.textAlignment = .center
             noDataLabel.text = "見つかりませんでした..."
             similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
         }else{
