@@ -11,8 +11,13 @@ struct SimilarRecipeBasic{
     var name : String
     var point : Float
     var method : Int
-    var style: Int
+    var style : Int
+    var strength : Int
     var shortageNum : Int
-    var ingredientList = Array<String>()
+    var ingredientList = Array<SimilarRecipeIngredient>()
 }
 
+struct SimilarRecipeIngredient{
+    var name : String
+    var mustFlag : Bool
+}

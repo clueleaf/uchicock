@@ -451,20 +451,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             selectedIngredientId = nil
 
-            var ingredientList = Array<String>()
+            var ingredientList = Array<SimilarRecipeIngredient>()
             for ing in recipe.recipeIngredients{
-                ingredientList.append(ing.ingredient.ingredientName)
+                ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
             }
-            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
+            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, strength: recipe.strength, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
 
             allRecipeList = realm.objects(Recipe.self)
             similarRecipeList.removeAll()
             for rcp in allRecipeList!{
-                var ingredientList = Array<String>()
+                var ingredientList = Array<SimilarRecipeIngredient>()
                 for ing in rcp.recipeIngredients{
-                    ingredientList.append(ing.ingredient.ingredientName)
+                    ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
                 }
-                similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
+                similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, strength: rcp.strength, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
             }
             
             queue.async {
@@ -1304,27 +1304,78 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         displaySimilarRecipeList.removeAll()
         guard let selfRecipe = selfRecipe else { return }
 
-        for r in similarRecipeList {
-            if r.name == selfRecipe.name { continue }
+        for anotherRecipe in similarRecipeList {
+            if anotherRecipe.name == selfRecipe.name { continue }
             
             var point : Float = 0
             var sameIngredientNum = 0
-            let largerIngredientNum = max(selfRecipe.ingredientList.count,  r.ingredientList.count)
-            for selfiname in selfRecipe.ingredientList{
-                for iname in  r.ingredientList{
-                    if iname == selfiname{
+            let largerIngredientTotal = max(selfRecipe.ingredientList.count,  anotherRecipe.ingredientList.count)
+            var maxWeight : Float = 0.0
+            var weight : Float = 0.0
+            
+            for selfIng in selfRecipe.ingredientList{
+                var hasSameIng = false
+                for anotherIng in anotherRecipe.ingredientList{
+                    if anotherIng.name == selfIng.name{
                         sameIngredientNum += 1
+                        maxWeight += 1.0
+                        weight += 1.0
+                        hasSameIng = true
                         break
                     }
                 }
+                if hasSameIng == false{
+                    if selfIng.mustFlag{
+                        maxWeight += 1.0
+                    }else{
+                        maxWeight += 0.5
+                    }
+                }
+            }
+
+            for anotherIng in anotherRecipe.ingredientList{
+                var hasSameIng = false
+                for selfIng in selfRecipe.ingredientList{
+                    if anotherIng.name == selfIng.name{
+                        maxWeight += 1.0
+                        weight += 1.0
+                        hasSameIng = true
+                        break
+                    }
+                }
+                if hasSameIng == false{
+                    if anotherIng.mustFlag{
+                        maxWeight += 1.0
+                    }else{
+                        maxWeight += 0.5
+                    }
+                }
+            }
+
+            point = maxWeight == 0.0 ? 0.0 : (weight / maxWeight)
+            point = point - 0.1 * Float((largerIngredientTotal - sameIngredientNum)) //異なる材料の数だけペナルティ
+            if selfRecipe.method != 4 && anotherRecipe.method == selfRecipe.method {
+                point += 0.1
+                if anotherRecipe.method == 3{
+                    point += 0.05 //ブレンドはボーナスポイント
+                }
+            }
+            if selfRecipe.style != 3 &&  anotherRecipe.style == selfRecipe.style {
+                point += 0.1
+                if anotherRecipe.style == 2{
+                    point += 0.05 //ホットはボーナスポイント
+                }
             }
             
-            point = largerIngredientNum == 0 ? 0 : Float(sameIngredientNum) / Float(largerIngredientNum)
-            if selfRecipe.method != 4 &&  r.method == selfRecipe.method { point += 0.1 }
-            if selfRecipe.style != 3 &&  r.style == selfRecipe.style { point += 0.1 }
+            if selfRecipe.strength == 0 && anotherRecipe.strength == 0{
+                point += 0.2 //ノンアルはボーナスポイント
+            }
+            if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
+                point += 0.01 //どちらもアルコールならボーナスポイント
+            }
             
             if point >= 0.6{
-                displaySimilarRecipeList.append(SimilarRecipeBasic(id: r.id, name: r.name, point: point, method: r.method, style: r.style, shortageNum: r.shortageNum))
+                displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum))
             }
         }
         displaySimilarRecipeList.sort(by: { $0.point > $1.point })
