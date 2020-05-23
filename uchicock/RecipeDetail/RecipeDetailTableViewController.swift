@@ -1328,7 +1328,8 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                     if selfIng.mustFlag{
                         maxWeight += 1.0
                     }else{
-                        maxWeight += 0.5
+                        // オプション材料の影響を少なくする
+                        maxWeight += 0.3
                     }
                 }
             }
@@ -1347,7 +1348,8 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                     if anotherIng.mustFlag{
                         maxWeight += 1.0
                     }else{
-                        maxWeight += 0.5
+                        // オプション材料の影響を少なくする
+                        maxWeight += 0.3
                     }
                 }
             }
