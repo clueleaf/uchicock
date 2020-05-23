@@ -1334,7 +1334,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 130)
+        return CGSize(width: 96, height: 128)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1394,17 +1394,12 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
         }
         
-        // todo
-        cell.recipeImageView.clipsToBounds = true
         if let image = ImageUtil.loadImageOf(recipeId: displaySimilarRecipeList[indexPath.row].id, forList: true){
-            cell.recipeImageView.layer.cornerRadius = 35
-            cell.recipeImageView.contentMode = .scaleAspectFill
             cell.recipeImageView.image = image
+            cell.recipeImageView.isHidden = false
         }else{
-            cell.recipeImageView.layer.cornerRadius = 0
-            cell.recipeImageView.contentMode = .scaleAspectFit
-            cell.recipeImageView.image = UIImage(named: "tabbar-recipe")//?.withAlignmentRectInsets(UIEdgeInsets(top: -8, left: -8, bottom: -8, right: -8))
-            cell.recipeImageView.tintColor = UchicockStyle.noPhotoColor
+            cell.recipeImageView.image = nil
+            cell.recipeImageView.isHidden = true
         }
 
         return cell
