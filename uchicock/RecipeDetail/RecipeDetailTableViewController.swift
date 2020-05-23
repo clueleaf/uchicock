@@ -70,6 +70,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     var selectedRecipeId: String? = nil
     var highlightIndexPath: IndexPath? = nil
+    var canDisplayCollectionBackgroundView = false
     
     let interactor = Interactor()
 
@@ -419,6 +420,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.bringSubviewToFront(coverView)
         }else{
             updateImageView()
+            if canDisplayCollectionBackgroundView{
+                // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+                setCollectionBackgroundView()
+            }
         }
     }
     
@@ -468,6 +473,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 DispatchQueue.main.async {
                     self.similarRecipeCollectionView.reloadData()
                     self.setCollectionBackgroundView()
+                    self.canDisplayCollectionBackgroundView = true
                     self.similarRecipeCollectionView.layoutIfNeeded()
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
