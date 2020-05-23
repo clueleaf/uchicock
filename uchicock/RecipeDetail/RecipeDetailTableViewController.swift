@@ -1334,7 +1334,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 86, height: 118)
+        return CGSize(width: 86, height: 126)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1436,6 +1436,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         let text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
 
         cell.recipeName = text
+        cell.id = displaySimilarRecipeList[indexPath.row].id
         if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
             cell.recipeNameLabel.textColor = UchicockStyle.labelTextColor
         }else{
@@ -1453,14 +1454,6 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
         }
         
-        if let image = ImageUtil.loadImageOf(recipeId: displaySimilarRecipeList[indexPath.row].id, forList: true){
-            cell.recipeImageView.image = image
-            cell.recipeImageView.isHidden = false
-        }else{
-            cell.recipeImageView.image = nil
-            cell.recipeImageView.isHidden = true
-        }
-
         return cell
     }
 
