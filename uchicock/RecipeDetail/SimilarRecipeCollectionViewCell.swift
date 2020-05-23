@@ -14,6 +14,7 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var noImageImageView: UIImageView!
     @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var highlightView: UIView!
     
     var id: String = String(){
         didSet{
@@ -34,6 +35,7 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
             recipeNameLabel.text = recipeName
             backgroundContainer.layer.cornerRadius = 15
             backgroundContainer.clipsToBounds = true
+            highlightView.backgroundColor = UIColor.clear
         }
     }    
 }

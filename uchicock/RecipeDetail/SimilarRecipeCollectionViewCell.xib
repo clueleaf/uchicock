@@ -42,18 +42,26 @@
                                     <constraint firstAttribute="width" secondItem="gIp-0N-8BD" secondAttribute="height" multiplier="1:1" id="SNY-oJ-mEA"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-BH-GUV">
+                                <rect key="frame" x="0.0" y="0.0" width="86" height="126"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Iue-HB-2wG" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" constant="18" id="3Ve-6G-mge"/>
+                            <constraint firstAttribute="bottom" secondItem="7KP-BH-GUV" secondAttribute="bottom" id="63M-WA-KFJ"/>
                             <constraint firstItem="Iue-HB-2wG" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" constant="18" id="Bc7-M4-aFw"/>
+                            <constraint firstItem="7KP-BH-GUV" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" id="Dag-fq-mvA"/>
                             <constraint firstItem="4Oo-FS-fiK" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" constant="5" id="Eju-Rf-o4F"/>
+                            <constraint firstAttribute="trailing" secondItem="7KP-BH-GUV" secondAttribute="trailing" id="FBo-yc-QVm"/>
                             <constraint firstItem="gIp-0N-8BD" firstAttribute="centerX" secondItem="U0X-p1-gx8" secondAttribute="centerX" id="MPC-EH-LSg"/>
                             <constraint firstItem="gIp-0N-8BD" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" id="OM6-zv-z4j"/>
                             <constraint firstAttribute="trailing" secondItem="Iue-HB-2wG" secondAttribute="trailing" constant="18" id="cK9-fA-kBG"/>
                             <constraint firstItem="4Oo-FS-fiK" firstAttribute="top" secondItem="gIp-0N-8BD" secondAttribute="bottom" constant="5" id="j1R-OY-Dsm"/>
                             <constraint firstAttribute="trailing" secondItem="4Oo-FS-fiK" secondAttribute="trailing" constant="5" id="mrV-T3-MWW"/>
+                            <constraint firstItem="7KP-BH-GUV" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" id="nFX-bO-jly"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -68,6 +76,7 @@
             <size key="customSize" width="251" height="58"/>
             <connections>
                 <outlet property="backgroundContainer" destination="U0X-p1-gx8" id="w0E-Pe-dQC"/>
+                <outlet property="highlightView" destination="7KP-BH-GUV" id="OPs-TU-WtU"/>
                 <outlet property="noImageImageView" destination="Iue-HB-2wG" id="Ezi-9u-49l"/>
                 <outlet property="recipeImageView" destination="gIp-0N-8BD" id="aKW-dH-z9r"/>
                 <outlet property="recipeNameLabel" destination="4Oo-FS-fiK" id="MbS-ym-dfk"/>

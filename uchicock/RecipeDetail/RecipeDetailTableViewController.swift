@@ -477,8 +477,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     self.similarRecipeCollectionView.layoutIfNeeded()
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
-                            UIView.animate(withDuration: 0.4, animations: {
-                                cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+                            UIView.animate(withDuration: 0.3, animations: {
+                                cell.highlightView.backgroundColor = UIColor.clear
                             }, completion: nil)
                         }
                     }
@@ -1353,9 +1353,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
         }
         return true
@@ -1364,16 +1364,16 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            cell.backgroundContainer.layer.backgroundColor  = UchicockStyle.basicBackgroundColorLight.cgColor
+            cell.highlightView.backgroundColor  = UIColor.clear
         }
     }
     
@@ -1449,15 +1449,16 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             cell.recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
         }
         
+        cell.backgroundContainer.backgroundColor = UchicockStyle.basicBackgroundColorLight
         if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
             if UchicockStyle.isBackgroundDark{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.backgroundContainer.layer.backgroundColor  = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
             highlightIndexPath = indexPath
         }else{
-            cell.backgroundContainer.layer.backgroundColor = UchicockStyle.basicBackgroundColorLight.cgColor
+            cell.highlightView.backgroundColor = UIColor.clear
         }
         
         return cell
