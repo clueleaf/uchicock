@@ -1308,8 +1308,6 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             if anotherRecipe.name == selfRecipe.name { continue }
             
             var point : Float = 0
-            var sameIngredientNum = 0
-            let largerIngredientTotal = max(selfRecipe.ingredientList.count,  anotherRecipe.ingredientList.count)
             var maxWeight : Float = 0.0
             var weight : Float = 0.0
             
@@ -1317,7 +1315,6 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 var hasSameIng = false
                 for anotherIng in anotherRecipe.ingredientList{
                     if anotherIng.name == selfIng.name{
-                        sameIngredientNum += 1
                         maxWeight += 1.0
                         weight += 1.0
                         hasSameIng = true
@@ -1329,7 +1326,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                         maxWeight += 1.0
                     }else{
                         // オプション材料の影響を少なくする
-                        maxWeight += 0.3
+                        maxWeight += 0.5
                     }
                 }
             }
@@ -1349,13 +1346,13 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                         maxWeight += 1.0
                     }else{
                         // オプション材料の影響を少なくする
-                        maxWeight += 0.3
+                        maxWeight += 0.5
                     }
                 }
             }
 
             point = maxWeight == 0.0 ? 0.0 : (weight / maxWeight)
-            point = point - 0.1 * Float((largerIngredientTotal - sameIngredientNum)) //異なる材料の数だけペナルティ
+            point = point - 0.05 * (maxWeight - weight) //異なる材料の数だけペナルティ
             if selfRecipe.method != 4 && anotherRecipe.method == selfRecipe.method {
                 point += 0.1
                 if anotherRecipe.method == 3{
@@ -1373,7 +1370,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 point += 0.2 //ノンアルはボーナスポイント
             }
             if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
-                point += 0.01 //どちらもアルコールならボーナスポイント
+                point += 0.01 //どちらもアルコールならボーナスポイント（主に並べ替え用）
             }
             
             if point >= 0.6{
