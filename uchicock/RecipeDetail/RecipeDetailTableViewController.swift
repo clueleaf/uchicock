@@ -141,7 +141,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
         similarRecipeCollectionView.register(UINib(nibName: "SimilarRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RecipeNameCell")
 
-
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
         photo.addGestureRecognizer(tapRecognizer)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoLongPressed(_:)))
@@ -357,6 +356,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.estimatedRowHeight = 70
             tableView.rowHeight = UITableView.automaticDimension
             tableView.reloadData()
+            similarRecipeCollectionView.backgroundColor = UchicockStyle.basicBackgroundColor
             similarRecipeCollectionView.reloadData()
 
             if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
@@ -1334,7 +1334,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 96, height: 128)
+        return CGSize(width: 86, height: 118)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -1368,6 +1368,65 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             cell.backgroundContainer.layer.backgroundColor  = UchicockStyle.basicBackgroundColorLight.cgColor
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let previewProvider: () -> RecipeDetailTableViewController? = {
+                let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+                vc.fromContextualMenu = true
+                vc.recipeId = self.displaySimilarRecipeList[indexPath.row].id
+                return vc
+            }
+        return UIContextMenuConfiguration(identifier: self.displaySimilarRecipeList[indexPath.row].id as NSCopying, previewProvider: previewProvider, actionProvider: nil)
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< displaySimilarRecipeList.count{
+            if displaySimilarRecipeList[i].id == recipeId {
+                row = i
+                break
+            }
+        }
+        guard row != nil else { return nil }
+        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell, parameters: parameters)
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< displaySimilarRecipeList.count{
+            if displaySimilarRecipeList[i].id == recipeId {
+                row = i
+                break
+            }
+        }
+        guard row != nil else { return nil }
+        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell, parameters: parameters)
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let recipeId = configuration.identifier as? String else { return }
+
+        animator.addCompletion {
+            let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+            vc.recipeId = recipeId
+            self.selectedRecipeId = recipeId
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

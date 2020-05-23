@@ -442,6 +442,42 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< filteredRecipeBasicList.count{
+            if filteredRecipeBasicList[i].id == recipeId {
+                row = i
+                break
+            }
+        }
+        guard row != nil else { return nil }
+        let cell = collectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! AlbumCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell, parameters: parameters)
+    }
+    
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< filteredRecipeBasicList.count{
+            if filteredRecipeBasicList[i].id == recipeId {
+                row = i
+                break
+            }
+        }
+        guard row != nil else { return nil }
+        let cell = collectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! AlbumCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell, parameters: parameters)
+    }
+    
+    @available(iOS 13.0, *)
     override func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         guard let recipeId = configuration.identifier as? String else { return }
 
