@@ -461,12 +461,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
             allRecipeList = realm.objects(Recipe.self)
             similarRecipeList.removeAll()
-            for rcp in allRecipeList!{
+            for anotherRecipe in allRecipeList!{
                 var ingredientList = Array<SimilarRecipeIngredient>()
-                for ing in rcp.recipeIngredients{
-                    ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
+                for ri in anotherRecipe.recipeIngredients{
+                    ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
                 }
-                similarRecipeList.append(SimilarRecipeBasic(id: rcp.id, name: rcp.recipeName, point: 0, method: rcp.method, style: rcp.style, strength: rcp.strength, shortageNum: rcp.shortageNum, ingredientList: ingredientList))
+                similarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.recipeName, point: 0, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, ingredientList: ingredientList))
             }
             
             queue.async {
