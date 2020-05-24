@@ -154,6 +154,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.canDisplayCollectionBackgroundView = false
 
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
@@ -473,7 +474,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 DispatchQueue.main.async {
                     self.similarRecipeCollectionView.reloadData()
                     self.setCollectionBackgroundView()
-                    self.canDisplayCollectionBackgroundView = true
                     self.similarRecipeCollectionView.layoutIfNeeded()
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
@@ -485,6 +485,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     self.highlightIndexPath = nil
                     self.selectedRecipeId = nil
                 }
+                self.canDisplayCollectionBackgroundView = true
             }
         }
     }
