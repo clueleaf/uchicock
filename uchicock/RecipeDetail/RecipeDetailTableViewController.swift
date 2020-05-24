@@ -1385,7 +1385,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 point += 0.01 //どちらもアルコールならボーナスポイント（主に並べ替え用）
             }
             
-            if point >= 0.6{
+            if point >= 0.61{
                 displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum))
             }
         }
@@ -1506,8 +1506,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
-        // TODO
-        let text = String(floor(displaySimilarRecipeList[indexPath.row].point*100)/100) + ":" + displaySimilarRecipeList[indexPath.row].name
+        let text = displaySimilarRecipeList[indexPath.row].name
 
         cell.recipeName = text
         cell.id = displaySimilarRecipeList[indexPath.row].id
