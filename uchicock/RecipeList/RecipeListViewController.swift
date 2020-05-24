@@ -661,7 +661,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
                 tableView.backgroundView?.addSubview(noDataLabel)
             }else{
-                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 170))
+                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 120))
                 noDataLabel.numberOfLines = 0
                 noDataLabel.textColor = UchicockStyle.labelTextColorLight
                 noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)

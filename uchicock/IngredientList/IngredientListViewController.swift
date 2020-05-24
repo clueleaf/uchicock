@@ -267,7 +267,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
                 self.tableView.backgroundView?.addSubview(noDataLabel)
             }else{
-                let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 90))
+                let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 80))
                 noDataLabel.numberOfLines = 0
                 noDataLabel.textColor = UchicockStyle.labelTextColorLight
                 noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
