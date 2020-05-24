@@ -1315,8 +1315,13 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 var hasSameIng = false
                 for anotherIng in anotherRecipe.ingredientList{
                     if anotherIng.name == selfIng.name{
-                        maxWeight += 1.0
-                        weight += 1.0
+                        if selfIng.mustFlag{
+                            maxWeight += 1.0
+                            weight += 1.0
+                        }else{
+                            maxWeight += 0.3
+                            weight += 0.3
+                        }
                         hasSameIng = true
                         break
                     }
@@ -1326,7 +1331,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                         maxWeight += 1.0
                     }else{
                         // オプション材料の影響を少なくする
-                        maxWeight += 0.5
+                        maxWeight += 0.3
                     }
                 }
             }
@@ -1335,8 +1340,13 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 var hasSameIng = false
                 for selfIng in selfRecipe.ingredientList{
                     if anotherIng.name == selfIng.name{
-                        maxWeight += 1.0
-                        weight += 1.0
+                        if anotherIng.mustFlag{
+                            maxWeight += 1.0
+                            weight += 1.0
+                        }else{
+                            maxWeight += 0.3
+                            weight += 0.3
+                        }
                         hasSameIng = true
                         break
                     }
@@ -1346,7 +1356,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                         maxWeight += 1.0
                     }else{
                         // オプション材料の影響を少なくする
-                        maxWeight += 0.5
+                        maxWeight += 0.3
                     }
                 }
             }
@@ -1377,7 +1387,13 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
                 displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum))
             }
         }
-        displaySimilarRecipeList.sort(by: { $0.point > $1.point })
+        displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
+            if a.point == b.point {
+                return a.name < b.name
+            } else {
+                return a.point > b.point
+            }
+        })
     }
     
     // MARK: - CollectionView
