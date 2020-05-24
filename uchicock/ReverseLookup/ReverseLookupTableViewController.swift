@@ -685,7 +685,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     private func setTableBackgroundView(){
         if recipeBasicList.count == 0{
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: self.recipeTableView.bounds.size.height / 3, width: self.recipeTableView.bounds.size.width, height: 60))
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: recipeTableView.bounds.size.width, height: recipeTableView.bounds.size.height))
             noDataLabel.numberOfLines = 0
             if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
                 noDataLabel.text = "存在しない材料が指定されています"

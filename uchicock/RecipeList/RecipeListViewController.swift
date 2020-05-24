@@ -651,15 +651,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if recipeBasicList.count == 0{
             tableView.backgroundView = UIView()
             tableView.isScrollEnabled = false
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 20, width: tableView.bounds.size.width, height: 60))
-            noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
             
             if isBookmarkMode{
+                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.numberOfLines = 0
+                noDataLabel.textColor = UchicockStyle.labelTextColorLight
+                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+                noDataLabel.textAlignment = .center
                 noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
+                tableView.backgroundView?.addSubview(noDataLabel)
             }else{
+                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 170))
+                noDataLabel.numberOfLines = 0
+                noDataLabel.textColor = UchicockStyle.labelTextColorLight
+                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+                noDataLabel.textAlignment = .center
                 if hasRecipeAtAll{
                     if textFieldHasSearchResult{
                         if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
@@ -673,9 +679,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     noDataLabel.text = "レシピはありません"
                 }
+                tableView.backgroundView?.addSubview(noDataLabel)
             }
-            
-            tableView.backgroundView?.addSubview(noDataLabel)
         }else{
             tableView.backgroundView = nil
             tableView.isScrollEnabled = true
