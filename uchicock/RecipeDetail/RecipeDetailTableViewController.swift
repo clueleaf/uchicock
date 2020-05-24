@@ -360,6 +360,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.reloadData()
             similarRecipeCollectionView.backgroundColor = UchicockStyle.basicBackgroundColor
             similarRecipeCollectionView.reloadData()
+            similarRecipeCollectionView.layoutIfNeeded()
 
             if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
                 for indexPath in tableView.indexPathsForVisibleRows! {
@@ -473,8 +474,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
                 DispatchQueue.main.async {
                     self.similarRecipeCollectionView.reloadData()
-                    self.setCollectionBackgroundView()
                     self.similarRecipeCollectionView.layoutIfNeeded()
+                    self.setCollectionBackgroundView()
                     if self.highlightIndexPath != nil{
                         if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
                             UIView.animate(withDuration: 0.3, animations: {

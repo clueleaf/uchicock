@@ -139,6 +139,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         setFilterImageState()
         filterRecipeBasicList()
         collectionView.reloadData()
+        collectionView.layoutIfNeeded()
         updateNavigationBar()
         setCollectionBackgroundView()
     }
@@ -183,6 +184,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         needsLayout = true
         gradationFrame = CGRect(x: 0, y: 0, width: albumCellWidth(of: size.width), height: 85)
         collectionView.reloadData()
+        collectionView.layoutIfNeeded()
     }
 
     override func viewDidLayoutSubviews() {
