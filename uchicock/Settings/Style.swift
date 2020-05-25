@@ -14,7 +14,6 @@ struct UchicockStyle{
     static var isDark = false
     static var isBackgroundDark = false
     static var messageHudStyle: MessageHUDStyle = .dark
-    static var alertStyle: UIUserInterfaceStyle = .light
     static var statusBarStyle: UIStatusBarStyle = .default
     static var navigationBarColor = FlatColor.yellow
     static var primaryColor = FlatColor.skyBlueDark
@@ -41,7 +40,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.skyBlueDark
@@ -68,7 +66,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .dark
-        alertStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.yellowDark
@@ -95,7 +92,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
@@ -122,7 +118,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.pinkDark
         primaryColor = FlatColor.pinkDark
@@ -149,7 +144,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.skyBlue
         primaryColor = FlatColor.skyBlue
@@ -176,7 +170,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.skyBlueDark
         primaryColor = FlatColor.skyBlueDark
@@ -203,7 +196,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.mint
         primaryColor = FlatColor.mintDark
@@ -230,7 +222,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.coffeeDark
         primaryColor = FlatColor.coffee
@@ -257,7 +248,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.mint
@@ -284,7 +274,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.watermelonDark
         primaryColor = FlatColor.watermelon
@@ -311,7 +300,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .default
         navigationBarColor = FlatColor.limeDark
         primaryColor = FlatColor.limeDark
@@ -338,7 +326,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.grayDark
         primaryColor = FlatColor.grayDark
@@ -365,7 +352,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.watermelonDark
         primaryColor = FlatColor.watermelonDark
@@ -392,7 +378,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .light
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.skyBlueDark
@@ -419,7 +404,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.skyBlueDark
@@ -446,7 +430,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .light
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.orange
@@ -473,7 +456,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.yellowDark
@@ -500,7 +482,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .light
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.pink
@@ -527,7 +508,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.pinkDark
@@ -554,7 +534,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.coffee
@@ -581,7 +560,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .light
-        alertStyle = .light
         statusBarStyle = .lightContent
         navigationBarColor = UIColor.black
         primaryColor = FlatColor.greenDark
@@ -608,7 +586,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.greenDark
@@ -635,7 +612,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.purple
@@ -662,7 +638,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.magenta
@@ -689,7 +664,6 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        alertStyle = .light
         statusBarStyle = .default
         navigationBarColor = FlatColor.powderBlue
         primaryColor = FlatColor.blue
@@ -716,7 +690,6 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        alertStyle = .dark
         statusBarStyle = .lightContent
         navigationBarColor = FlatColor.black
         primaryColor = FlatColor.red
