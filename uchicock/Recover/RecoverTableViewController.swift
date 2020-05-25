@@ -296,6 +296,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             if indexPath.row == 1{
                 if recoverableSampleRecipeList.count == 0{
                     let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
+                    if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                        alertView.overrideUserInterfaceStyle = .dark
+                    }
                     alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                     }))
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -303,7 +306,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     self.present(alertView, animated: true, completion: nil)
                 }else{
                     let recipeNum = recoverableSampleRecipeList.count
-                    let alertView = CustomAlertController(title: nil, message: String(recipeNum) + "個のサンプルレシピを\n復元します", preferredStyle: .alert)
+                    let alertView = CustomAlertController(title: nil, message: "復元できる" + String(recipeNum) + "レシピを全て復元します", preferredStyle: .alert)
+                    if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                        alertView.overrideUserInterfaceStyle = .dark
+                    }
                     alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                         self.isRecovering = true
                         MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
@@ -332,7 +338,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
                     
                 if recoverCount > 0{
-                    let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "個のサンプルレシピを復元します", preferredStyle: .alert)
+                    let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "レシピを復元します", preferredStyle: .alert)
+                    if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                        alertView.overrideUserInterfaceStyle = .dark
+                    }
                     alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
                         self.isRecovering = true
                         MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)

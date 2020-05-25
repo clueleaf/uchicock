@@ -262,6 +262,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if tableView.tag == 0 && indexPath.section == 1 && indexPath.row == 0{
             if isAddMode{
                 let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                    alertView.overrideUserInterfaceStyle = .dark
+                }
                 alertView.addAction(UIAlertAction(title: "追加をやめる",style: .destructive){
                     action in
                     self.deleteFlag = true
@@ -276,6 +279,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 present(alertView, animated: true, completion: nil)
             }else{
                 let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                    alertView.overrideUserInterfaceStyle = .dark
+                }
                 alertView.addAction(UIAlertAction(title: "外す",style: .destructive){
                     action in
                     self.deleteFlag = true
@@ -402,6 +408,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     private func presentAlert(_ message: String, action: (() -> Void)?){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
+        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
+        }
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
             action?()
         }))
@@ -446,6 +455,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if sameNameIngredient.count == 0{
                 //同じ名前の材料が存在しないので新規に登録する
                 let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
+                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                    registAlertView.overrideUserInterfaceStyle = .dark
+                }
                 registAlertView.addAction(UIAlertAction(title: "「アルコール」として登録", style: .default, handler: {action in
                     try! realm.write {
                         realm.add(self.setIngredient(0))
