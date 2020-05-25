@@ -416,32 +416,45 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 if indexPath.row > 0 {
                     performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
                 }else{
+                    var title1 = "名前順"
+                    var title2 = "作れる順"
+                    var title3 = "作った回数順"
+                    var title4 = "お気に入り順"
+                    var title5 = "最近見た順"
+                    switch self.recipeOrder {
+                    case 1: title1 = "✔︎ 名前順"
+                    case 2: title2 = "✔︎ 作れる順"
+                    case 3: title3 = "✔︎ 作った回数順"
+                    case 4: title4 = "✔︎ お気に入り順"
+                    case 5: title5 = "✔︎ 最近見た順"
+                    default: break
+                    }
                     let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    alertView.addAction(UIAlertAction(title: "名前順",style: .default){
+                    alertView.addAction(UIAlertAction(title: title1,style: .default){
                         action in
                         self.recipeOrder = 1
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
                     })
-                    alertView.addAction(UIAlertAction(title: "作れる順",style: .default){
+                    alertView.addAction(UIAlertAction(title: title2,style: .default){
                         action in
                         self.recipeOrder = 2
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
                     })
-                    alertView.addAction(UIAlertAction(title: "作った回数順",style: .default){
+                    alertView.addAction(UIAlertAction(title: title3,style: .default){
                         action in
                         self.recipeOrder = 3
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
                     })
-                    alertView.addAction(UIAlertAction(title: "お気に入り順",style: .default){
+                    alertView.addAction(UIAlertAction(title: title4,style: .default){
                         action in
                         self.recipeOrder = 4
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
                     })
-                    alertView.addAction(UIAlertAction(title: "最近見た順",style: .default){
+                    alertView.addAction(UIAlertAction(title: title5,style: .default){
                         action in
                         self.recipeOrder = 5
                         self.reloadIngredientRecipeBasicList()
