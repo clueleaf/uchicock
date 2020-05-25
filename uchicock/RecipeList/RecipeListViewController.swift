@@ -790,6 +790,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
             let alertView = CustomAlertController(title: "このレシピを本当に削除しますか？", message: "自作レシピは復元できません。", preferredStyle: .alert)
+            if #available(iOS 13.0, *) { alertView.overrideUserInterfaceStyle = UchicockStyle.alertStyle }
             alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
