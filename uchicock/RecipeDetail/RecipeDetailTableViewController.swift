@@ -460,7 +460,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             for ing in recipe.recipeIngredients{
                 ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
             }
-            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, strength: recipe.strength, shortageNum: recipe.shortageNum, ingredientList: ingredientList)
+            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, strength: recipe.strength, shortageNum: recipe.shortageNum, isBookmarked: (recipe.bookmarkDate != nil), ingredientList: ingredientList)
 
             allRecipeList = realm.objects(Recipe.self)
             similarRecipeList.removeAll()
@@ -469,7 +469,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 for ri in anotherRecipe.recipeIngredients{
                     ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
                 }
-                similarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.recipeName, point: 0, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, ingredientList: ingredientList))
+                similarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.recipeName, point: 0, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, isBookmarked: (anotherRecipe.bookmarkDate != nil), ingredientList: ingredientList))
             }
             
             queue.async {
@@ -1407,7 +1407,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             }
             
             if point >= 0.61{
-                displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum))
+                displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, isBookmarked: anotherRecipe.isBookmarked))
             }
         }
         displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
@@ -1531,6 +1531,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
 
         cell.recipeName = text
         cell.id = displaySimilarRecipeList[indexPath.row].id
+        cell.isBookMarked = displaySimilarRecipeList[indexPath.row].isBookmarked
         if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
             cell.recipeNameLabel.textColor = UchicockStyle.labelTextColor
         }else{

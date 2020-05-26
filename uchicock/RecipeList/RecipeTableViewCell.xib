@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,10 +64,10 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="nIA-Y5-AVb" secondAttribute="bottom" id="F9d-h5-yvT"/>
                     <constraint firstItem="Ehs-ln-8g3" firstAttribute="leading" secondItem="W2V-21-ykG" secondAttribute="leading" id="Gm1-W7-7c3"/>
-                    <constraint firstItem="lEv-KR-b4f" firstAttribute="width" secondItem="cFc-30-8ce" secondAttribute="height" multiplier="1:1" id="L1J-Ed-gSE"/>
+                    <constraint firstItem="lEv-KR-b4f" firstAttribute="width" secondItem="cFc-30-8ce" secondAttribute="width" multiplier="1:1" id="L1J-Ed-gSE"/>
                     <constraint firstItem="W2V-21-ykG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="LpH-d3-Fct"/>
                     <constraint firstItem="lEv-KR-b4f" firstAttribute="centerX" secondItem="cFc-30-8ce" secondAttribute="centerX" id="P6M-2X-9RP"/>
-                    <constraint firstItem="cFc-30-8ce" firstAttribute="width" secondItem="nIA-Y5-AVb" secondAttribute="height" multiplier="1:3" id="Q6v-xI-RV5"/>
+                    <constraint firstItem="cFc-30-8ce" firstAttribute="width" secondItem="nIA-Y5-AVb" secondAttribute="width" multiplier="1:3" id="Q6v-xI-RV5"/>
                     <constraint firstAttribute="trailing" secondItem="Ehs-ln-8g3" secondAttribute="trailing" id="QQz-qt-OAi"/>
                     <constraint firstItem="cFc-30-8ce" firstAttribute="top" secondItem="nIA-Y5-AVb" secondAttribute="top" id="RHY-c6-Xx9"/>
                     <constraint firstItem="nIA-Y5-AVb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Vt5-Dw-FDh"/>

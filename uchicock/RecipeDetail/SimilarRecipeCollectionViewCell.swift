@@ -15,6 +15,8 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noImageImageView: UIImageView!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var highlightView: UIView!
+    @IBOutlet weak var bookmarkFrontImage: UIImageView!
+    @IBOutlet weak var bookmarkBackImage: UIImageView!
     
     var id: String = String(){
         didSet{
@@ -37,5 +39,14 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
             backgroundContainer.clipsToBounds = true
             highlightView.backgroundColor = UIColor.clear
         }
-    }    
+    }
+    
+    var isBookMarked : Bool = Bool(){
+        didSet{
+            bookmarkBackImage.tintColor = UchicockStyle.primaryColor
+            bookmarkFrontImage.tintColor = UchicockStyle.primaryColor
+            bookmarkBackImage.isHidden = isBookMarked ? false : true
+            bookmarkFrontImage.isHidden = isBookMarked ? false : true
+        }
+    }
 }

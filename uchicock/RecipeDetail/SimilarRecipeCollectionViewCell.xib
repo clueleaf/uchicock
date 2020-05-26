@@ -46,6 +46,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="86" height="126"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-recipe-bookmark-off" translatesAutoresizingMaskIntoConstraints="NO" id="1gp-YH-zhJ">
+                                <rect key="frame" x="5" y="0.0" width="28.5" height="28.5"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1gp-YH-zhJ" secondAttribute="height" multiplier="1:1" id="siz-sD-OgV"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation-recipe-bookmark-on" translatesAutoresizingMaskIntoConstraints="NO" id="5sQ-6U-PGQ">
+                                <rect key="frame" x="5" y="0.0" width="28.5" height="28.5"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5sQ-6U-PGQ" secondAttribute="height" multiplier="1:1" id="35P-eJ-LcG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,13 +69,19 @@
                             <constraint firstItem="Iue-HB-2wG" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" constant="18" id="Bc7-M4-aFw"/>
                             <constraint firstItem="7KP-BH-GUV" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" id="Dag-fq-mvA"/>
                             <constraint firstItem="4Oo-FS-fiK" firstAttribute="leading" secondItem="U0X-p1-gx8" secondAttribute="leading" constant="5" id="Eju-Rf-o4F"/>
+                            <constraint firstItem="5sQ-6U-PGQ" firstAttribute="centerX" secondItem="1gp-YH-zhJ" secondAttribute="centerX" id="Eqi-hh-Fpy"/>
                             <constraint firstAttribute="trailing" secondItem="7KP-BH-GUV" secondAttribute="trailing" id="FBo-yc-QVm"/>
+                            <constraint firstItem="1gp-YH-zhJ" firstAttribute="top" secondItem="gIp-0N-8BD" secondAttribute="top" id="JjR-gz-dDT"/>
                             <constraint firstItem="gIp-0N-8BD" firstAttribute="centerX" secondItem="U0X-p1-gx8" secondAttribute="centerX" id="MPC-EH-LSg"/>
                             <constraint firstItem="gIp-0N-8BD" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" id="OM6-zv-z4j"/>
                             <constraint firstAttribute="trailing" secondItem="Iue-HB-2wG" secondAttribute="trailing" constant="18" id="cK9-fA-kBG"/>
+                            <constraint firstItem="1gp-YH-zhJ" firstAttribute="width" secondItem="gIp-0N-8BD" secondAttribute="width" multiplier="1:3" id="grF-vu-DSq"/>
+                            <constraint firstItem="1gp-YH-zhJ" firstAttribute="leading" secondItem="gIp-0N-8BD" secondAttribute="leading" constant="5" id="h12-dJ-YuM"/>
                             <constraint firstItem="4Oo-FS-fiK" firstAttribute="top" secondItem="gIp-0N-8BD" secondAttribute="bottom" constant="5" id="j1R-OY-Dsm"/>
                             <constraint firstAttribute="trailing" secondItem="4Oo-FS-fiK" secondAttribute="trailing" constant="5" id="mrV-T3-MWW"/>
                             <constraint firstItem="7KP-BH-GUV" firstAttribute="top" secondItem="U0X-p1-gx8" secondAttribute="top" id="nFX-bO-jly"/>
+                            <constraint firstItem="5sQ-6U-PGQ" firstAttribute="width" secondItem="1gp-YH-zhJ" secondAttribute="width" id="rCe-Pp-PIP"/>
+                            <constraint firstItem="5sQ-6U-PGQ" firstAttribute="centerY" secondItem="1gp-YH-zhJ" secondAttribute="centerY" id="yji-sN-Dzq"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -76,6 +96,8 @@
             <size key="customSize" width="251" height="58"/>
             <connections>
                 <outlet property="backgroundContainer" destination="U0X-p1-gx8" id="w0E-Pe-dQC"/>
+                <outlet property="bookmarkBackImage" destination="1gp-YH-zhJ" id="GrH-eU-Bht"/>
+                <outlet property="bookmarkFrontImage" destination="5sQ-6U-PGQ" id="du8-D2-MIh"/>
                 <outlet property="highlightView" destination="7KP-BH-GUV" id="OPs-TU-WtU"/>
                 <outlet property="noImageImageView" destination="Iue-HB-2wG" id="Ezi-9u-49l"/>
                 <outlet property="recipeImageView" destination="gIp-0N-8BD" id="aKW-dH-z9r"/>
@@ -85,6 +107,8 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="navigation-recipe-bookmark-off" width="24" height="24"/>
+        <image name="navigation-recipe-bookmark-on" width="24" height="24"/>
         <image name="tabbar-recipe" width="24" height="24"/>
     </resources>
 </document>
