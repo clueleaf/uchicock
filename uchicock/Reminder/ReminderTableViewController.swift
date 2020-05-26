@@ -88,7 +88,7 @@ class ReminderTableViewController: UITableViewController {
     // MARK: - Handle Reminder
     private func showError(_ type: String){
         let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
         alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in

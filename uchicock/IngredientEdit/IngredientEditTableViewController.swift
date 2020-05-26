@@ -237,7 +237,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if showCancelAlert {
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
             alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
@@ -254,7 +254,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in

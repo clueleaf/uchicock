@@ -40,7 +40,11 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.skyBlueDark
         basicBackgroundColor = FlatColor.white
@@ -66,7 +70,11 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.yellow
         primaryColor = FlatColor.yellowDark
         basicBackgroundColor = FlatColor.black
@@ -92,7 +100,11 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.pink
         primaryColor = FlatColor.pink
         basicBackgroundColor = UIColor(red:1.0, green:0.95, blue:1.0, alpha:1.0)
@@ -248,7 +260,11 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.mint
         basicBackgroundColor = FlatColor.white
@@ -300,7 +316,11 @@ struct UchicockStyle{
         isDark = true
         isBackgroundDark = true
         messageHudStyle = .light
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.limeDark
         primaryColor = FlatColor.limeDark
         basicBackgroundColor = FlatColor.black
@@ -612,7 +632,11 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.white
         primaryColor = FlatColor.purple
         basicBackgroundColor = FlatColor.white
@@ -664,7 +688,11 @@ struct UchicockStyle{
         isDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
-        statusBarStyle = .default
+        if #available(iOS 13.0, *) {
+            statusBarStyle = .darkContent
+        }else{
+            statusBarStyle = .default
+        }
         navigationBarColor = FlatColor.powderBlue
         primaryColor = FlatColor.blue
         basicBackgroundColor = UIColor(red:0.88, green:0.92, blue:0.98, alpha:1.0)

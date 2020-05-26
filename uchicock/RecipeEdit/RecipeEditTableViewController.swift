@@ -676,7 +676,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     func addPhoto() {
         let alert = CustomAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alert.overrideUserInterfaceStyle = .dark
         }
         let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
@@ -685,7 +685,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 action in
                 if status == .denied{
                     let alertView = CustomAlertController(title: "カメラの起動に失敗しました", message: "「設定」→「うちカク！」にてカメラへのアクセス許可を確認してください", preferredStyle: .alert)
-                    if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                    if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
                     alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -932,7 +932,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if showCancelAlert {
             let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
             alertView.addAction(UIAlertAction(title: "はい",style: .default){
@@ -950,7 +950,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
         alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in

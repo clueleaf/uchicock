@@ -611,7 +611,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
         alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in

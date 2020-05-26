@@ -315,7 +315,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             if ingredient.reminderSetDate != nil{
                 let alertView = CustomAlertController(title: nil, message: ingredient.ingredientName + "は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
-                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     alertView.overrideUserInterfaceStyle = .dark
                 }
                 alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
@@ -472,7 +472,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
-                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     alertView.overrideUserInterfaceStyle = .dark
                 }
                 alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
@@ -482,7 +482,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 completionHandler(false)
             } else{
                 let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
-                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     deleteAlertView.overrideUserInterfaceStyle = .dark
                 }
                 deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in

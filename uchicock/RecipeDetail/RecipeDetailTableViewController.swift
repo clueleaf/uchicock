@@ -434,7 +434,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         if hasRecipeDeleted{
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 noRecipeAlertView.overrideUserInterfaceStyle = .dark
             }
             noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
@@ -620,7 +620,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         if loadedImage != nil && photoExists && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
             alertView.addAction(UIAlertAction(title: "「写真」アプリへ保存",style: .default){ action in
@@ -644,7 +644,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 ]
                 
                 let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
-                if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     activityVC.overrideUserInterfaceStyle = .dark
                 }
                 activityVC.excludedActivityTypes = excludedActivityTypes
@@ -668,7 +668,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true, isCenter: true)
         }else{
             let alertView = CustomAlertController(title: "「写真」アプリへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
             alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
@@ -1146,7 +1146,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let shareText = createShareText()
         if photoExists, let image = photo.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 activityVC.overrideUserInterfaceStyle = .dark
             }
             activityVC.excludedActivityTypes = excludedActivityTypes
@@ -1157,7 +1157,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.present(activityVC, animated: true, completion: nil)
         }else{
             let activityVC = CustomActivityController(activityItems: [shareText], applicationActivities: nil)
-            if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 activityVC.overrideUserInterfaceStyle = .dark
             }
             activityVC.excludedActivityTypes = excludedActivityTypes
@@ -1223,7 +1223,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         let alertView = CustomAlertController(title: "このレシピを本当に削除しますか？", message: "自作レシピは復元できません。", preferredStyle: .alert)
-        if #available(iOS 13.0, *), UchicockStyle.statusBarStyle == .lightContent && UchicockStyle.isBackgroundDark {
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
         alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
