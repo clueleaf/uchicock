@@ -77,8 +77,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         deleteButton.layer.cornerRadius = deleteButton.frame.size.width / 2
         deleteButton.clipsToBounds = true
 
-        recipeOrderLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
-
         tableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
