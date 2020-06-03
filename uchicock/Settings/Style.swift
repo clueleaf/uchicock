@@ -11,7 +11,7 @@ import UIKit
 
 struct UchicockStyle{
     static var no = "0"
-    static var isDark = false
+    static var isKeyboardDark = false
     static var isBackgroundDark = false
     static var messageHudStyle: MessageHUDStyle = .dark
     static var statusBarStyle: UIStatusBarStyle = .default
@@ -37,7 +37,7 @@ struct UchicockStyle{
     // MARK: - Define Theme
     static func tequilaSunriseLight(){
         no = "0"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -67,7 +67,7 @@ struct UchicockStyle{
     
     static func tequilaSunriseDark(){
         no = "1"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -97,7 +97,7 @@ struct UchicockStyle{
     
     static func seaBreezeLight(){
         no = "2"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -127,7 +127,7 @@ struct UchicockStyle{
     
     static func seaBreezeDark(){
         no = "3"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -153,7 +153,7 @@ struct UchicockStyle{
 
     static func chinaBlueLight(){
         no = "4"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         statusBarStyle = .lightContent
@@ -179,7 +179,7 @@ struct UchicockStyle{
 
     static func chinaBlueDark(){
         no = "5"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -205,7 +205,7 @@ struct UchicockStyle{
 
     static func grasshopperLight(){
         no = "6"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         statusBarStyle = .lightContent
@@ -231,7 +231,7 @@ struct UchicockStyle{
 
     static func irishCoffeeDark(){
         no = "7"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -257,7 +257,7 @@ struct UchicockStyle{
     
     static func mojitoLight(){
         no = "8"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -287,7 +287,7 @@ struct UchicockStyle{
     
     static func redEyeLight(){
         no = "9"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         statusBarStyle = .lightContent
@@ -313,7 +313,7 @@ struct UchicockStyle{
     
     static func cubaLibreDark(){
         no = "10"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         if #available(iOS 13.0, *) {
@@ -343,7 +343,7 @@ struct UchicockStyle{
     
     static func silverWingLight(){
         no = "11"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         statusBarStyle = .lightContent
@@ -369,7 +369,7 @@ struct UchicockStyle{
     
     static func americanLemonadeDark(){
         no = "12"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -395,7 +395,7 @@ struct UchicockStyle{
     
     static func blueLagoonLight(){
         no = "13"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -421,7 +421,7 @@ struct UchicockStyle{
     
     static func blueLagoonDark(){
         no = "14"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -447,7 +447,7 @@ struct UchicockStyle{
     
     static func mimosaLight(){
         no = "15"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -473,7 +473,7 @@ struct UchicockStyle{
     
     static func mimosaDark(){
         no = "16"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -499,7 +499,7 @@ struct UchicockStyle{
 
     static func pinkLadyLight(){
         no = "17"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -525,7 +525,7 @@ struct UchicockStyle{
     
     static func pinkLadyDark(){
         no = "18"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -551,7 +551,7 @@ struct UchicockStyle{
     
     static func blackRussianDark(){
         no = "19"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -577,7 +577,7 @@ struct UchicockStyle{
     
     static func shoyoJulingLight(){
         no = "20"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -603,7 +603,7 @@ struct UchicockStyle{
     
     static func shoyoJulingDark(){
         no = "21"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -629,7 +629,7 @@ struct UchicockStyle{
     
     static func unionJackLight(){
         no = "22"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -659,7 +659,7 @@ struct UchicockStyle{
 
     static func unionJackDark(){
         no = "23"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -685,7 +685,7 @@ struct UchicockStyle{
 
     static func blueMoonLight(){
         no = "24"
-        isDark = false
+        isKeyboardDark = false
         isBackgroundDark = false
         messageHudStyle = .dark
         if #available(iOS 13.0, *) {
@@ -715,7 +715,7 @@ struct UchicockStyle{
     
     static func bloodyMaryDark(){
         no = "25"
-        isDark = true
+        isKeyboardDark = true
         isBackgroundDark = true
         messageHudStyle = .light
         statusBarStyle = .lightContent
@@ -846,7 +846,7 @@ struct UchicockStyle{
         CustomTextField.appearance().backgroundColor = basicBackgroundColorLight
         CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
-        if isDark{
+        if isKeyboardDark{
             CustomTextField.appearance().keyboardAppearance = .dark
         }else{
             CustomTextField.appearance().keyboardAppearance = .light

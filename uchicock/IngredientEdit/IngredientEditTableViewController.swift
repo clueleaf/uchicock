@@ -80,7 +80,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 12
         memo.layer.borderWidth = 0
-        memo.keyboardAppearance = UchicockStyle.isDark ? .dark : .light
+        memo.keyboardAppearance = UchicockStyle.isKeyboardDark ? .dark : .light
         memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
