@@ -795,10 +795,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @objc func textFieldDidChange1(_ notification: Notification){
-        if let text = ingredientTextField1.text {
-            if text.count > 30 {
-                ingredientTextField1.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
-            }
+        if ingredientTextField1.text != nil {
             if editingTextField == 0{
                 reloadIngredientSuggestList(text: ingredientTextField1.text!)
             }else if editingTextField == 1{
@@ -817,10 +814,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     @objc func textFieldDidChange2(_ notification: Notification){
-        if let text = ingredientTextField2.text {
-            if text.count > 30 {
-                ingredientTextField2.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
-            }
+        if ingredientTextField2.text != nil {
             if editingTextField == 0{
                 reloadIngredientSuggestList(text: ingredientTextField1.text!)
             }else if editingTextField == 1{
@@ -839,10 +833,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
 
     @objc func textFieldDidChange3(_ notification: Notification){
-        if let text = ingredientTextField3.text {
-            if text.count > 30 {
-                ingredientTextField3.text = String(text[..<text.index(text.startIndex, offsetBy: 30)])
-            }
+        if ingredientTextField3.text != nil {
             if editingTextField == 0{
                 reloadIngredientSuggestList(text: ingredientTextField1.text!)
             }else if editingTextField == 1{
