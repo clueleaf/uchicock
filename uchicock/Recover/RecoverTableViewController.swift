@@ -100,9 +100,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         tableView.rowHeight = UITableView.automaticDimension
 
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: GlobalConstants.Version80NewRecipeViewedKey)
         shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
-        shouldAdd80Badge = !defaults.bool(forKey: GlobalConstants.Version80NewDownloadKey)
+        shouldAdd80Badge = !defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
+        defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
     }
     
     private func cellDeselectAnimation(){

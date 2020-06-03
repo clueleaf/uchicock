@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let defaults = UserDefaults.standard
             defaults.set(true, forKey: GlobalConstants.Version73NewRecipeViewedKey)
             defaults.set(true, forKey: GlobalConstants.Version80NewRecipeViewedKey)
-            defaults.set(true, forKey: GlobalConstants.Version80NewDownloadKey)
+            defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
         }
 
         var config = Realm.Configuration(
