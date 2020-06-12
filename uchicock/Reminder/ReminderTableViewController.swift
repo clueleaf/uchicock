@@ -91,13 +91,16 @@ class ReminderTableViewController: UITableViewController {
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
-        }))
-        alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
+        let settingAction = UIAlertAction(title: "設定を開く", style: .default){action in
             if let url = URL(string:UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
-        }))
+        }
+        settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(settingAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)

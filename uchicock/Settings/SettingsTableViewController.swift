@@ -155,20 +155,26 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "レビューを書く", style: .default, handler: {action in
+            let writeAction = UIAlertAction(title: "レビューを書く", style: .default){action in
                 if let url = self.appStoreReviewURL {
                     if UIApplication.shared.canOpenURL(url){
                         UIApplication.shared.open(url, options: [:])
                     }
                 }
-            }))
-            alertView.addAction(UIAlertAction(title: "もう書いた", style: .destructive, handler: {action in
+            }
+            writeAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(writeAction)
+            let wroteAction = UIAlertAction(title: "もう書いた", style: .destructive){action in
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "AlreadyWrittenReview")
                 self.alreadyWrittenReview = true
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
-            }))
-            alertView.addAction(UIAlertAction(title: "また今度", style: .cancel){action in})
+            }
+            wroteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+            alertView.addAction(wroteAction)
+            let cancelAction = UIAlertAction(title: "また今度", style: .cancel, handler: nil)
+            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(cancelAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)

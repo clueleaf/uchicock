@@ -318,8 +318,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     alertView.overrideUserInterfaceStyle = .dark
                 }
-                alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
-                alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
+                let noAction = UIAlertAction(title: "解除しない", style: .cancel, handler: nil)
+                noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                alertView.addAction(noAction)
+                let yesAction = UIAlertAction(title: "解除する", style: .default){action in
                     try! realm.write {
                         ingredient.reminderSetDate = nil
                         if self.isReminderMode{
@@ -335,7 +337,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                         }
                         self.setReminderBadge()
                     }
-                }))
+                }
+                yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                alertView.addAction(yesAction)
                 alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
@@ -475,7 +479,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     alertView.overrideUserInterfaceStyle = .dark
                 }
-                alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                alertView.addAction(okAction)
                 alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
@@ -485,7 +491,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     deleteAlertView.overrideUserInterfaceStyle = .dark
                 }
-                deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+                let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
                     let realm = try! Realm()
                     try! realm.write {
                         realm.delete(ingredient)
@@ -503,10 +509,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     self.setReminderBadge()
                     completionHandler(true)
-                }))
-                deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
+                }
+                deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+                deleteAlertView.addAction(deleteAction)
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel){action in
                     completionHandler(false)
-                })
+                }
+                cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                deleteAlertView.addAction(cancelAction)
                 deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)

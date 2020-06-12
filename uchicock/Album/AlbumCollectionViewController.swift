@@ -614,15 +614,21 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
-        alertView.addAction(UIAlertAction(title: "レシピを名前順に並べ替える", style: .default, handler: {action in
+        let nameOrderAction = UIAlertAction(title: "レシピを名前順に並べ替える", style: .default){action in
             self.refresh(shouldShuffle: false)
-        }))
+        }
+        nameOrderAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(nameOrderAction)
         
-        alertView.addAction(UIAlertAction(title: "表示順をシャッフルする", style: .default, handler: {action in
+        let shuffleAction = UIAlertAction(title: "表示順をシャッフルする", style: .default){action in
             self.refresh(shouldShuffle: true)
-        }))
+        }
+        shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(shuffleAction)
         
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)

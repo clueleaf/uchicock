@@ -299,8 +299,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
-                    alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                    }))
+                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     self.present(alertView, animated: true, completion: nil)
@@ -310,7 +311,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
-                    alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
+                    let recoverAction = UIAlertAction(title: "復元", style: .default){action in
                         self.isRecovering = true
                         MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
                         DispatchQueue.global(qos: .userInitiated).async {
@@ -323,8 +324,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                                 self.dismiss(animated: true, completion: nil)
                             }
                         }
-                    }))
-                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    }
+                    recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(recoverAction)
+                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+                    cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(cancelAction)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     self.present(alertView, animated: true, completion: nil)
@@ -342,7 +347,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                     if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
-                    alertView.addAction(UIAlertAction(title: "復元", style: .default, handler: {action in
+                    let recoverAction = UIAlertAction(title: "復元", style: .default){action in
                         self.isRecovering = true
                         MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
                         DispatchQueue.global(qos: .userInitiated).async {
@@ -352,8 +357,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                                 self.dismiss(animated: true, completion: nil)
                             }
                         }
-                    }))
-                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    }
+                    recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(recoverAction)
+                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+                    cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(cancelAction)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     self.present(alertView, animated: true, completion: nil)

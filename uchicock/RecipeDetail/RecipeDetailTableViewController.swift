@@ -437,9 +437,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 noRecipeAlertView.overrideUserInterfaceStyle = .dark
             }
-            noRecipeAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+            let action = UIAlertAction(title: "OK", style: .default){action in
                 self.navigationController?.popViewController(animated: true)
-            }))
+            }
+            action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            noRecipeAlertView.addAction(action)
             noRecipeAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
@@ -623,15 +625,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "「写真」アプリへ保存",style: .default){ action in
-                UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
-                })
-            alertView.addAction(UIAlertAction(title: "クリップボードへコピー",style: .default){ action in
+            let photoAction = UIAlertAction(title: "「写真」アプリへ保存",style: .default){action in
+            UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+            photoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(photoAction)
+            let clipboardAction = UIAlertAction(title: "クリップボードへコピー",style: .default){action in
                 let pasteboard: UIPasteboard = UIPasteboard.general
                 pasteboard.image = loadedImage!
                 MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
-            })
-            alertView.addAction(UIAlertAction(title: "写真を共有",style: .default){ action in
+            }
+            clipboardAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(clipboardAction)
+            let shareAction = UIAlertAction(title: "写真を共有",style: .default){action in
                 let excludedActivityTypes = [
                     UIActivity.ActivityType.print,
                     UIActivity.ActivityType.assignToContact,
@@ -653,8 +659,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 activityVC.popoverPresentationController?.sourceView = self.view
                 activityVC.popoverPresentationController?.sourceRect = self.photo.frame
                 self.present(activityVC, animated: true, completion: nil)
-            })
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            }
+            shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(shareAction)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(cancelAction)
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.photo.frame
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -671,13 +681,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .default, handler: {action in
-            }))
-            alertView.addAction(UIAlertAction(title: "設定を開く", style: .default, handler: {action in
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(cancelAction)
+            let settingAction = UIAlertAction(title: "設定を開く", style: .default){action in
                 if let url = URL(string:UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
-            }))
+            }
+            settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(settingAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
@@ -1226,8 +1239,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
-        alertView.addAction(UIAlertAction(title: "削除",style: .destructive){
-            action in
+        let deleteAction = UIAlertAction(title: "削除",style: .destructive){action in
             let realm = try! Realm()
             let deletingRecipeIngredientList = List<RecipeIngredientLink>()
             for i in 0 ..< self.recipeIngredientList.count {
@@ -1251,8 +1263,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 realm.delete(self.recipe)
             }
             self.navigationController?.popViewController(animated: true)
-        })
-        alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+        }
+        deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+        alertView.addAction(deleteAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)

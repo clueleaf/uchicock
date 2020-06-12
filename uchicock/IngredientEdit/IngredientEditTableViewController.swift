@@ -240,10 +240,14 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "はい",style: .default){ action in
+            let yesAction = UIAlertAction(title: "はい",style: .default){action in
                 self.dismiss(animated: true, completion: nil)
-            })
-            alertView.addAction(UIAlertAction(title: "いいえ", style: .cancel){ action in })
+            }
+            yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(yesAction)
+            let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
+            noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(noAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
@@ -257,9 +261,11 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
-        alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+        let alertAction = UIAlertAction(title: "OK", style: .default){_ in
             action?()
-        }))
+        }
+        alertAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(alertAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)

@@ -234,9 +234,11 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 noIngredientAlertView.overrideUserInterfaceStyle = .dark
             }
-            noIngredientAlertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+            let okAction = UIAlertAction(title: "OK", style: .default){action in
                 self.navigationController?.popViewController(animated: true)
-            }))
+            }
+            okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            noIngredientAlertView.addAction(okAction)
             noIngredientAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noIngredientAlertView, animated: true, completion: nil)
@@ -434,37 +436,49 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
-                    alertView.addAction(UIAlertAction(title: title1,style: .default){
+                    let action1 = UIAlertAction(title: title1,style: .default){
                         action in
                         self.recipeOrder = 1
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
-                    })
-                    alertView.addAction(UIAlertAction(title: title2,style: .default){
+                    }
+                    action1.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action1)
+                    let action2 = UIAlertAction(title: title2,style: .default){
                         action in
                         self.recipeOrder = 2
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
-                    })
-                    alertView.addAction(UIAlertAction(title: title3,style: .default){
+                    }
+                    action2.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action2)
+                    let action3 = UIAlertAction(title: title3,style: .default){
                         action in
                         self.recipeOrder = 3
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
-                    })
-                    alertView.addAction(UIAlertAction(title: title4,style: .default){
+                    }
+                    action3.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action3)
+                    let action4 = UIAlertAction(title: title4,style: .default){
                         action in
                         self.recipeOrder = 4
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
-                    })
-                    alertView.addAction(UIAlertAction(title: title5,style: .default){
+                    }
+                    action4.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action4)
+                    let action5 = UIAlertAction(title: title5,style: .default){
                         action in
                         self.recipeOrder = 5
                         self.reloadIngredientRecipeBasicList()
                         self.tableView.reloadData()
-                    })
-                    alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+                    }
+                    action5.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(action5)
+                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+                    cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    alertView.addAction(cancelAction)
                     alertView.popoverPresentationController?.sourceView = self.view
                     alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -606,15 +620,19 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "解除しない", style: .cancel, handler: {action in}))
-            alertView.addAction(UIAlertAction(title: "解除する", style: .default, handler: {action in
+            let noAction = UIAlertAction(title: "解除しない", style: .cancel, handler: nil)
+            noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(noAction)
+            let yesAction = UIAlertAction(title: "解除する", style: .default){action in
                 try! realm.write {
                     self.ingredient.reminderSetDate = nil
                 }
                 self.isOnReminder = false
                 self.tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
                 self.setReminderBadge()
-            }))
+            }
+            yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(yesAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
@@ -675,7 +693,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in}))
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(okAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
@@ -684,15 +704,19 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 deleteAlertView.overrideUserInterfaceStyle = .dark
             }
-            deleteAlertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+            let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
                 let realm = try! Realm()
                 try! realm.write {
                     realm.delete(self.ingredient)
                 }
                 self.setReminderBadge()
                 _ = self.navigationController?.popViewController(animated: true)
-            }))
-            deleteAlertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in})
+            }
+            deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+            deleteAlertView.addAction(deleteAction)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            deleteAlertView.addAction(cancelAction)
             deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(deleteAlertView, animated: true, completion: nil)

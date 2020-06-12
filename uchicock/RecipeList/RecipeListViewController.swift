@@ -793,7 +793,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             if #available(iOS 13.0, *), UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
-            alertView.addAction(UIAlertAction(title: "削除", style: .destructive, handler: {action in
+            let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
 
@@ -808,10 +808,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
                 }
                 completionHandler(true)
-            }))
-            alertView.addAction(UIAlertAction(title: "キャンセル", style: .cancel){action in
+            }
+            deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+            alertView.addAction(deleteAction)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel){action in
                 completionHandler(false)
-            })
+            }
+            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            alertView.addAction(cancelAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
