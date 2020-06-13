@@ -220,61 +220,39 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func filterRecipeBasic(){
-        filteredRecipeBasic = recipeBasicListForFilterModal
+        filteredRecipeBasic.removeAll()
         
-        if favorite0Checkbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.favorites == 0 }
-        }
-        if favorite1Checkbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.favorites == 1 }
-        }
-        if favorite2Checkbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.favorites == 2 }
-        }
-        if favorite3Checkbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.favorites == 3 }
-        }
-        if styleLongCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.style == 0 }
-        }
-        if styleShortCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.style == 1 }
-        }
-        if styleHotCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.style == 2 }
-        }
-        if styleNoneCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.style == 3 }
-        }
-        if methodBuildCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.method == 0 }
-        }
-        if methodStirCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.method == 1 }
-        }
-        if methodShakeCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.method == 2 }
-        }
-        if methodBlendCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.method == 3 }
-        }
-        if methodOthersCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.method == 4 }
-        }
-        if strengthNonAlcoholCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.strength == 0 }
-        }
-        if strengthWeakCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.strength == 1 }
-        }
-        if strengthMediumCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.strength == 2 }
-        }
-        if strengthStrongCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.strength == 3 }
-        }
-        if strengthNoneCheckbox.checkState == .unchecked{
-            filteredRecipeBasic.removeAll{ $0.strength == 4 }
+        var recipeFilterStar: [Int] = []
+        var recipeFilterStyle: [Int] = []
+        var recipeFilterMethod: [Int] = []
+        var recipeFilterStrength: [Int] = []
+
+        if favorite0Checkbox.checkState == .checked { recipeFilterStar.append(0) }
+        if favorite1Checkbox.checkState == .checked { recipeFilterStar.append(1) }
+        if favorite2Checkbox.checkState == .checked { recipeFilterStar.append(2) }
+        if favorite3Checkbox.checkState == .checked { recipeFilterStar.append(3) }
+        if styleLongCheckbox.checkState == .checked { recipeFilterStyle.append(0) }
+        if styleShortCheckbox.checkState == .checked { recipeFilterStyle.append(1) }
+        if styleHotCheckbox.checkState == .checked { recipeFilterStyle.append(2) }
+        if styleNoneCheckbox.checkState == .checked { recipeFilterStyle.append(3) }
+        if methodBuildCheckbox.checkState == .checked { recipeFilterMethod.append(0) }
+        if methodStirCheckbox.checkState == .checked { recipeFilterMethod.append(1) }
+        if methodShakeCheckbox.checkState == .checked { recipeFilterMethod.append(2) }
+        if methodBlendCheckbox.checkState == .checked { recipeFilterMethod.append(3) }
+        if methodOthersCheckbox.checkState == .checked { recipeFilterMethod.append(4) }
+        if strengthNonAlcoholCheckbox.checkState == .checked { recipeFilterStrength.append(0) }
+        if strengthWeakCheckbox.checkState == .checked { recipeFilterStrength.append(1) }
+        if strengthMediumCheckbox.checkState == .checked { recipeFilterStrength.append(2) }
+        if strengthStrongCheckbox.checkState == .checked { recipeFilterStrength.append(3) }
+        if strengthNoneCheckbox.checkState == .checked { recipeFilterStrength.append(4) }
+
+        for recipeBasic in recipeBasicListForFilterModal {
+            if recipeFilterStar.contains(recipeBasic.favorites) &&
+                recipeFilterStyle.contains(recipeBasic.style) &&
+                recipeFilterMethod.contains(recipeBasic.method) &&
+                recipeFilterStrength.contains(recipeBasic.strength){
+                filteredRecipeBasic.append(recipeBasic)
+            }
         }
         
         UIView.performWithoutAnimation {
