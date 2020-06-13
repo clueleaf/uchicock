@@ -1425,19 +1425,13 @@
                                             <constraint firstAttribute="height" constant="1" id="9AU-qD-GUf"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q97-kq-zwf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q97-kq-zwf">
                                         <rect key="frame" x="392" y="17" width="240" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="CIt-4k-UoN"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="K4l-Fn-mZk"/>
                                         </constraints>
                                         <state key="normal" title="検索実行"/>
-                                        <connections>
-                                            <action selector="searchButtonDraggedInside:" destination="iHW-kn-1ob" eventType="touchDragInside" id="DdE-WA-qYy"/>
-                                            <action selector="searchButtonDraggedOutside:" destination="iHW-kn-1ob" eventType="touchDragOutside" id="aLZ-fv-QHM"/>
-                                            <action selector="searchButtonTouchedDown:" destination="iHW-kn-1ob" eventType="touchDown" id="HYt-GW-gHa"/>
-                                            <action selector="searchButtonTouchedUpInside:" destination="iHW-kn-1ob" eventType="touchUpInside" id="Sfc-jv-UqA"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
