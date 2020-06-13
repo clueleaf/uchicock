@@ -37,11 +37,7 @@ class LaunchViewController: UIViewController {
             shouldShowIntroduction = true
             defaults.set(false, forKey: GlobalConstants.FirstLaunchKey)
         }else{
-            if widgetUrl == nil {
-                prepareMessage.alpha = 1.0
-            }else{
-                prepareMessage.alpha = 0.0
-            }
+            prepareMessage.alpha = widgetUrl == nil ? 1.0 : 0.0
         }
     }
     
@@ -58,11 +54,7 @@ class LaunchViewController: UIViewController {
     
     // MARK: Processing
     private func prepareToShowRecipeList(){
-        if widgetUrl == nil {
-            prepareMessage.alpha = 1.0
-        }else{
-            prepareMessage.alpha = 0.0
-        }
+        prepareMessage.alpha = widgetUrl == nil ? 1.0 : 0.0
 
         let realm = try! Realm()
 
@@ -129,28 +121,24 @@ class LaunchViewController: UIViewController {
         tabBarC.modalPresentationStyle = .fullScreen
         tabBarC.modalTransitionStyle = .crossDissolve
 
+        var index = 0
         switch widgetUrl{
         case "uchicock://bookmark":
-            tabBarC.selectedIndex = 0
-            tabBarC.lastSelectedIndex = 0
+            index = 0
             let navC = tabBarC.viewControllers![0] as! UINavigationController
             let recipeVC = navC.visibleViewController as? RecipeListViewController
             recipeVC?.isBookmarkMode = true
             recipeVC?.shouldShowBookmarkGuide = true
         case "uchicock://reminder":
-            tabBarC.selectedIndex = 1
-            tabBarC.lastSelectedIndex = 1
+            index = 1
             let navC = tabBarC.viewControllers![1] as! UINavigationController
             let ingredientVC = navC.visibleViewController as? IngredientListViewController
             ingredientVC?.isReminderMode = true
             ingredientVC?.shouldShowReminderGuide = true
         case "uchicock://album":
-            tabBarC.selectedIndex = 3
-            tabBarC.lastSelectedIndex = 3
+            index = 3
         case "uchicock://calc":
-            tabBarC.selectedIndex = 4
-            tabBarC.lastSelectedIndex = 4
-
+            index = 4
             let navC = tabBarC.viewControllers![4] as! UINavigationController
             let settingsVC = navC.visibleViewController as? SettingsTableViewController
             if settingsVC != nil{
@@ -159,37 +147,27 @@ class LaunchViewController: UIViewController {
             let calcVC = UIStoryboard(name: "AlcoholCalc", bundle:nil).instantiateViewController(withIdentifier: "calc") as! AlcoholCalcViewController
             navC.pushViewController(calcVC, animated: false)
         default:
-            tabBarC.selectedIndex = 0
-            tabBarC.lastSelectedIndex = 0
+            break
         }
+        widgetUrl = nil
+        tabBarC.selectedIndex = index
+        tabBarC.lastSelectedIndex = index
 
-        // 購入リマインダーバッジ表示
+        // tabbarバッジ表示
         let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
-        if let tabItems = tabBarC.tabBar.items {
-            let tabItem = tabItems[1]
-            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if reminderNum == 0{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "!"
-            }
-        }
-        
-        // 新レシピバッジ表示
         let defaults = UserDefaults.standard
         let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
         let version81newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version81NewRecipeViewedKey)
         if let tabItems = tabBarC.tabBar.items {
-            let tabItem = tabItems[4]
-            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if version80newRecipeViewed || version81newRecipeViewed{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "N"
-            }
-        }
+            let tabItem1 = tabItems[1]
+            tabItem1.badgeColor = UchicockStyle.badgeBackgroundColor
+            tabItem1.badgeValue = reminderNum == 0 ? nil : "!"
 
-        widgetUrl = nil
+            let tabItem4 = tabItems[4]
+            tabItem4.badgeColor = UchicockStyle.badgeBackgroundColor
+            tabItem4.badgeValue = (version80newRecipeViewed || version81newRecipeViewed) ? nil : "N"
+        }
+        
         self.present(tabBarC, animated: false, completion: nil)
     }
     
@@ -204,34 +182,36 @@ class LaunchViewController: UIViewController {
     private func correct_v_8_0(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.Version80CorrectedKey: false])
-        if defaults.bool(forKey: GlobalConstants.Version80CorrectedKey) == false {
-            defaults.set(true, forKey: GlobalConstants.Version80CorrectedKey)
 
-            let realm = try! Realm()
-            let rec = realm.objects(Recipe.self).filter("recipeName == %@", "コモドアー")
-            if rec.count > 0{
-                let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                for ri in rec.first!.recipeIngredients{
-                    let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
-                    deletingRecipeIngredientList.append(recipeIngredient)
-                }
-                ImageUtil.remove(imageFileName: rec.first!.imageFileName)
+        guard defaults.bool(forKey: GlobalConstants.Version80CorrectedKey) == false else { return }
 
-                try! realm.write{
-                    for ri in deletingRecipeIngredientList{
-                        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                        for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
-                            if ingredient.recipeIngredients[i].id == ri.id{
-                                ingredient.recipeIngredients.remove(at: i)
-                            }
-                        }
+        defaults.set(true, forKey: GlobalConstants.Version80CorrectedKey)
+
+        let realm = try! Realm()
+        let rec = realm.objects(Recipe.self).filter("recipeName == %@", "コモドアー")
+
+        guard rec.count > 0 else { return }
+        
+        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+        for ri in rec.first!.recipeIngredients{
+            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
+            deletingRecipeIngredientList.append(recipeIngredient)
+        }
+        ImageUtil.remove(imageFileName: rec.first!.imageFileName)
+
+        try! realm.write{
+            for ri in deletingRecipeIngredientList{
+                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
+                    if ingredient.recipeIngredients[i].id == ri.id{
+                        ingredient.recipeIngredients.remove(at: i)
                     }
-                    for ri in deletingRecipeIngredientList{
-                        realm.delete(ri)
-                    }
-                    realm.delete(rec.first!)
                 }
             }
+            for ri in deletingRecipeIngredientList{
+                realm.delete(ri)
+            }
+            realm.delete(rec.first!)
         }
     }
     
