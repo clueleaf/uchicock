@@ -17,7 +17,7 @@ struct GlobalConstants{
     static let ThumbnailFolderPath = GlobalConstants.DocumentDir.appendingPathComponent(GlobalConstants.RecipeThumbnailsDirectory)
 
     // MARK: - Database Version
-    static let RealmSchemaVersion: UInt64 = 13
+    static let RealmSchemaVersion: UInt64 = 14
     
     // MARK: - Launch Management Keys
     static let FirstLaunchKey = "firstLaunch"

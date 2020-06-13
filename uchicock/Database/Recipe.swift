@@ -19,6 +19,7 @@ class Recipe: Object {
     @objc dynamic var memo = ""
     @objc dynamic var imageFileName: String? = nil
     @objc dynamic var shortageNum = 0
+    @objc dynamic var shortageIngredientName: String? = nil
     @objc dynamic var lastViewDate : Date? = nil
     @objc dynamic var madeNum = 0
     @objc dynamic var style = 3
@@ -31,11 +32,18 @@ class Recipe: Object {
     
     func updateShortageNum(){
         var num = 0
+        var name: String? = nil
         for ri in self.recipeIngredients{
             if ri.mustFlag && ri.ingredient.stockFlag == false {
                 num += 1
+                name = ri.ingredient.ingredientName
             }
         }
         self.shortageNum = num
+        if num == 1 {
+            self.shortageIngredientName = name
+        }else{
+            self.shortageIngredientName = nil
+        }
     }    
 }
