@@ -100,25 +100,25 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewWillAppear(animated)
         
         let realm = try! Realm()
-        for i in (0..<self.recipeBasicList.count).reversed() {
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[i].id)
+        for i in (0..<recipeBasicList.count).reversed() {
+            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[i].id)
             if let r = recipe{
                 if r.imageFileName == nil{
-                    self.recipeBasicList.remove(at: i)
+                    recipeBasicList.remove(at: i)
                 }
             }else{
-                self.recipeBasicList.remove(at: i)
+                recipeBasicList.remove(at: i)
             }
         }
         
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
         for recipe in recipeList{
             var newPhotoFlag = true
-            for i in (0..<self.recipeBasicList.count).reversed() {
-                if recipe.id == self.recipeBasicList[i].id{
+            for i in (0..<recipeBasicList.count).reversed() {
+                if recipe.id == recipeBasicList[i].id{
                     newPhotoFlag = false
-                    self.recipeBasicList.remove(at: i)
-                    self.recipeBasicList.insert(RecipeBasic(
+                    recipeBasicList.remove(at: i)
+                    recipeBasicList.insert(RecipeBasic(
                         id: recipe.id,
                         name: recipe.recipeName,
                         nameYomi: recipe.recipeNameYomi,
@@ -136,7 +136,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 }
             }
             if newPhotoFlag{
-                self.recipeBasicList.append(RecipeBasic(
+                recipeBasicList.append(RecipeBasic(
                     id: recipe.id,
                     name: recipe.recipeName,
                     nameYomi: recipe.recipeNameYomi,
@@ -170,8 +170,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func updateNavigationBar(){
-        self.navigationItem.title = "アルバム(" + String(self.filteredRecipeBasicList.count) + "/" + String(self.recipeBasicList.count) + ")"
-        if self.recipeBasicList.count == 0{
+        self.navigationItem.title = "アルバム(" + String(filteredRecipeBasicList.count) + "/" + String(recipeBasicList.count) + ")"
+        if recipeBasicList.count == 0{
             self.recipeNameBarButton.isEnabled = false
             self.albumFilterBarButton.isEnabled = false
             self.orderBarButton.isEnabled = false
@@ -311,61 +311,39 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func filterRecipeBasicList(){
-        filteredRecipeBasicList = recipeBasicList
+        filteredRecipeBasicList.removeAll()
         
-        if albumFilterStar0 == false{
-            filteredRecipeBasicList.removeAll{ $0.favorites == 0 }
-        }
-        if albumFilterStar1 == false{
-            filteredRecipeBasicList.removeAll{ $0.favorites == 1 }
-        }
-        if albumFilterStar2 == false{
-            filteredRecipeBasicList.removeAll{ $0.favorites == 2 }
-        }
-        if albumFilterStar3 == false{
-            filteredRecipeBasicList.removeAll{ $0.favorites == 3 }
-        }
-        if albumFilterLong == false{
-            filteredRecipeBasicList.removeAll{ $0.style == 0 }
-        }
-        if albumFilterShort == false{
-            filteredRecipeBasicList.removeAll{ $0.style == 1 }
-        }
-        if albumFilterHot == false{
-            filteredRecipeBasicList.removeAll{ $0.style == 2 }
-        }
-        if albumFilterStyleNone == false{
-            filteredRecipeBasicList.removeAll{ $0.style == 3 }
-        }
-        if albumFilterBuild == false{
-            filteredRecipeBasicList.removeAll{ $0.method == 0 }
-        }
-        if albumFilterStir == false{
-            filteredRecipeBasicList.removeAll{ $0.method == 1 }
-        }
-        if albumFilterShake == false{
-            filteredRecipeBasicList.removeAll{ $0.method == 2 }
-        }
-        if albumFilterBlend == false{
-            filteredRecipeBasicList.removeAll{ $0.method == 3 }
-        }
-        if albumFilterOthers == false{
-            filteredRecipeBasicList.removeAll{ $0.method == 4 }
-        }
-        if albumFilterNonAlcohol == false{
-            filteredRecipeBasicList.removeAll{ $0.strength == 0 }
-        }
-        if albumFilterWeak == false{
-            filteredRecipeBasicList.removeAll{ $0.strength == 1 }
-        }
-        if albumFilterMedium == false{
-            filteredRecipeBasicList.removeAll{ $0.strength == 2 }
-        }
-        if albumFilterStrong == false{
-            filteredRecipeBasicList.removeAll{ $0.strength == 3 }
-        }
-        if albumFilterStrengthNone == false{
-            filteredRecipeBasicList.removeAll{ $0.strength == 4 }
+        var albumFilterStar: [Int] = []
+        var albumFilterStyle: [Int] = []
+        var albumFilterMethod: [Int] = []
+        var albumFilterStrength: [Int] = []
+
+        if albumFilterStar0 { albumFilterStar.append(0) }
+        if albumFilterStar1 { albumFilterStar.append(1) }
+        if albumFilterStar2 { albumFilterStar.append(2) }
+        if albumFilterStar3 { albumFilterStar.append(3) }
+        if albumFilterLong { albumFilterStyle.append(0) }
+        if albumFilterShort { albumFilterStyle.append(1) }
+        if albumFilterHot { albumFilterStyle.append(2) }
+        if albumFilterStyleNone { albumFilterStyle.append(3) }
+        if albumFilterBuild { albumFilterMethod.append(0) }
+        if albumFilterStir { albumFilterMethod.append(1) }
+        if albumFilterShake { albumFilterMethod.append(2) }
+        if albumFilterBlend { albumFilterMethod.append(3) }
+        if albumFilterOthers { albumFilterMethod.append(4) }
+        if albumFilterNonAlcohol { albumFilterStrength.append(0) }
+        if albumFilterWeak { albumFilterStrength.append(1) }
+        if albumFilterMedium { albumFilterStrength.append(2) }
+        if albumFilterStrong { albumFilterStrength.append(3) }
+        if albumFilterStrengthNone { albumFilterStrength.append(4) }
+
+        for recipeBasic in recipeBasicList {
+            if albumFilterStar.contains(recipeBasic.favorites) &&
+                albumFilterStyle.contains(recipeBasic.style) &&
+                albumFilterMethod.contains(recipeBasic.method) &&
+                albumFilterStrength.contains(recipeBasic.strength){
+                filteredRecipeBasicList.append(recipeBasic)
+            }
         }
     }
     
@@ -636,7 +614,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
             self.setupVC()
         }
         vc.userDefaultsPrefix = "album-"
-        vc.recipeBasicListForFilterModal = self.recipeBasicList
+        vc.recipeBasicListForFilterModal = recipeBasicList
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet
