@@ -28,6 +28,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableView: UITableView!
+    var realm: Realm? = nil
     let selectedCellBackgroundView = UIView()
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
@@ -76,6 +77,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        realm = try! Realm()
         requestReview()
         
         searchTextField.clearButtonEdgeInset = 4.0
@@ -301,20 +303,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Manage Data
     private func deleteRecipe(id: String) {
-        let realm = try! Realm()
-        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: id)!
+        let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: id)!
         
         let deletingRecipeIngredientList = List<RecipeIngredientLink>()
         for ri in recipe.recipeIngredients{
-            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
+            let recipeIngredient = realm!.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
             deletingRecipeIngredientList.append(recipeIngredient)
         }
         
         ImageUtil.remove(imageFileName: recipe.imageFileName)
         
-        try! realm.write{
+        try! realm!.write{
             for ri in deletingRecipeIngredientList{
-                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                let ingredient = realm!.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                 for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
                         ingredient.recipeIngredients.remove(at: i)
@@ -322,15 +323,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
             for ri in deletingRecipeIngredientList{
-                realm.delete(ri)
+                realm!.delete(ri)
             }
-            realm.delete(recipe)
+            realm!.delete(recipe)
         }
     }
     
     private func reloadRecipeList(){
-        let realm = try! Realm()
-        recipeList = realm.objects(Recipe.self)
+        recipeList = realm!.objects(Recipe.self)
         reloadRecipeBasicList()
     }
     
@@ -771,8 +771,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return
                 }
                 
-                let realm = try! Realm()
-                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
+                let recipe = self.realm!.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
                 editVC.recipe = recipe
                     
@@ -849,8 +848,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            let realm = try! Realm()
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
+            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             if isBookmarkMode{
                 cell.subInfoType = 0
             }else{

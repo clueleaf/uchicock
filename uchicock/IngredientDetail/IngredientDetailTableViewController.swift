@@ -32,6 +32,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBOutlet weak var recipeOrderLabel: UILabel!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
+    var realm: Realm? = nil
     var ingredientId = String()
     var ingredient = Ingredient()
     var ingredientRecipeBasicList = Array<RecipeBasic>()
@@ -55,6 +56,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        realm = try! Realm()
+
         ingredientName.isScrollEnabled = false
         ingredientName.textContainerInset = .zero
         ingredientName.textContainer.lineFragmentPadding = 0
@@ -102,8 +105,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         deleteButtonLabel.textColor = UchicockStyle.alertColor
         recipeOrderLabel.textColor = UchicockStyle.primaryColor
         
-        let realm = try! Realm()
-        let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
+        let ing = realm!.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
         if ing == nil {
             hasIngredientDeleted = true
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -252,8 +254,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     // MARK: - Set Style
     private func updateIngredientRecommendLabel(){
-        let realm = try! Realm()
-        try! realm.write {
+        try! realm!.write {
             ingredient.calcContribution()
         }
         if ingredient.contributionToRecipeAvailability == 0{
@@ -266,8 +267,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     private func setReminderBadge(){
-        let realm = try! Realm()
-        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+        let reminderNum = realm!.objects(Ingredient.self).filter("reminderSetDate != nil").count
 
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[1]
@@ -541,8 +541,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 if indexPath.row > 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
                     
-                    let realm = try! Realm()
-                    let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].id)!
+                    let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].id)!
 
                     if recipeOrder == 3{
                         cell.subInfoType = 1
@@ -596,8 +595,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
     // MARK: - IBAction
     @IBAction func removeReminderButtonTapped(_ sender: UIButton) {
-        let realm = try! Realm()
-        try! realm.write {
+        try! realm!.write {
             ingredient.reminderSetDate = nil
         }
         isOnReminder = false
@@ -607,8 +605,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func stockTapped(_ sender: CircularCheckbox) {
-        let realm = try! Realm()
-        try! realm.write {
+        try! realm!.write {
             ingredient.stockFlag = stock.checkState == .checked ? true : false
             for ri in ingredient.recipeIngredients{
                 ri.recipe.updateShortageNum()
@@ -624,7 +621,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
             alertView.addAction(noAction)
             let yesAction = UIAlertAction(title: "解除する", style: .default){action in
-                try! realm.write {
+                try! self.realm!.write {
                     self.ingredient.reminderSetDate = nil
                 }
                 self.isOnReminder = false
@@ -705,9 +702,8 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 deleteAlertView.overrideUserInterfaceStyle = .dark
             }
             let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.delete(self.ingredient)
+                try! self.realm!.write {
+                    self.realm!.delete(self.ingredient)
                 }
                 self.setReminderBadge()
                 _ = self.navigationController?.popViewController(animated: true)

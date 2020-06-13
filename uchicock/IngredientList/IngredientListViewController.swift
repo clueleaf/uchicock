@@ -33,6 +33,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var containerSeparatorLandscapeTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
     
+    var realm: Realm? = nil
     var ingredientList: Results<Ingredient>?
     var ingredientBasicList = Array<IngredientBasic>()
     
@@ -58,6 +59,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        realm = try! Realm()
+
         searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
         searchTextField.clipsToBounds = true
@@ -173,8 +176,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setReminderBadge(){
-        let realm = try! Realm()
-        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+        let reminderNum = realm!.objects(Ingredient.self).filter("reminderSetDate != nil").count
 
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[1]
@@ -191,8 +193,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - Manage Data
     private func reloadIngredientList(){
-        let realm = try! Realm()
-        ingredientList = realm.objects(Ingredient.self)
+        ingredientList = realm!.objects(Ingredient.self)
         reloadIngredientBasicList()
     }
     
@@ -303,14 +304,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         guard let index = touchIndex else { return }
 
-        let realm = try! Realm()
-        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: ingredientBasicList[index.row].id)!
+        let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: ingredientBasicList[index.row].id)!
         if ingredient.stockFlag {
-            try! realm.write {
+            try! realm!.write {
                 ingredient.stockFlag = false
             }
         }else{
-            try! realm.write {
+            try! realm!.write {
                 ingredient.stockFlag = true
             }
             if ingredient.reminderSetDate != nil{
@@ -322,7 +322,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
                 alertView.addAction(noAction)
                 let yesAction = UIAlertAction(title: "解除する", style: .default){action in
-                    try! realm.write {
+                    try! self.realm!.write {
                         ingredient.reminderSetDate = nil
                         if self.isReminderMode{
                             self.ingredientBasicList.remove(at: index.row)
@@ -346,7 +346,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         
-        try! realm.write {
+        try! realm!.write {
             for ri in ingredient.recipeIngredients{
                 ri.recipe.updateShortageNum()
             }
@@ -453,8 +453,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
                     return
                 }
-                let realm = try! Realm()
-                let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+                let ingredient = self.realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
                 self.selectedIngredientId = self.ingredientBasicList[indexPath.row].id
                 editVC.ingredient = ingredient
                 
@@ -471,8 +470,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         edit.backgroundColor = UchicockStyle.tableViewCellEditBackgroundColor
         
         let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
-            let realm = try! Realm()
-            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+            let ingredient = self.realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
@@ -492,9 +490,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     deleteAlertView.overrideUserInterfaceStyle = .dark
                 }
                 let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
-                    let realm = try! Realm()
-                    try! realm.write {
-                        realm.delete(ingredient)
+                    try! self.realm!.write {
+                        self.realm!.delete(ingredient)
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
 
@@ -525,8 +522,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = UchicockStyle.alertColor
         
-        let realm = try! Realm()
-        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+        let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
         if ingredient.recipeIngredients.count == 0 && isReminderMode == false {
             return UISwipeActionsConfiguration(actions: [del, edit])
         }else{
@@ -547,8 +543,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         cell.stockState = stockState.selectedSegmentIndex
         
-        let realm = try! Realm()
-        let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
+        let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
         cell.ingredient = ingredient
 
         cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
@@ -653,8 +648,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         
         vc.onDoneBlock = { selectedRecommendIngredientId in
             if let selectedRecommendIngredientId = selectedRecommendIngredientId{
-                let realm = try! Realm()
-                let ing = realm.object(ofType: Ingredient.self, forPrimaryKey: selectedRecommendIngredientId)
+                let ing = self.realm!.object(ofType: Ingredient.self, forPrimaryKey: selectedRecommendIngredientId)
                 if ing != nil{
                     self.performSegue(withIdentifier: "PushIngredientDetail", sender: selectedRecommendIngredientId)
                 }

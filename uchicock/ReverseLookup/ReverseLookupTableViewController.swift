@@ -19,6 +19,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     @IBOutlet weak var ingredientTextField3: CustomTextField!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
     
+    var realm: Realm? = nil
     var hiddenLabel = UILabel()
     var firstIngredientName = ""
     var secondIngredientName = ""
@@ -67,6 +68,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        realm = try! Realm()
+
         ingredientTextField1.clearButtonEdgeInset = 5.0
         ingredientTextField2.clearButtonEdgeInset = 5.0
         ingredientTextField3.clearButtonEdgeInset = 5.0
@@ -101,8 +104,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
         self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
         
-        let realm = try! Realm()
-        ingredientList = realm.objects(Ingredient.self)
+        ingredientList = realm!.objects(Ingredient.self)
         
         cancelButton.isEnabled = false
     }
@@ -372,16 +374,14 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>){
-        let realm = try! Realm()
-        let recipeList = realm.objects(Recipe.self)
+        let recipeList = realm!.objects(Recipe.self)
         for recipe in recipeList{
             recipeArray.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
         }
     }
     
     private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>, text1: String, text2: String?, text3: String?){
-        let realm = try! Realm()
-        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",text1)
+        let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
                 recipeArray.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, nameYomi: ri.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
@@ -396,10 +396,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func deleteFromRecipeBasicList(recipeArray: inout Array<RecipeBasic>, withoutUse ingredientName: String){
-        let realm = try! Realm()
         for i in (0..<recipeArray.count).reversed(){
             var hasIngredient = false
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeArray[i].id)!
+            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeArray[i].id)!
             for ri in recipe.recipeIngredients{
                 if ri.ingredient.ingredientName == ingredientName{
                     hasIngredient = true
@@ -754,8 +753,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
             if textField.text != ""{
-                let realm = try! Realm()
-                let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
+                let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
                     hasNonExistingIngredient = true
                     textField.layer.borderWidth = 1
@@ -1021,8 +1019,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }else if tableView.tag == 1{
             let cell = recipeTableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            let realm = try! Realm()
-            let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
+            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             if recipeSortPrimary == 3{
                 cell.subInfoType = 1
             }else if recipeSortPrimary == 5{
@@ -1045,8 +1042,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else if tableView.tag == 2{
             let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            let realm = try! Realm()
-            let ingredient = realm.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
+            let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
             cell.ingredient = ingredient
             cell.separatorInset = UIEdgeInsets(top: 0, left: 66, bottom: 0, right: 0)
             cell.selectedBackgroundView = selectedCellBackgroundView

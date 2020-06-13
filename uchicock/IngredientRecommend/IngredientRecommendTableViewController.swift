@@ -88,7 +88,6 @@ class IngredientRecommendTableViewController: UITableViewController {
                 ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
             }
             
-            let realm = try! Realm()
             stockingIngredientList = realm.objects(Ingredient.self).filter("stockFlag == true")
             if stockingIngredientList!.count <= 10{
                 // 持っている材料数が少ない場合、その他カテゴリの材料を取り除く
