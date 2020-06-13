@@ -284,7 +284,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         ingredientRecipeBasicList.removeAll()
         
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, nameYomi: recipeIngredient.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,shortageNum: recipeIngredient.recipe.shortageNum, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
+            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, nameYomi: recipeIngredient.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch, shortageNum: recipeIngredient.recipe.shortageNum, shortageIngredientName: recipeIngredient.recipe.shortageIngredientName, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
         }
         
         switch  recipeOrder {
@@ -541,8 +541,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 if indexPath.row > 0{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
                     
-                    let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: ingredientRecipeBasicList[indexPath.row - 1].id)!
-
                     if recipeOrder == 3{
                         cell.subInfoType = 1
                     }else if recipeOrder == 5{
@@ -551,7 +549,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                         cell.subInfoType = 0
                     }
                     cell.shouldHighlightOnlyWhenAvailable = true
-                    cell.recipe = recipe
+                    cell.recipe = ingredientRecipeBasicList[indexPath.row - 1]
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
                     cell.selectedBackgroundView = selectedCellBackgroundView
                     return cell

@@ -376,7 +376,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>){
         let recipeList = realm!.objects(Recipe.self)
         for recipe in recipeList{
-            recipeArray.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
+            recipeArray.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, shortageIngredientName: recipe.shortageIngredientName,favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
         }
     }
     
@@ -384,7 +384,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeArray.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, nameYomi: ri.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
+                recipeArray.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, nameYomi: ri.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, shortageIngredientName: ri.recipe.shortageIngredientName,favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t2)
@@ -1019,7 +1019,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }else if tableView.tag == 1{
             let cell = recipeTableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             if recipeSortPrimary == 3{
                 cell.subInfoType = 1
             }else if recipeSortPrimary == 5{
@@ -1035,7 +1034,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }else{
                 cell.subInfoType = 0
             }
-            cell.recipe = recipe
+            cell.recipe = recipeBasicList[indexPath.row]
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell

@@ -340,7 +340,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if isBookmarkMode{
             for recipe in recipeList! {
                 if recipe.bookmarkDate != nil{
-                    recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+                    recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, shortageIngredientName: recipe.shortageIngredientName,favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
                 }
             }
             
@@ -358,7 +358,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func createSearchedRecipeBaiscList(list: inout Array<RecipeBasic>){
         for recipe in recipeList! {
-            list.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            list.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, shortageIngredientName: recipe.shortageIngredientName,favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
         hasRecipeAtAll = list.count > 0
@@ -848,7 +848,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeBasicList[indexPath.row].id)!
             if isBookmarkMode{
                 cell.subInfoType = 0
             }else{
@@ -868,7 +867,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     cell.subInfoType = 0
                 }
             }
-            cell.recipe = recipe
+            cell.recipe = recipeBasicList[indexPath.row]
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
@@ -964,7 +963,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         recipeBasicListForFilterModal.removeAll()
         for recipe in recipeList!{
-            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
+            recipeBasicListForFilterModal.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, shortageIngredientName: recipe.shortageIngredientName,favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName, bookmarkDate: recipe.bookmarkDate))
         }
         
         let searchText = searchTextField.text!

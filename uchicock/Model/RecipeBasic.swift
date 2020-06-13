@@ -14,6 +14,7 @@ struct RecipeBasic{
     var nameYomi : String
     var katakanaLowercasedNameForSearch : String
     var shortageNum : Int
+    var shortageIngredientName: String?
     var favorites: Int
     var lastViewDate : Date?
     var madeNum : Int
