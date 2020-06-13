@@ -416,6 +416,11 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: - IBAction
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        self.saveUserDefaults()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     private func saveUserDefaults(){
         setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
         setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)

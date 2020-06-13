@@ -514,6 +514,11 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: - IBAction
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        self.saveUserDefaults()
+        self.dismiss(animated: true, completion: nil)
+    }
+
     private func saveUserDefaults(){
         let defaults = UserDefaults.standard
         var primarySort = 1

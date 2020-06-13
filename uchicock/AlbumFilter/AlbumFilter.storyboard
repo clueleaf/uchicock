@@ -1074,6 +1074,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="決定"/>
+                                        <connections>
+                                            <action selector="searchButtonTapped:" destination="jVM-Wp-2x7" eventType="touchUpInside" id="QnF-1S-I9G"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -440,59 +440,35 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func filterRecipeBasicList(){
-        if recipeFilterStar0 == false{
-            recipeBasicList.removeAll{ $0.favorites == 0 }
-        }
-        if recipeFilterStar1 == false{
-            recipeBasicList.removeAll{ $0.favorites == 1 }
-        }
-        if recipeFilterStar2 == false{
-            recipeBasicList.removeAll{ $0.favorites == 2 }
-        }
-        if recipeFilterStar3 == false{
-            recipeBasicList.removeAll{ $0.favorites == 3 }
-        }
-        if recipeFilterLong == false{
-            recipeBasicList.removeAll{ $0.style == 0 }
-        }
-        if recipeFilterShort == false{
-            recipeBasicList.removeAll{ $0.style == 1 }
-        }
-        if recipeFilterHot == false{
-            recipeBasicList.removeAll{ $0.style == 2 }
-        }
-        if recipeFilterStyleNone == false{
-            recipeBasicList.removeAll{ $0.style == 3 }
-        }
-        if recipeFilterBuild == false{
-            recipeBasicList.removeAll{ $0.method == 0 }
-        }
-        if recipeFilterStir == false{
-            recipeBasicList.removeAll{ $0.method == 1 }
-        }
-        if recipeFilterShake == false{
-            recipeBasicList.removeAll{ $0.method == 2 }
-        }
-        if recipeFilterBlend == false{
-            recipeBasicList.removeAll{ $0.method == 3 }
-        }
-        if recipeFilterOthers == false{
-            recipeBasicList.removeAll{ $0.method == 4 }
-        }
-        if recipeFilterNonAlcohol == false{
-            recipeBasicList.removeAll{ $0.strength == 0 }
-        }
-        if recipeFilterWeak == false{
-            recipeBasicList.removeAll{ $0.strength == 1 }
-        }
-        if recipeFilterMedium == false{
-            recipeBasicList.removeAll{ $0.strength == 2 }
-        }
-        if recipeFilterStrong == false{
-            recipeBasicList.removeAll{ $0.strength == 3 }
-        }
-        if recipeFilterStrengthNone == false{
-            recipeBasicList.removeAll{ $0.strength == 4 }
+        var recipeFilterStar: [Int] = []
+        var recipeFilterStyle: [Int] = []
+        var recipeFilterMethod: [Int] = []
+        var recipeFilterStrength: [Int] = []
+
+        if recipeFilterStar0 { recipeFilterStar.append(0) }
+        if recipeFilterStar1 { recipeFilterStar.append(1) }
+        if recipeFilterStar2 { recipeFilterStar.append(2) }
+        if recipeFilterStar3 { recipeFilterStar.append(3) }
+        if recipeFilterLong { recipeFilterStyle.append(0) }
+        if recipeFilterShort { recipeFilterStyle.append(1) }
+        if recipeFilterHot { recipeFilterStyle.append(2) }
+        if recipeFilterStyleNone { recipeFilterStyle.append(3) }
+        if recipeFilterBuild { recipeFilterMethod.append(0) }
+        if recipeFilterStir { recipeFilterMethod.append(1) }
+        if recipeFilterShake { recipeFilterMethod.append(2) }
+        if recipeFilterBlend { recipeFilterMethod.append(3) }
+        if recipeFilterOthers { recipeFilterMethod.append(4) }
+        if recipeFilterNonAlcohol { recipeFilterStrength.append(0) }
+        if recipeFilterWeak { recipeFilterStrength.append(1) }
+        if recipeFilterMedium { recipeFilterStrength.append(2) }
+        if recipeFilterStrong { recipeFilterStrength.append(3) }
+        if recipeFilterStrengthNone { recipeFilterStrength.append(4) }
+
+        recipeBasicList.removeAll{
+            recipeFilterStar.contains($0.favorites) == false ||
+            recipeFilterStyle.contains($0.style) == false ||
+            recipeFilterMethod.contains($0.method) == false ||
+            recipeFilterStrength.contains($0.strength) == false
         }
     }
     
