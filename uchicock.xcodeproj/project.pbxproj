@@ -537,6 +537,7 @@
 			isa = PBXGroup;
 			children = (
 				9B59FFA722B409CA00FB6F44 /* README.md */,
+				9BC9A3201C783CAA0031F631 /* Info.plist */,
 				9BC9A3141C783CAA0031F631 /* AppDelegate.swift */,
 				9BEC4C0F2351E99A004FE9B4 /* Launch */,
 				9BC9A3461C7856DA0031F631 /* RecipeList */,
@@ -559,7 +560,6 @@
 				9B09389724467EE600519033 /* Model */,
 				9B0CF99D1CA7EE870024AF40 /* Settings.bundle */,
 				9BC9A31B1C783CAA0031F631 /* Assets.xcassets */,
-				9BC9A3201C783CAA0031F631 /* Info.plist */,
 			);
 			path = uchicock;
 			sourceTree = "<group>";

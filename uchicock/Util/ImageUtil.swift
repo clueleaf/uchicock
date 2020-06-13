@@ -26,49 +26,47 @@ struct ImageUtil{
         }
     }
     
-    static func loadImageOf(recipeId: String, forList: Bool) -> UIImage? {
-        let realm = try! Realm()
-        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
-        guard recipe != nil else{
-            return nil
-        }
+    static func loadImageOf(recipeId: String, imageFileName: String?, forList: Bool) -> UIImage? {
+        if imageFileName == nil { return nil }
 
-        if let imageFileName = recipe!.imageFileName{
-            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
-            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
-
-            if forList{
-                if let cachedData = ImageCache.shared.object(forKey: imageFileName as NSString) {
-                    return cachedData
-                }else{
-                    let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
-                    if let loadedThumbnail = loadedThumbnail{
-                        ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName as NSString)
-                        return loadedThumbnail
-                    }else{
-                        let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                        if let loadedImage = loadedImage{
-                            ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
-                        }else{
-                            try! realm.write{
-                                recipe!.imageFileName = nil
-                            }
-                        }
-                        return loadedImage
-                    }
-                }
+        let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName! + ".png")
+        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName! + ".png")
+        
+        if forList{
+            if let cachedData = ImageCache.shared.object(forKey: imageFileName! as NSString) {
+                return cachedData
             }else{
-                let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                if loadedImage == nil{
-                    ImageCache.shared.removeObject(forKey: imageFileName as NSString)
-                    try! realm.write{
-                        recipe!.imageFileName = nil
+                let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
+                if let loadedThumbnail = loadedThumbnail{
+                    ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName! as NSString)
+                    return loadedThumbnail
+                }else{
+                    let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+                    if let loadedImage = loadedImage{
+                        ImageCache.shared.setObject(loadedImage, forKey: imageFileName! as NSString)
+                    }else{
+                        let realm = try! Realm()
+                        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
+                        guard recipe != nil else{ return nil }
+                        try! realm.write{
+                            recipe!.imageFileName = nil
+                        }
                     }
+                    return loadedImage
                 }
-                return loadedImage
             }
         }else{
-            return nil
+            let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+            if loadedImage == nil{
+                ImageCache.shared.removeObject(forKey: imageFileName! as NSString)
+                let realm = try! Realm()
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
+                guard recipe != nil else{ return nil }
+                try! realm.write{
+                    recipe!.imageFileName = nil
+                }
+            }
+            return loadedImage
         }
     }
     

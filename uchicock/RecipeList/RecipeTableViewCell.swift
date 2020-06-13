@@ -28,7 +28,7 @@ class RecipeTableViewCell: UITableViewCell {
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             self.accessoryView = accesoryImageView
 
-            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: true){
+            if let image = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: true){
                 photoImageView.image = image
             }else{
                 photoImageView.image = UIImage(named: "tabbar-recipe")?.withAlignmentRectInsets(UIEdgeInsets(top: -13, left: -13, bottom: -13, right: -13))

@@ -109,7 +109,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeNameYomi.setLeftPadding()
         recipeNameYomi.setRightPadding()
 
-        if let image = ImageUtil.loadImageOf(recipeId: recipe.id, forList: false){
+        if let image = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false){
             photo.image = image
         }
         if photo.image == nil{

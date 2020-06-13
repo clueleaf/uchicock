@@ -15,6 +15,7 @@ struct SimilarRecipeBasic{
     var strength : Int
     var shortageNum : Int
     var isBookmarked : Bool
+    var imageFileName: String?
     var ingredientList = Array<SimilarRecipeIngredient>()
 }
 

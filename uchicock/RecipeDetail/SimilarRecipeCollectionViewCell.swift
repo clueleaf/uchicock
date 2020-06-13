@@ -18,35 +18,30 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkFrontImage: UIImageView!
     @IBOutlet weak var bookmarkBackImage: UIImageView!
     
-    var id: String = String(){
+    
+    var recipe: SimilarRecipeBasic? = nil{
         didSet{
-            if let image = ImageUtil.loadImageOf(recipeId: id, forList: true){
-                recipeImageView.image = image
-                recipeImageView.isHidden = false
-                noImageImageView.isHidden = true
-            }else{
-                noImageImageView.tintColor = UchicockStyle.noPhotoColor
-                recipeImageView.isHidden = true
-                noImageImageView.isHidden = false
+            if recipe != nil{
+                if let image = ImageUtil.loadImageOf(recipeId: recipe!.id, imageFileName: recipe!.imageFileName, forList: true){
+                    recipeImageView.image = image
+                    recipeImageView.isHidden = false
+                    noImageImageView.isHidden = true
+                }else{
+                    noImageImageView.tintColor = UchicockStyle.noPhotoColor
+                    recipeImageView.isHidden = true
+                    noImageImageView.isHidden = false
+                }
+                
+                recipeNameLabel.text = recipe!.name
+                backgroundContainer.layer.cornerRadius = 15
+                backgroundContainer.clipsToBounds = true
+                highlightView.backgroundColor = UIColor.clear
+                
+                bookmarkBackImage.tintColor = UchicockStyle.primaryColor
+                bookmarkFrontImage.tintColor = UchicockStyle.primaryColor
+                bookmarkBackImage.isHidden = recipe!.isBookmarked ? false : true
+                bookmarkFrontImage.isHidden = recipe!.isBookmarked ? false : true
             }
-        }
-    }
-    
-    var recipeName : String = String(){
-        didSet{
-            recipeNameLabel.text = recipeName
-            backgroundContainer.layer.cornerRadius = 15
-            backgroundContainer.clipsToBounds = true
-            highlightView.backgroundColor = UIColor.clear
-        }
-    }
-    
-    var isBookMarked : Bool = Bool(){
-        didSet{
-            bookmarkBackImage.tintColor = UchicockStyle.primaryColor
-            bookmarkFrontImage.tintColor = UchicockStyle.primaryColor
-            bookmarkBackImage.isHidden = isBookMarked ? false : true
-            bookmarkFrontImage.isHidden = isBookMarked ? false : true
         }
     }
 }
