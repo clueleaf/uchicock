@@ -16,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        UchicockStyle.loadTheme()
-        let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
-
         let manager = FileManager.default
         let realmPath = GlobalConstants.DocumentDir.appendingPathComponent("default.realm")
         // first time to launch this app
@@ -85,8 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             },
             shouldCompactOnLaunch: { totalBytes, usedBytes in
-            let tenMB = 10 * 1024 * 1024
-            if (totalBytes > tenMB) && (Double(usedBytes) / Double(totalBytes)) < 0.1{
+            let fiveMB = 5 * 1024 * 1024
+            if (totalBytes > fiveMB) && (Double(usedBytes) / Double(totalBytes)) < 0.5{
                 return true
             }
             return false

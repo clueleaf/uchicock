@@ -26,9 +26,12 @@ class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        UchicockStyle.loadTheme()
+
         let defaults = UserDefaults.standard
-        let dic = [GlobalConstants.FirstLaunchKey: true]
-        defaults.register(defaults: dic)
+        defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
+        defaults.register(defaults: [GlobalConstants.FirstLaunchKey: true])
         if defaults.bool(forKey: GlobalConstants.FirstLaunchKey) {
             prepareMessage.alpha = 0.0
             shouldShowIntroduction = true
