@@ -1072,6 +1072,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="PWh-hR-ZcZ"/>
                                             <constraint firstAttribute="height" constant="40" id="r3h-h6-Goy"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="決定"/>
                                     </button>
                                 </subviews>

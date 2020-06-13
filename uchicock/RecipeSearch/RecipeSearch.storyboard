@@ -1431,6 +1431,7 @@
                                             <constraint firstAttribute="height" constant="40" id="CIt-4k-UoN"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="K4l-Fn-mZk"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <state key="normal" title="検索実行"/>
                                     </button>
                                 </subviews>

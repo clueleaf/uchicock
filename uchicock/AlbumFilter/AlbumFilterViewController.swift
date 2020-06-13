@@ -194,7 +194,6 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         searchButton.layer.borderWidth = 1.5
         searchButton.layer.cornerRadius = searchButton.frame.size.height / 2
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        searchButton.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 18)
     }
     
     private func readUserDefaults(){
