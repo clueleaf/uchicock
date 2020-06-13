@@ -17,13 +17,13 @@ class LaunchViewController: UIViewController {
     var calcIngredientList: Results<CalculatorIngredient>?
     var shouldShowIntroduction = false
     var initializedFullScreenPopGesture = false
-    
     var widgetUrl: String? = nil
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,7 +56,8 @@ class LaunchViewController: UIViewController {
         }
     }
     
-    func prepareToShowRecipeList(){
+    // MARK: Processing
+    private func prepareToShowRecipeList(){
         if widgetUrl == nil {
             prepareMessage.alpha = 1.0
         }else{
@@ -162,6 +163,7 @@ class LaunchViewController: UIViewController {
             tabBarC.lastSelectedIndex = 0
         }
 
+        // 購入リマインダーバッジ表示
         let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
         if let tabItems = tabBarC.tabBar.items {
             let tabItem = tabItems[1]
@@ -173,6 +175,7 @@ class LaunchViewController: UIViewController {
             }
         }
         
+        // 新レシピバッジ表示
         let defaults = UserDefaults.standard
         let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
         let version81newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version81NewRecipeViewedKey)
@@ -198,7 +201,7 @@ class LaunchViewController: UIViewController {
     
     // MARK: - Correction
     // コモドアーはコモドールと一緒なので消す
-    func correct_v_8_0(){
+    private func correct_v_8_0(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.Version80CorrectedKey: false])
         if defaults.bool(forKey: GlobalConstants.Version80CorrectedKey) == false {
