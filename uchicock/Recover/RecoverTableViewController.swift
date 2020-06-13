@@ -138,7 +138,13 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
             }
 
-            let srb = SampleRecipeBasic(name: sr.recipeName, nameYomi: sr.recipeNameYomi, katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch, recoverable: isRecoverable, recoverTarget: false)
+            let srb = SampleRecipeBasic(
+                name: sr.recipeName,
+                nameYomi: sr.recipeNameYomi,
+                katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch,
+                recoverable: isRecoverable,
+                recoverTarget: false
+            )
             if isRecoverable{
                 recoverableSampleRecipeList.append(srb)
             }else{
@@ -190,9 +196,28 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let realm = try! Realm()
                 let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
                 
-                var recoverRecipe = RecoverRecipe(name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, style: recipe.style, method: recipe.method, strength: recipe.strength, ingredientList: [])
+                var recoverRecipe = RecoverRecipe(
+                    name: recipe.recipeName,
+                    nameYomi: recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    style: recipe.style,
+                    method: recipe.method,
+                    strength: recipe.strength,
+                    ingredientList: []
+                )
                 for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(
+                        recipeIngredientId: "",
+                        ingredientId: "",
+                        ingredientName: ri.ingredient.ingredientName,
+                        ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                        katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                        amount: ri.amount,
+                        mustFlag: ri.mustFlag,
+                        category: ri.ingredient.category,
+                        displayOrder: ri.displayOrder,
+                        stockFlag: false
+                    ))
                 }
                 recoverRecipeList.append(recoverRecipe)
             }
@@ -430,8 +455,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecoverCell") as! RecoverTableViewCell
             
-            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView

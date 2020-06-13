@@ -21,7 +21,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteTableViewCell: UITableViewCell!
     @IBOutlet weak var deleteLabel: UILabel!
     
-    var recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: "", ingredientNameYomi: "", katakanaLowercasedNameForSearch: "", amount: "", mustFlag: true, category: -1, displayOrder: -1, stockFlag: false)
+    var recipeIngredient = RecipeIngredientBasic(
+        recipeIngredientId: "",
+        ingredientId: "",
+        ingredientName: "",
+        ingredientNameYomi: "",
+        katakanaLowercasedNameForSearch: "",
+        amount: "",
+        mustFlag: true,
+        category: -1,
+        displayOrder: -1,
+        stockFlag: false
+    )
     var ingredientList: Results<Ingredient>?
 
     var isCancel = true
@@ -158,7 +169,12 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         suggestList.removeAll()
         
         for ingredient in ingredientList! {
-            let suggest = IngredientSuggestBasic(name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, category: ingredient.category)
+            let suggest = IngredientSuggestBasic(
+                name: ingredient.ingredientName,
+                nameYomi: ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                category: ingredient.category
+            )
             suggestList.append(suggest)
         }
         

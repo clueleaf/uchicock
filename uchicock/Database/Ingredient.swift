@@ -13,11 +13,11 @@ class Ingredient: Object {
     @objc dynamic var ingredientName = ""
     @objc dynamic var ingredientNameYomi = ""
     @objc dynamic var katakanaLowercasedNameForSearch = ""
-    @objc dynamic var stockFlag = false
-    @objc dynamic var memo = ""
-    @objc dynamic var category = 2
-    @objc dynamic var contributionToRecipeAvailability = 0
     @objc dynamic var reminderSetDate : Date? = nil
+    @objc dynamic var stockFlag = false
+    @objc dynamic var category = 2
+    @objc dynamic var memo = ""
+    @objc dynamic var contributionToRecipeAvailability = 0
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {
@@ -34,4 +34,5 @@ class Ingredient: Object {
             }
         }
     }
+
 }

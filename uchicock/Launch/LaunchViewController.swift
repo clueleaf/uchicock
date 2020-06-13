@@ -100,15 +100,15 @@ class LaunchViewController: UIViewController {
             }
         }
 
+        // レシピ修正処理
+        correct_v_8_0()
+        
         // 念のためにレシピの不足材料数を一括更新
         try! realm.write {
             for recipe in recipeList!{
                 recipe.updateShortageNum()
             }
         }
-        
-        // レシピ修正処理
-        correct_v_8_0()
         
         // どこでもスワイプで戻れるようにするための処理
         if initializedFullScreenPopGesture == false{
@@ -229,7 +229,7 @@ class LaunchViewController: UIViewController {
 
         let info1 = introductionInfo(title: "Thank you for downloading!!",
                                      description: GlobalConstants.IntroductionDescriptionThanks,
-                                    image: nil)
+                                     image: nil)
         let info2 = introductionInfo(title: "レシピ",
                                      description: GlobalConstants.IntroductionDescriptionRecipe,
                                      image: UIImage(named:"screen-recipe"))

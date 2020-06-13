@@ -36,7 +36,18 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
         
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: false
+            ))
         }
         recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
 
@@ -182,8 +193,18 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.isDuplicated = false
             cell.shouldDisplayStock = false
             cell.isNameTextViewSelectable = true
-            cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi, katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: false)
-
+            cell.recipeIngredient = RecipeIngredientBasic(
+                recipeIngredientId: "",
+                ingredientId: "",
+                ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
+                katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch,
+                amount: recipeIngredientList[indexPath.row].amount,
+                mustFlag: recipeIngredientList[indexPath.row].mustFlag,
+                category: recipeIngredientList[indexPath.row].category,
+                displayOrder: -1,
+                stockFlag: false
+            )
             cell.selectionStyle = .none
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             return cell

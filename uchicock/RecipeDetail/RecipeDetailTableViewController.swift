@@ -183,7 +183,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             var needInitializeDisplayOrder = false
             recipeIngredientList.removeAll()
             for ri in recipe.recipeIngredients {
-                recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+                recipeIngredientList.append(RecipeIngredientBasic(
+                    recipeIngredientId: ri.id,
+                    ingredientId: ri.ingredient.id,
+                    ingredientName: ri.ingredient.ingredientName,
+                    ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                    amount: ri.amount,
+                    mustFlag: ri.mustFlag,
+                    category: ri.ingredient.category,
+                    displayOrder: ri.displayOrder,
+                    stockFlag: ri.ingredient.stockFlag
+                ))
                 if ri.displayOrder < 0{
                     needInitializeDisplayOrder = true
                     break
@@ -403,7 +414,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: ri.ingredient.stockFlag))
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: ri.ingredient.stockFlag
+            ))
         }
     }
     
@@ -462,7 +484,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             for ing in recipe.recipeIngredients{
                 ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
             }
-            selfRecipe = SimilarRecipeBasic(id: recipe.id, name: recipe.recipeName, point: 0, method: recipe.method, style: recipe.style, strength: recipe.strength, shortageNum: recipe.shortageNum, isBookmarked: (recipe.bookmarkDate != nil), imageFileName: recipe.imageFileName, ingredientList: ingredientList)
+            selfRecipe = SimilarRecipeBasic(
+                id: recipe.id,
+                name: recipe.recipeName,
+                point: 0,
+                method: recipe.method,
+                style: recipe.style,
+                strength: recipe.strength,
+                shortageNum: recipe.shortageNum,
+                isBookmarked: (recipe.bookmarkDate != nil),
+                imageFileName: recipe.imageFileName,
+                ingredientList: ingredientList
+            )
 
             allRecipeList = realm.objects(Recipe.self)
             similarRecipeList.removeAll()
@@ -471,7 +504,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 for ri in anotherRecipe.recipeIngredients{
                     ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
                 }
-                similarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.recipeName, point: 0, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, isBookmarked: (anotherRecipe.bookmarkDate != nil), imageFileName: anotherRecipe.imageFileName,ingredientList: ingredientList))
+                similarRecipeList.append(SimilarRecipeBasic(
+                    id: anotherRecipe.id,
+                    name: anotherRecipe.recipeName,
+                    point: 0,
+                    method: anotherRecipe.method,
+                    style: anotherRecipe.style,
+                    strength: anotherRecipe.strength,
+                    shortageNum: anotherRecipe.shortageNum,
+                    isBookmarked: (anotherRecipe.bookmarkDate != nil),
+                    imageFileName: anotherRecipe.imageFileName,
+                    ingredientList: ingredientList
+                ))
             }
             
             queue.async {
@@ -807,17 +851,27 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
             
-            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-            let accesoryImageView = UIImageView(image: disclosureIndicator)
-            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+            let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
             if recipe.isInvalidated == false{
                 cell.isDuplicated = false
                 cell.shouldDisplayStock = true
                 cell.isNameTextViewSelectable = false
-                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi, katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: recipeIngredientList[indexPath.row].stockFlag)
+                cell.recipeIngredient = RecipeIngredientBasic(
+                    recipeIngredientId: "",
+                    ingredientId: "",
+                    ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                    ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch,
+                    amount: recipeIngredientList[indexPath.row].amount,
+                    mustFlag: recipeIngredientList[indexPath.row].mustFlag,
+                    category: recipeIngredientList[indexPath.row].category,
+                    displayOrder: -1,
+                    stockFlag: recipeIngredientList[indexPath.row].stockFlag
+                )
             }
 
             cell.selectionStyle = .default
@@ -1423,7 +1477,17 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
             }
             
             if point >= 0.61{
-                displaySimilarRecipeList.append(SimilarRecipeBasic(id: anotherRecipe.id, name: anotherRecipe.name, point: point, method: anotherRecipe.method, style: anotherRecipe.style, strength: anotherRecipe.strength, shortageNum: anotherRecipe.shortageNum, isBookmarked: anotherRecipe.isBookmarked, imageFileName: anotherRecipe.imageFileName))
+                displaySimilarRecipeList.append(SimilarRecipeBasic(
+                    id: anotherRecipe.id,
+                    name: anotherRecipe.name,
+                    point: point,
+                    method: anotherRecipe.method,
+                    style: anotherRecipe.style,
+                    strength: anotherRecipe.strength,
+                    shortageNum: anotherRecipe.shortageNum,
+                    isBookmarked: anotherRecipe.isBookmarked,
+                    imageFileName: anotherRecipe.imageFileName
+                ))
             }
         }
         displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in

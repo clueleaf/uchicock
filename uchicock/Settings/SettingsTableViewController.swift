@@ -185,8 +185,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-        let accesoryImageView = UIImageView(image: disclosureIndicator)
+        let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
         accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
         accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         cell.accessoryView = accesoryImageView

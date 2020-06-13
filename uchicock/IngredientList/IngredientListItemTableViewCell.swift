@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class IngredientListItemTableViewCell: UITableViewCell {
 
@@ -20,11 +19,13 @@ class IngredientListItemTableViewCell: UITableViewCell {
     
     var stockState = 0
     
-    var ingredient: Ingredient = Ingredient(){
+    var ingredient: IngredientBasic? = nil{
         didSet{
+            guard ingredient != nil else { return }
+            
             stock.stateChangeAnimation = .fade
             stock.animationDuration = 0
-            if ingredient.stockFlag{
+            if ingredient!.stockFlag{
                 stock.setCheckState(.checked, animated: true)
             }else{
                 stock.setCheckState(.unchecked, animated: true)
@@ -32,13 +33,13 @@ class IngredientListItemTableViewCell: UITableViewCell {
 
             recipeNum.backgroundColor = UIColor.clear
             recipeNum.layer.borderWidth = 1
-            if ingredient.recipeIngredients.count == 0{
-                recipeNum.text = String(ingredient.recipeIngredients.count)
+            if ingredient!.usedRecipeNum == 0{
+                recipeNum.text = String(ingredient!.usedRecipeNum)
                 recipeNum.layer.backgroundColor = UIColor.clear.cgColor
                 recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.textColor = UchicockStyle.primaryColor
-            }else if ingredient.recipeIngredients.count > 0 && ingredient.recipeIngredients.count < 1000 {
-                recipeNum.text = String(ingredient.recipeIngredients.count)
+            }else if ingredient!.usedRecipeNum > 0 && ingredient!.usedRecipeNum < 1000 {
+                recipeNum.text = String(ingredient!.usedRecipeNum)
                 recipeNum.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 recipeNum.textColor = UchicockStyle.labelTextColorOnBadge
@@ -50,7 +51,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             }
             
             alcoholIconImage.tintColor = UchicockStyle.primaryColor
-            if ingredient.category == 0{
+            if ingredient!.category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 15
             }else{
@@ -61,7 +62,7 @@ class IngredientListItemTableViewCell: UITableViewCell {
             recipeNum.clipsToBounds = true
             recipeNum.textAlignment = NSTextAlignment.center
 
-            ingredientName.text = ingredient.ingredientName
+            ingredientName.text = ingredient!.name
             stockLabel.textColor = UchicockStyle.labelTextColorLight
             stockLabel.clipsToBounds = true
             
@@ -74,4 +75,5 @@ class IngredientListItemTableViewCell: UITableViewCell {
             }
         }
     }
+    
 }

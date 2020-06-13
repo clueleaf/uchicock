@@ -103,13 +103,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if launchVC == nil{
             launchVC = UIStoryboard(name: "Launch", bundle:nil).instantiateViewController(withIdentifier: "launch") as? LaunchViewController
             self.window!.rootViewController = launchVC
-        }else{
-            if isLaunchViewControllerCurrentViewController() == false {
-                launchVC!.dismiss(animated: false, completion: nil)
-            }
+        }else if isLaunchViewControllerCurrentViewController() == false {
+            launchVC!.dismiss(animated: false, completion: nil)
         }
         launchVC!.widgetUrl = url.absoluteString
-        
         return true
     }
 
@@ -120,12 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func isLaunchViewControllerCurrentViewController() -> Bool{
         let rootVC = self.window!.rootViewController!
-
-        if rootVC.presentedViewController == nil {
-            return rootVC.isKind(of: LaunchViewController.self)
-        }else{
-            return false
-        }
+        return rootVC.presentedViewController == nil ? rootVC.isKind(of: LaunchViewController.self) : false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -15,13 +15,15 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var ingredientName: CustomLabel!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
-    var ingredient: Ingredient = Ingredient(){
+    var ingredient: IngredientBasic? = nil{
         didSet{
-            ingredientName.text = ingredient.ingredientName
+            guard ingredient != nil else { return }
+            
+            ingredientName.text = ingredient!.name
             
             stockLabel.backgroundColor = UIColor.clear
             stockLabel.layer.borderWidth = 1
-            if ingredient.stockFlag{
+            if ingredient!.stockFlag{
                 stockLabel.text = "在庫あり"
                 stockLabel.textColor = UchicockStyle.labelTextColorOnBadge
                 stockLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
@@ -34,7 +36,7 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             }
             
             alcoholIconImage.tintColor = UchicockStyle.primaryColor
-            if ingredient.category == 0{
+            if ingredient!.category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 13
             }else{

@@ -74,7 +74,16 @@ class IngredientRecommendTableViewController: UITableViewController {
             }
         }
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientBasicList.append(IngredientBasic(
+                id: ingredient.id, name:
+                ingredient.ingredientName,
+                nameYomi: ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                stockFlag: ingredient.stockFlag,
+                category: ingredient.category,
+                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                usedRecipeNum: ingredient.recipeIngredients.count
+            ))
         }
         
         ingredientBasicList.removeAll{
@@ -85,7 +94,16 @@ class IngredientRecommendTableViewController: UITableViewController {
         if ingredientBasicList.count == 0{
             isContributionMode = false
             for ingredient in ingredientList!{
-                ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+                ingredientBasicList.append(IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                    stockFlag: ingredient.stockFlag,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usedRecipeNum: ingredient.recipeIngredients.count
+                ))
             }
             
             stockingIngredientList = realm.objects(Ingredient.self).filter("stockFlag == true")
@@ -151,8 +169,7 @@ class IngredientRecommendTableViewController: UITableViewController {
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientRecommendCell") as! IngredientRecommendTableViewCell
             
-            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-            let accesoryImageView = UIImageView(image: disclosureIndicator)
+            let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView

@@ -24,10 +24,9 @@ class RecipeTableViewCell: UITableViewCell {
         didSet{
             guard recipe != nil else { return }
 
-            let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")?.withRenderingMode(.alwaysTemplate)
-            let accesoryImageView = UIImageView(image: disclosureIndicator)
-            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+            let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             self.accessoryView = accesoryImageView
 
             if let image = ImageUtil.loadImageOf(recipeId: recipe!.id, imageFileName: recipe!.imageFileName, forList: true){
@@ -43,7 +42,7 @@ class RecipeTableViewCell: UITableViewCell {
             bookmarkFrontImage.isHidden = recipe!.bookmarkDate == nil ? true : false
 
             recipeNameLabel.text = recipe!.name
-            if shouldHighlightOnlyWhenAvailable == false ||  recipe!.shortageNum == 0 {
+            if shouldHighlightOnlyWhenAvailable == false || recipe!.shortageNum == 0 {
                 recipeNameLabel.textColor = UchicockStyle.labelTextColor
             }else{
                 recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
@@ -72,8 +71,6 @@ class RecipeTableViewCell: UITableViewCell {
                     subInfoLabel.textColor = UchicockStyle.primaryColor
                 }
             case 2: // 最近見た
-                let formatter: DateFormatter = DateFormatter()
-                formatter.dateFormat = "yy/MM/dd"
                 if let lastViewDate = recipe!.lastViewDate{
                     let calendar = Calendar(identifier: .gregorian)
                     if calendar.isDateInToday(lastViewDate){
@@ -81,6 +78,8 @@ class RecipeTableViewCell: UITableViewCell {
                     }else if calendar.isDateInYesterday(lastViewDate){
                         subInfoLabel.text = "昨日"
                     }else{
+                        let formatter: DateFormatter = DateFormatter()
+                        formatter.dateFormat = "yy/MM/dd"
                         subInfoLabel.text = formatter.string(from: lastViewDate)
                     }
                 }else{
@@ -103,8 +102,6 @@ class RecipeTableViewCell: UITableViewCell {
                 subInfoLabel.textColor = UchicockStyle.primaryColor
             }
 
-            subInfoLabel.textAlignment = .right
-            
             switch recipe!.shortageNum {
             case 0:
                 shortageLabel.text = "すぐ作れる！"
@@ -127,4 +124,5 @@ class RecipeTableViewCell: UITableViewCell {
             self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)
         }
     }
+    
 }

@@ -179,7 +179,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: false
+            ))
             if ri.displayOrder < 0{
                 needInitializeDisplayOrder = true
                 break
@@ -233,7 +244,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(recipeIngredientId: ri.id, ingredientId: ri.ingredient.id, ingredientName: ri.ingredient.ingredientName, ingredientNameYomi: ri.ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch, amount: ri.amount, mustFlag: ri.mustFlag, category: ri.ingredient.category, displayOrder: ri.displayOrder, stockFlag: false))
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: false
+            ))
         }
     }
     
@@ -493,7 +515,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     if isAddMode{
                         if deleteFlag == false{
                             // 材料新規追加
-                            let recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: ingredientName, ingredientNameYomi: ingredientName.convertToYomi(), katakanaLowercasedNameForSearch: ingredientName.convertToYomi().katakanaLowercasedForSearch(), amount: amount, mustFlag: mustFlag, category: category, displayOrder: -1, stockFlag: false)
+                            let recipeIngredient = RecipeIngredientBasic(
+                                recipeIngredientId: "",
+                                ingredientId: "",
+                                ingredientName: ingredientName,
+                                ingredientNameYomi: ingredientName.convertToYomi(),
+                                katakanaLowercasedNameForSearch: ingredientName.convertToYomi().katakanaLowercasedForSearch(),
+                                amount: amount,
+                                mustFlag: mustFlag,
+                                category: category,
+                                displayOrder: -1,
+                                stockFlag: false
+                            )
                             self.recipeIngredientList.append(recipeIngredient)
                             if self.selectedIndexPath != nil{
                                 self.selectedIndexPath = IndexPath(row: self.selectedIndexPath!.row + 1, section: self.selectedIndexPath!.section)
@@ -615,10 +648,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 }
                 cell.shouldDisplayStock = false
                 cell.isNameTextViewSelectable = false
-                cell.recipeIngredient = RecipeIngredientBasic(recipeIngredientId: "", ingredientId: "", ingredientName: recipeIngredientList[indexPath.row].ingredientName, ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi, katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch, amount: recipeIngredientList[indexPath.row].amount, mustFlag: recipeIngredientList[indexPath.row].mustFlag, category: recipeIngredientList[indexPath.row].category, displayOrder: -1, stockFlag: false)
+                cell.recipeIngredient = RecipeIngredientBasic(
+                    recipeIngredientId: "",
+                    ingredientId: "",
+                    ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                    ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch,
+                    amount: recipeIngredientList[indexPath.row].amount,
+                    mustFlag: recipeIngredientList[indexPath.row].mustFlag,
+                    category: recipeIngredientList[indexPath.row].category,
+                    displayOrder: -1,
+                    stockFlag: false
+                )
 
-                let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-                let accesoryImageView = UIImageView(image: disclosureIndicator)
+                let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
                 accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
                 accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
                 cell.accessoryView = accesoryImageView

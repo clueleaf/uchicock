@@ -376,7 +376,21 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>){
         let recipeList = realm!.objects(Recipe.self)
         for recipe in recipeList{
-            recipeArray.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, shortageIngredientName: recipe.shortageIngredientName,favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
+            recipeArray.append(RecipeBasic(
+                id: recipe.id,
+                name: recipe.recipeName,
+                nameYomi: recipe.recipeNameYomi,
+                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                shortageNum: recipe.shortageNum,
+                shortageIngredientName: recipe.shortageIngredientName,
+                favorites: recipe.favorites,
+                lastViewDate: recipe.lastViewDate,
+                madeNum: recipe.madeNum,
+                method: recipe.method,
+                style: recipe.style,
+                strength: recipe.strength,
+                imageFileName: recipe.imageFileName
+            ))
         }
     }
     
@@ -384,7 +398,21 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",text1)
         if ing.count > 0 {
             for ri in ing.first!.recipeIngredients{
-                recipeArray.append(RecipeBasic(id: ri.recipe.id, name: ri.recipe.recipeName, nameYomi: ri.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch, shortageNum: ri.recipe.shortageNum, shortageIngredientName: ri.recipe.shortageIngredientName,favorites: ri.recipe.favorites, lastViewDate: ri.recipe.lastViewDate, madeNum: ri.recipe.madeNum, method: ri.recipe.method, style: ri.recipe.style, strength: ri.recipe.strength, imageFileName: ri.recipe.imageFileName))
+                recipeArray.append(RecipeBasic(
+                    id: ri.recipe.id,
+                    name: ri.recipe.recipeName,
+                    nameYomi: ri.recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch,
+                    shortageNum: ri.recipe.shortageNum,
+                    shortageIngredientName: ri.recipe.shortageIngredientName,
+                    favorites: ri.recipe.favorites,
+                    lastViewDate: ri.recipe.lastViewDate,
+                    madeNum: ri.recipe.madeNum,
+                    method: ri.recipe.method,
+                    style: ri.recipe.style,
+                    strength: ri.recipe.strength,
+                    imageFileName: ri.recipe.imageFileName
+                ))
             }
             if let t2 = text2 {
                 deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t2)
@@ -854,7 +882,16 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestList.removeAll()
         
         for ingredient in ingredientList! {
-            ingredientSuggestList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch, stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count))
+            ingredientSuggestList.append(IngredientBasic(
+                id: ingredient.id,
+                name: ingredient.ingredientName,
+                nameYomi: ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                stockFlag: ingredient.stockFlag,
+                category: ingredient.category,
+                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                usedRecipeNum: ingredient.recipeIngredients.count
+            ))
         }
         
         let convertedSearchText = text.convertToYomi().katakanaLowercasedForSearch()
@@ -1041,8 +1078,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else if tableView.tag == 2{
             let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientSuggestList[indexPath.row].id)!
-            cell.ingredient = ingredient
+            cell.ingredient = ingredientSuggestList[indexPath.row]
             cell.separatorInset = UIEdgeInsets(top: 0, left: 66, bottom: 0, right: 0)
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell

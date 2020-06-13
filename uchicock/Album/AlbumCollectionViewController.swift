@@ -118,12 +118,38 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 if recipe.id == self.recipeBasicList[i].id{
                     newPhotoFlag = false
                     self.recipeBasicList.remove(at: i)
-                    self.recipeBasicList.insert(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName), at: i)
+                    self.recipeBasicList.insert(RecipeBasic(
+                        id: recipe.id,
+                        name: recipe.recipeName,
+                        nameYomi: recipe.recipeNameYomi,
+                        katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                        shortageNum: recipe.shortageNum,
+                        favorites: recipe.favorites,
+                        lastViewDate: recipe.lastViewDate,
+                        madeNum: recipe.madeNum,
+                        method: recipe.method,
+                        style: recipe.style,
+                        strength: recipe.strength,
+                        imageFileName: recipe.imageFileName
+                    ), at: i)
                     break
                 }
             }
             if newPhotoFlag{
-                self.recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch, shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
+                self.recipeBasicList.append(RecipeBasic(
+                    id: recipe.id,
+                    name: recipe.recipeName,
+                    nameYomi: recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    shortageNum: recipe.shortageNum,
+                    favorites: recipe.favorites,
+                    lastViewDate: recipe.lastViewDate,
+                    madeNum: recipe.madeNum,
+                    method: recipe.method,
+                    style: recipe.style,
+                    strength: recipe.strength,
+                    imageFileName: recipe.imageFileName
+                ))
             }
         }
 
@@ -234,7 +260,20 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
         for recipe in recipeList{
-            recipeBasicList.append(RecipeBasic(id: recipe.id, name: recipe.recipeName, nameYomi: recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,shortageNum: recipe.shortageNum, favorites: recipe.favorites, lastViewDate: recipe.lastViewDate, madeNum: recipe.madeNum, method: recipe.method, style: recipe.style, strength: recipe.strength, imageFileName: recipe.imageFileName))
+            recipeBasicList.append(RecipeBasic(
+                id: recipe.id,
+                name: recipe.recipeName,
+                nameYomi: recipe.recipeNameYomi,
+                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                shortageNum: recipe.shortageNum,
+                favorites: recipe.favorites,
+                lastViewDate: recipe.lastViewDate,
+                madeNum: recipe.madeNum,
+                method: recipe.method,
+                style: recipe.style,
+                strength: recipe.strength,
+                imageFileName: recipe.imageFileName
+            ))
         }
         recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
     }

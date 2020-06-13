@@ -284,7 +284,21 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         ingredientRecipeBasicList.removeAll()
         
         for recipeIngredient in ingredient.recipeIngredients{
-            ingredientRecipeBasicList.append(RecipeBasic(id: recipeIngredient.recipe.id, name: recipeIngredient.recipe.recipeName, nameYomi: recipeIngredient.recipe.recipeNameYomi, katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch, shortageNum: recipeIngredient.recipe.shortageNum, shortageIngredientName: recipeIngredient.recipe.shortageIngredientName, favorites: recipeIngredient.recipe.favorites, lastViewDate: recipeIngredient.recipe.lastViewDate, madeNum: recipeIngredient.recipe.madeNum, method: recipeIngredient.recipe.method, style: recipeIngredient.recipe.style, strength: recipeIngredient.recipe.strength, imageFileName: recipeIngredient.recipe.imageFileName))
+            ingredientRecipeBasicList.append(RecipeBasic(
+                id: recipeIngredient.recipe.id,
+                name: recipeIngredient.recipe.recipeName,
+                nameYomi: recipeIngredient.recipe.recipeNameYomi,
+                katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,
+                shortageNum: recipeIngredient.recipe.shortageNum,
+                shortageIngredientName: recipeIngredient.recipe.shortageIngredientName,
+                favorites: recipeIngredient.recipe.favorites,
+                lastViewDate: recipeIngredient.recipe.lastViewDate,
+                madeNum: recipeIngredient.recipe.madeNum,
+                method: recipeIngredient.recipe.method,
+                style: recipeIngredient.recipe.style,
+                strength: recipeIngredient.recipe.strength,
+                imageFileName: recipeIngredient.recipe.imageFileName
+            ))
         }
         
         switch  recipeOrder {

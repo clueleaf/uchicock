@@ -13,17 +13,17 @@ class Recipe: Object {
     @objc dynamic var recipeName = ""
     @objc dynamic var recipeNameYomi = ""
     @objc dynamic var katakanaLowercasedNameForSearch = ""
-    @objc dynamic var strength = 4
-    @objc dynamic var favorites = 0
-    @objc dynamic var method = 0
-    @objc dynamic var memo = ""
-    @objc dynamic var imageFileName: String? = nil
+    @objc dynamic var bookmarkDate : Date? = nil
     @objc dynamic var shortageNum = 0
     @objc dynamic var shortageIngredientName: String? = nil
     @objc dynamic var lastViewDate : Date? = nil
-    @objc dynamic var madeNum = 0
+    @objc dynamic var favorites = 0
     @objc dynamic var style = 3
-    @objc dynamic var bookmarkDate : Date? = nil
+    @objc dynamic var method = 0
+    @objc dynamic var strength = 4
+    @objc dynamic var memo = ""
+    @objc dynamic var madeNum = 0
+    @objc dynamic var imageFileName: String? = nil
     var recipeIngredients = List<RecipeIngredientLink>()
     
     override class func primaryKey() -> String {

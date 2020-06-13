@@ -203,7 +203,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if isReminderMode{
             for ingredient in ingredientList!{
                 if ingredient.reminderSetDate != nil{
-                    ingredientBasicList.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+                    ingredientBasicList.append(IngredientBasic(
+                        id: ingredient.id,
+                        name: ingredient.ingredientName,
+                        nameYomi: ingredient.ingredientNameYomi,
+                        katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                        stockFlag: ingredient.stockFlag,
+                        category: ingredient.category,
+                        contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                        usedRecipeNum: ingredient.recipeIngredients.count,
+                        reminderSetDate: ingredient.reminderSetDate
+                    ))
                 }
             }
             
@@ -236,7 +246,17 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func createSearchedIngredientBaiscList(list: inout Array<IngredientBasic>){
         for ingredient in ingredientList!{
-            list.append(IngredientBasic(id: ingredient.id, name: ingredient.ingredientName, nameYomi: ingredient.ingredientNameYomi, katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch , stockFlag: ingredient.stockFlag, category: ingredient.category, contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability, usedRecipeNum: ingredient.recipeIngredients.count, reminderSetDate: ingredient.reminderSetDate))
+            list.append(IngredientBasic(
+                id: ingredient.id,
+                name: ingredient.ingredientName,
+                nameYomi: ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                stockFlag: ingredient.stockFlag,
+                category: ingredient.category,
+                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                usedRecipeNum: ingredient.recipeIngredients.count,
+                reminderSetDate: ingredient.reminderSetDate
+            ))
         }
         
         hasIngredientAtAll = list.count > 0
@@ -535,16 +555,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         cell.selectedBackgroundView = selectedCellBackgroundView
         cell.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        let disclosureIndicator = UIImage(named: "accesory-disclosure-indicator")
-        let accesoryImageView = UIImageView(image: disclosureIndicator)
+        let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
         accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
         accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         cell.accessoryView = accesoryImageView
 
-        cell.stockState = stockState.selectedSegmentIndex
-        
-        let ingredient = realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
-        cell.ingredient = ingredient
+        cell.stockState = stockState.selectedSegmentIndex        
+        cell.ingredient = ingredientBasicList[indexPath.row]
 
         cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
         
