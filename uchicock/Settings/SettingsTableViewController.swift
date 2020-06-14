@@ -138,7 +138,9 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             performSegue(withIdentifier: "usage", sender: nil)
         case 1:
             selectedIndexPath = indexPath
-            performSegue(withIdentifier: "PushRecoverRecipe", sender: nil)
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "PushRecoverRecipe", sender: nil)
+            }
         case 2:
             selectedIndexPath = indexPath
             performSegue(withIdentifier: "ChangeTheme", sender: nil)

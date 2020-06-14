@@ -500,7 +500,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-                self.present(editNavi, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(editNavi, animated: true, completion: nil)
+                }
                 completionHandler(true)
             }else{
                 completionHandler(false)
@@ -656,7 +658,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
             editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-            self.present(editNavi, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.present(editNavi, animated: true, completion: nil)
+            }
         }
     }
     

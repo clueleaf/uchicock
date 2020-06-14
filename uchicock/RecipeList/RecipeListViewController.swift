@@ -795,7 +795,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-                self.present(editNavi, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.present(editNavi, animated: true, completion: nil)
+                }
                 completionHandler(true)
             }else{
                 completionHandler(false)
@@ -816,11 +818,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.updateFlagsAndSetTextFieldColor()
                 self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
-                if self.isBookmarkMode{
-                    self.navigationItem.title = "ブックマーク(" + String(self.recipeBasicList.count) + ")"
-                }else{
-                    self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
-                }
+                self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
                 completionHandler(true)
             }
             deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
@@ -910,7 +908,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
             editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-            self.present(editNavi, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.present(editNavi, animated: true, completion: nil)
+            }
         }
     }
     

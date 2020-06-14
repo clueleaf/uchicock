@@ -1192,7 +1192,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "PushEditRecipe", sender: nil)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "PushEditRecipe", sender: nil)
+        }
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
