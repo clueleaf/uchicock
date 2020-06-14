@@ -335,9 +335,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func reloadRecipeBasicList(){
-        recipeBasicList.removeAll()
-        
         if isBookmarkMode{
+            recipeBasicList.removeAll()
+            
             for recipe in recipeList! {
                 if recipe.bookmarkDate != nil{
                     recipeBasicList.append(RecipeBasic(
@@ -363,7 +363,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
-            createRecipeBasicList(list: &recipeBasicList)
+            createRecipeBasicList()
             sortRecipeBasicList()
             self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(recipeList!.count) + ")"
         }
@@ -371,7 +371,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         setTableBackgroundView()
     }
 
-    private func createRecipeBasicList(list: inout Array<RecipeBasic>){
+    private func createRecipeBasicList(){
+        recipeBasicList.removeAll()
+        
         var recipeFilterStar: [Int] = []
         var recipeFilterStyle: [Int] = []
         var recipeFilterMethod: [Int] = []
@@ -401,7 +403,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 recipeFilterStyle.contains(recipe.style) &&
                 recipeFilterMethod.contains(recipe.method) &&
                 recipeFilterStrength.contains(recipe.strength){
-                list.append(RecipeBasic(
+                recipeBasicList.append(RecipeBasic(
                     id: recipe.id,
                     name: recipe.recipeName,
                     nameYomi: recipe.recipeNameYomi,
@@ -424,17 +426,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let searchText = searchTextField.text!
         let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-            list.removeAll{
+            recipeBasicList.removeAll{
                 ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
                 ($0.name.contains(searchText) == false)
             }
+        }
+        
+        updateFlagsAndSetTextFieldColor()
+    }
+    
+    private func updateFlagsAndSetTextFieldColor(){
+        hasRecipeAtAll = recipeList!.count > 0
+
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
             let searchedRecipe = realm!.objects(Recipe.self).filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
             textFieldHasSearchResult = searchedRecipe.count > 0
         }else{
             textFieldHasSearchResult = true
         }
-        hasRecipeAtAll = recipeList!.count > 0
-        
+
         setTextFieldColor(textField: searchTextField)
     }
     
@@ -801,9 +813,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
 
-                var rl = Array<RecipeBasic>()
-                self.createRecipeBasicList(list: &rl)
-
+                self.updateFlagsAndSetTextFieldColor()
                 self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
                 if self.isBookmarkMode{

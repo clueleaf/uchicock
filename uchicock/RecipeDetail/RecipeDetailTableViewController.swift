@@ -244,14 +244,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 shortageLabel.textColor = UchicockStyle.primaryColor
                 shortageLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             case 1:
-                var shortageName = ""
-                for recipeIngredient in recipeIngredientList{
-                    if recipeIngredient.mustFlag && recipeIngredient.stockFlag == false {
-                        shortageName = recipeIngredient.ingredientName
-                        break
-                    }
+                if let iname = recipe.shortageIngredientName{
+                    shortageLabel.text = iname + "が足りません"
+                }else{
+                    shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
                 }
-                shortageLabel.text = shortageName + "が足りません"
                 shortageLabel.textColor = UchicockStyle.labelTextColorLight
                 shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             default:

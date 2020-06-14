@@ -106,7 +106,7 @@ class RecipeTableViewCell: UITableViewCell {
             case 0:
                 shortageLabel.text = "すぐ作れる！"
                 shortageLabel.textColor = UchicockStyle.primaryColor
-                shortageLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
             case 1:
                 if let iname = recipe!.shortageIngredientName{
                     shortageLabel.text = iname + "が足りません"
@@ -114,11 +114,11 @@ class RecipeTableViewCell: UITableViewCell {
                     shortageLabel.text = "材料が" + String(recipe!.shortageNum) + "個足りません"
                 }
                 shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             default:
                 shortageLabel.text = "材料が" + String(recipe!.shortageNum) + "個足りません"
                 shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: CGFloat(14))
+                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             }
             
             self.separatorInset = UIEdgeInsets(top: 0, left: 77, bottom: 0, right: 0)

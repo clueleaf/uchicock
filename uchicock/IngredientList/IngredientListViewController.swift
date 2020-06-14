@@ -198,9 +198,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func reloadIngredientBasicList(){
-        ingredientBasicList.removeAll()
         
         if isReminderMode{
+            ingredientBasicList.removeAll()
+
             for ingredient in ingredientList!{
                 if ingredient.reminderSetDate != nil{
                     ingredientBasicList.append(IngredientBasic(
@@ -220,23 +221,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
-            createSearchedIngredientBaiscList(list: &ingredientBasicList)
-            
-            switch stockState.selectedSegmentIndex{
-            case 1:
-                ingredientBasicList.removeAll{ $0.stockFlag == false }
-            case 2:
-                ingredientBasicList.removeAll{ $0.stockFlag }
-            default:
-                break
-            }
-            
-            if category.selectedSegmentIndex != 0{
-                ingredientBasicList.removeAll{
-                    $0.category != category.selectedSegmentIndex - 1
-                }
-            }
-
+            createSearchedIngredientBaiscList()
             ingredientBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }
@@ -244,33 +229,69 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         setTableBackgroundView()
     }
     
-    private func createSearchedIngredientBaiscList(list: inout Array<IngredientBasic>){
-        for ingredient in ingredientList!{
-            list.append(IngredientBasic(
-                id: ingredient.id,
-                name: ingredient.ingredientName,
-                nameYomi: ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                stockFlag: ingredient.stockFlag,
-                category: ingredient.category,
-                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                usedRecipeNum: ingredient.recipeIngredients.count,
-                reminderSetDate: ingredient.reminderSetDate
-            ))
+    private func createSearchedIngredientBaiscList(){
+        ingredientBasicList.removeAll()
+        
+        var ingredientFilterStock: [Bool] = []
+        var ingredientFilterCategory: [Int] = []
+
+        if stockState.selectedSegmentIndex == 0{
+            ingredientFilterStock.append(true)
+            ingredientFilterStock.append(false)
+        }else if stockState.selectedSegmentIndex == 1{
+            ingredientFilterStock.append(true)
+        }else if stockState.selectedSegmentIndex == 2{
+            ingredientFilterStock.append(false)
+        }
+        if category.selectedSegmentIndex == 0{
+            ingredientFilterCategory.append(0)
+            ingredientFilterCategory.append(1)
+            ingredientFilterCategory.append(2)
+        }else{
+            ingredientFilterCategory.append(category.selectedSegmentIndex - 1)
         }
         
-        hasIngredientAtAll = list.count > 0
+        for ingredient in ingredientList!{
+            if ingredientFilterStock.contains(ingredient.stockFlag) &&
+                ingredientFilterCategory.contains(ingredient.category){
+                ingredientBasicList.append(IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                    stockFlag: ingredient.stockFlag,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usedRecipeNum: ingredient.recipeIngredients.count,
+                    reminderSetDate: ingredient.reminderSetDate
+                ))
+            }
+        }
 
         let searchText = searchTextField.text!
         let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
         if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
-            list.removeAll{
+            ingredientBasicList.removeAll{
                 ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
                 ($0.name.contains(searchText) == false)
             }
         }
-        
-        textFieldHasSearchResult = list.count > 0
+
+        updateFlagAndSetTextFieldcolor()
+    }
+    
+    private func updateFlagAndSetTextFieldcolor(){
+        hasIngredientAtAll = ingredientList!.count > 0
+
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
+        if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
+            let searchedIng = realm!.objects(Ingredient.self).filter("katakanaLowercasedNameForSearch CONTAINS %@ OR ingredientName CONTAINS %@", convertedSearchText, searchText)
+            textFieldHasSearchResult = searchedIng.count > 0
+        }else{
+            textFieldHasSearchResult = true
+        }
+
         setTextFieldColor(textField: searchTextField)
     }
     
@@ -377,8 +398,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 ingredientBasicList.remove(at: index.row)
                 tableView.deleteRows(at: [index], with: .middle)
                 if ingredientBasicList.count == 0{
-                    var il = Array<IngredientBasic>()
-                    self.createSearchedIngredientBaiscList(list: &il)
+                    updateFlagAndSetTextFieldcolor()
                     setTableBackgroundView()
                     tableView.reloadData()
                 }
@@ -515,15 +535,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }
                     self.ingredientBasicList.remove(at: indexPath.row)
 
-                    var il = Array<IngredientBasic>()
-                    self.createSearchedIngredientBaiscList(list: &il)
+                    self.updateFlagAndSetTextFieldcolor()
                     self.setTableBackgroundView()
                     tableView.deleteRows(at: [indexPath], with: .middle)
-                    if self.isReminderMode{
-                        self.navigationItem.title = "購入リマインダー(" + String(self.ingredientBasicList.count) + ")"
-                    }else{
-                        self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(self.ingredientList!.count) + ")"
-                    }
+                    self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(self.ingredientList!.count) + ")"
                     self.setReminderBadge()
                     completionHandler(true)
                 }
