@@ -153,15 +153,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        setTableBackgroundView()
         super.viewDidAppear(animated)
-        
+
         if let path = tableView.indexPathForSelectedRow{
             tableView.deselectRow(at: path, animated: true)
         }
@@ -566,16 +560,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.backgroundView = UIView()
         tableView.isScrollEnabled = false
             
-        let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        let noDataLabel = UILabel()
         noDataLabel.numberOfLines = 0
         noDataLabel.textColor = UchicockStyle.labelTextColorLight
         noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
         noDataLabel.textAlignment = .center
+        tableView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
         if isBookmarkMode{
+            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+            let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+
             noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
         }else{
-            noDataLabel.frame.size.height = 120
+            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+            let heightConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120)
+            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
             
             if recipeList == nil || recipeList!.count == 0{
                 noDataLabel.text = "レシピはありません"
@@ -591,7 +597,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-        tableView.backgroundView?.addSubview(noDataLabel)
     }
 
     private func deleteRecipe(id: String) {

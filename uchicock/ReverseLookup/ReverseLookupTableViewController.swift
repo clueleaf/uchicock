@@ -197,12 +197,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         hiddenLabel.frame = CGRect(x: 0, y: -180, width: recipeTableView.frame.width, height: 20)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
         
         if let path = recipeTableView.indexPathForSelectedRow{
@@ -622,32 +620,42 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func setTableBackgroundView(){
-        if recipeBasicList.count == 0{
-            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: recipeTableView.bounds.size.width, height: recipeTableView.bounds.size.height))
-            noDataLabel.numberOfLines = 0
-            if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
-                noDataLabel.text = "存在しない材料が指定されています"
-            }else{
-                if textFieldHasSearchResult{
-                    if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
-                        noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
-                    }else{
-                        noDataLabel.text = "入力した材料を使うレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                    }
-                }else{
-                    noDataLabel.text = "入力した材料を全て使うレシピはありません"
-                }
-            }
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
-            self.recipeTableView.backgroundView  = UIView()
-            self.recipeTableView.backgroundView?.addSubview(noDataLabel)
-            self.recipeTableView.isScrollEnabled = false
-        }else{
-            self.recipeTableView.backgroundView = nil
-            self.recipeTableView.isScrollEnabled = true
+        guard recipeBasicList.count == 0 else {
+            recipeTableView.backgroundView = nil
+            recipeTableView.isScrollEnabled = true
+            return
         }
+
+        recipeTableView.backgroundView  = UIView()
+        recipeTableView.isScrollEnabled = false
+
+        let noDataLabel = UILabel()
+        noDataLabel.numberOfLines = 0
+        recipeTableView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+
+        if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
+            noDataLabel.text = "存在しない材料が指定されています"
+        }else{
+            if textFieldHasSearchResult{
+                if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
+                    noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+                }else{
+                    noDataLabel.text = "入力した材料を使うレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
+                }
+            }else{
+                noDataLabel.text = "入力した材料を全て使うレシピはありません"
+            }
+        }
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
     }
 
     private func showRecipeTableView(shouldSetToUserDefaults: Bool){

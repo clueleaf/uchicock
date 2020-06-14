@@ -161,7 +161,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setCollectionBackgroundView() // 画面サイズ変更時に位置を再計算
         
         // iPhone X系（横にすると横にSafe Areaがある端末）において、
         // 横向きでアルバムを表示（3列）し、詳細へ遷移 -> 縦向きにする
@@ -227,24 +226,33 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setCollectionBackgroundView(){
-        if self.filteredRecipeBasicList.count == 0{
-            let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.collectionView.bounds.size.width, height: self.collectionView.bounds.size.height))
-            if recipeBasicList.count == 0{
-                noDataLabel.text = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
-            }else{
-                noDataLabel.text = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
-            }
-            noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
-            self.collectionView.backgroundView  = UIView()
-            self.collectionView.backgroundView?.addSubview(noDataLabel)
-            self.collectionView.isScrollEnabled = false
-        }else{
-            self.collectionView.backgroundView = nil
-            self.collectionView.isScrollEnabled = true
+        guard filteredRecipeBasicList.count == 0 else {
+            collectionView.backgroundView = nil
+            collectionView.isScrollEnabled = true
+            return
         }
+
+        collectionView.backgroundView = UIView()
+        collectionView.isScrollEnabled = false
+
+        let noDataLabel = UILabel()
+        if recipeBasicList.count == 0{
+            noDataLabel.text = "写真が登録されたレシピはありません\n\nカクテルを作ったら、\nレシピ画面の「編集」から\n写真を登録してみよう！"
+        }else{
+            noDataLabel.text = "条件にあてはまるレシピはありません\n左上の絞り込みボタンで条件変更してください"
+        }
+        noDataLabel.numberOfLines = 0
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
+        collectionView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: collectionView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: collectionView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: collectionView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: collectionView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
     
     private func updateNavigationBar(){

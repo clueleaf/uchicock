@@ -139,13 +139,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
-        setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
         super.viewDidAppear(animated)
 
         if let path = tableView.indexPathForSelectedRow{
@@ -194,7 +188,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func reloadIngredientBasicList(){
-        
         if isReminderMode{
             ingredientBasicList.removeAll()
 
@@ -286,42 +279,56 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setTableBackgroundView(){
-        if ingredientBasicList.count == 0{
-            self.tableView.backgroundView  = UIView()
-            self.tableView.isScrollEnabled = false
+        guard ingredientBasicList.count == 0 else {
+            tableView.backgroundView = nil
+            tableView.isScrollEnabled = true
+            return
+        }
+        tableView.backgroundView  = UIView()
+        tableView.isScrollEnabled = false
 
-            if isReminderMode{
-                let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
-                noDataLabel.numberOfLines = 0
-                noDataLabel.textColor = UchicockStyle.labelTextColorLight
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-                noDataLabel.textAlignment = .center
-                noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
-                self.tableView.backgroundView?.addSubview(noDataLabel)
-            }else{
-                let noDataLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: 80))
-                noDataLabel.numberOfLines = 0
-                noDataLabel.textColor = UchicockStyle.labelTextColorLight
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-                noDataLabel.textAlignment = .center
-                if ingredientList == nil || ingredientList!.count == 0{
-                    noDataLabel.text = "材料はありません"
-                }else{
-                    if textFieldHasSearchResult{
-                        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
-                            noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
-                        }else{
-                            noDataLabel.text = "入力した材料名の材料はありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                        }
-                    }else{
-                        noDataLabel.text = "検索文字列にあてはまる材料はありません"
-                    }
-                }
-                self.tableView.backgroundView?.addSubview(noDataLabel)
-            }
+        if isReminderMode{
+            let noDataLabel  = UILabel()
+            noDataLabel.numberOfLines = 0
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
+            self.tableView.backgroundView?.addSubview(noDataLabel)
+            noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+            let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
         }else{
-            self.tableView.backgroundView = nil
-            self.tableView.isScrollEnabled = true
+            let noDataLabel  = UILabel()
+            noDataLabel.numberOfLines = 0
+            noDataLabel.textColor = UchicockStyle.labelTextColorLight
+            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            noDataLabel.textAlignment = .center
+            if ingredientList == nil || ingredientList!.count == 0{
+                noDataLabel.text = "材料はありません"
+            }else{
+                if textFieldHasSearchResult{
+                    if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
+                        noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
+                    }else{
+                        noDataLabel.text = "入力した材料名の材料はありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
+                    }
+                }else{
+                    noDataLabel.text = "検索文字列にあてはまる材料はありません"
+                }
+            }
+            self.tableView.backgroundView?.addSubview(noDataLabel)
+            noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
+            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
+            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+            let heightConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
+            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
         }
     }
     
