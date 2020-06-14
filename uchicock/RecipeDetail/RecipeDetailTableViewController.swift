@@ -70,7 +70,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     var selectedRecipeId: String? = nil
     var highlightIndexPath: IndexPath? = nil
-    var canDisplayCollectionBackgroundView = false
     
     let interactor = Interactor()
 
@@ -154,7 +153,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.canDisplayCollectionBackgroundView = false
 
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
@@ -440,10 +438,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.bringSubviewToFront(coverView)
         }else{
             updateImageView()
-            if canDisplayCollectionBackgroundView{
-                // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-                setCollectionBackgroundView()
-            }
         }
     }
     
@@ -531,7 +525,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                     self.highlightIndexPath = nil
                     self.selectedRecipeId = nil
                 }
-                self.canDisplayCollectionBackgroundView = true
             }
         }
     }
@@ -1610,20 +1603,28 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     }
 
     private func setCollectionBackgroundView(){
-        if displaySimilarRecipeList.count == 0{
-            similarRecipeCollectionView.backgroundView = UIView()
-            similarRecipeCollectionView.isScrollEnabled = false
-            let noDataLabel = UILabel(frame: CGRect(x: 8, y: 0, width: similarRecipeCollectionView.bounds.size.width - 16, height: similarRecipeCollectionView.bounds.size.height))
-            noDataLabel.numberOfLines = 2
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
-            noDataLabel.text = "似ているレシピは\n見つかりませんでした..."
-            similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
-        }else{
+        guard displaySimilarRecipeList.count == 0 else {
             similarRecipeCollectionView.backgroundView = nil
             similarRecipeCollectionView.isScrollEnabled = true
+            return
         }
+
+        similarRecipeCollectionView.backgroundView = UIView()
+        similarRecipeCollectionView.isScrollEnabled = false
+        let noDataLabel = UILabel()
+        noDataLabel.numberOfLines = 2
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
+        noDataLabel.text = "似ているレシピは\n見つかりませんでした..."
+        similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .leading, multiplier: 1, constant: 8)
+        let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .trailing, multiplier: 1, constant: -8)
+        let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }
     
 }
