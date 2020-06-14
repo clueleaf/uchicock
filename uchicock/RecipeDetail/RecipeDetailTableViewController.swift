@@ -371,8 +371,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             similarRecipeCollectionView.layoutIfNeeded()
 
             if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
-                for indexPath in tableView.indexPathsForVisibleRows! {
-                    if indexPath.section == 0 { continue }
+                for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0{
                     if recipeIngredientList.count > indexPath.row {
                         if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
                             DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -577,7 +576,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             madeNumMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         }
-        if madeNum >= 999 {
+        if madeNum >= 9999 {
             madeNumPlusButton.isEnabled = false
             madeNumPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             madeNumPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
@@ -803,7 +802,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.section == 1 else { return UISwipeActionsConfiguration(actions: []) }
         
-        let reminder =  UIContextualAction(style: .normal, title: "リマインダー", handler: { (action,view,completionHandler ) in
+        let reminder =  UIContextualAction(style: .normal, title: "リマインダー"){ action,view,completionHandler in
             let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
             guard let nvc = storyboard.instantiateViewController(withIdentifier: "ReminderNavigationController") as? BasicNavigationController else{
                 completionHandler(false)
@@ -831,7 +830,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             self.present(nvc, animated: true)
             completionHandler(true)
-        })
+        }
         reminder.image = UIImage(named: "navigation-reminder-empty")
         reminder.backgroundColor = UchicockStyle.primaryColor
 
@@ -1161,7 +1160,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
-        if madeNum < 999 {
+        if madeNum < 9999 {
             madeNum += 1
             let realm = try! Realm()
             try! realm.write {
@@ -1292,15 +1291,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         let deleteAction = UIAlertAction(title: "削除",style: .destructive){action in
             let realm = try! Realm()
-            let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-            for i in 0 ..< self.recipeIngredientList.count {
-                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: self.recipeIngredientList[i].recipeIngredientId)!
-                deletingRecipeIngredientList.append(recipeIngredient)
-            }
-            
             ImageUtil.remove(imageFileName: self.recipe.imageFileName)
             try! realm.write{
-                for ri in deletingRecipeIngredientList{
+                for ri in self.recipe.recipeIngredients{
                     let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                     for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                         if ingredient.recipeIngredients[i].id == ri.id{
@@ -1308,7 +1301,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                         }
                     }
                 }
-                for ri in deletingRecipeIngredientList{
+                for ri in self.recipe.recipeIngredients{
                     realm.delete(ri)
                 }
                 realm.delete(self.recipe)
@@ -1394,27 +1387,23 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         displaySimilarRecipeList.removeAll()
         guard let selfRecipe = selfRecipe else { return }
 
-        for anotherRecipe in similarRecipeList {
-            if anotherRecipe.name == selfRecipe.name { continue }
-            
+        for anotherRecipe in similarRecipeList where anotherRecipe.name != selfRecipe.name{
             var point : Float = 0
             var maxWeight : Float = 0.0
             var weight : Float = 0.0
             
             for selfIng in selfRecipe.ingredientList{
                 var hasSameIng = false
-                for anotherIng in anotherRecipe.ingredientList{
-                    if anotherIng.name == selfIng.name{
-                        if selfIng.mustFlag{
-                            maxWeight += 1.0
-                            weight += 1.0
-                        }else{
-                            maxWeight += 0.3
-                            weight += 0.3
-                        }
-                        hasSameIng = true
-                        break
+                for anotherIng in anotherRecipe.ingredientList where anotherIng.name == selfIng.name{
+                    if selfIng.mustFlag{
+                        maxWeight += 1.0
+                        weight += 1.0
+                    }else{
+                        maxWeight += 0.3
+                        weight += 0.3
                     }
+                    hasSameIng = true
+                    break
                 }
                 if hasSameIng == false{
                     if selfIng.mustFlag{
@@ -1428,18 +1417,16 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
 
             for anotherIng in anotherRecipe.ingredientList{
                 var hasSameIng = false
-                for selfIng in selfRecipe.ingredientList{
-                    if anotherIng.name == selfIng.name{
-                        if anotherIng.mustFlag{
-                            maxWeight += 1.0
-                            weight += 1.0
-                        }else{
-                            maxWeight += 0.3
-                            weight += 0.3
-                        }
-                        hasSameIng = true
-                        break
+                for selfIng in selfRecipe.ingredientList where anotherIng.name == selfIng.name{
+                    if anotherIng.mustFlag{
+                        maxWeight += 1.0
+                        weight += 1.0
+                    }else{
+                        maxWeight += 0.3
+                        weight += 0.3
                     }
+                    hasSameIng = true
+                    break
                 }
                 if hasSameIng == false{
                     if anotherIng.mustFlag{
@@ -1558,11 +1545,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let recipeId = configuration.identifier as? String else { return nil }
         var row: Int? = nil
-        for i in 0 ..< displaySimilarRecipeList.count{
-            if displaySimilarRecipeList[i].id == recipeId {
-                row = i
-                break
-            }
+        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
+            row = i
+            break
         }
         guard row != nil else { return nil }
         let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
@@ -1576,11 +1561,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let recipeId = configuration.identifier as? String else { return nil }
         var row: Int? = nil
-        for i in 0 ..< displaySimilarRecipeList.count{
-            if displaySimilarRecipeList[i].id == recipeId {
-                row = i
-                break
-            }
+        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
+            row = i
+            break
         }
         guard row != nil else { return nil }
         let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell

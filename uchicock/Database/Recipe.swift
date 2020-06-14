@@ -33,17 +33,11 @@ class Recipe: Object {
     func updateShortageNum(){
         var num = 0
         var name: String? = nil
-        for ri in self.recipeIngredients{
-            if ri.mustFlag && ri.ingredient.stockFlag == false {
-                num += 1
-                name = ri.ingredient.ingredientName
-            }
+        for ri in self.recipeIngredients where ri.mustFlag && ri.ingredient.stockFlag == false {
+            num += 1
+            name = ri.ingredient.ingredientName
         }
         self.shortageNum = num
-        if num == 1 {
-            self.shortageIngredientName = name
-        }else{
-            self.shortageIngredientName = nil
-        }
+        self.shortageIngredientName = num == 1 ? name : nil
     }    
 }

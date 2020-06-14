@@ -130,14 +130,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
         
         if recipeTableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
-            for indexPath in recipeTableView.indexPathsForVisibleRows! {
-                if recipeBasicList.count > indexPath.row {
-                    if recipeBasicList[indexPath.row].id == selectedRecipeId! {
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.recipeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                        }
-                        break
+            for indexPath in recipeTableView.indexPathsForVisibleRows! where recipeBasicList.count > indexPath.row {
+                if recipeBasicList[indexPath.row].id == selectedRecipeId! {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.recipeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                     }
+                    break
                 }
             }
         }
@@ -423,11 +421,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         for i in (0..<recipeArray.count).reversed(){
             var hasIngredient = false
             let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeArray[i].id)!
-            for ri in recipe.recipeIngredients{
-                if ri.ingredient.ingredientName == ingredientName{
-                    hasIngredient = true
-                    break
-                }
+            for ri in recipe.recipeIngredients where ri.ingredient.ingredientName == ingredientName{
+                hasIngredient = true
+                break
             }
             if hasIngredient == false{
                 recipeArray.remove(at: i)

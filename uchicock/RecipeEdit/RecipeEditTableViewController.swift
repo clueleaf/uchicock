@@ -398,12 +398,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if recipeIngredientList.count == 0 { return false }
         var result = false
         for i in 0 ..< recipeIngredientList.count - 1{
-            for j in i+1 ..< recipeIngredientList.count{
-                if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
-                    duplicatedIngredientList.append(recipeIngredientList[i].ingredientName)
-                    result = true
-                    break
-                }
+            for j in i+1 ..< recipeIngredientList.count
+                where recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
+                duplicatedIngredientList.append(recipeIngredientList[i].ingredientName)
+                result = true
+                break
             }
         }
         return result
@@ -413,10 +412,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.needUpdateCellIndexList.removeAll()
         
         if recipeIngredientList.count == 0 { return }
-        for i in 0 ..< recipeIngredientList.count - 1 {
-            if needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) { continue }
-            for j in i+1 ..< recipeIngredientList.count{
-                if needUpdateCellIndexList.contains(IndexPath(row: j, section: 1)) { continue }
+        for i in 0 ..< recipeIngredientList.count - 1 where needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) == false{
+            for j in i+1 ..< recipeIngredientList.count where needUpdateCellIndexList.contains(IndexPath(row: j, section: 1)) == false{
                 if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
                     if needUpdateCellIndexList.contains(IndexPath(row: i, section: 1)) == false {
                         needUpdateCellIndexList.append(IndexPath(row: i, section: 1))
@@ -546,10 +543,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.createNeedUpdateCellIndexList()
                             self.recipeIngredientList[self.selectedIndexPath!.row].ingredientName = ""
                             _ = self.updateDuplicatedIngredientList()
-                            for i in 0 ..< self.needUpdateCellIndexList.count {
-                                if self.needUpdateCellIndexList[i].row != self.selectedIndexPath!.row {
-                                    self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
-                                }
+                            for i in 0 ..< self.needUpdateCellIndexList.count where self.needUpdateCellIndexList[i].row != self.selectedIndexPath!.row {
+                                self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
                             }
                             self.recipeIngredientList.remove(at: self.selectedIndexPath!.row)
                             self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
@@ -600,16 +595,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.section == 1 && indexPath.row < recipeIngredientList.count else { return UISwipeActionsConfiguration(actions: []) }
         
-        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
+        let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             self.showCancelAlert = true
             if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
                 self.createNeedUpdateCellIndexList()
                 self.recipeIngredientList[indexPath.row].ingredientName = ""
                 _ = self.updateDuplicatedIngredientList()
-                for i in 0 ..< self.needUpdateCellIndexList.count {
-                    if self.needUpdateCellIndexList[i].row != indexPath.row {
-                        self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
-                    }
+                for i in 0 ..< self.needUpdateCellIndexList.count where self.needUpdateCellIndexList[i].row != indexPath.row {
+                    self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
                 }
                 self.recipeIngredientList.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .middle)
@@ -618,7 +611,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }else{
                 completionHandler(false)
             }
-        })
+        }
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = UchicockStyle.alertColor
 
@@ -1062,11 +1055,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             presentAlert(title: "重複している材料があります", message: nil, action: {
                 var idp = IndexPath(row: 0, section: 1)
                 if self.duplicatedIngredientList.count > 0{
-                    for i in 0 ..< self.recipeIngredientList.count{
-                        if self.recipeIngredientList[i].ingredientName == self.duplicatedIngredientList[0]{
-                            idp = IndexPath(row: i, section: 1)
-                            break
-                        }
+                    for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].ingredientName == self.duplicatedIngredientList[0]{
+                        idp = IndexPath(row: i, section: 1)
+                        break
                     }
                 }
                 self.tableView.selectRow(at: idp, animated: true, scrollPosition: .middle)

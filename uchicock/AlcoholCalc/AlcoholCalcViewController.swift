@@ -119,10 +119,8 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func updateValidNumLabel(){
         var validNum = 0
-        for ing in calcIngredientList!{
-            if ing.valid{
-                validNum += 1
-            }
+        for ing in calcIngredientList! where ing.valid{
+            validNum += 1
         }
         validNumLabel.text = "有効な材料" + String(validNum) + "個"
     }
@@ -136,11 +134,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             return
         }
         
-        for ing in calcIngredientList!{
-            if ing.valid{
-                totalAmount += ing.amount
-                hundredTimesAlcoholAmount += ing.amount * ing.degree
-            }
+        for ing in calcIngredientList! where ing.valid{
+            totalAmount += ing.amount
+            hundredTimesAlcoholAmount += ing.amount * ing.degree
         }
 
         if totalAmount == 0{

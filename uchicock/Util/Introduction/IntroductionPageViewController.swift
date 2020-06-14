@@ -96,10 +96,8 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         
         self.setViewControllers([VCs[0]], direction: .forward, animated: true, completion: nil)
         
-        for v in self.view.subviews{
-            if v.isKind(of: UIScrollView.self){
-                (v as! UIScrollView).delegate = self
-            }
+        for v in self.view.subviews where v.isKind(of: UIScrollView.self){
+            (v as! UIScrollView).delegate = self
         }
     }
     
@@ -120,16 +118,14 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        for subview in self.view.subviews {
-            if subview is UIPageControl {
-                let pageControl = subview as! UIPageControl
-                if isPageControlBlack {
-                    pageControl.currentPageIndicatorTintColor = FlatColor.black
-                    pageControl.pageIndicatorTintColor = FlatColor.black.withAlphaComponent(0.3)
-                }else{
-                    pageControl.currentPageIndicatorTintColor = FlatColor.white
-                    pageControl.pageIndicatorTintColor = FlatColor.white.withAlphaComponent(0.3)
-                }
+        for subview in self.view.subviews where subview is UIPageControl {
+            let pageControl = subview as! UIPageControl
+            if isPageControlBlack {
+                pageControl.currentPageIndicatorTintColor = FlatColor.black
+                pageControl.pageIndicatorTintColor = FlatColor.black.withAlphaComponent(0.3)
+            }else{
+                pageControl.currentPageIndicatorTintColor = FlatColor.white
+                pageControl.pageIndicatorTintColor = FlatColor.white.withAlphaComponent(0.3)
             }
         }
         windowWidth = UIApplication.shared.keyWindow!.bounds.size.width

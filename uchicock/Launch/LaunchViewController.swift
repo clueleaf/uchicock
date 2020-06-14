@@ -68,19 +68,15 @@ class LaunchViewController: UIViewController {
         
         let fileManager = FileManager.default
         var actualImageFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ImageFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
-        for actualImageFileName in actualImageFileNames ?? [] {
-            if dbFileNameList.contains(actualImageFileName) == false{
-                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualImageFileName + ".png")
-                try? fileManager.removeItem(at: imageFilePath)
-            }
+        for actualImageFileName in actualImageFileNames ?? [] where dbFileNameList.contains(actualImageFileName) == false{
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(actualImageFileName + ".png")
+            try? fileManager.removeItem(at: imageFilePath)
         }
         
         var actualThumbnailFileNames = try? fileManager.contentsOfDirectory(at: GlobalConstants.ThumbnailFolderPath, includingPropertiesForKeys: nil).map{ $0.deletingPathExtension().lastPathComponent }
-        for actualThumbnailFileName in actualThumbnailFileNames ?? [] {
-            if dbFileNameList.contains(actualThumbnailFileName) == false{
-                let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualThumbnailFileName + ".png")
-                try? fileManager.removeItem(at: thumbnailFilePath)
-            }
+        for actualThumbnailFileName in actualThumbnailFileNames ?? [] where dbFileNameList.contains(actualThumbnailFileName) == false{
+            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(actualThumbnailFileName + ".png")
+            try? fileManager.removeItem(at: thumbnailFilePath)
         }
         
         // サムネイルがない画像のサムネイルを作成
@@ -191,15 +187,10 @@ class LaunchViewController: UIViewController {
 
         guard rec.count > 0 else { return }
         
-        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-        for ri in rec.first!.recipeIngredients{
-            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
-            deletingRecipeIngredientList.append(recipeIngredient)
-        }
         ImageUtil.remove(imageFileName: rec.first!.imageFileName)
 
         try! realm.write{
-            for ri in deletingRecipeIngredientList{
+            for ri in rec.first!.recipeIngredients{
                 let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                 for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
@@ -207,7 +198,7 @@ class LaunchViewController: UIViewController {
                     }
                 }
             }
-            for ri in deletingRecipeIngredientList{
+            for ri in rec.first!.recipeIngredients{
                 realm.delete(ri)
             }
             realm.delete(rec.first!)

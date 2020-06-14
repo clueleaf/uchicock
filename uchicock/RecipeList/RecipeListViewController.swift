@@ -36,7 +36,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedRecipeId: String? = nil
     var recipeTableViewOffset: CGFloat? = nil
     var bookmarkTableViewOffset: CGFloat? = nil
-    var scrollBeginningYPoint: CGFloat = 0.0
+    var scrollBeginningYPoint: CGFloat? = nil
 
     var textFieldHasSearchResult = false
     var isBookmarkMode = false
@@ -128,17 +128,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeBasicList()
         updateSearchResultFlag()
         setSearchTextFieldAlertStyle()
+        setTableBackgroundView()
         tableView.reloadData()
 
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
-            for indexPath in tableView.indexPathsForVisibleRows! {
-                if recipeBasicList.count > indexPath.row {
-                    if recipeBasicList[indexPath.row].id == selectedRecipeId! {
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                        }
-                        break
+            for indexPath in tableView.indexPathsForVisibleRows! where recipeBasicList.count > indexPath.row {
+                if recipeBasicList[indexPath.row].id == selectedRecipeId! {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                     }
+                    break
                 }
             }
         }
@@ -181,11 +180,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    // MARK: - ScrollableToTop
-    func scrollToTop() {
-        tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
     // MARK: - Set Up
@@ -294,25 +288,23 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func reloadRecipeBasicList(){
         if isBookmarkMode{
             recipeBasicList.removeAll()
-            for recipe in recipeList! {
-                if recipe.bookmarkDate != nil{
-                    recipeBasicList.append(RecipeBasic(
-                        id: recipe.id,
-                        name: recipe.recipeName,
-                        nameYomi: recipe.recipeNameYomi,
-                        katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                        bookmarkDate: recipe.bookmarkDate,
-                        shortageNum: recipe.shortageNum,
-                        shortageIngredientName: recipe.shortageIngredientName,
-                        lastViewDate: recipe.lastViewDate,
-                        favorites: recipe.favorites,
-                        style: recipe.style,
-                        method: recipe.method,
-                        strength: recipe.strength,
-                        madeNum: recipe.madeNum,
-                        imageFileName: recipe.imageFileName
-                    ))
-                }
+            for recipe in recipeList! where recipe.bookmarkDate != nil{
+                recipeBasicList.append(RecipeBasic(
+                    id: recipe.id,
+                    name: recipe.recipeName,
+                    nameYomi: recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    bookmarkDate: recipe.bookmarkDate,
+                    shortageNum: recipe.shortageNum,
+                    shortageIngredientName: recipe.shortageIngredientName,
+                    lastViewDate: recipe.lastViewDate,
+                    favorites: recipe.favorites,
+                    style: recipe.style,
+                    method: recipe.method,
+                    strength: recipe.strength,
+                    madeNum: recipe.madeNum,
+                    imageFileName: recipe.imageFileName
+                ))
             }
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
@@ -635,21 +627,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.backgroundView?.addSubview(noDataLabel)
     }
 
-    //todo
     private func deleteRecipe(id: String) {
         let realm = try! Realm()
         let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: id)!
         
-        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-        for ri in recipe.recipeIngredients{
-            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
-            deletingRecipeIngredientList.append(recipeIngredient)
-        }
-        
         ImageUtil.remove(imageFileName: recipe.imageFileName)
-        
+
         try! realm.write{
-            for ri in deletingRecipeIngredientList{
+            for ri in recipe.recipeIngredients{
                 let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
                 for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
                     if ingredient.recipeIngredients[i].id == ri.id{
@@ -657,11 +642,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
-            for ri in deletingRecipeIngredientList{
+            for ri in recipe.recipeIngredients{
                 realm.delete(ri)
             }
             realm.delete(recipe)
         }
+    }
+    
+    // MARK: - ScrollableToTop
+    func scrollToTop() {
+        tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
     
     // MARK: - UIScrollViewDelegate
@@ -674,16 +664,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50, isBookmarkMode == false{
             searchTextField.becomeFirstResponder()
-        }else if scrollBeginningYPoint < scrollView.contentOffset.y {
+        }else if let yPoint = scrollBeginningYPoint, yPoint < scrollView.contentOffset.y {
             searchTextField.resignFirstResponder()
         }
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField){
-        if tableView.contentOffset.y > 0{
-            tableView.setContentOffset(tableView.contentOffset, animated: false)
-        }
+        scrollBeginningYPoint = nil
         if traitCollection.verticalSizeClass == .compact{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
@@ -730,21 +718,18 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTextField.resignFirstResponder()
-        performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+        performSegue(withIdentifier: "PushRecipeDetail", sender: recipeBasicList[indexPath.row].id)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
+        let edit =  UIContextualAction(style: .normal, title: "編集"){ action,view,completionHandler in
             if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? BasicNavigationController{
-                guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
-                    return
-                }
+                guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else { return }
                 
                 let realm = try! Realm()
                 let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
                 editVC.recipe = recipe
-                    
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController as? BasicNavigationController
@@ -753,11 +738,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }else{
                 completionHandler(false)
             }
-        })
+        }
         edit.image = UIImage(named: "button-edit")
         edit.backgroundColor = UchicockStyle.tableViewCellEditBackgroundColor
         
-        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
+        let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             let alertView = CustomAlertController(title: "このレシピを本当に削除しますか？", message: "自作レシピは復元できません。", preferredStyle: .alert)
             if #available(iOS 13.0, *), UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
@@ -765,7 +750,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
-
                 self.updateSearchResultFlag()
                 self.setSearchTextFieldAlertStyle()
                 self.setTableBackgroundView()
@@ -783,7 +767,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
-        })
+        }
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = UchicockStyle.alertColor
 
@@ -806,38 +790,35 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let indexPath = configuration.identifier as? IndexPath else { return }
         
         animator.addCompletion {
-            self.performSegue(withIdentifier: "PushRecipeDetail", sender: indexPath)
+            self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.recipeBasicList[indexPath.row].id)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            if isBookmarkMode{
-                cell.subInfoType = 0
-            }else{
-                if recipeSortPrimary == 3{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
+        if isBookmarkMode{
+            cell.subInfoType = 0
+        }else{
+            if recipeSortPrimary == 3{
+                cell.subInfoType = 1
+            }else if recipeSortPrimary == 5{
+                cell.subInfoType = 2
+            }else if recipeSortPrimary == 2{
+                if recipeSortSecondary == 3{
                     cell.subInfoType = 1
-                }else if recipeSortPrimary == 5{
+                }else if recipeSortSecondary == 5{
                     cell.subInfoType = 2
-                }else if recipeSortPrimary == 2{
-                    if recipeSortSecondary == 3{
-                        cell.subInfoType = 1
-                    }else if recipeSortSecondary == 5{
-                        cell.subInfoType = 2
-                    }else{
-                        cell.subInfoType = 0
-                    }
                 }else{
                     cell.subInfoType = 0
                 }
+            }else{
+                cell.subInfoType = 0
             }
-            cell.recipe = recipeBasicList[indexPath.row]
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.selectedBackgroundView = selectedCellBackgroundView
-            return cell
         }
-        return UITableViewCell()
+        cell.recipe = recipeBasicList[indexPath.row]
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
+        cell.selectedBackgroundView = selectedCellBackgroundView
+        return cell
     }
     
     // MARK: - UITabelViewDataSourcePrefetching
@@ -991,9 +972,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushRecipeDetail" {
             let vc = segue.destination as! RecipeDetailTableViewController
-            if let indexPath = sender as? IndexPath{
-                selectedRecipeId = recipeBasicList[indexPath.row].id
-                vc.recipeId = recipeBasicList[indexPath.row].id
+            if let id = sender as? String{
+                selectedRecipeId = id
+                vc.recipeId = id
             }
         }
     }

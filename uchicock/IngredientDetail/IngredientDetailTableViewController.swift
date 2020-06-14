@@ -203,8 +203,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
         
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
-            for indexPath in tableView.indexPathsForVisibleRows! {
-                if indexPath.section == 0 || indexPath.row == 0 { continue }
+            for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0 && indexPath.row != 0{
                 if ingredientRecipeBasicList.count + 1 > indexPath.row {
                     if ingredientRecipeBasicList[indexPath.row - 1].id == selectedRecipeId! {
                         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -595,12 +594,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     // MARK: - UITableViewDataSourcePrefetching
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        for indexPath in indexPaths{
-            if indexPath.section == 1 && indexPath.row > 0{
-                let imageFileName = self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName
-                DispatchQueue.global(qos: .userInteractive).async{
-                    ImageUtil.saveToCache(imageFileName: imageFileName)
-                }
+        for indexPath in indexPaths where indexPath.section == 1 && indexPath.row > 0{
+            let imageFileName = self.ingredientRecipeBasicList[indexPath.row - 1].imageFileName
+            DispatchQueue.global(qos: .userInteractive).async{
+                ImageUtil.saveToCache(imageFileName: imageFileName)
             }
         }
     }

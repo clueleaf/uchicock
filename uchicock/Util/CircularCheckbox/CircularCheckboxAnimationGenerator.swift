@@ -108,4 +108,3 @@ internal class CircularCheckboxAnimationGenerator {
         return animation
     }
 }
-

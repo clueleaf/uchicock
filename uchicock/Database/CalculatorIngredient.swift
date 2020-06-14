@@ -17,6 +17,4 @@ class CalculatorIngredient: Object {
     override class func primaryKey() -> String {
         return "id"
     }
-
 }
-

@@ -208,5 +208,4 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
 }

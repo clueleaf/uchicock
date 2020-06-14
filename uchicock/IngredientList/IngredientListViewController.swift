@@ -40,7 +40,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var ingredientTableOffset: CGFloat? = nil
     var reminderTableOffset: CGFloat? = nil
 
-    var scrollBeginingYPoint: CGFloat = 0.0
+    var scrollBeginingYPoint: CGFloat? = nil
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
     var textFieldHasSearchResult = false
@@ -119,14 +119,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func highlightSelectedRow(){
         if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil {
-            for indexPath in tableView.indexPathsForVisibleRows! {
-                if ingredientBasicList.count > indexPath.row {
-                    if ingredientBasicList[indexPath.row].id == selectedIngredientId! {
-                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                        }
-                        break
+            for indexPath in tableView.indexPathsForVisibleRows! where ingredientBasicList.count > indexPath.row {
+                if ingredientBasicList[indexPath.row].id == selectedIngredientId! {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                     }
+                    break
                 }
             }
         }
@@ -200,20 +198,18 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if isReminderMode{
             ingredientBasicList.removeAll()
 
-            for ingredient in ingredientList!{
-                if ingredient.reminderSetDate != nil{
-                    ingredientBasicList.append(IngredientBasic(
-                        id: ingredient.id,
-                        name: ingredient.ingredientName,
-                        nameYomi: ingredient.ingredientNameYomi,
-                        katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                        stockFlag: ingredient.stockFlag,
-                        category: ingredient.category,
-                        contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                        usedRecipeNum: ingredient.recipeIngredients.count,
-                        reminderSetDate: ingredient.reminderSetDate
-                    ))
-                }
+            for ingredient in ingredientList! where ingredient.reminderSetDate != nil{
+                ingredientBasicList.append(IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                    stockFlag: ingredient.stockFlag,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usedRecipeNum: ingredient.recipeIngredients.count,
+                    reminderSetDate: ingredient.reminderSetDate
+                ))
             }
             
             ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
@@ -249,21 +245,19 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientFilterCategory.append(category.selectedSegmentIndex - 1)
         }
         
-        for ingredient in ingredientList!{
-            if ingredientFilterStock.contains(ingredient.stockFlag) &&
-                ingredientFilterCategory.contains(ingredient.category){
-                ingredientBasicList.append(IngredientBasic(
-                    id: ingredient.id,
-                    name: ingredient.ingredientName,
-                    nameYomi: ingredient.ingredientNameYomi,
-                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                    stockFlag: ingredient.stockFlag,
-                    category: ingredient.category,
-                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                    usedRecipeNum: ingredient.recipeIngredients.count,
-                    reminderSetDate: ingredient.reminderSetDate
-                ))
-            }
+        for ingredient in ingredientList! where ingredientFilterStock.contains(ingredient.stockFlag) &&
+            ingredientFilterCategory.contains(ingredient.category){
+            ingredientBasicList.append(IngredientBasic(
+                id: ingredient.id,
+                name: ingredient.ingredientName,
+                nameYomi: ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                stockFlag: ingredient.stockFlag,
+                category: ingredient.category,
+                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                usedRecipeNum: ingredient.recipeIngredients.count,
+                reminderSetDate: ingredient.reminderSetDate
+            ))
         }
 
         let searchText = searchTextField.text!
@@ -413,16 +407,14 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -50, isReminderMode == false{
             searchTextField.becomeFirstResponder()
-        }else if scrollBeginingYPoint < scrollView.contentOffset.y {
+        }else if let yPoint = scrollBeginingYPoint, yPoint < scrollView.contentOffset.y {
             searchTextField.resignFirstResponder()
         }
     }
     
     // MARK: - UITextFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField){
-        if tableView.contentOffset.y > 0{
-            tableView.setContentOffset(tableView.contentOffset, animated: false)
-        }
+        scrollBeginingYPoint = nil
         if traitCollection.verticalSizeClass == .compact{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
@@ -482,7 +474,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let edit =  UIContextualAction(style: .normal, title: "編集", handler: { (action,view,completionHandler ) in
+        let edit =  UIContextualAction(style: .normal, title: "編集"){ action,view,completionHandler in
             if let editNavi = UIStoryboard(name: "IngredientEdit", bundle: nil).instantiateViewController(withIdentifier: "IngredientEditNavigation") as? BasicNavigationController{
                 guard let editVC = editNavi.visibleViewController as? IngredientEditTableViewController else{
                     return
@@ -499,11 +491,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }else{
                 completionHandler(false)
             }
-        })
+        }
         edit.image = UIImage(named: "button-edit")
         edit.backgroundColor = UchicockStyle.tableViewCellEditBackgroundColor
         
-        let del =  UIContextualAction(style: .destructive, title: "削除", handler: { (action,view,completionHandler ) in
+        let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             let ingredient = self.realm!.object(ofType: Ingredient.self, forPrimaryKey: self.ingredientBasicList[indexPath.row].id)!
             
             if ingredient.recipeIngredients.count > 0 {
@@ -518,7 +510,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
                 completionHandler(false)
-            } else{
+            }else{
                 let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
                 if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                     deleteAlertView.overrideUserInterfaceStyle = .dark
@@ -547,7 +539,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
             }
-        })
+        }
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = UchicockStyle.alertColor
         

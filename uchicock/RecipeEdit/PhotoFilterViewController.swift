@@ -136,14 +136,10 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
             self.imageView.image = self.filteredImage(filterNumber: sender.tag, originalImage: ciim)
         }
 
-        for subview in filterScrollView.subviews{
-            if subview is UIStackView{
-                for subsubview in subview.subviews{
-                    if subsubview is UIButton{
-                        let b = subsubview as! UIButton
-                        b.layer.borderWidth = 0
-                    }
-                }
+        for subview in filterScrollView.subviews where subview is UIStackView{
+            for subsubview in subview.subviews where subsubview is UIButton{
+                let b = subsubview as! UIButton
+                b.layer.borderWidth = 0
             }
         }
         sender.layer.borderColor = UIColor.white.cgColor

@@ -25,6 +25,4 @@ class RecipeIngredientLink: Object {
     override class func primaryKey() -> String {
         return "id"
     }
-
 }
-

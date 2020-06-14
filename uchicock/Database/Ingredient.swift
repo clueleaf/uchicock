@@ -27,12 +27,9 @@ class Ingredient: Object {
     func calcContribution(){
         self.contributionToRecipeAvailability = 0
         if self.stockFlag == false{
-            for ri in self.recipeIngredients{
-                if ri.mustFlag && ri.recipe.shortageNum == 1{
-                    self.contributionToRecipeAvailability += 1
-                }
+            for ri in self.recipeIngredients where ri.mustFlag && ri.recipe.shortageNum == 1{
+                self.contributionToRecipeAvailability += 1
             }
         }
     }
-
 }

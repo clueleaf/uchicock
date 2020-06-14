@@ -100,26 +100,24 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let recipeList = realm.objects(Recipe.self).filter("imageFileName != nil")
         for recipe in recipeList{
             var newPhotoFlag = true
-            for i in (0..<recipeBasicList.count).reversed() {
-                if recipe.id == recipeBasicList[i].id{
-                    newPhotoFlag = false
-                    recipeBasicList.remove(at: i)
-                    recipeBasicList.insert(RecipeBasic(
-                        id: recipe.id,
-                        name: recipe.recipeName,
-                        nameYomi: recipe.recipeNameYomi,
-                        katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                        shortageNum: recipe.shortageNum,
-                        lastViewDate: recipe.lastViewDate,
-                        favorites: recipe.favorites,
-                        style: recipe.style,
-                        method: recipe.method,
-                        strength: recipe.strength,
-                        madeNum: recipe.madeNum,
-                        imageFileName: recipe.imageFileName
-                    ), at: i)
-                    break
-                }
+            for i in (0..<recipeBasicList.count).reversed() where recipe.id == recipeBasicList[i].id{
+                newPhotoFlag = false
+                recipeBasicList.remove(at: i)
+                recipeBasicList.insert(RecipeBasic(
+                    id: recipe.id,
+                    name: recipe.recipeName,
+                    nameYomi: recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    shortageNum: recipe.shortageNum,
+                    lastViewDate: recipe.lastViewDate,
+                    favorites: recipe.favorites,
+                    style: recipe.style,
+                    method: recipe.method,
+                    strength: recipe.strength,
+                    madeNum: recipe.madeNum,
+                    imageFileName: recipe.imageFileName
+                ), at: i)
+                break
             }
             if newPhotoFlag{
                 recipeBasicList.append(RecipeBasic(
@@ -322,11 +320,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         
         itemMoveDistination.removeAll()
         for rid in recipeIdList{
-            for i in 0 ..< filteredRecipeBasicList.count{
-                if rid == filteredRecipeBasicList[i].id{
-                    itemMoveDistination.append(i)
-                    break
-                }
+            for i in 0 ..< filteredRecipeBasicList.count where rid == filteredRecipeBasicList[i].id{
+                itemMoveDistination.append(i)
+                break
             }
         }
         isItemsMoving = true
@@ -422,11 +418,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let recipeId = configuration.identifier as? String else { return nil }
         var row: Int? = nil
-        for i in 0 ..< filteredRecipeBasicList.count{
-            if filteredRecipeBasicList[i].id == recipeId {
-                row = i
-                break
-            }
+        for i in 0 ..< filteredRecipeBasicList.count where filteredRecipeBasicList[i].id == recipeId {
+            row = i
+            break
         }
         guard row != nil else { return nil }
         let cell = collectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! AlbumCollectionViewCell
@@ -440,11 +434,9 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let recipeId = configuration.identifier as? String else { return nil }
         var row: Int? = nil
-        for i in 0 ..< filteredRecipeBasicList.count{
-            if filteredRecipeBasicList[i].id == recipeId {
-                row = i
-                break
-            }
+        for i in 0 ..< filteredRecipeBasicList.count where filteredRecipeBasicList[i].id == recipeId {
+            row = i
+            break
         }
         guard row != nil else { return nil }
         let cell = collectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! AlbumCollectionViewCell

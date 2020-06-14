@@ -155,5 +155,4 @@ internal class CircularCheckboxController {
         }
         layoutLayers()
     }
-    
 }

@@ -85,10 +85,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         }
         
         var recoverCount = 0
-        for rr in recoverableSampleRecipeList{
-            if rr.recoverTarget{
-                recoverCount += 1
-            }
+        for rr in recoverableSampleRecipeList where rr.recoverTarget{
+            recoverCount += 1
         }
 
         recoverSelectedLabel.text = "選択した0レシピのみを復元"
@@ -131,11 +129,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         let recipeList = realm.objects(Recipe.self)
         for sr in recipeList{
             var isRecoverable = true
-            for ur in userRecipeNameList{
-                if sr.recipeName == ur{
-                    isRecoverable = false
-                    break
-                }
+            for ur in userRecipeNameList where sr.recipeName == ur{
+                isRecoverable = false
+                break
             }
 
             let srb = SampleRecipeBasic(
@@ -174,10 +170,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
                 
                 var recoverCount = 0
-                for rr in recoverableSampleRecipeList{
-                    if rr.recoverTarget{
-                        recoverCount += 1
-                    }
+                for rr in recoverableSampleRecipeList where rr.recoverTarget{
+                    recoverCount += 1
                 }
                 recoverSelectedLabel.text = "選択した" + String(recoverCount) + "レシピのみを復元"
                 if recoverCount == 0{
@@ -191,42 +185,40 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     
     private func recover(){
         var recoverRecipeList = Array<RecoverRecipe>()
-        for rr in recoverableSampleRecipeList{
-            if rr.recoverTarget{
-                let realm = try! Realm()
-                let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
-                
-                var recoverRecipe = RecoverRecipe(
-                    name: recipe.recipeName,
-                    nameYomi: recipe.recipeNameYomi,
-                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                    style: recipe.style,
-                    method: recipe.method,
-                    strength: recipe.strength,
-                    ingredientList: []
-                )
-                for ri in recipe.recipeIngredients{
-                    recoverRecipe.ingredientList.append(RecipeIngredientBasic(
-                        recipeIngredientId: "",
-                        ingredientId: "",
-                        ingredientName: ri.ingredient.ingredientName,
-                        ingredientNameYomi: ri.ingredient.ingredientNameYomi,
-                        katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
-                        amount: ri.amount,
-                        mustFlag: ri.mustFlag,
-                        category: ri.ingredient.category,
-                        displayOrder: ri.displayOrder,
-                        stockFlag: false
-                    ))
-                }
-                recoverRecipeList.append(recoverRecipe)
+        for rr in recoverableSampleRecipeList where rr.recoverTarget{
+            let realm = try! Realm()
+            let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
+            
+            var recoverRecipe = RecoverRecipe(
+                name: recipe.recipeName,
+                nameYomi: recipe.recipeNameYomi,
+                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                style: recipe.style,
+                method: recipe.method,
+                strength: recipe.strength,
+                ingredientList: []
+            )
+            for ri in recipe.recipeIngredients{
+                recoverRecipe.ingredientList.append(RecipeIngredientBasic(
+                    recipeIngredientId: "",
+                    ingredientId: "",
+                    ingredientName: ri.ingredient.ingredientName,
+                    ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                    amount: ri.amount,
+                    mustFlag: ri.mustFlag,
+                    category: ri.ingredient.category,
+                    displayOrder: ri.displayOrder,
+                    stockFlag: false
+                ))
             }
+            recoverRecipeList.append(recoverRecipe)
         }
         
         changeToUserDb()
         
+        let realm = try! Realm()
         for recoverRecipe in recoverRecipeList{
-            let realm = try! Realm()
             let rec = realm.objects(Recipe.self).filter("recipeName == %@",recoverRecipe.name)
             if rec.count < 1 {
                 try! realm.write {
@@ -361,10 +353,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 }
             }else if indexPath.row == 2{
                 var recoverCount = 0
-                for rr in recoverableSampleRecipeList{
-                    if rr.recoverTarget{
-                        recoverCount += 1
-                    }
+                for rr in recoverableSampleRecipeList where rr.recoverTarget{
+                    recoverCount += 1
                 }
                     
                 if recoverCount > 0{

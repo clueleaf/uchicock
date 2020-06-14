@@ -87,13 +87,13 @@ struct ImageUtil{
     }
     
     static func remove(imageFileName: String?){
-        if let imageFileName = imageFileName{
-            ImageCache.shared.removeObject(forKey: imageFileName as NSString)
-            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
-            try? FileManager.default.removeItem(at: imageFilePath)
-            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
-            try? FileManager.default.removeItem(at: thumbnailFilePath)
-        }
+        guard let imageFileName = imageFileName else { return }
+
+        ImageCache.shared.removeObject(forKey: imageFileName as NSString)
+        let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
+        try? FileManager.default.removeItem(at: imageFilePath)
+        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
+        try? FileManager.default.removeItem(at: thumbnailFilePath)
     }
 }
 
