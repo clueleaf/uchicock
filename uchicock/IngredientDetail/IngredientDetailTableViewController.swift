@@ -653,9 +653,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "PushEditIngredient", sender: nil)
-        }
+        performSegue(withIdentifier: "PushEditIngredient", sender: nil)
     }
     
     @IBAction func reminderButtonTapped(_ sender: UIButton) {

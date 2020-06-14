@@ -795,9 +795,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 editNavi.modalPresentationStyle = .fullScreen
                 editNavi.modalTransitionStyle = .coverVertical
                 editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-                DispatchQueue.main.async {
-                    self.present(editNavi, animated: true, completion: nil)
-                }
+                self.present(editNavi, animated: true, completion: nil)
                 completionHandler(true)
             }else{
                 completionHandler(false)
@@ -908,9 +906,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
             editVC.mainNavigationController = self.navigationController as? BasicNavigationController
-            DispatchQueue.main.async {
-                self.present(editNavi, animated: true, completion: nil)
-            }
+            self.present(editNavi, animated: true, completion: nil)
         }
     }
     
