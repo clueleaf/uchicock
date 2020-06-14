@@ -351,215 +351,182 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func sortRecipeBasicList(){
-        switch recipeSortPrimary{
-        case 1: // 名前順
+        switch (recipeSortPrimary, recipeSortSecondary){
+        case let (primary, _) where primary == 1: // 名前順
             recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        case 2:
-            switch recipeSortSecondary{
-            case 1: // 作れる順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.shortageNum == b.shortageNum {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.shortageNum < b.shortageNum
-                    }
-                })
-            case 3: // 作れる順 > 作った回数順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.shortageNum == b.shortageNum {
-                        if a.madeNum == b.madeNum{
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.madeNum > b.madeNum
-                        }
-                    } else {
-                        return a.shortageNum < b.shortageNum
-                    }
-                })
-            case 4: // 作れる順 > お気に入り順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.shortageNum == b.shortageNum {
-                        if a.favorites == b.favorites{
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.favorites > b.favorites
-                        }
-                    } else {
-                        return a.shortageNum < b.shortageNum
-                    }
-                })
-            case 5: // 作れる順 > 最近見た順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.shortageNum == b.shortageNum {
-                        if a.lastViewDate == nil{
-                            if b.lastViewDate == nil{
-                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                            }else{
-                                return false
-                            }
-                        }else{
-                            if b.lastViewDate == nil{
-                                return true
-                            }else{
-                                return a.lastViewDate! > b.lastViewDate!
-                            }
-                        }
-                    } else {
-                        return a.shortageNum < b.shortageNum
-                    }
-                })
-            default: // 作れる順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.shortageNum == b.shortageNum {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.shortageNum < b.shortageNum
-                    }
-                })
-            }
-        case 3:
-            switch recipeSortSecondary{
-            case 1: // 作った回数順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.madeNum == b.madeNum {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.madeNum > b.madeNum
-                    }
-                })
-            case 2: // 作った回数順 > 作れる順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.madeNum == b.madeNum {
-                        if a.shortageNum == b.shortageNum{
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.shortageNum < b.shortageNum
-                        }
-                    } else {
-                        return a.madeNum > b.madeNum
-                    }
-                })
-            case 4: // 作った回数順 > お気に入り順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.madeNum == b.madeNum {
-                        if a.favorites == b.favorites{
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.favorites > b.favorites
-                        }
-                    } else {
-                        return a.madeNum > b.madeNum
-                    }
-                })
-            case 5: // 作った回数順 > 最近見た順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.madeNum == b.madeNum {
-                        if a.lastViewDate == nil{
-                            if b.lastViewDate == nil{
-                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                            }else{
-                                return false
-                            }
-                        }else{
-                            if b.lastViewDate == nil{
-                                return true
-                            }else{
-                                return a.lastViewDate! > b.lastViewDate!
-                            }
-                        }
-                    } else {
-                        return a.madeNum > b.madeNum
-                    }
-                })
-            default: // 作った回数順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.madeNum == b.madeNum {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.madeNum > b.madeNum
-                    }
-                })
-            }
-        case 4:
-            switch recipeSortSecondary{
-            case 1: // お気に入り順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.favorites == b.favorites {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.favorites > b.favorites
-                    }
-                })
-            case 2: // お気に入り順 > 作れる順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.favorites == b.favorites {
-                        if a.shortageNum == b.shortageNum{
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.shortageNum < b.shortageNum
-                        }
-                    } else {
-                        return a.favorites > b.favorites
-                    }
-                })
-            case 3: // お気に入り順 > 作った回数順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.favorites == b.favorites {
-                        if a.madeNum == b.madeNum {
-                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                        }else{
-                            return a.madeNum > b.madeNum
-                        }
-                    } else {
-                        return a.favorites > b.favorites
-                    }
-                })
-            case 5: // お気に入り順 > 最近見た順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.favorites == b.favorites {
-                        if a.lastViewDate == nil{
-                            if b.lastViewDate == nil{
-                                return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                            }else{
-                                return false
-                            }
-                        }else{
-                            if b.lastViewDate == nil{
-                                return true
-                            }else{
-                                return a.lastViewDate! > b.lastViewDate!
-                            }
-                        }
-                    } else {
-                        return a.favorites > b.favorites
-                    }
-                })
-            default: // お気に入り順 > 名前順
-                recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                    if a.favorites == b.favorites {
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    } else {
-                        return a.favorites > b.favorites
-                    }
-                })
-            }
-        case 5: // 最近見た順 > 名前順
+        case let (primary, secondary) where primary == 2 && secondary == 1: // 作れる順 > 名前順
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-                if a.lastViewDate == nil{
-                    if b.lastViewDate == nil{
-                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
-                    }else{
-                        return false
-                    }
+                if a.shortageNum == b.shortageNum {
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
-                    if b.lastViewDate == nil{
-                        return true
-                    }else{
-                        return a.lastViewDate! > b.lastViewDate!
-                    }
+                    return a.shortageNum < b.shortageNum
                 }
             })
-        default: // 名前順
+        case let (primary, secondary) where primary == 2 && secondary == 3: // 作れる順 > 作った回数順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    if a.madeNum == b.madeNum{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.madeNum > b.madeNum
+                    }
+                }else{
+                    return a.shortageNum < b.shortageNum
+                }
+            })
+        case let (primary, secondary) where primary == 2 && secondary == 4: // 作れる順 > お気に入り順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    if a.favorites == b.favorites{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.favorites > b.favorites
+                    }
+                }else{
+                    return a.shortageNum < b.shortageNum
+                }
+            })
+        case let (primary, secondary) where primary == 2 && secondary == 5: // 作れる順 > 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    if a.lastViewDate == nil{
+                        if b.lastViewDate == nil{
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                        }else{
+                            return false
+                        }
+                    }else{
+                        if b.lastViewDate == nil{
+                            return true
+                        }else{
+                            return a.lastViewDate! > b.lastViewDate!
+                        }
+                    }
+                }else{
+                    return a.shortageNum < b.shortageNum
+                }
+            })
+        case let (primary, secondary) where primary == 3 && secondary == 1: // 作った回数順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                }else{
+                    return a.madeNum > b.madeNum
+                }
+            })
+        case let (primary, secondary) where primary == 3 && secondary == 2: // 作った回数順 > 作れる順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    if a.shortageNum == b.shortageNum{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.shortageNum < b.shortageNum
+                    }
+                }else{
+                    return a.madeNum > b.madeNum
+                }
+            })
+        case let (primary, secondary) where primary == 3 && secondary == 4: // 作った回数順 > お気に入り順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    if a.favorites == b.favorites{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.favorites > b.favorites
+                    }
+                }else{
+                        return a.madeNum > b.madeNum
+                    }
+                })
+        case let (primary, secondary) where primary == 3 && secondary == 5: // 作った回数順 > 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.madeNum == b.madeNum {
+                    if a.lastViewDate == nil{
+                        if b.lastViewDate == nil{
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                        }else{
+                            return false
+                        }
+                    }else{
+                        if b.lastViewDate == nil{
+                            return true
+                        }else{
+                            return a.lastViewDate! > b.lastViewDate!
+                        }
+                    }
+                }else{
+                    return a.madeNum > b.madeNum
+                }
+            })
+        case let (primary, secondary) where primary == 4 && secondary == 1: // お気に入り順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.favorites == b.favorites {
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                }else{
+                    return a.favorites > b.favorites
+                }
+            })
+        case let (primary, secondary) where primary == 4 && secondary == 2: // お気に入り順 > 作れる順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.favorites == b.favorites {
+                    if a.shortageNum == b.shortageNum{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.shortageNum < b.shortageNum
+                    }
+                }else{
+                    return a.favorites > b.favorites
+                }
+            })
+        case let (primary, secondary) where primary == 4 && secondary == 3: // お気に入り順 > 作った回数順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.favorites == b.favorites {
+                    if a.madeNum == b.madeNum {
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return a.madeNum > b.madeNum
+                    }
+                }else{
+                    return a.favorites > b.favorites
+                }
+            })
+        case let (primary, secondary) where primary == 4 && secondary == 5: // お気に入り順 > 最近見た順 > 名前順
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.favorites == b.favorites {
+                    if a.lastViewDate == nil{
+                        if b.lastViewDate == nil{
+                            return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                        }else{
+                            return false
+                        }
+                    }else{
+                        if b.lastViewDate == nil{
+                            return true
+                        }else{
+                            return a.lastViewDate! > b.lastViewDate!
+                        }
+                    }
+                }else{
+                    return a.favorites > b.favorites
+                }
+            })
+        case let (primary, _) where primary == 5: // 最近見た順 > 名前順
+        recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            if a.lastViewDate == nil{
+                if b.lastViewDate == nil{
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                }else{
+                    return false
+                }
+            }else{
+                if b.lastViewDate == nil{
+                    return true
+                }else{
+                    return a.lastViewDate! > b.lastViewDate!
+                }
+            }
+        })
+        case (_, _): //名前順
             recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
         }
     }
@@ -799,19 +766,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if isBookmarkMode{
             cell.subInfoType = 0
         }else{
-            if recipeSortPrimary == 3{
+            switch (recipeSortPrimary, recipeSortSecondary){
+            case let (primary, secondary) where primary == 2 && secondary == 3:
                 cell.subInfoType = 1
-            }else if recipeSortPrimary == 5{
+            case let (primary, secondary) where primary == 2 && secondary == 5:
                 cell.subInfoType = 2
-            }else if recipeSortPrimary == 2{
-                if recipeSortSecondary == 3{
-                    cell.subInfoType = 1
-                }else if recipeSortSecondary == 5{
-                    cell.subInfoType = 2
-                }else{
-                    cell.subInfoType = 0
-                }
-            }else{
+            case let (primary, _) where primary == 3:
+                cell.subInfoType = 1
+            case let (primary, _) where primary == 5:
+                cell.subInfoType = 2
+            case (_, _):
                 cell.subInfoType = 0
             }
         }
