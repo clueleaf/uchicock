@@ -291,12 +291,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 katakanaLowercasedNameForSearch: recipeIngredient.recipe.katakanaLowercasedNameForSearch,
                 shortageNum: recipeIngredient.recipe.shortageNum,
                 shortageIngredientName: recipeIngredient.recipe.shortageIngredientName,
-                favorites: recipeIngredient.recipe.favorites,
                 lastViewDate: recipeIngredient.recipe.lastViewDate,
-                madeNum: recipeIngredient.recipe.madeNum,
-                method: recipeIngredient.recipe.method,
+                favorites: recipeIngredient.recipe.favorites,
                 style: recipeIngredient.recipe.style,
+                method: recipeIngredient.recipe.method,
                 strength: recipeIngredient.recipe.strength,
+                madeNum: recipeIngredient.recipe.madeNum,
                 imageFileName: recipeIngredient.recipe.imageFileName
             ))
         }

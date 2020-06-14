@@ -36,7 +36,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         super.viewDidLoad()
 
         let defaults = UserDefaults.standard
-        firstRequestReview = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
+        firstRequestReview = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
         alreadyWrittenReview = defaults.bool(forKey: GlobalConstants.AlreadyWrittenReviewKey)
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)

@@ -39,24 +39,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
-    var recipeFilterStar0 = true
-    var recipeFilterStar1 = true
-    var recipeFilterStar2 = true
-    var recipeFilterStar3 = true
-    var recipeFilterLong = true
-    var recipeFilterShort = true
-    var recipeFilterHot = true
-    var recipeFilterStyleNone = true
-    var recipeFilterBuild = true
-    var recipeFilterStir = true
-    var recipeFilterShake = true
-    var recipeFilterBlend = true
-    var recipeFilterOthers = true
-    var recipeFilterNonAlcohol = true
-    var recipeFilterWeak = true
-    var recipeFilterMedium = true
-    var recipeFilterStrong = true
-    var recipeFilterStrengthNone = true
+    var recipeFilterStar: [Int] = []
+    var recipeFilterStyle: [Int] = []
+    var recipeFilterMethod: [Int] = []
+    var recipeFilterStrength: [Int] = []
 
     let interactor = Interactor()
 
@@ -69,7 +55,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         super.viewDidLoad()
         
         realm = try! Realm()
-
+        registerUserDefaults()
+        
         ingredientTextField1.clearButtonEdgeInset = 5.0
         ingredientTextField2.clearButtonEdgeInset = 5.0
         ingredientTextField3.clearButtonEdgeInset = 5.0
@@ -155,65 +142,122 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }
 
-        loadFromUserDefaults()
+        makeFilterFromSearchUserDefaults()
+        setSearchConditionButtonTitle()
         // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
         // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
         showRecipeTableView(shouldSetToUserDefaults: false)
-        setSearchConditionButtonTitle()
         tableView.reloadData()
     }
     
     private func setupData(){
-        loadFromUserDefaults()
+        makeFilterFromSearchUserDefaults()
         setSearchConditionButtonTitle()
         reloadRecipeList()
         recipeTableView.reloadData()
         tableView.reloadData()
     }
     
-    private func loadFromUserDefaults(){
+    private func registerUserDefaults(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.ReverseLookupSortPrimaryKey : 1])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupSortSecondaryKey : 0])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStar0Key : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStar1Key : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStar2Key : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStar3Key : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterLongKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterShortKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterHotKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStyleNoneKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterBuildKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStirKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterShakeKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterBlendKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterOthersKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterNonAlcoholKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterWeakKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterMediumKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStrongKey : true])
-        defaults.register(defaults: [GlobalConstants.ReverseLookupFilterStrengthNoneKey : true])
+        defaults.register(defaults: [
+            GlobalConstants.ReverseLookupSortPrimaryKey : 1,
+            GlobalConstants.ReverseLookupSortSecondaryKey : 0,
+            GlobalConstants.ReverseLookupFilterStar0Key : true,
+            GlobalConstants.ReverseLookupFilterStar1Key : true,
+            GlobalConstants.ReverseLookupFilterStar2Key : true,
+            GlobalConstants.ReverseLookupFilterStar3Key : true,
+            GlobalConstants.ReverseLookupFilterLongKey : true,
+            GlobalConstants.ReverseLookupFilterShortKey : true,
+            GlobalConstants.ReverseLookupFilterHotKey : true,
+            GlobalConstants.ReverseLookupFilterStyleNoneKey : true,
+            GlobalConstants.ReverseLookupFilterBuildKey : true,
+            GlobalConstants.ReverseLookupFilterStirKey : true,
+            GlobalConstants.ReverseLookupFilterShakeKey : true,
+            GlobalConstants.ReverseLookupFilterBlendKey : true,
+            GlobalConstants.ReverseLookupFilterOthersKey : true,
+            GlobalConstants.ReverseLookupFilterNonAlcoholKey : true,
+            GlobalConstants.ReverseLookupFilterWeakKey : true,
+            GlobalConstants.ReverseLookupFilterMediumKey : true,
+            GlobalConstants.ReverseLookupFilterStrongKey : true,
+            GlobalConstants.ReverseLookupFilterStrengthNoneKey : true
+        ])
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        tableView.reloadData()
+        if editingTextField == 0{
+            ingredientTextField1.becomeFirstResponder()
+        }else if editingTextField == 1{
+            ingredientTextField2.becomeFirstResponder()
+        }else if editingTextField == 2{
+            ingredientTextField3.becomeFirstResponder()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        hiddenLabel.frame = CGRect(x: 0, y: -180, width: recipeTableView.frame.width, height: 20)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+        super.viewDidAppear(animated)
+        
+        if let path = recipeTableView.indexPathForSelectedRow{
+            self.recipeTableView.deselectRow(at: path, animated: true)
+        }
+        selectedRecipeId = nil
+        self.recipeTableView.flashScrollIndicators()
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func scrollToTop() {
+        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
+    }
+
+    private func setSearchTextToUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.set(ingredientTextField1.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
+        defaults.set(ingredientTextField2.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
+        defaults.set(ingredientTextField3.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
+    }
+    
+    private func makeFilterFromSearchUserDefaults(){
+        recipeFilterStar.removeAll()
+        recipeFilterStyle.removeAll()
+        recipeFilterMethod.removeAll()
+        recipeFilterStrength.removeAll()
+
+        let defaults = UserDefaults.standard
         recipeSortPrimary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortPrimaryKey)
         recipeSortSecondary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortSecondaryKey)
-        recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar0Key)
-        recipeFilterStar1 = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar1Key)
-        recipeFilterStar2 = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar2Key)
-        recipeFilterStar3 = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar3Key)
-        recipeFilterLong = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterLongKey)
-        recipeFilterShort = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterShortKey)
-        recipeFilterHot = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterHotKey)
-        recipeFilterStyleNone = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStyleNoneKey)
-        recipeFilterBuild = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBuildKey)
-        recipeFilterStir = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStirKey)
-        recipeFilterShake = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterShakeKey)
-        recipeFilterBlend = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBlendKey)
-        recipeFilterOthers = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterOthersKey)
-        recipeFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterNonAlcoholKey)
-        recipeFilterWeak = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterWeakKey)
-        recipeFilterMedium = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterMediumKey)
-        recipeFilterStrong = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrongKey)
-        recipeFilterStrengthNone = defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrengthNoneKey)
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar0Key) { recipeFilterStar.append(0) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar1Key) { recipeFilterStar.append(1) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar2Key) { recipeFilterStar.append(2) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar3Key) { recipeFilterStar.append(3) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterLongKey) { recipeFilterStyle.append(0) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterShortKey) { recipeFilterStyle.append(1) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterHotKey) { recipeFilterStyle.append(2) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStyleNoneKey) { recipeFilterStyle.append(3) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBuildKey) { recipeFilterMethod.append(0) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStirKey) { recipeFilterMethod.append(1) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterShakeKey) { recipeFilterMethod.append(2) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterBlendKey) { recipeFilterMethod.append(3) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterOthersKey) { recipeFilterMethod.append(4) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterNonAlcoholKey) { recipeFilterStrength.append(0) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterWeakKey) { recipeFilterStrength.append(1) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterMediumKey) { recipeFilterStrength.append(2) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrongKey) { recipeFilterStrength.append(3) }
+        if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrengthNoneKey) { recipeFilterStrength.append(4) }
+
 
         if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
             ingredientTextField1.text = first.withoutEndsSpace()
@@ -271,11 +315,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }
         
-        if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-            recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
-            recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
-        }else{
+        if ([0,1,2,3].allSatisfy(recipeFilterStar.contains) && [0,1,2,3].allSatisfy(recipeFilterStyle.contains) &&
+            [0,1,2,3,4].allSatisfy(recipeFilterMethod.contains) && [0,1,2,3,4].allSatisfy(recipeFilterStrength.contains))
+            == false {
             conditionText += "、絞り込み有"
         }
         
@@ -283,52 +325,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             searchConditionModifyButton.setTitle(conditionText, for: .normal)
             searchConditionModifyButton.layoutIfNeeded()
         }
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        tableView.reloadData()
-        if editingTextField == 0{
-            ingredientTextField1.becomeFirstResponder()
-        }else if editingTextField == 1{
-            ingredientTextField2.becomeFirstResponder()
-        }else if editingTextField == 2{
-            ingredientTextField3.becomeFirstResponder()
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-        hiddenLabel.frame = CGRect(x: 0, y: -180, width: recipeTableView.frame.width, height: 20)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.setTableBackgroundView() // 実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-        super.viewDidAppear(animated)
-        
-        if let path = recipeTableView.indexPathForSelectedRow{
-            self.recipeTableView.deselectRow(at: path, animated: true)
-        }
-        selectedRecipeId = nil
-        self.recipeTableView.flashScrollIndicators()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    func scrollToTop() {
-        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
-    }
-
-    private func setSearchTextToUserDefaults(){
-        let defaults = UserDefaults.standard
-        defaults.set(ingredientTextField1.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
-        defaults.set(ingredientTextField2.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
-        defaults.set(ingredientTextField3.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
     }
     
     private func reloadRecipeList(){
@@ -383,12 +379,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
                 shortageNum: recipe.shortageNum,
                 shortageIngredientName: recipe.shortageIngredientName,
-                favorites: recipe.favorites,
                 lastViewDate: recipe.lastViewDate,
-                madeNum: recipe.madeNum,
-                method: recipe.method,
+                favorites: recipe.favorites,
                 style: recipe.style,
+                method: recipe.method,
                 strength: recipe.strength,
+                madeNum: recipe.madeNum,
                 imageFileName: recipe.imageFileName
             ))
         }
@@ -405,12 +401,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch,
                     shortageNum: ri.recipe.shortageNum,
                     shortageIngredientName: ri.recipe.shortageIngredientName,
-                    favorites: ri.recipe.favorites,
                     lastViewDate: ri.recipe.lastViewDate,
-                    madeNum: ri.recipe.madeNum,
-                    method: ri.recipe.method,
+                    favorites: ri.recipe.favorites,
                     style: ri.recipe.style,
+                    method: ri.recipe.method,
                     strength: ri.recipe.strength,
+                    madeNum: ri.recipe.madeNum,
                     imageFileName: ri.recipe.imageFileName
                 ))
             }
@@ -440,30 +436,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func filterRecipeBasicList(){
-        var recipeFilterStar: [Int] = []
-        var recipeFilterStyle: [Int] = []
-        var recipeFilterMethod: [Int] = []
-        var recipeFilterStrength: [Int] = []
-
-        if recipeFilterStar0 { recipeFilterStar.append(0) }
-        if recipeFilterStar1 { recipeFilterStar.append(1) }
-        if recipeFilterStar2 { recipeFilterStar.append(2) }
-        if recipeFilterStar3 { recipeFilterStar.append(3) }
-        if recipeFilterLong { recipeFilterStyle.append(0) }
-        if recipeFilterShort { recipeFilterStyle.append(1) }
-        if recipeFilterHot { recipeFilterStyle.append(2) }
-        if recipeFilterStyleNone { recipeFilterStyle.append(3) }
-        if recipeFilterBuild { recipeFilterMethod.append(0) }
-        if recipeFilterStir { recipeFilterMethod.append(1) }
-        if recipeFilterShake { recipeFilterMethod.append(2) }
-        if recipeFilterBlend { recipeFilterMethod.append(3) }
-        if recipeFilterOthers { recipeFilterMethod.append(4) }
-        if recipeFilterNonAlcohol { recipeFilterStrength.append(0) }
-        if recipeFilterWeak { recipeFilterStrength.append(1) }
-        if recipeFilterMedium { recipeFilterStrength.append(2) }
-        if recipeFilterStrong { recipeFilterStrength.append(3) }
-        if recipeFilterStrengthNone { recipeFilterStrength.append(4) }
-
         recipeBasicList.removeAll{
             recipeFilterStar.contains($0.favorites) == false ||
             recipeFilterStyle.contains($0.style) == false ||
@@ -718,7 +690,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     private func showRecipeTableView(shouldSetToUserDefaults: Bool){
         if editingTextField == -1 {
             setSearchTextToUserDefaults()
-            loadFromUserDefaults()
+            makeFilterFromSearchUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
         }else{
@@ -729,7 +701,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if shouldSetToUserDefaults{
                 setSearchTextToUserDefaults()
             }
-            loadFromUserDefaults()
+            makeFilterFromSearchUserDefaults()
             reloadRecipeList()
             recipeTableView.reloadData()
 

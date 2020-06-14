@@ -34,24 +34,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var isItemsMoving = false
     var needsLayout = false
 
-    var albumFilterStar0 = true
-    var albumFilterStar1 = true
-    var albumFilterStar2 = true
-    var albumFilterStar3 = true
-    var albumFilterLong = true
-    var albumFilterShort = true
-    var albumFilterHot = true
-    var albumFilterStyleNone = true
-    var albumFilterBuild = true
-    var albumFilterStir = true
-    var albumFilterShake = true
-    var albumFilterBlend = true
-    var albumFilterOthers = true
-    var albumFilterNonAlcohol = true
-    var albumFilterWeak = true
-    var albumFilterMedium = true
-    var albumFilterStrong = true
-    var albumFilterStrengthNone = true
+    var albumFilterStar: [Int] = []
+    var albumFilterStyle: [Int] = []
+    var albumFilterMethod: [Int] = []
+    var albumFilterStrength: [Int] = []
 
     let interactor = Interactor()
 
@@ -124,12 +110,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                         nameYomi: recipe.recipeNameYomi,
                         katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
                         shortageNum: recipe.shortageNum,
-                        favorites: recipe.favorites,
                         lastViewDate: recipe.lastViewDate,
-                        madeNum: recipe.madeNum,
-                        method: recipe.method,
+                        favorites: recipe.favorites,
                         style: recipe.style,
+                        method: recipe.method,
                         strength: recipe.strength,
+                        madeNum: recipe.madeNum,
                         imageFileName: recipe.imageFileName
                     ), at: i)
                     break
@@ -142,12 +128,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                     nameYomi: recipe.recipeNameYomi,
                     katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
                     shortageNum: recipe.shortageNum,
-                    favorites: recipe.favorites,
                     lastViewDate: recipe.lastViewDate,
-                    madeNum: recipe.madeNum,
-                    method: recipe.method,
+                    favorites: recipe.favorites,
                     style: recipe.style,
+                    method: recipe.method,
                     strength: recipe.strength,
+                    madeNum: recipe.madeNum,
                     imageFileName: recipe.imageFileName
                 ))
             }
@@ -161,47 +147,11 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     private func setupVC(){
-        loadSearchUserDefaults()
-        setFilterImageState()
+        makeFilterFromSearchUserDefaults()
         filterRecipeBasicList()
         collectionView.reloadData()
         updateNavigationBar()
         setCollectionBackgroundView()
-    }
-    
-    private func updateNavigationBar(){
-        self.navigationItem.title = "アルバム(" + String(filteredRecipeBasicList.count) + "/" + String(recipeBasicList.count) + ")"
-        if recipeBasicList.count == 0{
-            self.recipeNameBarButton.isEnabled = false
-            self.albumFilterBarButton.isEnabled = false
-            self.orderBarButton.isEnabled = false
-        }else{
-            self.recipeNameBarButton.isEnabled = true
-            self.albumFilterBarButton.isEnabled = true
-            self.orderBarButton.isEnabled = true
-        }
-    }
-    
-    private func loadSearchUserDefaults(){
-        let defaults = UserDefaults.standard
-        albumFilterStar0 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar0Key)
-        albumFilterStar1 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar1Key)
-        albumFilterStar2 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar2Key)
-        albumFilterStar3 = defaults.bool(forKey: GlobalConstants.AlbumFilterStar3Key)
-        albumFilterLong = defaults.bool(forKey: GlobalConstants.AlbumFilterLongKey)
-        albumFilterShort = defaults.bool(forKey: GlobalConstants.AlbumFilterShortKey)
-        albumFilterHot = defaults.bool(forKey: GlobalConstants.AlbumFilterHotKey)
-        albumFilterStyleNone = defaults.bool(forKey: GlobalConstants.AlbumFilterStyleNoneKey)
-        albumFilterBuild = defaults.bool(forKey: GlobalConstants.AlbumFilterBuildKey)
-        albumFilterStir = defaults.bool(forKey: GlobalConstants.AlbumFilterStirKey)
-        albumFilterShake = defaults.bool(forKey: GlobalConstants.AlbumFilterShakeKey)
-        albumFilterBlend = defaults.bool(forKey: GlobalConstants.AlbumFilterBlendKey)
-        albumFilterOthers = defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey)
-        albumFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.AlbumFilterNonAlcoholKey)
-        albumFilterWeak = defaults.bool(forKey: GlobalConstants.AlbumFilterWeakKey)
-        albumFilterMedium = defaults.bool(forKey: GlobalConstants.AlbumFilterMediumKey)
-        albumFilterStrong = defaults.bool(forKey: GlobalConstants.AlbumFilterStrongKey)
-        albumFilterStrengthNone = defaults.bool(forKey: GlobalConstants.AlbumFilterStrengthNoneKey)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -266,12 +216,12 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 nameYomi: recipe.recipeNameYomi,
                 katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
                 shortageNum: recipe.shortageNum,
-                favorites: recipe.favorites,
                 lastViewDate: recipe.lastViewDate,
-                madeNum: recipe.madeNum,
-                method: recipe.method,
+                favorites: recipe.favorites,
                 style: recipe.style,
+                method: recipe.method,
                 strength: recipe.strength,
+                madeNum: recipe.madeNum,
                 imageFileName: recipe.imageFileName
             ))
         }
@@ -299,11 +249,47 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         }
     }
     
-    private func setFilterImageState(){
-        if albumFilterStar0 && albumFilterStar1 && albumFilterStar2 && albumFilterStar3 &&
-            albumFilterLong && albumFilterShort && albumFilterHot && albumFilterStyleNone &&
-            albumFilterBuild && albumFilterStir && albumFilterShake && albumFilterBlend && albumFilterOthers &&
-            albumFilterNonAlcohol && albumFilterWeak && albumFilterMedium && albumFilterStrong && albumFilterStrengthNone{
+    private func updateNavigationBar(){
+        self.navigationItem.title = "アルバム(" + String(filteredRecipeBasicList.count) + "/" + String(recipeBasicList.count) + ")"
+        if recipeBasicList.count == 0{
+            self.recipeNameBarButton.isEnabled = false
+            self.albumFilterBarButton.isEnabled = false
+            self.orderBarButton.isEnabled = false
+        }else{
+            self.recipeNameBarButton.isEnabled = true
+            self.albumFilterBarButton.isEnabled = true
+            self.orderBarButton.isEnabled = true
+        }
+    }
+    
+    private func makeFilterFromSearchUserDefaults(){
+        albumFilterStar.removeAll()
+        albumFilterStyle.removeAll()
+        albumFilterMethod.removeAll()
+        albumFilterStrength.removeAll()
+
+        let defaults = UserDefaults.standard
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStar0Key) { albumFilterStar.append(0) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStar1Key) { albumFilterStar.append(1) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStar2Key) { albumFilterStar.append(2) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStar3Key) { albumFilterStar.append(3) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterLongKey) { albumFilterStyle.append(0) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterShortKey) { albumFilterStyle.append(1) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterHotKey) { albumFilterStyle.append(2) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStyleNoneKey) { albumFilterStyle.append(3) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterBuildKey) { albumFilterMethod.append(0) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStirKey) { albumFilterMethod.append(1) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterShakeKey) { albumFilterMethod.append(2) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterBlendKey) { albumFilterMethod.append(3) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterOthersKey) { albumFilterMethod.append(4) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterNonAlcoholKey) { albumFilterStrength.append(0) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterWeakKey) { albumFilterStrength.append(1) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterMediumKey) { albumFilterStrength.append(2) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStrongKey) { albumFilterStrength.append(3) }
+        if defaults.bool(forKey: GlobalConstants.AlbumFilterStrengthNoneKey) { albumFilterStrength.append(4) }
+        
+        if ([0,1,2,3].allSatisfy(albumFilterStar.contains) && [0,1,2,3].allSatisfy(albumFilterStyle.contains) &&
+            [0,1,2,3,4].allSatisfy(albumFilterMethod.contains) && [0,1,2,3,4].allSatisfy(albumFilterStrength.contains)) {
             albumFilterBarButton.image = UIImage(named: "navigation-album-filter-off")
         }else{
             albumFilterBarButton.image = UIImage(named: "navigation-album-filter-on")
@@ -312,36 +298,10 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     
     private func filterRecipeBasicList(){
         filteredRecipeBasicList.removeAll()
-        
-        var albumFilterStar: [Int] = []
-        var albumFilterStyle: [Int] = []
-        var albumFilterMethod: [Int] = []
-        var albumFilterStrength: [Int] = []
-
-        if albumFilterStar0 { albumFilterStar.append(0) }
-        if albumFilterStar1 { albumFilterStar.append(1) }
-        if albumFilterStar2 { albumFilterStar.append(2) }
-        if albumFilterStar3 { albumFilterStar.append(3) }
-        if albumFilterLong { albumFilterStyle.append(0) }
-        if albumFilterShort { albumFilterStyle.append(1) }
-        if albumFilterHot { albumFilterStyle.append(2) }
-        if albumFilterStyleNone { albumFilterStyle.append(3) }
-        if albumFilterBuild { albumFilterMethod.append(0) }
-        if albumFilterStir { albumFilterMethod.append(1) }
-        if albumFilterShake { albumFilterMethod.append(2) }
-        if albumFilterBlend { albumFilterMethod.append(3) }
-        if albumFilterOthers { albumFilterMethod.append(4) }
-        if albumFilterNonAlcohol { albumFilterStrength.append(0) }
-        if albumFilterWeak { albumFilterStrength.append(1) }
-        if albumFilterMedium { albumFilterStrength.append(2) }
-        if albumFilterStrong { albumFilterStrength.append(3) }
-        if albumFilterStrengthNone { albumFilterStrength.append(4) }
 
         for recipeBasic in recipeBasicList {
-            if albumFilterStar.contains(recipeBasic.favorites) &&
-                albumFilterStyle.contains(recipeBasic.style) &&
-                albumFilterMethod.contains(recipeBasic.method) &&
-                albumFilterStrength.contains(recipeBasic.strength){
+            if albumFilterStar.contains(recipeBasic.favorites) && albumFilterStyle.contains(recipeBasic.style) &&
+                albumFilterMethod.contains(recipeBasic.method) && albumFilterStrength.contains(recipeBasic.strength){
                 filteredRecipeBasicList.append(recipeBasic)
             }
         }

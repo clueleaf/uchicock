@@ -30,8 +30,7 @@ class LaunchViewController: UIViewController {
         UchicockStyle.loadTheme()
 
         let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0])
-        defaults.register(defaults: [GlobalConstants.FirstLaunchKey: true])
+        defaults.register(defaults: [GlobalConstants.SaveImageSizeKey : 0, GlobalConstants.FirstLaunchKey: true])
         if defaults.bool(forKey: GlobalConstants.FirstLaunchKey) {
             prepareMessage.alpha = 0.0
             shouldShowIntroduction = true
@@ -52,7 +51,7 @@ class LaunchViewController: UIViewController {
         }
     }
     
-    // MARK: Processing
+    // MARK: - Processing
     private func prepareToShowRecipeList(){
         prepareMessage.alpha = widgetUrl == nil ? 1.0 : 0.0
 

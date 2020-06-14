@@ -730,7 +730,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                         alertView.overrideUserInterfaceStyle = .dark
                     }
-                    let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
                     cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
                     alertView.addAction(cancelAction)
                     let settingAction = UIAlertAction(title: "設定を開く", style: .default){action in

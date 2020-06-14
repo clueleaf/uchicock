@@ -43,9 +43,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var scrollBeginingYPoint: CGFloat = 0.0
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    var hasIngredientAtAll = true
     var textFieldHasSearchResult = false
-    var isTyping = false
     var isReminderMode = false
     var shouldShowReminderGuide = false
 
@@ -136,7 +134,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if traitCollection.verticalSizeClass == .compact && isTyping {
+        if traitCollection.verticalSizeClass == .compact && searchTextField.isFirstResponder {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }else{
             self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -281,8 +279,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func updateFlagAndSetTextFieldcolor(){
-        hasIngredientAtAll = ingredientList!.count > 0
-
         let searchText = searchTextField.text!
         let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
         if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
@@ -314,7 +310,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 noDataLabel.textColor = UchicockStyle.labelTextColorLight
                 noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
                 noDataLabel.textAlignment = .center
-                if hasIngredientAtAll{
+                if ingredientList == nil || ingredientList!.count == 0{
+                    noDataLabel.text = "材料はありません"
+                }else{
                     if textFieldHasSearchResult{
                         if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
                             noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
@@ -324,8 +322,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     }else{
                         noDataLabel.text = "検索文字列にあてはまる材料はありません"
                     }
-                }else{
-                    noDataLabel.text = "材料はありません"
                 }
                 self.tableView.backgroundView?.addSubview(noDataLabel)
             }
@@ -427,14 +423,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         if tableView.contentOffset.y > 0{
             tableView.setContentOffset(tableView.contentOffset, animated: false)
         }
-        self.isTyping = true
         if traitCollection.verticalSizeClass == .compact{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.isTyping = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         textField.text = textField.text!.withoutEndsSpace()
     }

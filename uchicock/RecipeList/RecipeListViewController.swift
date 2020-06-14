@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching , UIViewControllerTransitioningDelegate, UITextFieldDelegate, ScrollableToTop {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching, UIViewControllerTransitioningDelegate, UITextFieldDelegate, ScrollableToTop {
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!
@@ -28,44 +28,26 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var containerSeparatorHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableView: UITableView!
-    var realm: Realm? = nil
     let selectedCellBackgroundView = UIView()
+
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
-    var recipeBasicListForFilterModal = Array<RecipeBasic>()
 
     var selectedRecipeId: String? = nil
-    var recipeTableOffset: CGFloat? = nil
-    var bookmarkTableOffset: CGFloat? = nil
-
+    var recipeTableViewOffset: CGFloat? = nil
+    var bookmarkTableViewOffset: CGFloat? = nil
     var scrollBeginningYPoint: CGFloat = 0.0
 
-    var isTyping = false
-    var hasRecipeAtAll = true
     var textFieldHasSearchResult = false
     var isBookmarkMode = false
     var shouldShowBookmarkGuide = false
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
-    var recipeFilterStar0 = true
-    var recipeFilterStar1 = true
-    var recipeFilterStar2 = true
-    var recipeFilterStar3 = true
-    var recipeFilterLong = true
-    var recipeFilterShort = true
-    var recipeFilterHot = true
-    var recipeFilterStyleNone = true
-    var recipeFilterBuild = true
-    var recipeFilterStir = true
-    var recipeFilterShake = true
-    var recipeFilterBlend = true
-    var recipeFilterOthers = true
-    var recipeFilterNonAlcohol = true
-    var recipeFilterWeak = true
-    var recipeFilterMedium = true
-    var recipeFilterStrong = true
-    var recipeFilterStrengthNone = true
+    var recipeFilterStar: [Int] = []
+    var recipeFilterStyle: [Int] = []
+    var recipeFilterMethod: [Int] = []
+    var recipeFilterStrength: [Int] = []
 
     let interactor = Interactor()
 
@@ -77,9 +59,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        realm = try! Realm()
+        registerUserDefaults()
         requestReview()
         
+        makeFilterFromSearchUserDefaults()
+        setSearchConditionButtonTitle()
+
         searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
         searchTextField.clipsToBounds = true
@@ -93,23 +78,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func requestReview(){
         let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.FirstRequestReviewKey : false, GlobalConstants.LaunchCountAfterReviewKey : 0])
+        defaults.register(defaults: [GlobalConstants.RequestReviewKey : false, GlobalConstants.LaunchCountKey : 0])
 
-        let hasReviewed = defaults.bool(forKey: GlobalConstants.FirstRequestReviewKey)
-        let launchCountAfterReview = defaults.integer(forKey: GlobalConstants.LaunchCountAfterReviewKey)
+        let hasReviewed = defaults.bool(forKey: GlobalConstants.RequestReviewKey)
+        guard hasReviewed == false else { return }
+        let launchCount = defaults.integer(forKey: GlobalConstants.LaunchCountKey)
 
-        if let launchDateAfterReview = defaults.object(forKey: GlobalConstants.LaunchDateAfterReviewKey) as? NSDate {
-            if hasReviewed == false{
-                defaults.set(launchCountAfterReview + 1, forKey: GlobalConstants.LaunchCountAfterReviewKey)
-
-                let daySpan = NSDate().timeIntervalSince(launchDateAfterReview as Date) / 60 / 60 / 24
-                if daySpan > 10 && launchCountAfterReview > 7{
-                    defaults.set(true, forKey: GlobalConstants.FirstRequestReviewKey)
-                    SKStoreReviewController.requestReview()
-                }
+        if let launchDate = defaults.object(forKey: GlobalConstants.LaunchDateKey) as? NSDate {
+            defaults.set(launchCount + 1, forKey: GlobalConstants.LaunchCountKey)
+            let daySpan = NSDate().timeIntervalSince(launchDate as Date) / 60 / 60 / 24
+            if daySpan > 10 && launchCount > 7{
+                defaults.set(true, forKey: GlobalConstants.RequestReviewKey)
+                SKStoreReviewController.requestReview()
             }
-        } else {
-            defaults.set(NSDate(), forKey: GlobalConstants.LaunchDateAfterReviewKey)
+        }else{
+            defaults.set(NSDate(), forKey: GlobalConstants.LaunchDateKey)
         }
     }
     
@@ -119,13 +102,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
 
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
-        
         searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         searchTextField.adjustClearButtonColor()
         searchTextField.setSearchIcon()
         
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
 
         searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -141,8 +123,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         
-        setTableViewData()
-        
+        let realm = try! Realm()
+        recipeList = realm.objects(Recipe.self)
+        reloadRecipeBasicList()
+        updateSearchResultFlag()
+        setSearchTextFieldAlertStyle()
+        tableView.reloadData()
+
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! {
                 if recipeBasicList.count > indexPath.row {
@@ -157,56 +144,104 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private func setTableViewData(){
-        loadSearchUserDefaults()
-        setSearchConditionButtonTitle()
-        reloadRecipeList()
-        tableView.reloadData()
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if traitCollection.verticalSizeClass == .compact && searchTextField.isFirstResponder {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }else{
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
-    private func loadSearchUserDefaults(){
-        let defaults = UserDefaults.standard
-        defaults.register(defaults: [GlobalConstants.RecipeSortPrimaryKey : 1])
-        defaults.register(defaults: [GlobalConstants.RecipeSortSecondaryKey : 0])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar0Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar1Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar2Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStar3Key : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterLongKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterShortKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterHotKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStyleNoneKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterBuildKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStirKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterShakeKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterBlendKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterOthersKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterNonAlcoholKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterWeakKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterMediumKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStrongKey : true])
-        defaults.register(defaults: [GlobalConstants.RecipeFilterStrengthNoneKey : true])
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setTableBackgroundView()
+        super.viewDidAppear(animated)
         
+        if let path = tableView.indexPathForSelectedRow{
+            tableView.deselectRow(at: path, animated: true)
+        }
+        selectedRecipeId = nil
+                
+        tableView.flashScrollIndicators()
+
+        if shouldShowBookmarkGuide{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                MessageHUD.show("←レシピに戻る", for: 2.0, withCheckmark: false, isCenter: false)
+            }
+            shouldShowBookmarkGuide = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - ScrollableToTop
+    func scrollToTop() {
+        tableView?.setContentOffset(CGPoint.zero, animated: true)
+    }
+    
+    // MARK: - Set Up
+    private func registerUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.register(defaults: [
+            GlobalConstants.RecipeSortPrimaryKey : 1,
+            GlobalConstants.RecipeSortSecondaryKey : 0,
+            GlobalConstants.RecipeFilterStar0Key : true,
+            GlobalConstants.RecipeFilterStar1Key : true,
+            GlobalConstants.RecipeFilterStar2Key : true,
+            GlobalConstants.RecipeFilterStar3Key : true,
+            GlobalConstants.RecipeFilterLongKey : true,
+            GlobalConstants.RecipeFilterShortKey : true,
+            GlobalConstants.RecipeFilterHotKey : true,
+            GlobalConstants.RecipeFilterStyleNoneKey : true,
+            GlobalConstants.RecipeFilterBuildKey : true,
+            GlobalConstants.RecipeFilterStirKey : true,
+            GlobalConstants.RecipeFilterShakeKey : true,
+            GlobalConstants.RecipeFilterBlendKey : true,
+            GlobalConstants.RecipeFilterOthersKey : true,
+            GlobalConstants.RecipeFilterNonAlcoholKey : true,
+            GlobalConstants.RecipeFilterWeakKey : true,
+            GlobalConstants.RecipeFilterMediumKey : true,
+            GlobalConstants.RecipeFilterStrongKey : true,
+            GlobalConstants.RecipeFilterStrengthNoneKey : true
+        ])
+    }
+    
+    private func makeFilterFromSearchUserDefaults(){
+        recipeFilterStar.removeAll()
+        recipeFilterStyle.removeAll()
+        recipeFilterMethod.removeAll()
+        recipeFilterStrength.removeAll()
+
+        let defaults = UserDefaults.standard
         recipeSortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
         recipeSortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
-        recipeFilterStar0 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key)
-        recipeFilterStar1 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar1Key)
-        recipeFilterStar2 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar2Key)
-        recipeFilterStar3 = defaults.bool(forKey: GlobalConstants.RecipeFilterStar3Key)
-        recipeFilterLong = defaults.bool(forKey: GlobalConstants.RecipeFilterLongKey)
-        recipeFilterShort = defaults.bool(forKey: GlobalConstants.RecipeFilterShortKey)
-        recipeFilterHot = defaults.bool(forKey: GlobalConstants.RecipeFilterHotKey)
-        recipeFilterStyleNone = defaults.bool(forKey: GlobalConstants.RecipeFilterStyleNoneKey)
-        recipeFilterBuild = defaults.bool(forKey: GlobalConstants.RecipeFilterBuildKey)
-        recipeFilterStir = defaults.bool(forKey: GlobalConstants.RecipeFilterStirKey)
-        recipeFilterShake = defaults.bool(forKey: GlobalConstants.RecipeFilterShakeKey)
-        recipeFilterBlend = defaults.bool(forKey: GlobalConstants.RecipeFilterBlendKey)
-        recipeFilterOthers = defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey)
-        recipeFilterNonAlcohol = defaults.bool(forKey: GlobalConstants.RecipeFilterNonAlcoholKey)
-        recipeFilterWeak = defaults.bool(forKey: GlobalConstants.RecipeFilterWeakKey)
-        recipeFilterMedium = defaults.bool(forKey: GlobalConstants.RecipeFilterMediumKey)
-        recipeFilterStrong = defaults.bool(forKey: GlobalConstants.RecipeFilterStrongKey)
-        recipeFilterStrengthNone = defaults.bool(forKey: GlobalConstants.RecipeFilterStrengthNoneKey)
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key) { recipeFilterStar.append(0) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStar1Key) { recipeFilterStar.append(1) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStar2Key) { recipeFilterStar.append(2) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStar3Key) { recipeFilterStar.append(3) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterLongKey) { recipeFilterStyle.append(0) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterShortKey) { recipeFilterStyle.append(1) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterHotKey) { recipeFilterStyle.append(2) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStyleNoneKey) { recipeFilterStyle.append(3) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterBuildKey) { recipeFilterMethod.append(0) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStirKey) { recipeFilterMethod.append(1) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterShakeKey) { recipeFilterMethod.append(2) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterBlendKey) { recipeFilterMethod.append(3) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterOthersKey) { recipeFilterMethod.append(4) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterNonAlcoholKey) { recipeFilterStrength.append(0) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterWeakKey) { recipeFilterStrength.append(1) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterMediumKey) { recipeFilterStrength.append(2) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStrongKey) { recipeFilterStrength.append(3) }
+        if defaults.bool(forKey: GlobalConstants.RecipeFilterStrengthNoneKey) { recipeFilterStrength.append(4) }
     }
     
     private func setSearchConditionButtonTitle(){
@@ -244,122 +279,41 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        if recipeFilterStar0 && recipeFilterStar1 && recipeFilterStar2 && recipeFilterStar3 &&
-            recipeFilterLong && recipeFilterShort && recipeFilterHot && recipeFilterStyleNone &&
-            recipeFilterBuild && recipeFilterStir && recipeFilterShake && recipeFilterBlend && recipeFilterOthers &&
-            recipeFilterNonAlcohol && recipeFilterWeak && recipeFilterMedium && recipeFilterStrong && recipeFilterStrengthNone{
-        }else{
+        if ([0,1,2,3].allSatisfy(recipeFilterStar.contains) && [0,1,2,3].allSatisfy(recipeFilterStyle.contains) &&
+            [0,1,2,3,4].allSatisfy(recipeFilterMethod.contains) && [0,1,2,3,4].allSatisfy(recipeFilterStrength.contains))
+            == false {
             conditionText += "、絞り込み有"
         }
-
+        
         UIView.performWithoutAnimation {
             searchConditionModifyButton.setTitle(conditionText, for: .normal)
             searchConditionModifyButton.layoutIfNeeded()
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if traitCollection.verticalSizeClass == .compact && isTyping {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }else{
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setTableBackgroundView() // 画面リサイズ時や実行端末のサイズがStoryboardsと異なる時、EmptyDataの表示位置がずれないようにするために必要
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        setTableBackgroundView()
-        super.viewDidAppear(animated)
-        
-        if let path = tableView.indexPathForSelectedRow{
-            tableView.deselectRow(at: path, animated: true)
-        }
-        selectedRecipeId = nil
-                
-        tableView.flashScrollIndicators()
-
-        if shouldShowBookmarkGuide{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                MessageHUD.show("←レシピに戻る", for: 2.0, withCheckmark: false, isCenter: false)
-            }
-            shouldShowBookmarkGuide = false
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    func scrollToTop() {
-        tableView?.setContentOffset(CGPoint.zero, animated: true)
-    }
-    
-    // MARK: - Manage Data
-    private func deleteRecipe(id: String) {
-        let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: id)!
-        
-        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-        for ri in recipe.recipeIngredients{
-            let recipeIngredient = realm!.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
-            deletingRecipeIngredientList.append(recipeIngredient)
-        }
-        
-        ImageUtil.remove(imageFileName: recipe.imageFileName)
-        
-        try! realm!.write{
-            for ri in deletingRecipeIngredientList{
-                let ingredient = realm!.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
-                    if ingredient.recipeIngredients[i].id == ri.id{
-                        ingredient.recipeIngredients.remove(at: i)
-                    }
-                }
-            }
-            for ri in deletingRecipeIngredientList{
-                realm!.delete(ri)
-            }
-            realm!.delete(recipe)
-        }
-    }
-    
-    private func reloadRecipeList(){
-        recipeList = realm!.objects(Recipe.self)
-        reloadRecipeBasicList()
-    }
-    
     private func reloadRecipeBasicList(){
         if isBookmarkMode{
             recipeBasicList.removeAll()
-            
             for recipe in recipeList! {
                 if recipe.bookmarkDate != nil{
                     recipeBasicList.append(RecipeBasic(
                         id: recipe.id,
                         name: recipe.recipeName,
                         nameYomi: recipe.recipeNameYomi,
-                        katakanaLowercasedNameForSearch:
-                        recipe.katakanaLowercasedNameForSearch,
+                        katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                        bookmarkDate: recipe.bookmarkDate,
                         shortageNum: recipe.shortageNum,
                         shortageIngredientName: recipe.shortageIngredientName,
-                        favorites: recipe.favorites,
                         lastViewDate: recipe.lastViewDate,
-                        madeNum: recipe.madeNum,
-                        method: recipe.method,
+                        favorites: recipe.favorites,
                         style: recipe.style,
+                        method: recipe.method,
                         strength: recipe.strength,
-                        imageFileName: recipe.imageFileName,
-                        bookmarkDate: recipe.bookmarkDate
+                        madeNum: recipe.madeNum,
+                        imageFileName: recipe.imageFileName
                     ))
                 }
             }
-            
             recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
@@ -367,58 +321,29 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             sortRecipeBasicList()
             self.navigationItem.title = "レシピ(" + String(recipeBasicList.count) + "/" + String(recipeList!.count) + ")"
         }
-        
-        setTableBackgroundView()
     }
 
     private func createRecipeBasicList(){
         recipeBasicList.removeAll()
         
-        var recipeFilterStar: [Int] = []
-        var recipeFilterStyle: [Int] = []
-        var recipeFilterMethod: [Int] = []
-        var recipeFilterStrength: [Int] = []
-
-        if recipeFilterStar0 { recipeFilterStar.append(0) }
-        if recipeFilterStar1 { recipeFilterStar.append(1) }
-        if recipeFilterStar2 { recipeFilterStar.append(2) }
-        if recipeFilterStar3 { recipeFilterStar.append(3) }
-        if recipeFilterLong { recipeFilterStyle.append(0) }
-        if recipeFilterShort { recipeFilterStyle.append(1) }
-        if recipeFilterHot { recipeFilterStyle.append(2) }
-        if recipeFilterStyleNone { recipeFilterStyle.append(3) }
-        if recipeFilterBuild { recipeFilterMethod.append(0) }
-        if recipeFilterStir { recipeFilterMethod.append(1) }
-        if recipeFilterShake { recipeFilterMethod.append(2) }
-        if recipeFilterBlend { recipeFilterMethod.append(3) }
-        if recipeFilterOthers { recipeFilterMethod.append(4) }
-        if recipeFilterNonAlcohol { recipeFilterStrength.append(0) }
-        if recipeFilterWeak { recipeFilterStrength.append(1) }
-        if recipeFilterMedium { recipeFilterStrength.append(2) }
-        if recipeFilterStrong { recipeFilterStrength.append(3) }
-        if recipeFilterStrengthNone { recipeFilterStrength.append(4) }
-
         for recipe in recipeList! {
-            if recipeFilterStar.contains(recipe.favorites) &&
-                recipeFilterStyle.contains(recipe.style) &&
-                recipeFilterMethod.contains(recipe.method) &&
-                recipeFilterStrength.contains(recipe.strength){
+            if recipeFilterStar.contains(recipe.favorites) && recipeFilterStyle.contains(recipe.style) &&
+                recipeFilterMethod.contains(recipe.method) && recipeFilterStrength.contains(recipe.strength){
                 recipeBasicList.append(RecipeBasic(
                     id: recipe.id,
                     name: recipe.recipeName,
                     nameYomi: recipe.recipeNameYomi,
                     katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    bookmarkDate: recipe.bookmarkDate,
                     shortageNum: recipe.shortageNum,
-                    shortageIngredientName:
-                    recipe.shortageIngredientName,
-                    favorites: recipe.favorites,
+                    shortageIngredientName: recipe.shortageIngredientName,
                     lastViewDate: recipe.lastViewDate,
-                    madeNum: recipe.madeNum,
-                    method: recipe.method,
+                    favorites: recipe.favorites,
                     style: recipe.style,
+                    method: recipe.method,
                     strength: recipe.strength,
-                    imageFileName: recipe.imageFileName,
-                    bookmarkDate: recipe.bookmarkDate
+                    madeNum: recipe.madeNum,
+                    imageFileName: recipe.imageFileName
                 ))
             }
         }
@@ -431,23 +356,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 ($0.name.contains(searchText) == false)
             }
         }
-        
-        updateFlagsAndSetTextFieldColor()
-    }
-    
-    private func updateFlagsAndSetTextFieldColor(){
-        hasRecipeAtAll = recipeList!.count > 0
-
-        let searchText = searchTextField.text!
-        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-            let searchedRecipe = realm!.objects(Recipe.self).filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
-            textFieldHasSearchResult = searchedRecipe.count > 0
-        }else{
-            textFieldHasSearchResult = true
-        }
-
-        setTextFieldColor(textField: searchTextField)
     }
     
     private func sortRecipeBasicList(){
@@ -664,46 +572,98 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    private func setTableBackgroundView(){
-        if recipeBasicList.count == 0{
-            tableView.backgroundView = UIView()
-            tableView.isScrollEnabled = false
-            
-            if isBookmarkMode{
-                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                noDataLabel.numberOfLines = 0
-                noDataLabel.textColor = UchicockStyle.labelTextColorLight
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-                noDataLabel.textAlignment = .center
-                noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
-                tableView.backgroundView?.addSubview(noDataLabel)
-            }else{
-                let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 120))
-                noDataLabel.numberOfLines = 0
-                noDataLabel.textColor = UchicockStyle.labelTextColorLight
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-                noDataLabel.textAlignment = .center
-                if hasRecipeAtAll{
-                    if textFieldHasSearchResult{
-                        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
-                            noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
-                        }else{
-                            noDataLabel.text = "入力したレシピ名のレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                        }
-                    }else{
-                        noDataLabel.text = "検索文字列にあてはまるレシピはありません"
-                    }
-                }else{
-                    noDataLabel.text = "レシピはありません"
-                }
-                tableView.backgroundView?.addSubview(noDataLabel)
-            }
+    private func updateSearchResultFlag(){
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+            let realm = try! Realm()
+            let searchedRecipe = realm.objects(Recipe.self)
+                .filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
+            textFieldHasSearchResult = searchedRecipe.count > 0
         }else{
-            tableView.backgroundView = nil
-            tableView.isScrollEnabled = true
+            textFieldHasSearchResult = true
         }
     }
+    
+    private func setSearchTextFieldAlertStyle(){
+        if textFieldHasSearchResult == false {
+            searchTextField.layer.borderWidth = 1
+            searchTextField.layer.borderColor = UchicockStyle.alertColor.cgColor
+            searchTextField.textColor = UchicockStyle.alertColor
+        }else{
+            searchTextField.layer.borderWidth = 0
+            searchTextField.layer.borderColor = UIColor.clear.cgColor
+            searchTextField.textColor = UchicockStyle.labelTextColor
+        }
+    }
+    
+    private func setTableBackgroundView(){
+        guard recipeBasicList.count == 0 else {
+            tableView.backgroundView = nil
+            tableView.isScrollEnabled = true
+            return
+        }
 
+        tableView.backgroundView = UIView()
+        tableView.isScrollEnabled = false
+            
+        let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        noDataLabel.numberOfLines = 0
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
+
+        if isBookmarkMode{
+            noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
+        }else{
+            noDataLabel.frame.size.height = 120
+            
+            if recipeList == nil || recipeList!.count == 0{
+                noDataLabel.text = "レシピはありません"
+            }else{
+                if textFieldHasSearchResult{
+                    if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
+                        noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+                    }else{
+                        noDataLabel.text = "入力したレシピ名のレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
+                    }
+                }else{
+                    noDataLabel.text = "検索文字列にあてはまるレシピはありません"
+                }
+            }
+        }
+        tableView.backgroundView?.addSubview(noDataLabel)
+    }
+
+    //todo
+    private func deleteRecipe(id: String) {
+        let realm = try! Realm()
+        let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: id)!
+        
+        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+        for ri in recipe.recipeIngredients{
+            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
+            deletingRecipeIngredientList.append(recipeIngredient)
+        }
+        
+        ImageUtil.remove(imageFileName: recipe.imageFileName)
+        
+        try! realm.write{
+            for ri in deletingRecipeIngredientList{
+                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count{
+                    if ingredient.recipeIngredients[i].id == ri.id{
+                        ingredient.recipeIngredients.remove(at: i)
+                    }
+                }
+            }
+            for ri in deletingRecipeIngredientList{
+                realm.delete(ri)
+            }
+            realm.delete(recipe)
+        }
+    }
+    
     // MARK: - UIScrollViewDelegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y >= 0{
@@ -724,14 +684,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if tableView.contentOffset.y > 0{
             tableView.setContentOffset(tableView.contentOffset, animated: false)
         }
-        self.isTyping = true
         if traitCollection.verticalSizeClass == .compact{
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.isTyping = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         textField.text = textField.text!.withoutEndsSpace()
     }
@@ -740,34 +698,28 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchTextField.resignFirstResponder()
         searchTextField.adjustClearButtonColor()
         reloadRecipeBasicList()
+        updateSearchResultFlag()
+        setSearchTextFieldAlertStyle()
+        setTableBackgroundView()
         tableView.reloadData()
-        setTextFieldColor(textField: searchTextField)
         return true
     }
 
     @objc func searchTextFieldDidChange(_ notification: Notification){
         searchTextField.adjustClearButtonColor()
         reloadRecipeBasicList()
+        updateSearchResultFlag()
+        setSearchTextFieldAlertStyle()
+        setTableBackgroundView()
         tableView.reloadData()
-        setTextFieldColor(textField: searchTextField)
-    }
-    
-    private func setTextFieldColor(textField: UITextField){
-        if textFieldHasSearchResult == false {
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UchicockStyle.alertColor.cgColor
-            textField.textColor = UchicockStyle.alertColor
-        }else{
-            textField.layer.borderWidth = 0
-            textField.layer.borderColor = UIColor.clear.cgColor
-            textField.textColor = UchicockStyle.labelTextColor
-        }
     }
     
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if recipeList == nil{
-            reloadRecipeList()
+        if recipeList == nil {
+            let realm = try! Realm()
+            recipeList = realm.objects(Recipe.self)
+            reloadRecipeBasicList()
         }
         return recipeBasicList.count
     }
@@ -788,7 +740,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return
                 }
                 
-                let recipe = self.realm!.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
+                let realm = try! Realm()
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: self.recipeBasicList[indexPath.row].id)!
                 self.selectedRecipeId = self.recipeBasicList[indexPath.row].id
                 editVC.recipe = recipe
                     
@@ -813,7 +766,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.deleteRecipe(id: self.recipeBasicList[indexPath.row].id)
                 self.recipeBasicList.remove(at: indexPath.row)
 
-                self.updateFlagsAndSetTextFieldColor()
+                self.updateSearchResultFlag()
+                self.setSearchTextFieldAlertStyle()
                 self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
                 self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
@@ -914,20 +868,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.setContentOffset(tableView.contentOffset, animated: false)
         isBookmarkMode.toggle()
         if isBookmarkMode{
-            recipeTableOffset = max(tableView.contentOffset.y, 0)
+            recipeTableViewOffset = max(tableView.contentOffset.y, 0)
         }else{
-            bookmarkTableOffset = max(tableView.contentOffset.y, 0)
+            bookmarkTableViewOffset = max(tableView.contentOffset.y, 0)
         }
         
         isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
         reloadRecipeBasicList()
-        
+        setTableBackgroundView()
+
         if isBookmarkMode{
-            if let offset = bookmarkTableOffset{
+            if let offset = bookmarkTableViewOffset{
                 tableView.contentOffset.y = offset
             }
         }else{
-            if let offset = recipeTableOffset{
+            if let offset = recipeTableViewOffset{
                 tableView.contentOffset.y = offset
             }
         }
@@ -968,27 +923,31 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.setTableViewData()
+            self.makeFilterFromSearchUserDefaults()
+            self.setSearchConditionButtonTitle()
+            self.reloadRecipeBasicList()
+            self.setTableBackgroundView()
+            self.tableView.reloadData()
         }
         vc.userDefaultsPrefix = "recipe-"
         
-        recipeBasicListForFilterModal.removeAll()
+        var recipeBasicListForFilterModal = Array<RecipeBasic>()
         for recipe in recipeList!{
             recipeBasicListForFilterModal.append(RecipeBasic(
                 id: recipe.id,
                 name: recipe.recipeName,
                 nameYomi: recipe.recipeNameYomi,
                 katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                bookmarkDate: recipe.bookmarkDate,
                 shortageNum: recipe.shortageNum,
                 shortageIngredientName: recipe.shortageIngredientName,
-                favorites: recipe.favorites,
                 lastViewDate: recipe.lastViewDate,
-                madeNum: recipe.madeNum,
-                method: recipe.method,
+                favorites: recipe.favorites,
                 style: recipe.style,
+                method: recipe.method,
                 strength: recipe.strength,
-                imageFileName: recipe.imageFileName,
-                bookmarkDate: recipe.bookmarkDate
+                madeNum: recipe.madeNum,
+                imageFileName: recipe.imageFileName
             ))
         }
         
@@ -1001,7 +960,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
 
-        vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal
+        vc.recipeBasicListForFilterModal = recipeBasicListForFilterModal
         searchTextField.resignFirstResponder()
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{

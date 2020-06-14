@@ -13,14 +13,14 @@ struct RecipeBasic{
     var name : String
     var nameYomi : String
     var katakanaLowercasedNameForSearch : String
+    var bookmarkDate : Date?
     var shortageNum : Int
     var shortageIngredientName: String?
-    var favorites: Int
     var lastViewDate : Date?
-    var madeNum : Int
-    var method : Int
+    var favorites: Int
     var style : Int
+    var method : Int
     var strength : Int
+    var madeNum : Int
     var imageFileName: String?
-    var bookmarkDate : Date?
 }

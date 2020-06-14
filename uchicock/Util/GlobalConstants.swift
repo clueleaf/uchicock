@@ -21,9 +21,9 @@ struct GlobalConstants{
     
     // MARK: - Launch Management Keys
     static let FirstLaunchKey = "firstLaunch"
-    static let FirstRequestReviewKey = "FirstRequestReview"
-    static let LaunchCountAfterReviewKey = "LaunchCountAfterReview"
-    static let LaunchDateAfterReviewKey = "LaunchDateAfterReview"
+    static let RequestReviewKey = "FirstRequestReview"
+    static let LaunchCountKey = "LaunchCountAfterReview"
+    static let LaunchDateKey = "LaunchDateAfterReview"
 
     // MARK: - Database Correction Keys
     static let Version22CorrectedKey = "corrected_v2.2"
