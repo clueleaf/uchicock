@@ -22,6 +22,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var filterScrollView: CustomScrollView!
     @IBOutlet weak var filterStackView: UIStackView!
+    @IBOutlet weak var filterStackViewWidthConstraint: NSLayoutConstraint!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statuBarStyle
@@ -39,6 +40,9 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         "CIPhotoEffectInstant",
         "CIPhotoEffectProcess",
         "CILinearToSRGBToneCurve",
+        "Dimming",
+        "Arpeggio",
+        "Traumerei",
         ]
     
     // MARK: - Lifecycle
@@ -51,6 +55,8 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         button.setTitleColor(UIColor.white, for: .normal)
 
         titleLabel.textColor = UIColor.white
+        
+        filterStackViewWidthConstraint.constant = CGFloat(106 * CIFilterNames.count)
         
         imageView.image = image
         smallCIImage = image.resizedCGImage(maxLongSide: 300)
@@ -186,6 +192,12 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         switch CIFilterNames[filterNumber]{
         case "Original":
             filteredImageData = originalImage
+        case "Dimming":
+            filteredImageData = applyDimmingFilter(ciImage: originalImage)
+        case "Traumerei":
+            filteredImageData = applyTraumereiFilter(ciImage: originalImage)
+        case "Arpeggio":
+            filteredImageData = applyArpeggioFilter(ciImage: originalImage)
         case "Nashville":
             filteredImageData = applyNashvilleFilter(foregroundImage: originalImage)
         case "Clarendon":
@@ -195,7 +207,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         case "Toaster":
             filteredImageData = applyToasterFilter(ciImage: originalImage)
         default:
-            let filter = CIFilter(name: "\(CIFilterNames[filterNumber])" )
+            let filter = CIFilter(name: "\(CIFilterNames[filterNumber])")
             if let fil = filter {
                 fil.setDefaults()
                 fil.setValue(originalImage, forKey: kCIInputImageKey)
@@ -226,18 +238,18 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         return foregroundImage
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
-                ])
+            ])
             .applyingFilter("CISepiaTone", parameters: [
                 "inputIntensity": 0.2,
-                ])
+            ])
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.2,
                 "inputBrightness": 0.05,
                 "inputContrast": 1.1,
-                ])
+            ])
             .applyingFilter("CILightenBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage2,
-                ])
+            ])
     }
     
     private func applyClarendonFilter(foregroundImage: CIImage) -> CIImage? {
@@ -245,12 +257,12 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         return foregroundImage
             .applyingFilter("CIOverlayBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
-                ])
+            ])
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.35,
                 "inputBrightness": 0.05,
                 "inputContrast": 1.1,
-                ])
+            ])
     }
     
     private func apply1977Filter(ciImage: CIImage) -> CIImage? {
@@ -261,21 +273,22 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 "inputSaturation": 1.3,
                 "inputBrightness": 0.1,
                 "inputContrast": 1.05,
-                ])
+            ])
             .applyingFilter("CIHueAdjust", parameters: [
                 "inputAngle": 0.3,
-                ])
+            ])
+        
         return filterImage
             .applyingFilter("CIScreenBlendMode", parameters: [
                 "inputBackgroundImage": backgroundImage,
-                ])
+            ])
             .applyingFilter("CIToneCurve", parameters: [
                 "inputPoint0": CIVector(x: 0, y: 0),
                 "inputPoint1": CIVector(x: 0.25, y: 0.20),
                 "inputPoint2": CIVector(x: 0.5, y: 0.5),
                 "inputPoint3": CIVector(x: 0.75, y: 0.80),
                 "inputPoint4": CIVector(x: 1, y: 1),
-                ])
+            ])
     }
     
     private func applyToasterFilter(ciImage: CIImage) -> CIImage? {
@@ -301,9 +314,123 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 "inputSaturation": 1.0,
                 "inputBrightness": 0.01,
                 "inputContrast": 1.1,
-                ])
+            ])
             .applyingFilter("CIScreenBlendMode", parameters: [
                 "inputBackgroundImage": circle!,
-                ])
+            ])
     }
+    
+    private func applyArpeggioFilter(ciImage: CIImage) -> CIImage? {
+        let width = ciImage.extent.width
+        let height = ciImage.extent.height
+        let centerWidth = width / 2.0
+        let centerHeight = height / 2.0
+        let radius0 = min(width, height) / 2.0 * 0.6
+        let radius1 = sqrt(width * width + height * height) / 2.0 * 0.95
+        let color0 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8)
+        let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius0,
+            "inputRadius1": radius1,
+            "inputColor0": color0,
+            "inputColor1": color1,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+        
+        let filter = CIFilter(name: "CIPhotoEffectTransfer")!
+        filter.setDefaults()
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        let newImage = filter.value(forKey: kCIOutputImageKey) as! CIImage
+
+        return newImage
+            .applyingFilter("CIColorControls", parameters: [
+                "inputSaturation": 1.25,
+                "inputBrightness": 0.05,
+                "inputContrast": 1.1,
+            ])
+            .applyingFilter("CISepiaTone", parameters: [
+                "inputIntensity": 0.2,
+            ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle1!,
+            ])
+    }
+    
+    private func applyDimmingFilter(ciImage: CIImage) -> CIImage? {
+        let width = ciImage.extent.width
+        let height = ciImage.extent.height
+        let centerWidth = width / 2.0
+        let centerHeight = height / 2.0
+        let radius0 = min(width, height) / 2.0 * 0.5
+        let radius1 = sqrt(width * width + height * height) / 2.0
+        let color0 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.05)
+        let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius0,
+            "inputRadius1": radius1,
+            "inputColor0": color0,
+            "inputColor1": color1,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+        
+        let backgroundImage = getColorImage(
+            red: 0.1, green: 0.25, blue: 0.52, alpha: 0.35, rect: ciImage.extent)
+
+        return ciImage
+            .applyingFilter("CIColorControls", parameters: [
+                "inputSaturation": 1.3,
+                "inputBrightness": 0.05,
+                "inputContrast": 1.2,
+            ])
+            .applyingFilter("CISepiaTone", parameters: [
+                "inputIntensity": 0.25,
+            ])
+            .applyingFilter("CILightenBlendMode", parameters: [
+                "inputBackgroundImage": backgroundImage,
+            ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle1!,
+            ])
+    }
+    
+    private func applyTraumereiFilter(ciImage: CIImage) -> CIImage? {
+        let width = ciImage.extent.width
+        let height = ciImage.extent.height
+        let centerWidth = width / 2.0
+        let centerHeight = height / 2.0
+        let radius0 = min(width, height) / 2.0 * 0.55
+        let radius1 = sqrt(width * width + height * height) / 2.0
+
+        let color0 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius0,
+            "inputRadius1": radius1,
+            "inputColor0": color0,
+            "inputColor1": color1,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+        
+        let backgroundImage = getColorImage(
+            red: 0.0, green: 0.31, blue: 0.63, alpha: 0.7, rect: ciImage.extent)
+
+        let filter = CIFilter(name: "CILinearToSRGBToneCurve")!
+        filter.setDefaults()
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        let newImage = filter.value(forKey: kCIOutputImageKey) as! CIImage
+
+        return newImage
+            .applyingFilter("CIColorControls", parameters: [
+                "inputSaturation": 1.25,
+                "inputBrightness": 0.05,
+                "inputContrast": 1.15,
+            ])
+            .applyingFilter("CILightenBlendMode", parameters: [
+                "inputBackgroundImage": backgroundImage,
+            ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle1!,
+            ])
+    }
+    
 }
