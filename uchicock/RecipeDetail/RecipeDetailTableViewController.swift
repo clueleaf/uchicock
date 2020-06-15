@@ -1620,11 +1620,9 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .leading, multiplier: 1, constant: 8)
-        let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .trailing, multiplier: 1, constant: -8)
-        let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
-        let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
     }
     
 }

@@ -568,20 +568,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.backgroundView?.addSubview(noDataLabel)
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
+        
         if isBookmarkMode{
-            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
-            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
-            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
-            let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
-            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+            let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
 
             noDataLabel.text = "ブックマークはありません\n\nレシピ画面のブックマークボタンから\n追加できます"
         }else{
-            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
-            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
             let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
             let heightConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 120)
-            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
+            NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
             
             if recipeList == nil || recipeList!.count == 0{
                 noDataLabel.text = "レシピはありません"

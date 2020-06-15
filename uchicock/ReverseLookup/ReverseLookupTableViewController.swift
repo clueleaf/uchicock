@@ -81,11 +81,18 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
+        hiddenLabel.numberOfLines = 1
         hiddenLabel.text = "Thank you for using うちカク!!!!"
-        hiddenLabel.frame = CGRect(x: 0, y: -180, width: 0, height: 20)
         hiddenLabel.textAlignment = .center
         recipeTableView.addSubview(hiddenLabel)
-        
+        hiddenLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let centerXConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .centerX, relatedBy: .equal, toItem: recipeTableView, attribute: .centerX, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .top, relatedBy: .equal, toItem: recipeTableView, attribute: .top, multiplier: 1, constant: -180)
+        let heightConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+
+        NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
+
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
 
@@ -193,11 +200,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }else if editingTextField == 2{
             ingredientTextField3.becomeFirstResponder()
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        hiddenLabel.frame = CGRect(x: 0, y: -180, width: recipeTableView.frame.width, height: 20)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -634,11 +636,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeTableView.backgroundView?.addSubview(noDataLabel)
         noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
-        let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
-        let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
 
         if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
             noDataLabel.text = "存在しない材料が指定されています"

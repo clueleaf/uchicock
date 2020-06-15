@@ -287,27 +287,22 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         tableView.backgroundView  = UIView()
         tableView.isScrollEnabled = false
 
-        if isReminderMode{
-            let noDataLabel  = UILabel()
-            noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
-            noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
-            self.tableView.backgroundView?.addSubview(noDataLabel)
-            noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        let noDataLabel  = UILabel()
+        noDataLabel.numberOfLines = 0
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
+        self.tableView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
-            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
-            let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
-            let bottomConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .bottom, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .bottom, multiplier: 1, constant: 0)
-            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
+
+        if isReminderMode{
+            noDataLabel.text = "購入リマインダーはありません\n\n材料画面の「購入リマインダー」から\n登録できます"
+
+            let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
         }else{
-            let noDataLabel  = UILabel()
-            noDataLabel.numberOfLines = 0
-            noDataLabel.textColor = UchicockStyle.labelTextColorLight
-            noDataLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            noDataLabel.textAlignment = .center
             if ingredientList == nil || ingredientList!.count == 0{
                 noDataLabel.text = "材料はありません"
             }else{
@@ -321,14 +316,10 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     noDataLabel.text = "検索文字列にあてはまる材料はありません"
                 }
             }
-            self.tableView.backgroundView?.addSubview(noDataLabel)
-            noDataLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            let leadingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .leading, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .leading, multiplier: 1, constant: 0)
-            let trailingConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .trailing, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .trailing, multiplier: 1, constant: 0)
             let topConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .top, relatedBy: .equal, toItem: tableView.backgroundView, attribute: .top, multiplier: 1, constant: 0)
             let heightConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
-            NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
+            NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
         }
     }
     

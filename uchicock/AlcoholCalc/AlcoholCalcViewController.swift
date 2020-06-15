@@ -46,10 +46,17 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
+        hiddenLabel.numberOfLines = 1
         hiddenLabel.text = "お酒は楽しくほどほどに！"
         hiddenLabel.frame = CGRect(x: 0, y: -90, width: 0, height: 20)
         hiddenLabel.textAlignment = .center
         ingredientTableView.addSubview(hiddenLabel)
+        hiddenLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let centerXConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .centerX, relatedBy: .equal, toItem: ingredientTableView, attribute: .centerX, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .bottom, relatedBy: .equal, toItem: ingredientTableView, attribute: .top, multiplier: 1, constant: -90)
+        let heightConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+        NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
         
         let realm = try! Realm()
         calcIngredientList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
@@ -81,11 +88,6 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         self.ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         
         calcAlcoholStrength()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        hiddenLabel.frame = CGRect(x: 0, y: -90, width: ingredientTableView.frame.width, height: 20)
     }
     
     // MARK: - Calc
