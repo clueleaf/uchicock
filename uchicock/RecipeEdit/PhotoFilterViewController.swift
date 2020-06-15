@@ -22,7 +22,6 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var filterScrollView: CustomScrollView!
     @IBOutlet weak var filterStackView: UIStackView!
-    @IBOutlet weak var filterStackViewWidthConstraint: NSLayoutConstraint!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statuBarStyle
@@ -55,8 +54,6 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         button.setTitleColor(UIColor.white, for: .normal)
 
         titleLabel.textColor = UIColor.white
-        
-        filterStackViewWidthConstraint.constant = CGFloat(106 * CIFilterNames.count)
         
         imageView.image = image
         smallCIImage = image.resizedCGImage(maxLongSide: 300)

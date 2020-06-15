@@ -556,13 +556,13 @@
                                 <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="swZ-76-Lhw">
-                                        <rect key="frame" x="3" y="10" width="1166" height="100"/>
+                                        <rect key="frame" x="3" y="10" width="1484" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="1166" id="HUk-Ew-tpS">
+                                            <constraint firstAttribute="width" constant="1484" id="HUk-Ew-tpS">
                                                 <variation key="heightClass=compact" constant="100"/>
                                             </constraint>
                                             <constraint firstAttribute="height" constant="100" id="idP-Nt-2Bg">
-                                                <variation key="heightClass=compact" constant="1166"/>
+                                                <variation key="heightClass=compact" constant="1484"/>
                                             </constraint>
                                         </constraints>
                                         <variation key="heightClass=compact" axis="vertical"/>
@@ -660,7 +660,6 @@
                         <outlet property="button" destination="9jB-Ho-KJc" id="ZIW-06-yQu"/>
                         <outlet property="filterScrollView" destination="xZb-7W-fcr" id="jxe-2Y-SV0"/>
                         <outlet property="filterStackView" destination="swZ-76-Lhw" id="k6u-6L-0dH"/>
-                        <outlet property="filterStackViewWidthConstraint" destination="HUk-Ew-tpS" id="3gS-Ov-j16"/>
                         <outlet property="imageScrollView" destination="NDD-c8-lC5" id="MXq-HU-sfV"/>
                         <outlet property="imageView" destination="Tmq-S1-NNA" id="c9v-P3-NuX"/>
                         <outlet property="titleLabel" destination="4gK-hl-DoA" id="EgR-tc-ltI"/>
