@@ -129,10 +129,8 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                scrollView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
     }
     
@@ -160,9 +158,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }

@@ -121,16 +121,15 @@ class IngredientRecommendTableViewController: UITableViewController {
         super.viewDidDisappear(animated)
         self.onDoneBlock(selectedRecommendIngredientId)
     }
-
-    // MARK: - TableView
+    
+    // MARK: - UIScrollViewDelegate
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                tableView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
     }
-    
+
+    // MARK: - TableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
@@ -212,9 +211,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }

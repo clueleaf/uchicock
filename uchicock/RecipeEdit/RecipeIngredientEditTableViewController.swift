@@ -200,15 +200,14 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    // MARK: - UITableView
+    // MARK: - UIScrollViewDelegate
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                tableView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
     }
-
+    
+    // MARK: - UITableView
     override func numberOfSections(in tableView: UITableView) -> Int {
         if tableView.tag == 0{
             return 2
@@ -391,9 +390,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }

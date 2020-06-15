@@ -383,46 +383,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    private func setReminderBadge(){
-        let realm = try! Realm()
-        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
-
-        if let tabItems = self.tabBarController?.tabBar.items {
-            let tabItem = tabItems[1]
-            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if reminderNum == 0{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "!"
-            }
-        }
-    }
-    
-    private func initializeDisplayOrder(){
-        let realm = try! Realm()
-        try! realm.write{
-            for i in 0 ..< recipe.recipeIngredients.count {
-                recipe.recipeIngredients[i].displayOrder = i
-            }
-        }
-        
-        recipeIngredientList.removeAll()
-        for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(
-                recipeIngredientId: ri.id,
-                ingredientId: ri.ingredient.id,
-                ingredientName: ri.ingredient.ingredientName,
-                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
-                amount: ri.amount,
-                mustFlag: ri.mustFlag,
-                category: ri.ingredient.category,
-                displayOrder: ri.displayOrder,
-                stockFlag: ri.ingredient.stockFlag
-            ))
-        }
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         calcImageViewSizeTime = 3
@@ -540,7 +500,47 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    // MARK: - Set Style
+    // MARK: - Logic Functions
+    private func setReminderBadge(){
+        let realm = try! Realm()
+        let reminderNum = realm.objects(Ingredient.self).filter("reminderSetDate != nil").count
+
+        if let tabItems = self.tabBarController?.tabBar.items {
+            let tabItem = tabItems[1]
+            tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
+            if reminderNum == 0{
+                tabItem.badgeValue = nil
+            }else{
+                tabItem.badgeValue = "!"
+            }
+        }
+    }
+    
+    private func initializeDisplayOrder(){
+        let realm = try! Realm()
+        try! realm.write{
+            for i in 0 ..< recipe.recipeIngredients.count {
+                recipe.recipeIngredients[i].displayOrder = i
+            }
+        }
+        
+        recipeIngredientList.removeAll()
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: ri.ingredient.stockFlag
+            ))
+        }
+    }
+    
     private func setStarImageOf(star1isFilled: Bool, star2isFilled: Bool, star3isFilled: Bool){
         if star1isFilled {
             star1.setImage(UIImage(named: "button-star-filled"), for: .normal)

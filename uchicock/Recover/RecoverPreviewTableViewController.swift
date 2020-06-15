@@ -129,16 +129,15 @@ class RecoverPreviewTableViewController: UITableViewController {
         super.viewDidDisappear(animated)
         self.onDoneBlock()
     }
-    
-    // MARK: - UITableView
+
+    // MARK: - UIScrollViewDelegate
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                tableView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
     }
 
+    // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0 : 30
     }
@@ -237,9 +236,7 @@ class RecoverPreviewTableViewController: UITableViewController {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }

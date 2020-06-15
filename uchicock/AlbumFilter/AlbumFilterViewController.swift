@@ -76,28 +76,10 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var searchButtonBackgroundView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
-    var userDefaultsPrefix = "album-"
-    var recipeFilterStar0 = true
-    var recipeFilterStar1 = true
-    var recipeFilterStar2 = true
-    var recipeFilterStar3 = true
-    var recipeFilterLong = true
-    var recipeFilterShort = true
-    var recipeFilterHot = true
-    var recipeFilterStyleNone = true
-    var recipeFilterBuild = true
-    var recipeFilterStir = true
-    var recipeFilterShake = true
-    var recipeFilterBlend = true
-    var recipeFilterOthers = true
-    var recipeFilterNonAlcohol = true
-    var recipeFilterWeak = true
-    var recipeFilterMedium = true
-    var recipeFilterStrong = true
-    var recipeFilterStrengthNone = true
+    var udPrefix = "album-"
     
-    var recipeBasicListForFilterModal = Array<RecipeBasic>()
-    var filteredRecipeBasic = Array<RecipeBasic>()
+    var recipeBasicList = Array<RecipeBasic>()
+    var filteredRecipeBasicList = Array<RecipeBasic>()
 
     var interactor: Interactor?
 
@@ -115,29 +97,12 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
             scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
 
-        readUserDefaults()
-        
-        initFilterCheckbox(favorite0Checkbox, shouldBeChecked: recipeFilterStar0)
-        initFilterCheckbox(favorite1Checkbox, shouldBeChecked: recipeFilterStar1)
-        initFilterCheckbox(favorite2Checkbox, shouldBeChecked: recipeFilterStar2)
-        initFilterCheckbox(favorite3Checkbox, shouldBeChecked: recipeFilterStar3)
-        initFilterCheckbox(styleLongCheckbox, shouldBeChecked: recipeFilterLong)
-        initFilterCheckbox(styleShortCheckbox, shouldBeChecked: recipeFilterShort)
-        initFilterCheckbox(styleHotCheckbox, shouldBeChecked: recipeFilterHot)
-        initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: recipeFilterStyleNone)
-        initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: recipeFilterBuild)
-        initFilterCheckbox(methodStirCheckbox, shouldBeChecked: recipeFilterStir)
-        initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: recipeFilterShake)
-        initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: recipeFilterBlend)
-        initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: recipeFilterOthers)
-        initFilterCheckbox(strengthNonAlcoholCheckbox, shouldBeChecked: recipeFilterNonAlcohol)
-        initFilterCheckbox(strengthWeakCheckbox, shouldBeChecked: recipeFilterWeak)
-        initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: recipeFilterMedium)
-        initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: recipeFilterStrong)
-        initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: recipeFilterStrengthNone)
-        
+        initCheckboxFromUserDefaults()
         filterRecipeBasic()
-        
+        setStyle()
+    }
+    
+    private func setStyle(){
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
@@ -196,32 +161,44 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
     }
     
-    private func readUserDefaults(){
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.flashScrollIndicators()
+    }
+    
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.onDoneBlock()
+    }
+    
+    // MARK: - Logic functions
+    private func initCheckboxFromUserDefaults(){
         let defaults = UserDefaults.standard
         
-        recipeFilterStar0 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
-        recipeFilterStar1 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
-        recipeFilterStar2 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
-        recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
-        recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
-        recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
-        recipeFilterHot = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
-        recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
-        recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
-        recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
-        recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
-        recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
-        recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
-        recipeFilterNonAlcohol = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
-        recipeFilterWeak = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
-        recipeFilterMedium = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
-        recipeFilterStrong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
-        recipeFilterStrengthNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
+        initFilterCheckbox(favorite0Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar0Key))
+        initFilterCheckbox(favorite1Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar1Key))
+        initFilterCheckbox(favorite2Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar2Key))
+        initFilterCheckbox(favorite3Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar3Key))
+        initFilterCheckbox(styleLongCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterLongKey))
+        initFilterCheckbox(styleShortCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterShortKey))
+        initFilterCheckbox(styleHotCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterHotKey))
+        initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStyleNoneKey))
+        initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterBuildKey))
+        initFilterCheckbox(methodStirCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStirKey))
+        initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterShakeKey))
+        initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterBlendKey))
+        initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterOthersKey))
+        initFilterCheckbox(strengthNonAlcoholCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterNonAlcoholKey))
+        initFilterCheckbox(strengthWeakCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterWeakKey))
+        initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterMediumKey))
+        initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStrongKey))
+        initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStrengthNoneKey))
     }
     
     private func filterRecipeBasic(){
-        filteredRecipeBasic.removeAll()
-        
         var recipeFilterStar: [Int] = []
         var recipeFilterStyle: [Int] = []
         var recipeFilterMethod: [Int] = []
@@ -246,17 +223,19 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         if strengthStrongCheckbox.checkState == .checked { recipeFilterStrength.append(3) }
         if strengthNoneCheckbox.checkState == .checked { recipeFilterStrength.append(4) }
 
-        for recipeBasic in recipeBasicListForFilterModal {
+        filteredRecipeBasicList.removeAll()
+
+        for recipeBasic in recipeBasicList {
             if recipeFilterStar.contains(recipeBasic.favorites) &&
                 recipeFilterStyle.contains(recipeBasic.style) &&
                 recipeFilterMethod.contains(recipeBasic.method) &&
                 recipeFilterStrength.contains(recipeBasic.strength){
-                filteredRecipeBasic.append(recipeBasic)
+                filteredRecipeBasicList.append(recipeBasic)
             }
         }
         
         UIView.performWithoutAnimation {
-            searchButton.setTitle("決定 (" + String(filteredRecipeBasic.count) +  "レシピ)", for: .normal)
+            searchButton.setTitle("決定 (" + String(filteredRecipeBasicList.count) +  "レシピ)", for: .normal)
             searchButton.layoutIfNeeded()
         }
     }
@@ -315,49 +294,11 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        scrollView.flashScrollIndicators()
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock()
-    }
-    
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                scrollView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
-    }
-
-    // MARK: - CircularCheckbox
-    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
-        if shouldBeChecked{
-            initCheckbox(checkbox, with: .checked)
-        }else{
-            initCheckbox(checkbox, with: .unchecked)
-        }
-    }
-    
-    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
-        checkbox.boxLineWidth = 1.0
-        checkbox.stateChangeAnimation = .fade
-        checkbox.animationDuration = 0
-        checkbox.setCheckState(checkState, animated: true)
-        checkbox.isEnabled = true
-        checkbox.tintColor = UchicockStyle.primaryColor
-        checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = UchicockStyle.primaryColor
-        checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        checkbox.contentHorizontalAlignment = .center
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
@@ -384,53 +325,30 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }
         }
     }
-    
-    // MARK: - IBAction
-    @IBAction func searchButtonTapped(_ sender: UIButton) {
-        self.saveUserDefaults()
-        self.dismiss(animated: true, completion: nil)
+
+    // MARK: - CircularCheckbox
+    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
+        shouldBeChecked ? initCheckbox(checkbox, with: .checked) : initCheckbox(checkbox, with: .unchecked)
     }
     
-    private func saveUserDefaults(){
-        setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
-        setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
-        setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
-        setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
-        setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
-        setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
-        setFilterUserDefaults(with: styleHotCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
-        setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
-        setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
-        setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
-        setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
-        setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
-        setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
-        setFilterUserDefaults(with: strengthNonAlcoholCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
-        setFilterUserDefaults(with: strengthWeakCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
-        setFilterUserDefaults(with: strengthMediumCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
-        setFilterUserDefaults(with: strengthStrongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
-        setFilterUserDefaults(with: strengthNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
-    }
-    
-    private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
-        let defaults = UserDefaults.standard
-        if checkbox.checkState == .checked{
-            defaults.set(true, forKey: key)
-        }else{
-            defaults.set(false, forKey: key)
-        }
-    }
-    
-    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
+        checkbox.boxLineWidth = 1.0
+        checkbox.stateChangeAnimation = .fade
+        checkbox.animationDuration = 0
+        checkbox.setCheckState(checkState, animated: true)
+        checkbox.isEnabled = true
+        checkbox.tintColor = UchicockStyle.primaryColor
+        checkbox.animationDuration = 0.3
+        checkbox.stateChangeAnimation = .expand
+        checkbox.secondaryTintColor = UchicockStyle.primaryColor
+        checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        checkbox.contentHorizontalAlignment = .center
     }
     
     private func setCheckboxChecked(_ checkbox: CircularCheckbox){
@@ -443,6 +361,42 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         checkbox.setCheckState(.unchecked, animated: true)
         checkbox.isEnabled = true
         checkbox.tintColor = UchicockStyle.primaryColor
+    }
+    
+    // MARK: - IBAction
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        self.saveUserDefaults()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func saveUserDefaults(){
+        setFilterUserDefaults(with: favorite0Checkbox, forKey: udPrefix + GlobalConstants.FilterStar0Key)
+        setFilterUserDefaults(with: favorite1Checkbox, forKey: udPrefix + GlobalConstants.FilterStar1Key)
+        setFilterUserDefaults(with: favorite2Checkbox, forKey: udPrefix + GlobalConstants.FilterStar2Key)
+        setFilterUserDefaults(with: favorite3Checkbox, forKey: udPrefix + GlobalConstants.FilterStar3Key)
+        setFilterUserDefaults(with: styleLongCheckbox, forKey: udPrefix + GlobalConstants.FilterLongKey)
+        setFilterUserDefaults(with: styleShortCheckbox, forKey: udPrefix + GlobalConstants.FilterShortKey)
+        setFilterUserDefaults(with: styleHotCheckbox, forKey: udPrefix + GlobalConstants.FilterHotKey)
+        setFilterUserDefaults(with: styleNoneCheckbox, forKey: udPrefix + GlobalConstants.FilterStyleNoneKey)
+        setFilterUserDefaults(with: methodBuildCheckbox, forKey: udPrefix + GlobalConstants.FilterBuildKey)
+        setFilterUserDefaults(with: methodStirCheckbox, forKey: udPrefix + GlobalConstants.FilterStirKey)
+        setFilterUserDefaults(with: methodShakeCheckbox, forKey: udPrefix + GlobalConstants.FilterShakeKey)
+        setFilterUserDefaults(with: methodBlendCheckbox, forKey: udPrefix + GlobalConstants.FilterBlendKey)
+        setFilterUserDefaults(with: methodOthersCheckbox, forKey: udPrefix + GlobalConstants.FilterOthersKey)
+        setFilterUserDefaults(with: strengthNonAlcoholCheckbox, forKey: udPrefix + GlobalConstants.FilterNonAlcoholKey)
+        setFilterUserDefaults(with: strengthWeakCheckbox, forKey: udPrefix + GlobalConstants.FilterWeakKey)
+        setFilterUserDefaults(with: strengthMediumCheckbox, forKey: udPrefix + GlobalConstants.FilterMediumKey)
+        setFilterUserDefaults(with: strengthStrongCheckbox, forKey: udPrefix + GlobalConstants.FilterStrongKey)
+        setFilterUserDefaults(with: strengthNoneCheckbox, forKey: udPrefix + GlobalConstants.FilterStrengthNoneKey)
+    }
+    
+    private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
+        let defaults = UserDefaults.standard
+        checkbox.checkState == .checked ? defaults.set(true, forKey: key) : defaults.set(false, forKey: key)
+    }
+    
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func filterSelectAllButtonTapped(_ sender: UIButton) {
@@ -493,22 +447,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func favorite0CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite1CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite2CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite3CheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func favoriteCheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
         filterRecipeBasic()
     }
@@ -571,22 +510,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func styleLongCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func styleShortCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-
-    @IBAction func styleHotCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func styleCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
         filterRecipeBasic()
     }
@@ -651,27 +575,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func methodBuildCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodStirCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodShakeCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodBlendCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodOthersCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func methodCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
         filterRecipeBasic()
     }
@@ -746,27 +650,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func strengthNonAlcoholCheckboxTapped(_ sender: CircularCheckbox) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthWeakCheckboxTapped(_ sender: CircularCheckbox) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthMediumCheckboxTapped(_ sender: CircularCheckbox) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthStrongCheckboxTapped(_ sender: CircularCheckbox) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthNoneCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func strengthCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
         filterRecipeBasic()
     }

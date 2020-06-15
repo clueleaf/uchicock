@@ -1014,10 +1014,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         vc.onDoneBlock = {
             self.setupData()
         }
-        vc.userDefaultsPrefix = "reverse-lookup-"
+        vc.udPrefix = "reverse-lookup-"
         
         createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicListForFilterModal)
-        vc.recipeBasicListForFilterModal = self.recipeBasicListForFilterModal
+        vc.recipeBasicList = self.recipeBasicListForFilterModal
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet

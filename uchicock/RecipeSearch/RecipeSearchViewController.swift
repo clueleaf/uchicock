@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
+class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
 
     @IBOutlet weak var scrollView: CustomScrollView!
     @IBOutlet weak var scrollBackgroundView: UIView!
@@ -91,30 +91,10 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var searchButtonBackgroundView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
-    var userDefaultsPrefix = "recipe-"
-    var recipeSortPrimary = 1
-    var recipeSortSecondary = 0
-    var recipeFilterStar0 = true
-    var recipeFilterStar1 = true
-    var recipeFilterStar2 = true
-    var recipeFilterStar3 = true
-    var recipeFilterLong = true
-    var recipeFilterShort = true
-    var recipeFilterHot = true
-    var recipeFilterStyleNone = true
-    var recipeFilterBuild = true
-    var recipeFilterStir = true
-    var recipeFilterShake = true
-    var recipeFilterBlend = true
-    var recipeFilterOthers = true
-    var recipeFilterNonAlcohol = true
-    var recipeFilterWeak = true
-    var recipeFilterMedium = true
-    var recipeFilterStrong = true
-    var recipeFilterStrengthNone = true
-    
-    var recipeBasicListForFilterModal = Array<RecipeBasic>()
-    var filteredRecipeBasic = Array<RecipeBasic>()
+    var udPrefix = "recipe-"
+    var recipeBasicList = Array<RecipeBasic>()
+
+    var filteredRecipeBasicList = Array<RecipeBasic>()
 
     var interactor: Interactor?
     
@@ -132,83 +112,12 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
             scrollView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
 
-        readUserDefaults()
-        
-        switch recipeSortPrimary{
-        case 1:
-            initPrimaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
-        case 2:
-            initPrimaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            switch recipeSortSecondary{
-            case 1:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            case 3:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .checked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            case 4:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .checked, lastViewedState: .unchecked)
-            case 5:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .checked)
-            default:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .mixed, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            }
-        case 3:
-            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .checked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            switch recipeSortSecondary{
-            case 1:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
-            case 2:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
-            case 4:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .checked, lastViewedState: .unchecked)
-            case 5:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .checked)
-            default:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .mixed, favoriteState: .unchecked, lastViewedState: .unchecked)
-            }
-        case 4:
-            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .checked, lastViewedState: .unchecked)
-            switch recipeSortSecondary{
-            case 1:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
-            case 2:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .checked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
-            case 3:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .checked, favoriteState: .mixed, lastViewedState: .unchecked)
-            case 5:
-                initSecondaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .checked)
-            default:
-                initSecondaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .mixed, lastViewedState: .unchecked)
-            }
-        case 5:
-            initPrimaryCheckBox(nameState: .unchecked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .checked)
-            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
-        default:
-            initPrimaryCheckBox(nameState: .checked, shortageState: .unchecked, madeNumState: .unchecked, favoriteState: .unchecked, lastViewedState: .unchecked)
-            initSecondaryCheckBox(nameState: .mixed, shortageState: .mixed, madeNumState: .mixed, favoriteState: .mixed, lastViewedState: .mixed)
-        }
-        
-        initFilterCheckbox(favorite0Checkbox, shouldBeChecked: recipeFilterStar0)
-        initFilterCheckbox(favorite1Checkbox, shouldBeChecked: recipeFilterStar1)
-        initFilterCheckbox(favorite2Checkbox, shouldBeChecked: recipeFilterStar2)
-        initFilterCheckbox(favorite3Checkbox, shouldBeChecked: recipeFilterStar3)
-        initFilterCheckbox(styleLongCheckbox, shouldBeChecked: recipeFilterLong)
-        initFilterCheckbox(styleShortCheckbox, shouldBeChecked: recipeFilterShort)
-        initFilterCheckbox(styleHotCheckbox, shouldBeChecked: recipeFilterHot)
-        initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: recipeFilterStyleNone)
-        initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: recipeFilterBuild)
-        initFilterCheckbox(methodStirCheckbox, shouldBeChecked: recipeFilterStir)
-        initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: recipeFilterShake)
-        initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: recipeFilterBlend)
-        initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: recipeFilterOthers)
-        initFilterCheckbox(strengthNonAlcoholCheckbox, shouldBeChecked: recipeFilterNonAlcohol)
-        initFilterCheckbox(strengthWeakCheckbox, shouldBeChecked: recipeFilterWeak)
-        initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: recipeFilterMedium)
-        initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: recipeFilterStrong)
-        initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: recipeFilterStrengthNone)
-        
+        initCheckboxFromUserDefaults()
         filterRecipeBasic()
-        
+        setStyle()
+    }
+    
+    private func setStyle(){
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.backgroundColor = UchicockStyle.basicBackgroundColor
         scrollView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
@@ -270,34 +179,101 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         searchButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
     }
     
-    private func readUserDefaults(){
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.flashScrollIndicators()
+    }
+    
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.onDoneBlock()
+    }
+    
+    // MARK: - Logic functions
+    private func initCheckboxFromUserDefaults(){
         let defaults = UserDefaults.standard
 
-        recipeSortPrimary = defaults.integer(forKey: userDefaultsPrefix + GlobalConstants.SortPrimaryKey)
-        recipeSortSecondary = defaults.integer(forKey: userDefaultsPrefix + GlobalConstants.SortSecondaryKey)
-        recipeFilterStar0 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
-        recipeFilterStar1 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
-        recipeFilterStar2 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
-        recipeFilterStar3 = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
-        recipeFilterLong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
-        recipeFilterShort = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
-        recipeFilterHot = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
-        recipeFilterStyleNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
-        recipeFilterBuild = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
-        recipeFilterStir = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
-        recipeFilterShake = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
-        recipeFilterBlend = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
-        recipeFilterOthers = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
-        recipeFilterNonAlcohol = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
-        recipeFilterWeak = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
-        recipeFilterMedium = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
-        recipeFilterStrong = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
-        recipeFilterStrengthNone = defaults.bool(forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
+        initFilterCheckbox(favorite0Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar0Key))
+        initFilterCheckbox(favorite1Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar1Key))
+        initFilterCheckbox(favorite2Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar2Key))
+        initFilterCheckbox(favorite3Checkbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStar3Key))
+        initFilterCheckbox(styleLongCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterLongKey))
+        initFilterCheckbox(styleShortCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterShortKey))
+        initFilterCheckbox(styleHotCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterHotKey))
+        initFilterCheckbox(styleNoneCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStyleNoneKey))
+        initFilterCheckbox(methodBuildCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterBuildKey))
+        initFilterCheckbox(methodStirCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStirKey))
+        initFilterCheckbox(methodShakeCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterShakeKey))
+        initFilterCheckbox(methodBlendCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterBlendKey))
+        initFilterCheckbox(methodOthersCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterOthersKey))
+        initFilterCheckbox(strengthNonAlcoholCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterNonAlcoholKey))
+        initFilterCheckbox(strengthWeakCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterWeakKey))
+        initFilterCheckbox(strengthMediumCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterMediumKey))
+        initFilterCheckbox(strengthStrongCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStrongKey))
+        initFilterCheckbox(strengthNoneCheckbox, shouldBeChecked: defaults.bool(forKey: udPrefix + GlobalConstants.FilterStrengthNoneKey))
+        
+        let recipeSortPrimary = defaults.integer(forKey: udPrefix + GlobalConstants.SortPrimaryKey)
+        let recipeSortSecondary = defaults.integer(forKey: udPrefix + GlobalConstants.SortSecondaryKey)
+        
+        switch recipeSortPrimary{
+        case 1:
+            initPrimaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+        case 2:
+            initPrimaryCheckBox(name: .unchecked, shortage: .checked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(name: .checked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            case 3:
+                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .checked, favorite: .unchecked, lastViewed: .unchecked)
+            case 4:
+                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .unchecked, favorite: .checked, lastViewed: .unchecked)
+            case 5:
+                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .checked)
+            default:
+                initSecondaryCheckBox(name: .checked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            }
+        case 3:
+            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .checked, favorite: .unchecked, lastViewed: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+            case 2:
+                initSecondaryCheckBox(name: .unchecked, shortage: .checked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+            case 4:
+                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .mixed, favorite: .checked, lastViewed: .unchecked)
+            case 5:
+                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .checked)
+            default:
+                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+            }
+        case 4:
+            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .checked, lastViewed: .unchecked)
+            switch recipeSortSecondary{
+            case 1:
+                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+            case 2:
+                initSecondaryCheckBox(name: .unchecked, shortage: .checked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+            case 3:
+                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .checked, favorite: .mixed, lastViewed: .unchecked)
+            case 5:
+                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .checked)
+            default:
+                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+            }
+        case 5:
+            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .checked)
+            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+        default:
+            initPrimaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+        }
     }
     
     private func filterRecipeBasic(){
-        filteredRecipeBasic.removeAll()
-        
         var recipeFilterStar: [Int] = []
         var recipeFilterStyle: [Int] = []
         var recipeFilterMethod: [Int] = []
@@ -322,17 +298,19 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         if strengthStrongCheckbox.checkState == .checked { recipeFilterStrength.append(3) }
         if strengthNoneCheckbox.checkState == .checked { recipeFilterStrength.append(4) }
 
-        for recipeBasic in recipeBasicListForFilterModal {
+        filteredRecipeBasicList.removeAll()
+        
+        for recipeBasic in recipeBasicList {
             if recipeFilterStar.contains(recipeBasic.favorites) &&
                 recipeFilterStyle.contains(recipeBasic.style) &&
                 recipeFilterMethod.contains(recipeBasic.method) &&
                 recipeFilterStrength.contains(recipeBasic.strength){
-                filteredRecipeBasic.append(recipeBasic)
+                filteredRecipeBasicList.append(recipeBasic)
             }
         }
         
         UIView.performWithoutAnimation {
-            searchButton.setTitle("決定 (" + String(filteredRecipeBasic.count) +  "レシピ)", for: .normal)
+            searchButton.setTitle("決定 (" + String(filteredRecipeBasicList.count) +  "レシピ)", for: .normal)
             searchButton.layoutIfNeeded()
         }
     }
@@ -354,7 +332,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         if styleLongCheckbox.checkState == .unchecked &&
             styleShortCheckbox.checkState == .unchecked &&
             styleHotCheckbox.checkState == .unchecked &&
-            styleNoneCheckbox.checkState == .unchecked{
+            styleNoneCheckbox.checkState == .unchecked {
             styleWarningImage.isHidden = false
             styleWarningLabel.isHidden = false
         }else{
@@ -391,71 +369,11 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        scrollView.flashScrollIndicators()
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock()
-    }
-    
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                scrollView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
-    }
-
-    // MARK: - CircularCheckbox
-    private func initPrimaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState, madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
-        initCheckbox(nameOrderPrimaryCheckbox, with: nameState)
-        initCheckbox(shortageOrderPrimaryCheckbox, with: shortageState)
-        initCheckbox(madeNumOrderPrimaryCheckbox, with: madeNumState)
-        initCheckbox(favoriteOrderPrimaryCheckbox, with: favoriteState)
-        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewedState)
-    }
-    
-    private func initSecondaryCheckBox(nameState: CircularCheckbox.CheckState, shortageState:  CircularCheckbox.CheckState, madeNumState:  CircularCheckbox.CheckState, favoriteState: CircularCheckbox.CheckState, lastViewedState: CircularCheckbox.CheckState){
-        initCheckbox(nameOrderSecondaryCheckbox, with: nameState)
-        initCheckbox(shortageOrderSecondaryCheckbox, with: shortageState)
-        initCheckbox(madeNumOrderSecondaryCheckbox, with: madeNumState)
-        initCheckbox(favoriteOrderSecondaryCheckbox, with: favoriteState)
-        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewedState)
-    }
-    
-    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
-        if shouldBeChecked{
-            initCheckbox(checkbox, with: .checked)
-        }else{
-            initCheckbox(checkbox, with: .unchecked)
-        }
-    }
-    
-    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
-        checkbox.boxLineWidth = 1.0
-        checkbox.stateChangeAnimation = .fade
-        checkbox.animationDuration = 0
-        checkbox.setCheckState(checkState, animated: true)
-        if checkState == .mixed{
-            checkbox.isEnabled = false
-            checkbox.tintColor = UchicockStyle.labelTextColorLight
-            checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-        }else{
-            checkbox.isEnabled = true
-            checkbox.tintColor = UchicockStyle.primaryColor
-            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        }
-        checkbox.animationDuration = 0.3
-        checkbox.stateChangeAnimation = .expand
-        checkbox.secondaryTintColor = UchicockStyle.primaryColor
-        checkbox.contentHorizontalAlignment = .center
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
@@ -482,13 +400,81 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }
         }
+    }
+
+    // MARK: - CircularCheckbox
+    private func initPrimaryCheckBox(name: CircularCheckbox.CheckState, shortage:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, lastViewed: CircularCheckbox.CheckState){
+        initCheckbox(nameOrderPrimaryCheckbox, with: name)
+        initCheckbox(shortageOrderPrimaryCheckbox, with: shortage)
+        initCheckbox(madeNumOrderPrimaryCheckbox, with: madenum)
+        initCheckbox(favoriteOrderPrimaryCheckbox, with: favorite)
+        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewed)
+    }
+    
+    private func initSecondaryCheckBox(name: CircularCheckbox.CheckState, shortage:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, lastViewed: CircularCheckbox.CheckState){
+        initCheckbox(nameOrderSecondaryCheckbox, with: name)
+        initCheckbox(shortageOrderSecondaryCheckbox, with: shortage)
+        initCheckbox(madeNumOrderSecondaryCheckbox, with: madenum)
+        initCheckbox(favoriteOrderSecondaryCheckbox, with: favorite)
+        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewed)
+    }
+    
+    private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
+        shouldBeChecked ? initCheckbox(checkbox, with: .checked) : initCheckbox(checkbox, with: .unchecked)
+    }
+    
+    private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
+        checkbox.boxLineWidth = 1.0
+        checkbox.stateChangeAnimation = .fade
+        checkbox.animationDuration = 0
+        checkbox.setCheckState(checkState, animated: true)
+        if checkState == .mixed{
+            checkbox.isEnabled = false
+            checkbox.tintColor = UchicockStyle.labelTextColorLight
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+        }else{
+            checkbox.isEnabled = true
+            checkbox.tintColor = UchicockStyle.primaryColor
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        }
+        checkbox.animationDuration = 0.3
+        checkbox.stateChangeAnimation = .expand
+        checkbox.secondaryTintColor = UchicockStyle.primaryColor
+        checkbox.contentHorizontalAlignment = .center
+    }
+    
+    private func setCheckboxChecked(_ checkbox: CircularCheckbox){
+        checkbox.setCheckState(.checked, animated: true)
+        checkbox.isEnabled = true
+        checkbox.tintColor = UchicockStyle.primaryColor
+        checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+    }
+
+    private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
+        checkbox.setCheckState(.unchecked, animated: true)
+        checkbox.isEnabled = true
+        checkbox.tintColor = UchicockStyle.primaryColor
+    }
+    
+    private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
+        if checkbox.checkState != .mixed{
+            checkbox.setCheckState(.unchecked, animated: true)
+            checkbox.isEnabled = true
+            checkbox.tintColor = UchicockStyle.primaryColor
+            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+        }
+    }
+    
+    private func setCheckboxMixed(_ checkbox: CircularCheckbox){
+        checkbox.setCheckState(.mixed, animated: true)
+        checkbox.isEnabled = false
+        checkbox.tintColor = UchicockStyle.labelTextColorLight
+        checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
     }
     
     // MARK: - IBAction
@@ -526,36 +512,32 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
             secondarySort = 5
         }
         
-        defaults.set(primarySort, forKey: userDefaultsPrefix + GlobalConstants.SortPrimaryKey)
-        defaults.set(secondarySort, forKey: userDefaultsPrefix + GlobalConstants.SortSecondaryKey)
+        defaults.set(primarySort, forKey: udPrefix + GlobalConstants.SortPrimaryKey)
+        defaults.set(secondarySort, forKey: udPrefix + GlobalConstants.SortSecondaryKey)
         
-        setFilterUserDefaults(with: favorite0Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar0Key)
-        setFilterUserDefaults(with: favorite1Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar1Key)
-        setFilterUserDefaults(with: favorite2Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar2Key)
-        setFilterUserDefaults(with: favorite3Checkbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStar3Key)
-        setFilterUserDefaults(with: styleLongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterLongKey)
-        setFilterUserDefaults(with: styleShortCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShortKey)
-        setFilterUserDefaults(with: styleHotCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterHotKey)
-        setFilterUserDefaults(with: styleNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStyleNoneKey)
-        setFilterUserDefaults(with: methodBuildCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBuildKey)
-        setFilterUserDefaults(with: methodStirCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStirKey)
-        setFilterUserDefaults(with: methodShakeCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterShakeKey)
-        setFilterUserDefaults(with: methodBlendCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterBlendKey)
-        setFilterUserDefaults(with: methodOthersCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterOthersKey)
-        setFilterUserDefaults(with: strengthNonAlcoholCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterNonAlcoholKey)
-        setFilterUserDefaults(with: strengthWeakCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterWeakKey)
-        setFilterUserDefaults(with: strengthMediumCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterMediumKey)
-        setFilterUserDefaults(with: strengthStrongCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrongKey)
-        setFilterUserDefaults(with: strengthNoneCheckbox, forKey: userDefaultsPrefix + GlobalConstants.FilterStrengthNoneKey)
+        setFilterUserDefaults(with: favorite0Checkbox, forKey: udPrefix + GlobalConstants.FilterStar0Key)
+        setFilterUserDefaults(with: favorite1Checkbox, forKey: udPrefix + GlobalConstants.FilterStar1Key)
+        setFilterUserDefaults(with: favorite2Checkbox, forKey: udPrefix + GlobalConstants.FilterStar2Key)
+        setFilterUserDefaults(with: favorite3Checkbox, forKey: udPrefix + GlobalConstants.FilterStar3Key)
+        setFilterUserDefaults(with: styleLongCheckbox, forKey: udPrefix + GlobalConstants.FilterLongKey)
+        setFilterUserDefaults(with: styleShortCheckbox, forKey: udPrefix + GlobalConstants.FilterShortKey)
+        setFilterUserDefaults(with: styleHotCheckbox, forKey: udPrefix + GlobalConstants.FilterHotKey)
+        setFilterUserDefaults(with: styleNoneCheckbox, forKey: udPrefix + GlobalConstants.FilterStyleNoneKey)
+        setFilterUserDefaults(with: methodBuildCheckbox, forKey: udPrefix + GlobalConstants.FilterBuildKey)
+        setFilterUserDefaults(with: methodStirCheckbox, forKey: udPrefix + GlobalConstants.FilterStirKey)
+        setFilterUserDefaults(with: methodShakeCheckbox, forKey: udPrefix + GlobalConstants.FilterShakeKey)
+        setFilterUserDefaults(with: methodBlendCheckbox, forKey: udPrefix + GlobalConstants.FilterBlendKey)
+        setFilterUserDefaults(with: methodOthersCheckbox, forKey: udPrefix + GlobalConstants.FilterOthersKey)
+        setFilterUserDefaults(with: strengthNonAlcoholCheckbox, forKey: udPrefix + GlobalConstants.FilterNonAlcoholKey)
+        setFilterUserDefaults(with: strengthWeakCheckbox, forKey: udPrefix + GlobalConstants.FilterWeakKey)
+        setFilterUserDefaults(with: strengthMediumCheckbox, forKey: udPrefix + GlobalConstants.FilterMediumKey)
+        setFilterUserDefaults(with: strengthStrongCheckbox, forKey: udPrefix + GlobalConstants.FilterStrongKey)
+        setFilterUserDefaults(with: strengthNoneCheckbox, forKey: udPrefix + GlobalConstants.FilterStrengthNoneKey)
     }
     
     private func setFilterUserDefaults(with checkbox: CircularCheckbox, forKey key: String){
         let defaults = UserDefaults.standard
-        if checkbox.checkState == .checked{
-            defaults.set(true, forKey: key)
-        }else{
-            defaults.set(false, forKey: key)
-        }
+        checkbox.checkState == .checked ? defaults.set(true, forKey: key) : defaults.set(false, forKey: key)
     }
     
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -667,35 +649,6 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         setCheckboxChecked(lastViewedOrderSecondaryCheckbox)
     }
     
-    private func setCheckboxChecked(_ checkbox: CircularCheckbox){
-        checkbox.setCheckState(.checked, animated: true)
-        checkbox.isEnabled = true
-        checkbox.tintColor = UchicockStyle.primaryColor
-        checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-    }
-
-    private func setCheckboxUnchecked(_ checkbox: CircularCheckbox){
-        checkbox.setCheckState(.unchecked, animated: true)
-        checkbox.isEnabled = true
-        checkbox.tintColor = UchicockStyle.primaryColor
-    }
-    
-    private func setCheckboxUncheckedIfNotMixed(_ checkbox: CircularCheckbox){
-        if checkbox.checkState != .mixed{
-            checkbox.setCheckState(.unchecked, animated: true)
-            checkbox.isEnabled = true
-            checkbox.tintColor = UchicockStyle.primaryColor
-            checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        }
-    }
-    
-    private func setCheckboxMixed(_ checkbox: CircularCheckbox){
-        checkbox.setCheckState(.mixed, animated: true)
-        checkbox.isEnabled = false
-        checkbox.tintColor = UchicockStyle.labelTextColorLight
-        checkbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-    }
-    
     @IBAction func filterSelectAllbuttonTapped(_ sender: UIButton) {
         setCheckboxChecked(favorite0Checkbox)
         setCheckboxChecked(favorite1Checkbox)
@@ -744,22 +697,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func favorite0CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite1CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite2CheckboxTapped(_ sender: CircularCheckbox) {
-        setFavoriteWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func favorite3CheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func favoriteCheckboxTapped(_ sender: CircularCheckbox) {
         setFavoriteWarningVisibility()
         filterRecipeBasic()
     }
@@ -822,22 +760,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func styleLongCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func styleShortCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func styleHotCheckboxTapped(_ sender: CircularCheckbox) {
-        setStyleWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func styleNoneCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func styleCheckboxTapped(_ sender: CircularCheckbox) {
         setStyleWarningVisibility()
         filterRecipeBasic()
     }
@@ -902,27 +825,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func methodBuildCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodStirCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodShakeCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodBlendCheckboxTapped(_ sender: CircularCheckbox) {
-        setMethodWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func methodOthersCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func methodCheckboxTapped(_ sender: CircularCheckbox) {
         setMethodWarningVisibility()
         filterRecipeBasic()
     }
@@ -997,27 +900,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate {
         filterRecipeBasic()
     }
     
-    @IBAction func strengthNonAlcoholCheckboxTapped(_ sender: Any) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthWeakCheckboxTapped(_ sender: Any) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthMediumCheckboxTapped(_ sender: Any) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthStrongCheckboxTapped(_ sender: Any) {
-        setStrengthWarningVisibility()
-        filterRecipeBasic()
-    }
-    
-    @IBAction func strengthNoneCheckboxTapped(_ sender: Any) {
+    @IBAction func strengthCheckboxTapped(_ sender: CircularCheckbox) {
         setStrengthWarningVisibility()
         filterRecipeBasic()
     }

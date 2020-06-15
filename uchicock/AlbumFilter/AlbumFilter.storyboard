@@ -102,7 +102,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="knW-Ra-sK3"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="favorite0CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Gro-hs-CCC"/>
+                                                                    <action selector="favoriteCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="YTa-Rz-cra"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBx-Ul-wnh">
@@ -137,7 +137,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="6iD-z7-dgK"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="favorite1CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="aJy-Oj-SHn"/>
+                                                                    <action selector="favoriteCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Nxr-XA-NFI"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWo-LR-qoS">
@@ -184,7 +184,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="kDa-0Y-UPp"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="favorite2CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="JRf-df-9yY"/>
+                                                                    <action selector="favoriteCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="kix-Vr-VsL"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqq-kC-UeV">
@@ -219,7 +219,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="bya-1w-RoZ"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="favorite3CheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="dkg-Ah-1Xi"/>
+                                                                    <action selector="favoriteCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="q7i-Hi-W8Y"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-kx-A0E">
@@ -302,7 +302,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="PNe-HI-wxY"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleLongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="Sp4-X9-WRL"/>
+                                                                    <action selector="styleCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="V5R-tz-WFx"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMI-dX-a7t">
@@ -337,7 +337,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="zto-BO-7QC"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleShortCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="UnG-1E-a5R"/>
+                                                                    <action selector="styleCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="hnK-rD-zRJ"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6U-YG-0wh">
@@ -384,7 +384,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="4Iv-i8-VVW"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleHotCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="fBI-HE-sRR"/>
+                                                                    <action selector="styleCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="zkY-kK-Zyk"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sca-pX-hmU">
@@ -419,7 +419,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="MOj-jv-7eX"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="styleNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="GWM-1k-wGD"/>
+                                                                    <action selector="styleCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="7cd-tW-3CX"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-qt-JA5">
@@ -498,7 +498,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="UPm-Hm-Yex"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="methodBuildCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="NCr-X4-aiw"/>
+                                                                    <action selector="methodCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="mEg-7o-YUu"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TD-3V-LjX">
@@ -533,7 +533,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="oNc-jJ-yEV"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="methodStirCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="poW-23-pfQ"/>
+                                                                    <action selector="methodCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="FcM-aT-tHA"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldD-Or-awA">
@@ -568,7 +568,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="67E-JZ-g2F"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="methodShakeCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="iub-6B-U4y"/>
+                                                                    <action selector="methodCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="hqn-7t-UPx"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENK-ci-xj9">
@@ -615,7 +615,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="M8r-t8-jRO"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="methodBlendCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="rAB-aV-XB1"/>
+                                                                    <action selector="methodCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="dfd-5T-xPl"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQz-N2-JOg">
@@ -650,7 +650,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="lYL-Ct-sKj"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="methodOthersCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="wim-n6-kx2"/>
+                                                                    <action selector="methodCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="aWV-eb-hIB"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pa-Oj-JQQ">
@@ -765,7 +765,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="SAk-E0-oFa"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="strengthNonAlcoholCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="meP-dm-CRd"/>
+                                                                    <action selector="strengthCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="JQc-VT-Itb"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0W-ce-hA3">
@@ -800,7 +800,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="fPt-BV-gBD"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="strengthWeakCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="UVa-c6-d4M"/>
+                                                                    <action selector="strengthCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="eyS-l8-1C3"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1W-lc-9dc">
@@ -835,7 +835,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="Dxh-hl-ydX"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="strengthMediumCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="sni-BE-1PP"/>
+                                                                    <action selector="strengthCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="lTl-8v-i38"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9m-4Z-Q7q">
@@ -882,7 +882,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="bQ5-hz-SSA"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="strengthStrongCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="HpP-LD-HhV"/>
+                                                                    <action selector="strengthCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="2SX-JA-cpa"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH2-BN-3Xf">
@@ -917,7 +917,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="a5K-TY-1GD"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="strengthNoneCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="cwE-D6-ofl"/>
+                                                                    <action selector="strengthCheckboxTapped:" destination="jVM-Wp-2x7" eventType="valueChanged" id="tWZ-jt-tEc"/>
                                                                 </connections>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJU-xN-jBd">

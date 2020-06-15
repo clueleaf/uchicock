@@ -147,15 +147,14 @@ class ReminderTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - UITableView
+    // MARK: - UIScrollViewDelegate
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if interactor != nil{
-            if interactor!.hasStarted {
-                tableView.contentOffset.y = 0.0
-            }
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
         }
     }
     
+    // MARK: - UITableView
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 || indexPath.row == 1 {
             return UITableView.automaticDimension
@@ -206,9 +205,7 @@ class ReminderTableViewController: UITableViewController {
                 interactor.cancel()
             case .ended:
                 interactor.hasStarted = false
-                interactor.shouldFinish
-                    ? interactor.finish()
-                    : interactor.cancel()
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
             default:
                 break
             }

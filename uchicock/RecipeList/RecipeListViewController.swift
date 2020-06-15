@@ -859,7 +859,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             self.setTableBackgroundView()
             self.tableView.reloadData()
         }
-        vc.userDefaultsPrefix = "recipe-"
+        vc.udPrefix = "recipe-"
         
         var recipeBasicListForFilterModal = Array<RecipeBasic>()
         for recipe in recipeList!{
@@ -885,7 +885,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 ($0.name.contains(searchText) == false)
             }
         }
-        vc.recipeBasicListForFilterModal = recipeBasicListForFilterModal
+        vc.recipeBasicList = recipeBasicListForFilterModal
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet
