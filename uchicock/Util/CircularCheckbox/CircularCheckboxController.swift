@@ -89,7 +89,7 @@ internal class CircularCheckboxController {
         newPathGenerator.checkmarkLineWidth = pathGenerator.checkmarkLineWidth
         
         // Animate the change.
-        if pathGenerator.pathForMark(state) != nil && animated {
+        if pathGenerator.pathForMark(state) != nil && animated{
             let previousState = state
             animate(state, toState: nil, completion: { [weak self] in
                 self?.pathGenerator = newPathGenerator
@@ -98,12 +98,12 @@ internal class CircularCheckboxController {
                     self?.animate(nil, toState: previousState)
                 }
             })
-        } else if newPathGenerator.pathForMark(state) != nil && animated {
+        }else if newPathGenerator.pathForMark(state) != nil && animated{
             let previousState = state
             pathGenerator = newPathGenerator
             resetLayersForState(nil)
             animate(nil, toState: previousState)
-        } else {
+        }else{
             pathGenerator = newPathGenerator
             resetLayersForState(state)
         }

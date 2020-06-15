@@ -48,14 +48,14 @@ public class MessageHUD : UIView {
         if Thread.current.isMainThread {
             if let window = UIApplication.shared.keyWindow {
                 localInstance = MessageHUD.init(frame: window.bounds)
-            } else {
+            }else{
                 localInstance = MessageHUD()
             }
-        } else {
+        }else{
             DispatchQueue.main.sync {
                 if let window = UIApplication.shared.keyWindow {
                     localInstance = MessageHUD.init(frame: window.bounds)
-                } else {
+                }else{
                     localInstance = MessageHUD()
                 }
             }
@@ -93,7 +93,7 @@ public class MessageHUD : UIView {
                 completionBlock()
             })
             self.setNeedsDisplay()
-        } else {
+        }else{
             if let convertedDuration = duration {
                 let timer = Timer.init(timeInterval: convertedDuration, target: self, selector: #selector(dismiss), userInfo: nil, repeats: false)
                 self.setFadeOut(timer: timer)
@@ -168,7 +168,7 @@ public class MessageHUD : UIView {
         // Add the overlay to the application window if necessary
         if getControlView().superview == nil {
             getFrontWindow()?.addSubview(getControlView())
-        } else {
+        }else{
             // The HUD is already on screen, but maybe not in front. Therefore
             // ensure that overlay will be on top of rootViewController (which may
             // be changed during runtime).

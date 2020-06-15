@@ -564,7 +564,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumMinusButton.isEnabled = false
             madeNumMinusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             madeNumMinusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
-        } else {
+        }else{
             madeNumMinusButton.isEnabled = true
             madeNumMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             madeNumMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -573,7 +573,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumPlusButton.isEnabled = false
             madeNumPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             madeNumPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
-        } else {
+        }else{
             madeNumPlusButton.isEnabled = true
             madeNumPlusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             madeNumPlusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -1470,7 +1470,7 @@ extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectio
         displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
             if a.point == b.point {
                 return a.name < b.name
-            } else {
+            }else{
                 return a.point > b.point
             }
         })

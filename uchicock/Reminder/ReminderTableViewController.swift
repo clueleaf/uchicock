@@ -232,7 +232,7 @@ class ReminderTableViewController: UITableViewController {
             }
             MessageHUD.show("リマインダーへ登録しました", for: 2.0, withCheckmark: true, isCenter: true)
             self.dismiss(animated: true, completion: nil)
-        } else if reminderType.selectedSegmentIndex == 1{
+        }else if reminderType.selectedSegmentIndex == 1{
             if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
                 eventStore.requestAccess(to: .reminder, completion: {
                     granted, error in
@@ -240,7 +240,7 @@ class ReminderTableViewController: UITableViewController {
                         self.createReminder(eventStore: eventStore, title: self.reminderTitle.text!)
                     }
                 })
-            } else {
+            }else{
                 createReminder(eventStore: eventStore, title: reminderTitle.text!)
             }
         }else if reminderType.selectedSegmentIndex == 2{
@@ -253,7 +253,7 @@ class ReminderTableViewController: UITableViewController {
                         self.createEvent(eventStore: eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
                     }
                 })
-            } else {
+            }else{
                 createEvent(eventStore: eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
             }
         }
@@ -282,7 +282,7 @@ class ReminderTableViewController: UITableViewController {
 
             dateFlag.isEnabled = false
             reminderTypePreviousState = 0
-        } else if reminderType.selectedSegmentIndex == 1{
+        }else if reminderType.selectedSegmentIndex == 1{
             titleLabel.text = "タイトル"
             reminderTitle.text = ingredient.ingredientName + "を買う"
             reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)

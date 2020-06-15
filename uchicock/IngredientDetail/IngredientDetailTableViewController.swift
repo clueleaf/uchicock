@@ -115,7 +115,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
             self.tableView.setNeedsLayout()
-        } else {
+        }else{
             hasIngredientDeleted = false
             ingredient = ing!
             self.navigationItem.title = ingredient.ingredientName
@@ -705,7 +705,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
-        } else{
+        }else{
             let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 deleteAlertView.overrideUserInterfaceStyle = .dark

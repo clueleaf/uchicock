@@ -16,7 +16,7 @@ extension String {
 //                if let u = UnicodeScalar(c.value+96){
 //                    str += "\(u)"
 //                }
-//            } else {
+//            }else{
 //                str += "\(c)"
 //            }
 //        }
@@ -30,7 +30,7 @@ extension String {
 //                if let u = UnicodeScalar(c.value-96){
 //                    str += "\(u)"
 //                }
-//            } else {
+//            }else{
 //                str += "\(c)"
 //            }
 //        }

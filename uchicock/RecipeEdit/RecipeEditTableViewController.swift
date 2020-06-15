@@ -144,7 +144,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             method.selectedSegmentIndex = 0
             strength.selectedSegmentIndex = 4
             isAddMode = true
-        } else {
+        }else{
             self.navigationItem.title = "レシピ編集"
             switch recipe.favorites{
             case 0:
@@ -463,7 +463,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }else if indexPath.section == 1{
             if indexPath.row < recipeIngredientList.count{
                 return 70
-            } else if indexPath.row == recipeIngredientList.count{
+            }else if indexPath.row == recipeIngredientList.count{
                 return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 1))
             }
         }
@@ -473,7 +473,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return super.tableView(tableView, numberOfRowsInSection: 0)
-        } else if section == 1{
+        }else if section == 1{
             return recipeIngredientList.count + 1
         }
         return 0
@@ -631,7 +631,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             }
             return cell
-        } else if indexPath.section == 1{
+        }else if indexPath.section == 1{
             if indexPath.row < recipeIngredientList.count{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
                 if duplicatedIngredientList.contains(recipeIngredientList[indexPath.row].ingredientName){
@@ -1051,7 +1051,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             presentAlert(title: "材料を" + String(ingredientMaximum) + "個以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
             })
-        } else if updateDuplicatedIngredientList() {
+        }else if updateDuplicatedIngredientList() {
             presentAlert(title: "重複している材料があります", message: nil, action: {
                 var idp = IndexPath(row: 0, section: 1)
                 if self.duplicatedIngredientList.count > 0{

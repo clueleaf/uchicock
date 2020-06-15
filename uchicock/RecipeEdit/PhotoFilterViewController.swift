@@ -149,7 +149,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     @objc func imageViewDoubleTapped() {
         if imageScrollView.zoomScale > imageScrollView.minimumZoomScale {
             imageScrollView.setZoomScale(imageScrollView.minimumZoomScale, animated: true)
-        } else {
+        }else{
             imageScrollView.setZoomScale(imageScrollView.maximumZoomScale, animated: true)
         }
     }

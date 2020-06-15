@@ -143,9 +143,9 @@ open class CircularCheckbox: UIControl {
             return
         }
         
-        if animated {
+        if animated{
             controller.animate(checkState, toState: newState)
-        } else {
+        }else{
             controller.resetLayersForState(newState)
         }
     }
@@ -212,14 +212,14 @@ open class CircularCheckbox: UIControl {
     
     // MARK: - UIControl
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
+        if sender.state == .began{
             isSelected = true
             self.hasMovedWhilePressing = false
             originalX = sender.location(in: sender.view).x
             originalY = sender.location(in: sender.view).y
             currentX = sender.location(in: sender.view).x
             currentY = sender.location(in: sender.view).y
-        } else if sender.state == .changed{
+        }else if sender.state == .changed{
             isSelected = true
             if hasMovedWhilePressing == false{
                 currentX = sender.location(in: sender.view).x
@@ -229,7 +229,7 @@ open class CircularCheckbox: UIControl {
                     self.hasMovedWhilePressing = true
                 }
             }
-        } else {
+        }else{
             isSelected = false
             if sender.state == .ended && hasMovedWhilePressing == false {
                 toggleCheckState(true)
@@ -287,9 +287,9 @@ open class CircularCheckbox: UIControl {
             return stateChangeAnimation.rawValue
         }
         set {
-            if let type = Animation(rawValue: newValue) {
+            if let type = Animation(rawValue: newValue){
                 stateChangeAnimation = type
-            } else {
+            }else{
                 stateChangeAnimation = .expand
             }
         }
@@ -301,9 +301,9 @@ open class CircularCheckbox: UIControl {
             return checkState.rawValue
         }
         set {
-            if let temp = CheckState(rawValue: newValue) {
+            if let temp = CheckState(rawValue: newValue){
                 checkState = temp
-            } else {
+            }else{
                 checkState = .checked
             }
         }

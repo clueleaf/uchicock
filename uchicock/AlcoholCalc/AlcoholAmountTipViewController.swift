@@ -95,7 +95,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
             weightMinusButton.isEnabled = false
             weightMinusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             weightMinusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
-        } else {
+        }else{
             weightMinusButton.isEnabled = true
             weightMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             weightMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -104,7 +104,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
             weightPlusButton.isEnabled = false
             weightPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             weightPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
-        } else {
+        }else{
             weightPlusButton.isEnabled = true
             weightPlusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             weightPlusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor

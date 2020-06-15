@@ -22,7 +22,7 @@ internal class CircularCheckboxFadeController: CircularCheckboxController {
             markLayer.add(opacityAnimation, forKey: "opacity")
             
             CATransaction.commit()
-        } else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
+        }else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
             markLayer.path = pathGenerator.pathForMark(toState)?.cgPath
             
             let opacityAnimation = animationGenerator.opacityAnimation(false)
@@ -37,7 +37,7 @@ internal class CircularCheckboxFadeController: CircularCheckboxController {
             markLayer.add(opacityAnimation, forKey: "opacity")
             
             CATransaction.commit()
-        } else {
+        }else{
             let fromPath = pathGenerator.pathForMark(fromState)
             let toPath = pathGenerator.pathForMark(toState)
             
@@ -75,10 +75,10 @@ internal class CircularCheckboxFadeController: CircularCheckboxController {
 
         markLayer.lineWidth = pathGenerator.checkmarkLineWidth
         
-        if pathGenerator.pathForMark(state) != nil {
+        if pathGenerator.pathForMark(state) != nil{
             markLayer.opacity = 1.0
             selectedBoxLayer.opacity = 1.0
-        } else {
+        }else{
             selectedBoxLayer.opacity = 0.0
             markLayer.opacity = 0.0
         }

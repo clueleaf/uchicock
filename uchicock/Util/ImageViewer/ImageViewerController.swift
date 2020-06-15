@@ -158,9 +158,9 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     }
     
     @objc func imageViewDoubleTapped() {
-        if scrollView.zoomScale > scrollView.minimumZoomScale {
+        if scrollView.zoomScale > scrollView.minimumZoomScale{
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
-        } else {
+        }else{
             scrollView.setZoomScale(2.0, animated: true)
         }
     }
@@ -184,7 +184,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
             let percentage = abs(3 * translation.y + velocity.y) / imageView.bounds.height
             if percentage > 0.5 {
                 transitionHandler?.dismissalInteractor.finish()
-            } else {
+            }else{
                 transitionHandler?.dismissalInteractor.cancel()
             }
         default: break

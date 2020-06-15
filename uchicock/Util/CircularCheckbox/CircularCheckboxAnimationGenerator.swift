@@ -13,10 +13,10 @@ internal class CircularCheckboxAnimationGenerator {
     final func animation(_ key: String, reverse: Bool) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: key)
         // Set the start and end.
-        if !reverse {
+        if !reverse{
             animation.fromValue = 0.0
             animation.toValue = 1.0
-        } else {
+        }else{
             animation.fromValue = 1.0
             animation.toValue = 0.0
         }
@@ -70,9 +70,9 @@ internal class CircularCheckboxAnimationGenerator {
         var keyTimes = [Float]()
         
         // Add the start scale
-        if !reverse {
+        if !reverse{
             values.append(CATransform3DMakeScale(0.0, 0.0, 0.0))
-        } else {
+        }else{
             values.append(CATransform3DMakeScale(1.0, 1.0, 1.0))
         }
         keyTimes.append(0.0)
@@ -89,9 +89,9 @@ internal class CircularCheckboxAnimationGenerator {
         }
         
         // Add the end scale.
-        if !reverse {
+        if !reverse{
             values.append(CATransform3DMakeScale(1.0, 1.0, 1.0))
-        } else {
+        }else{
             values.append(CATransform3DMakeScale(0.0001, 0.0001, 0.0001))
         }
         keyTimes.append(1.0)

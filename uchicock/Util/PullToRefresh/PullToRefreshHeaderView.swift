@@ -188,7 +188,7 @@ open class PullToRefreshHeaderView: UIView {
                 if isIgnoreObserving == false {
                     sizeChangeAction(object: object as AnyObject?, change: change)
                 }
-            } else if keyPath == PullToRefreshHeaderView.offsetKeyPath {
+            }else if keyPath == PullToRefreshHeaderView.offsetKeyPath {
                 if isIgnoreObserving == false {
                     offsetChangeAction(object: object as AnyObject?, change: change)
                 }
@@ -229,19 +229,19 @@ open class PullToRefreshHeaderView: UIView {
                     // Start to refresh...
                     self.startRefreshing()
                     self.animator.refresh(view: self, stateDidChange: .refreshing)
-                } else {
+                }else{
                     // Release to refresh! Please drop down hard...
                     self.animator.refresh(view: self, stateDidChange: .releaseToRefresh)
                     isRecordingProgress = true
                 }
             }
-        } else if offsets < 0 {
+        }else if offsets < 0 {
             // Pull to refresh!
             if isRefreshing == false {
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 isRecordingProgress = true
             }
-        } else {
+        }else{
             // Normal state
         }
         

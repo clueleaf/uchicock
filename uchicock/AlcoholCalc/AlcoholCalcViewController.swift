@@ -161,10 +161,10 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         if ceil(alcoholPercentage) == 0{
             alcoholPercentageLabel.text = "0"
             alcoholStrengthLabel.text = "ノンアルコール"
-        } else if alcoholPercentage < 1.0{
+        }else if alcoholPercentage < 1.0{
             alcoholPercentageLabel.text = "<1"
             alcoholStrengthLabel.text = "ノンアルコール"
-        } else{
+        }else{
             let flooredAlcoholPercentage = Int(floor(alcoholPercentage))
             alcoholPercentageLabel.text = String(flooredAlcoholPercentage)
             if flooredAlcoholPercentage < 10 {

@@ -23,7 +23,7 @@ struct ImageViewerUtil {
         let insideRectRatio = insideRect.width / insideRect.height
         if imageRatio > insideRectRatio {
             return CGRect(x: 0, y: 0, width: floor(insideRect.height * imageRatio), height: insideRect.height)
-        } else {
+        }else{
             return CGRect(x: 0, y: 0, width: insideRect.width, height: floor(insideRect.width / imageRatio))
         }
     }

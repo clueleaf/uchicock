@@ -23,7 +23,7 @@ internal class CircularCheckboxExpandController: CircularCheckboxController {
             markLayer.add(wiggleAnimation, forKey: "transform")
             
             CATransaction.commit()
-        } else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
+        }else if pathGenerator.pathForMark(toState) != nil && pathGenerator.pathForMark(fromState) == nil {
             markLayer.path = pathGenerator.pathForMark(toState)?.cgPath
             
             let amplitude: CGFloat = 0.35
@@ -39,7 +39,7 @@ internal class CircularCheckboxExpandController: CircularCheckboxController {
             markLayer.add(wiggleAnimation, forKey: "transform")
             
             CATransaction.commit()
-        } else {
+        }else{
             let fromPath = pathGenerator.pathForMark(fromState)
             let toPath = pathGenerator.pathForMark(toState)
             
@@ -55,7 +55,6 @@ internal class CircularCheckboxExpandController: CircularCheckboxController {
             
             CATransaction.commit()
         }
-        
     }
     
     override func resetLayersForState(_ state: CircularCheckbox.CheckState?) {
@@ -77,10 +76,10 @@ internal class CircularCheckboxExpandController: CircularCheckboxController {
 
         markLayer.lineWidth = pathGenerator.checkmarkLineWidth
 
-        if pathGenerator.pathForMark(state) != nil {
+        if pathGenerator.pathForMark(state) != nil{
             markLayer.transform = CATransform3DIdentity
             selectedBoxLayer.transform = CATransform3DIdentity
-        } else {
+        }else{
             markLayer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
             selectedBoxLayer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
         }

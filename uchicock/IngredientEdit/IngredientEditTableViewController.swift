@@ -46,7 +46,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         if ingredient.ingredientName == "" {
             self.navigationItem.title = "材料登録"
             isAddMode = true
-        } else {
+        }else{
             self.navigationItem.title = "材料編集"
             isAddMode = false
         }
@@ -101,7 +101,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             category.selectedSegmentIndex = ingredient.category
-        } else {
+        }else{
             category.selectedSegmentIndex = 2
         }
         
