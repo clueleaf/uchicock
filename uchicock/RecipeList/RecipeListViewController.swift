@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import StoreKit
 
-class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching, UIViewControllerTransitioningDelegate, UITextFieldDelegate, ScrollableToTop {
+class RecipeListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching, UIViewControllerTransitioningDelegate, UITextFieldDelegate, ScrollableToTop{
 
     @IBOutlet weak var bookmarkButton: UIBarButtonItem!
     @IBOutlet weak var addRecipeButton: UIBarButtonItem!
@@ -33,14 +33,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeList: Results<Recipe>?
     var recipeBasicList = Array<RecipeBasic>()
 
+    var isBookmarkMode = false
+    var shouldShowBookmarkGuide = false
     var selectedRecipeId: String? = nil
     var recipeTableViewOffset: CGFloat? = nil
     var bookmarkTableViewOffset: CGFloat? = nil
     var scrollBeginningYPoint: CGFloat? = nil
-
     var textFieldHasSearchResult = false
-    var isBookmarkMode = false
-    var shouldShowBookmarkGuide = false
     
     var recipeSortPrimary = 1
     var recipeSortSecondary = 0
@@ -176,7 +175,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.removeObserver(self)
     }
     
-    // MARK: - Set Up
+    // MARK: - Logic functions
     private func registerUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [
@@ -236,34 +235,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         var conditionText = ""
         
         switch recipeSortPrimary{
-        case 1:
-            conditionText = "名前順"
-        case 2:
-            conditionText = "作れる順"
-        case 3:
-            conditionText = "作った回数順"
-        case 4:
-            conditionText = "お気に入り順"
-        case 5:
-            conditionText = "最近見た順"
-        default:
-            conditionText = "名前順"
+        case 1: conditionText = "名前順"
+        case 2: conditionText = "作れる順"
+        case 3: conditionText = "作った回数順"
+        case 4: conditionText = "お気に入り順"
+        case 5: conditionText = "最近見た順"
+        default: conditionText = "名前順"
         }
         
         if recipeSortPrimary > 1 && recipeSortPrimary < 5{
             switch recipeSortSecondary{
-            case 1:
-                conditionText += " > 名前順"
-            case 2:
-                conditionText += " > 作れる順"
-            case 3:
-                conditionText += " > 作った回数順"
-            case 4:
-                conditionText += " > お気に入り順"
-            case 5:
-                conditionText += " > 最近見た順"
-            default:
-                conditionText += " > 名前順"
+            case 1: conditionText += " > 名前順"
+            case 2: conditionText += " > 作れる順"
+            case 3: conditionText += " > 作った回数順"
+            case 4: conditionText += " > お気に入り順"
+            case 5: conditionText += " > 最近見た順"
+            default: conditionText += " > 名前順"
             }
         }
         
@@ -800,9 +787,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - IBAction
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         if let editNavi = UIStoryboard(name: "RecipeEdit", bundle: nil).instantiateViewController(withIdentifier: "RecipeEditNavigation") as? BasicNavigationController{
-            guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{
-                    return
-            }
+            guard let editVC = editNavi.visibleViewController as? RecipeEditTableViewController else{ return }
             
             editNavi.modalPresentationStyle = .fullScreen
             editNavi.modalTransitionStyle = .coverVertical
@@ -816,22 +801,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         isBookmarkMode.toggle()
         if isBookmarkMode{
             recipeTableViewOffset = max(tableView.contentOffset.y, 0)
+            changeToBookmarkMode()
         }else{
             bookmarkTableViewOffset = max(tableView.contentOffset.y, 0)
+            changeToRecipeMode()
         }
         
-        isBookmarkMode ? changeToBookmarkMode() : changeToRecipeMode()
         reloadRecipeBasicList()
         setTableBackgroundView()
 
-        if isBookmarkMode{
-            if let offset = bookmarkTableViewOffset{
-                tableView.contentOffset.y = offset
-            }
-        }else{
-            if let offset = recipeTableViewOffset{
-                tableView.contentOffset.y = offset
-            }
+        if isBookmarkMode, let offset = bookmarkTableViewOffset{
+            tableView.contentOffset.y = offset
+        }else if isBookmarkMode == false, let offset = recipeTableViewOffset{
+            tableView.contentOffset.y = offset
         }
         tableView.reloadData()
     }
@@ -865,6 +847,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func searchConditionModifyButtonTapped(_ sender: UIButton) {
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+        searchTextField.resignFirstResponder()
 
         let storyboard = UIStoryboard(name: "RecipeSearch", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
@@ -881,20 +864,16 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         var recipeBasicListForFilterModal = Array<RecipeBasic>()
         for recipe in recipeList!{
             recipeBasicListForFilterModal.append(RecipeBasic(
-                id: recipe.id,
-                name: recipe.recipeName,
-                nameYomi: recipe.recipeNameYomi,
-                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                bookmarkDate: recipe.bookmarkDate,
-                shortageNum: recipe.shortageNum,
-                shortageIngredientName: recipe.shortageIngredientName,
-                lastViewDate: recipe.lastViewDate,
+                id: "",
+                name: "",
+                nameYomi: "",
+                katakanaLowercasedNameForSearch: "",
+                shortageNum: 0,
                 favorites: recipe.favorites,
                 style: recipe.style,
                 method: recipe.method,
                 strength: recipe.strength,
-                madeNum: recipe.madeNum,
-                imageFileName: recipe.imageFileName
+                madeNum: 0
             ))
         }
         
@@ -906,9 +885,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 ($0.name.contains(searchText) == false)
             }
         }
-
         vc.recipeBasicListForFilterModal = recipeBasicListForFilterModal
-        searchTextField.resignFirstResponder()
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet

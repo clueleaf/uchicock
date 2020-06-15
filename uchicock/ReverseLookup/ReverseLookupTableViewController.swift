@@ -282,34 +282,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         var conditionText = ""
         
         switch recipeSortPrimary{
-        case 1:
-            conditionText = "名前順"
-        case 2:
-            conditionText = "作れる順"
-        case 3:
-            conditionText = "作った回数順"
-        case 4:
-            conditionText = "お気に入り順"
-        case 5:
-            conditionText = "最近見た順"
-        default:
-            conditionText = "名前順"
+        case 1: conditionText = "名前順"
+        case 2: conditionText = "作れる順"
+        case 3: conditionText = "作った回数順"
+        case 4: conditionText = "お気に入り順"
+        case 5: conditionText = "最近見た順"
+        default: conditionText = "名前順"
         }
         
         if recipeSortPrimary > 1 && recipeSortPrimary < 5{
             switch recipeSortSecondary{
-            case 1:
-                conditionText += " > 名前順"
-            case 2:
-                conditionText += " > 作れる順"
-            case 3:
-                conditionText += " > 作った回数順"
-            case 4:
-                conditionText += " > お気に入り順"
-            case 5:
-                conditionText += " > 最近見た順"
-            default:
-                conditionText += " > 名前順"
+            case 1: conditionText += " > 名前順"
+            case 2: conditionText += " > 作れる順"
+            case 3: conditionText += " > 作った回数順"
+            case 4: conditionText += " > お気に入り順"
+            case 5: conditionText += " > 最近見た順"
+            default: conditionText += " > 名前順"
             }
         }
         

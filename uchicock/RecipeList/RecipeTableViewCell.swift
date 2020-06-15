@@ -51,16 +51,11 @@ class RecipeTableViewCell: UITableViewCell {
             switch subInfoType{
             case 0: // お気に入り
                 switch recipe!.favorites{
-                case 0:
-                    subInfoLabel.text = ""
-                case 1:
-                    subInfoLabel.text = "★"
-                case 2:
-                    subInfoLabel.text = "★★"
-                case 3:
-                    subInfoLabel.text = "★★★"
-                default:
-                    subInfoLabel.text = ""
+                case 0: subInfoLabel.text = ""
+                case 1: subInfoLabel.text = "★"
+                case 2: subInfoLabel.text = "★★"
+                case 3: subInfoLabel.text = "★★★"
+                default: subInfoLabel.text = ""
                 }
                 subInfoLabel.textColor = UchicockStyle.primaryColor
             case 1: // 作った回数
@@ -88,16 +83,11 @@ class RecipeTableViewCell: UITableViewCell {
                 subInfoLabel.textColor = UchicockStyle.labelTextColorLight
             default: // お気に入り
                 switch recipe!.favorites{
-                case 0:
-                    subInfoLabel.text = ""
-                case 1:
-                    subInfoLabel.text = "★"
-                case 2:
-                    subInfoLabel.text = "★★"
-                case 3:
-                    subInfoLabel.text = "★★★"
-                default:
-                    subInfoLabel.text = ""
+                case 0: subInfoLabel.text = ""
+                case 1: subInfoLabel.text = "★"
+                case 2: subInfoLabel.text = "★★"
+                case 3: subInfoLabel.text = "★★★"
+                default: subInfoLabel.text = ""
                 }
                 subInfoLabel.textColor = UchicockStyle.primaryColor
             }
