@@ -322,6 +322,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @objc func recipeNameYomiTextFieldDidChange(_ notification: Notification){
+        recipeNameYomi.text = recipeNameYomi.text!.convertToYomi()
         showCancelAlert = true
         updateRecipeNameYomiCounter()
         setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
