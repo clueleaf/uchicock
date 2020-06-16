@@ -627,23 +627,23 @@
                         <outlet property="madeNumCountUpLabel" destination="fiG-Md-KeZ" id="gC4-Da-50C"/>
                         <outlet property="madeNumMinusButton" destination="aTA-1P-aFO" id="E8x-3L-4a6"/>
                         <outlet property="madeNumPlusButton" destination="XZO-3V-dxg" id="Ieh-IX-idg"/>
-                        <outlet property="memo" destination="dM6-Pc-OLF" id="eni-AH-DcW"/>
                         <outlet property="memoBottomConstraint" destination="ghf-BB-6gb" id="MoR-lj-f6o"/>
-                        <outlet property="method" destination="sca-mX-RzU" id="jRK-6m-p33"/>
+                        <outlet property="memoTextView" destination="dM6-Pc-OLF" id="iMi-xa-OWL"/>
+                        <outlet property="methodLabel" destination="sca-mX-RzU" id="Weq-f3-A9O"/>
                         <outlet property="methodTipButton" destination="KSZ-h7-jZu" id="vUd-DX-5PB"/>
                         <outlet property="openInSafariButton" destination="so1-Ff-BH9" id="TJa-xE-2IU"/>
-                        <outlet property="photo" destination="XT8-og-tYP" id="QPM-5E-60F"/>
-                        <outlet property="recipeName" destination="9sc-Sb-9J1" id="wTA-6y-ITS"/>
+                        <outlet property="photoImageView" destination="XT8-og-tYP" id="oFw-jP-lEq"/>
+                        <outlet property="recipeNameTextView" destination="9sc-Sb-9J1" id="2uc-PX-HIz"/>
                         <outlet property="recipeNameYomiLabel" destination="w0U-iU-Pie" id="4oy-6R-X7w"/>
                         <outlet property="shareButton" destination="eee-lT-yn7" id="Wt3-xe-ut2"/>
                         <outlet property="shortageLabel" destination="ex7-E5-r2A" id="zyY-mX-xKj"/>
                         <outlet property="similarRecipeCollectionView" destination="slu-dQ-NoQ" id="rqQ-yL-XTR"/>
-                        <outlet property="star1" destination="6ts-mH-DGs" id="ZW1-0O-C8R"/>
-                        <outlet property="star2" destination="gxL-Nl-qZ9" id="uje-HJ-ILt"/>
-                        <outlet property="star3" destination="7hI-6j-UuT" id="dC4-ka-KWF"/>
-                        <outlet property="strength" destination="sqH-bU-kag" id="7TP-vW-od6"/>
+                        <outlet property="star1Button" destination="6ts-mH-DGs" id="0Ys-Xm-l9H"/>
+                        <outlet property="star2Button" destination="gxL-Nl-qZ9" id="evL-6N-Zmx"/>
+                        <outlet property="star3Button" destination="7hI-6j-UuT" id="CPq-z3-GDC"/>
+                        <outlet property="strengthLabel" destination="sqH-bU-kag" id="zK1-7U-tgL"/>
                         <outlet property="strengthTipButton" destination="ErH-eR-jC5" id="dUp-iB-HlL"/>
-                        <outlet property="style" destination="X4d-3g-NZJ" id="hxh-k4-cA2"/>
+                        <outlet property="styleLabel" destination="X4d-3g-NZJ" id="T9U-2V-lZi"/>
                         <outlet property="styleTipButton" destination="ExT-m2-7rC" id="o4a-fn-9w7"/>
                         <segue destination="pbh-1D-LNW" kind="presentation" identifier="PushEditRecipe" modalPresentationStyle="fullScreen" id="lgY-f5-jox"/>
                         <segue destination="jwj-FT-ox5" kind="show" identifier="PushIngredientDetail" id="tjp-CU-ZRC"/>

@@ -12,22 +12,22 @@ import Accounts
 
 class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
 
-    @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var recipeName: CustomTextView!
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var recipeNameTextView: CustomTextView!
     @IBOutlet weak var recipeNameYomiLabel: UILabel!
     @IBOutlet weak var bookmarkButton: ExpandedButton!
     @IBOutlet weak var shortageLabel: UILabel!
     @IBOutlet weak var lastViewDateLabel: UILabel!
-    @IBOutlet weak var star1: ExpandedButton!
-    @IBOutlet weak var star2: ExpandedButton!
-    @IBOutlet weak var star3: ExpandedButton!
+    @IBOutlet weak var star1Button: ExpandedButton!
+    @IBOutlet weak var star2Button: ExpandedButton!
+    @IBOutlet weak var star3Button: ExpandedButton!
+    @IBOutlet weak var styleLabel: CustomLabel!
+    @IBOutlet weak var methodLabel: CustomLabel!
+    @IBOutlet weak var strengthLabel: CustomLabel!
     @IBOutlet weak var styleTipButton: ExpandedButton!
     @IBOutlet weak var methodTipButton: ExpandedButton!
     @IBOutlet weak var strengthTipButton: ExpandedButton!
-    @IBOutlet weak var style: CustomLabel!
-    @IBOutlet weak var method: CustomLabel!
-    @IBOutlet weak var strength: CustomLabel!
-    @IBOutlet weak var memo: CustomTextView!
+    @IBOutlet weak var memoTextView: CustomTextView!
     @IBOutlet weak var memoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var madeNumPlusButton: ExpandedButton!
     @IBOutlet weak var madeNumMinusButton: ExpandedButton!
@@ -89,25 +89,25 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
         tableView.addSubview(headerView)
         
-        photo.clipsToBounds = true
+        photoImageView.clipsToBounds = true
 
-        recipeName.isScrollEnabled = false
-        recipeName.textContainerInset = .zero
-        recipeName.textContainer.lineFragmentPadding = 0
-        recipeName.font = UIFont.systemFont(ofSize: 25.0)
-        memo.isScrollEnabled = false
-        memo.textContainerInset = .zero
-        memo.textContainer.lineFragmentPadding = 0
-        memo.font = UIFont.systemFont(ofSize: 15.0)
+        recipeNameTextView.isScrollEnabled = false
+        recipeNameTextView.textContainerInset = .zero
+        recipeNameTextView.textContainer.lineFragmentPadding = 0
+        recipeNameTextView.font = UIFont.systemFont(ofSize: 25.0)
+        memoTextView.isScrollEnabled = false
+        memoTextView.textContainerInset = .zero
+        memoTextView.textContainer.lineFragmentPadding = 0
+        memoTextView.font = UIFont.systemFont(ofSize: 15.0)
 
         bookmarkButton.minimumHitWidth = 36
         bookmarkButton.minimumHitHeight = 36
-        star1.minimumHitWidth = 36
-        star1.minimumHitHeight = 36
-        star2.minimumHitWidth = 36
-        star2.minimumHitHeight = 36
-        star3.minimumHitWidth = 36
-        star3.minimumHitHeight = 36
+        star1Button.minimumHitWidth = 36
+        star1Button.minimumHitHeight = 36
+        star2Button.minimumHitWidth = 36
+        star2Button.minimumHitHeight = 36
+        star3Button.minimumHitWidth = 36
+        star3Button.minimumHitHeight = 36
         styleTipButton.minimumHitWidth = 50
         styleTipButton.minimumHitHeight = 44
         methodTipButton.minimumHitWidth = 50
@@ -142,11 +142,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         similarRecipeCollectionView.register(UINib(nibName: "SimilarRecipeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RecipeNameCell")
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoTapped(_:)))
-        photo.addGestureRecognizer(tapRecognizer)
+        photoImageView.addGestureRecognizer(tapRecognizer)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RecipeDetailTableViewController.photoLongPressed(_:)))
         longPressRecognizer.allowableMovement = 100
         longPressRecognizer.minimumPressDuration = 0.2
-        photo.addGestureRecognizer(longPressRecognizer)
+        photoImageView.addGestureRecognizer(longPressRecognizer)
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -164,7 +164,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         let realm = try! Realm()
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
-        if rec == nil {
+        guard rec != nil else{
             hasRecipeDeleted = true
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
@@ -173,210 +173,211 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
             self.tableView.setNeedsLayout()
+            return
+        }
+
+        hasRecipeDeleted = false
+        recipe = rec!
+        self.navigationItem.title = recipe.recipeName
+            
+        var needInitializeDisplayOrder = false
+        recipeIngredientList.removeAll()
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(
+                recipeIngredientId: ri.id,
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
+                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: ri.ingredient.stockFlag
+            ))
+            if ri.displayOrder < 0{
+                needInitializeDisplayOrder = true
+                break
+            }
+        }
+        
+        if needInitializeDisplayOrder{
+            initializeDisplayOrder()
+        }
+        
+        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+
+        if recipe.bookmarkDate == nil{
+            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
         }else{
-            hasRecipeDeleted = false
-            recipe = rec!
-            self.navigationItem.title = recipe.recipeName
-            
-            var needInitializeDisplayOrder = false
-            recipeIngredientList.removeAll()
-            for ri in recipe.recipeIngredients {
-                recipeIngredientList.append(RecipeIngredientBasic(
-                    recipeIngredientId: ri.id,
-                    ingredientId: ri.ingredient.id,
-                    ingredientName: ri.ingredient.ingredientName,
-                    ingredientNameYomi: ri.ingredient.ingredientNameYomi,
-                    katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
-                    amount: ri.amount,
-                    mustFlag: ri.mustFlag,
-                    category: ri.ingredient.category,
-                    displayOrder: ri.displayOrder,
-                    stockFlag: ri.ingredient.stockFlag
-                ))
-                if ri.displayOrder < 0{
-                    needInitializeDisplayOrder = true
-                    break
-                }
-            }
-            
-            if needInitializeDisplayOrder{
-                initializeDisplayOrder()
-            }
-            
-            recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+            bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
+        }
+        bookmarkButton.tintColor = UchicockStyle.primaryColor
 
-            if recipe.bookmarkDate == nil{
-                bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
+        if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false), fromContextualMenu == false{
+            photoExists = true
+            photoImageView.image = recipeImage
+            photoWidth = recipeImage.size.width
+            photoHeight = recipeImage.size.height
+        }else{
+            photoExists = false
+            photoImageView.image = nil
+            photoWidth = 0
+            photoHeight = 0
+        }
+        calcImageViewSizeTime = 3
+        updateImageView()
+
+        recipeNameTextView.text = recipe.recipeName
+        recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+        if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi.katakanaLowercasedForSearch(){
+            recipeNameYomiLabel.isHidden = true
+            recipeNameYomiLabel.text = " "
+        }else{
+            recipeNameYomiLabel.isHidden = false
+            recipeNameYomiLabel.text = recipe.recipeNameYomi
+        }
+
+        switch recipe.shortageNum {
+        case 0:
+            shortageLabel.text = "すぐ作れる！"
+            shortageLabel.textColor = UchicockStyle.primaryColor
+            shortageLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        case 1:
+            if let iname = recipe.shortageIngredientName{
+                shortageLabel.text = iname + "が足りません"
             }else{
-                bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
-            }
-            bookmarkButton.tintColor = UchicockStyle.primaryColor
-
-            if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false), fromContextualMenu == false{
-                photoExists = true
-                photo.image = recipeImage
-                photoWidth = recipeImage.size.width
-                photoHeight = recipeImage.size.height
-            }else{
-                photoExists = false
-                photo.image = nil
-                photoWidth = 0
-                photoHeight = 0
-            }
-            calcImageViewSizeTime = 3
-            updateImageView()
-
-            recipeName.text = recipe.recipeName
-            recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
-            if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi.katakanaLowercasedForSearch(){
-                recipeNameYomiLabel.isHidden = true
-                recipeNameYomiLabel.text = " "
-            }else{
-                recipeNameYomiLabel.isHidden = false
-                recipeNameYomiLabel.text = recipe.recipeNameYomi
-            }
-
-            switch recipe.shortageNum {
-            case 0:
-                shortageLabel.text = "すぐ作れる！"
-                shortageLabel.textColor = UchicockStyle.primaryColor
-                shortageLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            case 1:
-                if let iname = recipe.shortageIngredientName{
-                    shortageLabel.text = iname + "が足りません"
-                }else{
-                    shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
-                }
-                shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
-            default:
                 shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
-                shortageLabel.textColor = UchicockStyle.labelTextColorLight
-                shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
             }
-            
-            if shouldUpdateLastViewDate {
-                let dateTimeFormatter: DateFormatter = DateFormatter()
-                dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-                let timeFormatter: DateFormatter = DateFormatter()
-                timeFormatter.dateFormat = "HH:mm"
-                if let lastViewDate = recipe.lastViewDate{
-                    let calendar = Calendar(identifier: .gregorian)
-                    if calendar.isDateInToday(lastViewDate){
-                        lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
-                    }else if calendar.isDateInYesterday(lastViewDate){
-                        lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
-                    }else{
-                        lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
-                    }
+            shortageLabel.textColor = UchicockStyle.labelTextColorLight
+            shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
+        default:
+            shortageLabel.text = "材料が" + String(recipe.shortageNum) + "個足りません"
+            shortageLabel.textColor = UchicockStyle.labelTextColorLight
+            shortageLabel.font = UIFont.systemFont(ofSize: 14.0)
+        }
+        
+        if shouldUpdateLastViewDate {
+            let dateTimeFormatter: DateFormatter = DateFormatter()
+            dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+            let timeFormatter: DateFormatter = DateFormatter()
+            timeFormatter.dateFormat = "HH:mm"
+            if let lastViewDate = recipe.lastViewDate{
+                let calendar = Calendar(identifier: .gregorian)
+                if calendar.isDateInToday(lastViewDate){
+                    lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
+                }else if calendar.isDateInYesterday(lastViewDate){
+                    lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
                 }else{
-                    lastViewDateLabel.text = "最終閲覧：--"
+                    lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
                 }
-                shouldUpdateLastViewDate = false
-            }
-
-            switch recipe.favorites{
-            case 0:
-                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
-            case 1:
-                setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
-            case 2:
-                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
-            case 3:
-                setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
-            default:
-                setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
-            }
-            star1.tintColor = UchicockStyle.primaryColor
-            star2.tintColor = UchicockStyle.primaryColor
-            star3.tintColor = UchicockStyle.primaryColor
-
-            switch recipe.style{
-            case 0:
-                style.text = "ロング"
-            case 1:
-                style.text = "ショート"
-            case 2:
-                style.text = "ホット"
-            case 3:
-                style.text = "未指定"
-            default:
-                style.text = "未指定"
-            }
-            
-            switch recipe.method{
-            case 0:
-                method.text = "ビルド"
-            case 1:
-                method.text = "ステア"
-            case 2:
-                method.text = "シェイク"
-            case 3:
-                method.text = "ブレンド"
-            case 4:
-                method.text = "その他"
-            default:
-                method.text = "その他"
-            }
-            
-            switch recipe.strength{
-            case 0:
-                strength.text = "ノンアルコール"
-            case 1:
-                strength.text = "弱い"
-            case 2:
-                strength.text = "やや強い"
-            case 3:
-                strength.text = "強い"
-            case 4:
-                strength.text = "未指定"
-            default:
-                strength.text = "未指定"
-            }
-
-            styleTipButton.tintColor = UchicockStyle.primaryColor
-            methodTipButton.tintColor = UchicockStyle.primaryColor
-            strengthTipButton.tintColor = UchicockStyle.primaryColor
-
-            memo.text = recipe.memo
-            memo.textColor = UchicockStyle.labelTextColorLight
-            if recipe.memo.isEmpty {
-                memoBottomConstraint.constant = 0
-                memo.isHidden = true
             }else{
-                memoBottomConstraint.constant = 15
-                memo.isHidden = false
+                lastViewDateLabel.text = "最終閲覧：--"
             }
+            shouldUpdateLastViewDate = false
+        }
 
-            madeNum = recipe.madeNum
-            madeNumCountUpLabel.text = String(madeNum) + "回"
-            setMadeNumButton()
-            
-            editButton.backgroundColor = UchicockStyle.primaryColor
-            editButton.tintColor = UchicockStyle.basicBackgroundColor
-            shareButton.backgroundColor = UchicockStyle.primaryColor
-            shareButton.tintColor = UchicockStyle.basicBackgroundColor
-            openInSafariButton.backgroundColor = UchicockStyle.primaryColor
-            openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
-            deleteButton.backgroundColor = UchicockStyle.alertColor
-            deleteButton.tintColor = UchicockStyle.basicBackgroundColor
-            
-            tableView.estimatedRowHeight = 70
-            tableView.rowHeight = UITableView.automaticDimension
-            tableView.reloadData()
-            similarRecipeCollectionView.backgroundColor = UchicockStyle.basicBackgroundColor
-            similarRecipeCollectionView.reloadData()
-            similarRecipeCollectionView.layoutIfNeeded()
+        switch recipe.favorites{
+        case 0:
+            setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+        case 1:
+            setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
+        case 2:
+            setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
+        case 3:
+            setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
+        default:
+            setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+        }
+        star1Button.tintColor = UchicockStyle.primaryColor
+        star2Button.tintColor = UchicockStyle.primaryColor
+        star3Button.tintColor = UchicockStyle.primaryColor
 
-            if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
-                for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0{
-                    if recipeIngredientList.count > indexPath.row {
-                        if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
-                            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                            }
-                            break
+        switch recipe.style{
+        case 0:
+            styleLabel.text = "ロング"
+        case 1:
+            styleLabel.text = "ショート"
+        case 2:
+            styleLabel.text = "ホット"
+        case 3:
+            styleLabel.text = "未指定"
+        default:
+            styleLabel.text = "未指定"
+        }
+        
+        switch recipe.method{
+        case 0:
+            methodLabel.text = "ビルド"
+        case 1:
+            methodLabel.text = "ステア"
+        case 2:
+            methodLabel.text = "シェイク"
+        case 3:
+            methodLabel.text = "ブレンド"
+        case 4:
+            methodLabel.text = "その他"
+        default:
+            methodLabel.text = "その他"
+        }
+        
+        switch recipe.strength{
+        case 0:
+            strengthLabel.text = "ノンアルコール"
+        case 1:
+            strengthLabel.text = "弱い"
+        case 2:
+            strengthLabel.text = "やや強い"
+        case 3:
+            strengthLabel.text = "強い"
+        case 4:
+            strengthLabel.text = "未指定"
+        default:
+            strengthLabel.text = "未指定"
+        }
+
+        styleTipButton.tintColor = UchicockStyle.primaryColor
+        methodTipButton.tintColor = UchicockStyle.primaryColor
+        strengthTipButton.tintColor = UchicockStyle.primaryColor
+
+        memoTextView.text = recipe.memo
+        memoTextView.textColor = UchicockStyle.labelTextColorLight
+        if recipe.memo.isEmpty {
+            memoBottomConstraint.constant = 0
+            memoTextView.isHidden = true
+        }else{
+            memoBottomConstraint.constant = 15
+            memoTextView.isHidden = false
+        }
+
+        madeNum = recipe.madeNum
+        madeNumCountUpLabel.text = String(madeNum) + "回"
+        setMadeNumButton()
+        
+        editButton.backgroundColor = UchicockStyle.primaryColor
+        editButton.tintColor = UchicockStyle.basicBackgroundColor
+        shareButton.backgroundColor = UchicockStyle.primaryColor
+        shareButton.tintColor = UchicockStyle.basicBackgroundColor
+        openInSafariButton.backgroundColor = UchicockStyle.primaryColor
+        openInSafariButton.tintColor = UchicockStyle.basicBackgroundColor
+        deleteButton.backgroundColor = UchicockStyle.alertColor
+        deleteButton.tintColor = UchicockStyle.basicBackgroundColor
+        
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.reloadData()
+        similarRecipeCollectionView.backgroundColor = UchicockStyle.basicBackgroundColor
+        similarRecipeCollectionView.reloadData()
+        similarRecipeCollectionView.layoutIfNeeded()
+
+        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
+            for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0{
+                if recipeIngredientList.count > indexPath.row {
+                    if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
+                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
                         }
+                        break
                     }
                 }
             }
@@ -543,19 +544,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     private func setStarImageOf(star1isFilled: Bool, star2isFilled: Bool, star3isFilled: Bool){
         if star1isFilled {
-            star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
         if star2isFilled {
-            star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
         if star3isFilled {
-            star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
     }
 
@@ -634,7 +635,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             if ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: true) != nil {
                 let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                 let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
-                ivc.originalImageView = photo
+                ivc.originalImageView = photoImageView
                 ivc.captionText = self.recipe.recipeName
                 ivc.modalPresentationStyle = .overFullScreen
                 ivc.modalTransitionStyle = .crossDissolve
@@ -690,7 +691,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
                 activityVC.modalPresentationCapturesStatusBarAppearance = true
                 activityVC.popoverPresentationController?.sourceView = self.view
-                activityVC.popoverPresentationController?.sourceRect = self.photo.frame
+                activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
                 self.present(activityVC, animated: true, completion: nil)
             }
             shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
@@ -699,7 +700,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
             alertView.addAction(cancelAction)
             alertView.popoverPresentationController?.sourceView = self.view
-            alertView.popoverPresentationController?.sourceRect = self.photo.frame
+            alertView.popoverPresentationController?.sourceRect = self.photoImageView.frame
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
@@ -923,11 +924,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 1
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
+                    self.star1Button.transform = .identity
                 })
             }
         case 1:
@@ -935,11 +936,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 0
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
+                    self.star1Button.transform = .identity
                 })
             }
         case 2:
@@ -947,11 +948,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 1
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
+                    self.star2Button.transform = .identity
                 })
             }
         case 3:
@@ -959,14 +960,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 1
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
+                    self.star2Button.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         default:
@@ -982,14 +983,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 2
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
+                    self.star1Button.transform = .identity
+                    self.star2Button.transform = .identity
                 })
             }
         case 1:
@@ -997,11 +998,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 2
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
+                    self.star2Button.transform = .identity
                 })
             }
         case 2:
@@ -1009,14 +1010,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 0
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
+                    self.star1Button.transform = .identity
+                    self.star2Button.transform = .identity
                 })
             }
         case 3:
@@ -1024,11 +1025,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 2
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         default:
@@ -1044,17 +1045,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 3
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
+                    self.star1Button.transform = .identity
+                    self.star2Button.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         case 1:
@@ -1062,14 +1063,14 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 3
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
+                    self.star2Button.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         case 2:
@@ -1077,11 +1078,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 3
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         case 3:
@@ -1089,17 +1090,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 recipe.favorites = 0
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
+                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
+                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
+                    self.star1Button.transform = .identity
+                    self.star2Button.transform = .identity
+                    self.star3Button.transform = .identity
                 })
             }
         default:
@@ -1200,7 +1201,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         ]
         
         let shareText = createShareText()
-        if photoExists, let image = photo.image {
+        if photoExists, let image = photoImageView.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 activityVC.overrideUserInterfaceStyle = .dark
