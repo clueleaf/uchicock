@@ -200,7 +200,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             )
             for ri in recipe.recipeIngredients{
                 recoverRecipe.ingredientList.append(RecipeIngredientBasic(
-                    recipeIngredientId: "",
                     ingredientId: "",
                     ingredientName: ri.ingredient.ingredientName,
                     ingredientNameYomi: ri.ingredient.ingredientNameYomi,

@@ -22,7 +22,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     @IBOutlet weak var deleteLabel: UILabel!
     
     var recipeIngredient = RecipeIngredientBasic(
-        recipeIngredientId: "",
         ingredientId: "",
         ingredientName: "",
         ingredientNameYomi: "",
@@ -49,7 +48,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         return UchicockStyle.statusBarStyle
     }
     
-    var onDoneBlock: ((Bool, Bool, Bool, String, String, Int, Bool, String) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in }
+    var onDoneBlock: ((Bool, Bool, Bool, String, String, Int, Bool) -> Void) = {isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag in }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -137,7 +136,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutEndsSpace(), self.amount.text!.withoutEndsSpace(), self.recipeIngredient.category, (self.option.checkState != .checked), self.recipeIngredient.recipeIngredientId)
+        self.onDoneBlock(self.isCancel, self.deleteFlag, self.isAddMode, self.ingredientName.text!.withoutEndsSpace(), self.amount.text!.withoutEndsSpace(), self.recipeIngredient.category, (self.option.checkState != .checked))
         NotificationCenter.default.removeObserver(self)
     }
 

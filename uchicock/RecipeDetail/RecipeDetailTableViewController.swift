@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Accounts
 
-class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate{
+class RecipeDetailTableViewController: UITableViewController, UIViewControllerTransitioningDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var recipeNameTextView: CustomTextView!
@@ -42,32 +42,29 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var recipeId = String()
     var recipe = Recipe()
     var recipeIngredientList = Array<RecipeIngredientBasic>()
-
     var hasRecipeDeleted = false
     
     var headerView: UIView!
-    var photoExists = false
     var photoWidth: CGFloat = 0
     var photoHeight: CGFloat = 0
     var imageViewNaturalHeight: CGFloat = 0.0
     var imageViewMinHeight: CGFloat = 0.0
-    var calcImageViewSizeTime = 0
+    var calcImageViewSizeCount = 0
 
-    var madeNum = 0
     var shouldUpdateLastViewDate = true
     var firstShow = true
     var fromContextualMenu = false
 
     let selectedCellBackgroundView = UIView()
     var selectedIngredientId: String? = nil
-    
+    var selectedRecipeId: String? = nil
+    var highlightSimilarRecipeIndexPath: IndexPath? = nil
+
+    var selfRecipe : SimilarRecipeBasic? = nil
     var allRecipeList: Results<Recipe>?
     var similarRecipeList = Array<SimilarRecipeBasic>()
     var displaySimilarRecipeList = Array<SimilarRecipeBasic>()
-    var selfRecipe : SimilarRecipeBasic? = nil
     let queue = DispatchQueue(label: "queue", qos: .userInteractive)
-    var selectedRecipeId: String? = nil
-    var highlightIndexPath: IndexPath? = nil
     
     let interactor = Interactor()
 
@@ -79,9 +76,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if fromContextualMenu{
-            tableView.isScrollEnabled = false
-        }
+        if fromContextualMenu{ tableView.isScrollEnabled = false }
         
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0))
@@ -89,11 +84,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         photoImageView.clipsToBounds = true
 
-        recipeNameTextView.isScrollEnabled = false
         recipeNameTextView.textContainerInset = .zero
         recipeNameTextView.textContainer.lineFragmentPadding = 0
         recipeNameTextView.font = UIFont.systemFont(ofSize: 25.0)
-        memoTextView.isScrollEnabled = false
         memoTextView.textContainerInset = .zero
         memoTextView.textContainer.lineFragmentPadding = 0
         memoTextView.font = UIFont.systemFont(ofSize: 15.0)
@@ -117,11 +110,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         madeNumMinusButton.minimumHitWidth = 36
         madeNumMinusButton.minimumHitHeight = 36
         
-        let tipImage = UIImage(named: "button-tip")
-        styleTipButton.setImage(tipImage, for: .normal)
-        methodTipButton.setImage(tipImage, for: .normal)
-        strengthTipButton.setImage(tipImage, for: .normal)
-
         madeNumPlusButton.layer.cornerRadius = madeNumPlusButton.frame.size.width / 2
         madeNumPlusButton.layer.borderWidth = 1.5
         madeNumMinusButton.layer.cornerRadius = madeNumMinusButton.frame.size.width / 2
@@ -167,7 +155,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             tableView.contentOffset.y = 0
 
             let coverView = UIView()
-            let deleteImageView = UIImageView()
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
             coverView.translatesAutoresizingMaskIntoConstraints = false
@@ -178,6 +165,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             let coverViewBottomConstraint = NSLayoutConstraint(item: coverView, attribute: .bottom, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
             NSLayoutConstraint.activate([coverViewLeadingConstraint, coverViewTopConstraint, coverViewTrailingConstraint, coverViewBottomConstraint])
 
+            let deleteImageView = UIImageView()
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
@@ -192,36 +180,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return
         }
 
-        hasRecipeDeleted = false
         recipe = rec!
         self.navigationItem.title = recipe.recipeName
-            
-        var needInitializeDisplayOrder = false
-        recipeIngredientList.removeAll()
-        for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(
-                recipeIngredientId: ri.id,
-                ingredientId: ri.ingredient.id,
-                ingredientName: ri.ingredient.ingredientName,
-                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
-                amount: ri.amount,
-                mustFlag: ri.mustFlag,
-                category: ri.ingredient.category,
-                displayOrder: ri.displayOrder,
-                stockFlag: ri.ingredient.stockFlag
-            ))
-            if ri.displayOrder < 0{
-                needInitializeDisplayOrder = true
-                break
-            }
+
+        if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false), fromContextualMenu == false{
+            photoImageView.image = recipeImage
+            photoWidth = recipeImage.size.width
+            photoHeight = recipeImage.size.height
+        }else{
+            photoImageView.image = nil
+            photoWidth = 0
+            photoHeight = 0
         }
-        
-        if needInitializeDisplayOrder{
-            initializeDisplayOrder()
-        }
-        
-        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+        calcImageViewSizeCount = 3
+        updateImageView()
 
         if recipe.bookmarkDate == nil{
             bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
@@ -229,20 +201,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
         }
         bookmarkButton.tintColor = UchicockStyle.primaryColor
-
-        if let recipeImage = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false), fromContextualMenu == false{
-            photoExists = true
-            photoImageView.image = recipeImage
-            photoWidth = recipeImage.size.width
-            photoHeight = recipeImage.size.height
-        }else{
-            photoExists = false
-            photoImageView.image = nil
-            photoWidth = 0
-            photoHeight = 0
-        }
-        calcImageViewSizeTime = 3
-        updateImageView()
 
         recipeNameTextView.text = recipe.recipeName
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
@@ -274,18 +232,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         
         if shouldUpdateLastViewDate {
-            let dateTimeFormatter: DateFormatter = DateFormatter()
-            dateTimeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
             let timeFormatter: DateFormatter = DateFormatter()
-            timeFormatter.dateFormat = "HH:mm"
             if let lastViewDate = recipe.lastViewDate{
                 let calendar = Calendar(identifier: .gregorian)
                 if calendar.isDateInToday(lastViewDate){
+                    timeFormatter.dateFormat = "HH:mm"
                     lastViewDateLabel.text = "最終閲覧：今日 " + timeFormatter.string(from: lastViewDate)
                 }else if calendar.isDateInYesterday(lastViewDate){
+                    timeFormatter.dateFormat = "HH:mm"
                     lastViewDateLabel.text = "最終閲覧：昨日 " + timeFormatter.string(from: lastViewDate)
                 }else{
-                    lastViewDateLabel.text = "最終閲覧：" + dateTimeFormatter.string(from: lastViewDate)
+                    timeFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+                    lastViewDateLabel.text = "最終閲覧：" + timeFormatter.string(from: lastViewDate)
                 }
             }else{
                 lastViewDateLabel.text = "最終閲覧：--"
@@ -294,62 +252,40 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
 
         switch recipe.favorites{
-        case 0:
-            setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
-        case 1:
-            setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
-        case 2:
-            setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
-        case 3:
-            setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
-        default:
-            setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+        case 0: setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
+        case 1: setStarImageOf(star1isFilled: true, star2isFilled: false, star3isFilled: false)
+        case 2: setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: false)
+        case 3: setStarImageOf(star1isFilled: true, star2isFilled: true, star3isFilled: true)
+        default: setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
         }
         star1Button.tintColor = UchicockStyle.primaryColor
         star2Button.tintColor = UchicockStyle.primaryColor
         star3Button.tintColor = UchicockStyle.primaryColor
 
         switch recipe.style{
-        case 0:
-            styleLabel.text = "ロング"
-        case 1:
-            styleLabel.text = "ショート"
-        case 2:
-            styleLabel.text = "ホット"
-        case 3:
-            styleLabel.text = "未指定"
-        default:
-            styleLabel.text = "未指定"
+        case 0: styleLabel.text = "ロング"
+        case 1: styleLabel.text = "ショート"
+        case 2: styleLabel.text = "ホット"
+        case 3: styleLabel.text = "未指定"
+        default: styleLabel.text = "未指定"
         }
         
         switch recipe.method{
-        case 0:
-            methodLabel.text = "ビルド"
-        case 1:
-            methodLabel.text = "ステア"
-        case 2:
-            methodLabel.text = "シェイク"
-        case 3:
-            methodLabel.text = "ブレンド"
-        case 4:
-            methodLabel.text = "その他"
-        default:
-            methodLabel.text = "その他"
+        case 0: methodLabel.text = "ビルド"
+        case 1: methodLabel.text = "ステア"
+        case 2: methodLabel.text = "シェイク"
+        case 3: methodLabel.text = "ブレンド"
+        case 4: methodLabel.text = "その他"
+        default: methodLabel.text = "その他"
         }
         
         switch recipe.strength{
-        case 0:
-            strengthLabel.text = "ノンアルコール"
-        case 1:
-            strengthLabel.text = "弱い"
-        case 2:
-            strengthLabel.text = "やや強い"
-        case 3:
-            strengthLabel.text = "強い"
-        case 4:
-            strengthLabel.text = "未指定"
-        default:
-            strengthLabel.text = "未指定"
+        case 0: strengthLabel.text = "ノンアルコール"
+        case 1: strengthLabel.text = "弱い"
+        case 2: strengthLabel.text = "やや強い"
+        case 3: strengthLabel.text = "強い"
+        case 4: strengthLabel.text = "未指定"
+        default: strengthLabel.text = "未指定"
         }
 
         styleTipButton.tintColor = UchicockStyle.primaryColor
@@ -365,10 +301,34 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             memoBottomConstraint.constant = 15
             memoTextView.isHidden = false
         }
-
-        madeNum = recipe.madeNum
-        madeNumCountUpLabel.text = String(madeNum) + "回"
+        
+        madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
         setMadeNumButton()
+        
+        for ri in recipe.recipeIngredients where ri.displayOrder < 0{
+            try! realm.write{
+                for i in 0 ..< recipe.recipeIngredients.count {
+                    recipe.recipeIngredients[i].displayOrder = i
+                }
+            }
+            break
+        }
+        
+        recipeIngredientList.removeAll()
+        for ri in recipe.recipeIngredients {
+            recipeIngredientList.append(RecipeIngredientBasic(
+                ingredientId: ri.ingredient.id,
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: "",
+                katakanaLowercasedNameForSearch: "",
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: ri.ingredient.stockFlag
+            ))
+        }
+        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
         
         editButton.backgroundColor = UchicockStyle.primaryColor
         editButton.tintColor = UchicockStyle.basicBackgroundColor
@@ -386,7 +346,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         similarRecipeCollectionView.reloadData()
         similarRecipeCollectionView.layoutIfNeeded()
 
-        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil && recipe.isInvalidated == false {
+        if tableView.indexPathsForVisibleRows != nil && selectedIngredientId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0{
                 if recipeIngredientList.count > indexPath.row {
                     if recipeIngredientList[indexPath.row].ingredientId == selectedIngredientId! {
@@ -402,7 +362,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        calcImageViewSizeTime = 3
+        calcImageViewSizeCount = 3
     }
     
     override func viewDidLayoutSubviews() {
@@ -416,7 +376,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if hasRecipeDeleted{
+        guard hasRecipeDeleted == false else{
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 noRecipeAlertView.overrideUserInterfaceStyle = .dark
@@ -429,74 +389,75 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             noRecipeAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
-        }else{
-            let realm = try! Realm()
-            if fromContextualMenu == false{
-                try! realm.write {
-                    recipe.lastViewDate = Date()
-                }
+            return
+        }
+        
+        let realm = try! Realm()
+        if fromContextualMenu == false{
+            try! realm.write {
+                recipe.lastViewDate = Date()
             }
-            
-            if let path = tableView.indexPathForSelectedRow{
-                self.tableView.deselectRow(at: path, animated: true)
-            }
-            selectedIngredientId = nil
+        }
+        
+        if let path = tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: path, animated: true)
+        }
+        selectedIngredientId = nil
 
+        var ingredientList = Array<SimilarRecipeIngredient>()
+        for ri in recipe.recipeIngredients{
+            ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
+        }
+        selfRecipe = SimilarRecipeBasic(
+            id: recipe.id,
+            name: recipe.recipeName,
+            point: 0,
+            method: recipe.method,
+            style: recipe.style,
+            strength: recipe.strength,
+            shortageNum: recipe.shortageNum,
+            isBookmarked: (recipe.bookmarkDate != nil),
+            imageFileName: recipe.imageFileName,
+            ingredientList: ingredientList
+        )
+
+        allRecipeList = realm.objects(Recipe.self)
+        similarRecipeList.removeAll()
+        for anotherRecipe in allRecipeList!{
             var ingredientList = Array<SimilarRecipeIngredient>()
-            for ing in recipe.recipeIngredients{
-                ingredientList.append(SimilarRecipeIngredient(name: ing.ingredient.ingredientName, mustFlag: ing.mustFlag))
+            for ri in anotherRecipe.recipeIngredients{
+                ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
             }
-            selfRecipe = SimilarRecipeBasic(
-                id: recipe.id,
-                name: recipe.recipeName,
+            similarRecipeList.append(SimilarRecipeBasic(
+                id: anotherRecipe.id,
+                name: anotherRecipe.recipeName,
                 point: 0,
-                method: recipe.method,
-                style: recipe.style,
-                strength: recipe.strength,
-                shortageNum: recipe.shortageNum,
-                isBookmarked: (recipe.bookmarkDate != nil),
-                imageFileName: recipe.imageFileName,
+                method: anotherRecipe.method,
+                style: anotherRecipe.style,
+                strength: anotherRecipe.strength,
+                shortageNum: anotherRecipe.shortageNum,
+                isBookmarked: (anotherRecipe.bookmarkDate != nil),
+                imageFileName: anotherRecipe.imageFileName,
                 ingredientList: ingredientList
-            )
+            ))
+        }
+        
+        queue.async {
+            self.rateSimilarity()
 
-            allRecipeList = realm.objects(Recipe.self)
-            similarRecipeList.removeAll()
-            for anotherRecipe in allRecipeList!{
-                var ingredientList = Array<SimilarRecipeIngredient>()
-                for ri in anotherRecipe.recipeIngredients{
-                    ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
-                }
-                similarRecipeList.append(SimilarRecipeBasic(
-                    id: anotherRecipe.id,
-                    name: anotherRecipe.recipeName,
-                    point: 0,
-                    method: anotherRecipe.method,
-                    style: anotherRecipe.style,
-                    strength: anotherRecipe.strength,
-                    shortageNum: anotherRecipe.shortageNum,
-                    isBookmarked: (anotherRecipe.bookmarkDate != nil),
-                    imageFileName: anotherRecipe.imageFileName,
-                    ingredientList: ingredientList
-                ))
-            }
-            
-            queue.async {
-                self.rateSimilarity()
-
-                DispatchQueue.main.async {
-                    self.similarRecipeCollectionView.reloadData()
-                    self.similarRecipeCollectionView.layoutIfNeeded()
-                    self.setCollectionBackgroundView()
-                    if self.highlightIndexPath != nil{
-                        if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightIndexPath!) as? SimilarRecipeCollectionViewCell {
-                            UIView.animate(withDuration: 0.3, animations: {
-                                cell.highlightView.backgroundColor = UIColor.clear
-                            }, completion: nil)
-                        }
+            DispatchQueue.main.async {
+                self.similarRecipeCollectionView.reloadData()
+                self.similarRecipeCollectionView.layoutIfNeeded()
+                self.setCollectionBackgroundView()
+                if self.highlightSimilarRecipeIndexPath != nil{
+                    if let cell = self.similarRecipeCollectionView.cellForItem(at: self.highlightSimilarRecipeIndexPath!) as? SimilarRecipeCollectionViewCell {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            cell.highlightView.backgroundColor = UIColor.clear
+                        }, completion: nil)
                     }
-                    self.highlightIndexPath = nil
-                    self.selectedRecipeId = nil
                 }
+                self.highlightSimilarRecipeIndexPath = nil
+                self.selectedRecipeId = nil
             }
         }
     }
@@ -520,36 +481,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[1]
             tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if reminderNum == 0{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "!"
-            }
-        }
-    }
-    
-    private func initializeDisplayOrder(){
-        let realm = try! Realm()
-        try! realm.write{
-            for i in 0 ..< recipe.recipeIngredients.count {
-                recipe.recipeIngredients[i].displayOrder = i
-            }
-        }
-        
-        recipeIngredientList.removeAll()
-        for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(
-                recipeIngredientId: ri.id,
-                ingredientId: ri.ingredient.id,
-                ingredientName: ri.ingredient.ingredientName,
-                ingredientNameYomi: ri.ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ri.ingredient.katakanaLowercasedNameForSearch,
-                amount: ri.amount,
-                mustFlag: ri.mustFlag,
-                category: ri.ingredient.category,
-                displayOrder: ri.displayOrder,
-                stockFlag: ri.ingredient.stockFlag
-            ))
+            tabItem.badgeValue = reminderNum == 0 ? nil : "!"
         }
     }
     
@@ -572,7 +504,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
 
     private func setMadeNumButton(){
-        if madeNum <= 0 {
+        if recipe.madeNum <= 0 {
             madeNumMinusButton.isEnabled = false
             madeNumMinusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             madeNumMinusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
@@ -581,7 +513,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             madeNumMinusButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
             madeNumMinusButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         }
-        if madeNum >= 9999 {
+        if recipe.madeNum >= 9999 {
             madeNumPlusButton.isEnabled = false
             madeNumPlusButton.setTitleColor(UchicockStyle.labelTextColorLight, for: .normal)
             madeNumPlusButton.layer.borderColor = UchicockStyle.labelTextColorLight.cgColor
@@ -592,9 +524,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
+    //todo
     // MARK: - Photo Header
     private func updateImageView(){
-        if calcImageViewSizeTime > 0{
+        if calcImageViewSizeCount > 0{
             let minimumShownTableViewHeight: CGFloat = 115.0
             if photoWidth == 0 {
                 imageViewNaturalHeight = 0
@@ -623,10 +556,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             self.view.bringSubviewToFront(headerView)
             tableView.showsVerticalScrollIndicator = true
 
-            calcImageViewSizeTime -= 1
+            calcImageViewSizeCount -= 1
         }
         
-        if photoExists{
+        if recipe.imageFileName != nil{
             var headRect = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: imageViewNaturalHeight)
             if tableView.contentOffset.y < (imageViewNaturalHeight - imageViewMinHeight) {
                 headRect.origin.y = tableView.contentOffset.y
@@ -642,7 +575,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
-        if photoExists{
+        if recipe.imageFileName != nil{
             if ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: true) != nil {
                 let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                 let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
@@ -665,7 +598,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         
-        if loadedImage != nil && photoExists && recognizer.state == UIGestureRecognizer.State.began  {
+        if loadedImage != nil && recipe.imageFileName != nil && recognizer.state == UIGestureRecognizer.State.began  {
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
@@ -862,11 +795,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 cell.shouldDisplayStock = true
                 cell.isNameTextViewSelectable = false
                 cell.recipeIngredient = RecipeIngredientBasic(
-                    recipeIngredientId: "",
                     ingredientId: "",
                     ingredientName: recipeIngredientList[indexPath.row].ingredientName,
-                    ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
-                    katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch,
+                    ingredientNameYomi: "",
+                    katakanaLowercasedNameForSearch: "",
                     amount: recipeIngredientList[indexPath.row].amount,
                     mustFlag: recipeIngredientList[indexPath.row].mustFlag,
                     category: recipeIngredientList[indexPath.row].category,
@@ -895,6 +827,256 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
 
+    // MARK: - Calc Similar Point
+    private func rateSimilarity(){
+        displaySimilarRecipeList.removeAll()
+        guard let selfRecipe = selfRecipe else { return }
+
+        for anotherRecipe in similarRecipeList where anotherRecipe.name != selfRecipe.name{
+            var point : Float = 0
+            var maxWeight : Float = 0.0
+            var weight : Float = 0.0
+            
+            for selfIng in selfRecipe.ingredientList{
+                var hasSameIng = false
+                for anotherIng in anotherRecipe.ingredientList where anotherIng.name == selfIng.name{
+                    if selfIng.mustFlag{
+                        maxWeight += 1.0
+                        weight += 1.0
+                    }else{
+                        maxWeight += 0.3
+                        weight += 0.3
+                    }
+                    hasSameIng = true
+                    break
+                }
+                if hasSameIng == false{
+                    if selfIng.mustFlag{
+                        maxWeight += 1.0
+                    }else{
+                        // オプション材料の影響を少なくする
+                        maxWeight += 0.3
+                    }
+                }
+            }
+
+            for anotherIng in anotherRecipe.ingredientList{
+                var hasSameIng = false
+                for selfIng in selfRecipe.ingredientList where anotherIng.name == selfIng.name{
+                    if anotherIng.mustFlag{
+                        maxWeight += 1.0
+                        weight += 1.0
+                    }else{
+                        maxWeight += 0.3
+                        weight += 0.3
+                    }
+                    hasSameIng = true
+                    break
+                }
+                if hasSameIng == false{
+                    if anotherIng.mustFlag{
+                        maxWeight += 1.0
+                    }else{
+                        // オプション材料の影響を少なくする
+                        maxWeight += 0.3
+                    }
+                }
+            }
+
+            point = maxWeight == 0.0 ? 0.0 : (weight / maxWeight)
+            point = point - 0.05 * (maxWeight - weight) //異なる材料の数だけペナルティ
+            if selfRecipe.method != 4 && anotherRecipe.method == selfRecipe.method {
+                point += 0.1
+                if anotherRecipe.method == 3{
+                    point += 0.05 //ブレンドはボーナスポイント
+                }
+            }
+            if selfRecipe.style != 3 &&  anotherRecipe.style == selfRecipe.style {
+                point += 0.1
+                if anotherRecipe.style == 2{
+                    point += 0.05 //ホットはボーナスポイント
+                }
+            }
+            
+            if selfRecipe.strength == 0 && anotherRecipe.strength == 0{
+                point += 0.2 //ノンアルはボーナスポイント
+            }
+            if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
+                point += 0.01 //どちらもアルコールならボーナスポイント（主に並べ替え用）
+            }
+            
+            if point >= 0.61{
+                displaySimilarRecipeList.append(SimilarRecipeBasic(
+                    id: anotherRecipe.id,
+                    name: anotherRecipe.name,
+                    point: point,
+                    method: anotherRecipe.method,
+                    style: anotherRecipe.style,
+                    strength: anotherRecipe.strength,
+                    shortageNum: anotherRecipe.shortageNum,
+                    isBookmarked: anotherRecipe.isBookmarked,
+                    imageFileName: anotherRecipe.imageFileName
+                ))
+            }
+        }
+        displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
+            if a.point == b.point {
+                return a.name < b.name
+            }else{
+                return a.point > b.point
+            }
+        })
+    }
+    
+    // MARK: - CollectionView
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return min(displaySimilarRecipeList.count, 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 86, height: 126)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+        vc.recipeId = displaySimilarRecipeList[indexPath.row].id
+        selectedRecipeId = displaySimilarRecipeList[indexPath.row].id
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            if UchicockStyle.isBackgroundDark{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+            }else{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+            }
+        }
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            if UchicockStyle.isBackgroundDark{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+            }else{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
+            cell.highlightView.backgroundColor  = UIColor.clear
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let previewProvider: () -> RecipeDetailTableViewController? = {
+                let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+                vc.fromContextualMenu = true
+                vc.recipeId = self.displaySimilarRecipeList[indexPath.row].id
+                return vc
+            }
+        return UIContextMenuConfiguration(identifier: self.displaySimilarRecipeList[indexPath.row].id as NSCopying, previewProvider: previewProvider, actionProvider: nil)
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
+            row = i
+            break
+        }
+        guard row != nil else { return nil }
+        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
+    }
+    
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let recipeId = configuration.identifier as? String else { return nil }
+        var row: Int? = nil
+        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
+            row = i
+            break
+        }
+        guard row != nil else { return nil }
+        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
+        let parameters = UIPreviewParameters()
+        parameters.backgroundColor = .clear
+
+        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
+    }
+
+    @available(iOS 13.0, *)
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let recipeId = configuration.identifier as? String else { return }
+
+        animator.addCompletion {
+            let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
+            vc.recipeId = recipeId
+            self.selectedRecipeId = recipeId
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
+        cell.recipe = displaySimilarRecipeList[indexPath.row]
+        if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
+            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColor
+        }else{
+            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
+        }
+        
+        cell.backgroundContainer.backgroundColor = UchicockStyle.basicBackgroundColorLight
+        if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
+            if UchicockStyle.isBackgroundDark{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+            }else{
+                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+            }
+            highlightSimilarRecipeIndexPath = indexPath
+        }else{
+            cell.highlightView.backgroundColor = UIColor.clear
+        }
+        
+        return cell
+    }
+
+    private func setCollectionBackgroundView(){
+        guard displaySimilarRecipeList.count == 0 else {
+            similarRecipeCollectionView.backgroundView = nil
+            similarRecipeCollectionView.isScrollEnabled = true
+            return
+        }
+
+        similarRecipeCollectionView.backgroundView = UIView()
+        similarRecipeCollectionView.isScrollEnabled = false
+        let noDataLabel = UILabel()
+        noDataLabel.numberOfLines = 2
+        noDataLabel.textColor = UchicockStyle.labelTextColorLight
+        noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
+        noDataLabel.textAlignment = .center
+        noDataLabel.text = "似ているレシピは\n見つかりませんでした..."
+        similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
+        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+    }
+    
     // MARK: - IBAction
     @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
         let realm = try! Realm()
@@ -1165,16 +1347,15 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
-        if madeNum < 9999 {
-            madeNum += 1
+        if recipe.madeNum < 9999 {
             let realm = try! Realm()
             try! realm.write {
-                recipe.madeNum = Int(madeNum)
+                recipe.madeNum += 1
             }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.madeNumCountUpLabel.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
-                self.madeNumCountUpLabel.text = String(self.madeNum) + "回"
+                self.madeNumCountUpLabel.text = String(self.recipe.madeNum) + "回"
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
                     self.madeNumCountUpLabel.transform = .identity
                 })
@@ -1184,12 +1365,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func madeNumMinusButtonTapped(_ sender: UIButton) {
-        if madeNum > 0 {
-            madeNum -= 1
-            madeNumCountUpLabel.text = String(madeNum) + "回"
+        if recipe.madeNum > 0 {
+            madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
             let realm = try! Realm()
             try! realm.write {
-                recipe.madeNum = Int(madeNum)
+                recipe.madeNum -= 1
             }
         }
         setMadeNumButton()
@@ -1212,7 +1392,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         ]
         
         let shareText = createShareText()
-        if photoExists, let image = photoImageView.image {
+        if recipe.imageFileName != nil, let image = photoImageView.image {
             let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 activityVC.overrideUserInterfaceStyle = .dark
@@ -1384,257 +1564,4 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func closeEditVC(_ editVC: RecipeEditTableViewController){
         editVC.dismiss(animated: true, completion: nil)
     }    
-}
-
-extension RecipeDetailTableViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    private func rateSimilarity(){
-        displaySimilarRecipeList.removeAll()
-        guard let selfRecipe = selfRecipe else { return }
-
-        for anotherRecipe in similarRecipeList where anotherRecipe.name != selfRecipe.name{
-            var point : Float = 0
-            var maxWeight : Float = 0.0
-            var weight : Float = 0.0
-            
-            for selfIng in selfRecipe.ingredientList{
-                var hasSameIng = false
-                for anotherIng in anotherRecipe.ingredientList where anotherIng.name == selfIng.name{
-                    if selfIng.mustFlag{
-                        maxWeight += 1.0
-                        weight += 1.0
-                    }else{
-                        maxWeight += 0.3
-                        weight += 0.3
-                    }
-                    hasSameIng = true
-                    break
-                }
-                if hasSameIng == false{
-                    if selfIng.mustFlag{
-                        maxWeight += 1.0
-                    }else{
-                        // オプション材料の影響を少なくする
-                        maxWeight += 0.3
-                    }
-                }
-            }
-
-            for anotherIng in anotherRecipe.ingredientList{
-                var hasSameIng = false
-                for selfIng in selfRecipe.ingredientList where anotherIng.name == selfIng.name{
-                    if anotherIng.mustFlag{
-                        maxWeight += 1.0
-                        weight += 1.0
-                    }else{
-                        maxWeight += 0.3
-                        weight += 0.3
-                    }
-                    hasSameIng = true
-                    break
-                }
-                if hasSameIng == false{
-                    if anotherIng.mustFlag{
-                        maxWeight += 1.0
-                    }else{
-                        // オプション材料の影響を少なくする
-                        maxWeight += 0.3
-                    }
-                }
-            }
-
-            point = maxWeight == 0.0 ? 0.0 : (weight / maxWeight)
-            point = point - 0.05 * (maxWeight - weight) //異なる材料の数だけペナルティ
-            if selfRecipe.method != 4 && anotherRecipe.method == selfRecipe.method {
-                point += 0.1
-                if anotherRecipe.method == 3{
-                    point += 0.05 //ブレンドはボーナスポイント
-                }
-            }
-            if selfRecipe.style != 3 &&  anotherRecipe.style == selfRecipe.style {
-                point += 0.1
-                if anotherRecipe.style == 2{
-                    point += 0.05 //ホットはボーナスポイント
-                }
-            }
-            
-            if selfRecipe.strength == 0 && anotherRecipe.strength == 0{
-                point += 0.2 //ノンアルはボーナスポイント
-            }
-            if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
-                point += 0.01 //どちらもアルコールならボーナスポイント（主に並べ替え用）
-            }
-            
-            if point >= 0.61{
-                displaySimilarRecipeList.append(SimilarRecipeBasic(
-                    id: anotherRecipe.id,
-                    name: anotherRecipe.name,
-                    point: point,
-                    method: anotherRecipe.method,
-                    style: anotherRecipe.style,
-                    strength: anotherRecipe.strength,
-                    shortageNum: anotherRecipe.shortageNum,
-                    isBookmarked: anotherRecipe.isBookmarked,
-                    imageFileName: anotherRecipe.imageFileName
-                ))
-            }
-        }
-        displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
-            if a.point == b.point {
-                return a.name < b.name
-            }else{
-                return a.point > b.point
-            }
-        })
-    }
-    
-    // MARK: - CollectionView
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(displaySimilarRecipeList.count, 10)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 86, height: 126)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-        vc.recipeId = displaySimilarRecipeList[indexPath.row].id
-        selectedRecipeId = displaySimilarRecipeList[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
-            }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
-            }
-        }
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
-            }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
-            }
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
-            cell.highlightView.backgroundColor  = UIColor.clear
-        }
-    }
-    
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-            let previewProvider: () -> RecipeDetailTableViewController? = {
-                let vc = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-                vc.fromContextualMenu = true
-                vc.recipeId = self.displaySimilarRecipeList[indexPath.row].id
-                return vc
-            }
-        return UIContextMenuConfiguration(identifier: self.displaySimilarRecipeList[indexPath.row].id as NSCopying, previewProvider: previewProvider, actionProvider: nil)
-    }
-    
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let recipeId = configuration.identifier as? String else { return nil }
-        var row: Int? = nil
-        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
-            row = i
-            break
-        }
-        guard row != nil else { return nil }
-        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
-        let parameters = UIPreviewParameters()
-        parameters.backgroundColor = .clear
-
-        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
-    }
-    
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        guard let recipeId = configuration.identifier as? String else { return nil }
-        var row: Int? = nil
-        for i in 0 ..< displaySimilarRecipeList.count where displaySimilarRecipeList[i].id == recipeId {
-            row = i
-            break
-        }
-        guard row != nil else { return nil }
-        let cell = similarRecipeCollectionView.cellForItem(at: IndexPath(row: row!, section: 0)) as! SimilarRecipeCollectionViewCell
-        let parameters = UIPreviewParameters()
-        parameters.backgroundColor = .clear
-
-        return UITargetedPreview(view: cell.backgroundContainer, parameters: parameters)
-    }
-
-    @available(iOS 13.0, *)
-    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        guard let recipeId = configuration.identifier as? String else { return }
-
-        animator.addCompletion {
-            let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-            vc.recipeId = recipeId
-            self.selectedRecipeId = recipeId
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
-        cell.recipe = displaySimilarRecipeList[indexPath.row]
-        if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
-            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColor
-        }else{
-            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
-        }
-        
-        cell.backgroundContainer.backgroundColor = UchicockStyle.basicBackgroundColorLight
-        if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
-            if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
-            }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
-            }
-            highlightIndexPath = indexPath
-        }else{
-            cell.highlightView.backgroundColor = UIColor.clear
-        }
-        
-        return cell
-    }
-
-    private func setCollectionBackgroundView(){
-        guard displaySimilarRecipeList.count == 0 else {
-            similarRecipeCollectionView.backgroundView = nil
-            similarRecipeCollectionView.isScrollEnabled = true
-            return
-        }
-
-        similarRecipeCollectionView.backgroundView = UIView()
-        similarRecipeCollectionView.isScrollEnabled = false
-        let noDataLabel = UILabel()
-        noDataLabel.numberOfLines = 2
-        noDataLabel.textColor = UchicockStyle.labelTextColorLight
-        noDataLabel.font = UIFont.systemFont(ofSize: 14.0)
-        noDataLabel.textAlignment = .center
-        noDataLabel.text = "似ているレシピは\n見つかりませんでした..."
-        similarRecipeCollectionView.backgroundView?.addSubview(noDataLabel)
-        noDataLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        let centerXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerX, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerX, multiplier: 1, constant: 0)
-        let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: similarRecipeCollectionView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
-    }
-    
 }

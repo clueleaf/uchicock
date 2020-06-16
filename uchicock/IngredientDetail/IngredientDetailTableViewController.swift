@@ -109,7 +109,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             tableView.contentOffset.y = 0
 
             let coverView = UIView()
-            let deleteImageView = UIImageView()
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
             coverView.translatesAutoresizingMaskIntoConstraints = false
@@ -120,6 +119,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             let coverViewBottomConstraint = NSLayoutConstraint(item: coverView, attribute: .bottom, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
             NSLayoutConstraint.activate([coverViewLeadingConstraint, coverViewTopConstraint, coverViewTrailingConstraint, coverViewBottomConstraint])
 
+            let deleteImageView = UIImageView()
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
@@ -279,11 +279,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         if let tabItems = self.tabBarController?.tabBar.items {
             let tabItem = tabItems[1]
             tabItem.badgeColor = UchicockStyle.badgeBackgroundColor
-            if reminderNum == 0{
-                tabItem.badgeValue = nil
-            }else{
-                tabItem.badgeValue = "!"
-            }
+            tabItem.badgeValue = reminderNum == 0 ? nil : "!"
         }
     }
     

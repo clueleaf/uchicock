@@ -180,7 +180,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
             recipeIngredientList.append(RecipeIngredientBasic(
-                recipeIngredientId: ri.id,
                 ingredientId: ri.ingredient.id,
                 ingredientName: ri.ingredient.ingredientName,
                 ingredientNameYomi: ri.ingredient.ingredientNameYomi,
@@ -245,7 +244,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeIngredientList.removeAll()
         for ri in recipe.recipeIngredients {
             recipeIngredientList.append(RecipeIngredientBasic(
-                recipeIngredientId: ri.id,
                 ingredientId: ri.ingredient.id,
                 ingredientName: ri.ingredient.ingredientName,
                 ingredientNameYomi: ri.ingredient.ingredientNameYomi,
@@ -498,22 +496,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
 
             if indexPath.row < recipeIngredientList.count{
-                if self.recipeIngredientList[indexPath.row].recipeIngredientId == ""{
-                    self.recipeIngredientList[indexPath.row].recipeIngredientId = NSUUID().uuidString
-                }
                 vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
                 vc.isAddMode = false
             }else if indexPath.row == recipeIngredientList.count{
                 vc.isAddMode = true
             }
             
-            vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag, recipeIngredientId in
+            vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag in
                 if isCancel == false{
                     if isAddMode{
                         if deleteFlag == false{
                             // 材料新規追加
                             let recipeIngredient = RecipeIngredientBasic(
-                                recipeIngredientId: "",
                                 ingredientId: "",
                                 ingredientName: ingredientName,
                                 ingredientNameYomi: ingredientName.convertToYomi(),
@@ -552,12 +546,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.setAddIngredientLabel()
                         }else{
                             // 既存材料編集
-                            for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].recipeIngredientId == recipeIngredientId{
-                                self.recipeIngredientList[i].ingredientName = ingredientName
-                                self.recipeIngredientList[i].amount = amount
-                                self.recipeIngredientList[i].mustFlag = mustFlag
-                                self.recipeIngredientList[i].category = category
-                                self.recipeIngredientList[i].displayOrder = -1
+                            if indexPath.row < self.recipeIngredientList.count{
+                                self.recipeIngredientList[indexPath.row].ingredientName = ingredientName
+                                self.recipeIngredientList[indexPath.row].amount = amount
+                                self.recipeIngredientList[indexPath.row].mustFlag = mustFlag
+                                self.recipeIngredientList[indexPath.row].category = category
+                                self.recipeIngredientList[indexPath.row].displayOrder = -1
                                 self.showCancelAlert = true
                             }
                             _ = self.updateDuplicatedIngredientList()
@@ -642,7 +636,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.shouldDisplayStock = false
                 cell.isNameTextViewSelectable = false
                 cell.recipeIngredient = RecipeIngredientBasic(
-                    recipeIngredientId: "",
                     ingredientId: "",
                     ingredientName: recipeIngredientList[indexPath.row].ingredientName,
                     ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
