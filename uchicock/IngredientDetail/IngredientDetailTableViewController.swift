@@ -39,8 +39,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
     var hasIngredientDeleted = false
     var isOnReminder = false
-    var coverView = UIView(frame: CGRect.zero)
-    var deleteImageView = UIImageView(frame: CGRect.zero)
 
     let selectedCellBackgroundView = UIView()
     var recipeOrder = 2
@@ -106,101 +104,122 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         recipeOrderLabel.textColor = UchicockStyle.primaryColor
         
         let ing = realm!.object(ofType: Ingredient.self, forPrimaryKey: ingredientId)
-        if ing == nil {
+        guard ing != nil else{
             hasIngredientDeleted = true
+            tableView.contentOffset.y = 0
+
+            let coverView = UIView()
+            let deleteImageView = UIImageView()
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
+            coverView.translatesAutoresizingMaskIntoConstraints = false
+
+            let coverViewLeadingConstraint = NSLayoutConstraint(item: coverView, attribute: .leading, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .leading, multiplier: 1, constant: 0)
+            let coverViewTopConstraint = NSLayoutConstraint(item: coverView, attribute: .top, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
+            let coverViewTrailingConstraint = NSLayoutConstraint(item: coverView, attribute: .trailing, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0)
+            let coverViewBottomConstraint = NSLayoutConstraint(item: coverView, attribute: .bottom, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([coverViewLeadingConstraint, coverViewTopConstraint, coverViewTrailingConstraint, coverViewBottomConstraint])
+
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
             self.tableView.setNeedsLayout()
-        }else{
-            hasIngredientDeleted = false
-            ingredient = ing!
-            self.navigationItem.title = ingredient.ingredientName
-            
-            isOnReminder = ingredient.reminderSetDate != nil
-            
-            ingredientName.text = ingredient.ingredientName
-            
-            ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
-            if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi.katakanaLowercasedForSearch(){
-                ingredientNameYomiLabel.isHidden = true
-                ingredientNameYomiLabel.text = " "
-            }else{
-                ingredientNameYomiLabel.isHidden = false
-                ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
-            }
+            deleteImageView.translatesAutoresizingMaskIntoConstraints = false
 
-            updateIngredientRecommendLabel()
-            
-            switch ingredient.category{
-            case 0:
-                category.text = "アルコール"
-                alcoholIconImage.isHidden = false
-                alcoholIconImageWidthConstraint.constant = 17
-            case 1:
-                category.text = "ノンアルコール"
-                alcoholIconImage.isHidden = true
-                alcoholIconImageWidthConstraint.constant = 0
-            case 2:
-                category.text = "その他"
-                alcoholIconImage.isHidden = true
-                alcoholIconImageWidthConstraint.constant = 0
-            default:
-                category.text = "その他"
-                alcoholIconImage.isHidden = true
-                alcoholIconImageWidthConstraint.constant = 0
-            }
-            
-            stock.stateChangeAnimation = .fade
-            stock.animationDuration = 0
-            if ingredient.stockFlag{
-                stock.setCheckState(.checked, animated: true)
-            }else{
-                stock.setCheckState(.unchecked, animated: true)
-            }
-            stock.animationDuration = 0.3
-            stock.stateChangeAnimation = .expand
-            
-            memo.text = ingredient.memo
-            memo.textColor = UchicockStyle.labelTextColorLight
-            if ingredient.memo.isEmpty {
-                memoBottomConstraint.constant = 0
-                memo.isHidden = true
-            }else{
-                memoBottomConstraint.constant = 15
-                memo.isHidden = false
-            }
+            let deleteImageViewLeadingConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .leading, relatedBy: .equal, toItem: coverView, attribute: .leading, multiplier: 1, constant: 0)
+            let deleteImageViewTopConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .top, relatedBy: .equal, toItem: coverView, attribute: .bottom, multiplier: 0.2, constant: 0)
+            let deleteImageViewTrailingConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .trailing, relatedBy: .equal, toItem: coverView, attribute: .trailing, multiplier: 1, constant: 0)
+            let deleteImageViewHeightConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+            NSLayoutConstraint.activate([deleteImageViewLeadingConstraint, deleteImageViewTopConstraint, deleteImageViewTrailingConstraint, deleteImageViewHeightConstraint])
 
-            editButton.backgroundColor = UchicockStyle.primaryColor
-            editButton.tintColor = UchicockStyle.basicBackgroundColor
-            reminderButton.backgroundColor = UchicockStyle.primaryColor
-            reminderButton.tintColor = UchicockStyle.basicBackgroundColor
-            amazonButton.backgroundColor = UchicockStyle.primaryColor
-            amazonButton.tintColor = UchicockStyle.basicBackgroundColor
-            deleteButton.backgroundColor = UchicockStyle.alertColor
-            deleteButton.tintColor = UchicockStyle.basicBackgroundColor
-            
-            reloadIngredientRecipeBasicList()
-            
-            if Amazon.product.contains(ingredient.ingredientName.withoutMiddleSpaceAndMiddleDot()){
-                amazonContainerView.isHidden = false
-            }else{
-                amazonContainerView.isHidden = true
-            }
-            
-            if ingredient.recipeIngredients.count > 0{
-                deleteContainerView.isHidden = true
-            }else{
-                deleteContainerView.isHidden = false
-            }
-            
-            tableView.estimatedRowHeight = 70
-            tableView.rowHeight = UITableView.automaticDimension
-            tableView.reloadData()
+            return
         }
+        
+        hasIngredientDeleted = false
+        ingredient = ing!
+        self.navigationItem.title = ingredient.ingredientName
+        
+        isOnReminder = ingredient.reminderSetDate != nil
+        
+        ingredientName.text = ingredient.ingredientName
+        
+        ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
+        if ingredient.ingredientName.katakanaLowercasedForSearch() == ingredient.ingredientNameYomi.katakanaLowercasedForSearch(){
+            ingredientNameYomiLabel.isHidden = true
+            ingredientNameYomiLabel.text = " "
+        }else{
+            ingredientNameYomiLabel.isHidden = false
+            ingredientNameYomiLabel.text = ingredient.ingredientNameYomi
+        }
+
+        updateIngredientRecommendLabel()
+        
+        switch ingredient.category{
+        case 0:
+            category.text = "アルコール"
+            alcoholIconImage.isHidden = false
+            alcoholIconImageWidthConstraint.constant = 17
+        case 1:
+            category.text = "ノンアルコール"
+            alcoholIconImage.isHidden = true
+            alcoholIconImageWidthConstraint.constant = 0
+        case 2:
+            category.text = "その他"
+            alcoholIconImage.isHidden = true
+            alcoholIconImageWidthConstraint.constant = 0
+        default:
+            category.text = "その他"
+            alcoholIconImage.isHidden = true
+            alcoholIconImageWidthConstraint.constant = 0
+        }
+        
+        stock.stateChangeAnimation = .fade
+        stock.animationDuration = 0
+        if ingredient.stockFlag{
+            stock.setCheckState(.checked, animated: true)
+        }else{
+            stock.setCheckState(.unchecked, animated: true)
+        }
+        stock.animationDuration = 0.3
+        stock.stateChangeAnimation = .expand
+        
+        memo.text = ingredient.memo
+        memo.textColor = UchicockStyle.labelTextColorLight
+        if ingredient.memo.isEmpty {
+            memoBottomConstraint.constant = 0
+            memo.isHidden = true
+        }else{
+            memoBottomConstraint.constant = 15
+            memo.isHidden = false
+        }
+
+        editButton.backgroundColor = UchicockStyle.primaryColor
+        editButton.tintColor = UchicockStyle.basicBackgroundColor
+        reminderButton.backgroundColor = UchicockStyle.primaryColor
+        reminderButton.tintColor = UchicockStyle.basicBackgroundColor
+        amazonButton.backgroundColor = UchicockStyle.primaryColor
+        amazonButton.tintColor = UchicockStyle.basicBackgroundColor
+        deleteButton.backgroundColor = UchicockStyle.alertColor
+        deleteButton.tintColor = UchicockStyle.basicBackgroundColor
+        
+        reloadIngredientRecipeBasicList()
+        
+        if Amazon.product.contains(ingredient.ingredientName.withoutMiddleSpaceAndMiddleDot()){
+            amazonContainerView.isHidden = false
+        }else{
+            amazonContainerView.isHidden = true
+        }
+        
+        if ingredient.recipeIngredients.count > 0{
+            deleteContainerView.isHidden = true
+        }else{
+            deleteContainerView.isHidden = false
+        }
+        
+        tableView.estimatedRowHeight = 70
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.reloadData()
         
         if tableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
             for indexPath in tableView.indexPathsForVisibleRows! where indexPath.section != 0 && indexPath.row != 0{
@@ -213,17 +232,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     }
                 }
             }
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        if hasIngredientDeleted{
-            tableView.contentOffset.y = 0
-            coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
-            deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
-            tableView.bringSubviewToFront(coverView)
         }
     }
     
@@ -355,14 +363,22 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if ingredient.reminderSetDate == nil{
-                if indexPath.row == 4{
-                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
+            if ingredient.isInvalidated == false{
+                if ingredient.reminderSetDate == nil{
+                    if indexPath.row == 4{
+                        return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
+                    }else{
+                        return UITableView.automaticDimension
+                    }
                 }else{
-                    return UITableView.automaticDimension
+                    if indexPath.row == 5{
+                        return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
+                    }else{
+                        return UITableView.automaticDimension
+                    }
                 }
             }else{
-                if indexPath.row == 5{
+                if indexPath.row == 4{
                     return super.tableView(tableView, heightForRowAt: IndexPath(row: 5, section: 0))
                 }else{
                     return UITableView.automaticDimension
@@ -382,6 +398,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             }
         }
         return 0
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return hasIngredientDeleted ? 1 : 2
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -405,10 +425,14 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if ingredient.reminderSetDate == nil{
-                return 5
+            if ingredient.isInvalidated == false{
+                if ingredient.reminderSetDate == nil{
+                    return 5
+                }else{
+                    return 6
+                }
             }else{
-                return 6
+                return 5
             }
         }else if section == 1 {
             if ingredient.isInvalidated{
@@ -529,7 +553,26 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            if ingredient.reminderSetDate == nil{
+            if ingredient.isInvalidated == false{
+                if ingredient.reminderSetDate == nil{
+                    if indexPath.row == 0{
+                        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+                        cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                        cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                        return cell
+                    }else{
+                        let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
+                        cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                        cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                        return cell
+                    }
+                }else{
+                    let cell = super.tableView(tableView, cellForRowAt: indexPath)
+                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
+                    return cell
+                }
+            }else{
                 if indexPath.row == 0{
                     let cell = super.tableView(tableView, cellForRowAt: indexPath)
                     cell.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -541,11 +584,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
                     return cell
                 }
-            }else{
-                let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
-                return cell
             }
         }else if indexPath.section == 1{
             guard ingredient.isInvalidated == false else { return UITableViewCell() }

@@ -44,8 +44,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var recipeIngredientList = Array<RecipeIngredientBasic>()
 
     var hasRecipeDeleted = false
-    var coverView = UIView(frame: CGRect.zero)
-    var deleteImageView = UIImageView(frame: CGRect.zero)
     
     var headerView: UIView!
     var photoExists = false
@@ -166,13 +164,31 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let rec = realm.object(ofType: Recipe.self, forPrimaryKey: recipeId)
         guard rec != nil else{
             hasRecipeDeleted = true
+            tableView.contentOffset.y = 0
+
+            let coverView = UIView()
+            let deleteImageView = UIImageView()
             coverView.backgroundColor = UchicockStyle.basicBackgroundColor
             self.tableView.addSubview(coverView)
+            coverView.translatesAutoresizingMaskIntoConstraints = false
+
+            let coverViewLeadingConstraint = NSLayoutConstraint(item: coverView, attribute: .leading, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .leading, multiplier: 1, constant: 0)
+            let coverViewTopConstraint = NSLayoutConstraint(item: coverView, attribute: .top, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
+            let coverViewTrailingConstraint = NSLayoutConstraint(item: coverView, attribute: .trailing, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0)
+            let coverViewBottomConstraint = NSLayoutConstraint(item: coverView, attribute: .bottom, relatedBy: .equal, toItem: tableView.frameLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate([coverViewLeadingConstraint, coverViewTopConstraint, coverViewTrailingConstraint, coverViewBottomConstraint])
+
             deleteImageView.contentMode = .scaleAspectFit
             deleteImageView.image = UIImage(named: "button-delete")
             deleteImageView.tintColor = UchicockStyle.labelTextColorLight
             coverView.addSubview(deleteImageView)
-            self.tableView.setNeedsLayout()
+            deleteImageView.translatesAutoresizingMaskIntoConstraints = false
+
+            let deleteImageViewLeadingConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .leading, relatedBy: .equal, toItem: coverView, attribute: .leading, multiplier: 1, constant: 0)
+            let deleteImageViewTopConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .top, relatedBy: .equal, toItem: coverView, attribute: .bottom, multiplier: 0.2, constant: 0)
+            let deleteImageViewTrailingConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .trailing, relatedBy: .equal, toItem: coverView, attribute: .trailing, multiplier: 1, constant: 0)
+            let deleteImageViewHeightConstraint = NSLayoutConstraint(item: deleteImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+            NSLayoutConstraint.activate([deleteImageViewLeadingConstraint, deleteImageViewTopConstraint, deleteImageViewTrailingConstraint, deleteImageViewHeightConstraint])
             return
         }
 
@@ -392,12 +408,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if hasRecipeDeleted{
-            tableView.contentOffset.y = 0
-            coverView.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height)
-            deleteImageView.frame = CGRect(x: 0, y: tableView.frame.height / 5, width: tableView.frame.width, height: 60)
-            tableView.bringSubviewToFront(coverView)
-        }else{
+        if hasRecipeDeleted == false{
             updateImageView()
         }
     }
@@ -750,7 +761,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return hasRecipeDeleted ? 1 : 4
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
