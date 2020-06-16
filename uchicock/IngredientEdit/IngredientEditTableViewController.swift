@@ -144,7 +144,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     @objc func ingredientNameYomiTextFieldDidChange(_ notification: Notification){
-        ingredientNameYomi.text = ingredientNameYomi.text!.convertToYomi()
         showCancelAlert = true
         updateIngredientNameYomiCounter()
         setTextFieldColor(textField: ingredientNameYomi, maximum: ingredientNameYomiMaximum)
