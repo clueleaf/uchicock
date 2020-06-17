@@ -68,6 +68,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     let interactor = Interactor()
 
+    let excludedActivityTypes = [
+        UIActivity.ActivityType.print,
+        UIActivity.ActivityType.assignToContact,
+        UIActivity.ActivityType.addToReadingList,
+        UIActivity.ActivityType.postToFlickr,
+        UIActivity.ActivityType.postToVimeo,
+        UIActivity.ActivityType.postToWeibo,
+        UIActivity.ActivityType.postToTencentWeibo,
+        UIActivity.ActivityType.openInIBooks
+    ]
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
@@ -394,9 +405,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         let realm = try! Realm()
         if fromContextualMenu == false{
-            try! realm.write {
-                recipe.lastViewDate = Date()
-            }
+            try! realm.write { recipe.lastViewDate = Date() }
         }
         
         if let path = tableView.indexPathForSelectedRow{
@@ -473,9 +482,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         if recipe.isInvalidated == false && fromContextualMenu == false{
             let realm = try! Realm()
-            try! realm.write {
-                recipe.lastViewDate = Date()
-            }
+            try! realm.write { recipe.lastViewDate = Date() }
         }
     }
     
@@ -618,26 +625,18 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         clipboardAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
         alertView.addAction(clipboardAction)
         let shareAction = UIAlertAction(title: "写真を共有",style: .default){action in
-            let excludedActivityTypes = [
-                UIActivity.ActivityType.print,
-                UIActivity.ActivityType.assignToContact,
-                UIActivity.ActivityType.addToReadingList,
-                UIActivity.ActivityType.postToFlickr,
-                UIActivity.ActivityType.postToVimeo,
-                UIActivity.ActivityType.postToWeibo,
-                UIActivity.ActivityType.postToTencentWeibo,
-                UIActivity.ActivityType.openInIBooks
-            ]
-            
             let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 activityVC.overrideUserInterfaceStyle = .dark
             }
-            activityVC.excludedActivityTypes = excludedActivityTypes
+            activityVC.excludedActivityTypes = self.excludedActivityTypes
             activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.popoverPresentationController?.sourceView = self.view
             activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
+            activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
             self.present(activityVC, animated: true, completion: nil)
         }
         shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
@@ -1040,14 +1039,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
         let realm = try! Realm()
         let newImageName = recipe.bookmarkDate == nil ? "navigation-recipe-bookmark-on" : "navigation-recipe-bookmark-off"
-        let newBookmarkData : Date? = recipe.bookmarkDate == nil ? Date() : nil
+        let newBookmarkDate : Date? = recipe.bookmarkDate == nil ? Date() : nil
         let message = recipe.bookmarkDate == nil ? "ブックマークしました" : "ブックマークを外しました"
 
         animateButton(bookmarkButton, with: newImageName)
 
-        try! realm.write {
-            recipe.bookmarkDate = newBookmarkData
-        }
+        try! realm.write { recipe.bookmarkDate = newBookmarkDate }
         MessageHUD.show(message, for: 2.0, withCheckmark: true, isCenter: true)
     }
     
@@ -1159,13 +1156,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         present(nvc, animated: true)
     }
     
-    //todo
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
         if recipe.madeNum < 9999 {
             let realm = try! Realm()
-            try! realm.write {
-                recipe.madeNum += 1
-            }
+            try! realm.write { recipe.madeNum += 1 }
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.madeNumCountUpLabel.transform = .init(scaleX: 1.15, y: 1.15)
             }) { (finished: Bool) -> Void in
@@ -1182,9 +1176,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         if recipe.madeNum > 0 {
             madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
             let realm = try! Realm()
-            try! realm.write {
-                recipe.madeNum -= 1
-            }
+            try! realm.write { recipe.madeNum -= 1 }
         }
         setMadeNumButton()
     }
@@ -1194,77 +1186,47 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        let excludedActivityTypes = [
-            UIActivity.ActivityType.print,
-            UIActivity.ActivityType.assignToContact,
-            UIActivity.ActivityType.addToReadingList,
-            UIActivity.ActivityType.postToFlickr,
-            UIActivity.ActivityType.postToVimeo,
-            UIActivity.ActivityType.postToWeibo,
-            UIActivity.ActivityType.postToTencentWeibo,
-            UIActivity.ActivityType.openInIBooks
-        ]
-        
         let shareText = createShareText()
+        var items: [Any] = [shareText]
         if recipe.imageFileName != nil, let image = photoImageView.image {
-            let activityVC = CustomActivityController(activityItems: [shareText, image], applicationActivities: nil)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                activityVC.overrideUserInterfaceStyle = .dark
-            }
-            activityVC.excludedActivityTypes = excludedActivityTypes
-            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
-            activityVC.modalPresentationCapturesStatusBarAppearance = true
-            activityVC.popoverPresentationController?.sourceView = sender
-            activityVC.popoverPresentationController?.sourceRect = sender.frame
-            self.present(activityVC, animated: true, completion: nil)
-        }else{
-            let activityVC = CustomActivityController(activityItems: [shareText], applicationActivities: nil)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                activityVC.overrideUserInterfaceStyle = .dark
-            }
-            activityVC.excludedActivityTypes = excludedActivityTypes
-            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
-            activityVC.modalPresentationCapturesStatusBarAppearance = true
-            activityVC.popoverPresentationController?.sourceView = sender
-            activityVC.popoverPresentationController?.sourceRect = sender.frame
-            activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
-            self.present(activityVC, animated: true, completion: nil)
-        }        
+            items.append(image)
+        }
+        
+        let activityVC = CustomActivityController(activityItems: items, applicationActivities: nil)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            activityVC.overrideUserInterfaceStyle = .dark
+        }
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
+        activityVC.modalPresentationCapturesStatusBarAppearance = true
+        activityVC.popoverPresentationController?.sourceView = sender
+        activityVC.popoverPresentationController?.sourceRect = sender.frame
+        activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+        self.present(activityVC, animated: true, completion: nil)
     }
     
     private func createShareText() -> String{
         var message = "【カクテルレシピ】" + recipe.recipeName + "\n"
         switch recipe.style{
-        case 0:
-            message += "スタイル：ロング\n"
-        case 1:
-            message += "スタイル：ショート\n"
-        case 2:
-            message += "スタイル：ホット\n"
+        case 0: message += "スタイル：ロング\n"
+        case 1: message += "スタイル：ショート\n"
+        case 2: message += "スタイル：ホット\n"
         default: break
         }
         switch recipe.method{
-        case 0:
-            message += "技法：ビルド\n"
-        case 1:
-            message += "技法：ステア\n"
-        case 2:
-            message += "技法：シェイク\n"
-        case 3:
-            message += "技法：ブレンド\n"
+        case 0: message += "技法：ビルド\n"
+        case 1: message += "技法：ステア\n"
+        case 2: message += "技法：シェイク\n"
+        case 3: message += "技法：ブレンド\n"
         default: break
         }
         switch recipe.strength{
-        case 0:
-            message += "アルコール度数：ノンアルコール\n"
-        case 1:
-            message += "アルコール度数：弱い\n"
-        case 2:
-            message += "アルコール度数：やや強い\n"
-        case 3:
-            message += "アルコール度数：強い\n"
+        case 0: message += "アルコール度数：ノンアルコール\n"
+        case 1: message += "アルコール度数：弱い\n"
+        case 2: message += "アルコール度数：やや強い\n"
+        case 3: message += "アルコール度数：強い\n"
         default: break
         }
         message += "\n材料：\n"
@@ -1323,13 +1285,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let VC = presentedNVC?.visibleViewController!
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
 
-        if let VC = VC{
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
-                pc.xMargin = 60
-                pc.yMargin = 160
-                pc.canDismissWithOverlayViewTouch = true
-                return pc
-            }
+        if let VC = VC, VC.isKind(of: TipViewController.self){
+            pc.xMargin = 60
+            pc.yMargin = 160
+            pc.canDismissWithOverlayViewTouch = true
+            return pc
         }
         
         pc.xMargin = 20
@@ -1343,12 +1303,10 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let VC = dismissedNVC?.visibleViewController!
         let animator = DismissModalAnimator()
 
-        if let VC = VC {
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
-                animator.xMargin = 60
-                animator.yMargin = 160
-                return animator
-            }
+        if let VC = VC, VC.isKind(of: TipViewController.self){
+            animator.xMargin = 60
+            animator.yMargin = 160
+            return animator
         }
 
         animator.xMargin = 20
