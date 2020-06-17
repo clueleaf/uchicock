@@ -55,6 +55,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     var isAddMode = true
     var focusRecipeNameFlag = false
     var showCancelAlert = false
+    var canTapPhoto = false
 
     let selectedCellBackgroundView = UIView()
     var selectedIndexPath: IndexPath? = nil
@@ -115,9 +116,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if photo.image == nil{
             selectPhoto.text = "写真を追加"
             photo.isHidden = true
+            canTapPhoto = false
         }else{
             selectPhoto.text = "写真を変更"
             photo.isHidden = false
+            canTapPhoto = true
         }
         selectPhoto.textColor = UchicockStyle.primaryColor
 
@@ -425,7 +428,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @objc func photoTapped(){
-        if let image = photo.image{
+        if let image = photo.image, canTapPhoto{
             if let repre = image.pngData(){
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
@@ -703,7 +706,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    func addPhoto() {
+    private func addPhoto() {
         let alert = CustomAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alert.overrideUserInterfaceStyle = .dark
@@ -778,12 +781,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 alert.addAction(pasteAction)
             }
         }
-        if self.photo.image != nil{
+        if canTapPhoto{
             let deleteAction = UIAlertAction(title: "写真を削除",style: .destructive){action in
                 self.showCancelAlert = true
-                self.selectPhoto.text = "写真を追加"
-                self.photo.image = nil
-                self.photo.isHidden = true
+                self.canTapPhoto = false
+                
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                    self.photo.alpha = 0.0
+                    self.photo.transform = .init(scaleX: 0.1, y: 0.1)
+                }) { (finished: Bool) -> Void in
+                    self.selectPhoto.text = "写真を追加"
+                    self.photo.isHidden = true
+                    self.photo.image = nil
+                    self.photo.alpha = 1.0
+                    self.photo.transform = .identity
+                }
             }
             deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
             alert.addAction(deleteAction)
@@ -1193,6 +1205,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             }
 
             self.photo.image = img.resizedUIImage(maxLongSide: imageMaxLongSide)
+            self.canTapPhoto = true
             self.selectPhoto.text = "写真を変更"
             return true
         }
@@ -1206,7 +1219,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         
         if let VC = VC{
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
+            if VC.isKind(of: TipViewController.self){
                 pc.xMargin = 60
                 pc.yMargin = 160
                 pc.canDismissWithOverlayViewTouch = true
@@ -1226,7 +1239,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let animator = DismissModalAnimator()
         
         if let VC = VC {
-            if VC.isKind(of: StyleTipViewController.self) || VC.isKind(of: MethodTipViewController.self) || VC.isKind(of: StrengthTipViewController.self){
+            if VC.isKind(of: TipViewController.self){
                 animator.xMargin = 60
                 animator.yMargin = 160
                 return animator
