@@ -524,17 +524,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
     
-    //todo
     // MARK: - Photo Header
     private func updateImageView(){
         if calcImageViewSizeCount > 0{
-            let minimumShownTableViewHeight: CGFloat = 115.0
+            let minimumVisibleTableViewHeight: CGFloat = 115.0
             if photoWidth == 0 {
                 imageViewNaturalHeight = 0
             }else{
-                imageViewNaturalHeight = min(tableView.bounds.height - minimumShownTableViewHeight, tableView.bounds.width * photoHeight / photoWidth)
+                imageViewNaturalHeight = min(tableView.bounds.height - minimumVisibleTableViewHeight, tableView.bounds.width * photoHeight / photoWidth)
             }
-            imageViewMinHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumShownTableViewHeight) / 2, imageViewNaturalHeight)
+            imageViewMinHeight = min(tableView.bounds.width / 2, (tableView.bounds.height - minimumVisibleTableViewHeight) / 2, imageViewNaturalHeight)
             imageViewNaturalHeight = floor(imageViewNaturalHeight)
             imageViewMinHeight = floor(imageViewMinHeight)
 
@@ -575,104 +574,101 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     @objc func photoTapped(_ recognizer: UITapGestureRecognizer) {
-        if recipe.imageFileName != nil{
-            if ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: true) != nil {
-                let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
-                let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
-                ivc.originalImageView = photoImageView
-                ivc.captionText = self.recipe.recipeName
-                ivc.modalPresentationStyle = .overFullScreen
-                ivc.modalTransitionStyle = .crossDissolve
-                ivc.modalPresentationCapturesStatusBarAppearance = true
-                self.present(ivc, animated: true)
-            }
+        if recipe.imageFileName != nil {
+            let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
+            let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
+            ivc.originalImageView = photoImageView
+            ivc.captionText = recipe.recipeName
+            ivc.modalPresentationStyle = .overFullScreen
+            ivc.modalTransitionStyle = .crossDissolve
+            ivc.modalPresentationCapturesStatusBarAppearance = true
+            self.present(ivc, animated: true)
         }
     }
     
     @objc func photoLongPressed(_ recognizer: UILongPressGestureRecognizer) {
         // 画像ファイルが消えた時に変なオブジェクトがクリップボードにコピーされるバグのためのワークアラウンド
-        guard let imageFileName = self.recipe.imageFileName else{
-            return
-        }
+        guard let imageFileName = recipe.imageFileName else{ return }
         
         let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
         let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
         
-        if loadedImage != nil && recipe.imageFileName != nil && recognizer.state == UIGestureRecognizer.State.began  {
-            let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
-            let photoAction = UIAlertAction(title: "「写真」アプリへ保存",style: .default){action in
-            UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-            photoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(photoAction)
-            let clipboardAction = UIAlertAction(title: "クリップボードへコピー",style: .default){action in
-                let pasteboard: UIPasteboard = UIPasteboard.general
-                pasteboard.image = loadedImage!
-                MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
-            }
-            clipboardAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(clipboardAction)
-            let shareAction = UIAlertAction(title: "写真を共有",style: .default){action in
-                let excludedActivityTypes = [
-                    UIActivity.ActivityType.print,
-                    UIActivity.ActivityType.assignToContact,
-                    UIActivity.ActivityType.addToReadingList,
-                    UIActivity.ActivityType.postToFlickr,
-                    UIActivity.ActivityType.postToVimeo,
-                    UIActivity.ActivityType.postToWeibo,
-                    UIActivity.ActivityType.postToTencentWeibo,
-                    UIActivity.ActivityType.openInIBooks
-                ]
-                
-                let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    activityVC.overrideUserInterfaceStyle = .dark
-                }
-                activityVC.excludedActivityTypes = excludedActivityTypes
-                activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
-                activityVC.modalPresentationCapturesStatusBarAppearance = true
-                activityVC.popoverPresentationController?.sourceView = self.view
-                activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
-                self.present(activityVC, animated: true, completion: nil)
-            }
-            shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(shareAction)
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(cancelAction)
-            alertView.popoverPresentationController?.sourceView = self.view
-            alertView.popoverPresentationController?.sourceRect = self.photoImageView.frame
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-            alertView.modalPresentationCapturesStatusBarAppearance = true
-            present(alertView, animated: true, completion: nil)
+        guard loadedImage != nil && recognizer.state == UIGestureRecognizer.State.began else { return }
+        
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
         }
+        let photoAction = UIAlertAction(title: "「写真」アプリへ保存",style: .default){action in
+            UIImageWriteToSavedPhotosAlbum(loadedImage!, self, #selector(RecipeDetailTableViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+        photoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(photoAction)
+        let clipboardAction = UIAlertAction(title: "クリップボードへコピー",style: .default){action in
+            UIPasteboard.general.image = loadedImage!
+            MessageHUD.show("画像をコピーしました", for: 2.0, withCheckmark: true, isCenter: true)
+        }
+        clipboardAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(clipboardAction)
+        let shareAction = UIAlertAction(title: "写真を共有",style: .default){action in
+            let excludedActivityTypes = [
+                UIActivity.ActivityType.print,
+                UIActivity.ActivityType.assignToContact,
+                UIActivity.ActivityType.addToReadingList,
+                UIActivity.ActivityType.postToFlickr,
+                UIActivity.ActivityType.postToVimeo,
+                UIActivity.ActivityType.postToWeibo,
+                UIActivity.ActivityType.postToTencentWeibo,
+                UIActivity.ActivityType.openInIBooks
+            ]
+            
+            let activityVC = CustomActivityController(activityItems: [loadedImage!], applicationActivities: nil)
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+                activityVC.overrideUserInterfaceStyle = .dark
+            }
+            activityVC.excludedActivityTypes = excludedActivityTypes
+            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
+            activityVC.modalPresentationCapturesStatusBarAppearance = true
+            activityVC.popoverPresentationController?.sourceView = self.view
+            activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(shareAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
+        
+        alertView.popoverPresentationController?.sourceView = self.view
+        alertView.popoverPresentationController?.sourceRect = self.photoImageView.frame
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
-        if error == nil{
+        guard error != nil else{
             MessageHUD.show("画像を保存しました", for: 2.0, withCheckmark: true, isCenter: true)
-        }else{
-            let alertView = CustomAlertController(title: "「写真」アプリへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(cancelAction)
-            let settingAction = UIAlertAction(title: "設定を開く", style: .default){action in
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }
-            settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(settingAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-            alertView.modalPresentationCapturesStatusBarAppearance = true
-            present(alertView, animated: true, completion: nil)
+            return
         }
+        
+        let alertView = CustomAlertController(title: "「写真」アプリへの保存に失敗しました", message: "「設定」→「うちカク！」にて写真へのアクセス許可を確認してください", preferredStyle: .alert)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
+        let settingAction = UIAlertAction(title: "設定を開く", style: .default){action in
+            if let url = URL(string:UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(settingAction)
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     // MARK: - UITableView
@@ -685,12 +681,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             return UITableView.automaticDimension
         }else if indexPath.section == 1{
             return 70
-        }else if indexPath.section == 2{
-            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 2))
-        }else if indexPath.section == 3{
-            return super.tableView(tableView, heightForRowAt: IndexPath(row: 0, section: 3))
+        }else{
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
-        return 0
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -733,12 +726,12 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            performSegue(withIdentifier: "PushIngredientDetail", sender: indexPath)
+            performSegue(withIdentifier: "PushIngredientDetail", sender: recipeIngredientList[indexPath.row].ingredientId)
         }
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard indexPath.section == 1 else { return UISwipeActionsConfiguration(actions: []) }
+        guard indexPath.section == 1 else { return nil }
         
         let reminder =  UIContextualAction(style: .normal, title: "リマインダー"){ action,view,completionHandler in
             let storyboard = UIStoryboard(name: "Reminder", bundle: nil)
@@ -751,8 +744,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 return
             }
             for ri in self.recipe.recipeIngredients{
-                if ri.ingredient.ingredientName == self.recipeIngredientList[indexPath.row].ingredientName{
+                if ri.ingredient.id == self.recipeIngredientList[indexPath.row].ingredientId{
                     vc.ingredient = ri.ingredient
+                    break
                 }
             }
             vc.onDoneBlock = {
@@ -775,6 +769,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return UISwipeActionsConfiguration(actions: [reminder])
     }
 
+    // todo
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
@@ -1550,9 +1545,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushIngredientDetail" {
             let vc = segue.destination as! IngredientDetailTableViewController
-            if let indexPath = sender as? IndexPath{
-                selectedIngredientId = recipeIngredientList[indexPath.row].ingredientId
-                vc.ingredientId = recipeIngredientList[indexPath.row].ingredientId
+            if let ingredientId = sender as? String{
+                selectedIngredientId = ingredientId
+                vc.ingredientId = ingredientId
             }
         }else if segue.identifier == "PushEditRecipe" {
             let enc = segue.destination as! BasicNavigationController

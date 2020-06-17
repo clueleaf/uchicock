@@ -587,7 +587,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard indexPath.section == 1 && indexPath.row < recipeIngredientList.count else { return UISwipeActionsConfiguration(actions: []) }
+        guard indexPath.section == 1 && indexPath.row < recipeIngredientList.count else { return nil }
         
         let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             self.showCancelAlert = true
