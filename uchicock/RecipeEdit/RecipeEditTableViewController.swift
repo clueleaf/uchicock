@@ -805,47 +805,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 1
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-filled")
         case 1:
             recipeFavorite = 0
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-empty")
         case 2:
             recipeFavorite = 1
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                })
-            }
+            animateButton(star2, with: "button-star-empty")
         case 3:
             recipeFavorite = 1
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star2, with: "button-star-empty")
+            animateButton(star3, with: "button-star-empty")
         default:
             break
         }
@@ -856,50 +826,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 2
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-filled")
+            animateButton(star2, with: "button-star-filled")
         case 1:
             recipeFavorite = 2
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                })
-            }
+            animateButton(star2, with: "button-star-filled")
         case 2:
             recipeFavorite = 0
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-empty")
+            animateButton(star2, with: "button-star-empty")
         case 3:
             recipeFavorite = 2
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star3, with: "button-star-empty")
         default:
             break
         }
@@ -910,62 +848,36 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 3
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-filled")
+            animateButton(star2, with: "button-star-filled")
+            animateButton(star3, with: "button-star-filled")
         case 1:
             recipeFavorite = 3
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star2, with: "button-star-filled")
+            animateButton(star3, with: "button-star-filled")
         case 2:
             recipeFavorite = 3
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star3, with: "button-star-filled")
         case 3:
             recipeFavorite = 0
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1.transform = .identity
-                    self.star2.transform = .identity
-                    self.star3.transform = .identity
-                })
-            }
+            animateButton(star1, with: "button-star-empty")
+            animateButton(star2, with: "button-star-empty")
+            animateButton(star3, with: "button-star-empty")
         default:
             break
-        }    }
+        }
+    }
+    
+    private func animateButton(_ button: UIButton, with imageName: String){
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            button.transform = .init(scaleX: 1.15, y: 1.15)
+        }) { (finished: Bool) -> Void in
+            button.setImage(UIImage(named: imageName), for: .normal)
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                button.transform = .identity
+            })
+        }
+    }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         if showCancelAlert {
@@ -1198,63 +1110,38 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    @IBAction func styleTipButtonTapped(_ sender: UIButton) {
+    @IBAction func tipButtonTapped(_ sender: UIButton) {
+        var id = "StyleTipNavigationController"
+        if sender.tag == 1{
+            id = "MethodTipNavigationController"
+        }else if sender.tag == 2{
+            id = "StrengthTipNavigationController"
+        }
+
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! StyleTipViewController
+        let nvc = storyboard.instantiateViewController(withIdentifier: id) as! BasicNavigationController
+        var vc: TipViewController? = nil
+        if sender.tag == 0{
+            vc = nvc.visibleViewController as! StyleTipViewController
+        }else if sender.tag == 1{
+            vc = nvc.visibleViewController as! MethodTipViewController
+        }else if sender.tag == 2{
+            vc = nvc.visibleViewController as! StrengthTipViewController
+        }
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .formSheet
         }else{
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
-            vc.interactor = interactor
+            vc!.interactor = interactor
         }
-
         recipeName.resignFirstResponder()
         recipeNameYomi.resignFirstResponder()
         memo.resignFirstResponder()
         present(nvc, animated: true)
     }
-    
-    @IBAction func methodTipButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! MethodTipViewController
 
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .formSheet
-        }else{
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
-            vc.interactor = interactor
-        }
-
-        recipeName.resignFirstResponder()
-        recipeNameYomi.resignFirstResponder()
-        memo.resignFirstResponder()
-        present(nvc, animated: true)
-    }
-    
-    @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! StrengthTipViewController
-
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .formSheet
-        }else{
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
-            vc.interactor = interactor
-        }
-
-        recipeName.resignFirstResponder()
-        recipeNameYomi.resignFirstResponder()
-        memo.resignFirstResponder()
-        present(nvc, animated: true)
-    }
-    
     @IBAction func styleSegmentedControlTapped(_ sender: CustomSegmentedControl) {
         self.showCancelAlert = true
     }

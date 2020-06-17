@@ -323,25 +323,34 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         let centerWidth = width / 2.0
         let centerHeight = height / 2.0
         let radius0 = min(width, height) / 2.0 * 0.5
-        let radius1 = sqrt(width * width + height * height) / 2.0
+        let radius1 = min(width, height) / 2.0
+        let radius2 = sqrt(width * width + height * height) / 2.0
         let color0 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
-        let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.4)
+        let color2 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.9)
         let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
             "inputCenter": CIVector(x: centerWidth, y: centerHeight),
             "inputRadius0": radius0,
-            "inputRadius1": radius1,
+            "inputRadius1": radius2,
+            "inputColor0": color0,
+            "inputColor1": color2,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+        let circle2 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius1,
+            "inputRadius1": radius2,
             "inputColor0": color0,
             "inputColor1": color1,
             ])?.outputImage?.cropped(to: ciImage.extent)
-        
+
         let backgroundImage = getColorImage(
-            red: 0.27, green: 0.33, blue: 0.45, alpha: 0.5, rect: ciImage.extent)
+            red: 0.32, green: 0.38, blue: 0.45, alpha: 0.5, rect: ciImage.extent)
 
         return ciImage
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.3,
-                "inputBrightness": 0.1,
-                "inputContrast": 1.3,
+                "inputBrightness": 0.12,
+                "inputContrast": 1.25,
             ])
             .applyingFilter("CISepiaTone", parameters: [
                 "inputIntensity": 0.1,
@@ -352,6 +361,9 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": circle1!,
             ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle2!,
+            ])
     }
     
     private func applyArpeggioFilter(ciImage: CIImage) -> CIImage? {
@@ -360,17 +372,26 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         let centerWidth = width / 2.0
         let centerHeight = height / 2.0
         let radius0 = min(width, height) / 2.0 * 0.6
-        let radius1 = sqrt(width * width + height * height) / 2.0 * 0.95
+        let radius1 = min(width, height) / 2.0
+        let radius2 = sqrt(width * width + height * height) / 2.0 * 0.95
         let color0 = CIColor(red: 0.2, green: 0.1, blue: 0.0, alpha: 0.0)
-        let color1 = CIColor(red: 0.2, green: 0.1, blue: 0.0, alpha: 0.8)
+        let color1 = CIColor(red: 0.2, green: 0.1, blue: 0.0, alpha: 0.5)
+        let color2 = CIColor(red: 0.2, green: 0.1, blue: 0.0, alpha: 0.8)
         let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
             "inputCenter": CIVector(x: centerWidth, y: centerHeight),
             "inputRadius0": radius0,
-            "inputRadius1": radius1,
+            "inputRadius1": radius2,
+            "inputColor0": color0,
+            "inputColor1": color2,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+        let circle2 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius1,
+            "inputRadius1": radius2,
             "inputColor0": color0,
             "inputColor1": color1,
             ])?.outputImage?.cropped(to: ciImage.extent)
-        
+
         let filter = CIFilter(name: "CIPhotoEffectTransfer")!
         filter.setDefaults()
         filter.setValue(ciImage, forKey: kCIInputImageKey)
@@ -379,14 +400,17 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         return newImage
             .applyingFilter("CIColorControls", parameters: [
                 "inputSaturation": 1.25,
-                "inputBrightness": 0.05,
+                "inputBrightness": 0.1,
                 "inputContrast": 1.1,
             ])
             .applyingFilter("CISepiaTone", parameters: [
-                "inputIntensity": 0.2,
+                "inputIntensity": 0.15,
             ])
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": circle1!,
+            ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle2!,
             ])
     }
     
@@ -396,18 +420,26 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         let centerWidth = width / 2.0
         let centerHeight = height / 2.0
         let radius0 = min(width, height) / 2.0 * 0.55
-        let radius1 = sqrt(width * width + height * height) / 2.0
+        let radius1 = min(width, height) / 2.0
+        let radius2 = sqrt(width * width + height * height) / 2.0
 
         let color0 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         let color1 = CIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         let circle1 = CIFilter(name: "CIRadialGradient", parameters: [
             "inputCenter": CIVector(x: centerWidth, y: centerHeight),
             "inputRadius0": radius0,
-            "inputRadius1": radius1,
+            "inputRadius1": radius2,
             "inputColor0": color0,
             "inputColor1": color1,
             ])?.outputImage?.cropped(to: ciImage.extent)
-        
+        let circle2 = CIFilter(name: "CIRadialGradient", parameters: [
+            "inputCenter": CIVector(x: centerWidth, y: centerHeight),
+            "inputRadius0": radius1,
+            "inputRadius1": radius2,
+            "inputColor0": color0,
+            "inputColor1": color1,
+            ])?.outputImage?.cropped(to: ciImage.extent)
+
         let backgroundImage = getColorImage(
             red: 0.23, green: 0.28, blue: 0.33, alpha: 0.6, rect: ciImage.extent)
 
@@ -418,7 +450,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
 
         return newImage
             .applyingFilter("CIColorControls", parameters: [
-                "inputSaturation": 1.25,
+                "inputSaturation": 0.9,
                 "inputBrightness": 0.02,
                 "inputContrast": 1.15,
             ])
@@ -427,6 +459,9 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
             ])
             .applyingFilter("CIDarkenBlendMode", parameters: [
                 "inputBackgroundImage": circle1!,
+            ])
+            .applyingFilter("CIDarkenBlendMode", parameters: [
+                "inputBackgroundImage": circle2!,
             ])
     }
     

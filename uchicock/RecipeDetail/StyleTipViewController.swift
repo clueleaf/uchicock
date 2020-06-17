@@ -8,21 +8,13 @@
 
 import UIKit
 
-class StyleTipViewController: UIViewController, UIScrollViewDelegate {
+class StyleTipViewController: TipViewController{
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var firstSeparator: UIView!
     @IBOutlet weak var secondSeparator: UIView!
-    
-    var interactor: Interactor?
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UchicockStyle.statusBarStyle
-    }
-    
-    var onDoneBlock = {}
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,20 +37,6 @@ class StyleTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.flashScrollIndicators()
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock()
-    }
-
-    // MARK: - UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let int = interactor, int.hasStarted {
-            scrollView.contentOffset.y = 0.0
-        }
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {

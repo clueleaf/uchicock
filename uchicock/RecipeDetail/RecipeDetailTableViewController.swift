@@ -406,18 +406,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
         var ingredientList = Array<SimilarRecipeIngredient>()
         for ri in recipe.recipeIngredients{
-            ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
+            ingredientList.append(SimilarRecipeIngredient(
+                name: ri.ingredient.ingredientName,
+                weight: ri.mustFlag ? 1.0 : 0.3
+            ))
         }
         selfRecipe = SimilarRecipeBasic(
             id: recipe.id,
             name: recipe.recipeName,
-            point: 0,
-            method: recipe.method,
-            style: recipe.style,
-            strength: recipe.strength,
-            shortageNum: recipe.shortageNum,
             isBookmarked: (recipe.bookmarkDate != nil),
+            canMake: recipe.shortageNum == 0,
+            style: recipe.style,
+            method: recipe.method,
+            strength: recipe.strength,
             imageFileName: recipe.imageFileName,
+            point: 0,
             ingredientList: ingredientList
         )
 
@@ -426,18 +429,21 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         for anotherRecipe in allRecipeList!{
             var ingredientList = Array<SimilarRecipeIngredient>()
             for ri in anotherRecipe.recipeIngredients{
-                ingredientList.append(SimilarRecipeIngredient(name: ri.ingredient.ingredientName, mustFlag: ri.mustFlag))
+                ingredientList.append(SimilarRecipeIngredient(
+                    name: ri.ingredient.ingredientName,
+                    weight: ri.mustFlag ? 1.0 : 0.3
+                ))
             }
             similarRecipeList.append(SimilarRecipeBasic(
                 id: anotherRecipe.id,
                 name: anotherRecipe.recipeName,
-                point: 0,
-                method: anotherRecipe.method,
-                style: anotherRecipe.style,
-                strength: anotherRecipe.strength,
-                shortageNum: anotherRecipe.shortageNum,
                 isBookmarked: (anotherRecipe.bookmarkDate != nil),
+                canMake: anotherRecipe.shortageNum == 0,
+                style: anotherRecipe.style,
+                method: anotherRecipe.method,
+                strength: anotherRecipe.strength,
                 imageFileName: anotherRecipe.imageFileName,
+                point: 0,
                 ingredientList: ingredientList
             ))
         }
@@ -820,60 +826,28 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
 
-    // todo
     // MARK: - Calc Similar Point
     private func rateSimilarity(){
         displaySimilarRecipeList.removeAll()
         guard let selfRecipe = selfRecipe else { return }
 
-        for anotherRecipe in similarRecipeList where anotherRecipe.name != selfRecipe.name{
+        for anotherRecipe in similarRecipeList where anotherRecipe.id != selfRecipe.id{
             var point : Float = 0
             var maxWeight : Float = 0.0
             var weight : Float = 0.0
             
             for selfIng in selfRecipe.ingredientList{
-                var hasSameIng = false
+                maxWeight += selfIng.weight
                 for anotherIng in anotherRecipe.ingredientList where anotherIng.name == selfIng.name{
-                    if selfIng.mustFlag{
-                        maxWeight += 1.0
-                        weight += 1.0
-                    }else{
-                        maxWeight += 0.3
-                        weight += 0.3
-                    }
-                    hasSameIng = true
+                    weight += selfIng.weight
                     break
-                }
-                if hasSameIng == false{
-                    if selfIng.mustFlag{
-                        maxWeight += 1.0
-                    }else{
-                        // オプション材料の影響を少なくする
-                        maxWeight += 0.3
-                    }
                 }
             }
-
             for anotherIng in anotherRecipe.ingredientList{
-                var hasSameIng = false
+                maxWeight += anotherIng.weight
                 for selfIng in selfRecipe.ingredientList where anotherIng.name == selfIng.name{
-                    if anotherIng.mustFlag{
-                        maxWeight += 1.0
-                        weight += 1.0
-                    }else{
-                        maxWeight += 0.3
-                        weight += 0.3
-                    }
-                    hasSameIng = true
+                    weight += anotherIng.weight
                     break
-                }
-                if hasSameIng == false{
-                    if anotherIng.mustFlag{
-                        maxWeight += 1.0
-                    }else{
-                        // オプション材料の影響を少なくする
-                        maxWeight += 0.3
-                    }
                 }
             }
 
@@ -894,8 +868,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             
             if selfRecipe.strength == 0 && anotherRecipe.strength == 0{
                 point += 0.2 //ノンアルはボーナスポイント
-            }
-            if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
+            }else if anotherRecipe.strength != 0 && anotherRecipe.strength != 4 && selfRecipe.strength != 0 && selfRecipe.strength != 4 {
                 point += 0.01 //どちらもアルコールならボーナスポイント（主に並べ替え用）
             }
             
@@ -903,22 +876,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 displaySimilarRecipeList.append(SimilarRecipeBasic(
                     id: anotherRecipe.id,
                     name: anotherRecipe.name,
-                    point: point,
-                    method: anotherRecipe.method,
-                    style: anotherRecipe.style,
-                    strength: anotherRecipe.strength,
-                    shortageNum: anotherRecipe.shortageNum,
                     isBookmarked: anotherRecipe.isBookmarked,
-                    imageFileName: anotherRecipe.imageFileName
+                    canMake: anotherRecipe.canMake,
+                    style: 0,
+                    method: 0,
+                    strength: 0,
+                    imageFileName: anotherRecipe.imageFileName,
+                    point: point
                 ))
             }
         }
+        
         displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
-            if a.point == b.point {
-                return a.name < b.name
-            }else{
-                return a.point > b.point
-            }
+            return a.point == b.point ? a.name < b.name : a.point > b.point
         })
     }
     
@@ -945,9 +915,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
         }
         return true
@@ -956,9 +926,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
         }
     }
@@ -1027,18 +997,13 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecipeNameCell", for: indexPath as IndexPath) as! SimilarRecipeCollectionViewCell
         cell.recipe = displaySimilarRecipeList[indexPath.row]
-        if displaySimilarRecipeList[indexPath.row].shortageNum == 0{
-            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColor
-        }else{
-            cell.recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
-        }
-        
         cell.backgroundContainer.backgroundColor = UchicockStyle.basicBackgroundColorLight
+
         if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
             }else{
-                cell.highlightView.backgroundColor  = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
             }
             highlightSimilarRecipeIndexPath = indexPath
         }else{
@@ -1074,89 +1039,34 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     // MARK: - IBAction
     @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
         let realm = try! Realm()
-        if recipe.bookmarkDate == nil{
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bookmarkButton.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-on"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.bookmarkButton.transform = .identity
-                })
-            }
-            try! realm.write {
-                recipe.bookmarkDate = Date()
-            }
-            MessageHUD.show("ブックマークしました", for: 2.0, withCheckmark: true, isCenter: true)
-        }else{
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.bookmarkButton.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.bookmarkButton.setImage(UIImage(named: "navigation-recipe-bookmark-off"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.bookmarkButton.transform = .identity
-                })
-            }
-            try! realm.write {
-                recipe.bookmarkDate = nil
-            }
-            MessageHUD.show("ブックマークを外しました", for: 2.0, withCheckmark: true, isCenter: true)
+        let newImageName = recipe.bookmarkDate == nil ? "navigation-recipe-bookmark-on" : "navigation-recipe-bookmark-off"
+        let newBookmarkData : Date? = recipe.bookmarkDate == nil ? Date() : nil
+        let message = recipe.bookmarkDate == nil ? "ブックマークしました" : "ブックマークを外しました"
+
+        animateButton(bookmarkButton, with: newImageName)
+
+        try! realm.write {
+            recipe.bookmarkDate = newBookmarkData
         }
+        MessageHUD.show(message, for: 2.0, withCheckmark: true, isCenter: true)
     }
     
     @IBAction func star1Tapped(_ sender: UIButton) {
         let realm = try! Realm()
         switch recipe.favorites {
         case 0:
-            try! realm.write {
-                recipe.favorites = 1
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 1 }
+            animateButton(star1Button, with: "button-star-filled")
         case 1:
-            try! realm.write {
-                recipe.favorites = 0
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 0 }
+            animateButton(star1Button, with: "button-star-empty")
         case 2:
-            try! realm.write {
-                recipe.favorites = 1
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 1 }
+            animateButton(star2Button, with: "button-star-empty")
         case 3:
-            try! realm.write {
-                recipe.favorites = 1
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2Button.transform = .identity
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 1 }
+            animateButton(star2Button, with: "button-star-empty")
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
         }
@@ -1166,59 +1076,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let realm = try! Realm()
         switch recipe.favorites {
         case 0:
-            try! realm.write {
-                recipe.favorites = 2
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                    self.star2Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 2 }
+            animateButton(star1Button, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
         case 1:
-            try! realm.write {
-                recipe.favorites = 2
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 2 }
+            animateButton(star2Button, with: "button-star-filled")
         case 2:
-            try! realm.write {
-                recipe.favorites = 0
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                    self.star2Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 0 }
+            animateButton(star1Button, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
         case 3:
-            try! realm.write {
-                recipe.favorites = 2
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 2 }
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
         }
@@ -1228,118 +1098,68 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let realm = try! Realm()
         switch recipe.favorites {
         case 0:
-            try! realm.write {
-                recipe.favorites = 3
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                    self.star2Button.transform = .identity
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 3 }
+            animateButton(star1Button, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
+            animateButton(star3Button, with: "button-star-filled")
         case 1:
-            try! realm.write {
-                recipe.favorites = 3
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star2Button.transform = .identity
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 3 }
+            animateButton(star2Button, with: "button-star-filled")
+            animateButton(star3Button, with: "button-star-filled")
         case 2:
-            try! realm.write {
-                recipe.favorites = 3
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 3 }
+            animateButton(star3Button, with: "button-star-filled")
         case 3:
-            try! realm.write {
-                recipe.favorites = 0
-            }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.star1Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star2Button.transform = .init(scaleX: 1.15, y: 1.15)
-                self.star3Button.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                self.star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
-                UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.star1Button.transform = .identity
-                    self.star2Button.transform = .identity
-                    self.star3Button.transform = .identity
-                })
-            }
+            try! realm.write { recipe.favorites = 0 }
+            animateButton(star1Button, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
-        }        
+        }
     }
     
-    @IBAction func styleTipButtonTapped(_ sender: UIButton) {
+    private func animateButton(_ button: UIButton, with imageName: String){
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            button.transform = .init(scaleX: 1.15, y: 1.15)
+        }) { (finished: Bool) -> Void in
+            button.setImage(UIImage(named: imageName), for: .normal)
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                button.transform = .identity
+            })
+        }
+    }
+    
+    @IBAction func tipButtonTapped(_ sender: UIButton) {
+        var id = "StyleTipNavigationController"
+        if sender.tag == 1{
+            id = "MethodTipNavigationController"
+        }else if sender.tag == 2{
+            id = "StrengthTipNavigationController"
+        }
+
         let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StyleTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! StyleTipViewController
+        let nvc = storyboard.instantiateViewController(withIdentifier: id) as! BasicNavigationController
+        var vc: TipViewController? = nil
+        if sender.tag == 0{
+            vc = nvc.visibleViewController as! StyleTipViewController
+        }else if sender.tag == 1{
+            vc = nvc.visibleViewController as! MethodTipViewController
+        }else if sender.tag == 2{
+            vc = nvc.visibleViewController as! StrengthTipViewController
+        }
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .formSheet
         }else{
             nvc.modalPresentationStyle = .custom
             nvc.transitioningDelegate = self
-            vc.interactor = interactor
+            vc!.interactor = interactor
         }
         present(nvc, animated: true)
     }
     
-    @IBAction func methodTipButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "MethodTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! MethodTipViewController
-
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .formSheet
-        }else{
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
-            vc.interactor = interactor
-        }
-        present(nvc, animated: true)
-    }
-    
-    @IBAction func strengthTipButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Tip", bundle: nil)
-        let nvc = storyboard.instantiateViewController(withIdentifier: "StrengthTipNavigationController") as! BasicNavigationController
-        let vc = nvc.visibleViewController as! StrengthTipViewController
-
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
-            nvc.modalPresentationStyle = .formSheet
-        }else{
-            nvc.modalPresentationStyle = .custom
-            nvc.transitioningDelegate = self
-            vc.interactor = interactor
-        }
-        present(nvc, animated: true)
-    }
-    
+    //todo
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
         if recipe.madeNum < 9999 {
             let realm = try! Realm()

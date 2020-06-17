@@ -35,7 +35,12 @@ class SimilarRecipeCollectionViewCell: UICollectionViewCell {
                 recipeNameLabel.text = recipe!.name
                 backgroundContainer.layer.cornerRadius = 15
                 backgroundContainer.clipsToBounds = true
-                highlightView.backgroundColor = UIColor.clear
+                
+                if recipe!.canMake{
+                    recipeNameLabel.textColor = UchicockStyle.labelTextColor
+                }else{
+                    recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
+                }
                 
                 bookmarkBackImage.tintColor = UchicockStyle.primaryColor
                 bookmarkFrontImage.tintColor = UchicockStyle.primaryColor

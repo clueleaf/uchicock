@@ -225,7 +225,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="styleTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="jO0-dj-PL3"/>
+                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="ShJ-SO-5L6"/>
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d1R-hF-4x3" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
@@ -288,7 +288,7 @@
                                                         <action selector="methodSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="5lb-WF-z9U"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="47" y="15.5" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="Uxh-hE-Xna"/>
@@ -296,7 +296,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="methodTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="eLt-mm-4gn"/>
+                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="Q5S-Lg-TgI"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -344,7 +344,7 @@
                                                         <action selector="strengthSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="ao3-HH-Sip"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSt-5r-bL1" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSt-5r-bL1" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="133.5" y="15.5" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="QF7-kS-s9B"/>
@@ -352,7 +352,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="strengthTipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="hsq-rW-Ll1"/>
+                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="R2E-Zm-Li3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

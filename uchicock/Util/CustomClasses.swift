@@ -271,3 +271,27 @@ class ExpandedButton: UIButton {
         return area.contains(point)
     }
 }
+
+class TipViewController: UIViewController, UIScrollViewDelegate{
+    var interactor: Interactor?
+    var onDoneBlock = {}
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UchicockStyle.statusBarStyle
+    }
+    
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.onDoneBlock()
+    }
+
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let int = interactor, int.hasStarted {
+            scrollView.contentOffset.y = 0.0
+        }
+    }
+    
+}

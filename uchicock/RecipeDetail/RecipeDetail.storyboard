@@ -200,7 +200,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="styleTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="bvb-xj-l68"/>
+                                                        <action selector="tipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="wVL-cb-v3u"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -241,7 +241,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSZ-h7-jZu" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSZ-h7-jZu" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="47" y="18" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="6vF-tU-KId"/>
@@ -249,7 +249,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="methodTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="5yw-Ff-lXm"/>
+                                                        <action selector="tipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="94X-rn-uYa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -290,7 +290,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-eR-jC5" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-eR-jC5" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="133.5" y="18" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="BpJ-SJ-E8K"/>
@@ -298,7 +298,7 @@
                                                     </constraints>
                                                     <state key="normal" image="button-tip"/>
                                                     <connections>
-                                                        <action selector="strengthTipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="vJb-Wt-Rc1"/>
+                                                        <action selector="tipButtonTapped:" destination="ZVL-2s-yCx" eventType="touchUpInside" id="9Rc-Yz-GcI"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

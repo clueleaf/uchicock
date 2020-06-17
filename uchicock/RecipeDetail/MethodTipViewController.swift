@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MethodTipViewController: UIViewController, UIScrollViewDelegate {
+class MethodTipViewController: TipViewController{
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var backgroundView: UIView!
@@ -17,14 +17,6 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var secondSeparator: UIView!
     @IBOutlet weak var thirdSeparator: UIView!
     @IBOutlet weak var fourthSeparator: UIView!
-    
-    var interactor: Interactor?
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UchicockStyle.statusBarStyle
-    }
-    
-    var onDoneBlock = {}
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -49,20 +41,6 @@ class MethodTipViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.flashScrollIndicators()
-    }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock()
-    }
-    
-    // MARK: - UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let int = interactor, int.hasStarted {
-            scrollView.contentOffset.y = 0.0
-        }
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
+class AlcoholAmountTipViewController: TipViewController {
 
     @IBOutlet weak var scrollView: CustomScrollView!
     @IBOutlet weak var backgroundView: UIView!
@@ -22,14 +22,6 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
     var alcoholAmount = 0
     var weight = 50
     
-    var interactor: Interactor?
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UchicockStyle.statusBarStyle
-    }
-    
-    var onDoneBlock = {}
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,14 +59,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidAppear(animated)
         scrollView.flashScrollIndicators()
     }
-    
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock()
-    }
-    
+
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.AlcoholDecompositionWeightKey : 50])
@@ -127,13 +112,7 @@ class AlcoholAmountTipViewController: UIViewController, UIScrollViewDelegate {
         decompositionTimeLabel.text = "約" + String(hour) + "時間" + String(minute) + "分"
     }
 
-    // MARK: - UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let int = interactor, int.hasStarted {
-            scrollView.contentOffset.y = 0.0
-        }
-    }
-    
+    // MARK: - UIScrollViewDelegate    
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
         guard let interactor = interactor else { return }
         let percentThreshold: CGFloat = 0.3

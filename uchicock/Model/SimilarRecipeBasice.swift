@@ -9,17 +9,17 @@
 struct SimilarRecipeBasic{
     var id : String
     var name : String
-    var point : Float
-    var method : Int
-    var style : Int
-    var strength : Int
-    var shortageNum : Int
     var isBookmarked : Bool
+    var canMake : Bool
+    var style : Int
+    var method : Int
+    var strength : Int
     var imageFileName: String?
+    var point : Float
     var ingredientList = Array<SimilarRecipeIngredient>()
 }
 
 struct SimilarRecipeIngredient{
     var name : String
-    var mustFlag : Bool
+    var weight : Float
 }

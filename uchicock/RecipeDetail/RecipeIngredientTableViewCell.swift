@@ -23,13 +23,12 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     var recipeIngredient : RecipeIngredientBasic? {
         didSet{
-            stockLabel.backgroundColor = UIColor.clear
             stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
-            stockLabel.textAlignment = NSTextAlignment.center
+            
             if shouldDisplayStock {
-                stockLabel.layer.borderWidth = 1
                 stockLabel.isHidden = false
+                stockLabel.layer.borderWidth = 1
                 stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
                 if recipeIngredient?.stockFlag ?? false {
                     stockLabel.text = "在庫あり"
@@ -44,31 +43,19 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     ingredientNameTextView.textColor = UchicockStyle.labelTextColorLight
                     amountLabel.textColor = UchicockStyle.labelTextColorLight
                 }
+                ingredientNameTextView.text = recipeIngredient?.ingredientName
             }else{
                 stockLabel.isHidden = true
                 if isDuplicated {
                     ingredientNameTextView.textColor = UchicockStyle.alertColor
+                    ingredientNameTextView.text = "[重複]" + (recipeIngredient?.ingredientName ?? "")
                 }else{
                     ingredientNameTextView.textColor = UchicockStyle.labelTextColor
+                    ingredientNameTextView.text = recipeIngredient?.ingredientName
                 }
                 amountLabel.textColor = UchicockStyle.labelTextColor
             }
             
-            alcoholIconImage.tintColor = UchicockStyle.primaryColor
-            if recipeIngredient?.category == 0{
-                alcoholIconImage.isHidden = false
-                alcoholIconImageWidthConstraint.constant = 13
-            }else{
-                alcoholIconImage.isHidden = true
-                alcoholIconImageWidthConstraint.constant = 0
-            }
-
-            if isDuplicated {
-                ingredientNameTextView.text = "[重複]" + (recipeIngredient?.ingredientName ?? "")
-            }else{
-                ingredientNameTextView.text = recipeIngredient?.ingredientName
-            }
-            ingredientNameTextView.backgroundColor = UIColor.clear
             ingredientNameTextView.clipsToBounds = true
             ingredientNameTextView.isScrollEnabled = false
             ingredientNameTextView.textContainerInset = .zero
@@ -77,11 +64,26 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             ingredientNameTextView.textContainer.maximumNumberOfLines = 1
             ingredientNameTextView.textContainer.lineBreakMode = .byTruncatingTail
             
-            optionLabel.backgroundColor = UIColor.clear
+            if isNameTextViewSelectable{
+                ingredientNameTextView.isSelectable = true
+                ingredientNameTextView.isUserInteractionEnabled = true
+            }else{
+                ingredientNameTextView.isSelectable = false
+                ingredientNameTextView.isUserInteractionEnabled = false
+            }
+
+            alcoholIconImage.tintColor = UchicockStyle.primaryColor
+            if recipeIngredient?.category == 0{
+                alcoholIconImage.isHidden = false
+                alcoholIconImageWidthConstraint.constant = 13
+            }else{
+                alcoholIconImage.isHidden = true
+                alcoholIconImageWidthConstraint.constant = 0
+            }
+            
             optionLabel.textColor = UchicockStyle.primaryColor
             optionLabel.layer.cornerRadius = 10.5
             optionLabel.clipsToBounds = true
-            optionLabel.textAlignment = NSTextAlignment.center
             optionLabel.layer.borderWidth = 1
             optionLabel.layer.backgroundColor = UIColor.clear.cgColor
             if recipeIngredient?.mustFlag ?? true{
@@ -94,15 +96,6 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
             amountLabel.text = recipeIngredient?.amount
             amountLabel.clipsToBounds = true
-
-            if isNameTextViewSelectable{
-                ingredientNameTextView.isSelectable = true
-                ingredientNameTextView.isUserInteractionEnabled = true
-            }else{
-                ingredientNameTextView.isSelectable = false
-                ingredientNameTextView.isUserInteractionEnabled = false
-            }
-
         }
     }
 }
