@@ -465,7 +465,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if recipe.isInvalidated == false, fromContextualMenu == false{
+        if recipe.isInvalidated == false && fromContextualMenu == false{
             let realm = try! Realm()
             try! realm.write {
                 recipe.lastViewDate = Date()
@@ -526,6 +526,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     // MARK: - Photo Header
     private func updateImageView(){
+        guard recipe.isInvalidated == false else { return }
         if calcImageViewSizeCount > 0{
             let minimumVisibleTableViewHeight: CGFloat = 115.0
             if photoWidth == 0 {
@@ -769,7 +770,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         return UISwipeActionsConfiguration(actions: [reminder])
     }
 
-    // todo
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section{
         case 0:
@@ -785,22 +785,20 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
 
-            if recipe.isInvalidated == false{
-                cell.isDuplicated = false
-                cell.shouldDisplayStock = true
-                cell.isNameTextViewSelectable = false
-                cell.recipeIngredient = RecipeIngredientBasic(
-                    ingredientId: "",
-                    ingredientName: recipeIngredientList[indexPath.row].ingredientName,
-                    ingredientNameYomi: "",
-                    katakanaLowercasedNameForSearch: "",
-                    amount: recipeIngredientList[indexPath.row].amount,
-                    mustFlag: recipeIngredientList[indexPath.row].mustFlag,
-                    category: recipeIngredientList[indexPath.row].category,
-                    displayOrder: -1,
-                    stockFlag: recipeIngredientList[indexPath.row].stockFlag
-                )
-            }
+            cell.isDuplicated = false
+            cell.shouldDisplayStock = true
+            cell.isNameTextViewSelectable = false
+            cell.recipeIngredient = RecipeIngredientBasic(
+                ingredientId: "",
+                ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                ingredientNameYomi: "",
+                katakanaLowercasedNameForSearch: "",
+                amount: recipeIngredientList[indexPath.row].amount,
+                mustFlag: recipeIngredientList[indexPath.row].mustFlag,
+                category: recipeIngredientList[indexPath.row].category,
+                displayOrder: -1,
+                stockFlag: recipeIngredientList[indexPath.row].stockFlag
+            )
 
             cell.selectionStyle = .default
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -822,6 +820,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
     }
 
+    // todo
     // MARK: - Calc Similar Point
     private func rateSimilarity(){
         displaySimilarRecipeList.removeAll()
