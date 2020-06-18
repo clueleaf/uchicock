@@ -76,30 +76,19 @@ class ChangeThemeTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeight
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return themeList.count
-    }
-    
-    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // MARK: - Logic functions
+    private func changeTheme(themeNo: Int, shouldScroll: Bool){
+        var willScroll = shouldScroll
+        if let visibleRows = tableView.indexPathsForVisibleRows, visibleRows.contains(IndexPath(row: themeNo, section: 0)){
+            willScroll = false
+        }
+        
         oldTableBackgroundColor = UchicockStyle.basicBackgroundColor
         
-        UchicockStyle.setTheme(themeNo: String(indexPath.row))
-        UchicockStyle.saveTheme(themeNo: String(indexPath.row))
+        UchicockStyle.setTheme(themeNo: String(themeNo))
+        UchicockStyle.saveTheme(themeNo: String(themeNo))
         
-        if let cell = tableView.cellForRow(at:indexPath) {
+        if let cell = tableView.cellForRow(at: IndexPath(row: themeNo, section: 0)){
             cell.accessoryType = .checkmark
         }
         if UchicockStyle.isBackgroundDark{
@@ -108,7 +97,7 @@ class ChangeThemeTableViewController: UITableViewController {
             self.tableView.indicatorStyle = .black
         }
         
-        animationFlag = true
+        if willScroll == false { animationFlag = true }
         UIView.animate(withDuration: animationDuration, animations: {
             self.setNeedsStatusBarAppearanceUpdate()
             self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -132,6 +121,30 @@ class ChangeThemeTableViewController: UITableViewController {
         })
         
         tableView.reloadData()
+        if willScroll{
+            tableView.scrollToRow(at: IndexPath(row: themeNo, section: 0), at: .middle, animated: true)
+        }
+    }
+    
+    // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeight
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return themeList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        changeTheme(themeNo: indexPath.row, shouldScroll: false)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,4 +179,46 @@ class ChangeThemeTableViewController: UITableViewController {
 
         return cell
     }
+    
+    // MARK: - IBAction
+    @IBAction func shuffleButtonTapped(_ sender: UIBarButtonItem) {
+        let alertView = CustomAlertController(title: nil, message: "おまかせで選ぶ？", preferredStyle: .alert)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
+        }
+        let shuffleAction = UIAlertAction(title: "全テーマから", style: .default){action in
+            var themeNo = Int(UchicockStyle.no)!
+            while themeNo == Int(UchicockStyle.no)!{
+                themeNo = Int.random(in: 0 ..< self.themeList.count)
+            }
+            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+        }
+        shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(shuffleAction)
+        let lightShuffleAction = UIAlertAction(title: "ライトテーマから", style: .default){action in
+            var themeNo = Int(UchicockStyle.no)!
+            while themeNo == Int(UchicockStyle.no)!{
+                themeNo = [0,2,4,6,8,9,11,13,15,17,20,22,24].randomElement()!
+            }
+            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+        }
+        lightShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(lightShuffleAction)
+        let darkShuffleAction = UIAlertAction(title: "ダークテーマから", style: .default){action in
+            var themeNo = Int(UchicockStyle.no)!
+            while themeNo == Int(UchicockStyle.no)!{
+                themeNo = [1,3,5,7,10,12,14,16,18,19,21,23,25].randomElement()!
+            }
+            self.changeTheme(themeNo: themeNo, shouldScroll: true)
+        }
+        darkShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(darkShuffleAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(cancelAction)
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
+    }
+    
 }

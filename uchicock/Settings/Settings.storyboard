@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lbf-YC-ahC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -309,7 +309,13 @@
                             <outlet property="delegate" destination="LHv-Sj-xL6" id="k5r-2b-3KN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="テーマカラー" id="BtI-F4-rgv"/>
+                    <navigationItem key="navigationItem" title="テーマカラー" id="BtI-F4-rgv">
+                        <barButtonItem key="rightBarButtonItem" image="navigation-album-order" id="7Pu-ai-hTe">
+                            <connections>
+                                <action selector="shuffleButtonTapped:" destination="LHv-Sj-xL6" id="e3r-Yd-W1l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zon-7O-zFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -424,6 +430,7 @@
     </scenes>
     <resources>
         <image name="button-star-filled" width="24" height="24"/>
+        <image name="navigation-album-order" width="24" height="24"/>
         <image name="settings-calc" width="24" height="24"/>
         <image name="settings-image" width="24" height="24"/>
         <image name="settings-info" width="24" height="24"/>
