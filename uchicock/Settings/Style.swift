@@ -854,7 +854,7 @@ struct UchicockStyle{
     }
     
     static private func customizeTextView(){
-        CustomTextView.appearance().backgroundColor = basicBackgroundColor
+        CustomTextView.appearance().backgroundColor = UIColor.clear
         CustomTextView.appearance().textColor = labelTextColor
         CustomTextView.appearance().tintColor = labelTextColor
     }

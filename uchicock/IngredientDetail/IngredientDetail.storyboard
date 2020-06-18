@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wli-BK-85f">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -414,21 +414,21 @@
                         <outlet property="alcoholIconImageWidthConstraint" destination="WDk-kB-DPh" id="1Th-QH-dRr"/>
                         <outlet property="amazonButton" destination="Tyv-e1-O7y" id="lrK-LI-yvF"/>
                         <outlet property="amazonContainerView" destination="IUb-qb-HOW" id="7N9-Zt-MQe"/>
-                        <outlet property="category" destination="bbv-Mt-9IU" id="i9Z-O6-rIg"/>
+                        <outlet property="categoryLabel" destination="bbv-Mt-9IU" id="ghC-zk-EnG"/>
                         <outlet property="deleteButton" destination="2Oo-xf-RBe" id="UAg-2u-cvH"/>
                         <outlet property="deleteButtonLabel" destination="jqM-l2-1Yk" id="lSv-ko-xGL"/>
                         <outlet property="deleteContainerView" destination="5GJ-2B-cNq" id="r4G-Kz-wtf"/>
                         <outlet property="editButton" destination="lS3-q2-ds8" id="D0W-uE-cqe"/>
-                        <outlet property="ingredientName" destination="Mxz-WJ-uXv" id="26d-1d-aoh"/>
+                        <outlet property="ingredientNameTextView" destination="Mxz-WJ-uXv" id="jP5-5p-8GQ"/>
                         <outlet property="ingredientNameYomiLabel" destination="0DM-xv-7qc" id="zft-sF-fm5"/>
-                        <outlet property="memo" destination="IXF-5E-Wxs" id="nkg-Mj-h6i"/>
                         <outlet property="memoBottomConstraint" destination="EbB-wT-gVq" id="PJJ-UO-2Tc"/>
-                        <outlet property="recipeOrderLabel" destination="Wgy-Pt-mDp" id="5hn-9p-Nhc"/>
+                        <outlet property="memoTextView" destination="IXF-5E-Wxs" id="3Fh-G6-KOk"/>
+                        <outlet property="recipeDisplayOrderLabel" destination="Wgy-Pt-mDp" id="F8e-68-g7l"/>
                         <outlet property="reminderButton" destination="cPs-GH-jRH" id="baP-uG-Xa1"/>
                         <outlet property="reminderImage" destination="p3g-RM-K5J" id="AVs-EA-BRe"/>
                         <outlet property="reminderMessageLabel" destination="EPo-SR-Hj1" id="vex-jn-bKO"/>
                         <outlet property="removeReminderButton" destination="nsX-jD-29O" id="I3X-2g-czt"/>
-                        <outlet property="stock" destination="tbX-in-ob8" id="sAX-K6-g8d"/>
+                        <outlet property="stockCheckbox" destination="tbX-in-ob8" id="d8y-cs-o7A"/>
                         <outlet property="stockRecommendLabel" destination="2j5-wo-2mv" id="r9j-I8-mnY"/>
                         <segue destination="Q8M-CT-PU2" kind="show" identifier="PushRecipeDetail" id="1g7-6l-jO6"/>
                         <segue destination="WkO-TB-fBh" kind="presentation" identifier="PushEditIngredient" modalPresentationStyle="fullScreen" id="dSa-zg-Pbu"/>

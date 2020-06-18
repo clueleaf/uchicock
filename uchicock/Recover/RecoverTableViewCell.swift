@@ -33,9 +33,9 @@ class RecoverTableViewCell: UITableViewCell {
             recipeNameLabel.text = recipeName
             
             var shouldAddNewBadge = false
-            if shouldAdd73Badge && shouldAdd80Badge && recipeName.isNewRecipe73(){
+            if shouldAdd73Badge && shouldAdd80Badge && NewRecipe.v73.contains(recipeName){
                 shouldAddNewBadge = true
-            }else if shouldAdd80Badge && recipeName.isNewRecipe80(){
+            }else if shouldAdd80Badge && NewRecipe.v80.contains(recipeName){
                 shouldAddNewBadge = true
             }
 

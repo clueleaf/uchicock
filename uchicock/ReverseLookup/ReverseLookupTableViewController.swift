@@ -1032,8 +1032,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
-        return pc
+        return ModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
