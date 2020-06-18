@@ -386,7 +386,8 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.setNeedsStatusBarAppearanceUpdate()
+
         guard hasRecipeDeleted == false else{
             let noRecipeAlertView = CustomAlertController(title: "このレシピは削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
@@ -634,9 +635,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.popoverPresentationController?.sourceView = self.view
             activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
-            activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
             self.present(activityVC, animated: true, completion: nil)
         }
         shareAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
@@ -1201,9 +1199,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         activityVC.modalPresentationCapturesStatusBarAppearance = true
         activityVC.popoverPresentationController?.sourceView = sender
         activityVC.popoverPresentationController?.sourceRect = sender.frame
-        activityVC.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            self.setNeedsStatusBarAppearanceUpdate()
-        }
         self.present(activityVC, animated: true, completion: nil)
     }
     
