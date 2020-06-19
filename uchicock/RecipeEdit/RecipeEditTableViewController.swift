@@ -923,43 +923,58 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.resignFirstResponder()
         recipeNameYomi.resignFirstResponder()
         memo.resignFirstResponder()
-        if recipeName.text == nil || recipeName.text!.withoutEndsSpace() == ""{
+        
+        guard recipeName.text != nil && recipeName.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "レシピ名を入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.recipeName.becomeFirstResponder()
             })
-        }else if recipeName.text!.withoutEndsSpace().count > recipeNameMaximum{
+            return
+        }
+        guard recipeName.text!.withoutEndsSpace().count <= recipeNameMaximum else{
             presentAlert(title: "レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.recipeName.becomeFirstResponder()
             })
-        }else if recipeNameYomi.text == nil || recipeNameYomi.text!.withoutEndsSpace() == ""{
+            return
+        }
+        guard recipeNameYomi.text != nil && recipeNameYomi.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "ヨミガナを入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.recipeNameYomi.becomeFirstResponder()
             })
-        }else if recipeNameYomi.text!.withoutEndsSpace().count > recipeNameYomiMaximum{
+            return
+        }
+        guard recipeNameYomi.text!.withoutEndsSpace().count <= recipeNameYomiMaximum else{
             presentAlert(title: "ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.recipeNameYomi.becomeFirstResponder()
             })
-        }else if memo.text.count > memoMaximum {
+            return
+        }
+        guard memo.text.count <= memoMaximum else{
             presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 6, section: 0), at: .middle, animated: true)
                 self.memo.becomeFirstResponder()
             })
-        }else if recipeIngredientList.count == 0{
+            return
+        }
+        guard recipeIngredientList.count != 0 else{
             presentAlert(title: "材料を一つ以上追加してください", message: nil, action: {
                 self.tableView.selectRow(at: IndexPath(row: 0, section: 1), animated: true, scrollPosition: .bottom)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.tableView.deselectRow(at: IndexPath(row: 0, section: 1), animated: true)
                 }
             })
-        }else if recipeIngredientList.count > ingredientMaximum{
+            return
+        }
+        guard recipeIngredientList.count <= ingredientMaximum else{
             presentAlert(title: "材料を" + String(ingredientMaximum) + "個以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
             })
-        }else if updateDuplicatedIngredientList() {
+            return
+        }
+        guard updateDuplicatedIngredientList() == false else{
             presentAlert(title: "重複している材料があります", message: nil, action: {
                 var idp = IndexPath(row: 0, section: 1)
                 if self.duplicatedIngredientList.count > 0{
@@ -973,143 +988,95 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     self.tableView.deselectRow(at: idp, animated: true)
                 }
             })
-        }else{
-            let realm = try! Realm()
+            return
+        }
+        
+        let realm = try! Realm()
+        let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
+        guard recipeName.text!.withoutEndsSpace() != "" && (
+            sameNameRecipe.count == 0 || recipe.recipeName == recipeName.text!.withoutEndsSpace()) else{
+            presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.recipeName.becomeFirstResponder()
+            })
+            return
+        }
+
+        saveRecipe()
+    }
+    
+    private func saveRecipe(){
+        let realm = try! Realm()
+        try! realm.write {
+            if isAddMode { realm.add(recipe) }
             
-            if isAddMode {
-                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
-                if sameNameRecipe.count != 0{
-                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                        self.recipeName.becomeFirstResponder()
-                    })
-                }else{
-                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-                    try! realm.write{
-                        let newRecipe = Recipe()
-                        newRecipe.recipeName = recipeName.text!.withoutEndsSpace()
-                        newRecipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
-                        newRecipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
-
-                        newRecipe.favorites = recipeFavorite
-
-                        if let image = photo.image{
-                            let imageFileName = NSUUID().uuidString
-                            if ImageUtil.save(image: image, toFileName: imageFileName){
-                                newRecipe.imageFileName = imageFileName
-                            }
-                        }else{
-                            newRecipe.imageFileName = nil
-                        }
-                        
-                        newRecipe.style = style.selectedSegmentIndex
-                        newRecipe.method = method.selectedSegmentIndex
-                        newRecipe.strength = strength.selectedSegmentIndex
-                        newRecipe.memo = memo.text
-                        realm.add(newRecipe)
-                        
-                        for i in 0 ..< recipeIngredientList.count {
-                            let recipeIngredientLink = RecipeIngredientLink()
-                            recipeIngredientLink.amount = recipeIngredientList[i].amount
-                            recipeIngredientLink.mustFlag = recipeIngredientList[i].mustFlag
-                            recipeIngredientLink.displayOrder = i
-                            realm.add(recipeIngredientLink)
-
-                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",recipeIngredientList[i].ingredientName).first!
-                            ingredient.recipeIngredients.append(recipeIngredientLink)
-
-                            let recipe = realm.objects(Recipe.self).filter("recipeName == %@",newRecipe.recipeName).first!
-                            recipe.recipeIngredients.append(recipeIngredientLink)
-                        }
-                        detailVC.recipeId = newRecipe.id
-                        newRecipe.updateShortageNum()
-                        MessageHUD.show("レシピを登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                   
-                    if mainNavigationController != nil{
-                        mainNavigationController!.pushViewController(detailVC, animated: false)
-                        detailVC.closeEditVC(self)
-                    }else{
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }else{
-                let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
-                if sameNameRecipe.count != 0 && recipe.recipeName != recipeName.text!.withoutEndsSpace(){
-                    presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                        self.recipeName.becomeFirstResponder()
-                    })
-                }else{
-                    let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-                    try! realm.write {
-                        let deletingRecipeIngredientList = List<RecipeIngredientLink>()
-                        for ri in recipe.recipeIngredients{
-                            let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
-                            deletingRecipeIngredientList.append(recipeIngredient)
-                        }
-                        
-                        for ri in deletingRecipeIngredientList{
-                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
-                            for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count {
-                                if ingredient.recipeIngredients[i].id == ri.id{
-                                    ingredient.recipeIngredients.remove(at: i)
-                                }
-                            }
-                        }
-                        let editingRecipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipe.id)!
-                        editingRecipe.recipeIngredients.removeAll()
-                        for ri in deletingRecipeIngredientList{
-                            realm.delete(ri)
-                        }
-                        recipe.recipeName = recipeName.text!.withoutEndsSpace()
-                        recipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
-                        recipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
-                        
-                        recipe.favorites = recipeFavorite
-                        
-                        let oldImageFileName = recipe.imageFileName
-                        if let image = photo.image{
-                            let newImageFileName = NSUUID().uuidString
-                            if ImageUtil.save(image: image, toFileName: newImageFileName){
-                                recipe.imageFileName = newImageFileName
-                            }
-                        }else{
-                            recipe.imageFileName = nil
-                        }
-                        ImageUtil.remove(imageFileName: oldImageFileName)
-
-                        recipe.style = style.selectedSegmentIndex
-                        recipe.method = method.selectedSegmentIndex
-                        recipe.strength = strength.selectedSegmentIndex
-                        recipe.memo = memo.text
-                        
-                        for i in 0 ..< recipeIngredientList.count{
-                            let recipeIngredientLink = RecipeIngredientLink()
-                            recipeIngredientLink.amount = recipeIngredientList[i].amount
-                            recipeIngredientLink.mustFlag = recipeIngredientList[i].mustFlag
-                            recipeIngredientLink.displayOrder = i
-                            realm.add(recipeIngredientLink)
-                            
-                            let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",recipeIngredientList[i].ingredientName).first!
-                            ingredient.recipeIngredients.append(recipeIngredientLink)
-                            
-                            let recipe = realm.objects(Recipe.self).filter("recipeName == %@",self.recipe.recipeName).first!
-                            recipe.recipeIngredients.append(recipeIngredientLink)
-                        }
-                        detailVC.recipeId = recipe.id
-                        recipe.updateShortageNum()
-                        MessageHUD.show("レシピを保存しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    
-                    if mainNavigationController != nil {
-                        mainNavigationController?.pushViewController(detailVC, animated: false)
-                        detailVC.closeEditVC(self)
-                    }else{
-                        self.dismiss(animated: true, completion: nil)
+            let deletingRecipeIngredientList = List<RecipeIngredientLink>()
+            for ri in recipe.recipeIngredients{
+                let recipeIngredient = realm.object(ofType: RecipeIngredientLink.self, forPrimaryKey: ri.id)!
+                deletingRecipeIngredientList.append(recipeIngredient)
+            }
+            
+            for ri in deletingRecipeIngredientList{
+                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ri.ingredient.ingredientName).first!
+                for i in 0 ..< ingredient.recipeIngredients.count where i < ingredient.recipeIngredients.count {
+                    if ingredient.recipeIngredients[i].id == ri.id{
+                        ingredient.recipeIngredients.remove(at: i)
                     }
                 }
             }
+            recipe.recipeIngredients.removeAll()
+            for ri in deletingRecipeIngredientList{
+                realm.delete(ri)
+            }
+
+            recipe.recipeName = recipeName.text!.withoutEndsSpace()
+            recipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
+            recipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
+            recipe.favorites = recipeFavorite
+            recipe.style = style.selectedSegmentIndex
+            recipe.method = method.selectedSegmentIndex
+            recipe.strength = strength.selectedSegmentIndex
+            recipe.memo = memo.text
+            
+            let oldImageFileName = recipe.imageFileName
+            if let image = photo.image{
+                let newImageFileName = NSUUID().uuidString
+                if ImageUtil.save(image: image, toFileName: newImageFileName){
+                    recipe.imageFileName = newImageFileName
+                }
+            }else{
+                recipe.imageFileName = nil
+            }
+            ImageUtil.remove(imageFileName: oldImageFileName)
+
+            for i in 0 ..< recipeIngredientList.count{
+                let recipeIngredientLink = RecipeIngredientLink()
+                recipeIngredientLink.amount = recipeIngredientList[i].amount
+                recipeIngredientLink.mustFlag = recipeIngredientList[i].mustFlag
+                recipeIngredientLink.displayOrder = i
+                realm.add(recipeIngredientLink)
+                
+                let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",recipeIngredientList[i].ingredientName).first!
+                ingredient.recipeIngredients.append(recipeIngredientLink)
+                recipe.recipeIngredients.append(recipeIngredientLink)
+            }
+            recipe.updateShortageNum()
+            
+            if isAddMode{
+                MessageHUD.show("レシピを登録しました", for: 2.0, withCheckmark: true, isCenter: true)
+            }else{
+                MessageHUD.show("レシピを保存しました", for: 2.0, withCheckmark: true, isCenter: true)
+            }
+        }
+        
+        let detailVC = UIStoryboard(name: "RecipeDetail", bundle: nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController        
+        detailVC.recipeId = recipe.id
+        
+        if mainNavigationController != nil {
+            mainNavigationController?.pushViewController(detailVC, animated: false)
+            detailVC.closeEditVC(self)
+        }else{
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
