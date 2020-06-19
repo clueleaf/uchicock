@@ -91,7 +91,7 @@
 		9BDB39381CD460A400CE3175 /* RecoverPreviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */; };
 		9BDF63E82361AC0000FFF76C /* IngredientSuggestBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */; };
 		9BE61CDD1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */; };
-		9BEBFCC42475CC63003967FA /* SimilarRecipeBasice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEBFCC32475CC63003967FA /* SimilarRecipeBasice.swift */; };
+		9BEBFCC42475CC63003967FA /* SimilarRecipeBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEBFCC32475CC63003967FA /* SimilarRecipeBasic.swift */; };
 		9BEC4C132351E9FA004FE9B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C102351E9FA004FE9B4 /* LaunchScreen.storyboard */; };
 		9BEC4C142351E9FA004FE9B4 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC4C112351E9FA004FE9B4 /* Launch.storyboard */; };
 		9BEC4C152351E9FA004FE9B4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC4C122351E9FA004FE9B4 /* LaunchViewController.swift */; };
@@ -239,7 +239,7 @@
 		9BDB39371CD460A400CE3175 /* RecoverPreviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPreviewTableViewController.swift; path = Recover/RecoverPreviewTableViewController.swift; sourceTree = "<group>"; };
 		9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientSuggestBasic.swift; sourceTree = "<group>"; };
 		9BE61CDC1CB8AF00004355CF /* RecipeIngredientEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientEditTableViewController.swift; path = RecipeEdit/RecipeIngredientEditTableViewController.swift; sourceTree = "<group>"; };
-		9BEBFCC32475CC63003967FA /* SimilarRecipeBasice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarRecipeBasice.swift; sourceTree = "<group>"; };
+		9BEBFCC32475CC63003967FA /* SimilarRecipeBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarRecipeBasic.swift; sourceTree = "<group>"; };
 		9BEC4C102351E9FA004FE9B4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Launch/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9BEC4C112351E9FA004FE9B4 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Launch.storyboard; path = Launch/Launch.storyboard; sourceTree = "<group>"; };
 		9BEC4C122351E9FA004FE9B4 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchViewController.swift; path = Launch/LaunchViewController.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				9BDF63E72361AC0000FFF76C /* IngredientSuggestBasic.swift */,
 				9B6D67CD1CD0F093001E8079 /* IngredientBasic.swift */,
 				9BDB39351CD44DD400CE3175 /* RecoverRecipeBasic.swift */,
-				9BEBFCC32475CC63003967FA /* SimilarRecipeBasice.swift */,
+				9BEBFCC32475CC63003967FA /* SimilarRecipeBasic.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -900,7 +900,7 @@
 				9BDF63E82361AC0000FFF76C /* IngredientSuggestBasic.swift in Sources */,
 				9BA727A223DD5F6400CFFE78 /* NotificationExtension.swift in Sources */,
 				9BBAB623230E9ADE0056B7B6 /* PhotoFilterDismissalTransitioningHandler.swift in Sources */,
-				9BEBFCC42475CC63003967FA /* SimilarRecipeBasice.swift in Sources */,
+				9BEBFCC42475CC63003967FA /* SimilarRecipeBasic.swift in Sources */,
 				9BD91A6022BD3A740088C146 /* MethodTipViewController.swift in Sources */,
 				9B2E83D9230A9F20002E7946 /* CircularCheckbox.swift in Sources */,
 				9B112E2E1FF285650014BABA /* PhotoFilterViewController.swift in Sources */,
