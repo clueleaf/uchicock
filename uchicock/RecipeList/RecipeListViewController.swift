@@ -864,9 +864,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         for recipe in recipeList!{
             recipeBasicListForFilterModal.append(RecipeBasic(
                 id: "",
-                name: "",
+                name: recipe.recipeName,
                 nameYomi: "",
-                katakanaLowercasedNameForSearch: "",
+                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
                 shortageNum: 0,
                 favorites: recipe.favorites,
                 style: recipe.style,
