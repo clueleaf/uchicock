@@ -61,20 +61,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
-        searchTextField.clipsToBounds = true
-
-        category.layer.borderWidth = 1.0
-        category.layer.masksToBounds = true
-        stockState.layer.borderWidth = 1.0
-        stockState.layer.masksToBounds = true
         
         ingredientRecommendButton.layer.borderWidth = 1.5
         ingredientRecommendButton.layer.cornerRadius = ingredientRecommendButton.frame.size.height / 2
-
-        if #available(iOS 13.0, *) {
-            category.selectedSegmentTintColor = .clear
-            stockState.selectedSegmentTintColor = .clear
-        }
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -99,11 +88,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientListViewController.searchTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.searchTextField)
-
-        category.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        category.layoutSubviews()
-        stockState.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        stockState.layoutSubviews()
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
         ingredientRecommendButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)

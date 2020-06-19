@@ -57,7 +57,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         memoTextView.textContainerInset = .zero
         memoTextView.textContainer.lineFragmentPadding = 0
         memoTextView.font = UIFont.systemFont(ofSize: 15.0)
-        stockCheckbox.boxLineWidth = 1.0
         
         removeReminderButton.layer.borderWidth = 1.0
         removeReminderButton.layer.cornerRadius = removeReminderButton.frame.size.height / 2

@@ -72,12 +72,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
-        if #available(iOS 13.0, *) {
-            style.selectedSegmentTintColor = .clear
-            method.selectedSegmentTintColor = .clear
-            strength.selectedSegmentTintColor = .clear
-        }
-
         star1.minimumHitWidth = 36
         star1.minimumHitHeight = 36
         star2.minimumHitWidth = 36
@@ -99,14 +93,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         recipeName.layer.cornerRadius = recipeName.frame.size.height / 2
         recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         recipeName.adjustClearButtonColor()
-        recipeName.clipsToBounds = true
         recipeName.setLeftPadding()
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         recipeNameYomi.text = recipe.recipeNameYomi
         recipeNameYomi.layer.cornerRadius = recipeNameYomi.frame.size.height / 2
         recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeNameYomi.clipsToBounds = true
         recipeNameYomi.setLeftPadding()
         recipeNameYomi.setRightPadding()
 
@@ -129,16 +121,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         ipc.delegate = self
         
-        style.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        style.layer.borderWidth = 1.0
-        style.layer.masksToBounds = true
-        method.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        method.layer.borderWidth = 1.0
-        method.layer.masksToBounds = true
-        strength.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        strength.layer.borderWidth = 1.0
-        strength.layer.masksToBounds = true
-
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)

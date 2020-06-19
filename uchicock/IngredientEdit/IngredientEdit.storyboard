@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UzJ-nj-IdU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UzJ-nj-IdU">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -258,15 +258,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="category" destination="EDC-M7-iDz" id="mlH-v4-Jlh"/>
-                        <outlet property="ingredientName" destination="QW8-dZ-Qcr" id="vGi-Pg-oIa"/>
-                        <outlet property="ingredientNameCounter" destination="4wl-CG-Ffz" id="Y8L-fJ-y4b"/>
-                        <outlet property="ingredientNameYomi" destination="iEF-Bz-gzx" id="2Zw-w4-rvE"/>
-                        <outlet property="ingredientNameYomiCounter" destination="mH9-BL-EbW" id="d5N-Cg-6II"/>
+                        <outlet property="categorySegmentedControl" destination="EDC-M7-iDz" id="J3u-HK-ID4"/>
+                        <outlet property="ingredientNameCounterLabel" destination="4wl-CG-Ffz" id="VMg-kv-ylz"/>
+                        <outlet property="ingredientNameTextField" destination="QW8-dZ-Qcr" id="YNd-XP-Eo0"/>
+                        <outlet property="ingredientNameYomiCounterLabel" destination="mH9-BL-EbW" id="XzE-49-WGg"/>
                         <outlet property="ingredientNameYomiLabel" destination="qp3-QI-o7O" id="zga-G1-VhR"/>
-                        <outlet property="memo" destination="Wk1-PW-9Mn" id="hhq-xz-q2Z"/>
-                        <outlet property="memoCounter" destination="KSJ-oo-XZO" id="8g0-KV-UX3"/>
-                        <outlet property="stock" destination="Nm4-JW-NMO" id="fgO-va-WaJ"/>
+                        <outlet property="ingredientNameYomiTextField" destination="iEF-Bz-gzx" id="7oI-VA-faI"/>
+                        <outlet property="memoCounterLabel" destination="KSJ-oo-XZO" id="SDj-uJ-6AP"/>
+                        <outlet property="memoTextView" destination="Wk1-PW-9Mn" id="6BH-Yv-Aqx"/>
+                        <outlet property="stockCheckbox" destination="Nm4-JW-NMO" id="Mm7-X0-bpo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLF-fD-GUC" userLabel="First Responder" sceneMemberID="firstResponder"/>

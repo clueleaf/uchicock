@@ -69,7 +69,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
         amount.layer.cornerRadius = amount.frame.size.height / 2
         
-        option.boxLineWidth = 1.0
         option.stateChangeAnimation = .expand
         
         if isAddMode == false{
@@ -107,13 +106,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         ingredientName.clearButtonEdgeInset = 4.0
         ingredientName.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientName.adjustClearButtonColor()
-        ingredientName.clipsToBounds = true
         ingredientName.setLeftPadding()
         
         amount.clearButtonEdgeInset = 4.0
         amount.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         amount.adjustClearButtonColor()
-        amount.clipsToBounds = true
         amount.setLeftPadding()
         
         option.secondaryTintColor = UchicockStyle.primaryColor

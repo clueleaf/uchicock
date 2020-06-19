@@ -68,7 +68,6 @@ class IngredientListItemTableViewCell: UITableViewCell {
             
             stock.secondaryTintColor = UchicockStyle.primaryColor
             stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-            stock.boxLineWidth = 1.0
             stock.animationDuration = 0.3
             if stockState == 0{
                 stock.stateChangeAnimation = .expand

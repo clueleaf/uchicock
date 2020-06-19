@@ -66,9 +66,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.layer.cornerRadius = ingredientTextField1.frame.size.height / 2
         ingredientTextField2.layer.cornerRadius = ingredientTextField2.frame.size.height / 2
         ingredientTextField3.layer.cornerRadius = ingredientTextField3.frame.size.height / 2
-        ingredientTextField1.clipsToBounds = true
-        ingredientTextField2.clipsToBounds = true
-        ingredientTextField3.clipsToBounds = true
         ingredientTextField1.setLeftPadding()
         ingredientTextField2.setLeftPadding()
         ingredientTextField3.setLeftPadding()

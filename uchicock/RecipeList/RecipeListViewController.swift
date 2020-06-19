@@ -66,7 +66,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
-        searchTextField.clipsToBounds = true
 
         searchConditionModifyButton.layer.borderWidth = 1.5
         searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
@@ -700,7 +699,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             let alertView = CustomAlertController(title: "このレシピを本当に削除しますか？", message: "自作レシピは復元できません。", preferredStyle: .alert)
-            if #available(iOS 13.0, *), UchicockStyle.isBackgroundDark {
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }
             let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in

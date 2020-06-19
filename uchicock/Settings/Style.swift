@@ -826,8 +826,11 @@ struct UchicockStyle{
     
     static private func customizeSegmentedControl(){
         CustomSegmentedControl.appearance().backgroundColor = basicBackgroundColor
+        CustomSegmentedControl.appearance().layer.borderWidth = 1.0
+        CustomSegmentedControl.appearance().layer.borderColor = UchicockStyle.primaryColor.cgColor
+        CustomSegmentedControl.appearance().layer.masksToBounds = true
         if #available(iOS 13.0, *) {
-            CustomSegmentedControl.appearance().selectedSegmentTintColor = primaryColor
+            CustomSegmentedControl.appearance().selectedSegmentTintColor = .clear
             CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColorOnBadge], for: .selected)
             CustomSegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: labelTextColor], for: .normal)
         }else{
@@ -846,6 +849,7 @@ struct UchicockStyle{
         CustomTextField.appearance().backgroundColor = basicBackgroundColorLight
         CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
+        CustomTextField.appearance().clipsToBounds = true
         if isKeyboardDark{
             CustomTextField.appearance().keyboardAppearance = .dark
         }else{
