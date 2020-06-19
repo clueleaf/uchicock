@@ -68,6 +68,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }else{
             stockCheckbox.setCheckState(.unchecked, animated: true)
         }
+        stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
         memoTextView.text = ingredient.memo
         memoTextView.backgroundColor = UchicockStyle.basicBackgroundColorLight
@@ -90,8 +92,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
         categorySegmentedControl.layer.borderWidth = 1.0
         categorySegmentedControl.layer.masksToBounds = true
-        stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
-        stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         
         if ingredient.category >= 0 && ingredient.category < 3 {
             categorySegmentedControl.selectedSegmentIndex = ingredient.category
