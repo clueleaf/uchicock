@@ -53,6 +53,8 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameTextField.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientNameTextField.adjustClearButtonColor()
         ingredientNameTextField.setLeftPadding()
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameTextField)
 
         ingredientNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientNameYomiTextField.text = ingredient.ingredientNameYomi
@@ -60,6 +62,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomiTextField.attributedPlaceholder = NSAttributedString(string: "材料名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientNameYomiTextField.setLeftPadding()
         ingredientNameYomiTextField.setRightPadding()
+        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomiTextField)
 
         stockCheckbox.boxLineWidth = 1.0
         stockCheckbox.stateChangeAnimation = .expand
@@ -71,12 +74,21 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
+        categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        categorySegmentedControl.layer.borderWidth = 1.0
+        categorySegmentedControl.layer.masksToBounds = true
+        if ingredient.category >= 0 && ingredient.category < 3 {
+            categorySegmentedControl.selectedSegmentIndex = ingredient.category
+        }else{
+            categorySegmentedControl.selectedSegmentIndex = 2
+        }
+        
         memoTextView.text = ingredient.memo
         memoTextView.backgroundColor = UchicockStyle.basicBackgroundColorLight
         memoTextView.layer.masksToBounds = true
         memoTextView.layer.cornerRadius = 12
         memoTextView.layer.borderWidth = 0
-        memoTextView.keyboardAppearance = UchicockStyle.isKeyboardDark ? .dark : .light
+        memoTextView.keyboardAppearance = UchicockStyle.keyboardAppearance
         memoTextView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -84,21 +96,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
-        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameTextField)
-        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameTextField)
-        NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomiTextField)
-        NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameYomiTextField)
-
-        categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        categorySegmentedControl.layer.borderWidth = 1.0
-        categorySegmentedControl.layer.masksToBounds = true
-        
-        if ingredient.category >= 0 && ingredient.category < 3 {
-            categorySegmentedControl.selectedSegmentIndex = ingredient.category
-        }else{
-            categorySegmentedControl.selectedSegmentIndex = 2
-        }
-        
         setTextFieldColor(textField: ingredientNameTextField, maximum: ingredientNameMaximum)
         setTextFieldColor(textField: ingredientNameYomiTextField, maximum: ingredientNameYomiMaximum)
         setTextViewColor(textView: memoTextView, maximum: memoMaximum)
@@ -109,10 +106,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if isAddMode{
-            ingredientNameTextField.becomeFirstResponder()
-        }
+        if isAddMode{ ingredientNameTextField.becomeFirstResponder() }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -229,25 +223,26 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        if showCancelAlert {
-            let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
-            let yesAction = UIAlertAction(title: "はい",style: .default){action in
-                self.dismiss(animated: true, completion: nil)
-            }
-            yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(yesAction)
-            let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
-            noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(noAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-            alertView.modalPresentationCapturesStatusBarAppearance = true
-            present(alertView, animated: true, completion: nil)
-        }else{
+        guard showCancelAlert else{
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+
+        let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
+        }
+        let yesAction = UIAlertAction(title: "はい",style: .default){action in
             self.dismiss(animated: true, completion: nil)
         }
+        yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(yesAction)
+        let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
+        noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(noAction)
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
@@ -269,102 +264,85 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameTextField.resignFirstResponder()
         ingredientNameYomiTextField.resignFirstResponder()
         memoTextView.resignFirstResponder()
-        if ingredientNameTextField.text == nil || ingredientNameTextField.text!.withoutEndsSpace() == ""{
+        
+        guard ingredientNameTextField.text != nil && ingredientNameTextField.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "材料名を入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.ingredientNameTextField.becomeFirstResponder()
             })
-        }else if ingredientNameTextField.text!.withoutEndsSpace().count > ingredientNameMaximum{
+            return
+        }
+        guard ingredientNameTextField.text!.withoutEndsSpace().count <= ingredientNameMaximum else{
             presentAlert(title: "材料名を" + String(ingredientNameMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.ingredientNameTextField.becomeFirstResponder()
             })
-        }else if ingredientNameYomiTextField.text == nil || ingredientNameYomiTextField.text!.withoutEndsSpace() == ""{
+            return
+        }
+        guard ingredientNameYomiTextField.text != nil && ingredientNameYomiTextField.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "ヨミガナを入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.ingredientNameYomiTextField.becomeFirstResponder()
             })
-        }else if ingredientNameYomiTextField.text!.withoutEndsSpace().count > ingredientNameYomiMaximum{
+            return
+        }
+        guard ingredientNameYomiTextField.text!.withoutEndsSpace().count <= ingredientNameYomiMaximum else{
             presentAlert(title: "ヨミガナを" + String(ingredientNameYomiMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.ingredientNameYomiTextField.becomeFirstResponder()
             })
-        }else if memoTextView.text.count > memoMaximum{
+            return
+        }
+        guard  memoTextView.text.count <= memoMaximum else{
             presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 3, section: 0), at: .bottom, animated: true)
                 self.memoTextView.becomeFirstResponder()
             })
-        }else{
-            let realm = try! Realm()
-            
-            if isAddMode {
-                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientNameTextField.text!.withoutEndsSpace())
-                if sameNameIngredient.count != 0{
-                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください", action: {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                        self.ingredientNameTextField.becomeFirstResponder()
-                    })
-                }else{
-                    let newIngredient = Ingredient()
-                    newIngredient.ingredientName = ingredientNameTextField.text!.withoutEndsSpace()
-                    newIngredient.ingredientNameYomi = ingredientNameYomiTextField.text!.withoutEndsSpace()
-                    newIngredient.katakanaLowercasedNameForSearch = ingredientNameYomiTextField.text!.katakanaLowercasedForSearch()
-                    newIngredient.category = categorySegmentedControl.selectedSegmentIndex
-                    if stockCheckbox.checkState == .checked{
-                        newIngredient.stockFlag = true
-                    }else{
-                        newIngredient.stockFlag = false
-                    }
-                    newIngredient.memo = memoTextView.text
-                    try! realm.write {
-                        realm.add(newIngredient)
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
-                    detailVC.ingredientId = newIngredient.id
-                    
-                    if mainNavigationController != nil {
-                        mainNavigationController!.pushViewController(detailVC, animated: false)
-                        detailVC.closeEditVC(self)
-                    }else{
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                }
-            }else{
-                let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientNameTextField.text!.withoutEndsSpace())
-                if sameNameIngredient.count != 0 && ingredient.ingredientName != ingredientNameTextField.text!.withoutEndsSpace(){
-                    presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください", action: {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                        self.ingredientNameTextField.becomeFirstResponder()
-                    })
-                }else{
-                    try! realm.write {
-                        ingredient.ingredientName = ingredientNameTextField.text!.withoutEndsSpace()
-                        ingredient.ingredientNameYomi = ingredientNameYomiTextField.text!.withoutEndsSpace()
-                        ingredient.katakanaLowercasedNameForSearch = ingredientNameYomiTextField.text!.katakanaLowercasedForSearch()
-                        ingredient.category = categorySegmentedControl.selectedSegmentIndex
-                        if stockCheckbox.checkState == .checked{
-                            ingredient.stockFlag = true
-                        }else{
-                            ingredient.stockFlag = false
-                        }
-                        ingredient.memo = memoTextView.text
-                        for ri in ingredient.recipeIngredients{
-                            ri.recipe.updateShortageNum()
-                        }
-                        MessageHUD.show("材料を保存しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
-                    detailVC.ingredientId = ingredient.id
-                    
-                    if mainNavigationController != nil {
-                        mainNavigationController!.pushViewController(detailVC, animated: false)
-                        detailVC.closeEditVC(self)
-                    }else{
-                        self.dismiss(animated: true, completion: nil)
-                    }                    
-                }
+            return
+        }
+
+        let realm = try! Realm()
+        let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientNameTextField.text!.withoutEndsSpace())
+        guard ingredientNameTextField.text!.withoutEndsSpace() != "" &&
+            (sameNameIngredient.count == 0 || ingredient.ingredientName == ingredientNameTextField.text!.withoutEndsSpace()) else{
+            presentAlert(title: "同じ名前の材料が既に登録されています", message: "材料名を変更してください", action: {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                self.ingredientNameTextField.becomeFirstResponder()
+            })
+            return
+        }
+        
+        saveIngredient()
+    }
+    
+    private func saveIngredient(){
+        let realm = try! Realm()
+        try! realm.write {
+            if isAddMode { realm.add(ingredient) }
+
+            ingredient.ingredientName = ingredientNameTextField.text!.withoutEndsSpace()
+            ingredient.ingredientNameYomi = ingredientNameYomiTextField.text!.withoutEndsSpace()
+            ingredient.katakanaLowercasedNameForSearch = ingredientNameYomiTextField.text!.katakanaLowercasedForSearch()
+            ingredient.category = categorySegmentedControl.selectedSegmentIndex
+            ingredient.stockFlag = stockCheckbox.checkState == .checked
+            ingredient.memo = memoTextView.text
+            for ri in ingredient.recipeIngredients{
+                ri.recipe.updateShortageNum()
             }
+            if isAddMode{
+                MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
+            }else{
+                MessageHUD.show("材料を保存しました", for: 2.0, withCheckmark: true, isCenter: true)
+            }
+        }
+        let detailVC = UIStoryboard(name: "IngredientDetail", bundle: nil).instantiateViewController(withIdentifier: "IngredientDetail") as! IngredientDetailTableViewController
+        detailVC.ingredientId = ingredient.id
+        
+        if mainNavigationController != nil {
+            mainNavigationController!.pushViewController(detailVC, animated: false)
+            detailVC.closeEditVC(self)
+        }else{
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

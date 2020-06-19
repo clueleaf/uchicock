@@ -169,7 +169,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memo.layer.masksToBounds = true
         memo.layer.cornerRadius = 12
         memo.layer.borderWidth = 0
-        memo.keyboardAppearance = UchicockStyle.isKeyboardDark ? .dark : .light
+        memo.keyboardAppearance = UchicockStyle.keyboardAppearance
         memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         var needInitializeDisplayOrder = false
@@ -202,7 +202,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeNameYomi)
-        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeNameYomi)
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
