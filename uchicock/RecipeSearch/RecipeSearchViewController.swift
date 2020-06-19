@@ -429,6 +429,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
     }
     
     private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
+        checkbox.boxLineWidth = 1.0
         checkbox.stateChangeAnimation = .fade
         checkbox.animationDuration = 0
         checkbox.setCheckState(checkState, animated: true)

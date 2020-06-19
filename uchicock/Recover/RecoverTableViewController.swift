@@ -54,12 +54,14 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         recoverTargetCheckbox.stateChangeAnimation = .expand
         recoverTargetCheckbox.isEnabled = false
         recoverTargetCheckbox.setCheckState(.checked, animated: true)
+        recoverTargetCheckbox.boxLineWidth = 1.0
         recoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         recoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
         nonRecoverTargetCheckbox.stateChangeAnimation = .expand
         nonRecoverTargetCheckbox.isEnabled = false
         nonRecoverTargetCheckbox.setCheckState(.unchecked, animated: true)
+        nonRecoverTargetCheckbox.boxLineWidth = 1.0
         nonRecoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         nonRecoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
@@ -67,6 +69,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         unableRecoverCheckbox.isEnabled = false
         unableRecoverCheckbox.setCheckState(.mixed, animated: true)
         unableRecoverCheckbox.tintColor = UchicockStyle.labelTextColorLight
+        unableRecoverCheckbox.boxLineWidth = 1.0
         unableRecoverCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         unableRecoverCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
         
@@ -460,6 +463,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             cell.isTarget.stateChangeAnimation = .fade
             cell.isTarget.animationDuration = 0.0
             cell.isTarget.backgroundColor = UIColor.clear
+            cell.isTarget.boxLineWidth = 1.0
             cell.isTarget.secondaryTintColor = UchicockStyle.primaryColor
             cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 

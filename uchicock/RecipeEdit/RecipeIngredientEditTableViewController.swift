@@ -69,6 +69,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         ingredientName.layer.cornerRadius = ingredientName.frame.size.height / 2
         amount.layer.cornerRadius = amount.frame.size.height / 2
         
+        option.boxLineWidth = 1.0
         option.stateChangeAnimation = .expand
         
         if isAddMode == false{

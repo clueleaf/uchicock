@@ -43,6 +43,7 @@ class ReminderTableViewController: UITableViewController {
         titleLabel.text = "対象材料"
         reminderTitle.text = ingredient.ingredientName
         dateFlag.setCheckState(.unchecked, animated: true)
+        dateFlag.boxLineWidth = 1.0
         dateFlag.stateChangeAnimation = .expand
         
         datePicker.datePickerMode = .dateAndTime
@@ -55,6 +56,9 @@ class ReminderTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        reminderType.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        reminderType.layer.borderWidth = 1.0
+        reminderType.layer.masksToBounds = true
         if ingredient.reminderSetDate == nil{
             reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"

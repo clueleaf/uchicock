@@ -61,6 +61,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomiTextField.setLeftPadding()
         ingredientNameYomiTextField.setRightPadding()
 
+        stockCheckbox.boxLineWidth = 1.0
         stockCheckbox.stateChangeAnimation = .expand
         if ingredient.stockFlag{
             stockCheckbox.setCheckState(.checked, animated: true)
@@ -86,6 +87,9 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomiTextField)
         NotificationCenter.default.addObserver(self, selector: #selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameYomiTextField)
 
+        categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        categorySegmentedControl.layer.borderWidth = 1.0
+        categorySegmentedControl.layer.masksToBounds = true
         stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         
