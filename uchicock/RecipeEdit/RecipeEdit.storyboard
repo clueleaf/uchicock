@@ -200,11 +200,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="ZYb-eu-9eu">
-                                        <rect key="frame" x="0.0" y="308" width="375" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="279" id="ZYb-eu-9eu">
+                                        <rect key="frame" x="0.0" y="308" width="375" height="279"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZYb-eu-9eu" id="Q9C-bv-kv8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="279"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スタイル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpP-fg-gGd" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -243,27 +243,8 @@
                                                         <action selector="styleSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="sL8-DD-ROs"/>
                                                     </connections>
                                                 </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="top" secondItem="fpP-fg-gGd" secondAttribute="bottom" constant="8" id="JZE-OD-iRl"/>
-                                                <constraint firstAttribute="trailing" secondItem="d1R-hF-4x3" secondAttribute="trailing" constant="12" id="PCy-26-RmW"/>
-                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="top" secondItem="Q9C-bv-kv8" secondAttribute="top" constant="15" id="UyF-Je-M4J"/>
-                                                <constraint firstItem="xWg-5g-35g" firstAttribute="centerY" secondItem="fpP-fg-gGd" secondAttribute="centerY" id="Ygc-vw-GcS"/>
-                                                <constraint firstItem="xWg-5g-35g" firstAttribute="leading" secondItem="fpP-fg-gGd" secondAttribute="trailing" constant="4" id="kAn-wM-c1x"/>
-                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="ldV-kd-dck"/>
-                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="oRQ-WL-ihT"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="gBu-Lw-r60">
-                                        <rect key="frame" x="0.0" y="401" width="375" height="93"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gBu-Lw-r60" id="JIA-DC-9WT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-pv-E79" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="35" height="21"/>
+                                                    <rect key="frame" x="8" y="108" width="35" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AQU-4Y-sN6"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="h0Z-b7-x8B"/>
@@ -272,8 +253,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="47" y="108.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="Uxh-hE-Xna"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wgo-Oh-8WM"/>
+                                                    </constraints>
+                                                    <state key="normal" image="button-tip"/>
+                                                    <connections>
+                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="Q5S-Lg-TgI"/>
+                                                    </connections>
+                                                </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2cE-h1-JB3" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="355" height="29"/>
+                                                    <rect key="frame" x="8" y="137" width="355" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="Esz-0D-xIH"/>
                                                     </constraints>
@@ -288,38 +280,8 @@
                                                         <action selector="methodSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="5lb-WF-z9U"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBA-Ab-QPQ" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="47" y="15.5" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="Uxh-hE-Xna"/>
-                                                        <constraint firstAttribute="height" constant="20" id="wgo-Oh-8WM"/>
-                                                    </constraints>
-                                                    <state key="normal" image="button-tip"/>
-                                                    <connections>
-                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="Q5S-Lg-TgI"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="2cE-h1-JB3" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="LY6-oK-mvh"/>
-                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="leading" secondItem="wqK-pv-E79" secondAttribute="trailing" constant="4" id="aRb-cF-SHd"/>
-                                                <constraint firstItem="wqK-pv-E79" firstAttribute="top" secondItem="JIA-DC-9WT" secondAttribute="top" constant="15" id="fTO-lu-CJm"/>
-                                                <constraint firstItem="2cE-h1-JB3" firstAttribute="top" secondItem="wqK-pv-E79" secondAttribute="bottom" constant="8" id="g0y-Om-PTg"/>
-                                                <constraint firstItem="wqK-pv-E79" firstAttribute="leading" secondItem="JIA-DC-9WT" secondAttribute="leading" constant="8" id="i3D-mx-Ja2"/>
-                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="centerY" secondItem="wqK-pv-E79" secondAttribute="centerY" id="lTr-N6-9Be"/>
-                                                <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="12" id="svM-mx-utc"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="93" id="Ily-hb-7T4">
-                                        <rect key="frame" x="0.0" y="494" width="375" height="93"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ily-hb-7T4" id="mfa-5v-Z8V">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-6i-6Yc" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="15" width="121.5" height="21"/>
+                                                    <rect key="frame" x="8" y="201" width="121.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="00h-PU-B6V"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="cyg-9y-mi0"/>
@@ -328,8 +290,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSt-5r-bL1" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="133.5" y="201.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="QF7-kS-s9B"/>
+                                                        <constraint firstAttribute="height" constant="20" id="VRq-vN-f9H"/>
+                                                    </constraints>
+                                                    <state key="normal" image="button-tip"/>
+                                                    <connections>
+                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="R2E-Zm-Li3"/>
+                                                    </connections>
+                                                </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wz3-IL-g1Z" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="355" height="29"/>
+                                                    <rect key="frame" x="8" y="230" width="355" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="KMS-y4-uue"/>
                                                     </constraints>
@@ -344,34 +317,37 @@
                                                         <action selector="strengthSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="ao3-HH-Sip"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSt-5r-bL1" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="133.5" y="15.5" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="QF7-kS-s9B"/>
-                                                        <constraint firstAttribute="height" constant="20" id="VRq-vN-f9H"/>
-                                                    </constraints>
-                                                    <state key="normal" image="button-tip"/>
-                                                    <connections>
-                                                        <action selector="tipButtonTapped:" destination="QVT-aG-Iy4" eventType="touchUpInside" id="R2E-Zm-Li3"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="centerY" secondItem="dtL-6i-6Yc" secondAttribute="centerY" id="6mz-9y-rbe"/>
-                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="leading" secondItem="mfa-5v-Z8V" secondAttribute="leading" constant="8" id="APS-P9-WIL"/>
-                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="top" secondItem="mfa-5v-Z8V" secondAttribute="top" constant="15" id="EZP-oA-xzc"/>
-                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="leading" secondItem="dtL-6i-6Yc" secondAttribute="trailing" constant="4" id="K46-9V-FTg"/>
-                                                <constraint firstAttribute="trailing" secondItem="Wz3-IL-g1Z" secondAttribute="trailing" constant="12" id="Mvj-TF-qkK"/>
-                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="leading" secondItem="mfa-5v-Z8V" secondAttribute="leading" constant="8" id="pdk-01-aYo"/>
-                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="top" secondItem="dtL-6i-6Yc" secondAttribute="bottom" constant="8" id="z3d-WE-4gc"/>
+                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="40a-oi-jad"/>
+                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="centerY" secondItem="wqK-pv-E79" secondAttribute="centerY" id="8Bv-Kv-f6s"/>
+                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="leading" secondItem="dtL-6i-6Yc" secondAttribute="trailing" constant="4" id="C6d-fD-95s"/>
+                                                <constraint firstAttribute="trailing" secondItem="2cE-h1-JB3" secondAttribute="trailing" constant="12" id="GVP-yi-jUm"/>
+                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="top" secondItem="fpP-fg-gGd" secondAttribute="bottom" constant="8" id="JZE-OD-iRl"/>
+                                                <constraint firstItem="XSt-5r-bL1" firstAttribute="centerY" secondItem="dtL-6i-6Yc" secondAttribute="centerY" id="KYF-bf-gJP"/>
+                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="M5A-h8-l96"/>
+                                                <constraint firstAttribute="trailing" secondItem="d1R-hF-4x3" secondAttribute="trailing" constant="12" id="PCy-26-RmW"/>
+                                                <constraint firstItem="2cE-h1-JB3" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="QZa-t1-Fbw"/>
+                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="top" secondItem="Q9C-bv-kv8" secondAttribute="top" constant="15" id="UyF-Je-M4J"/>
+                                                <constraint firstItem="xWg-5g-35g" firstAttribute="centerY" secondItem="fpP-fg-gGd" secondAttribute="centerY" id="Ygc-vw-GcS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Wz3-IL-g1Z" secondAttribute="trailing" constant="12" id="dm0-F2-slH"/>
+                                                <constraint firstItem="yBA-Ab-QPQ" firstAttribute="leading" secondItem="wqK-pv-E79" secondAttribute="trailing" constant="4" id="fCs-EW-xed"/>
+                                                <constraint firstItem="wqK-pv-E79" firstAttribute="top" secondItem="d1R-hF-4x3" secondAttribute="bottom" constant="36" id="fo7-db-Fgv"/>
+                                                <constraint firstItem="xWg-5g-35g" firstAttribute="leading" secondItem="fpP-fg-gGd" secondAttribute="trailing" constant="4" id="kAn-wM-c1x"/>
+                                                <constraint firstItem="d1R-hF-4x3" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="ldV-kd-dck"/>
+                                                <constraint firstItem="Wz3-IL-g1Z" firstAttribute="top" secondItem="dtL-6i-6Yc" secondAttribute="bottom" constant="8" id="mSn-3x-mXA"/>
+                                                <constraint firstItem="wqK-pv-E79" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="nKR-qV-2dV"/>
+                                                <constraint firstItem="fpP-fg-gGd" firstAttribute="leading" secondItem="Q9C-bv-kv8" secondAttribute="leading" constant="8" id="oRQ-WL-ihT"/>
+                                                <constraint firstItem="dtL-6i-6Yc" firstAttribute="top" secondItem="2cE-h1-JB3" secondAttribute="bottom" constant="36" id="vd8-Pj-2zC"/>
+                                                <constraint firstItem="2cE-h1-JB3" firstAttribute="top" secondItem="wqK-pv-E79" secondAttribute="bottom" constant="8" id="xjn-Xl-Saf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="ZcH-ur-jk9">
-                                        <rect key="frame" x="0.0" y="587" width="375" height="200"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="220" id="ZcH-ur-jk9">
+                                        <rect key="frame" x="0.0" y="587" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZcH-ur-jk9" id="eA2-mF-Eye">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auN-Kp-oTE" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -384,10 +360,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xlb-Rh-A1C" customClass="CustomTextView" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="44" width="355" height="120"/>
+                                                    <rect key="frame" x="8" y="44" width="355" height="140"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="120" id="OUx-Mg-qG0"/>
+                                                        <constraint firstAttribute="height" constant="140" id="OUx-Mg-qG0"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -396,7 +372,7 @@
                                                     </connections>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000/1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIR-37-Yn9">
-                                                    <rect key="frame" x="286" y="168" width="65" height="17"/>
+                                                    <rect key="frame" x="286" y="188" width="65" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="7fO-aY-0v6"/>
                                                     </constraints>
@@ -422,7 +398,7 @@
                             <tableViewSection headerTitle="材料編集" id="hWp-Q1-VAd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lFs-ko-xD7">
-                                        <rect key="frame" x="0.0" y="843" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="863" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFs-ko-xD7" id="NLJ-Uf-Q2E">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -465,28 +441,26 @@
                     <connections>
                         <outlet property="addIngredientLabel" destination="oLQ-td-rYh" id="MrB-bv-Ueh"/>
                         <outlet property="favoriteTableViewCell" destination="Uw5-Hz-bgf" id="mKU-Hl-WmV"/>
-                        <outlet property="memo" destination="xlb-Rh-A1C" id="MHE-lm-xKZ"/>
-                        <outlet property="memoCounter" destination="oIR-37-Yn9" id="7TG-vO-odc"/>
+                        <outlet property="memoCounterLabel" destination="oIR-37-Yn9" id="zs2-Gy-K2H"/>
                         <outlet property="memoTableViewCell" destination="ZcH-ur-jk9" id="BEt-OF-LIz"/>
-                        <outlet property="method" destination="2cE-h1-JB3" id="Zqd-c9-zKn"/>
-                        <outlet property="methodTableViewCell" destination="gBu-Lw-r60" id="cgy-hq-hO1"/>
+                        <outlet property="memoTextView" destination="xlb-Rh-A1C" id="5ap-Ao-uPG"/>
+                        <outlet property="methodSegmentedControl" destination="2cE-h1-JB3" id="h3C-sl-IJH"/>
                         <outlet property="methodTipButton" destination="yBA-Ab-QPQ" id="QjA-nN-yLf"/>
-                        <outlet property="photo" destination="han-eW-fb2" id="ltT-OZ-iSA"/>
-                        <outlet property="recipeName" destination="4d9-80-LE4" id="KLA-dZ-D0c"/>
-                        <outlet property="recipeNameCounter" destination="LEU-Vr-bhM" id="aan-zO-Nku"/>
+                        <outlet property="photoImageView" destination="han-eW-fb2" id="jyr-Gl-qk8"/>
+                        <outlet property="photoLabel" destination="Blz-bY-xlm" id="i3e-Z2-6zh"/>
+                        <outlet property="recipeNameCounterLabel" destination="LEU-Vr-bhM" id="Aft-b6-0lh"/>
                         <outlet property="recipeNameTableViewCell" destination="Os5-Yl-MZv" id="9nt-7p-lJW"/>
-                        <outlet property="recipeNameYomi" destination="FSq-fZ-pbo" id="0cO-lz-R0L"/>
-                        <outlet property="recipeNameYomiCounter" destination="jce-vx-fK9" id="Wjp-55-yXn"/>
+                        <outlet property="recipeNameTextField" destination="4d9-80-LE4" id="vgh-xX-aAB"/>
+                        <outlet property="recipeNameYomiCounterLabel" destination="jce-vx-fK9" id="mYO-eP-Qfu"/>
                         <outlet property="recipeNameYomiLabel" destination="U16-Zi-7pu" id="dkE-sc-9VC"/>
-                        <outlet property="selectPhoto" destination="Blz-bY-xlm" id="eiN-2z-BC6"/>
-                        <outlet property="star1" destination="eb6-1r-5Pc" id="oML-i7-KNn"/>
-                        <outlet property="star2" destination="ffj-8v-9XM" id="pmP-02-DcC"/>
-                        <outlet property="star3" destination="O9N-kp-DjR" id="RKA-Bv-jem"/>
-                        <outlet property="strength" destination="Wz3-IL-g1Z" id="idF-5X-FOC"/>
-                        <outlet property="strengthTableViewCell" destination="Ily-hb-7T4" id="t6p-vt-qHm"/>
+                        <outlet property="recipeNameYomiTextField" destination="FSq-fZ-pbo" id="nkZ-Kz-rx4"/>
+                        <outlet property="segmentedControlTableViewCell" destination="ZYb-eu-9eu" id="V1d-IJ-Ptz"/>
+                        <outlet property="star1Button" destination="eb6-1r-5Pc" id="xKM-DO-6f8"/>
+                        <outlet property="star2Button" destination="ffj-8v-9XM" id="LyD-Gz-1hE"/>
+                        <outlet property="star3Button" destination="O9N-kp-DjR" id="0Nc-1T-YEV"/>
+                        <outlet property="strengthSegmentedControl" destination="Wz3-IL-g1Z" id="L8f-Ry-b7u"/>
                         <outlet property="strengthTipButton" destination="XSt-5r-bL1" id="6Iq-ih-TDi"/>
-                        <outlet property="style" destination="d1R-hF-4x3" id="aFa-uC-u5P"/>
-                        <outlet property="styleTableViewCell" destination="ZYb-eu-9eu" id="v3a-a9-FjO"/>
+                        <outlet property="styleSegmentedControl" destination="d1R-hF-4x3" id="uFt-Na-lre"/>
                         <outlet property="styleTipButton" destination="xWg-5g-35g" id="BXm-es-6h0"/>
                     </connections>
                 </tableViewController>

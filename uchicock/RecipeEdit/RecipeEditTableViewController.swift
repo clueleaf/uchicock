@@ -13,29 +13,27 @@ import RealmSwift
 class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var recipeNameTableViewCell: UITableViewCell!
-    @IBOutlet weak var recipeName: CustomTextField!
-    @IBOutlet weak var recipeNameCounter: UILabel!
+    @IBOutlet weak var recipeNameTextField: CustomTextField!
+    @IBOutlet weak var recipeNameCounterLabel: UILabel!
     @IBOutlet weak var recipeNameYomiLabel: UILabel!
-    @IBOutlet weak var recipeNameYomi: CustomTextField!
-    @IBOutlet weak var recipeNameYomiCounter: UILabel!
-    @IBOutlet weak var star1: ExpandedButton!
-    @IBOutlet weak var star2: ExpandedButton!
-    @IBOutlet weak var star3: ExpandedButton!
+    @IBOutlet weak var recipeNameYomiTextField: CustomTextField!
+    @IBOutlet weak var recipeNameYomiCounterLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var photoLabel: UILabel!
+    @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
+    @IBOutlet weak var star1Button: ExpandedButton!
+    @IBOutlet weak var star2Button: ExpandedButton!
+    @IBOutlet weak var star3Button: ExpandedButton!
+    @IBOutlet weak var segmentedControlTableViewCell: UITableViewCell!
     @IBOutlet weak var styleTipButton: ExpandedButton!
     @IBOutlet weak var methodTipButton: ExpandedButton!
     @IBOutlet weak var strengthTipButton: ExpandedButton!
-    @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var selectPhoto: UILabel!
-    @IBOutlet weak var favoriteTableViewCell: UITableViewCell!
-    @IBOutlet weak var styleTableViewCell: UITableViewCell!
-    @IBOutlet weak var methodTableViewCell: UITableViewCell!
-    @IBOutlet weak var strengthTableViewCell: UITableViewCell!
-    @IBOutlet weak var style: CustomSegmentedControl!
-    @IBOutlet weak var method: CustomSegmentedControl!
-    @IBOutlet weak var strength: CustomSegmentedControl!
+    @IBOutlet weak var styleSegmentedControl: CustomSegmentedControl!
+    @IBOutlet weak var methodSegmentedControl: CustomSegmentedControl!
+    @IBOutlet weak var strengthSegmentedControl: CustomSegmentedControl!
     @IBOutlet weak var memoTableViewCell: UITableViewCell!
-    @IBOutlet weak var memo: CustomTextView!
-    @IBOutlet weak var memoCounter: UILabel!
+    @IBOutlet weak var memoTextView: CustomTextView!
+    @IBOutlet weak var memoCounterLabel: UILabel!
     @IBOutlet weak var addIngredientLabel: UILabel!
     
     weak var mainNavigationController : BasicNavigationController?
@@ -72,73 +70,74 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
 
-        star1.minimumHitWidth = 36
-        star1.minimumHitHeight = 36
-        star2.minimumHitWidth = 36
-        star2.minimumHitHeight = 36
-        star3.minimumHitWidth = 36
-        star3.minimumHitHeight = 36
+        star1Button.minimumHitWidth = 36
+        star1Button.minimumHitHeight = 36
+        star2Button.minimumHitWidth = 36
+        star2Button.minimumHitHeight = 36
+        star3Button.minimumHitWidth = 36
+        star3Button.minimumHitHeight = 36
         styleTipButton.minimumHitWidth = 50
         styleTipButton.minimumHitHeight = 36
         methodTipButton.minimumHitWidth = 50
         methodTipButton.minimumHitHeight = 36
         strengthTipButton.minimumHitWidth = 50
         strengthTipButton.minimumHitHeight = 36
-        star1.tintColor = UchicockStyle.primaryColor
-        star2.tintColor = UchicockStyle.primaryColor
-        star3.tintColor = UchicockStyle.primaryColor
+        star1Button.tintColor = UchicockStyle.primaryColor
+        star2Button.tintColor = UchicockStyle.primaryColor
+        star3Button.tintColor = UchicockStyle.primaryColor
 
-        recipeName.clearButtonEdgeInset = 4.0
-        recipeName.text = recipe.recipeName
-        recipeName.layer.cornerRadius = recipeName.frame.size.height / 2
-        recipeName.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeName.adjustClearButtonColor()
-        recipeName.setLeftPadding()
+        recipeNameTextField.clearButtonEdgeInset = 4.0
+        recipeNameTextField.text = recipe.recipeName
+        recipeNameTextField.layer.cornerRadius = recipeNameTextField.frame.size.height / 2
+        recipeNameTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        recipeNameTextField.adjustClearButtonColor()
+        recipeNameTextField.setLeftPadding()
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
-        recipeNameYomi.text = recipe.recipeNameYomi
-        recipeNameYomi.layer.cornerRadius = recipeNameYomi.frame.size.height / 2
-        recipeNameYomi.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        recipeNameYomi.setLeftPadding()
-        recipeNameYomi.setRightPadding()
+        recipeNameYomiTextField.text = recipe.recipeNameYomi
+        recipeNameYomiTextField.layer.cornerRadius = recipeNameYomiTextField.frame.size.height / 2
+        recipeNameYomiTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名（ヨミガナ）", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        recipeNameYomiTextField.setLeftPadding()
+        recipeNameYomiTextField.setRightPadding()
 
         if let image = ImageUtil.loadImageOf(recipeId: recipe.id, imageFileName: recipe.imageFileName, forList: false){
-            photo.image = image
+            photoImageView.image = image
         }
-        if photo.image == nil{
-            selectPhoto.text = "写真を追加"
-            photo.isHidden = true
+        if photoImageView.image == nil{
+            photoLabel.text = "写真を追加"
+            photoImageView.isHidden = true
             canTapPhoto = false
         }else{
-            selectPhoto.text = "写真を変更"
-            photo.isHidden = false
+            photoLabel.text = "写真を変更"
+            photoImageView.isHidden = false
             canTapPhoto = true
         }
-        selectPhoto.textColor = UchicockStyle.primaryColor
+        photoLabel.textColor = UchicockStyle.primaryColor
 
         let photoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecipeEditTableViewController.photoTapped))
-        self.photo.addGestureRecognizer(photoTapGestureRecognizer)
+        self.photoImageView.addGestureRecognizer(photoTapGestureRecognizer)
         
         ipc.delegate = self
         
-        style.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        style.layer.borderWidth = 1.0
-        style.layer.masksToBounds = true
-        method.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        method.layer.borderWidth = 1.0
-        method.layer.masksToBounds = true
-        strength.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        strength.layer.borderWidth = 1.0
-        strength.layer.masksToBounds = true
+        styleSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        styleSegmentedControl.layer.borderWidth = 1.0
+        styleSegmentedControl.layer.masksToBounds = true
+        methodSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        methodSegmentedControl.layer.borderWidth = 1.0
+        methodSegmentedControl.layer.masksToBounds = true
+        strengthSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        strengthSegmentedControl.layer.borderWidth = 1.0
+        strengthSegmentedControl.layer.masksToBounds = true
 
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
             recipeFavorite = 0
-            style.selectedSegmentIndex = 3
-            method.selectedSegmentIndex = 0
-            strength.selectedSegmentIndex = 4
+            styleSegmentedControl.selectedSegmentIndex = 3
+            methodSegmentedControl.selectedSegmentIndex = 0
+            strengthSegmentedControl.selectedSegmentIndex = 4
             isAddMode = true
+            focusRecipeNameFlag = true
         }else{
             self.navigationItem.title = "レシピ編集"
             switch recipe.favorites{
@@ -158,19 +157,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 setStarImageOf(star1isFilled: false, star2isFilled: false, star3isFilled: false)
                 recipeFavorite = 0
             }
-            style.selectedSegmentIndex = recipe.style
-            method.selectedSegmentIndex = recipe.method
-            strength.selectedSegmentIndex = recipe.strength
+            styleSegmentedControl.selectedSegmentIndex = recipe.style
+            methodSegmentedControl.selectedSegmentIndex = recipe.method
+            strengthSegmentedControl.selectedSegmentIndex = recipe.strength
             isAddMode = false
         }
         
-        memo.text = recipe.memo
-        memo.backgroundColor = UchicockStyle.basicBackgroundColorLight
-        memo.layer.masksToBounds = true
-        memo.layer.cornerRadius = 12
-        memo.layer.borderWidth = 0
-        memo.keyboardAppearance = UchicockStyle.keyboardAppearance
-        memo.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        memoTextView.text = recipe.memo
+        memoTextView.backgroundColor = UchicockStyle.basicBackgroundColorLight
+        memoTextView.layer.masksToBounds = true
+        memoTextView.layer.cornerRadius = 12
+        memoTextView.layer.borderWidth = 0
+        memoTextView.keyboardAppearance = UchicockStyle.keyboardAppearance
+        memoTextView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         var needInitializeDisplayOrder = false
         for ri in recipe.recipeIngredients {
@@ -197,12 +196,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
         
-        focusRecipeNameFlag = true
-        
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeName)
-        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeName)
-        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeNameYomi)
-
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
@@ -219,9 +212,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         strengthTipButton.setImage(tipImage, for: .normal)
         strengthTipButton.tintColor = UchicockStyle.primaryColor
         
-        setTextFieldColor(textField: recipeName, maximum: recipeNameMaximum)
-        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
-        setTextViewColor(textView: memo, maximum: memoMaximum)
+        setTextFieldColor(textField: recipeNameTextField, maximum: recipeNameMaximum)
+        setTextFieldColor(textField: recipeNameYomiTextField, maximum: recipeNameYomiMaximum)
+        setTextViewColor(textView: memoTextView, maximum: memoMaximum)
         updateRecipeNameCounter()
         updateRecipeNameYomiCounter()
         updateMemoCounter()
@@ -251,11 +244,20 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // iOS 12のiPadではアプリのスクリーンサイズによってTipやレシピ材料編集を表示するとviewDidDisappearが呼ばれるので、viewWillAppearに以下の処理が必要
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeNameTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecipeEditTableViewController.recipeNameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.recipeNameTextField)
+        NotificationCenter.default.addObserver(self, selector:#selector(RecipeEditTableViewController.recipeNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.recipeNameYomiTextField)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if isAddMode && focusRecipeNameFlag{
-            recipeName.becomeFirstResponder()
+        if focusRecipeNameFlag{
+            recipeNameTextField.becomeFirstResponder()
             focusRecipeNameFlag = false
         }
         
@@ -270,19 +272,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     // MARK: - Set Style
     private func setStarImageOf(star1isFilled: Bool, star2isFilled: Bool, star3isFilled: Bool){
         if star1isFilled {
-            star1.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star1Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star1.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star1Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
         if star2isFilled {
-            star2.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star2Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star2.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star2Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
         if star3isFilled {
-            star3.setImage(UIImage(named: "button-star-filled"), for: .normal)
+            star3Button.setImage(UIImage(named: "button-star-filled"), for: .normal)
         }else{
-            star3.setImage(UIImage(named: "button-star-empty"), for: .normal)
+            star3Button.setImage(UIImage(named: "button-star-empty"), for: .normal)
         }
     }
 
@@ -298,46 +300,46 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        recipeName.resignFirstResponder()
-        recipeNameYomi.resignFirstResponder()
+        recipeNameTextField.resignFirstResponder()
+        recipeNameYomiTextField.resignFirstResponder()
         return true
     }
     
     @objc func recipeNameTextFieldDidChange(_ notification: Notification){
-        recipeName.adjustClearButtonColor()
-        recipeNameYomi.text = recipeName.text!.convertToYomi()
+        recipeNameTextField.adjustClearButtonColor()
+        recipeNameYomiTextField.text = recipeNameTextField.text!.convertToYomi()
         showCancelAlert = true
         updateRecipeNameCounter()
         updateRecipeNameYomiCounter()
-        setTextFieldColor(textField: recipeName, maximum: recipeNameMaximum)
-        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
+        setTextFieldColor(textField: recipeNameTextField, maximum: recipeNameMaximum)
+        setTextFieldColor(textField: recipeNameYomiTextField, maximum: recipeNameYomiMaximum)
     }
     
     @objc func recipeNameYomiTextFieldDidChange(_ notification: Notification){
         showCancelAlert = true
         updateRecipeNameYomiCounter()
-        setTextFieldColor(textField: recipeNameYomi, maximum: recipeNameYomiMaximum)
+        setTextFieldColor(textField: recipeNameYomiTextField, maximum: recipeNameYomiMaximum)
     }
     
     private func updateRecipeNameCounter(){
-        let num = recipeName.text!.withoutEndsSpace().count
-        recipeNameCounter.text = String(num) + "/" + String(recipeNameMaximum)
+        let num = recipeNameTextField.text!.withoutEndsSpace().count
+        recipeNameCounterLabel.text = String(num) + "/" + String(recipeNameMaximum)
         
         if num > recipeNameMaximum{
-            recipeNameCounter.textColor = UchicockStyle.alertColor
+            recipeNameCounterLabel.textColor = UchicockStyle.alertColor
         }else{
-            recipeNameCounter.textColor = UchicockStyle.labelTextColorLight
+            recipeNameCounterLabel.textColor = UchicockStyle.labelTextColorLight
         }
     }
 
     private func updateRecipeNameYomiCounter(){
-        let num = recipeNameYomi.text!.withoutEndsSpace().count
-        recipeNameYomiCounter.text = String(num) + "/" + String(recipeNameYomiMaximum)
+        let num = recipeNameYomiTextField.text!.withoutEndsSpace().count
+        recipeNameYomiCounterLabel.text = String(num) + "/" + String(recipeNameYomiMaximum)
         
         if num > recipeNameYomiMaximum{
-            recipeNameYomiCounter.textColor = UchicockStyle.alertColor
+            recipeNameYomiCounterLabel.textColor = UchicockStyle.alertColor
         }else{
-            recipeNameYomiCounter.textColor = UchicockStyle.labelTextColorLight
+            recipeNameYomiCounterLabel.textColor = UchicockStyle.labelTextColorLight
         }
     }
 
@@ -361,13 +363,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     private func updateMemoCounter(){
-        let num = memo.text.count
-        memoCounter.text = String(num) + "/" + String(memoMaximum)
+        let num = memoTextView.text.count
+        memoCounterLabel.text = String(num) + "/" + String(memoMaximum)
             
         if num > memoMaximum{
-            memoCounter.textColor = UchicockStyle.alertColor
+            memoCounterLabel.textColor = UchicockStyle.alertColor
         }else{
-            memoCounter.textColor = UchicockStyle.labelTextColorLight
+            memoCounterLabel.textColor = UchicockStyle.labelTextColorLight
         }
     }
     
@@ -419,13 +421,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @objc func photoTapped(){
-        if let image = photo.image, canTapPhoto{
+        if let image = photoImageView.image, canTapPhoto{
             if let repre = image.pngData(){
                 let browsePhoto = UIImage(data: repre)
                 if browsePhoto != nil{
                     let storyboard = UIStoryboard(name: "ImageViewer", bundle: nil)
                     let ivc = storyboard.instantiateViewController(withIdentifier: "ImageViewerController") as! ImageViewerController
-                    ivc.originalImageView = photo
+                    ivc.originalImageView = photoImageView
                     ivc.captionText = nil
                     ivc.modalPresentationStyle = .overFullScreen
                     ivc.modalTransitionStyle = .crossDissolve
@@ -572,9 +574,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 vc.interactor = interactor
             }
 
-            recipeName.resignFirstResponder()
-            recipeNameYomi.resignFirstResponder()
-            memo.resignFirstResponder()
+            recipeNameTextField.resignFirstResponder()
+            recipeNameYomiTextField.resignFirstResponder()
+            memoTextView.resignFirstResponder()
             selectedIndexPath = indexPath
             present(nvc, animated: true)
         }
@@ -613,8 +615,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             cell.selectedBackgroundView = selectedCellBackgroundView
             if indexPath.row < 2{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            }else if indexPath.row > 2 && indexPath.row < 5{
-                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             }else{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             }
@@ -682,13 +682,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
-                self.photo.isHidden = true
+                self.photoImageView.isHidden = true
                 ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
                 vc.image = img
-                vc.originalImageView = self.photo
+                vc.originalImageView = self.photoImageView
                 vc.modalPresentationStyle = .overFullScreen
                 vc.modalTransitionStyle = .coverVertical
                 vc.modalPresentationCapturesStatusBarAppearance = true
@@ -762,7 +762,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
                     vc.image = img
-                    vc.originalImageView = self.photo
+                    vc.originalImageView = self.photoImageView
                     vc.modalPresentationStyle = .overFullScreen
                     vc.modalTransitionStyle = .coverVertical
                     vc.modalPresentationCapturesStatusBarAppearance = true
@@ -778,14 +778,14 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.canTapPhoto = false
                 
                 UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                    self.photo.alpha = 0.0
-                    self.photo.transform = .init(scaleX: 0.1, y: 0.1)
+                    self.photoImageView.alpha = 0.0
+                    self.photoImageView.transform = .init(scaleX: 0.1, y: 0.1)
                 }) { (finished: Bool) -> Void in
-                    self.selectPhoto.text = "写真を追加"
-                    self.photo.isHidden = true
-                    self.photo.image = nil
-                    self.photo.alpha = 1.0
-                    self.photo.transform = .identity
+                    self.photoLabel.text = "写真を追加"
+                    self.photoImageView.isHidden = true
+                    self.photoImageView.image = nil
+                    self.photoImageView.alpha = 1.0
+                    self.photoImageView.transform = .identity
                 }
             }
             deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
@@ -808,17 +808,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 1
-            animateButton(star1, with: "button-star-filled")
+            animateButton(star1Button, with: "button-star-filled")
         case 1:
             recipeFavorite = 0
-            animateButton(star1, with: "button-star-empty")
+            animateButton(star1Button, with: "button-star-empty")
         case 2:
             recipeFavorite = 1
-            animateButton(star2, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
         case 3:
             recipeFavorite = 1
-            animateButton(star2, with: "button-star-empty")
-            animateButton(star3, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
         }
@@ -829,18 +829,18 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 2
-            animateButton(star1, with: "button-star-filled")
-            animateButton(star2, with: "button-star-filled")
+            animateButton(star1Button, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
         case 1:
             recipeFavorite = 2
-            animateButton(star2, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
         case 2:
             recipeFavorite = 0
-            animateButton(star1, with: "button-star-empty")
-            animateButton(star2, with: "button-star-empty")
+            animateButton(star1Button, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
         case 3:
             recipeFavorite = 2
-            animateButton(star3, with: "button-star-empty")
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
         }
@@ -851,21 +851,21 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         switch recipeFavorite {
         case 0:
             recipeFavorite = 3
-            animateButton(star1, with: "button-star-filled")
-            animateButton(star2, with: "button-star-filled")
-            animateButton(star3, with: "button-star-filled")
+            animateButton(star1Button, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
+            animateButton(star3Button, with: "button-star-filled")
         case 1:
             recipeFavorite = 3
-            animateButton(star2, with: "button-star-filled")
-            animateButton(star3, with: "button-star-filled")
+            animateButton(star2Button, with: "button-star-filled")
+            animateButton(star3Button, with: "button-star-filled")
         case 2:
             recipeFavorite = 3
-            animateButton(star3, with: "button-star-filled")
+            animateButton(star3Button, with: "button-star-filled")
         case 3:
             recipeFavorite = 0
-            animateButton(star1, with: "button-star-empty")
-            animateButton(star2, with: "button-star-empty")
-            animateButton(star3, with: "button-star-empty")
+            animateButton(star1Button, with: "button-star-empty")
+            animateButton(star2Button, with: "button-star-empty")
+            animateButton(star3Button, with: "button-star-empty")
         default:
             break
         }
@@ -920,42 +920,42 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        recipeName.resignFirstResponder()
-        recipeNameYomi.resignFirstResponder()
-        memo.resignFirstResponder()
+        recipeNameTextField.resignFirstResponder()
+        recipeNameYomiTextField.resignFirstResponder()
+        memoTextView.resignFirstResponder()
         
-        guard recipeName.text != nil && recipeName.text!.withoutEndsSpace() != "" else{
+        guard recipeNameTextField.text != nil && recipeNameTextField.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "レシピ名を入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.recipeName.becomeFirstResponder()
+                self.recipeNameTextField.becomeFirstResponder()
             })
             return
         }
-        guard recipeName.text!.withoutEndsSpace().count <= recipeNameMaximum else{
+        guard recipeNameTextField.text!.withoutEndsSpace().count <= recipeNameMaximum else{
             presentAlert(title: "レシピ名を" + String(recipeNameMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.recipeName.becomeFirstResponder()
+                self.recipeNameTextField.becomeFirstResponder()
             })
             return
         }
-        guard recipeNameYomi.text != nil && recipeNameYomi.text!.withoutEndsSpace() != "" else{
+        guard recipeNameYomiTextField.text != nil && recipeNameYomiTextField.text!.withoutEndsSpace() != "" else{
             presentAlert(title: "ヨミガナを入力してください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.recipeNameYomi.becomeFirstResponder()
+                self.recipeNameYomiTextField.becomeFirstResponder()
             })
             return
         }
-        guard recipeNameYomi.text!.withoutEndsSpace().count <= recipeNameYomiMaximum else{
+        guard recipeNameYomiTextField.text!.withoutEndsSpace().count <= recipeNameYomiMaximum else{
             presentAlert(title: "ヨミガナを" + String(recipeNameYomiMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.recipeNameYomi.becomeFirstResponder()
+                self.recipeNameYomiTextField.becomeFirstResponder()
             })
             return
         }
-        guard memo.text.count <= memoMaximum else{
+        guard memoTextView.text.count <= memoMaximum else{
             presentAlert(title: "メモを" + String(memoMaximum) + "文字以下にしてください", message: nil, action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 6, section: 0), at: .middle, animated: true)
-                self.memo.becomeFirstResponder()
+                self.memoTextView.becomeFirstResponder()
             })
             return
         }
@@ -992,12 +992,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         
         let realm = try! Realm()
-        let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName.text!.withoutEndsSpace())
-        guard recipeName.text!.withoutEndsSpace() != "" && (
-            sameNameRecipe.count == 0 || recipe.recipeName == recipeName.text!.withoutEndsSpace()) else{
+        let sameNameRecipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeNameTextField.text!.withoutEndsSpace())
+        guard recipeNameTextField.text!.withoutEndsSpace() != "" && (
+            sameNameRecipe.count == 0 || recipe.recipeName == recipeNameTextField.text!.withoutEndsSpace()) else{
             presentAlert(title: "同じ名前のレシピが既に登録されています", message: "レシピ名を変更してください", action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                self.recipeName.becomeFirstResponder()
+                self.recipeNameTextField.becomeFirstResponder()
             })
             return
         }
@@ -1029,17 +1029,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 realm.delete(ri)
             }
 
-            recipe.recipeName = recipeName.text!.withoutEndsSpace()
-            recipe.recipeNameYomi = recipeNameYomi.text!.withoutEndsSpace()
-            recipe.katakanaLowercasedNameForSearch = recipeNameYomi.text!.katakanaLowercasedForSearch()
+            recipe.recipeName = recipeNameTextField.text!.withoutEndsSpace()
+            recipe.recipeNameYomi = recipeNameYomiTextField.text!.withoutEndsSpace()
+            recipe.katakanaLowercasedNameForSearch = recipeNameYomiTextField.text!.katakanaLowercasedForSearch()
             recipe.favorites = recipeFavorite
-            recipe.style = style.selectedSegmentIndex
-            recipe.method = method.selectedSegmentIndex
-            recipe.strength = strength.selectedSegmentIndex
-            recipe.memo = memo.text
+            recipe.style = styleSegmentedControl.selectedSegmentIndex
+            recipe.method = methodSegmentedControl.selectedSegmentIndex
+            recipe.strength = strengthSegmentedControl.selectedSegmentIndex
+            recipe.memo = memoTextView.text
             
             let oldImageFileName = recipe.imageFileName
-            if let image = photo.image{
+            if let image = photoImageView.image{
                 let newImageFileName = NSUUID().uuidString
                 if ImageUtil.save(image: image, toFileName: newImageFileName){
                     recipe.imageFileName = newImageFileName
@@ -1106,9 +1106,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             nvc.transitioningDelegate = self
             vc!.interactor = interactor
         }
-        recipeName.resignFirstResponder()
-        recipeNameYomi.resignFirstResponder()
-        memo.resignFirstResponder()
+        recipeNameTextField.resignFirstResponder()
+        recipeNameYomiTextField.resignFirstResponder()
+        memoTextView.resignFirstResponder()
         present(nvc, animated: true)
     }
 
@@ -1135,11 +1135,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             return true
         }else if touch.view!.isDescendant(of: favoriteTableViewCell){
             return true
-        }else if touch.view!.isDescendant(of: styleTableViewCell){
-            return true
-        }else if touch.view!.isDescendant(of: methodTableViewCell){
-            return true
-        }else if touch.view!.isDescendant(of: strengthTableViewCell){
+        }else if touch.view!.isDescendant(of: segmentedControlTableViewCell){
             return true
         }else if touch.view!.isDescendant(of: memoTableViewCell){
             return true
@@ -1162,9 +1158,9 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
             }
 
-            self.photo.image = img.resizedUIImage(maxLongSide: imageMaxLongSide)
+            self.photoImageView.image = img.resizedUIImage(maxLongSide: imageMaxLongSide)
             self.canTapPhoto = true
-            self.selectPhoto.text = "写真を変更"
+            self.photoLabel.text = "写真を変更"
             return true
         }
         return false

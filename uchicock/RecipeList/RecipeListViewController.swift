@@ -861,29 +861,27 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         vc.udPrefix = "recipe-"
         
         var recipeBasicListForFilterModal = Array<RecipeBasic>()
-        for recipe in recipeList!{
-            recipeBasicListForFilterModal.append(RecipeBasic(
-                id: "",
-                name: recipe.recipeName,
-                nameYomi: "",
-                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                shortageNum: 0,
-                favorites: recipe.favorites,
-                style: recipe.style,
-                method: recipe.method,
-                strength: recipe.strength,
-                madeNum: 0
-            ))
-        }
-        
         let searchText = searchTextField.text!
         let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-            recipeBasicListForFilterModal.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                ($0.name.contains(searchText) == false)
+
+        for recipe in recipeList!{
+            if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
+                (recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
+                    recipe.recipeName.contains(searchText)){
+                recipeBasicListForFilterModal.append(RecipeBasic(
+                    id: "",
+                    name: recipe.recipeName,
+                    nameYomi: "",
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    shortageNum: 0,
+                    favorites: recipe.favorites,
+                    style: recipe.style,
+                    method: recipe.method,
+                    strength: recipe.strength,
+                    madeNum: 0
+                ))
             }
-        }
+        }        
         vc.recipeBasicList = recipeBasicListForFilterModal
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
