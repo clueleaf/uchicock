@@ -23,6 +23,8 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     var recipeIngredient : RecipeIngredientBasic? {
         didSet{
+            guard recipeIngredient != nil else { return }
+
             stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
             
@@ -30,7 +32,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                 stockLabel.isHidden = false
                 stockLabel.layer.borderWidth = 1
                 stockLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                if recipeIngredient?.stockFlag ?? false {
+                if recipeIngredient!.stockFlag{
                     stockLabel.text = "在庫あり"
                     stockLabel.textColor = UchicockStyle.labelTextColorOnBadge
                     stockLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
@@ -43,15 +45,15 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                     ingredientNameTextView.textColor = UchicockStyle.labelTextColorLight
                     amountLabel.textColor = UchicockStyle.labelTextColorLight
                 }
-                ingredientNameTextView.text = recipeIngredient?.ingredientName
+                ingredientNameTextView.text = recipeIngredient!.ingredientName
             }else{
                 stockLabel.isHidden = true
                 if isDuplicated {
                     ingredientNameTextView.textColor = UchicockStyle.alertColor
-                    ingredientNameTextView.text = "[重複]" + (recipeIngredient?.ingredientName ?? "")
+                    ingredientNameTextView.text = "[重複]" + recipeIngredient!.ingredientName
                 }else{
                     ingredientNameTextView.textColor = UchicockStyle.labelTextColor
-                    ingredientNameTextView.text = recipeIngredient?.ingredientName
+                    ingredientNameTextView.text = recipeIngredient!.ingredientName
                 }
                 amountLabel.textColor = UchicockStyle.labelTextColor
             }
@@ -73,7 +75,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             }
 
             alcoholIconImage.tintColor = UchicockStyle.primaryColor
-            if recipeIngredient?.category == 0{
+            if recipeIngredient!.category == 0{
                 alcoholIconImage.isHidden = false
                 alcoholIconImageWidthConstraint.constant = 13
             }else{
@@ -86,7 +88,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
             optionLabel.clipsToBounds = true
             optionLabel.layer.borderWidth = 1
             optionLabel.layer.backgroundColor = UIColor.clear.cgColor
-            if recipeIngredient?.mustFlag ?? true{
+            if recipeIngredient!.mustFlag{
                 optionLabel.text = ""
                 optionLabel.layer.borderColor = UIColor.clear.cgColor
             }else{
@@ -94,7 +96,7 @@ class RecipeIngredientTableViewCell: UITableViewCell {
                 optionLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
             }
 
-            amountLabel.text = recipeIngredient?.amount
+            amountLabel.text = recipeIngredient!.amount
             amountLabel.clipsToBounds = true
         }
     }

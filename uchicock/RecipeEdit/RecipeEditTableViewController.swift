@@ -41,8 +41,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
     var recipe = Recipe()
     var recipeIngredientList = Array<RecipeIngredientBasic>()
-    var duplicatedIngredientList = Array<String>()
-    var needUpdateCellIndexList = Array<IndexPath>()
+    var duplicatedIngredientIndexPathList = Array<IndexPath>()
 
     var recipeFavorite = 0
     let recipeNameMaximum = 30
@@ -256,33 +255,19 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    private func updateDuplicatedIngredientList(){
-        duplicatedIngredientList.removeAll()
-
-        if recipeIngredientList.count == 0 { return }
-        for i in 0 ..< recipeIngredientList.count - 1{
-            for j in i+1 ..< recipeIngredientList.count
-                where recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
-                duplicatedIngredientList.append(recipeIngredientList[i].ingredientName)
-                break
-            }
-        }
-        duplicatedIngredientList = Array(Set(duplicatedIngredientList)) // 重複をなくす
-    }
-    
-    private func createNeedUpdateCellIndexList(){
-        needUpdateCellIndexList.removeAll()
+    private func createDuplicatedIngredientIndexPathList() -> Array<IndexPath>{
+        var list = Array<IndexPath>()
         
-        if recipeIngredientList.count == 0 { return }
+        if recipeIngredientList.count == 0 { return list }
         for i in 0 ..< recipeIngredientList.count - 1{
             for j in i+1 ..< recipeIngredientList.count{
                 if recipeIngredientList[i].ingredientName == recipeIngredientList[j].ingredientName{
-                    needUpdateCellIndexList.append(IndexPath(row: i, section: 1))
-                    needUpdateCellIndexList.append(IndexPath(row: j, section: 1))
+                    list.append(IndexPath(row: i, section: 1))
+                    list.append(IndexPath(row: j, section: 1))
                 }
             }
         }
-        needUpdateCellIndexList = Array(Set(needUpdateCellIndexList)) // 重複をなくす
+        return Array(Set(list)) // 重複をなくす
     }
     
     @objc func photoTapped(){
@@ -439,7 +424,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
-    // todo
     private func presentRecipeIngredientEditModal(didSelectRowAt indexPath: IndexPath){
         let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
@@ -469,26 +453,28 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         stockFlag: false
                     )
                     self.recipeIngredientList.append(recipeIngredient)
+                    self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
+                    self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
+                    self.tableView.reloadRows(at: self.duplicatedIngredientIndexPathList, with: .none)
+                    
+                    self.tableView.scrollToRow(at: IndexPath(row: self.recipeIngredientList.count, section: indexPath.section), at: .bottom, animated: true)
                     if self.selectedIndexPath != nil{
                         self.selectedIndexPath = IndexPath(row: self.selectedIndexPath!.row + 1, section: self.selectedIndexPath!.section)
                     }
-                    self.updateDuplicatedIngredientList()
-                    self.tableView.insertRows(at: [IndexPath(row: self.recipeIngredientList.count - 1, section: indexPath.section)], with: .middle)
-                    self.createNeedUpdateCellIndexList()
-                    self.tableView.reloadRows(at: self.needUpdateCellIndexList, with: .none)
                     self.setAddIngredientLabel()
-                    self.tableView.scrollToRow(at: IndexPath(row: self.recipeIngredientList.count, section: indexPath.section), at: .bottom, animated: true)
                 }else{
                     if deleteFlag{
                         // 既存材料削除
                         self.showCancelAlert = true
-                        self.createNeedUpdateCellIndexList()
-                        for i in 0 ..< self.needUpdateCellIndexList.count where self.needUpdateCellIndexList[i].row != self.selectedIndexPath!.row {
-                            self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
+                        let list = self.createDuplicatedIngredientIndexPathList()
+                        self.recipeIngredientList[indexPath.row].ingredientName = ""
+                        self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
+                        for i in 0 ..< list.count where list[i] != indexPath {
+                            self.tableView.reloadRows(at: [list[i]], with: .none)
                         }
-                        self.recipeIngredientList.remove(at: self.selectedIndexPath!.row)
-                        self.tableView.deleteRows(at: [self.selectedIndexPath!], with: .middle)
-                        self.updateDuplicatedIngredientList()
+                        self.recipeIngredientList.remove(at: indexPath.row)
+                        self.tableView.deleteRows(at: [indexPath], with: .middle)
+                        
                         self.selectedIndexPath = nil
                         self.setAddIngredientLabel()
                     }else{
@@ -499,20 +485,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                             self.recipeIngredientList[indexPath.row].amount = amount
                             self.recipeIngredientList[indexPath.row].mustFlag = mustFlag
                             self.recipeIngredientList[indexPath.row].category = category
-                            self.recipeIngredientList[indexPath.row].displayOrder = -1
                         }
-                        self.updateDuplicatedIngredientList()
+                        self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
                         self.tableView.reloadData()
                     }
                 }
             }
             
-            if let path = self.selectedIndexPath {
-                if self.tableView.numberOfRows(inSection: 1) > path.row{
-                    self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        self.tableView.deselectRow(at: path, animated: true)
-                    }
+            if let path = self.selectedIndexPath, self.tableView.numberOfRows(inSection: 1) > path.row{
+                self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    self.tableView.deselectRow(at: path, animated: true)
                 }
             }
         }
@@ -530,7 +513,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         memoTextView.resignFirstResponder()
         selectedIndexPath = indexPath
         present(nvc, animated: true)
-        
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -538,20 +520,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             self.showCancelAlert = true
-            if indexPath.section == 1 && indexPath.row < self.recipeIngredientList.count{
-                self.createNeedUpdateCellIndexList()
-                self.recipeIngredientList[indexPath.row].ingredientName = ""
-                self.updateDuplicatedIngredientList()
-                for i in 0 ..< self.needUpdateCellIndexList.count where self.needUpdateCellIndexList[i].row != indexPath.row {
-                    self.tableView.reloadRows(at: [self.needUpdateCellIndexList[i]], with: .none)
-                }
-                self.recipeIngredientList.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .middle)
-                self.setAddIngredientLabel()
-                completionHandler(true)
-            }else{
-                completionHandler(false)
+            let list = self.createDuplicatedIngredientIndexPathList()
+            self.recipeIngredientList[indexPath.row].ingredientName = ""
+            self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
+            for i in 0 ..< list.count where list[i] != indexPath {
+                self.tableView.reloadRows(at: [list[i]], with: .none)
             }
+            self.recipeIngredientList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .middle)
+            self.setAddIngredientLabel()
+            completionHandler(true)
         }
         del.image = UIImage(named: "button-delete")
         del.backgroundColor = UchicockStyle.alertColor
@@ -560,7 +538,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath{
+        case let path where path.section == 0:
             let cell = super.tableView(tableView, cellForRowAt: indexPath)
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
@@ -570,51 +549,45 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 12)
             }
             return cell
-        }else if indexPath.section == 1{
-            if indexPath.row < recipeIngredientList.count{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
-                if duplicatedIngredientList.contains(recipeIngredientList[indexPath.row].ingredientName){
-                    cell.isDuplicated = true
-                }else{
-                    cell.isDuplicated = false
-                }
-                cell.shouldDisplayStock = false
-                cell.isNameTextViewSelectable = false
-                cell.recipeIngredient = RecipeIngredientBasic(
-                    ingredientId: "",
-                    ingredientName: recipeIngredientList[indexPath.row].ingredientName,
-                    ingredientNameYomi: recipeIngredientList[indexPath.row].ingredientNameYomi,
-                    katakanaLowercasedNameForSearch: recipeIngredientList[indexPath.row].katakanaLowercasedNameForSearch,
-                    amount: recipeIngredientList[indexPath.row].amount,
-                    mustFlag: recipeIngredientList[indexPath.row].mustFlag,
-                    category: recipeIngredientList[indexPath.row].category,
-                    displayOrder: -1,
-                    stockFlag: false
-                )
+        case let path where path.section == 1 && path.row < recipeIngredientList.count:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeIngredientCell") as! RecipeIngredientTableViewCell
+            cell.isDuplicated = duplicatedIngredientIndexPathList.contains(indexPath)
+            cell.shouldDisplayStock = false
+            cell.isNameTextViewSelectable = false
+            cell.recipeIngredient = RecipeIngredientBasic(
+                ingredientId: "",
+                ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                ingredientNameYomi: "",
+                katakanaLowercasedNameForSearch: "",
+                amount: recipeIngredientList[indexPath.row].amount,
+                mustFlag: recipeIngredientList[indexPath.row].mustFlag,
+                category: recipeIngredientList[indexPath.row].category,
+                displayOrder: -1,
+                stockFlag: false
+            )
 
-                let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
-                accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
-                accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-                cell.accessoryView = accesoryImageView
+            let accesoryImageView = UIImageView(image: UIImage(named: "accesory-disclosure-indicator"))
+            accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
+            accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+            cell.accessoryView = accesoryImageView
 
-                cell.selectionStyle = .default
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
-                if indexPath.row == recipeIngredientList.count - 1{
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                }else{
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-                }
-                return cell
-            }else if indexPath.row == recipeIngredientList.count{
-                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
+            if indexPath.row == recipeIngredientList.count - 1{
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                return cell
+            }else{
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             }
+            return cell
+        case let path where path.section == 1 && path.row == recipeIngredientList.count:
+            let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+            cell.backgroundColor = UchicockStyle.basicBackgroundColor
+            cell.selectedBackgroundView = selectedCellBackgroundView
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return cell
+        default:
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -625,17 +598,15 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let infoDic = Dictionary(uniqueKeysWithValues: info.map {key, value in (key.rawValue, value)})
 
-        let defaults = UserDefaults.standard
         var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
-        if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+        if UserDefaults.standard.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
             imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
         }
 
         if let image = infoDic[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage{
             if let img = image.resizedUIImage(maxLongSide: imageMaxLongSide){
-                self.photoImageView.isHidden = true
-                ipc.dismiss(animated: false, completion: nil)
                 self.showCancelAlert = true
+                self.photoImageView.isHidden = true
                 let storyboard = UIStoryboard(name: "RecipeEdit", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "PhotoFilter") as! PhotoFilterViewController
                 vc.image = img
@@ -643,6 +614,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 vc.modalPresentationStyle = .overFullScreen
                 vc.modalTransitionStyle = .coverVertical
                 vc.modalPresentationCapturesStatusBarAppearance = true
+                ipc.dismiss(animated: false, completion: nil)
                 self.present(vc, animated: true)
             }
         }
@@ -653,6 +625,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alert.overrideUserInterfaceStyle = .dark
         }
+        
         let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         if UIImagePickerController.isSourceTypeAvailable(.camera) && status != .restricted {
             let takePhotoAction = UIAlertAction(title: "写真を撮る", style: .default){action in
@@ -687,6 +660,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             takePhotoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
             alert.addAction(takePhotoAction)
         }
+        
         let selectPhotoAction = UIAlertAction(title: "写真を選択",style: .default){action in
             self.ipc.sourceType = .photoLibrary
             self.ipc.allowsEditing = false
@@ -698,12 +672,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         selectPhotoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
         alert.addAction(selectPhotoAction)
-        let pasteboard: UIPasteboard = UIPasteboard.general
-        let pasteImage: UIImage? = pasteboard.image
-        if let image = pasteImage{
-            let defaults = UserDefaults.standard
+        
+        if let image = UIPasteboard.general.image{
             var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
-            if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+            if UserDefaults.standard.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
                 imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
             }
 
@@ -723,6 +695,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 alert.addAction(pasteAction)
             }
         }
+        
         if canTapPhoto{
             let deleteAction = UIAlertAction(title: "写真を削除",style: .destructive){action in
                 self.showCancelAlert = true
@@ -742,16 +715,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
             alert.addAction(deleteAction)
         }
+        
         let alertAction = UIAlertAction(title:"キャンセル",style: .cancel, handler: nil)
         alertAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
         alert.addAction(alertAction)
+
         alert.popoverPresentationController?.sourceView = self.view
         alert.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))!.frame
         alert.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
     }
-
 
     // MARK: - IBAction
     @IBAction func star1Tapped(_ sender: UIButton) {
@@ -834,25 +808,26 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        if showCancelAlert {
-            let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
-            let yesAction = UIAlertAction(title: "はい",style: .default){action in
-                self.dismiss(animated: true, completion: nil)
-            }
-            yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(yesAction)
-            let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
-            noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-            alertView.addAction(noAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-            alertView.modalPresentationCapturesStatusBarAppearance = true
-            present(alertView, animated: true, completion: nil)
-        }else{
+        guard showCancelAlert else{
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+
+        let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            alertView.overrideUserInterfaceStyle = .dark
+        }
+        let yesAction = UIAlertAction(title: "はい",style: .default){action in
             self.dismiss(animated: true, completion: nil)
         }
+        yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(yesAction)
+        let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
+        noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        alertView.addAction(noAction)
+        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        alertView.modalPresentationCapturesStatusBarAppearance = true
+        present(alertView, animated: true, completion: nil)
     }
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
@@ -925,17 +900,13 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             })
             return
         }
-        updateDuplicatedIngredientList()
-        guard duplicatedIngredientList.count == 0 else{
+        var list = createDuplicatedIngredientIndexPathList()
+        list.sort(by: {$0.row < $1.row})
+        guard list.count == 0 else{
             presentAlert(title: "重複している材料があります", message: nil, action: {
-                var idp = IndexPath(row: 0, section: 1)
-                for i in 0 ..< self.recipeIngredientList.count where self.recipeIngredientList[i].ingredientName == self.duplicatedIngredientList[0]{
-                    idp = IndexPath(row: i, section: 1)
-                    break
-                }
-                self.tableView.selectRow(at: idp, animated: true, scrollPosition: .middle)
+                self.tableView.selectRow(at: list[0], animated: true, scrollPosition: .middle)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.tableView.deselectRow(at: idp, animated: true)
+                    self.tableView.deselectRow(at: list[0], animated: true)
                 }
             })
             return
@@ -1062,15 +1033,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         present(nvc, animated: true)
     }
 
-    @IBAction func styleSegmentedControlTapped(_ sender: CustomSegmentedControl) {
-        self.showCancelAlert = true
-    }
-    
-    @IBAction func methodSegmentedControlTapped(_ sender: CustomSegmentedControl) {
-        self.showCancelAlert = true
-    }
-    
-    @IBAction func strengthSegmentedControlTapped(_ sender: CustomSegmentedControl) {
+    @IBAction func segmentedControlTapped(_ sender: CustomSegmentedControl) {
         self.showCancelAlert = true
     }
     
@@ -1078,9 +1041,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         self.view.endEditing(true)
     }
     
-    // MARK: - GestureRecognizer
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
-    {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
         if touch.view!.isDescendant(of: recipeNameTableViewCell) {
             return true
         }else if touch.view!.isDescendant(of: favoriteTableViewCell){
@@ -1093,18 +1054,17 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         return false
     }
     
+    // MARK: - Navigation
     @IBAction func unwindToRecipeEdit(_ segue: UIStoryboardSegue) {
     }
     
-    // MARK: - Navigation
     override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         if fromViewController is PhotoFilterViewController{
             let pfvc = fromViewController as! PhotoFilterViewController
             let img = pfvc.imageView.image!
 
-            let defaults = UserDefaults.standard
             var imageMaxLongSide = GlobalConstants.MiddleImageMaxLongSide
-            if defaults.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
+            if UserDefaults.standard.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
                 imageMaxLongSide = GlobalConstants.LargeImageMaxLongSide
             }
 
@@ -1130,7 +1090,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return pc
             }
         }
-        
         pc.xMargin = 20
         pc.yMargin = 40
         pc.canDismissWithOverlayViewTouch = false
@@ -1149,7 +1108,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 return animator
             }
         }
-        
         animator.xMargin = 20
         animator.yMargin = 40
         return animator

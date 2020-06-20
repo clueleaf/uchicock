@@ -240,7 +240,7 @@
                                                         <segment title="未指定"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="styleSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="sL8-DD-ROs"/>
+                                                        <action selector="segmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="02Y-XM-mMW"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="技法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-pv-E79" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -277,7 +277,7 @@
                                                         <segment title="その他"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="methodSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="5lb-WF-z9U"/>
+                                                        <action selector="segmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="kWB-fJ-STh"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルコール度数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-6i-6Yc" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
@@ -314,7 +314,7 @@
                                                         <segment title="未指定"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="strengthSegmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="ao3-HH-Sip"/>
+                                                        <action selector="segmentedControlTapped:" destination="QVT-aG-Iy4" eventType="valueChanged" id="ltd-t5-3kJ"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
