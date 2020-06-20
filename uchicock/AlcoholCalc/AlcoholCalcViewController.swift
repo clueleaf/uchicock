@@ -66,8 +66,6 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
 
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
         
-        let tipImage = UIImage(named: "button-tip")
-        alcoholAmountTipButton.setImage(tipImage, for: .normal)
         alcoholAmountTipButton.tintColor = UchicockStyle.primaryColor
 
         fakeTableHeaderView.backgroundColor = UchicockStyle.basicBackgroundColorLight
