@@ -1042,13 +1042,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
-        if touch.view!.isDescendant(of: recipeNameTableViewCell) {
-            return true
-        }else if touch.view!.isDescendant(of: favoriteTableViewCell){
-            return true
-        }else if touch.view!.isDescendant(of: segmentedControlTableViewCell){
-            return true
-        }else if touch.view!.isDescendant(of: memoTableViewCell){
+        if touch.view!.isDescendant(of: recipeNameTableViewCell) ||
+            touch.view!.isDescendant(of: favoriteTableViewCell) ||
+            touch.view!.isDescendant(of: segmentedControlTableViewCell) ||
+            touch.view!.isDescendant(of: memoTableViewCell){
             return true
         }
         return false

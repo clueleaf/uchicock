@@ -585,7 +585,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     @IBAction func orderButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
@@ -606,6 +606,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         alertView.addAction(cancelAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
+        alertView.popoverPresentationController?.barButtonItem = sender
         present(alertView, animated: true, completion: nil)
     }
     

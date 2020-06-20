@@ -378,10 +378,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        if hasRecipeDeleted == false{
-            updateImageView()
-        }
+        updateImageView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
