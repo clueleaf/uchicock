@@ -234,14 +234,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         case let (primary, secondary) where primary == 2 && secondary == 3: sortOrder = .makeableMadenumName
         case let (primary, secondary) where primary == 2 && secondary == 4: sortOrder = .makeableFavoriteName
         case let (primary, secondary) where primary == 2 && secondary == 5: sortOrder = .makeableViewdName
+        case let (primary, _) where primary == 2: sortOrder = .makeableName
         case let (primary, secondary) where primary == 3 && secondary == 1: sortOrder = .madenumName
         case let (primary, secondary) where primary == 3 && secondary == 2: sortOrder = .madenumMakeableName
         case let (primary, secondary) where primary == 3 && secondary == 4: sortOrder = .madenumFavoriteName
         case let (primary, secondary) where primary == 3 && secondary == 5: sortOrder = .madenumViewedName
+        case let (primary, _) where primary == 3: sortOrder = .madenumName
         case let (primary, secondary) where primary == 4 && secondary == 1: sortOrder = .favoriteName
         case let (primary, secondary) where primary == 4 && secondary == 2: sortOrder = .favoriteMakeableName
         case let (primary, secondary) where primary == 4 && secondary == 3: sortOrder = .favoriteMadenumName
         case let (primary, secondary) where primary == 4 && secondary == 5: sortOrder = .favoriteViewedName
+        case let (primary, _) where primary == 4: sortOrder = .favoriteName
         case let (primary, _) where primary == 5: sortOrder = .viewedName
         default: sortOrder = .name
         }
@@ -312,12 +315,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createRecipeBasicList(){
         recipeBasicList.removeAll()
         
-        let searchText = searchTextField.text!
+        let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
         let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         for recipe in recipeList! {
             if recipeFilterStar.contains(recipe.favorites) && recipeFilterStyle.contains(recipe.style) &&
                 recipeFilterMethod.contains(recipe.method) && recipeFilterStrength.contains(recipe.strength) &&
-                (searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
+                (searchText == "" ||
                     recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
                     recipe.recipeName.contains(searchText)){
                 recipeBasicList.append(RecipeBasic(
@@ -520,9 +523,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func updateSearchResultFlag(){
-        let searchText = searchTextField.text!
+        let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
         let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
+        if searchText != ""{
             let realm = try! Realm()
             let searchedRecipe = realm.objects(Recipe.self)
                 .filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
@@ -849,11 +852,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         vc.udPrefix = "recipe-"
         
         var recipeBasicListForFilterModal = Array<RecipeBasic>()
-        let searchText = searchTextField.text!
+        let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
         let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
 
         for recipe in recipeList!{
-            if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
+            if searchText == "" ||
                 recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
                 recipe.recipeName.contains(searchText){
                 recipeBasicListForFilterModal.append(RecipeBasic(

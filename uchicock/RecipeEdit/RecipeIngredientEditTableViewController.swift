@@ -137,10 +137,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     private func reloadSuggestList(){
         suggestList.removeAll()
         
-        let searchText = ingredientNameTextField.text!
+        let searchText = ingredientNameTextField.text!.withoutMiddleSpaceAndMiddleDot()
         let convertedSearchText = ingredientNameTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         for ingredient in ingredientList! {
-            if ingredientNameTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
+            if searchText == "" ||
                 ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
                     ingredient.ingredientName.contains(searchText){
                 let suggest = IngredientSuggestBasic(

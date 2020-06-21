@@ -257,14 +257,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         case let (primary, secondary) where primary == 2 && secondary == 3: sortOrder = .makeableMadenumName
         case let (primary, secondary) where primary == 2 && secondary == 4: sortOrder = .makeableFavoriteName
         case let (primary, secondary) where primary == 2 && secondary == 5: sortOrder = .makeableViewdName
+        case let (primary, _) where primary == 2: sortOrder = .makeableName
         case let (primary, secondary) where primary == 3 && secondary == 1: sortOrder = .madenumName
         case let (primary, secondary) where primary == 3 && secondary == 2: sortOrder = .madenumMakeableName
         case let (primary, secondary) where primary == 3 && secondary == 4: sortOrder = .madenumFavoriteName
         case let (primary, secondary) where primary == 3 && secondary == 5: sortOrder = .madenumViewedName
+        case let (primary, _) where primary == 3: sortOrder = .madenumName
         case let (primary, secondary) where primary == 4 && secondary == 1: sortOrder = .favoriteName
         case let (primary, secondary) where primary == 4 && secondary == 2: sortOrder = .favoriteMakeableName
         case let (primary, secondary) where primary == 4 && secondary == 3: sortOrder = .favoriteMadenumName
         case let (primary, secondary) where primary == 4 && secondary == 5: sortOrder = .favoriteViewedName
+        case let (primary, _) where primary == 4: sortOrder = .favoriteName
         case let (primary, _) where primary == 5: sortOrder = .viewedName
         default: sortOrder = .name
         }
@@ -795,11 +798,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.reloadData()
         ingredientSuggestList.removeAll()
         
+        let searchText = text.withoutMiddleSpaceAndMiddleDot()
         let convertedSearchText = text.convertToYomi().katakanaLowercasedForSearch()
         for ingredient in ingredientList! {
-            if text.withoutEndsSpace() == "" ||
+            if searchText == "" ||
             ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
-            ingredient.katakanaLowercasedNameForSearch.contains(text){
+            ingredient.ingredientName.contains(searchText){
                 let ib = IngredientBasic(
                     id: ingredient.id,
                     name: ingredient.ingredientName,

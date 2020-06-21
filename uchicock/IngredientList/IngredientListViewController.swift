@@ -227,37 +227,33 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             ingredientFilterCategory.append(category.selectedSegmentIndex - 1)
         }
         
+        let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         for ingredient in ingredientList! where ingredientFilterStock.contains(ingredient.stockFlag) &&
             ingredientFilterCategory.contains(ingredient.category){
-            ingredientBasicList.append(IngredientBasic(
-                id: ingredient.id,
-                name: ingredient.ingredientName,
-                nameYomi: ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                stockFlag: ingredient.stockFlag,
-                category: ingredient.category,
-                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                usedRecipeNum: ingredient.recipeIngredients.count,
-                reminderSetDate: ingredient.reminderSetDate
-            ))
-        }
-
-        let searchText = searchTextField.text!
-        let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
-        if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
-            ingredientBasicList.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                ($0.name.contains(searchText) == false)
+            if searchText == "" ||
+                ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
+                ingredient.ingredientName.contains(searchText){
+                    ingredientBasicList.append(IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                    stockFlag: ingredient.stockFlag,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usedRecipeNum: ingredient.recipeIngredients.count,
+                    reminderSetDate: ingredient.reminderSetDate
+                ))
             }
         }
-
         updateFlagAndSetTextFieldcolor()
     }
     
     private func updateFlagAndSetTextFieldcolor(){
-        let searchText = searchTextField.text!
-        let convertedSearchText = searchText.convertToYomi().katakanaLowercasedForSearch()
-        if searchText.withoutMiddleSpaceAndMiddleDot() != ""{
+        let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
+        if searchText != ""{
             let searchedIng = realm!.objects(Ingredient.self).filter("katakanaLowercasedNameForSearch CONTAINS %@ OR ingredientName CONTAINS %@", convertedSearchText, searchText)
             textFieldHasSearchResult = searchedIng.count > 0
         }else{
