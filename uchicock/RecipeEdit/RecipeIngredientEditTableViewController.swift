@@ -36,7 +36,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
 
     var isCanceled = true
     var shouldDelete = false
-    var isTypingName = false
     var firstShow = false
     var suggestList = Array<IngredientSuggestBasic>()
     let selectedCellBackgroundView = UIView()
@@ -65,18 +64,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
-        ingredientNameTextField.layer.cornerRadius = ingredientNameTextField.frame.size.height / 2
-        ingredientNameTextField.clearButtonEdgeInset = 4.0
-        ingredientNameTextField.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientNameTextField.adjustClearButtonColor()
-        ingredientNameTextField.setLeftPadding()
-        
-        amountTextField.layer.cornerRadius = amountTextField.frame.size.height / 2
-        amountTextField.clearButtonEdgeInset = 4.0
-        amountTextField.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        amountTextField.adjustClearButtonColor()
-        amountTextField.setLeftPadding()
-        
         optionCheckbox.boxLineWidth = 1.0
         optionCheckbox.stateChangeAnimation = .expand
         optionCheckbox.secondaryTintColor = UchicockStyle.primaryColor
@@ -98,6 +85,18 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             }
             deleteLabel.text = "このレシピの材料から外す"
         }
+        
+        ingredientNameTextField.layer.cornerRadius = ingredientNameTextField.frame.size.height / 2
+        ingredientNameTextField.clearButtonEdgeInset = 4.0
+        ingredientNameTextField.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientNameTextField.adjustClearButtonColor()
+        ingredientNameTextField.setLeftPadding()
+        
+        amountTextField.layer.cornerRadius = amountTextField.frame.size.height / 2
+        amountTextField.clearButtonEdgeInset = 4.0
+        amountTextField.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        amountTextField.adjustClearButtonColor()
+        amountTextField.setLeftPadding()
         
         NotificationCenter.default.addObserver(self, selector:#selector(RecipeIngredientEditTableViewController.nameTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameTextField)
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeIngredientEditTableViewController.nameTextFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientNameTextField)
@@ -173,7 +172,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         if textField.tag == 0{
-            isTypingName = true
             tableView.insertRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
             reloadSuggestList()
         }
@@ -192,7 +190,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         if textField.tag == 0{
             suggestList.removeAll()
             suggestTableView.reloadData()
-            isTypingName = false
             tableView.deleteRows(at: [IndexPath(row: 1,section: 0)], with: .middle)
         }
     }
@@ -232,11 +229,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == 0 {
-            if isTypingName{
+            if ingredientNameTextField.isFirstResponder{
                 return super.tableView(tableView, heightForRowAt: indexPath)
             }else{
-                if indexPath.section == 0 && indexPath.row > 0{
-                    return super.tableView(tableView, heightForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
+                if indexPath == IndexPath(row: 1, section: 0){
+                    return super.tableView(tableView, heightForRowAt: IndexPath(row: 2, section: 0))
                 }else{
                     return super.tableView(tableView, heightForRowAt: indexPath)
                 }
@@ -250,7 +247,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 0{
             if section == 0{
-                return isTypingName ? 4 : 3
+                return ingredientNameTextField.isFirstResponder ? 3 : 2
             }else if section == 1{
                 return 1
             }
@@ -294,10 +291,10 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             ingredientNameTextField.adjustClearButtonColor()
         }
     }
-    //todo
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == 0{
-            if isTypingName{
+            if ingredientNameTextField.isFirstResponder || indexPath != IndexPath(row: 1, section: 0){
                 let cell = super.tableView(tableView, cellForRowAt: indexPath)
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
                 if indexPath.section == 0{
@@ -308,28 +305,15 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 }
                 return cell
             }else{
-                if indexPath.section == 0 && indexPath.row > 0{
-                    let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
-                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-                    return cell
-                }else{
-                    let cell = super.tableView(tableView, cellForRowAt: indexPath)
-                    cell.backgroundColor = UchicockStyle.basicBackgroundColor
-                    cell.selectedBackgroundView = selectedCellBackgroundView
-                    if indexPath.section == 0{
-                        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-                    }else{
-                        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                    }
-                    return cell
-                }
+                let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: 0))
+                cell.backgroundColor = UchicockStyle.basicBackgroundColor
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+                return cell
             }
         }else if tableView.tag == 1 && indexPath.section == 0{
             let cell = suggestTableView.dequeueReusableCell(withIdentifier: "SuggestIngredient") as! SuggestIngredientTableViewCell
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
-            cell.name = suggestList[indexPath.row].name
-            cell.category = suggestList[indexPath.row].category
+            cell.ingredient = suggestList[indexPath.row]
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }
@@ -368,11 +352,9 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
-    {
-        if touch.view!.isDescendant(of: deleteTableViewCell) {
-            return false
-        }else if touch.view!.isDescendant(of: suggestTableViewCell){
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
+        if touch.view!.isDescendant(of: deleteTableViewCell) ||
+            touch.view!.isDescendant(of: suggestTableViewCell){
             return false
         }
         return true
@@ -380,7 +362,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     // MARK: - IBAction
     @IBAction func amountSliderValueChanged(_ sender: UISlider) {
-        amountTextField.adjustClearButtonColor()
         switch floor(sender.value) {
         case 0:
             amountTextField.text = "少々"
@@ -389,6 +370,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         default:
             amountTextField.text = "適量"
         }
+        amountTextField.adjustClearButtonColor()
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -410,94 +392,89 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         present(alertView, animated: true, completion: nil)
     }
     
-    private func setIngredient(_ categoryNum: Int) -> Ingredient{
-        let ingredient = Ingredient()
+    private func dismissSelf(withNewIngredientCategory categoryNum: Int){
         let name = self.ingredientNameTextField.text!.withoutEndsSpace()
+        let ingredient = Ingredient()
         ingredient.ingredientName = name
         ingredient.ingredientNameYomi = name.convertToYomi()
         ingredient.katakanaLowercasedNameForSearch = name.convertToYomi().katakanaLowercasedForSearch()
         ingredient.stockFlag = false
         ingredient.memo = ""
         ingredient.category = categoryNum
-        return ingredient
+        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(ingredient)
+            MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
+        }
+        self.recipeIngredient.category = categoryNum
+        self.shouldDelete = false
+        self.isCanceled = false
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         ingredientNameTextField.resignFirstResponder()
         amountTextField.resignFirstResponder()
-        if ingredientNameTextField.text!.withoutEndsSpace() == "" {
+        
+        guard ingredientNameTextField.text!.withoutEndsSpace() != "" else{
             presentAlert("材料名を入力してください", action: {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 self.ingredientNameTextField.becomeFirstResponder()
             })
-        }else if ingredientNameTextField.text!.withoutEndsSpace().count > 30{
+            return
+        }
+        guard ingredientNameTextField.text!.withoutEndsSpace().count <= 30 else{
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             presentAlert("材料名を30文字以下にしてください", action: {
                 self.ingredientNameTextField.becomeFirstResponder()
             })
-        }else if amountTextField.text!.withoutEndsSpace().count > 30{
+            return
+        }
+        guard amountTextField.text!.withoutEndsSpace().count <= 30 else{
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             presentAlert("分量を30文字以下にしてください", action: {
                 self.amountTextField.becomeFirstResponder()
             })
-        }else{
-            let realm = try! Realm()
-            let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientNameTextField.text!.withoutEndsSpace())
-            if sameNameIngredient.count == 0{
-                //同じ名前の材料が存在しないので新規に登録する
-                let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    registAlertView.overrideUserInterfaceStyle = .dark
-                }
-                let alcoholAction = UIAlertAction(title: "「アルコール」として登録", style: .default){action in
-                    try! realm.write {
-                        realm.add(self.setIngredient(0))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    self.recipeIngredient.category = 0
-                    self.shouldDelete = false
-                    self.isCanceled = false
-                    self.dismiss(animated: true, completion: nil)
-                }
-                alcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-                registAlertView.addAction(alcoholAction)
-                let nonAlcoholAction = UIAlertAction(title: "「ノンアルコール」として登録", style: .default){action in
-                    try! realm.write {
-                        realm.add(self.setIngredient(1))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    self.recipeIngredient.category = 1
-                    self.shouldDelete = false
-                    self.isCanceled = false
-                    self.dismiss(animated: true, completion: nil)
-                }
-                nonAlcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-                registAlertView.addAction(nonAlcoholAction)
-                let othersAction = UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
-                    try! realm.write {
-                        realm.add(self.setIngredient(2))
-                        MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
-                    }
-                    self.recipeIngredient.category = 2
-                    self.shouldDelete = false
-                    self.isCanceled = false
-                    self.dismiss(animated: true, completion: nil)
-                })
-                othersAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-                registAlertView.addAction(othersAction)
-                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-                cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
-                registAlertView.addAction(cancelAction)
-                registAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                registAlertView.modalPresentationCapturesStatusBarAppearance = true
-                present(registAlertView, animated: true, completion: nil)
-            }else{
-                self.recipeIngredient.category = sameNameIngredient.first!.category
-                self.shouldDelete = false
-                self.isCanceled = false
-                self.dismiss(animated: true, completion: nil)
-            }
+            return
         }
+        
+        let realm = try! Realm()
+        let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientNameTextField.text!.withoutEndsSpace())
+        guard sameNameIngredient.count == 0 else{
+            self.recipeIngredient.category = sameNameIngredient.first!.category
+            self.shouldDelete = false
+            self.isCanceled = false
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        //同じ名前の材料が存在しないので新規に登録する
+        let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
+        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+            registAlertView.overrideUserInterfaceStyle = .dark
+        }
+        let alcoholAction = UIAlertAction(title: "「アルコール」として登録", style: .default){action in
+            self.dismissSelf(withNewIngredientCategory: 0)
+        }
+        alcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        registAlertView.addAction(alcoholAction)
+        let nonAlcoholAction = UIAlertAction(title: "「ノンアルコール」として登録", style: .default){action in
+            self.dismissSelf(withNewIngredientCategory: 1)
+        }
+        nonAlcoholAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        registAlertView.addAction(nonAlcoholAction)
+        let othersAction = UIAlertAction(title: "「その他」として登録", style: .default, handler: {action in
+            self.dismissSelf(withNewIngredientCategory: 2)
+        })
+        othersAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        registAlertView.addAction(othersAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        registAlertView.addAction(cancelAction)
+        registAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+        registAlertView.modalPresentationCapturesStatusBarAppearance = true
+        present(registAlertView, animated: true, completion: nil)
     }
     
     @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {

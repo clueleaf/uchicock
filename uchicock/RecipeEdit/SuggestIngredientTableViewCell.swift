@@ -14,17 +14,13 @@ class SuggestIngredientTableViewCell: UITableViewCell {
     @IBOutlet weak var alcoholIconImage: UIImageView!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
-    var name: String = String(){
+    var ingredient: IngredientSuggestBasic? = nil{
         didSet{
-            ingredientName.text = name
-        }
-    }
-    
-    var category: Int = Int(){
-        didSet{
+            guard ingredient != nil else { return }
+            ingredientName.text = ingredient!.name
             alcoholIconImage.tintColor = UchicockStyle.primaryColor
-            alcoholIconImage.isHidden = category != 0
-            alcoholIconImageWidthConstraint.constant = category == 0 ? 13 : 0
+            alcoholIconImage.isHidden = ingredient!.category != 0
+            alcoholIconImageWidthConstraint.constant = ingredient!.category == 0 ? 13 : 0
         }
     }
 }
