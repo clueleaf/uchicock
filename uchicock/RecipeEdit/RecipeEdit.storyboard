@@ -504,10 +504,10 @@
                                     <constraint firstAttribute="height" constant="21" id="hiN-jS-uDu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="NDD-c8-lC5">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="NDD-c8-lC5">
                                 <rect key="frame" x="0.0" y="45" width="375" height="435"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tmq-S1-NNA">
@@ -631,12 +631,11 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="button" destination="9jB-Ho-KJc" id="ZIW-06-yQu"/>
+                        <outlet property="confirmButton" destination="9jB-Ho-KJc" id="BOJ-fy-ZH9"/>
                         <outlet property="filterScrollView" destination="xZb-7W-fcr" id="jxe-2Y-SV0"/>
                         <outlet property="filterStackView" destination="swZ-76-Lhw" id="k6u-6L-0dH"/>
                         <outlet property="imageScrollView" destination="NDD-c8-lC5" id="MXq-HU-sfV"/>
                         <outlet property="imageView" destination="Tmq-S1-NNA" id="c9v-P3-NuX"/>
-                        <outlet property="titleLabel" destination="4gK-hl-DoA" id="EgR-tc-ltI"/>
                         <segue destination="QNG-oZ-U6e" kind="unwind" identifier="FilterFinished" unwindAction="unwindToRecipeEdit:" id="Ukx-sN-yul"/>
                     </connections>
                 </viewController>
@@ -747,11 +746,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="zpu-ii-g9x">
-                                        <rect key="frame" x="0.0" y="243" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="190" id="zpu-ii-g9x">
+                                        <rect key="frame" x="0.0" y="243" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zpu-ii-g9x" id="UVb-p4-hZv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分量" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NyC-hv-bV8" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
@@ -774,26 +773,16 @@
                                                         <action selector="amountSliderValueChanged:" destination="W6V-Ex-Byo" eventType="valueChanged" id="Zeg-T3-gEP"/>
                                                     </connections>
                                                 </slider>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="leading" secondItem="NyC-hv-bV8" secondAttribute="leading" id="9b9-Py-7OP"/>
-                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="top" secondItem="UVb-p4-hZv" secondAttribute="top" constant="5" id="Q5p-u4-Pt4"/>
-                                                <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="12" id="jy5-f8-ppc"/>
-                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="top" secondItem="NyC-hv-bV8" secondAttribute="bottom" constant="10" id="m3j-9F-gfj"/>
-                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" id="pEf-eN-WCE"/>
-                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="wG4-FI-dNa"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="90" id="Tlb-iC-CNM">
-                                        <rect key="frame" x="0.0" y="343" width="375" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tlb-iC-CNM" id="FwI-ja-QDi">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-L3-ZDg" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="323" y="105.5" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="5I3-Lr-AME"/>
+                                                        <constraint firstAttribute="width" constant="40" id="H4l-bu-Yoz"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="オプション" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-Yn-meJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="16" width="295" height="21"/>
+                                                    <rect key="frame" x="8" y="115" width="295" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="pLQ-3q-rM3"/>
                                                     </constraints>
@@ -801,16 +790,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-L3-ZDg" customClass="CircularCheckbox" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="323" y="6.5" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="5I3-Lr-AME"/>
-                                                        <constraint firstAttribute="width" constant="40" id="H4l-bu-Yoz"/>
-                                                    </constraints>
-                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thm-mY-qsP">
-                                                    <rect key="frame" x="8" y="49" width="355" height="29"/>
+                                                    <rect key="frame" x="8" y="148" width="355" height="29"/>
                                                     <string key="text">「オプション」の材料は在庫がなくても、
 レシピは作れるものとして見なされます</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -819,14 +800,20 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="top" secondItem="FwI-ja-QDi" secondAttribute="top" constant="16" id="7bW-aP-0aR"/>
-                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="bnL-o9-Zmt"/>
-                                                <constraint firstItem="pM3-L3-ZDg" firstAttribute="leading" secondItem="uyA-Yn-meJ" secondAttribute="trailing" constant="20" id="n4i-Vo-aO0"/>
-                                                <constraint firstAttribute="trailing" secondItem="Thm-mY-qsP" secondAttribute="trailing" constant="12" id="p7y-09-NMd"/>
-                                                <constraint firstAttribute="trailing" secondItem="pM3-L3-ZDg" secondAttribute="trailing" constant="12" id="vfD-Ql-9eQ"/>
-                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="leading" secondItem="FwI-ja-QDi" secondAttribute="leading" constant="8" id="vsf-zF-EU8"/>
-                                                <constraint firstItem="pM3-L3-ZDg" firstAttribute="centerY" secondItem="uyA-Yn-meJ" secondAttribute="centerY" id="weG-d9-qh7"/>
-                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="top" secondItem="uyA-Yn-meJ" secondAttribute="bottom" constant="12" id="ynk-SE-YcY"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="leading" secondItem="NyC-hv-bV8" secondAttribute="leading" id="9b9-Py-7OP"/>
+                                                <constraint firstAttribute="trailing" secondItem="pM3-L3-ZDg" secondAttribute="trailing" constant="12" id="DlJ-sB-b1G"/>
+                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="GKg-mn-jMC"/>
+                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="centerY" secondItem="pM3-L3-ZDg" secondAttribute="centerY" id="J3H-H5-x5n"/>
+                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="LUh-23-uG3"/>
+                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="top" secondItem="UVb-p4-hZv" secondAttribute="top" constant="5" id="Q5p-u4-Pt4"/>
+                                                <constraint firstItem="pM3-L3-ZDg" firstAttribute="leading" secondItem="uyA-Yn-meJ" secondAttribute="trailing" constant="20" id="TqX-Mq-IQ2"/>
+                                                <constraint firstItem="Thm-mY-qsP" firstAttribute="top" secondItem="uyA-Yn-meJ" secondAttribute="bottom" constant="12" id="aVr-3O-0Ux"/>
+                                                <constraint firstItem="uyA-Yn-meJ" firstAttribute="top" secondItem="CAO-ft-XUK" secondAttribute="bottom" constant="30" id="hl5-09-zt2"/>
+                                                <constraint firstAttribute="trailing" secondItem="Thm-mY-qsP" secondAttribute="trailing" constant="12" id="jq8-C6-BfV"/>
+                                                <constraint firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" constant="12" id="jy5-f8-ppc"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="top" secondItem="NyC-hv-bV8" secondAttribute="bottom" constant="10" id="m3j-9F-gfj"/>
+                                                <constraint firstItem="CAO-ft-XUK" firstAttribute="trailing" secondItem="NyC-hv-bV8" secondAttribute="trailing" id="pEf-eN-WCE"/>
+                                                <constraint firstItem="NyC-hv-bV8" firstAttribute="leading" secondItem="UVb-p4-hZv" secondAttribute="leading" constant="8" id="wG4-FI-dNa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -876,12 +863,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="amount" destination="NyC-hv-bV8" id="BAb-ul-eY6"/>
                         <outlet property="amountSlider" destination="CAO-ft-XUK" id="73M-yP-crl"/>
+                        <outlet property="amountTextField" destination="NyC-hv-bV8" id="mGq-qP-v20"/>
                         <outlet property="deleteLabel" destination="nmL-iq-O5X" id="lqw-vN-bYj"/>
                         <outlet property="deleteTableViewCell" destination="KmQ-8j-oGd" id="QZ0-WT-n1M"/>
-                        <outlet property="ingredientName" destination="N4k-of-Pi3" id="CBO-ub-QY3"/>
-                        <outlet property="option" destination="pM3-L3-ZDg" id="tcw-1i-WbT"/>
+                        <outlet property="ingredientNameTextField" destination="N4k-of-Pi3" id="Mgr-Uj-xdI"/>
+                        <outlet property="optionCheckbox" destination="pM3-L3-ZDg" id="8yJ-6r-KqY"/>
                         <outlet property="optionDescriptionLabel" destination="Thm-mY-qsP" id="sWr-yQ-YzJ"/>
                         <outlet property="suggestTableView" destination="FJi-BL-oF3" id="kFe-ft-pFh"/>
                         <outlet property="suggestTableViewCell" destination="z24-ua-voM" id="oxb-nl-XtG"/>

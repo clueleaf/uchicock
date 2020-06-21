@@ -866,13 +866,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
 
         for recipe in recipeList!{
             if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
-                (recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
-                    recipe.recipeName.contains(searchText)){
+                recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
+                recipe.recipeName.contains(searchText){
                 recipeBasicListForFilterModal.append(RecipeBasic(
                     id: "",
-                    name: recipe.recipeName,
+                    name: "",
                     nameYomi: "",
-                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    katakanaLowercasedNameForSearch: "",
                     shortageNum: 0,
                     favorites: recipe.favorites,
                     style: recipe.style,

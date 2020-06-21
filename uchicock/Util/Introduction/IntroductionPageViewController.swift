@@ -120,13 +120,8 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         super.viewDidLayoutSubviews()
         for subview in self.view.subviews where subview is UIPageControl {
             let pageControl = subview as! UIPageControl
-            if isPageControlBlack {
-                pageControl.currentPageIndicatorTintColor = FlatColor.black
-                pageControl.pageIndicatorTintColor = FlatColor.black.withAlphaComponent(0.3)
-            }else{
-                pageControl.currentPageIndicatorTintColor = FlatColor.white
-                pageControl.pageIndicatorTintColor = FlatColor.white.withAlphaComponent(0.3)
-            }
+            pageControl.currentPageIndicatorTintColor = isPageControlBlack ? FlatColor.black : FlatColor.white
+            pageControl.pageIndicatorTintColor = isPageControlBlack ? FlatColor.black.withAlphaComponent(0.3) : FlatColor.white.withAlphaComponent(0.3)
         }
         windowWidth = UIApplication.shared.keyWindow!.bounds.size.width
         hasFinishedLayoutSubviews = true

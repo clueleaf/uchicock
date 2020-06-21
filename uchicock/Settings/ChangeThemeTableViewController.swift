@@ -182,11 +182,11 @@ class ChangeThemeTableViewController: UITableViewController {
     
     // MARK: - IBAction
     @IBAction func shuffleButtonTapped(_ sender: UIBarButtonItem) {
-        let alertView = CustomAlertController(title: "おまかせで選ぶ？", message: nil, preferredStyle: .actionSheet)
+        let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
         }
-        let shuffleAction = UIAlertAction(title: "全テーマから", style: .default){action in
+        let shuffleAction = UIAlertAction(title: "おまかせで選ぶ", style: .default){action in
             var themeNo = Int(UchicockStyle.no)!
             while themeNo == Int(UchicockStyle.no)!{
                 themeNo = Int.random(in: 0 ..< self.themeList.count)
@@ -195,7 +195,7 @@ class ChangeThemeTableViewController: UITableViewController {
         }
         shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
         alertView.addAction(shuffleAction)
-        let lightShuffleAction = UIAlertAction(title: "ライトテーマから", style: .default){action in
+        let lightShuffleAction = UIAlertAction(title: "ライトテーマからおまかせ", style: .default){action in
             var themeNo = Int(UchicockStyle.no)!
             while themeNo == Int(UchicockStyle.no)!{
                 themeNo = [0,2,4,6,8,9,11,13,15,17,20,22,24].randomElement()!
@@ -204,7 +204,7 @@ class ChangeThemeTableViewController: UITableViewController {
         }
         lightShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
         alertView.addAction(lightShuffleAction)
-        let darkShuffleAction = UIAlertAction(title: "ダークテーマから", style: .default){action in
+        let darkShuffleAction = UIAlertAction(title: "ダークテーマからおまかせ", style: .default){action in
             var themeNo = Int(UchicockStyle.no)!
             while themeNo == Int(UchicockStyle.no)!{
                 themeNo = [1,3,5,7,10,12,14,16,18,19,21,23,25].randomElement()!

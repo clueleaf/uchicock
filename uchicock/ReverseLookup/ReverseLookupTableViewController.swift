@@ -785,24 +785,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientSuggestTableView.reloadData()
         ingredientSuggestList.removeAll()
         
-        for ingredient in ingredientList! {
-            ingredientSuggestList.append(IngredientBasic(
-                id: ingredient.id,
-                name: ingredient.ingredientName,
-                nameYomi: ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                stockFlag: ingredient.stockFlag,
-                category: ingredient.category,
-                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                usedRecipeNum: ingredient.recipeIngredients.count
-            ))
-        }
-        
         let convertedSearchText = text.convertToYomi().katakanaLowercasedForSearch()
-        if text.withoutEndsSpace() != "" {
-            ingredientSuggestList.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                ($0.name.contains(text) == false)
+        for ingredient in ingredientList! {
+            if text.withoutEndsSpace() == "" ||
+            ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
+            ingredient.katakanaLowercasedNameForSearch.contains(text){
+                let ib = IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: ingredient.ingredientNameYomi,
+                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
+                    stockFlag: ingredient.stockFlag,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usedRecipeNum: ingredient.recipeIngredients.count
+                )
+                ingredientSuggestList.append(ib)
             }
         }
         

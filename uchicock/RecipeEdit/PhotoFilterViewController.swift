@@ -10,19 +10,18 @@ import UIKit
 
 class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet weak var imageScrollView: UIScrollView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var filterScrollView: CustomScrollView!
+    @IBOutlet weak var filterStackView: UIStackView!
+    
     var image : UIImage!
     var originalImageView: UIImageView!
     var smallCIImage : CIImage?
     var transitionHandler: PhotoFilterDismissalTransitioningHandler?
-    var statuBarStyle = UchicockStyle.statusBarStyle
 
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var filterScrollView: CustomScrollView!
-    @IBOutlet weak var filterStackView: UIStackView!
-    
+    var statuBarStyle = UchicockStyle.statusBarStyle
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statuBarStyle
     }
@@ -48,70 +47,53 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 17.5
-        button.setTitleColor(UIColor.white, for: .normal)
-
-        titleLabel.textColor = UIColor.white
-        
         imageView.image = image
-        smallCIImage = image.resizedCGImage(maxLongSide: 300)
-        setupScrollView()
-        setupGestureRecognizers()
-        setupTransitions()
-    }
-    
-    private func setupScrollView() {
+
+        confirmButton.layer.borderColor = UIColor.white.cgColor
+        confirmButton.layer.borderWidth = 1.0
+        confirmButton.layer.cornerRadius = 17.5
+        confirmButton.setTitleColor(UIColor.white, for: .normal)
+
+        smallCIImage = image.resizedCGImage(maxLongSide: 150)
+
         filterScrollView.indicatorStyle = .white
         imageScrollView.indicatorStyle = .white
         imageScrollView.decelerationRate = UIScrollView.DecelerationRate.fast
-        imageScrollView.alwaysBounceVertical = true
-        imageScrollView.alwaysBounceHorizontal = true
-    }
-    
-    private func setupGestureRecognizers() {
+
         let doubleTapGestureRecognizer = UITapGestureRecognizer()
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.addTarget(self, action: #selector(imageViewDoubleTapped))
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
-    }
-    
-    private func setupTransitions() {
+
         transitionHandler = PhotoFilterDismissalTransitioningHandler(fromImageView: self.imageView, toImageView: originalImageView)
         self.transitioningDelegate = transitionHandler
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addFilterButtons()
-    }
-    
-    func addFilterButtons(){
+        
+        guard let smim = smallCIImage else { return }
+        
         for i in 0..<CIFilterNames.count {
             let filterButton = UIButton(type: .custom)
             filterButton.layer.cornerRadius = 10
             filterButton.clipsToBounds = true
             filterButton.tag = i
             filterButton.addTarget(self, action: #selector(PhotoFilterViewController.filterButtonTapped(sender:)), for: .touchUpInside)
-            
+            filterButton.layer.borderColor = UIColor.white.cgColor
+
             if i == 0{
-                filterButton.layer.borderColor = UIColor.white.cgColor
                 filterButton.layer.borderWidth = 2.0
-                if let smim = self.smallCIImage{
-                    let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
-                    filterButton.setImage(filteredImage, for: .normal)
-                    filterButton.imageView?.contentMode = .scaleAspectFill
-                }
+                let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
+                filterButton.setImage(filteredImage, for: .normal)
+                filterButton.imageView?.contentMode = .scaleAspectFill
             }else{
                 filterButton.layer.borderWidth = 0
-                if let smim = self.smallCIImage{
-                    DispatchQueue.global(qos: .userInteractive).async{
-                        let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
-                        DispatchQueue.main.async{
-                            filterButton.setImage(filteredImage, for: .normal)
-                            filterButton.imageView?.contentMode = .scaleAspectFill
-                        }
+                DispatchQueue.global(qos: .userInteractive).async{
+                    let filteredImage = self.filteredImage(filterNumber: i, originalImage: smim)
+                    DispatchQueue.main.async{
+                        filterButton.setImage(filteredImage, for: .normal)
+                        filterButton.imageView?.contentMode = .scaleAspectFill
                     }
                 }
             }
@@ -145,7 +127,6 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
                 b.layer.borderWidth = 0
             }
         }
-        sender.layer.borderColor = UIColor.white.cgColor
         sender.layer.borderWidth = 2.0
     }
     
@@ -165,7 +146,6 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         }, completion: { _ in
             self.performSegue(withIdentifier: "FilterFinished", sender: self)
         })
-
     }
     
     // MARK: - UIScrollViewDelegate
@@ -181,28 +161,27 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         scrollView.contentInset = UIEdgeInsets(top: verticalInsets, left: horizontalInsets, bottom: verticalInsets, right: horizontalInsets)
     }
 
-    // MARK: - Process Image
+    // MARK: - Logic functions
     private func filteredImage(filterNumber: Int, originalImage: CIImage) -> UIImage{
-        let ciContext = CIContext(options: nil)
         var filteredImageData : CIImage? = nil
         
         switch CIFilterNames[filterNumber]{
         case "Original":
             filteredImageData = originalImage
-        case "Dimming":
-            filteredImageData = applyDimmingFilter(ciImage: originalImage)
-        case "Traumerei":
-            filteredImageData = applyTraumereiFilter(ciImage: originalImage)
-        case "Arpeggio":
-            filteredImageData = applyArpeggioFilter(ciImage: originalImage)
-        case "Nashville":
-            filteredImageData = applyNashvilleFilter(foregroundImage: originalImage)
         case "Clarendon":
             filteredImageData = applyClarendonFilter(foregroundImage: originalImage)
-        case "1977":
-            filteredImageData = apply1977Filter(ciImage: originalImage)
         case "Toaster":
             filteredImageData = applyToasterFilter(ciImage: originalImage)
+        case "1977":
+            filteredImageData = apply1977Filter(ciImage: originalImage)
+        case "Nashville":
+            filteredImageData = applyNashvilleFilter(foregroundImage: originalImage)
+        case "Dimming":
+            filteredImageData = applyDimmingFilter(ciImage: originalImage)
+        case "Arpeggio":
+            filteredImageData = applyArpeggioFilter(ciImage: originalImage)
+        case "Traumerei":
+            filteredImageData = applyTraumereiFilter(ciImage: originalImage)
         default:
             let filter = CIFilter(name: "\(CIFilterNames[filterNumber])")
             if let fil = filter {
@@ -212,6 +191,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
             }
         }
         
+        let ciContext = CIContext(options: nil)
         if let fimg = filteredImageData{
             let filteredImageRef = ciContext.createCGImage(fimg, from: fimg.extent)
             return UIImage(cgImage: filteredImageRef!)

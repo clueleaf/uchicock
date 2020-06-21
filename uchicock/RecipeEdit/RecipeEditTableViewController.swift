@@ -429,16 +429,16 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeIngredientEditNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeIngredientEditTableViewController
 
+        var isAddMode = true
         if indexPath.row < recipeIngredientList.count{
             vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
-            vc.isAddMode = false
-        }else if indexPath.row == recipeIngredientList.count{
-            vc.isAddMode = true
+            isAddMode = false
         }
-        
-        vc.onDoneBlock = { isCancel, deleteFlag, isAddMode, ingredientName, amount, category, mustFlag in
-            if isCancel == false{
-                if isAddMode && deleteFlag == false{
+
+        vc.onDoneBlock = { shouldDelete, ingredientName, amount, category, mustFlag in
+            if ingredientName != ""{
+                switch  (isAddMode, shouldDelete) {
+                case let (isAddMode, _) where isAddMode == true:
                     // 材料新規追加
                     self.showCancelAlert = true
                     let recipeIngredient = RecipeIngredientBasic(
@@ -462,33 +462,35 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                         self.selectedIndexPath = IndexPath(row: self.selectedIndexPath!.row + 1, section: self.selectedIndexPath!.section)
                     }
                     self.setAddIngredientLabel()
-                }else{
-                    if deleteFlag{
-                        // 既存材料削除
-                        self.showCancelAlert = true
-                        let list = self.createDuplicatedIngredientIndexPathList()
-                        self.recipeIngredientList[indexPath.row].ingredientName = ""
-                        self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
-                        for i in 0 ..< list.count where list[i] != indexPath {
-                            self.tableView.reloadRows(at: [list[i]], with: .none)
-                        }
-                        self.recipeIngredientList.remove(at: indexPath.row)
-                        self.tableView.deleteRows(at: [indexPath], with: .middle)
-                        
-                        self.selectedIndexPath = nil
-                        self.setAddIngredientLabel()
-                    }else{
-                        // 既存材料編集
-                        if indexPath.row < self.recipeIngredientList.count{
-                            self.showCancelAlert = true
-                            self.recipeIngredientList[indexPath.row].ingredientName = ingredientName
-                            self.recipeIngredientList[indexPath.row].amount = amount
-                            self.recipeIngredientList[indexPath.row].mustFlag = mustFlag
-                            self.recipeIngredientList[indexPath.row].category = category
-                        }
-                        self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
-                        self.tableView.reloadData()
+                    
+                case let (isAddMode, shouldDelete) where isAddMode == false && shouldDelete == true:
+                    // 既存材料削除
+                    self.showCancelAlert = true
+                    let list = self.createDuplicatedIngredientIndexPathList()
+                    self.recipeIngredientList[indexPath.row].ingredientName = ""
+                    self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
+                    for i in 0 ..< list.count where list[i] != indexPath {
+                        self.tableView.reloadRows(at: [list[i]], with: .none)
                     }
+                    self.recipeIngredientList.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .middle)
+                    
+                    self.selectedIndexPath = nil
+                    self.setAddIngredientLabel()
+                    
+                case let (isAddMode, shouldDelete) where isAddMode == false && shouldDelete == false:
+                    // 既存材料編集
+                    if indexPath.row < self.recipeIngredientList.count{
+                        self.showCancelAlert = true
+                        self.recipeIngredientList[indexPath.row].ingredientName = ingredientName
+                        self.recipeIngredientList[indexPath.row].amount = amount
+                        self.recipeIngredientList[indexPath.row].mustFlag = mustFlag
+                        self.recipeIngredientList[indexPath.row].category = category
+                    }
+                    self.duplicatedIngredientIndexPathList = self.createDuplicatedIngredientIndexPathList()
+                    self.tableView.reloadData()
+                    
+                default: break
                 }
             }
             

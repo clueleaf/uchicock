@@ -64,7 +64,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     var allRecipeList: Results<Recipe>?
     var similarRecipeList = Array<SimilarRecipeBasic>()
     var displaySimilarRecipeList = Array<SimilarRecipeBasic>()
-    let queue = DispatchQueue(label: "queue", qos: .userInteractive)
     
     let interactor = Interactor()
 
@@ -455,7 +454,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             ))
         }
         
-        queue.async {
+        DispatchQueue.global(qos: .userInteractive).async{
             self.rateSimilarity()
 
             DispatchQueue.main.async {
