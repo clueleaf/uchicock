@@ -34,8 +34,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     )
     var ingredientList: Results<Ingredient>?
 
-    var isCanceled = true
-    var shouldDelete = false
+    var editResult = RecipeIngredientEditResult.cancel
     var firstShow = false
     var suggestList = Array<IngredientSuggestBasic>()
     let selectedCellBackgroundView = UIView()
@@ -46,7 +45,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         return UchicockStyle.statusBarStyle
     }
     
-    var onDoneBlock: ((Bool, String, String, Int, Bool) -> Void) = {shouldDelete, ingredientName, amount, category, mustFlag in }
+    var onDoneBlock: ((RecipeIngredientEditResult, String, String, Int, Bool) -> Void) = {editResult, ingredientName, amount, category, mustFlag in }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -130,12 +129,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     // 大事な処理はviewDidDisappearの中でする
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if (recipeIngredient.ingredientName != "" && isCanceled == false) ||
-            (recipeIngredient.ingredientName == "" && isCanceled == false && shouldDelete == false){
-            onDoneBlock(self.shouldDelete, self.ingredientNameTextField.text!.withoutEndsSpace(), self.amountTextField.text!.withoutEndsSpace(), self.recipeIngredient.category, (self.optionCheckbox.checkState != .checked))
-        }else{
-            onDoneBlock(false, "", "", -1, false)
-        }
+        onDoneBlock(self.editResult, self.ingredientNameTextField.text!.withoutEndsSpace(), self.amountTextField.text!.withoutEndsSpace(), self.recipeIngredient.category, (self.optionCheckbox.checkState != .checked))
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -268,10 +262,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                 alertView.overrideUserInterfaceStyle = .dark
             }
             var title = "外す"
-            if recipeIngredient.ingredientName == "" { title = "追加をやめる" }
-            let stopAction = UIAlertAction(title: title,style: .destructive){action in
-                self.shouldDelete = true
-                self.isCanceled = false
+            if recipeIngredient.ingredientName == "" {
+                title = "追加をやめる"
+            }
+            let stopAction = UIAlertAction(title: title ,style: .destructive){action in
+                self.editResult = self.recipeIngredient.ingredientName == "" ? .cancel : .remove
                 self.dismiss(animated: true, completion: nil)
             }
             stopAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
@@ -279,6 +274,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
             cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
             alertView.addAction(cancelAction)
+            
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
@@ -374,6 +370,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        editResult = .cancel
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -408,8 +405,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             MessageHUD.show("材料を登録しました", for: 2.0, withCheckmark: true, isCenter: true)
         }
         self.recipeIngredient.category = categoryNum
-        self.shouldDelete = false
-        self.isCanceled = false
+        self.editResult = self.recipeIngredient.ingredientName == "" ? .add : .edit
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -443,8 +439,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         let sameNameIngredient = realm.objects(Ingredient.self).filter("ingredientName == %@", ingredientNameTextField.text!.withoutEndsSpace())
         guard sameNameIngredient.count == 0 else{
             self.recipeIngredient.category = sameNameIngredient.first!.category
-            self.shouldDelete = false
-            self.isCanceled = false
+            self.editResult = self.recipeIngredient.ingredientName == "" ? .add : .edit
             self.dismiss(animated: true, completion: nil)
             return
         }
@@ -481,4 +476,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.view.endEditing(true)
     }
     
+}
+
+enum RecipeIngredientEditResult {
+    case add
+    case edit
+    case remove
+    case cancel
 }
