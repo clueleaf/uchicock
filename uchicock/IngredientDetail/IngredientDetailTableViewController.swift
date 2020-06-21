@@ -39,7 +39,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
     let selectedCellBackgroundView = UIView()
     var selectedRecipeId: String? = nil
-    var recipeDisplayOrder = 2
+    var recipeSort = RecipeSortType.makeableName
 
     let interactor = Interactor()
 
@@ -290,10 +290,10 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             ))
         }
         
-        switch  recipeDisplayOrder {
-        case 1:
+        switch recipeSort {
+        case .name:
             ingredientRecipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        case 2:
+        case .makeableName:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -301,7 +301,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return a.shortageNum < b.shortageNum
                 }
             }
-        case 3:
+        case .madenumName:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -309,7 +309,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return a.madeNum > b.madeNum
                 }
             }
-        case 4:
+        case .favoriteName:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -317,7 +317,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                     return a.favorites > b.favorites
                 }
             }
-        case 5:
+        case .viewedName:
             ingredientRecipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
@@ -334,7 +334,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 }
             })
         default:
-            ingredientRecipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.shortageNum == b.shortageNum {
+                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                }else{
+                    return a.shortageNum < b.shortageNum
+                }
+            }
         }
     }
     
@@ -424,13 +430,13 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         var title4 = "お気に入り順"
         var title5 = "最近見た順"
         
-        switch self.recipeDisplayOrder {
-        case 1: title1 = "✔︎ 名前順"
-        case 2: title2 = "✔︎ 作れる順"
-        case 3: title3 = "✔︎ 作った回数順"
-        case 4: title4 = "✔︎ お気に入り順"
-        case 5: title5 = "✔︎ 最近見た順"
-        default: break
+        switch recipeSort {
+        case .name: title1 = "✔︎ 名前順"
+        case .makeableName: title2 = "✔︎ 作れる順"
+        case .madenumName: title3 = "✔︎ 作った回数順"
+        case .favoriteName: title4 = "✔︎ お気に入り順"
+        case .viewedName: title5 = "✔︎ 最近見た順"
+        default: title2 = "✔︎ 作れる順"
         }
         
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -439,7 +445,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
         let action1 = UIAlertAction(title: title1, style: .default){
             action in
-            self.recipeDisplayOrder = 1
+            self.recipeSort = .name
             self.reloadIngredientRecipeBasicList()
             self.tableView.reloadData()
         }
@@ -447,7 +453,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         alertView.addAction(action1)
         let action2 = UIAlertAction(title: title2, style: .default){
             action in
-            self.recipeDisplayOrder = 2
+            self.recipeSort = .makeableName
             self.reloadIngredientRecipeBasicList()
             self.tableView.reloadData()
         }
@@ -455,7 +461,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         alertView.addAction(action2)
         let action3 = UIAlertAction(title: title3, style: .default){
             action in
-            self.recipeDisplayOrder = 3
+            self.recipeSort = .madenumName
             self.reloadIngredientRecipeBasicList()
             self.tableView.reloadData()
         }
@@ -463,7 +469,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         alertView.addAction(action3)
         let action4 = UIAlertAction(title: title4, style: .default){
             action in
-            self.recipeDisplayOrder = 4
+            self.recipeSort = .favoriteName
             self.reloadIngredientRecipeBasicList()
             self.tableView.reloadData()
         }
@@ -471,7 +477,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         alertView.addAction(action4)
         let action5 = UIAlertAction(title: title5, style: .default){
             action in
-            self.recipeDisplayOrder = 5
+            self.recipeSort = .viewedName
             self.reloadIngredientRecipeBasicList()
             self.tableView.reloadData()
         }
@@ -532,14 +538,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
 
             if indexPath.row > 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-                
-                if recipeDisplayOrder == 3{
-                    cell.subInfoType = 1
-                }else if recipeDisplayOrder == 5{
-                    cell.subInfoType = 2
-                }else{
-                    cell.subInfoType = 0
-                }
+                cell.sortOrder = recipeSort
                 cell.shouldHighlightOnlyWhenAvailable = true
                 cell.recipe = ingredientRecipeBasicList[indexPath.row - 1]
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -547,12 +546,12 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 return cell
             }else{
                 let cell = super.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                switch recipeDisplayOrder{
-                case 1: recipeDisplayOrderLabel.text = "名前順（タップで変更）"
-                case 2: recipeDisplayOrderLabel.text = "作れる順（タップで変更）"
-                case 3: recipeDisplayOrderLabel.text = "作った回数順（タップで変更）"
-                case 4: recipeDisplayOrderLabel.text = "お気に入り順（タップで変更）"
-                case 5: recipeDisplayOrderLabel.text = "最近見た順（タップで変更）"
+                switch recipeSort{
+                case .name: recipeDisplayOrderLabel.text = "名前順（タップで変更）"
+                case .makeableName: recipeDisplayOrderLabel.text = "作れる順（タップで変更）"
+                case .madenumName: recipeDisplayOrderLabel.text = "作った回数順（タップで変更）"
+                case .favoriteName: recipeDisplayOrderLabel.text = "お気に入り順（タップで変更）"
+                case .viewedName: recipeDisplayOrderLabel.text = "最近見た順（タップで変更）"
                 default: recipeDisplayOrderLabel.text = "作れる順（タップで変更）"
                 }
                 cell.backgroundColor = UchicockStyle.basicBackgroundColor

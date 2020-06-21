@@ -37,8 +37,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     var hasNonExistingIngredient2 = false
     var hasNonExistingIngredient3 = false
 
-    var recipeSortPrimary = 1
-    var recipeSortSecondary = 0
+    var sortOrder = RecipeSortType.name
     var recipeFilterStar: [Int] = []
     var recipeFilterStyle: [Int] = []
     var recipeFilterMethod: [Int] = []
@@ -232,8 +231,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         recipeFilterStrength.removeAll()
 
         let defaults = UserDefaults.standard
-        recipeSortPrimary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortPrimaryKey)
-        recipeSortSecondary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortSecondaryKey)
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar0Key) { recipeFilterStar.append(0) }
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar1Key) { recipeFilterStar.append(1) }
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStar2Key) { recipeFilterStar.append(2) }
@@ -252,7 +249,25 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterMediumKey) { recipeFilterStrength.append(2) }
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrongKey) { recipeFilterStrength.append(3) }
         if defaults.bool(forKey: GlobalConstants.ReverseLookupFilterStrengthNoneKey) { recipeFilterStrength.append(4) }
-
+        let sortPrimary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortPrimaryKey)
+        let sortSecondary = defaults.integer(forKey: GlobalConstants.ReverseLookupSortSecondaryKey)
+        switch (sortPrimary, sortSecondary) {
+        case let (primary, _) where primary == 1: sortOrder = .name
+        case let (primary, secondary) where primary == 2 && secondary == 1: sortOrder = .makeableName
+        case let (primary, secondary) where primary == 2 && secondary == 3: sortOrder = .makeableMadenumName
+        case let (primary, secondary) where primary == 2 && secondary == 4: sortOrder = .makeableFavoriteName
+        case let (primary, secondary) where primary == 2 && secondary == 5: sortOrder = .makeableViewdName
+        case let (primary, secondary) where primary == 3 && secondary == 1: sortOrder = .madenumName
+        case let (primary, secondary) where primary == 3 && secondary == 2: sortOrder = .madenumMakeableName
+        case let (primary, secondary) where primary == 3 && secondary == 4: sortOrder = .madenumFavoriteName
+        case let (primary, secondary) where primary == 3 && secondary == 5: sortOrder = .madenumViewedName
+        case let (primary, secondary) where primary == 4 && secondary == 1: sortOrder = .favoriteName
+        case let (primary, secondary) where primary == 4 && secondary == 2: sortOrder = .favoriteMakeableName
+        case let (primary, secondary) where primary == 4 && secondary == 3: sortOrder = .favoriteMadenumName
+        case let (primary, secondary) where primary == 4 && secondary == 5: sortOrder = .favoriteViewedName
+        case let (primary, _) where primary == 5: sortOrder = .viewedName
+        default: sortOrder = .name
+        }
 
         if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
             ingredientTextField1.text = first.withoutEndsSpace()
@@ -278,24 +293,21 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     private func setSearchConditionButtonTitle(){
         var conditionText = ""
         
-        switch recipeSortPrimary{
-        case 1: conditionText = "名前順"
-        case 2: conditionText = "作れる順"
-        case 3: conditionText = "作った回数順"
-        case 4: conditionText = "お気に入り順"
-        case 5: conditionText = "最近見た順"
-        default: conditionText = "名前順"
-        }
-        
-        if recipeSortPrimary > 1 && recipeSortPrimary < 5{
-            switch recipeSortSecondary{
-            case 1: conditionText += " > 名前順"
-            case 2: conditionText += " > 作れる順"
-            case 3: conditionText += " > 作った回数順"
-            case 4: conditionText += " > お気に入り順"
-            case 5: conditionText += " > 最近見た順"
-            default: conditionText += " > 名前順"
-            }
+        switch sortOrder{
+        case .name: conditionText = "名前順"
+        case .makeableName: conditionText = "作れる順 > 名前順"
+        case .makeableMadenumName: conditionText = "作れる順 > 作った回数順"
+        case .makeableFavoriteName: conditionText = "作れる順 > お気に入り順"
+        case .makeableViewdName: conditionText = "作れる順 > 最近見た順"
+        case .madenumName: conditionText = "作った回数順 > 名前順"
+        case .madenumMakeableName: conditionText = "作った回数順 > 作れる順"
+        case .madenumFavoriteName: conditionText = "作った回数順 > お気に入り順"
+        case .madenumViewedName: conditionText = "作った回数順 > 最近見た順"
+        case .favoriteName: conditionText = "お気に入り順 > 名前順"
+        case .favoriteMakeableName: conditionText = "お気に入り順 > 作れる順"
+        case .favoriteMadenumName: conditionText = "お気に入り順 > 作った回数順"
+        case .favoriteViewedName: conditionText = "お気に入り順 > 最近見た順"
+        case .viewedName: conditionText = "最近見た順"
         }
         
         if ([0,1,2,3].allSatisfy(recipeFilterStar.contains) && [0,1,2,3].allSatisfy(recipeFilterStyle.contains) &&
@@ -426,10 +438,10 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     }
     
     private func sortRecipeBasicList(){
-        switch (recipeSortPrimary, recipeSortSecondary){
-        case let (primary, _) where primary == 1: // 名前順
+        switch sortOrder{
+        case .name:
             recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        case let (primary, secondary) where primary == 2 && secondary == 1: // 作れる順 > 名前順
+        case .makeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -437,7 +449,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 3: // 作れる順 > 作った回数順 > 名前順
+        case .makeableMadenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.madeNum == b.madeNum{
@@ -449,7 +461,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 4: // 作れる順 > お気に入り順 > 名前順
+        case .makeableFavoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.favorites == b.favorites{
@@ -461,7 +473,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 5: // 作れる順 > 最近見た順 > 名前順
+        case .makeableViewdName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.lastViewDate == nil{
@@ -481,7 +493,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 1: // 作った回数順 > 名前順
+        case .madenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -489,7 +501,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 2: // 作った回数順 > 作れる順 > 名前順
+        case .madenumMakeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.shortageNum == b.shortageNum{
@@ -501,7 +513,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 4: // 作った回数順 > お気に入り順 > 名前順
+        case .madenumFavoriteName: // 作った回数順 > お気に入り順 > 名前順
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.favorites == b.favorites{
@@ -513,7 +525,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 5: // 作った回数順 > 最近見た順 > 名前順
+        case .madenumViewedName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.lastViewDate == nil{
@@ -533,7 +545,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 1: // お気に入り順 > 名前順
+        case .favoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -541,7 +553,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 2: // お気に入り順 > 作れる順 > 名前順
+        case .favoriteMakeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.shortageNum == b.shortageNum{
@@ -553,7 +565,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 3: // お気に入り順 > 作った回数順 > 名前順
+        case .favoriteMadenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.madeNum == b.madeNum {
@@ -565,7 +577,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 5: // お気に入り順 > 最近見た順 > 名前順
+        case .favoriteViewedName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.lastViewDate == nil{
@@ -585,24 +597,22 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, _) where primary == 5: // 最近見た順 > 名前順
-        recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-            if a.lastViewDate == nil{
-                if b.lastViewDate == nil{
-                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+        case .viewedName:
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return false
+                    }
                 }else{
-                    return false
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
                 }
-            }else{
-                if b.lastViewDate == nil{
-                    return true
-                }else{
-                    return a.lastViewDate! > b.lastViewDate!
-                }
-            }
-        })
-        case (_, _): // 名前順
-            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            })
         }
     }
     
@@ -958,18 +968,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             }
         }else if tableView.tag == 1{
             let cell = recipeTableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-            switch (recipeSortPrimary, recipeSortSecondary){
-            case let (primary, secondary) where primary == 2 && secondary == 3:
-                cell.subInfoType = 1
-            case let (primary, secondary) where primary == 2 && secondary == 5:
-                cell.subInfoType = 2
-            case let (primary, _) where primary == 3:
-                cell.subInfoType = 1
-            case let (primary, _) where primary == 5:
-                cell.subInfoType = 2
-            case (_, _):
-                cell.subInfoType = 0
-            }
+            cell.sortOrder = sortOrder
             cell.recipe = recipeBasicList[indexPath.row]
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView

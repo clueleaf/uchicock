@@ -433,8 +433,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             vc.recipeIngredient = self.recipeIngredientList[indexPath.row]
         }
 
-        vc.onDoneBlock = { editResult, ingredientName, amount, category, mustFlag in
-            switch  editResult {
+        vc.onDoneBlock = { editType, ingredientName, amount, category, mustFlag in
+            switch editType {
             case .add:
                 // 材料新規追加
                 self.showCancelAlert = true
@@ -455,9 +455,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 self.tableView.reloadRows(at: self.duplicatedIngredientIndexPathList, with: .none)
                     
                 self.tableView.scrollToRow(at: IndexPath(row: self.recipeIngredientList.count, section: indexPath.section), at: .bottom, animated: true)
-                if self.selectedIndexPath != nil{
-                    self.selectedIndexPath = IndexPath(row: self.selectedIndexPath!.row + 1, section: self.selectedIndexPath!.section)
-                }
+                self.selectedIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
                 self.setAddIngredientLabel()
                     
             case .remove:
@@ -1077,13 +1075,11 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let VC = presentedNVC?.visibleViewController!
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
         
-        if let VC = VC{
-            if VC.isKind(of: TipViewController.self){
-                pc.xMargin = 60
-                pc.yMargin = 160
-                pc.canDismissWithOverlayViewTouch = true
-                return pc
-            }
+        if let VC = VC, VC.isKind(of: TipViewController.self){
+            pc.xMargin = 60
+            pc.yMargin = 160
+            pc.canDismissWithOverlayViewTouch = true
+            return pc
         }
         pc.xMargin = 20
         pc.yMargin = 40
@@ -1096,12 +1092,10 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let VC = dismissedNVC?.visibleViewController!
         let animator = DismissModalAnimator()
         
-        if let VC = VC {
-            if VC.isKind(of: TipViewController.self){
-                animator.xMargin = 60
-                animator.yMargin = 160
-                return animator
-            }
+        if let VC = VC, VC.isKind(of: TipViewController.self){
+            animator.xMargin = 60
+            animator.yMargin = 160
+            return animator
         }
         animator.xMargin = 20
         animator.yMargin = 40

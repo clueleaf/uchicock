@@ -18,6 +18,7 @@
 		9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */; };
 		9B1638C322A7E17100B7C3A7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */; };
 		9B18128E1CD3BC1900717E4F /* RecoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */; };
+		9B1E6BE8249FBF6B00A35AD1 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1E6BE7249FBF6B00A35AD1 /* Enums.swift */; };
 		9B22FEAC22A1872100D716E3 /* FlatColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B22FEAB22A1872100D716E3 /* FlatColor.swift */; };
 		9B2573232349F0A400F732A1 /* ChangeImageSizeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */; };
 		9B2E83CE230A9EF5002E7946 /* IntroductionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */; };
@@ -163,6 +164,7 @@
 		9B1638BC22A7E17000B7C3A7 /* CustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClasses.swift; sourceTree = "<group>"; };
 		9B1638BE22A7E17000B7C3A7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		9B18128D1CD3BC1900717E4F /* RecoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverTableViewController.swift; path = Recover/RecoverTableViewController.swift; sourceTree = "<group>"; };
+		9B1E6BE7249FBF6B00A35AD1 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9B22FEAB22A1872100D716E3 /* FlatColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlatColor.swift; path = Settings/FlatColor.swift; sourceTree = "<group>"; };
 		9B2573222349F0A400F732A1 /* ChangeImageSizeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeImageSizeTableViewController.swift; path = Settings/ChangeImageSizeTableViewController.swift; sourceTree = "<group>"; };
 		9B2E83CC230A9EF4002E7946 /* IntroductionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroductionDetailViewController.swift; path = Util/Introduction/IntroductionDetailViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				9BA727A123DD5F6400CFFE78 /* NotificationExtension.swift */,
 				9BD467B5232B8CBD00312923 /* ImageUtil.swift */,
 				9BB12BB52344EEDE005EB43F /* GlobalConstants.swift */,
+				9B1E6BE7249FBF6B00A35AD1 /* Enums.swift */,
 				9B8A34AB22B15DCF0085B1EC /* Introduction */,
 				9B4454DA2302D4DF00D1458A /* CircularCheckbox */,
 				9B43304922B29AF70010C89B /* ImageViewer */,
@@ -949,6 +952,7 @@
 				9B0E3DFF23FAE37100D7F22A /* AlcoholCalcIngredientTableViewCell.swift in Sources */,
 				9B9A7D9E240AC05700BC46DE /* FullScreenPopGesture.swift in Sources */,
 				9B3078F51CA422890014CE7E /* IngredientEditTableViewController.swift in Sources */,
+				9B1E6BE8249FBF6B00A35AD1 /* Enums.swift in Sources */,
 				9B1638C122A7E17100B7C3A7 /* CustomClasses.swift in Sources */,
 				9B0E3DFD23FADB6200D7F22A /* AlcoholCalcViewController.swift in Sources */,
 				9BEC4C152351E9FA004FE9B4 /* LaunchViewController.swift in Sources */,

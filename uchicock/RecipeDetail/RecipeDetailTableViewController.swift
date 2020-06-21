@@ -1281,7 +1281,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             pc.canDismissWithOverlayViewTouch = true
             return pc
         }
-        
         pc.xMargin = 20
         pc.yMargin = 40
         pc.canDismissWithOverlayViewTouch = false
@@ -1298,7 +1297,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             animator.yMargin = 160
             return animator
         }
-
         animator.xMargin = 20
         animator.yMargin = 40
         return animator

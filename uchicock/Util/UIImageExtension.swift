@@ -28,7 +28,7 @@ extension UIImage{
     }
     
     func resizedCGImage(maxLongSide: CGFloat) -> CIImage? {
-        if  self.size.width <= maxLongSide && self.size.height <= maxLongSide {
+        if self.size.width <= maxLongSide && self.size.height <= maxLongSide {
             return CIImage(image: self)
         }
         

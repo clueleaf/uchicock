@@ -18,7 +18,7 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var shortageLabel: UILabel!
     
     var shouldHighlightOnlyWhenAvailable = false
-    var subInfoType = 0
+    var sortOrder = RecipeSortType.name
     
     var recipe: RecipeBasic? = nil{
         didSet{
@@ -48,24 +48,15 @@ class RecipeTableViewCell: UITableViewCell {
                 recipeNameLabel.textColor = UchicockStyle.labelTextColorLight
             }
 
-            switch subInfoType{
-            case 0: // お気に入り
-                switch recipe!.favorites{
-                case 0: subInfoLabel.text = ""
-                case 1: subInfoLabel.text = "★"
-                case 2: subInfoLabel.text = "★★"
-                case 3: subInfoLabel.text = "★★★"
-                default: subInfoLabel.text = ""
-                }
-                subInfoLabel.textColor = UchicockStyle.primaryColor
-            case 1: // 作った回数
+            switch sortOrder{
+            case .makeableMadenumName, .madenumName, .madenumMakeableName, .madenumFavoriteName, .madenumViewedName:
                 subInfoLabel.text = String(recipe!.madeNum) + "回"
                 if recipe!.madeNum < 1{
                     subInfoLabel.textColor = UchicockStyle.labelTextColorLight
                 }else{
                     subInfoLabel.textColor = UchicockStyle.primaryColor
                 }
-            case 2: // 最近見た
+            case .makeableViewdName, .viewedName:
                 if let lastViewDate = recipe!.lastViewDate{
                     let calendar = Calendar(identifier: .gregorian)
                     if calendar.isDateInToday(lastViewDate){
@@ -81,7 +72,7 @@ class RecipeTableViewCell: UITableViewCell {
                     subInfoLabel.text = "--"
                 }
                 subInfoLabel.textColor = UchicockStyle.labelTextColorLight
-            default: // お気に入り
+            default:
                 switch recipe!.favorites{
                 case 0: subInfoLabel.text = ""
                 case 1: subInfoLabel.text = "★"

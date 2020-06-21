@@ -41,8 +41,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var scrollBeginningYPoint: CGFloat? = nil
     var textFieldHasSearchResult = false
     
-    var recipeSortPrimary = 1
-    var recipeSortSecondary = 0
+    var sortOrder = RecipeSortType.name
     var recipeFilterStar: [Int] = []
     var recipeFilterStyle: [Int] = []
     var recipeFilterMethod: [Int] = []
@@ -208,8 +207,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         recipeFilterStrength.removeAll()
 
         let defaults = UserDefaults.standard
-        recipeSortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
-        recipeSortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
         if defaults.bool(forKey: GlobalConstants.RecipeFilterStar0Key) { recipeFilterStar.append(0) }
         if defaults.bool(forKey: GlobalConstants.RecipeFilterStar1Key) { recipeFilterStar.append(1) }
         if defaults.bool(forKey: GlobalConstants.RecipeFilterStar2Key) { recipeFilterStar.append(2) }
@@ -228,29 +225,46 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         if defaults.bool(forKey: GlobalConstants.RecipeFilterMediumKey) { recipeFilterStrength.append(2) }
         if defaults.bool(forKey: GlobalConstants.RecipeFilterStrongKey) { recipeFilterStrength.append(3) }
         if defaults.bool(forKey: GlobalConstants.RecipeFilterStrengthNoneKey) { recipeFilterStrength.append(4) }
+
+        let sortPrimary = defaults.integer(forKey: GlobalConstants.RecipeSortPrimaryKey)
+        let sortSecondary = defaults.integer(forKey: GlobalConstants.RecipeSortSecondaryKey)
+        switch (sortPrimary, sortSecondary) {
+        case let (primary, _) where primary == 1: sortOrder = .name
+        case let (primary, secondary) where primary == 2 && secondary == 1: sortOrder = .makeableName
+        case let (primary, secondary) where primary == 2 && secondary == 3: sortOrder = .makeableMadenumName
+        case let (primary, secondary) where primary == 2 && secondary == 4: sortOrder = .makeableFavoriteName
+        case let (primary, secondary) where primary == 2 && secondary == 5: sortOrder = .makeableViewdName
+        case let (primary, secondary) where primary == 3 && secondary == 1: sortOrder = .madenumName
+        case let (primary, secondary) where primary == 3 && secondary == 2: sortOrder = .madenumMakeableName
+        case let (primary, secondary) where primary == 3 && secondary == 4: sortOrder = .madenumFavoriteName
+        case let (primary, secondary) where primary == 3 && secondary == 5: sortOrder = .madenumViewedName
+        case let (primary, secondary) where primary == 4 && secondary == 1: sortOrder = .favoriteName
+        case let (primary, secondary) where primary == 4 && secondary == 2: sortOrder = .favoriteMakeableName
+        case let (primary, secondary) where primary == 4 && secondary == 3: sortOrder = .favoriteMadenumName
+        case let (primary, secondary) where primary == 4 && secondary == 5: sortOrder = .favoriteViewedName
+        case let (primary, _) where primary == 5: sortOrder = .viewedName
+        default: sortOrder = .name
+        }
     }
     
     private func setSearchConditionButtonTitle(){
         var conditionText = ""
         
-        switch recipeSortPrimary{
-        case 1: conditionText = "名前順"
-        case 2: conditionText = "作れる順"
-        case 3: conditionText = "作った回数順"
-        case 4: conditionText = "お気に入り順"
-        case 5: conditionText = "最近見た順"
-        default: conditionText = "名前順"
-        }
-        
-        if recipeSortPrimary > 1 && recipeSortPrimary < 5{
-            switch recipeSortSecondary{
-            case 1: conditionText += " > 名前順"
-            case 2: conditionText += " > 作れる順"
-            case 3: conditionText += " > 作った回数順"
-            case 4: conditionText += " > お気に入り順"
-            case 5: conditionText += " > 最近見た順"
-            default: conditionText += " > 名前順"
-            }
+        switch sortOrder{
+        case .name: conditionText = "名前順"
+        case .makeableName: conditionText = "作れる順 > 名前順"
+        case .makeableMadenumName: conditionText = "作れる順 > 作った回数順"
+        case .makeableFavoriteName: conditionText = "作れる順 > お気に入り順"
+        case .makeableViewdName: conditionText = "作れる順 > 最近見た順"
+        case .madenumName: conditionText = "作った回数順 > 名前順"
+        case .madenumMakeableName: conditionText = "作った回数順 > 作れる順"
+        case .madenumFavoriteName: conditionText = "作った回数順 > お気に入り順"
+        case .madenumViewedName: conditionText = "作った回数順 > 最近見た順"
+        case .favoriteName: conditionText = "お気に入り順 > 名前順"
+        case .favoriteMakeableName: conditionText = "お気に入り順 > 作れる順"
+        case .favoriteMadenumName: conditionText = "お気に入り順 > 作った回数順"
+        case .favoriteViewedName: conditionText = "お気に入り順 > 最近見た順"
+        case .viewedName: conditionText = "最近見た順"
         }
         
         if ([0,1,2,3].allSatisfy(recipeFilterStar.contains) && [0,1,2,3].allSatisfy(recipeFilterStyle.contains) &&
@@ -298,9 +312,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func createRecipeBasicList(){
         recipeBasicList.removeAll()
         
+        let searchText = searchTextField.text!
+        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         for recipe in recipeList! {
             if recipeFilterStar.contains(recipe.favorites) && recipeFilterStyle.contains(recipe.style) &&
-                recipeFilterMethod.contains(recipe.method) && recipeFilterStrength.contains(recipe.strength){
+                recipeFilterMethod.contains(recipe.method) && recipeFilterStrength.contains(recipe.strength) &&
+                (searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" ||
+                    recipe.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
+                    recipe.recipeName.contains(searchText)){
                 recipeBasicList.append(RecipeBasic(
                     id: recipe.id,
                     name: recipe.recipeName,
@@ -319,22 +338,13 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 ))
             }
         }
-        
-        let searchText = searchTextField.text!
-        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
-        if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() != ""{
-            recipeBasicList.removeAll{
-                ($0.katakanaLowercasedNameForSearch.contains(convertedSearchText) == false) &&
-                ($0.name.contains(searchText) == false)
-            }
-        }
     }
     
     private func sortRecipeBasicList(){
-        switch (recipeSortPrimary, recipeSortSecondary){
-        case let (primary, _) where primary == 1: // 名前順
+        switch sortOrder{
+        case .name:
             recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        case let (primary, secondary) where primary == 2 && secondary == 1: // 作れる順 > 名前順
+        case .makeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -342,7 +352,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 3: // 作れる順 > 作った回数順 > 名前順
+        case .makeableMadenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.madeNum == b.madeNum{
@@ -354,7 +364,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 4: // 作れる順 > お気に入り順 > 名前順
+        case .makeableFavoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.favorites == b.favorites{
@@ -366,7 +376,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 2 && secondary == 5: // 作れる順 > 最近見た順 > 名前順
+        case .makeableViewdName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.lastViewDate == nil{
@@ -386,7 +396,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.shortageNum < b.shortageNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 1: // 作った回数順 > 名前順
+        case .madenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -394,7 +404,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 2: // 作った回数順 > 作れる順 > 名前順
+        case .madenumMakeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.shortageNum == b.shortageNum{
@@ -406,7 +416,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 3 && secondary == 4: // 作った回数順 > お気に入り順 > 名前順
+        case .madenumFavoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.favorites == b.favorites{
@@ -418,7 +428,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         return a.madeNum > b.madeNum
                     }
                 })
-        case let (primary, secondary) where primary == 3 && secondary == 5: // 作った回数順 > 最近見た順 > 名前順
+        case .madenumViewedName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.lastViewDate == nil{
@@ -438,7 +448,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.madeNum > b.madeNum
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 1: // お気に入り順 > 名前順
+        case .favoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -446,7 +456,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 2: // お気に入り順 > 作れる順 > 名前順
+        case .favoriteMakeableName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.shortageNum == b.shortageNum{
@@ -458,7 +468,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 3: // お気に入り順 > 作った回数順 > 名前順
+        case .favoriteMadenumName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.madeNum == b.madeNum {
@@ -470,7 +480,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, secondary) where primary == 4 && secondary == 5: // お気に入り順 > 最近見た順 > 名前順
+        case .favoriteViewedName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.lastViewDate == nil{
@@ -490,24 +500,22 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     return a.favorites > b.favorites
                 }
             })
-        case let (primary, _) where primary == 5: // 最近見た順 > 名前順
-        recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
-            if a.lastViewDate == nil{
-                if b.lastViewDate == nil{
-                    return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+        case .viewedName:
+            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+                if a.lastViewDate == nil{
+                    if b.lastViewDate == nil{
+                        return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
+                    }else{
+                        return false
+                    }
                 }else{
-                    return false
+                    if b.lastViewDate == nil{
+                        return true
+                    }else{
+                        return a.lastViewDate! > b.lastViewDate!
+                    }
                 }
-            }else{
-                if b.lastViewDate == nil{
-                    return true
-                }else{
-                    return a.lastViewDate! > b.lastViewDate!
-                }
-            }
-        })
-        case (_, _): //名前順
-            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            })
         }
     }
     
@@ -659,11 +667,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if recipeList == nil {
-            let realm = try! Realm()
-            recipeList = realm.objects(Recipe.self)
-            reloadRecipeBasicList()
-        }
         return recipeBasicList.count
     }
 
@@ -751,22 +754,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeTableViewCell
-        if isBookmarkMode{
-            cell.subInfoType = 0
-        }else{
-            switch (recipeSortPrimary, recipeSortSecondary){
-            case let (primary, secondary) where primary == 2 && secondary == 3:
-                cell.subInfoType = 1
-            case let (primary, secondary) where primary == 2 && secondary == 5:
-                cell.subInfoType = 2
-            case let (primary, _) where primary == 3:
-                cell.subInfoType = 1
-            case let (primary, _) where primary == 5:
-                cell.subInfoType = 2
-            case (_, _):
-                cell.subInfoType = 0
-            }
-        }
+        cell.sortOrder = isBookmarkMode ? .name : sortOrder
         cell.recipe = recipeBasicList[indexPath.row]
         cell.backgroundColor = UchicockStyle.basicBackgroundColor
         cell.selectedBackgroundView = selectedCellBackgroundView
