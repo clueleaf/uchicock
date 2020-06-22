@@ -13,15 +13,15 @@ import RealmSwift
 class ReminderTableViewController: UITableViewController {
 
     @IBOutlet weak var titleLabel: CustomLabel!
-    @IBOutlet weak var reminderTitle: CustomLabel!
-    @IBOutlet weak var reminderType: CustomSegmentedControl!
-    @IBOutlet weak var reminderTypeDescription: UILabel!
-    @IBOutlet weak var dateFlag: CircularCheckbox!
+    @IBOutlet weak var ingredientNameLabel: CustomLabel!
+    @IBOutlet weak var reminderTypeSegmentedControl: CustomSegmentedControl!
+    @IBOutlet weak var reminderTypeDescriptionLabel: UILabel!
+    @IBOutlet weak var designateDateCheckbox: CircularCheckbox!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var ingredient = Ingredient()
     
-    var reminderTypePreviousState = 0
+    var previousReminderType = 0
 
     var interactor: Interactor?
 
@@ -39,39 +39,38 @@ class ReminderTableViewController: UITableViewController {
             tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
         
-        self.navigationItem.title = "リマインダー"
         titleLabel.text = "対象材料"
-        reminderTitle.text = ingredient.ingredientName
-        dateFlag.setCheckState(.unchecked, animated: true)
-        dateFlag.boxLineWidth = 1.0
-        dateFlag.stateChangeAnimation = .expand
-        
+        ingredientNameLabel.text = ingredient.ingredientName
+        designateDateCheckbox.setCheckState(.unchecked, animated: true)
+        designateDateCheckbox.boxLineWidth = 1.0
+        designateDateCheckbox.stateChangeAnimation = .expand
+        designateDateCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+        designateDateCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+
         datePicker.datePickerMode = .dateAndTime
         datePicker.locale = Locale(identifier: "ja_JP")
         datePicker.setDate(Date(timeInterval: 60*60, since: Date()), animated: true)
-        
+        datePicker.setValue(UchicockStyle.labelTextColor, forKey: "textColor")
+        datePicker.setValue(false, forKey: "highlightsToday")
+
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        reminderType.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        reminderType.layer.borderWidth = 1.0
-        reminderType.layer.masksToBounds = true
+        reminderTypeSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        reminderTypeSegmentedControl.layer.borderWidth = 1.0
+        reminderTypeSegmentedControl.layer.masksToBounds = true
         if ingredient.reminderSetDate == nil{
-            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
-            reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
-            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
+            reminderTypeDescriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
+            reminderTypeDescriptionLabel.text = "このアプリ内の購入リマインダーに登録します"
+            reminderTypeDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
         }else{
-            reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
-            reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
-            reminderTypeDescription.textColor = UchicockStyle.primaryColor
+            reminderTypeDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
+            reminderTypeDescriptionLabel.text = "アプリ内の購入リマインダーには既に登録されています"
+            reminderTypeDescriptionLabel.textColor = UchicockStyle.primaryColor
         }
-        dateFlag.secondaryTintColor = UchicockStyle.primaryColor
-        dateFlag.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-        datePicker.setValue(UchicockStyle.labelTextColor, forKey: "textColor")
-        datePicker.setValue(false, forKey: "highlightsToday")
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -81,8 +80,8 @@ class ReminderTableViewController: UITableViewController {
         self.onDoneBlock()
     }
     
-    // MARK: - Handle Reminder
-    private func showError(_ type: String){
+    // MARK: - Logic functions
+    private func showError(type: String){
         let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
         if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
             alertView.overrideUserInterfaceStyle = .dark
@@ -104,10 +103,9 @@ class ReminderTableViewController: UITableViewController {
     
     private func createReminder(eventStore: EKEventStore, title: String) {
         let reminder = EKReminder(eventStore: eventStore)
-        
         reminder.title = title
         reminder.calendar = eventStore.defaultCalendarForNewReminders()
-        if dateFlag.checkState == .checked {
+        if designateDateCheckbox.checkState == .checked {
             reminder.dueDateComponents = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: datePicker.date)
             reminder.addAlarm(EKAlarm(absoluteDate: datePicker.date))
         }
@@ -118,14 +116,13 @@ class ReminderTableViewController: UITableViewController {
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async {
-                self.showError("リマインダー")
+                self.showError(type: "リマインダー")
             }
         }
     }
     
     private func createEvent(eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) {
         let event = EKEvent(eventStore: eventStore)
-        
         event.title = title
         event.startDate = startDate
         event.endDate = endDate
@@ -138,7 +135,7 @@ class ReminderTableViewController: UITableViewController {
             self.dismiss(animated: true, completion: nil)
         } catch {
             DispatchQueue.main.async{
-                self.showError("カレンダー")
+                self.showError(type: "カレンダー")
             }
         }
     }
@@ -148,33 +145,6 @@ class ReminderTableViewController: UITableViewController {
         if let int = interactor, int.hasStarted {
             scrollView.contentOffset.y = 0.0
         }
-    }
-    
-    // MARK: - UITableView
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 || indexPath.row == 1 {
-            return UITableView.automaticDimension
-        }else{
-            return super.tableView(tableView, heightForRowAt: indexPath)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if reminderType.selectedSegmentIndex == 0{
-            return 2
-        }else{
-            if dateFlag.checkState == .checked{
-                return 4
-            }else{
-                return 3
-            }
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.backgroundColor = UchicockStyle.basicBackgroundColor
-        return cell
     }
     
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
@@ -208,17 +178,38 @@ class ReminderTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - UITableView
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 || indexPath.row == 1 {
+            return UITableView.automaticDimension
+        }else{
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if reminderTypeSegmentedControl.selectedSegmentIndex == 0{
+            return 2
+        }else if designateDateCheckbox.checkState == .checked{
+            return 4
+        }else{
+            return 3
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
+        return cell
+    }
+    
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        self.view.endEditing(true)
-        
-        let eventStore = EKEventStore()
-        
-        if reminderType.selectedSegmentIndex == 0{
+        if reminderTypeSegmentedControl.selectedSegmentIndex == 0{
             let shouldShowHUD = ingredient.reminderSetDate == nil
             let realm = try! Realm()
             try! realm.write {
@@ -228,97 +219,97 @@ class ReminderTableViewController: UITableViewController {
                 MessageHUD.show("リマインダーへ登録しました", for: 2.0, withCheckmark: true, isCenter: true)
             }
             self.dismiss(animated: true, completion: nil)
-        }else if reminderType.selectedSegmentIndex == 1{
+        }else if reminderTypeSegmentedControl.selectedSegmentIndex == 1{
+            let eventStore = EKEventStore()
             if (EKEventStore.authorizationStatus(for: .reminder) != EKAuthorizationStatus.authorized) {
-                eventStore.requestAccess(to: .reminder, completion: {
-                    granted, error in
+                eventStore.requestAccess(to: .reminder, completion: { granted, error in
                     DispatchQueue.main.async {
-                        self.createReminder(eventStore: eventStore, title: self.reminderTitle.text!)
+                        self.createReminder(eventStore: eventStore, title: self.ingredientNameLabel.text!)
                     }
                 })
             }else{
-                createReminder(eventStore: eventStore, title: reminderTitle.text!)
+                createReminder(eventStore: eventStore, title: ingredientNameLabel.text!)
             }
-        }else if reminderType.selectedSegmentIndex == 2{
+        }else if reminderTypeSegmentedControl.selectedSegmentIndex == 2{
+            let eventStore = EKEventStore()
             let startDate = datePicker.date
             let endDate = datePicker.date
             if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-                eventStore.requestAccess(to: .event, completion: {
-                    granted, error in
+                eventStore.requestAccess(to: .event, completion: { granted, error in
                     DispatchQueue.main.async {
-                        self.createEvent(eventStore: eventStore, title: self.reminderTitle.text!, startDate: startDate, endDate: endDate)
+                        self.createEvent(eventStore: eventStore, title: self.ingredientNameLabel.text!, startDate: startDate, endDate: endDate)
                     }
                 })
             }else{
-                createEvent(eventStore: eventStore, title: reminderTitle.text!, startDate: startDate, endDate: endDate)
+                createEvent(eventStore: eventStore, title: ingredientNameLabel.text!, startDate: startDate, endDate: endDate)
             }
         }
     }
 
     @IBAction func reminderTypeTapped(_ sender: UISegmentedControl) {
-        if reminderType.selectedSegmentIndex == 0{
+        switch reminderTypeSegmentedControl.selectedSegmentIndex{
+        case 0:
             titleLabel.text = "対象材料"
-            reminderTitle.text = ingredient.ingredientName
+            ingredientNameLabel.text = ingredient.ingredientName
             if ingredient.reminderSetDate == nil{
-                reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
-                reminderTypeDescription.text = "このアプリ内の購入リマインダーに登録します"
-                reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
+                reminderTypeDescriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
+                reminderTypeDescriptionLabel.text = "このアプリ内の購入リマインダーに登録します"
+                reminderTypeDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
             }else{
-                reminderTypeDescription.font = UIFont.boldSystemFont(ofSize: 12.0)
-                reminderTypeDescription.text = "アプリ内の購入リマインダーには既に登録されています"
-                reminderTypeDescription.textColor = UchicockStyle.primaryColor
+                reminderTypeDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
+                reminderTypeDescriptionLabel.text = "アプリ内の購入リマインダーには既に登録されています"
+                reminderTypeDescriptionLabel.textColor = UchicockStyle.primaryColor
             }
 
-            if dateFlag.checkState == .checked{
+            if designateDateCheckbox.checkState == .checked{
                 tableView.deleteRows(at: [IndexPath(row: 2,section: 0), IndexPath(row: 3,section: 0)], with: .middle)
             }else{
                 tableView.deleteRows(at: [IndexPath(row: 2,section: 0)], with: .middle)
             }
-            dateFlag.setCheckState(.unchecked, animated: true)
+            designateDateCheckbox.setCheckState(.unchecked, animated: true)
 
-            dateFlag.isEnabled = false
-            reminderTypePreviousState = 0
-        }else if reminderType.selectedSegmentIndex == 1{
+            designateDateCheckbox.isEnabled = false
+            previousReminderType = 0
+        case 1:
             titleLabel.text = "タイトル"
-            reminderTitle.text = ingredient.ingredientName + "を買う"
-            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
-            reminderTypeDescription.text = "iOSのリマインダーアプリに登録します"
-            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
+            ingredientNameLabel.text = ingredient.ingredientName + "を買う"
+            reminderTypeDescriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
+            reminderTypeDescriptionLabel.text = "iOSのリマインダーアプリに登録します"
+            reminderTypeDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
 
-            if reminderTypePreviousState == 0{
+            if previousReminderType == 0{
                 tableView.insertRows(at: [IndexPath(row: 2,section: 0)], with: .middle)
             }
 
-            dateFlag.isEnabled = true
-            dateFlag.tintColor = UchicockStyle.primaryColor
-            dateFlag.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-            reminderTypePreviousState = 1
-        }else if reminderType.selectedSegmentIndex == 2{
+            designateDateCheckbox.isEnabled = true
+            designateDateCheckbox.tintColor = UchicockStyle.primaryColor
+            designateDateCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+            previousReminderType = 1
+        case 2:
             titleLabel.text = "タイトル"
-            reminderTitle.text = ingredient.ingredientName + "を買う"
-            reminderTypeDescription.font = UIFont.systemFont(ofSize: 12.0)
-            reminderTypeDescription.text = "iOSのカレンダーアプリに登録します"
-            reminderTypeDescription.textColor = UchicockStyle.labelTextColorLight
+            ingredientNameLabel.text = ingredient.ingredientName + "を買う"
+            reminderTypeDescriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
+            reminderTypeDescriptionLabel.text = "iOSのカレンダーアプリに登録します"
+            reminderTypeDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
 
-            if reminderTypePreviousState == 0{
-                dateFlag.setCheckState(.checked, animated: true)
+            if previousReminderType == 0{
+                designateDateCheckbox.setCheckState(.checked, animated: true)
                 tableView.insertRows(at: [IndexPath(row: 2,section: 0), IndexPath(row: 3,section: 0)], with: .middle)
-            }else if reminderTypePreviousState == 1{
-                if dateFlag.checkState == .unchecked{
-                    dateFlag.setCheckState(.checked, animated: true)
-                    tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
-                }
+            }else if previousReminderType == 1 && designateDateCheckbox.checkState == .unchecked{
+                designateDateCheckbox.setCheckState(.checked, animated: true)
+                tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
             }
 
-            dateFlag.isEnabled = false
-            dateFlag.tintColor = UchicockStyle.labelTextColorLight
-            dateFlag.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-            reminderTypePreviousState = 2
+            designateDateCheckbox.isEnabled = false
+            designateDateCheckbox.tintColor = UchicockStyle.labelTextColorLight
+            designateDateCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+            previousReminderType = 2
+        default: break
         }
     }
     
-    @IBAction func dateFlagTapped(_ sender: CircularCheckbox) {
-        if dateFlag.checkState == .checked{
+    @IBAction func dataCheckboxTapped(_ sender: CircularCheckbox) {
+        if designateDateCheckbox.checkState == .checked{
             tableView.insertRows(at: [IndexPath(row: 3,section: 0)], with: .middle)
         }else{
             tableView.deleteRows(at: [IndexPath(row: 3,section: 0)], with: .middle)

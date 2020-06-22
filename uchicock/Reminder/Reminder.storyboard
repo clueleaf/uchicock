@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjZ-zr-dNb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjZ-zr-dNb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="468" y="1236"/>
         </scene>
-        <!--Reminder Table View Controller-->
+        <!--リマインダー-->
         <scene sceneID="DJc-aP-Xle">
             <objects>
                 <tableViewController id="VDI-Rm-a9c" customClass="ReminderTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
@@ -145,7 +145,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="iqi-sO-1j8"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="dateFlagTapped:" destination="VDI-Rm-a9c" eventType="valueChanged" id="cYi-Wb-pLJ"/>
+                                                        <action selector="dataCheckboxTapped:" destination="VDI-Rm-a9c" eventType="valueChanged" id="ACD-8f-AY9"/>
                                                     </connections>
                                                 </view>
                                             </subviews>
@@ -187,7 +187,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="fm7-ww-hgG">
+                    <navigationItem key="navigationItem" title="リマインダー" id="fm7-ww-hgG">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="iaa-Dg-jmm">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="VDI-Rm-a9c" id="Fum-Nk-HX2"/>
@@ -200,11 +200,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateFlag" destination="Dw4-QV-nhR" id="lX9-gS-g8q"/>
                         <outlet property="datePicker" destination="DZ9-VJ-vWH" id="3Ty-AP-gU0"/>
-                        <outlet property="reminderTitle" destination="OjE-Tb-Lpg" id="rdF-4g-8VY"/>
-                        <outlet property="reminderType" destination="VmG-z6-twA" id="WmO-oO-Jqp"/>
-                        <outlet property="reminderTypeDescription" destination="MgY-fE-1uM" id="I97-9r-hX1"/>
+                        <outlet property="designateDateCheckbox" destination="Dw4-QV-nhR" id="PH7-lh-q94"/>
+                        <outlet property="ingredientNameLabel" destination="OjE-Tb-Lpg" id="B6o-Jh-vyY"/>
+                        <outlet property="reminderTypeDescriptionLabel" destination="MgY-fE-1uM" id="vBR-96-Nmp"/>
+                        <outlet property="reminderTypeSegmentedControl" destination="VmG-z6-twA" id="3Bu-s9-8t9"/>
                         <outlet property="titleLabel" destination="Haj-hg-9Uf" id="Fdm-1Z-C5I"/>
                     </connections>
                 </tableViewController>

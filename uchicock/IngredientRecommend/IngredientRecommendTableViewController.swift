@@ -65,6 +65,14 @@ class IngredientRecommendTableViewController: UITableViewController {
         }
     }
     
+    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
+    // 大事な処理はviewDidDisappearの中でする
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.onDoneBlock(selectedRecommendIngredientId)
+    }
+    
+    // MARK: - Logic function
     private func createIngredientBasicList(){
         let realm = try! Realm()
         ingredientList = realm.objects(Ingredient.self).filter("stockFlag == false")
@@ -74,20 +82,18 @@ class IngredientRecommendTableViewController: UITableViewController {
             }
         }
         for ingredient in ingredientList!{
-            ingredientBasicList.append(IngredientBasic(
-                id: ingredient.id, name:
-                ingredient.ingredientName,
-                nameYomi: ingredient.ingredientNameYomi,
-                katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                stockFlag: ingredient.stockFlag,
-                category: ingredient.category,
-                contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                usingRecipeNum: ingredient.recipeIngredients.count
-            ))
-        }
-        
-        ingredientBasicList.removeAll{
-            $0.contributionToRecipeAvailability < 2
+            if ingredient.contributionToRecipeAvailability > 1{
+                ingredientBasicList.append(IngredientBasic(
+                    id: ingredient.id,
+                    name: ingredient.ingredientName,
+                    nameYomi: "",
+                    katakanaLowercasedNameForSearch: "",
+                    stockFlag: false,
+                    category: ingredient.category,
+                    contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
+                    usingRecipeNum: ingredient.recipeIngredients.count
+                ))
+            }
         }
         ingredientBasicList.sort(by: { $0.contributionToRecipeAvailability > $1.contributionToRecipeAvailability })
 
@@ -97,9 +103,9 @@ class IngredientRecommendTableViewController: UITableViewController {
                 ingredientBasicList.append(IngredientBasic(
                     id: ingredient.id,
                     name: ingredient.ingredientName,
-                    nameYomi: ingredient.ingredientNameYomi,
-                    katakanaLowercasedNameForSearch: ingredient.katakanaLowercasedNameForSearch,
-                    stockFlag: ingredient.stockFlag,
+                    nameYomi: "",
+                    katakanaLowercasedNameForSearch: "",
+                    stockFlag: false,
                     category: ingredient.category,
                     contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
                     usingRecipeNum: ingredient.recipeIngredients.count
@@ -115,13 +121,6 @@ class IngredientRecommendTableViewController: UITableViewController {
         }
     }
     
-    // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
-    // 大事な処理はviewDidDisappearの中でする
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.onDoneBlock(selectedRecommendIngredientId)
-    }
-    
     // MARK: - UIScrollViewDelegate
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let int = interactor, int.hasStarted {
@@ -129,6 +128,37 @@ class IngredientRecommendTableViewController: UITableViewController {
         }
     }
 
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+        guard let interactor = interactor else { return }
+        let percentThreshold: CGFloat = 0.3
+        
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                interactor.update(progress)
+                break
+            case .cancelled:
+                interactor.hasStarted = false
+                interactor.cancel()
+            case .ended:
+                interactor.hasStarted = false
+                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
+            default:
+                break
+            }
+        }
+    }
+    
     // MARK: - TableView
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
@@ -184,37 +214,6 @@ class IngredientRecommendTableViewController: UITableViewController {
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
             return cell
-        }
-    }
-    
-    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
-        guard let interactor = interactor else { return }
-        let percentThreshold: CGFloat = 0.3
-        
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
-        
-        if tableView.contentOffset.y <= 0 || interactor.hasStarted{
-            switch sender.state {
-            case .began:
-                interactor.hasStarted = true
-                dismiss(animated: true, completion: nil)
-            case .changed:
-                interactor.shouldFinish = progress > percentThreshold
-                interactor.update(progress)
-                break
-            case .cancelled:
-                interactor.hasStarted = false
-                interactor.cancel()
-            case .ended:
-                interactor.hasStarted = false
-                interactor.shouldFinish ? interactor.finish() : interactor.cancel()
-            default:
-                break
-            }
         }
     }
     
