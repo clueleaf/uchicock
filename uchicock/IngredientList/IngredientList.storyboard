@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vnn-gI-eCW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vnn-gI-eCW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -116,7 +116,7 @@
                                             <segment title="在庫なし"/>
                                         </segments>
                                         <connections>
-                                            <action selector="stockStateTapped:" destination="15U-YU-usX" eventType="valueChanged" id="fW6-7Y-iul"/>
+                                            <action selector="segmentedControlTapped:" destination="15U-YU-usX" eventType="valueChanged" id="DV9-e3-ScI"/>
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TSf-wI-n9h" customClass="CustomSegmentedControl" customModule="uchicock" customModuleProvider="target">
@@ -131,7 +131,7 @@
                                             <segment title="その他"/>
                                         </segments>
                                         <connections>
-                                            <action selector="categoryTapped:" destination="15U-YU-usX" eventType="valueChanged" id="I1b-GT-61v"/>
+                                            <action selector="segmentedControlTapped:" destination="15U-YU-usX" eventType="valueChanged" id="1np-CI-vKB"/>
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byH-fO-srn">
@@ -250,9 +250,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addIngredientButton" destination="JF9-fv-66t" id="eTk-5I-bNI"/>
-                        <outlet property="category" destination="TSf-wI-n9h" id="v6b-6e-4tO"/>
                         <outlet property="categoryBottomConstraint" destination="adq-im-gbd" id="G4h-n0-dHl"/>
                         <outlet property="categoryHeightConstraint" destination="eF9-ls-XPO" id="TaW-HW-MkE"/>
+                        <outlet property="categorySegmentedControl" destination="TSf-wI-n9h" id="6YW-us-Oxq"/>
                         <outlet property="containerSeparator" destination="byH-fO-srn" id="BBD-So-Cn9"/>
                         <outlet property="containerSeparatorHeightConstraint" destination="YxM-PQ-fdV" id="dcH-BX-Bgv"/>
                         <outlet property="containerSeparatorLandscapeTopConstraint" destination="9bS-Nc-pdt" id="6gK-l2-bMe"/>
@@ -265,7 +265,7 @@
                         <outlet property="searchTextFieldHeightConstraint" destination="myG-v3-qn1" id="7wl-0e-Snf"/>
                         <outlet property="searchTextFieldTopConstraint" destination="7wY-Yl-Zwe" id="QfM-Nb-jwq"/>
                         <outlet property="segmentedControlContainer" destination="Lua-m4-zJA" id="aCT-96-MB8"/>
-                        <outlet property="stockState" destination="PAy-Yc-Fde" id="MZ1-HH-7Cs"/>
+                        <outlet property="stockSegmentedControl" destination="PAy-Yc-Fde" id="uRj-gN-2Yl"/>
                         <outlet property="stockStateBottomConstraint" destination="0Yx-52-nQT" id="K2i-Ww-aw7"/>
                         <outlet property="stockStateHeightConstraint" destination="ovn-Nt-HBQ" id="gN3-nb-8xe"/>
                         <outlet property="tableView" destination="Cpd-Fl-ZaY" id="amY-yG-DWo"/>

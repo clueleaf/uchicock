@@ -16,6 +16,6 @@ struct IngredientBasic{
     var stockFlag : Bool
     var category : Int
     var contributionToRecipeAvailability : Int
-    var usedRecipeNum : Int
+    var usingRecipeNum : Int
     var reminderSetDate : Date?
 }

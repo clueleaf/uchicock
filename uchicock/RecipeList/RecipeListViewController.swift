@@ -524,8 +524,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func updateSearchResultFlag(){
         let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
-        let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
         if searchText != ""{
+            let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
             let realm = try! Realm()
             let searchedRecipe = realm.objects(Recipe.self)
                 .filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
@@ -713,8 +713,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.recipeBasicList.remove(at: indexPath.row)
                 self.updateSearchResultFlag()
                 self.setSearchTextFieldAlertStyle()
-                self.setTableBackgroundView()
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
+                self.setTableBackgroundView()
                 self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
                 completionHandler(true)
             }

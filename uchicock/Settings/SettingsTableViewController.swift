@@ -92,7 +92,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
                 newRecipeLabel.backgroundColor = UIColor.clear
                 newRecipeLabel.layer.cornerRadius = 8
                 newRecipeLabel.clipsToBounds = true
-                newRecipeLabel.textAlignment = NSTextAlignment.center
                 newRecipeLabel.layer.borderWidth = 1
                 newRecipeLabel.layer.borderColor = UchicockStyle.alertColor.cgColor
                 newRecipeLabel.textColor = UIColor.white

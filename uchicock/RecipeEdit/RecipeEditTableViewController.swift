@@ -897,8 +897,8 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             return
         }
         var list = createDuplicatedIngredientIndexPathList()
-        list.sort(by: {$0.row < $1.row})
         guard list.count == 0 else{
+            list.sort(by: {$0.row < $1.row})
             presentAlert(title: "重複している材料があります", message: nil, action: {
                 self.tableView.selectRow(at: list[0], animated: true, scrollPosition: .middle)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

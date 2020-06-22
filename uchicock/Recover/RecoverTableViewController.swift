@@ -185,8 +185,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     
     private func recover(){
         var recoverRecipeList = Array<RecoverRecipe>()
+        let realm = try! Realm()
         for rr in recoverableSampleRecipeList where rr.recoverTarget{
-            let realm = try! Realm()
             let recipe = realm.objects(Recipe.self).filter("recipeName == %@", rr.name).first!
             
             var recoverRecipe = RecoverRecipe(
@@ -216,7 +216,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         
         changeToUserDb()
         
-        let realm = try! Realm()
         for recoverRecipe in recoverRecipeList{
             let rec = realm.objects(Recipe.self).filter("recipeName == %@",recoverRecipe.name)
             if rec.count < 1 {

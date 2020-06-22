@@ -154,7 +154,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="Mph-RC-B1i"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="shortageOrderPrimaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="JhX-iv-kIs"/>
+                                                                    <action selector="makeableOrderPrimaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="S0W-xP-xrY"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -175,7 +175,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="Khp-PP-PqD"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="shortageOrderSecondaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="x1r-5H-zMR"/>
+                                                                    <action selector="makeableOrderSecondaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="1iE-rB-kQs"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -322,7 +322,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="xbV-a6-Knw"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="lastViewedOrderPrimaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="bBS-d8-VoX"/>
+                                                                    <action selector="viewedOrderPrimaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="x7u-MX-c2v"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -343,7 +343,7 @@
                                                                     <constraint firstAttribute="width" constant="28" id="X6Z-7Z-pJv"/>
                                                                 </constraints>
                                                                 <connections>
-                                                                    <action selector="lastViewedOrderSecondaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="hdj-mK-OG4"/>
+                                                                    <action selector="viewedOrderSecondaryCheckboxTapped:" destination="iHW-kn-1ob" eventType="valueChanged" id="4K7-PB-iIw"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -1487,10 +1487,10 @@
                         <outlet property="filterExplanationLabel" destination="OzJ-bc-qqF" id="pWr-OL-n7j"/>
                         <outlet property="filterSelectAllButton" destination="oJ3-Df-kv1" id="guq-Sx-Aoc"/>
                         <outlet property="firstSeparator" destination="tLR-2C-Fv8" id="dLC-7N-xCX"/>
-                        <outlet property="lastViewedOrderPrimaryCheckbox" destination="IUX-7Y-GXu" id="58R-vl-TM5"/>
-                        <outlet property="lastViewedOrderSecondaryCheckbox" destination="bBa-iX-jEn" id="VQX-R8-0mX"/>
                         <outlet property="madeNumOrderPrimaryCheckbox" destination="khX-jJ-tvr" id="DLt-Xe-r3c"/>
                         <outlet property="madeNumOrderSecondaryCheckbox" destination="9P9-z0-L09" id="ceo-1L-nUw"/>
+                        <outlet property="makeableOrderPrimaryCheckbox" destination="lrx-Tg-Jnl" id="N78-H5-6j2"/>
+                        <outlet property="makeableOrderSecondaryCheckbox" destination="Si3-uJ-qR3" id="w1b-NG-vGM"/>
                         <outlet property="methodBlendButton" destination="WrU-DQ-xsm" id="UL6-tO-rYF"/>
                         <outlet property="methodBlendCheckbox" destination="hTn-2X-Gcf" id="jzU-k9-pmU"/>
                         <outlet property="methodBuildButton" destination="ec6-aK-yex" id="BOp-7R-LLD"/>
@@ -1505,15 +1505,13 @@
                         <outlet property="methodStirCheckbox" destination="Nma-f5-sgW" id="ep5-bK-1e7"/>
                         <outlet property="methodWarningImage" destination="HH8-AR-3FY" id="8T8-Dr-rUF"/>
                         <outlet property="methodWarningLabel" destination="bNN-qq-OzU" id="h35-PE-J1r"/>
-                        <outlet property="nameOrderPrimaryCheckbox" destination="5Iy-1P-jDa" id="UOT-gk-4f1"/>
-                        <outlet property="nameOrderSecondaryCheckbox" destination="6xc-rz-s5Q" id="5kc-eA-lJ6"/>
+                        <outlet property="nameOrderPrimaryCheckbox" destination="5Iy-1P-jDa" id="fds-yG-fbo"/>
+                        <outlet property="nameOrderSecondaryCheckbox" destination="6xc-rz-s5Q" id="uQm-iM-2Xw"/>
                         <outlet property="scrollBackgroundView" destination="M4p-Iq-Bmw" id="cP3-NC-qxp"/>
                         <outlet property="scrollView" destination="9Tf-GF-vKs" id="q6W-wp-x9a"/>
                         <outlet property="searchButton" destination="q97-kq-zwf" id="LjY-Mi-yFQ"/>
                         <outlet property="searchButtonBackgroundView" destination="Vza-Iu-W6Q" id="w43-tG-qVq"/>
                         <outlet property="secondSeparator" destination="wyK-Wi-eLc" id="Pga-yE-j3J"/>
-                        <outlet property="shortageOrderPrimaryCheckbox" destination="lrx-Tg-Jnl" id="InT-3x-JYb"/>
-                        <outlet property="shortageOrderSecondaryCheckbox" destination="Si3-uJ-qR3" id="ukB-Go-bkk"/>
                         <outlet property="sortExplanationLabel" destination="gVP-c8-YGG" id="NnA-mz-cKQ"/>
                         <outlet property="strengthDeselectAllbutton" destination="YsM-CL-P1P" id="W5U-s7-l6W"/>
                         <outlet property="strengthMediumButton" destination="Jj6-7n-lrE" id="3QY-0H-aVB"/>
@@ -1541,6 +1539,8 @@
                         <outlet property="styleShortCheckbox" destination="DsH-5I-s7s" id="ngQ-53-MTE"/>
                         <outlet property="styleWarningImage" destination="vpa-MK-6Jf" id="AWW-Yy-eHQ"/>
                         <outlet property="styleWarningLabel" destination="P4n-9v-Mcl" id="v9R-iV-hg6"/>
+                        <outlet property="viewedOrderPrimaryCheckbox" destination="IUX-7Y-GXu" id="o9t-s9-xBG"/>
+                        <outlet property="viewedOrderSecondaryCheckbox" destination="bBa-iX-jEn" id="jf5-5Z-TMl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yKw-U4-35j" userLabel="First Responder" sceneMemberID="firstResponder"/>

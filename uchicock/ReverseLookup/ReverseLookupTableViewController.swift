@@ -812,7 +812,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     stockFlag: ingredient.stockFlag,
                     category: ingredient.category,
                     contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                    usedRecipeNum: ingredient.recipeIngredients.count
+                    usingRecipeNum: ingredient.recipeIngredients.count
                 )
                 ingredientSuggestList.append(ib)
             }

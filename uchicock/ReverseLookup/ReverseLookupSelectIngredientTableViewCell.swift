@@ -46,7 +46,6 @@ class ReverseLookupSelectIngredientTableViewCell: UITableViewCell {
             
             stockLabel.layer.cornerRadius = 10.5
             stockLabel.clipsToBounds = true
-            stockLabel.textAlignment = NSTextAlignment.center
         }
     }
 }

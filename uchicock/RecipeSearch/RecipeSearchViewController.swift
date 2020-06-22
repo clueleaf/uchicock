@@ -17,14 +17,14 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var nameOrderPrimaryCheckbox: CircularCheckbox!
     @IBOutlet weak var nameOrderSecondaryCheckbox: CircularCheckbox!
-    @IBOutlet weak var shortageOrderPrimaryCheckbox: CircularCheckbox!
-    @IBOutlet weak var shortageOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var makeableOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var makeableOrderSecondaryCheckbox: CircularCheckbox!
     @IBOutlet weak var madeNumOrderPrimaryCheckbox: CircularCheckbox!
     @IBOutlet weak var madeNumOrderSecondaryCheckbox: CircularCheckbox!
     @IBOutlet weak var favoriteOrderPrimaryCheckbox: CircularCheckbox!
     @IBOutlet weak var favoriteOrderSecondaryCheckbox: CircularCheckbox!
-    @IBOutlet weak var lastViewedOrderPrimaryCheckbox: CircularCheckbox!
-    @IBOutlet weak var lastViewedOrderSecondaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var viewedOrderPrimaryCheckbox: CircularCheckbox!
+    @IBOutlet weak var viewedOrderSecondaryCheckbox: CircularCheckbox!
     
     @IBOutlet weak var firstSeparator: UIView!
     
@@ -220,56 +220,56 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
         
         switch recipeSortPrimary{
         case 1:
-            initPrimaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
-            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+            initPrimaryCheckBox(name: .checked, makeable: .unchecked, madenum: .unchecked, favorite: .unchecked, viewed: .unchecked)
+            initSecondaryCheckBox(name: .mixed, makeable: .mixed, madenum: .mixed, favorite: .mixed, viewed: .mixed)
         case 2:
-            initPrimaryCheckBox(name: .unchecked, shortage: .checked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+            initPrimaryCheckBox(name: .unchecked, makeable: .checked, madenum: .unchecked, favorite: .unchecked, viewed: .unchecked)
             switch recipeSortSecondary{
             case 1:
-                initSecondaryCheckBox(name: .checked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .mixed, madenum: .unchecked, favorite: .unchecked, viewed: .unchecked)
             case 3:
-                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .checked, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .mixed, madenum: .checked, favorite: .unchecked, viewed: .unchecked)
             case 4:
-                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .unchecked, favorite: .checked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .mixed, madenum: .unchecked, favorite: .checked, viewed: .unchecked)
             case 5:
-                initSecondaryCheckBox(name: .unchecked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .checked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .mixed, madenum: .unchecked, favorite: .unchecked, viewed: .checked)
             default:
-                initSecondaryCheckBox(name: .checked, shortage: .mixed, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .mixed, madenum: .unchecked, favorite: .unchecked, viewed: .unchecked)
             }
         case 3:
-            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .checked, favorite: .unchecked, lastViewed: .unchecked)
+            initPrimaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .checked, favorite: .unchecked, viewed: .unchecked)
             switch recipeSortSecondary{
             case 1:
-                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .unchecked, madenum: .mixed, favorite: .unchecked, viewed: .unchecked)
             case 2:
-                initSecondaryCheckBox(name: .unchecked, shortage: .checked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .checked, madenum: .mixed, favorite: .unchecked, viewed: .unchecked)
             case 4:
-                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .mixed, favorite: .checked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .mixed, favorite: .checked, viewed: .unchecked)
             case 5:
-                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .checked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .mixed, favorite: .unchecked, viewed: .checked)
             default:
-                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .mixed, favorite: .unchecked, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .unchecked, madenum: .mixed, favorite: .unchecked, viewed: .unchecked)
             }
         case 4:
-            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .checked, lastViewed: .unchecked)
+            initPrimaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .unchecked, favorite: .checked, viewed: .unchecked)
             switch recipeSortSecondary{
             case 1:
-                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .unchecked, madenum: .unchecked, favorite: .mixed, viewed: .unchecked)
             case 2:
-                initSecondaryCheckBox(name: .unchecked, shortage: .checked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .checked, madenum: .unchecked, favorite: .mixed, viewed: .unchecked)
             case 3:
-                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .checked, favorite: .mixed, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .checked, favorite: .mixed, viewed: .unchecked)
             case 5:
-                initSecondaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .checked)
+                initSecondaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .unchecked, favorite: .mixed, viewed: .checked)
             default:
-                initSecondaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .mixed, lastViewed: .unchecked)
+                initSecondaryCheckBox(name: .checked, makeable: .unchecked, madenum: .unchecked, favorite: .mixed, viewed: .unchecked)
             }
         case 5:
-            initPrimaryCheckBox(name: .unchecked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .checked)
-            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+            initPrimaryCheckBox(name: .unchecked, makeable: .unchecked, madenum: .unchecked, favorite: .unchecked, viewed: .checked)
+            initSecondaryCheckBox(name: .mixed, makeable: .mixed, madenum: .mixed, favorite: .mixed, viewed: .mixed)
         default:
-            initPrimaryCheckBox(name: .checked, shortage: .unchecked, madenum: .unchecked, favorite: .unchecked, lastViewed: .unchecked)
-            initSecondaryCheckBox(name: .mixed, shortage: .mixed, madenum: .mixed, favorite: .mixed, lastViewed: .mixed)
+            initPrimaryCheckBox(name: .checked, makeable: .unchecked, madenum: .unchecked, favorite: .unchecked, viewed: .unchecked)
+            initSecondaryCheckBox(name: .mixed, makeable: .mixed, madenum: .mixed, favorite: .mixed, viewed: .mixed)
         }
     }
     
@@ -408,20 +408,20 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
     }
 
     // MARK: - CircularCheckbox
-    private func initPrimaryCheckBox(name: CircularCheckbox.CheckState, shortage:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, lastViewed: CircularCheckbox.CheckState){
+    private func initPrimaryCheckBox(name: CircularCheckbox.CheckState, makeable:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, viewed: CircularCheckbox.CheckState){
         initCheckbox(nameOrderPrimaryCheckbox, with: name)
-        initCheckbox(shortageOrderPrimaryCheckbox, with: shortage)
+        initCheckbox(makeableOrderPrimaryCheckbox, with: makeable)
         initCheckbox(madeNumOrderPrimaryCheckbox, with: madenum)
         initCheckbox(favoriteOrderPrimaryCheckbox, with: favorite)
-        initCheckbox(lastViewedOrderPrimaryCheckbox, with: lastViewed)
+        initCheckbox(viewedOrderPrimaryCheckbox, with: viewed)
     }
     
-    private func initSecondaryCheckBox(name: CircularCheckbox.CheckState, shortage:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, lastViewed: CircularCheckbox.CheckState){
+    private func initSecondaryCheckBox(name: CircularCheckbox.CheckState, makeable:  CircularCheckbox.CheckState, madenum:  CircularCheckbox.CheckState, favorite: CircularCheckbox.CheckState, viewed: CircularCheckbox.CheckState){
         initCheckbox(nameOrderSecondaryCheckbox, with: name)
-        initCheckbox(shortageOrderSecondaryCheckbox, with: shortage)
+        initCheckbox(makeableOrderSecondaryCheckbox, with: makeable)
         initCheckbox(madeNumOrderSecondaryCheckbox, with: madenum)
         initCheckbox(favoriteOrderSecondaryCheckbox, with: favorite)
-        initCheckbox(lastViewedOrderSecondaryCheckbox, with: lastViewed)
+        initCheckbox(viewedOrderSecondaryCheckbox, with: viewed)
     }
     
     private func initFilterCheckbox(_ checkbox: CircularCheckbox, shouldBeChecked: Bool){
@@ -486,25 +486,25 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
         
         if nameOrderPrimaryCheckbox.checkState == .checked{
             primarySort = 1
-        }else if shortageOrderPrimaryCheckbox.checkState == .checked{
+        }else if makeableOrderPrimaryCheckbox.checkState == .checked{
             primarySort = 2
         }else if madeNumOrderPrimaryCheckbox.checkState == .checked{
             primarySort = 3
         }else if favoriteOrderPrimaryCheckbox.checkState == .checked{
             primarySort = 4
-        }else if lastViewedOrderPrimaryCheckbox.checkState == .checked{
+        }else if viewedOrderPrimaryCheckbox.checkState == .checked{
             primarySort = 5
         }
         
         if nameOrderSecondaryCheckbox.checkState == .checked {
             secondarySort = 1
-        }else if shortageOrderSecondaryCheckbox.checkState == .checked{
+        }else if makeableOrderSecondaryCheckbox.checkState == .checked{
             secondarySort = 2
         }else if madeNumOrderSecondaryCheckbox.checkState == .checked{
             secondarySort = 3
         }else if favoriteOrderSecondaryCheckbox.checkState == .checked{
             secondarySort = 4
-        }else if lastViewedOrderSecondaryCheckbox.checkState == .checked{
+        }else if viewedOrderSecondaryCheckbox.checkState == .checked{
             secondarySort = 5
         }
         
@@ -543,106 +543,106 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
     @IBAction func nameOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxChecked(nameOrderPrimaryCheckbox)
         setCheckboxMixed(nameOrderSecondaryCheckbox)
-        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
-        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(makeableOrderPrimaryCheckbox)
+        setCheckboxMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
         setCheckboxMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
         setCheckboxMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
-        setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUnchecked(viewedOrderPrimaryCheckbox)
+        setCheckboxMixed(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func nameOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxChecked(nameOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(viewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func shortageOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func makeableOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
-        setCheckboxChecked(shortageOrderPrimaryCheckbox)
-        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxChecked(makeableOrderPrimaryCheckbox)
+        setCheckboxMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
         setCheckboxUnchecked(madeNumOrderSecondaryCheckbox)
         setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
         setCheckboxUnchecked(favoriteOrderSecondaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUnchecked(viewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(viewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func shortageOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func makeableOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
-        setCheckboxChecked(shortageOrderSecondaryCheckbox)
+        setCheckboxChecked(makeableOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func madeNumOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
-        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
-        setCheckboxUnchecked(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(makeableOrderPrimaryCheckbox)
+        setCheckboxUnchecked(makeableOrderSecondaryCheckbox)
         setCheckboxChecked(madeNumOrderPrimaryCheckbox)
         setCheckboxMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
         setCheckboxUnchecked(favoriteOrderSecondaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUnchecked(viewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func madeNumOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(makeableOrderSecondaryCheckbox)
         setCheckboxChecked(madeNumOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func favoriteOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxChecked(nameOrderSecondaryCheckbox)
-        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
-        setCheckboxUnchecked(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(makeableOrderPrimaryCheckbox)
+        setCheckboxUnchecked(makeableOrderSecondaryCheckbox)
         setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
         setCheckboxUnchecked(madeNumOrderSecondaryCheckbox)
         setCheckboxChecked(favoriteOrderPrimaryCheckbox)
         setCheckboxMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderPrimaryCheckbox)
-        setCheckboxUnchecked(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUnchecked(viewedOrderPrimaryCheckbox)
+        setCheckboxUnchecked(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func favoriteOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxChecked(favoriteOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(viewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func lastViewedOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func viewedOrderPrimaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUnchecked(nameOrderPrimaryCheckbox)
         setCheckboxMixed(nameOrderSecondaryCheckbox)
-        setCheckboxUnchecked(shortageOrderPrimaryCheckbox)
-        setCheckboxMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUnchecked(makeableOrderPrimaryCheckbox)
+        setCheckboxMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUnchecked(madeNumOrderPrimaryCheckbox)
         setCheckboxMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUnchecked(favoriteOrderPrimaryCheckbox)
         setCheckboxMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxChecked(lastViewedOrderPrimaryCheckbox)
-        setCheckboxMixed(lastViewedOrderSecondaryCheckbox)
+        setCheckboxChecked(viewedOrderPrimaryCheckbox)
+        setCheckboxMixed(viewedOrderSecondaryCheckbox)
     }
     
-    @IBAction func lastViewedOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
+    @IBAction func viewedOrderSecondaryCheckboxTapped(_ sender: CircularCheckbox) {
         setCheckboxUncheckedIfNotMixed(nameOrderSecondaryCheckbox)
-        setCheckboxUncheckedIfNotMixed(shortageOrderSecondaryCheckbox)
+        setCheckboxUncheckedIfNotMixed(makeableOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(madeNumOrderSecondaryCheckbox)
         setCheckboxUncheckedIfNotMixed(favoriteOrderSecondaryCheckbox)
-        setCheckboxChecked(lastViewedOrderSecondaryCheckbox)
+        setCheckboxChecked(viewedOrderSecondaryCheckbox)
     }
     
     @IBAction func filterSelectAllbuttonTapped(_ sender: UIButton) {

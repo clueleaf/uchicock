@@ -658,7 +658,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     }
     
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        guard ingredient.recipeIngredients.count > 0 else{
+        guard ingredient.recipeIngredients.count == 0 else{
             let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark

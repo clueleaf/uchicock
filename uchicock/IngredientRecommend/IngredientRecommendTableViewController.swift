@@ -82,7 +82,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                 stockFlag: ingredient.stockFlag,
                 category: ingredient.category,
                 contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                usedRecipeNum: ingredient.recipeIngredients.count
+                usingRecipeNum: ingredient.recipeIngredients.count
             ))
         }
         
@@ -102,7 +102,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                     stockFlag: ingredient.stockFlag,
                     category: ingredient.category,
                     contributionToRecipeAvailability: ingredient.contributionToRecipeAvailability,
-                    usedRecipeNum: ingredient.recipeIngredients.count
+                    usingRecipeNum: ingredient.recipeIngredients.count
                 ))
             }
             
@@ -111,7 +111,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                 // 持っている材料数が少ない場合、その他カテゴリの材料を取り除く
                 ingredientBasicList.removeAll{ $0.category == 2 }
             }
-            ingredientBasicList.sort(by: { $0.usedRecipeNum > $1.usedRecipeNum })
+            ingredientBasicList.sort(by: { $0.usingRecipeNum > $1.usingRecipeNum })
         }
     }
     
@@ -178,7 +178,7 @@ class IngredientRecommendTableViewController: UITableViewController {
             if isContributionMode{
                 cell.ingredientDescription = "入手すると新たに\(String(ingredientBasicList[indexPath.row - 1].contributionToRecipeAvailability))レシピ作れる！"
             }else{
-                cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].usedRecipeNum))個のレシピで使われています！"
+                cell.ingredientDescription = "\(String(ingredientBasicList[indexPath.row - 1].usingRecipeNum))個のレシピで使われています！"
             }
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
