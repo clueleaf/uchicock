@@ -12,30 +12,25 @@ import RealmSwift
 class ReverseLookupTableViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, UITableViewDataSourcePrefetching, ScrollableToTop {
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var recipeTableView: UITableView!
-    @IBOutlet weak var ingredientSuggestTableView: UITableView!
     @IBOutlet weak var ingredientTextField1: CustomTextField!
     @IBOutlet weak var ingredientTextField2: CustomTextField!
     @IBOutlet weak var ingredientTextField3: CustomTextField!
     @IBOutlet weak var searchConditionModifyButton: UIButton!
-    
-    var realm: Realm? = nil
-    var hiddenLabel = UILabel()
-    var firstIngredientName = ""
-    var secondIngredientName = ""
-    var thirdIngredientName = ""
-    var editingTextField: Int = -1
-    var selectedRecipeId: String? = nil
+    @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var ingredientTableView: UITableView!
+
     var recipeBasicList = Array<RecipeBasic>()
-    var recipeBasicListForFilterModal = Array<RecipeBasic>()
     var ingredientList: Results<Ingredient>?
     var ingredientSuggestList = Array<IngredientBasic>()
+    var selectedRecipeId: String? = nil
     let selectedCellBackgroundView = UIView()
 
+    var hiddenLabel = UILabel()
+    var editingTextField = -1
     var textFieldHasSearchResult = false
-    var hasNonExistingIngredient1 = false
-    var hasNonExistingIngredient2 = false
-    var hasNonExistingIngredient3 = false
+    var noIngredientForTextField1 = false
+    var noIngredientForTextField2 = false
+    var noIngredientForTextField3 = false
 
     var sortOrder = RecipeSortType.name
     var recipeFilterStar: [Int] = []
@@ -53,15 +48,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        realm = try! Realm()
         registerUserDefaults()
         
+        makeFilterFromUserDefaults()
+        setSearchConditionButtonTitle()
+        setTextFieldFromUserDefaults()
+
         ingredientTextField1.clearButtonEdgeInset = 5.0
         ingredientTextField2.clearButtonEdgeInset = 5.0
         ingredientTextField3.clearButtonEdgeInset = 5.0
-        ingredientTextField1.tag = 0
-        ingredientTextField2.tag = 1
-        ingredientTextField3.tag = 2
         ingredientTextField1.layer.cornerRadius = ingredientTextField1.frame.size.height / 2
         ingredientTextField2.layer.cornerRadius = ingredientTextField2.frame.size.height / 2
         ingredientTextField3.layer.cornerRadius = ingredientTextField3.frame.size.height / 2
@@ -69,12 +64,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField2.setLeftPadding()
         ingredientTextField3.setLeftPadding()
 
-        self.tableView.tag = 0
-        recipeTableView.tag = 1
-        ingredientSuggestTableView.tag = 2
+        searchConditionModifyButton.layer.borderWidth = 1.5
+        searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
 
         recipeTableView.tableFooterView = UIView(frame: CGRect.zero)
-        ingredientSuggestTableView.tableFooterView = UIView(frame: CGRect.zero)
+        recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
+        ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
         hiddenLabel.numberOfLines = 1
@@ -82,81 +77,15 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         hiddenLabel.textAlignment = .center
         recipeTableView.addSubview(hiddenLabel)
         hiddenLabel.translatesAutoresizingMaskIntoConstraints = false
-
         let centerXConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .centerX, relatedBy: .equal, toItem: recipeTableView, attribute: .centerX, multiplier: 1, constant: 0)
         let topConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .top, relatedBy: .equal, toItem: recipeTableView, attribute: .top, multiplier: 1, constant: -180)
         let heightConstraint = NSLayoutConstraint(item: hiddenLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
-
         NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
 
-        searchConditionModifyButton.layer.borderWidth = 1.5
-        searchConditionModifyButton.layer.cornerRadius = searchConditionModifyButton.frame.size.height / 2
-
-        self.recipeTableView.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeCell")
-        
-        ingredientList = realm!.objects(Ingredient.self)
+        let realm = try! Realm()
+        ingredientList = realm.objects(Ingredient.self)
         
         cancelButton.isEnabled = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        recipeTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
-        ingredientSuggestTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
-        recipeTableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        ingredientSuggestTableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        recipeTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        ingredientSuggestTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        
-        ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        ingredientTextField1.adjustClearButtonColor()
-        ingredientTextField2.adjustClearButtonColor()
-        ingredientTextField3.adjustClearButtonColor()
-
-        searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
-        searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
-        
-        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
-
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField1)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField2)
-        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField3)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField1)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
-        
-        if recipeTableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
-            for indexPath in recipeTableView.indexPathsForVisibleRows! where recipeBasicList.count > indexPath.row {
-                if recipeBasicList[indexPath.row].id == selectedRecipeId! {
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        self.recipeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                    }
-                    break
-                }
-            }
-        }
-
-        makeFilterFromSearchUserDefaults()
-        setSearchConditionButtonTitle()
-        // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
-        // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
-        showRecipeTableView(shouldSetToUserDefaults: false)
-        tableView.reloadData()
-    }
-    
-    private func setupData(){
-        makeFilterFromSearchUserDefaults()
-        setSearchConditionButtonTitle()
-        reloadRecipeList()
-        recipeTableView.reloadData()
-        tableView.reloadData()
     }
     
     private func registerUserDefaults(){
@@ -181,13 +110,64 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             GlobalConstants.ReverseLookupFilterWeakKey : true,
             GlobalConstants.ReverseLookupFilterMediumKey : true,
             GlobalConstants.ReverseLookupFilterStrongKey : true,
-            GlobalConstants.ReverseLookupFilterStrengthNoneKey : true
+            GlobalConstants.ReverseLookupFilterStrengthNoneKey : true,
+            GlobalConstants.ReverseLookupFirstIngredientKey : "",
+            GlobalConstants.ReverseLookupSecondIngredientKey : "",
+            GlobalConstants.ReverseLookupThirdIngredientKey: ""
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        recipeTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        recipeTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        recipeTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        
+        ingredientTextField1.attributedPlaceholder = NSAttributedString(string: "材料1", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientTextField2.attributedPlaceholder = NSAttributedString(string: "材料2", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientTextField3.attributedPlaceholder = NSAttributedString(string: "材料3", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
+        ingredientTextField1.adjustClearButtonColor()
+        ingredientTextField2.adjustClearButtonColor()
+        ingredientTextField3.adjustClearButtonColor()
+
+        searchConditionModifyButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
+        searchConditionModifyButton.setTitleColor(UchicockStyle.primaryColor, for: .normal)
+        searchConditionModifyButton.backgroundColor = UchicockStyle.basicBackgroundColor
+        
+        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
+
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField1)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField2)
+        NotificationCenter.default.addObserver(self, selector:#selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientTextField3)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange1(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField1)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange2(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange3(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
+        
+        // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
+        // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
+        showRecipeTableView(shouldSetToUserDefaults: false)
+
+        if recipeTableView.indexPathsForVisibleRows != nil && selectedRecipeId != nil {
+            for indexPath in recipeTableView.indexPathsForVisibleRows! where recipeBasicList.count > indexPath.row {
+                if recipeBasicList[indexPath.row].id == selectedRecipeId! {
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        self.recipeTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                    }
+                    break
+                }
+            }
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
         tableView.reloadData()
         if editingTextField == 0{
             ingredientTextField1.becomeFirstResponder()
@@ -213,18 +193,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.removeObserver(self)
     }
     
-    func scrollToTop() {
-        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
-    }
-
-    private func setSearchTextToUserDefaults(){
-        let defaults = UserDefaults.standard
-        defaults.set(ingredientTextField1.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
-        defaults.set(ingredientTextField2.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
-        defaults.set(ingredientTextField3.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
-    }
-    
-    private func makeFilterFromSearchUserDefaults(){
+    // MARK: - Logic functions
+    private func makeFilterFromUserDefaults(){
         recipeFilterStar.removeAll()
         recipeFilterStyle.removeAll()
         recipeFilterMethod.removeAll()
@@ -271,26 +241,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         case let (primary, _) where primary == 5: sortOrder = .viewedName
         default: sortOrder = .name
         }
-
-        if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
-            ingredientTextField1.text = first.withoutEndsSpace()
-        }else{
-            defaults.set("", forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
-        }
-        if let second = defaults.string(forKey: GlobalConstants.ReverseLookupSecondIngredientKey){
-            ingredientTextField2.text = second.withoutEndsSpace()
-        }else{
-            defaults.set("", forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
-        }
-        if let third = defaults.string(forKey: GlobalConstants.ReverseLookupThirdIngredientKey){
-            ingredientTextField3.text = third.withoutEndsSpace()
-        }else{
-            defaults.set("", forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
-        }
-        
-        ingredientTextField1.adjustClearButtonColor()
-        ingredientTextField2.adjustClearButtonColor()
-        ingredientTextField3.adjustClearButtonColor()
     }
     
     private func setSearchConditionButtonTitle(){
@@ -325,108 +275,103 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
-    private func reloadRecipeList(){
-        createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicList)
-        textFieldHasSearchResult = recipeBasicList.count > 0
-        filterRecipeBasicList()
-        sortRecipeBasicList()
-        setTableBackgroundView()
+    private func setTextFieldFromUserDefaults(){
+        let defaults = UserDefaults.standard
+        if let first = defaults.string(forKey: GlobalConstants.ReverseLookupFirstIngredientKey){
+            ingredientTextField1.text = first.withoutEndsSpace()
+        }
+        if let second = defaults.string(forKey: GlobalConstants.ReverseLookupSecondIngredientKey){
+            ingredientTextField2.text = second.withoutEndsSpace()
+        }
+        if let third = defaults.string(forKey: GlobalConstants.ReverseLookupThirdIngredientKey){
+            ingredientTextField3.text = third.withoutEndsSpace()
+        }
+        ingredientTextField1.adjustClearButtonColor()
+        ingredientTextField2.adjustClearButtonColor()
+        ingredientTextField3.adjustClearButtonColor()
     }
     
-    private func createRecipeBasicListWithIngredientTextField(recipeArray: inout Array<RecipeBasic>){
-        recipeArray.removeAll()
+    private func setSearchTextToUserDefaults(){
+        let defaults = UserDefaults.standard
+        defaults.set(ingredientTextField1.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupFirstIngredientKey)
+        defaults.set(ingredientTextField2.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupSecondIngredientKey)
+        defaults.set(ingredientTextField3.text!.withoutEndsSpace(), forKey: GlobalConstants.ReverseLookupThirdIngredientKey)
+    }
+
+    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>, shouldUpdateTextFieldHasSearchResult: Bool){
+        let text1 = ingredientTextField1.text!.withoutEndsSpace()
+        let text2 = ingredientTextField2.text!.withoutEndsSpace()
+        let text3 = ingredientTextField3.text!.withoutEndsSpace()
+        var textList = Array<String>()
+
+        if text1 != "" { textList.append(text1) }
+        if text2 != "" { textList.append(text2) }
+        if text3 != "" { textList.append(text3) }
         
-        if ingredientTextField1.text != nil && ingredientTextField1.text!.withoutEndsSpace() != ""{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutEndsSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutEndsSpace() != ""{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutEndsSpace(), text2: ingredientTextField2.text!.withoutEndsSpace(), text3: ingredientTextField3.text!.withoutEndsSpace())
-                }else{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutEndsSpace(), text2: ingredientTextField2.text!.withoutEndsSpace(), text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutEndsSpace() != ""{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutEndsSpace(), text2: ingredientTextField3.text!.withoutEndsSpace(), text3: nil)
-                }else{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField1.text!.withoutEndsSpace(), text2: nil, text3: nil)
-                }
-            }
-        }else{
-            if ingredientTextField2.text != nil && ingredientTextField2.text!.withoutEndsSpace() != ""{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutEndsSpace() != ""{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField2.text!.withoutEndsSpace(), text2: ingredientTextField3.text!.withoutEndsSpace(), text3: nil)
-                }else{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField2.text!.withoutEndsSpace(), text2: nil, text3: nil)
-                }
-            }else{
-                if ingredientTextField3.text != nil && ingredientTextField3.text!.withoutEndsSpace() != ""{
-                    createRecipeBasicList(recipeArray: &recipeArray, text1: ingredientTextField3.text!.withoutEndsSpace(), text2: nil, text3: nil)
-                }else{
-                    createRecipeBasicList(recipeArray: &recipeArray)
-                }
-            }
+        createRecipeBasicList(recipeArray: &recipeArray, textList: textList)
+
+        if shouldUpdateTextFieldHasSearchResult{
+            textFieldHasSearchResult = recipeArray.count > 0
         }
     }
     
-    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>){
-        let recipeList = realm!.objects(Recipe.self)
-        for recipe in recipeList{
-            recipeArray.append(RecipeBasic(
-                id: recipe.id,
-                name: recipe.recipeName,
-                nameYomi: recipe.recipeNameYomi,
-                katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
-                shortageNum: recipe.shortageNum,
-                shortageIngredientName: recipe.shortageIngredientName,
-                lastViewDate: recipe.lastViewDate,
-                favorites: recipe.favorites,
-                style: recipe.style,
-                method: recipe.method,
-                strength: recipe.strength,
-                madeNum: recipe.madeNum,
-                imageFileName: recipe.imageFileName
-            ))
-        }
-    }
-    
-    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>, text1: String, text2: String?, text3: String?){
-        let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",text1)
-        if ing.count > 0 {
-            for ri in ing.first!.recipeIngredients{
+    private func createRecipeBasicList(recipeArray: inout Array<RecipeBasic>, textList: Array<String>){
+        recipeArray.removeAll()
+        let realm = try! Realm()
+        
+        guard textList.count != 0 else{
+            let recipeList = realm.objects(Recipe.self)
+            for recipe in recipeList{
                 recipeArray.append(RecipeBasic(
-                    id: ri.recipe.id,
-                    name: ri.recipe.recipeName,
-                    nameYomi: ri.recipe.recipeNameYomi,
-                    katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch,
-                    shortageNum: ri.recipe.shortageNum,
-                    shortageIngredientName: ri.recipe.shortageIngredientName,
-                    lastViewDate: ri.recipe.lastViewDate,
-                    favorites: ri.recipe.favorites,
-                    style: ri.recipe.style,
-                    method: ri.recipe.method,
-                    strength: ri.recipe.strength,
-                    madeNum: ri.recipe.madeNum,
-                    imageFileName: ri.recipe.imageFileName
+                    id: recipe.id,
+                    name: recipe.recipeName,
+                    nameYomi: recipe.recipeNameYomi,
+                    katakanaLowercasedNameForSearch: recipe.katakanaLowercasedNameForSearch,
+                    shortageNum: recipe.shortageNum,
+                    shortageIngredientName: recipe.shortageIngredientName,
+                    lastViewDate: recipe.lastViewDate,
+                    favorites: recipe.favorites,
+                    style: recipe.style,
+                    method: recipe.method,
+                    strength: recipe.strength,
+                    madeNum: recipe.madeNum,
+                    imageFileName: recipe.imageFileName
                 ))
             }
-            if let t2 = text2 {
-                deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t2)
-                if let t3 = text3{
-                    deleteFromRecipeBasicList(recipeArray: &recipeArray, withoutUse: t3)
-                }
-            }
+            return
         }
-    }
-    
-    private func deleteFromRecipeBasicList(recipeArray: inout Array<RecipeBasic>, withoutUse ingredientName: String){
-        for i in (0..<recipeArray.count).reversed(){
-            var hasIngredient = false
-            let recipe = realm!.object(ofType: Recipe.self, forPrimaryKey: recipeArray[i].id)!
-            for ri in recipe.recipeIngredients where ri.ingredient.ingredientName == ingredientName{
-                hasIngredient = true
-                break
-            }
-            if hasIngredient == false{
-                recipeArray.remove(at: i)
+
+        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@", textList[0])
+        guard ing.count > 0 else { return }
+        
+        for ri in ing.first!.recipeIngredients{
+            recipeArray.append(RecipeBasic(
+                id: ri.recipe.id,
+                name: ri.recipe.recipeName,
+                nameYomi: ri.recipe.recipeNameYomi,
+                katakanaLowercasedNameForSearch: ri.recipe.katakanaLowercasedNameForSearch,
+                shortageNum: ri.recipe.shortageNum,
+                shortageIngredientName: ri.recipe.shortageIngredientName,
+                lastViewDate: ri.recipe.lastViewDate,
+                favorites: ri.recipe.favorites,
+                style: ri.recipe.style,
+                method: ri.recipe.method,
+                strength: ri.recipe.strength,
+                madeNum: ri.recipe.madeNum,
+                imageFileName: ri.recipe.imageFileName
+            ))
+        }
+        guard textList.count > 1 else { return }
+        
+        for i in 1..<textList.count where textList[i] != ""{
+            for j in (0..<recipeArray.count).reversed(){
+                var hasIngredient = false
+                let recipe = realm.object(ofType: Recipe.self, forPrimaryKey: recipeArray[j].id)!
+                for ri in recipe.recipeIngredients where ri.ingredient.ingredientName == textList[i]{
+                    hasIngredient = true
+                    break
+                }
+                if hasIngredient == false{ recipeArray.remove(at: j) }
             }
         }
     }
@@ -516,7 +461,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                     return a.madeNum > b.madeNum
                 }
             })
-        case .madenumFavoriteName: // 作った回数順 > お気に入り順 > 名前順
+        case .madenumFavoriteName:
             recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.favorites == b.favorites{
@@ -618,7 +563,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             })
         }
     }
-    
+
     private func setTableBackgroundView(){
         guard recipeBasicList.count == 0 else {
             recipeTableView.backgroundView = nil
@@ -638,7 +583,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let centerYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .centerY, relatedBy: .equal, toItem: recipeTableView.backgroundView, attribute: .centerY, multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
 
-        if hasNonExistingIngredient1 || hasNonExistingIngredient2 || hasNonExistingIngredient3 {
+        if noIngredientForTextField1 || noIngredientForTextField2 || noIngredientForTextField3 {
             noDataLabel.text = "存在しない材料が指定されています"
         }else{
             if textFieldHasSearchResult{
@@ -656,23 +601,24 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         noDataLabel.textAlignment = .center
     }
 
+    //todo
     private func showRecipeTableView(shouldSetToUserDefaults: Bool){
-        if editingTextField == -1 {
+        ingredientTextField1.resignFirstResponder()
+        ingredientTextField2.resignFirstResponder()
+        ingredientTextField3.resignFirstResponder()
+
+        if shouldSetToUserDefaults{
             setSearchTextToUserDefaults()
-            makeFilterFromSearchUserDefaults()
-            reloadRecipeList()
-            recipeTableView.reloadData()
-        }else{
-            ingredientTextField1.resignFirstResponder()
-            ingredientTextField2.resignFirstResponder()
-            ingredientTextField3.resignFirstResponder()
+        }
+        setTextFieldFromUserDefaults()
+        createRecipeBasicList(recipeArray: &recipeBasicList, shouldUpdateTextFieldHasSearchResult: true)
+        filterRecipeBasicList()
+        sortRecipeBasicList()
+        setTableBackgroundView()//todo
+        recipeTableView.reloadData()
+
+        if editingTextField != -1 {
             editingTextField = -1
-            if shouldSetToUserDefaults{
-                setSearchTextToUserDefaults()
-            }
-            makeFilterFromSearchUserDefaults()
-            reloadRecipeList()
-            recipeTableView.reloadData()
 
             tableView.beginUpdates()
             tableView.deleteRows(at: [IndexPath(row: 0,section: 1)], with: .right)
@@ -686,9 +632,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             recipeTableView.flashScrollIndicators()
         }
         cancelButton.isEnabled = false
-        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient1)
-        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient2)
-        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false, hasNonExistingIngredient: &hasNonExistingIngredient3)
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: false, hasNonExistingIngredient: &noIngredientForTextField1)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: false, hasNonExistingIngredient: &noIngredientForTextField2)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: false, hasNonExistingIngredient: &noIngredientForTextField3)
     }
     
     private func setTextFieldColor(textField: UITextField, alwaysNormalColor: Bool, hasNonExistingIngredient: inout Bool){
@@ -698,7 +644,8 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         textField.textColor = UchicockStyle.labelTextColor
         if alwaysNormalColor == false{
             if textField.text != ""{
-                let ing = realm!.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
+                let realm = try! Realm()
+                let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",textField.text!)
                 if ing.count == 0 {
                     hasNonExistingIngredient = true
                     textField.layer.borderWidth = 1
@@ -709,6 +656,11 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
     }
     
+    // MARK: - ScrollableToTop
+    func scrollToTop() {
+        recipeTableView?.setContentOffset(CGPoint.zero, animated: true)
+    }
+
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         showRecipeTableView(shouldSetToUserDefaults: true)
@@ -726,76 +678,76 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             tableView.insertRows(at: [IndexPath(row: 0,section: 1)], with: .right)
             tableView.endUpdates()
             
-            self.ingredientSuggestTableView.flashScrollIndicators()
+            self.ingredientTableView.flashScrollIndicators()
         }else{
             reloadIngredientSuggestList(text: textField.text!)
             editingTextField = textField.tag
         }
         cancelButton.isEnabled = true
-        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient1)
-        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient2)
-        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient3)
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField1)
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField2)
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField3)
     }
     
     @objc func textFieldDidChange1(_ notification: Notification){
-        if ingredientTextField1.text != nil {
-            if editingTextField == 0{
-                reloadIngredientSuggestList(text: ingredientTextField1.text!)
-            }else if editingTextField == 1{
-                reloadIngredientSuggestList(text: ingredientTextField2.text!)
-            }else if editingTextField == 2{
-                reloadIngredientSuggestList(text: ingredientTextField3.text!)
-            }else{
-                setSearchTextToUserDefaults()
-                reloadRecipeList()
-                recipeTableView.reloadData()
-            }
-            setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient1)
+        if editingTextField == 0{
+            reloadIngredientSuggestList(text: ingredientTextField1.text!)
+        }else if editingTextField == 1{
+            reloadIngredientSuggestList(text: ingredientTextField2.text!)
+        }else if editingTextField == 2{
+            reloadIngredientSuggestList(text: ingredientTextField3.text!)
+        }else{
+            setSearchTextToUserDefaults()
+            createRecipeBasicList(recipeArray: &recipeBasicList, shouldUpdateTextFieldHasSearchResult: true)
+            filterRecipeBasicList()
+            sortRecipeBasicList()
+            setTableBackgroundView()
+            recipeTableView.reloadData()
         }
+        setTextFieldColor(textField: ingredientTextField1, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField1)
         ingredientTextField1.adjustClearButtonColor()
-        setTableBackgroundView()
     }
     
     @objc func textFieldDidChange2(_ notification: Notification){
-        if ingredientTextField2.text != nil {
-            if editingTextField == 0{
-                reloadIngredientSuggestList(text: ingredientTextField1.text!)
-            }else if editingTextField == 1{
-                reloadIngredientSuggestList(text: ingredientTextField2.text!)
-            }else if editingTextField == 2{
-                reloadIngredientSuggestList(text: ingredientTextField3.text!)
-            }else{
-                setSearchTextToUserDefaults()
-                reloadRecipeList()
-                recipeTableView.reloadData()
-            }
-            setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient2)
+        if editingTextField == 0{
+            reloadIngredientSuggestList(text: ingredientTextField1.text!)
+        }else if editingTextField == 1{
+            reloadIngredientSuggestList(text: ingredientTextField2.text!)
+        }else if editingTextField == 2{
+            reloadIngredientSuggestList(text: ingredientTextField3.text!)
+        }else{
+            setSearchTextToUserDefaults()
+            createRecipeBasicList(recipeArray: &recipeBasicList, shouldUpdateTextFieldHasSearchResult: true)
+            filterRecipeBasicList()
+            sortRecipeBasicList()
+            setTableBackgroundView()
+            recipeTableView.reloadData()
         }
+        setTextFieldColor(textField: ingredientTextField2, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField2)
         ingredientTextField2.adjustClearButtonColor()
-        setTableBackgroundView()
     }
 
     @objc func textFieldDidChange3(_ notification: Notification){
-        if ingredientTextField3.text != nil {
-            if editingTextField == 0{
-                reloadIngredientSuggestList(text: ingredientTextField1.text!)
-            }else if editingTextField == 1{
-                reloadIngredientSuggestList(text: ingredientTextField2.text!)
-            }else if editingTextField == 2{
-                reloadIngredientSuggestList(text: ingredientTextField3.text!)
-            }else{
-                setSearchTextToUserDefaults()
-                reloadRecipeList()
-                recipeTableView.reloadData()
-            }
-            setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &hasNonExistingIngredient3)
+        if editingTextField == 0{
+            reloadIngredientSuggestList(text: ingredientTextField1.text!)
+        }else if editingTextField == 1{
+            reloadIngredientSuggestList(text: ingredientTextField2.text!)
+        }else if editingTextField == 2{
+            reloadIngredientSuggestList(text: ingredientTextField3.text!)
+        }else{
+            setSearchTextToUserDefaults()
+            createRecipeBasicList(recipeArray: &recipeBasicList, shouldUpdateTextFieldHasSearchResult: true)
+            filterRecipeBasicList()
+            sortRecipeBasicList()
+            setTableBackgroundView()
+            recipeTableView.reloadData()
         }
+        setTextFieldColor(textField: ingredientTextField3, alwaysNormalColor: true, hasNonExistingIngredient: &noIngredientForTextField3)
         ingredientTextField3.adjustClearButtonColor()
-        setTableBackgroundView()
     }
 
     private func reloadIngredientSuggestList(text: String){
-        ingredientSuggestTableView.reloadData()
+        ingredientTableView.reloadData()
         ingredientSuggestList.removeAll()
         
         let searchText = text.withoutMiddleSpaceAndMiddleDot()
@@ -819,7 +771,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         }
         
         ingredientSuggestList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        ingredientSuggestTableView.reloadData()
+        ingredientTableView.reloadData()
     }
     
     // MARK: - UITableView
@@ -978,7 +930,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             cell.selectedBackgroundView = selectedCellBackgroundView
             return cell
         }else if tableView.tag == 2{
-            let cell = ingredientSuggestTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
+            let cell = ingredientTableView.dequeueReusableCell(withIdentifier: "SelectIngredient") as! ReverseLookupSelectIngredientTableViewCell
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.ingredient = ingredientSuggestList[indexPath.row]
             cell.separatorInset = UIEdgeInsets(top: 0, left: 66, bottom: 0, right: 0)
@@ -1010,12 +962,19 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.setupData()
+            self.makeFilterFromUserDefaults()
+            self.setSearchConditionButtonTitle()
+            self.createRecipeBasicList(recipeArray: &self.recipeBasicList, shouldUpdateTextFieldHasSearchResult: true)
+            self.filterRecipeBasicList()
+            self.sortRecipeBasicList()
+            self.setTableBackgroundView()
+            self.recipeTableView.reloadData()
         }
         vc.udPrefix = "reverse-lookup-"
         
-        createRecipeBasicListWithIngredientTextField(recipeArray: &recipeBasicListForFilterModal)
-        vc.recipeBasicList = self.recipeBasicListForFilterModal
+        var recipeBasicListForFilterModal = Array<RecipeBasic>()
+        createRecipeBasicList(recipeArray: &recipeBasicListForFilterModal, shouldUpdateTextFieldHasSearchResult: false)
+        vc.recipeBasicList = recipeBasicListForFilterModal
 
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
             nvc.modalPresentationStyle = .pageSheet

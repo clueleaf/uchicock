@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZFg-h0-uYq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZFg-h0-uYq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -37,7 +37,7 @@
                                                                 <outlet property="delegate" destination="Cy2-49-Afi" id="EXv-TN-dCH"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料2" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-ff-7oM" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料2" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="gQ4-ff-7oM" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="33" width="398" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -45,7 +45,7 @@
                                                                 <outlet property="delegate" destination="Cy2-49-Afi" id="noh-ef-jgX"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料3" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="JPr-bc-nKU" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
+                                                        <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="材料3" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="JPr-bc-nKU" customClass="CustomTextField" customModule="uchicock" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="66" width="398" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -225,7 +225,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="Bw4-Re-wQG" id="gKq-5n-LAF"/>
-                        <outlet property="ingredientSuggestTableView" destination="4Ys-67-cyM" id="uf2-CE-Rly"/>
+                        <outlet property="ingredientTableView" destination="4Ys-67-cyM" id="Fpy-jg-drM"/>
                         <outlet property="ingredientTextField1" destination="zOf-6H-wLN" id="6No-sw-8TR"/>
                         <outlet property="ingredientTextField2" destination="gQ4-ff-7oM" id="eEC-l2-UFh"/>
                         <outlet property="ingredientTextField3" destination="JPr-bc-nKU" id="n71-Tl-BWt"/>

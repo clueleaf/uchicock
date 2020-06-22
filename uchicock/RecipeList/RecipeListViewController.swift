@@ -60,7 +60,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         registerUserDefaults()
         requestReview()
         
-        makeFilterFromSearchUserDefaults()
+        makeFilterFromUserDefaults()
         setSearchConditionButtonTitle()
 
         searchTextField.clearButtonEdgeInset = 4.0
@@ -200,7 +200,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         ])
     }
     
-    private func makeFilterFromSearchUserDefaults(){
+    private func makeFilterFromUserDefaults(){
         recipeFilterStar.removeAll()
         recipeFilterStyle.removeAll()
         recipeFilterMethod.removeAll()
@@ -843,7 +843,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         let nvc = storyboard.instantiateViewController(withIdentifier: "RecipeSearchModalNavigationController") as! BasicNavigationController
         let vc = nvc.visibleViewController as! RecipeSearchViewController
         vc.onDoneBlock = {
-            self.makeFilterFromSearchUserDefaults()
+            self.makeFilterFromUserDefaults()
             self.setSearchConditionButtonTitle()
             self.reloadRecipeBasicList()
             self.setTableBackgroundView()
