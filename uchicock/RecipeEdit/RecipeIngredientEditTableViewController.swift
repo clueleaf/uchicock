@@ -147,6 +147,7 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
                     name: ingredient.ingredientName,
                     nameYomi: ingredient.ingredientNameYomi,
                     katakanaLowercasedNameForSearch: "",
+                    stockFlag: false,
                     category: ingredient.category
                 )
                 suggestList.append(suggest)
