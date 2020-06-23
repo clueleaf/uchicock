@@ -13,9 +13,11 @@ class DismissModalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private var bottomPadding: CGFloat = 0
     private var leftPadding: CGFloat = 0
     private var rightPadding: CGFloat = 0
-    var xMargin: CGFloat = 20.0
-    var yMargin: CGFloat = 40.0
-    
+    var topMargin: CGFloat = 15.0
+    var bottomMargin: CGFloat = 10.0
+    var leftMargin: CGFloat = 5.0
+    var rightMargin: CGFloat = 5.0
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.35
     }
@@ -29,9 +31,9 @@ class DismissModalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         bottomPadding = window.safeAreaInsets.bottom
         leftPadding = window.safeAreaInsets.left
         rightPadding = window.safeAreaInsets.right
-        let modalSize = CGSize(width: window.bounds.width - xMargin - leftPadding - rightPadding,
-                               height: window.bounds.height - yMargin - topPadding - bottomPadding)
-        let bottomLeftCorner = CGPoint(x: xMargin / 2.0 + leftPadding, y: window.bounds.height)
+        let modalSize = CGSize(width: window.bounds.width - leftMargin - rightMargin - leftPadding - rightPadding,
+                               height: window.bounds.height - topMargin - bottomMargin - topPadding - bottomPadding)
+        let bottomLeftCorner = CGPoint(x: leftMargin + leftPadding, y: window.bounds.height)
         
         let finalFrame = CGRect(origin: bottomLeftCorner, size: modalSize)
         

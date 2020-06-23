@@ -10,8 +10,10 @@ import UIKit
 
 class ModalPresentationController: UIPresentationController {
     var canDismissWithOverlayViewTouch = false
-    var xMargin: CGFloat = 20.0
-    var yMargin: CGFloat = 40.0
+    var topMargin : CGFloat = 15.0
+    var bottomMargin : CGFloat = 10.0
+    var leftMargin : CGFloat = 5.0
+    var rightMargin : CGFloat = 5.0
     var overlayAlpha: CGFloat = 0.4
     
     var overlayView = UIView()
@@ -61,8 +63,8 @@ class ModalPresentationController: UIPresentationController {
         bottomPadding = window!.safeAreaInsets.bottom
         leftPadding = window!.safeAreaInsets.left
         rightPadding = window!.safeAreaInsets.right
-        return CGSize(width: parentSize.width - xMargin - leftPadding - rightPadding,
-                      height: parentSize.height - yMargin - topPadding - bottomPadding)
+        return CGSize(width: parentSize.width - leftMargin - rightMargin - leftPadding - rightPadding,
+                      height: parentSize.height - topMargin - bottomMargin - topPadding - bottomPadding)
     }
     
     // 呼び出し先のView Controllerのframeを返す
@@ -71,8 +73,8 @@ class ModalPresentationController: UIPresentationController {
         let containerBounds = containerView!.bounds
         let childContentSize = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerBounds.size)
         presentedViewFrame.size = childContentSize
-        presentedViewFrame.origin.x = xMargin / 2.0 + leftPadding
-        presentedViewFrame.origin.y = yMargin / 2.0 + topPadding
+        presentedViewFrame.origin.x = leftMargin + leftPadding
+        presentedViewFrame.origin.y = topMargin + topPadding
         
         return presentedViewFrame
     }

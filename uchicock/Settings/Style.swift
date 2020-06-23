@@ -831,7 +831,7 @@ struct UchicockStyle{
         CustomTextField.appearance().layer.borderColor = UIColor.clear.cgColor
         CustomTextField.appearance().backgroundColor = basicBackgroundColorLight
         CustomTextField.appearance().textColor = labelTextColor
-        CustomTextField.appearance().tintColor = labelTextColor
+        CustomTextField.appearance().tintColor = primaryColor
         CustomTextField.appearance().clipsToBounds = true
         CustomTextField.appearance().keyboardAppearance = keyboardAppearance
     }
@@ -839,7 +839,7 @@ struct UchicockStyle{
     static private func customizeTextView(){
         CustomTextView.appearance().backgroundColor = UIColor.clear
         CustomTextView.appearance().textColor = labelTextColor
-        CustomTextView.appearance().tintColor = labelTextColor
+        CustomTextView.appearance().tintColor = primaryColor
     }
     
     static private func customizeTabBar(){

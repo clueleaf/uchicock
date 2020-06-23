@@ -391,16 +391,20 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
-        pc.xMargin = 60
-        pc.yMargin = 160
+        pc.leftMargin = 30
+        pc.rightMargin = 30
+        pc.topMargin = 80
+        pc.bottomMargin = 80
         pc.canDismissWithOverlayViewTouch = true
         return pc
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let animator = DismissModalAnimator()
-        animator.xMargin = 60
-        animator.yMargin = 160
+        animator.leftMargin = 30
+        animator.rightMargin = 30
+        animator.topMargin = 80
+        animator.bottomMargin = 80
         return animator
     }
 

@@ -694,11 +694,22 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
+        pc.leftMargin = 10
+        pc.rightMargin = 10
+        pc.topMargin = 20
+        pc.bottomMargin = 20
+        pc.canDismissWithOverlayViewTouch = false
+        return pc
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissModalAnimator()
+        let animator = DismissModalAnimator()
+        animator.leftMargin = 10
+        animator.rightMargin = 10
+        animator.topMargin = 20
+        animator.bottomMargin = 20
+        return animator
     }
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

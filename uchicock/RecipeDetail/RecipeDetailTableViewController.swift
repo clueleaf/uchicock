@@ -1276,13 +1276,17 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
 
         if let VC = VC, VC.isKind(of: TipViewController.self){
-            pc.xMargin = 60
-            pc.yMargin = 160
+            pc.leftMargin = 30
+            pc.rightMargin = 30
+            pc.topMargin = 80
+            pc.bottomMargin = 80
             pc.canDismissWithOverlayViewTouch = true
             return pc
         }
-        pc.xMargin = 20
-        pc.yMargin = 40
+        pc.leftMargin = 10
+        pc.rightMargin = 10
+        pc.topMargin = 20
+        pc.bottomMargin = 20
         pc.canDismissWithOverlayViewTouch = false
         return pc
     }
@@ -1293,12 +1297,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let animator = DismissModalAnimator()
 
         if let VC = VC, VC.isKind(of: TipViewController.self){
-            animator.xMargin = 60
-            animator.yMargin = 160
+            animator.leftMargin = 30
+            animator.rightMargin = 30
+            animator.topMargin = 80
+            animator.bottomMargin = 80
             return animator
         }
-        animator.xMargin = 20
-        animator.yMargin = 40
+        animator.leftMargin = 10
+        animator.rightMargin = 10
+        animator.topMargin = 20
+        animator.bottomMargin = 20
         return animator
     }
     
