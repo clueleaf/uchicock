@@ -50,7 +50,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="albumFilterBarButton" destination="zoY-sF-pqa" id="6Yj-p9-ELR"/>
-                        <outlet property="flowLayout" destination="hYW-wC-52D" id="HSs-W9-G3B"/>
                         <outlet property="orderBarButton" destination="bqV-mq-viL" id="NLP-aq-vUT"/>
                         <outlet property="recipeNameBarButton" destination="OI7-4a-Ftr" id="z8K-y9-IED"/>
                         <segue destination="a1g-J2-ITo" kind="show" identifier="RecipeTapped" id="QPN-kF-UNt"/>

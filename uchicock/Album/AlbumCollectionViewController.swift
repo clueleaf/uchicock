@@ -14,11 +14,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     @IBOutlet weak var recipeNameBarButton: UIBarButtonItem!
     @IBOutlet weak var albumFilterBarButton: UIBarButtonItem!
     @IBOutlet weak var orderBarButton: UIBarButtonItem!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!{
-        didSet {
-            flowLayout.sectionInsetReference = .fromSafeArea
-        }
-    }
     
     var recipeBasicList = Array<RecipeBasic>()
     var filteredRecipeBasicList = Array<RecipeBasic>()
@@ -30,7 +25,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
     var shouldShowRecipeName = false
     var shouldAnimate = false
     var areItemsMoving = false
-    var needsLayout = false
 
     var albumFilterStar: [Int] = []
     var albumFilterStyle: [Int] = []
@@ -48,7 +42,8 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         super.viewDidLoad()
         
         collectionView.delaysContentTouches = false
-
+        collectionView.contentInsetAdjustmentBehavior = .always
+        
         setFilterUserDefaults()
         initiateRecipeBasicList()
         makeFilterFromSearchUserDefaults()
@@ -133,38 +128,19 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         filterRecipeBasicList()
         collectionView.reloadData()
-        collectionView.layoutIfNeeded()
         updateNavigationBar()
         setCollectionBackgroundView()
 
-        needsLayout = true
         collectionView.backgroundColor = UchicockStyle.basicBackgroundColor
         collectionView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        needsLayout = true
         gradationFrame = CGRect(x: 0, y: 0, width: albumCellWidth(of: size.width), height: gradationFrame.height)
         collectionView.reloadData()
-        collectionView.layoutIfNeeded()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // iPhone X系（横にすると横にSafe Areaがある端末）において、横向きでアルバムを表示（3列）し、詳細へ遷移 -> 縦向きにする
-        // -> アルバムに戻ると2列になるはずが1列になっている問題へのワークアラウンド（needsLayoutフラグを利用して無限ループを回避）
-        if needsLayout{
-            guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-                return
-            }
-            flowLayout.invalidateLayout()
-            collectionView.setNeedsLayout()
-            needsLayout = false
-        }
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.collectionView.flashScrollIndicators()
