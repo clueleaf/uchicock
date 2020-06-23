@@ -650,7 +650,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         searchTextField.resignFirstResponder()
-        searchTextField.adjustClearButtonColor()
         reloadRecipeBasicList()
         updateSearchResultFlag()
         setSearchTextFieldAlertStyle()
