@@ -292,7 +292,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         switch recipeSort {
         case .name:
-            ingredientRecipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            ingredientRecipeBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         case .makeableName:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
@@ -318,7 +318,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                 }
             }
         case .viewedName:
-            ingredientRecipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -332,7 +332,7 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
                         return a.lastViewDate! > b.lastViewDate!
                     }
                 }
-            })
+            }
         default:
             ingredientRecipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {

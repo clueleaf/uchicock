@@ -147,8 +147,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 unrecoverableSampleRecipeList.append(srb)
             }
         }
-        recoverableSampleRecipeList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
-        unrecoverableSampleRecipeList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+        recoverableSampleRecipeList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
+        unrecoverableSampleRecipeList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
     }
     
     @objc func isTargetTapped(_ sender: CircularCheckbox){

@@ -404,17 +404,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
         switch sortOrder{
         case .name:
-            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            recipeBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         case .makeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableMadenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.madeNum == b.madeNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -424,9 +424,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableFavoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.favorites == b.favorites{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -436,9 +436,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableViewdName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -456,17 +456,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .madenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .madenumMakeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.shortageNum == b.shortageNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -476,9 +476,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .madenumFavoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.favorites == b.favorites{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -488,9 +488,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .madenumViewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -508,17 +508,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .favoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteMakeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.shortageNum == b.shortageNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -528,9 +528,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteMadenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.madeNum == b.madeNum {
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -540,9 +540,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteViewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -560,9 +560,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .viewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -576,7 +576,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
                         return a.lastViewDate! > b.lastViewDate!
                     }
                 }
-            })
+            }
         }
     }
 
@@ -670,18 +670,17 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
             if searchText == "" ||
             ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
             ingredient.ingredientName.contains(searchText){
-                let ib = IngredientSuggestBasic(
+                ingredientSuggestList.append(IngredientSuggestBasic(
                     name: ingredient.ingredientName,
                     nameYomi: ingredient.ingredientNameYomi,
                     katakanaLowercasedNameForSearch: "",
                     stockFlag: ingredient.stockFlag,
                     category: ingredient.category
-                )
-                ingredientSuggestList.append(ib)
+                ))
             }
         }
         
-        ingredientSuggestList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+        ingredientSuggestList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         ingredientTableView.reloadData()
     }
     

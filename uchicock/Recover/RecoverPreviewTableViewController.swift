@@ -48,7 +48,7 @@ class RecoverPreviewTableViewController: UITableViewController {
                 stockFlag: false
             ))
         }
-        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+        recipeIngredientList.sort { $0.displayOrder < $1.displayOrder }
 
         recipeName.isScrollEnabled = false
         recipeName.textContainerInset = .zero

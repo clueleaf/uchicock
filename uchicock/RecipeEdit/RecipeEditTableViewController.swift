@@ -173,7 +173,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                 stockFlag: false
             ))
         }
-        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+        recipeIngredientList.sort { $0.displayOrder < $1.displayOrder }
         setAddIngredientLabel()
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -898,7 +898,7 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         var list = createDuplicatedIngredientIndexPathList()
         guard list.count == 0 else{
-            list.sort(by: {$0.row < $1.row})
+            list.sort {$0.row < $1.row}
             presentAlert(title: "重複している材料があります", message: nil, action: {
                 self.tableView.selectRow(at: list[0], animated: true, scrollPosition: .middle)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

@@ -303,7 +303,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                     imageFileName: recipe.imageFileName
                 ))
             }
-            recipeBasicList.sort(by: { $0.bookmarkDate! > $1.bookmarkDate! })
+            recipeBasicList.sort { $0.bookmarkDate! > $1.bookmarkDate! }
             self.navigationItem.title = "ブックマーク(" + String(recipeBasicList.count) + ")"
         }else{
             createRecipeBasicList()
@@ -346,17 +346,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     private func sortRecipeBasicList(){
         switch sortOrder{
         case .name:
-            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            recipeBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         case .makeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableMadenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.madeNum == b.madeNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -366,9 +366,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableFavoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.favorites == b.favorites{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -378,9 +378,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .makeableViewdName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.shortageNum == b.shortageNum {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -398,17 +398,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.shortageNum < b.shortageNum
                 }
-            })
+            }
         case .madenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .madenumMakeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.shortageNum == b.shortageNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -418,9 +418,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .madenumFavoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.favorites == b.favorites{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -428,11 +428,11 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         return a.favorites > b.favorites
                     }
                 }else{
-                        return a.madeNum > b.madeNum
-                    }
-                })
+                    return a.madeNum > b.madeNum
+                }
+            }
         case .madenumViewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.madeNum == b.madeNum {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -450,17 +450,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.madeNum > b.madeNum
                 }
-            })
+            }
         case .favoriteName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteMakeableName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.shortageNum == b.shortageNum{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -470,9 +470,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteMadenumName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.madeNum == b.madeNum {
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -482,9 +482,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .favoriteViewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.favorites == b.favorites {
                     if a.lastViewDate == nil{
                         if b.lastViewDate == nil{
@@ -502,9 +502,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }else{
                     return a.favorites > b.favorites
                 }
-            })
+            }
         case .viewedName:
-            recipeBasicList.sort(by: { (a:RecipeBasic, b:RecipeBasic) -> Bool in
+            recipeBasicList.sort { (a:RecipeBasic, b:RecipeBasic) -> Bool in
                 if a.lastViewDate == nil{
                     if b.lastViewDate == nil{
                         return a.nameYomi.localizedStandardCompare(b.nameYomi) == .orderedAscending
@@ -518,7 +518,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                         return a.lastViewDate! > b.lastViewDate!
                     }
                 }
-            })
+            }
         }
     }
     

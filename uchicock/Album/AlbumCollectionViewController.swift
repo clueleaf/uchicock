@@ -128,6 +128,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
 
         filterRecipeBasicList()
         collectionView.reloadData()
+        collectionView.layoutIfNeeded()
         updateNavigationBar()
         setCollectionBackgroundView()
 
@@ -184,7 +185,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
                 imageFileName: recipe.imageFileName
             ))
         }
-        recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+        recipeBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
     }
     
     private func makeFilterFromSearchUserDefaults(){
@@ -281,7 +282,7 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         if shouldShuffle{
             recipeBasicList.shuffle()
         }else{
-            recipeBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            recipeBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         }
         filterRecipeBasicList()
         

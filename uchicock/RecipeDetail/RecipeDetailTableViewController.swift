@@ -338,7 +338,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 stockFlag: ri.ingredient.stockFlag
             ))
         }
-        recipeIngredientList.sort(by: { $0.displayOrder < $1.displayOrder })
+        recipeIngredientList.sort { $0.displayOrder < $1.displayOrder }
         
         editButton.backgroundColor = UchicockStyle.primaryColor
         editButton.tintColor = UchicockStyle.basicBackgroundColor
@@ -879,9 +879,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
         }
         
-        displaySimilarRecipeList.sort(by: { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
+        displaySimilarRecipeList.sort { (a:SimilarRecipeBasic, b:SimilarRecipeBasic) -> Bool in
             return a.point == b.point ? a.name < b.name : a.point > b.point
-        })
+        }
     }
     
     // MARK: - CollectionView

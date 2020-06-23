@@ -95,7 +95,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                 ))
             }
         }
-        ingredientBasicList.sort(by: { $0.contributionToRecipeAvailability > $1.contributionToRecipeAvailability })
+        ingredientBasicList.sort { $0.contributionToRecipeAvailability > $1.contributionToRecipeAvailability }
 
         if ingredientBasicList.count == 0{
             isContributionMode = false
@@ -117,7 +117,7 @@ class IngredientRecommendTableViewController: UITableViewController {
                 // 持っている材料数が少ない場合、その他カテゴリの材料を取り除く
                 ingredientBasicList.removeAll{ $0.category == 2 }
             }
-            ingredientBasicList.sort(by: { $0.usingRecipeNum > $1.usingRecipeNum })
+            ingredientBasicList.sort { $0.usingRecipeNum > $1.usingRecipeNum }
         }
     }
     

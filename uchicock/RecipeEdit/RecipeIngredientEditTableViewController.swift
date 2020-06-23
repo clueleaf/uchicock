@@ -143,18 +143,17 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             if searchText == "" ||
                 ingredient.katakanaLowercasedNameForSearch.contains(convertedSearchText) ||
                     ingredient.ingredientName.contains(searchText){
-                let suggest = IngredientSuggestBasic(
+                suggestList.append(IngredientSuggestBasic(
                     name: ingredient.ingredientName,
                     nameYomi: ingredient.ingredientNameYomi,
                     katakanaLowercasedNameForSearch: "",
                     stockFlag: false,
                     category: ingredient.category
-                )
-                suggestList.append(suggest)
+                ))
             }
         }
         
-        suggestList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+        suggestList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         suggestTableView.reloadData()
     }
 

@@ -190,11 +190,11 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 ))
             }
             
-            ingredientBasicList.sort(by: { $0.reminderSetDate! > $1.reminderSetDate! })
+            ingredientBasicList.sort { $0.reminderSetDate! > $1.reminderSetDate! }
             self.navigationItem.title = "購入リマインダー(" + String(ingredientBasicList.count) + ")"
         }else{
             createSearchedIngredientBaiscList()
-            ingredientBasicList.sort(by: { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending })
+            ingredientBasicList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
             self.navigationItem.title = "材料(" + String(ingredientBasicList.count) + "/" + String(ingredientList!.count) + ")"
         }
     }
