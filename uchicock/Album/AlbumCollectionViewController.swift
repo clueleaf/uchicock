@@ -545,17 +545,17 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let nameOrderAction = UIAlertAction(title: "レシピを名前順に並べ替える", style: .default){action in
             self.refresh(shouldShuffle: false)
         }
-        nameOrderAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ nameOrderAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(nameOrderAction)
         
         let shuffleAction = UIAlertAction(title: "表示順をシャッフルする", style: .default){action in
             self.refresh(shouldShuffle: true)
         }
-        shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(shuffleAction)
         
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(cancelAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true

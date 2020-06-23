@@ -193,7 +193,7 @@ class ChangeThemeTableViewController: UITableViewController {
             }
             self.changeTheme(themeNo: themeNo, shouldScroll: true)
         }
-        shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ shuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(shuffleAction)
         let lightShuffleAction = UIAlertAction(title: "ライトテーマからおまかせ", style: .default){action in
             var themeNo = Int(UchicockStyle.no)!
@@ -202,7 +202,7 @@ class ChangeThemeTableViewController: UITableViewController {
             }
             self.changeTheme(themeNo: themeNo, shouldScroll: true)
         }
-        lightShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ lightShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(lightShuffleAction)
         let darkShuffleAction = UIAlertAction(title: "ダークテーマからおまかせ", style: .default){action in
             var themeNo = Int(UchicockStyle.no)!
@@ -211,10 +211,10 @@ class ChangeThemeTableViewController: UITableViewController {
             }
             self.changeTheme(themeNo: themeNo, shouldScroll: true)
         }
-        darkShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ darkShuffleAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(darkShuffleAction)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-        cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+        if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(cancelAction)
         alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true

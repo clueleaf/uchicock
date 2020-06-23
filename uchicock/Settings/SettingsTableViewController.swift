@@ -161,7 +161,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
                     }
                 }
             }
-            writeAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            if #available(iOS 13.0, *){ writeAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(writeAction)
             let wroteAction = UIAlertAction(title: "もう書いた", style: .destructive){action in
                 let defaults = UserDefaults.standard
@@ -169,10 +169,10 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
                 self.alreadyWrittenReview = true
                 self.tableView.deleteRows(at: [indexPath], with: .middle)
             }
-            wroteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+            if #available(iOS 13.0, *){ wroteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor") }
             alertView.addAction(wroteAction)
             let cancelAction = UIAlertAction(title: "また今度", style: .cancel, handler: nil)
-            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(cancelAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true

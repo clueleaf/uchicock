@@ -717,12 +717,12 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.navigationItem.title = "レシピ(" + String(self.recipeBasicList.count) + "/" + String(self.recipeList!.count) + ")"
                 completionHandler(true)
             }
-            deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor")
+            if #available(iOS 13.0, *){ deleteAction.setValue(UchicockStyle.alertColor, forKey: "titleTextColor") }
             alertView.addAction(deleteAction)
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel){action in
                 completionHandler(false)
             }
-            cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+            if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(cancelAction)
             alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true

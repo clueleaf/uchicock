@@ -324,7 +324,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                         alertView.overrideUserInterfaceStyle = .dark
                     }
                     let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(action)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -349,10 +349,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                             }
                         }
                     }
-                    recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(recoverAction)
                     let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-                    cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(cancelAction)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
@@ -380,10 +380,10 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                             }
                         }
                     }
-                    recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(recoverAction)
                     let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-                    cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor")
+                    if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(cancelAction)
                     alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
