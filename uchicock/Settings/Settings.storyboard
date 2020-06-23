@@ -339,7 +339,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icf-iq-8Sr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icf-iq-8Sr" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="355" height="84"/>
                                                     <string key="text">新たに画像を保存する場合のサイズを指定できます。
 既に保存されている画像のサイズは変更されません。</string>
@@ -379,7 +379,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwd-fJ-QQ6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwd-fJ-QQ6" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="355" height="184"/>
                                                     <string key="text">全てこのサイズで保存した場合に必要なおおよその容量：
 
@@ -409,7 +409,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="画像サイズ" id="Ztu-bx-LLU"/>
                     <connections>
-                        <outlet property="explanationLabel" destination="icf-iq-8Sr" id="nhn-c9-390"/>
                         <outlet property="sizeExplanationLabel" destination="iwd-fJ-QQ6" id="ITo-Qz-pbk"/>
                     </connections>
                 </tableViewController>

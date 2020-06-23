@@ -10,8 +10,7 @@ import UIKit
 
 class ChangeImageSizeTableViewController: UITableViewController {
 
-    @IBOutlet weak var explanationLabel: UILabel!
-    @IBOutlet weak var sizeExplanationLabel: UILabel!
+    @IBOutlet weak var sizeExplanationLabel: CustomLabel!
     let defaults = UserDefaults.standard
     
     let middleSizeExplanationText = "全てこのサイズで保存した場合に必要なおおよその容量：\n\n画像10枚で約25MB\n画像50枚で約125MB\n画像100枚で約250MB"
@@ -33,20 +32,13 @@ class ChangeImageSizeTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableView.automaticDimension
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
-
-        explanationLabel.textColor = UchicockStyle.labelTextColor
-        sizeExplanationLabel.textColor = UchicockStyle.labelTextColor
-
         setSizeExplanationText()
     }
     
+    // MARK: - Logic functions
     private func setSizeExplanationText(){
         let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
-        if saveImageSize == 1{
-            self.sizeExplanationLabel.text = largeSizeExplanationText
-        }else{
-            self.sizeExplanationLabel.text = middleSizeExplanationText
-        }
+        self.sizeExplanationLabel.text = saveImageSize == 1 ? largeSizeExplanationText : middleSizeExplanationText
     }
 
     // MARK: - UITableView
@@ -63,9 +55,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return UITableView.automaticDimension
-        }else if indexPath.row == 3{
+        if indexPath.row == 0 || indexPath.row == 3 {
             return UITableView.automaticDimension
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
@@ -96,17 +86,14 @@ class ChangeImageSizeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        cell.backgroundColor = UchicockStyle.basicBackgroundColor
+
         switch indexPath.row{
         case 0:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            cell.tintColor = UchicockStyle.labelTextColor
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            return cell
         case 1:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cell.textLabel?.text = "中"
             cell.textLabel?.font = UIFont.systemFont(ofSize: 17.0)
@@ -122,10 +109,7 @@ class ChangeImageSizeTableViewController: UITableViewController {
             }else{
                 cell.accessoryView = nil
             }
-            return cell
         case 2:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             cell.textLabel?.text = "大"
             cell.textLabel?.font = UIFont.systemFont(ofSize: 17.0)
@@ -141,17 +125,11 @@ class ChangeImageSizeTableViewController: UITableViewController {
             }else{
                 cell.accessoryView = nil
             }
-            return cell
         case 3:
-            let cell = super.tableView(tableView, cellForRowAt: indexPath)
-            cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            cell.tintColor = UchicockStyle.labelTextColor
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-
-            return cell
-        default:
-            return UITableViewCell()
+        default: break
         }
+        return cell
     }
 }

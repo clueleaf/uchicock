@@ -740,11 +740,9 @@ struct UchicockStyle{
     }
 
     // MARK: - Manage Theme
-    static func saveTheme(themeNo: String?){
-        if let no = themeNo{
-            let defaults = UserDefaults.standard
-            defaults.set(no, forKey: GlobalConstants.ColorThemeKey)
-        }
+    static func saveTheme(themeNo: String){
+        let defaults = UserDefaults.standard
+        defaults.set(themeNo, forKey: GlobalConstants.ColorThemeKey)
     }
     
     static func loadTheme(){
@@ -753,50 +751,46 @@ struct UchicockStyle{
             setTheme(themeNo: themeNo)
         }else{
             defaults.set("16", forKey: GlobalConstants.ColorThemeKey)
-            mimosaDark()
-            setGlobalTheme()
+            setTheme(themeNo: "16")
         }
     }
     
-    static func setTheme(themeNo: String?){
-        if let no = themeNo {
-            switch no{
-            case "0": tequilaSunriseLight()
-            case "1": tequilaSunriseDark()
-            case "2": seaBreezeLight()
-            case "3": seaBreezeDark()
-            case "4": chinaBlueLight()
-            case "5": chinaBlueDark()
-            case "6": grasshopperLight()
-            case "7": irishCoffeeDark()
-            case "8": mojitoLight()
-            case "9": redEyeLight()
-            case "10": cubaLibreDark()
-            case "11": silverWingLight()
-            case "12": americanLemonadeDark()
-            case "13": blueLagoonLight()
-            case "14": blueLagoonDark()
-            case "15": mimosaLight()
-            case "16": mimosaDark()
-            case "17": pinkLadyLight()
-            case "18": pinkLadyDark()
-            case "19": blackRussianDark()
-            case "20": shoyoJulingLight()
-            case "21": shoyoJulingDark()
-            case "22": unionJackLight()
-            case "23": unionJackDark()
-            case "24": blueMoonLight()
-            case "25": bloodyMaryDark()
-            default: break
-            }
-            setGlobalTheme()
+    static func setTheme(themeNo: String){
+        switch themeNo{
+        case "0": tequilaSunriseLight()
+        case "1": tequilaSunriseDark()
+        case "2": seaBreezeLight()
+        case "3": seaBreezeDark()
+        case "4": chinaBlueLight()
+        case "5": chinaBlueDark()
+        case "6": grasshopperLight()
+        case "7": irishCoffeeDark()
+        case "8": mojitoLight()
+        case "9": redEyeLight()
+        case "10": cubaLibreDark()
+        case "11": silverWingLight()
+        case "12": americanLemonadeDark()
+        case "13": blueLagoonLight()
+        case "14": blueLagoonDark()
+        case "15": mimosaLight()
+        case "16": mimosaDark()
+        case "17": pinkLadyLight()
+        case "18": pinkLadyDark()
+        case "19": blackRussianDark()
+        case "20": shoyoJulingLight()
+        case "21": shoyoJulingDark()
+        case "22": unionJackLight()
+        case "23": unionJackDark()
+        case "24": blueMoonLight()
+        case "25": bloodyMaryDark()
+        default: mimosaDark()
         }
+        setGlobalTheme()
     }
     
     // MARK: - Set Global Theme
     static private func setGlobalTheme(){
-        // 注意：UILabel, TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
-        customizeButton()
+        // 注意：TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
         customizeNavigationBar()
         customizeSegmentedControl()
         customizeCircularCheckbox()
@@ -804,16 +798,8 @@ struct UchicockStyle{
         customizeTextView()
         customizeTabBar()
         customizeSlider()
-        customizeActivityIndicatorView()
         customizeLabel()
         MessageHUD.set(defaultStyle: messageHudStyle)
-    }
-    
-    static private func customizeButton(){
-        // テーマカラー変更のチェックマークの色ために必要
-        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).tintColor = UchicockStyle.primaryColor
-
-        UIButton.appearance(whenContainedInInstancesOf: [CustomNavigationBar.self]).backgroundColor = UIColor.clear
     }
     
     static private func customizeNavigationBar(){
@@ -844,8 +830,8 @@ struct UchicockStyle{
         CustomTextField.appearance().layer.borderWidth = 0
         CustomTextField.appearance().layer.borderColor = UIColor.clear.cgColor
         CustomTextField.appearance().backgroundColor = basicBackgroundColorLight
-        CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().textColor = labelTextColor
+        CustomTextField.appearance().tintColor = labelTextColor
         CustomTextField.appearance().clipsToBounds = true
         CustomTextField.appearance().keyboardAppearance = keyboardAppearance
     }
@@ -871,8 +857,4 @@ struct UchicockStyle{
         CustomLabel.appearance().textColor = labelTextColor
     }
     
-    static private func customizeActivityIndicatorView(){
-        PullToRefreshActivityIndicatorView.appearance().color = labelTextColor
-    }
-
 }

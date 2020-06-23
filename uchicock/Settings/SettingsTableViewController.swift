@@ -20,11 +20,9 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
     @IBOutlet weak var newRecipeLabel: UILabel!
     
     var selectedIndexPath: IndexPath? = nil
-    let defaults = UserDefaults.standard
     var firstRequestReview = false
     var alreadyWrittenReview = false
     let appStoreReviewURL = URL(string: "itms-apps://apps.apple.com/jp/app/id1097924299?action=write-review")
-    
     let selectedCellBackgroundView = UIView()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -58,13 +56,11 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         reviewImage.tintColor = UchicockStyle.primaryColor
 
         currentImageSizeLabel.textColor = UchicockStyle.labelTextColorLight
-        let saveImageSize = defaults.integer(forKey: GlobalConstants.SaveImageSizeKey)
-        if saveImageSize == 1{
+        if UserDefaults.standard.integer(forKey: GlobalConstants.SaveImageSizeKey) == 1{
             currentImageSizeLabel.text = "大"
         }else{
             currentImageSizeLabel.text = "中"
         }
-        
         setNewRecipeBadge()
         
         tableView.reloadData()
@@ -76,6 +72,16 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let path = tableView.indexPathForSelectedRow{
+            tableView.deselectRow(at: path, animated: true)
+        }
+        selectedIndexPath = nil
+    }
+    
+    // MARK: - Logic functions
     private func setNewRecipeBadge(){
         let defaults = UserDefaults.standard
         let version80newRecipeViewed = defaults.bool(forKey: GlobalConstants.Version80NewRecipeViewedKey)
@@ -100,15 +106,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let path = tableView.indexPathForSelectedRow{
-            tableView.deselectRow(at: path, animated: true)
-        }
-        selectedIndexPath = nil
-    }
-    
+    // MARK: - ScrollableToTop
     func scrollToTop() {
         tableView?.setContentOffset(CGPoint.zero, animated: true)
     }
@@ -150,7 +148,7 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
         case 5:
             self.tableView.deselectRow(at: indexPath, animated: true)
             let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ温かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
-            let alertView = CustomAlertController(title: "", message: message, preferredStyle: .alert)
+            let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
             if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
                 alertView.overrideUserInterfaceStyle = .dark
             }

@@ -18,19 +18,19 @@ struct FlatColor{
     static let white = UIColor(hue: 192/360, saturation: 2/100, brightness: 95/100, alpha: 1)
     static let whiteDark = UIColor(hue: 204/360, saturation: 5/100, brightness: 78/100, alpha: 1)
     
-    //（暗い）
+    //（暗すぎる）
     static let maroon = UIColor(hue: 5/360, saturation: 65/100, brightness: 47/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let maroonDark = UIColor(hue: 4/360, saturation: 68/100, brightness: 40/100, alpha: 1)
 
-    // Delete Colorとして利用
+    // Alert Color、ブラッディメアリー
     static let red = UIColor(hue: 6/360, saturation: 74/100, brightness: 91/100, alpha: 1)
-    // Delete Colorとして利用
+    // Alert Colorとして利用
     static let redDark = UIColor(hue: 6/360, saturation: 78/100, brightness: 75/100, alpha: 1)
 
-    //（暗い）
+    //（暗すぎる）
     static let brown = UIColor(hue: 24/360, saturation: 45/100, brightness: 37/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let brownDark = UIColor(hue: 25/360, saturation: 45/100, brightness: 31/100, alpha: 1)
 
     // ブラックルシアン、アイリッシュコーヒー
@@ -58,9 +58,9 @@ struct FlatColor{
     // キューバリバー
     static let limeDark = UIColor(hue: 74/360, saturation: 81/100, brightness: 69/100, alpha: 1)
 
-    //（暗い）
+    //（暗すぎる）
     static let forestGreen = UIColor(hue: 138/360, saturation: 45/100, brightness: 37/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let forestGreenDark = UIColor(hue: 135/360, saturation: 44/100, brightness: 31/100, alpha: 1)
 
     //
@@ -83,9 +83,9 @@ struct FlatColor{
     // チャイナブルー、ブルーラグーン、テキーラサンライズ（一部）
     static let skyBlueDark = UIColor(hue: 204/360, saturation: 78/100, brightness: 73/100, alpha: 1)
 
-    //（暗い）
+    //（暗すぎる）
     static let navyBlue = UIColor(hue: 210/360, saturation: 45/100, brightness: 37/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let navyBlueDark = UIColor(hue: 210/360, saturation: 45/100, brightness: 31/100, alpha: 1)
 
     // ブルームーン（一部）
@@ -95,22 +95,22 @@ struct FlatColor{
 
     // ブルームーン（一部）
     static let blue = UIColor(hue: 224/360, saturation: 50/100, brightness: 63/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let blueDark = UIColor(hue: 224/360, saturation: 56/100, brightness: 51/100, alpha: 1)
 
     // ユニオンジャック
     static let purple = UIColor(hue: 253/360, saturation: 52/100, brightness: 77/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let purpleDark = UIColor(hue: 253/360, saturation: 56/100, brightness: 64/100, alpha: 1)
 
     // ユニオンジャック
     static let magenta = UIColor(hue: 283/360, saturation: 51/100, brightness: 71/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let magentaDark = UIColor(hue: 282/360, saturation: 61/100, brightness: 68/100, alpha: 1)
 
-    //（暗い）
+    //（暗すぎる）
     static let plum = UIColor(hue: 300/360, saturation: 45/100, brightness: 37/100, alpha: 1)
-    //（暗い）
+    //（暗すぎる）
     static let plumDark = UIColor(hue: 300/360, saturation: 46/100, brightness: 31/100, alpha: 1)
 
     // シーブリーズ、ピンクレディ
@@ -118,9 +118,9 @@ struct FlatColor{
     // シーブリーズ、ピンクレディ
     static let pinkDark = UIColor(hue: 327/360, saturation: 57/100, brightness: 83/100, alpha: 1)
 
-    // Delete color, レッドアイ
+    // Alert color, レッドアイ
     static let watermelon = UIColor(hue: 356/360, saturation: 53/100, brightness: 94/100, alpha: 1)
-    // Delete color, レッドアイ、アメリカンレモネード
+    // Alert color, レッドアイ、アメリカンレモネード
     static let watermelonDark = UIColor(hue: 358/360, saturation: 61/100, brightness: 85/100, alpha: 1)
     
     static func contrastColorOf(_ primeColor: UIColor, isFlat: Bool) -> UIColor{

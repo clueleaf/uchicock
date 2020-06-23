@@ -143,6 +143,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField2)
         NotificationCenter.default.addObserver(self, selector: #selector(ReverseLookupTableViewController.textFieldDidChange(_:)), name: .textFieldClearButtonTappedNotification, object: self.ingredientTextField3)
         
+        tableView.reloadData()
         // iPadや画面回転でキーボードが消えるため、他のタブに行ってデータの更新が可能
         // 整合性のために逆引き表示では常にレシピテーブルを表示するようにする
         setTextFieldTextFromUserDefaults()

@@ -51,6 +51,7 @@ open class PullToRefreshHeaderAnimator: UIView {
     fileprivate let indicatorView: PullToRefreshActivityIndicatorView = {
         let indicatorView = PullToRefreshActivityIndicatorView.init(style: .gray)
         indicatorView.isHidden = true
+        indicatorView.color = UchicockStyle.labelTextColor
         return indicatorView
     }()
     
