@@ -63,7 +63,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         makeFilterFromUserDefaults()
         setSearchConditionButtonTitle()
 
-        searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
 
         searchConditionModifyButton.layer.borderWidth = 1.5

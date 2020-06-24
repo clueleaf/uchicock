@@ -47,7 +47,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
             isAddMode = false
         }
 
-        ingredientNameTextField.clearButtonEdgeInset = 4.0
         ingredientNameTextField.text = ingredient.ingredientName
         ingredientNameTextField.layer.cornerRadius = ingredientNameTextField.frame.size.height / 2
         ingredientNameTextField.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])

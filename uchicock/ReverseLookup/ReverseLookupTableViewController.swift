@@ -50,9 +50,6 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         readFilterAndSortOrderFromUserDefaults()
         setSearchConditionButtonTitle()
 
-        ingredientTextField1.clearButtonEdgeInset = 5.0
-        ingredientTextField2.clearButtonEdgeInset = 5.0
-        ingredientTextField3.clearButtonEdgeInset = 5.0
         ingredientTextField1.layer.cornerRadius = ingredientTextField1.frame.size.height / 2
         ingredientTextField2.layer.cornerRadius = ingredientTextField2.frame.size.height / 2
         ingredientTextField3.layer.cornerRadius = ingredientTextField3.frame.size.height / 2

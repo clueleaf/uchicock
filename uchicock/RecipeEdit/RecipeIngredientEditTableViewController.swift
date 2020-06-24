@@ -80,13 +80,11 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         }
         
         ingredientNameTextField.layer.cornerRadius = ingredientNameTextField.frame.size.height / 2
-        ingredientNameTextField.clearButtonEdgeInset = 4.0
         ingredientNameTextField.attributedPlaceholder = NSAttributedString(string: "材料名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         ingredientNameTextField.adjustClearButtonColor()
         ingredientNameTextField.setLeftPadding()
         
         amountTextField.layer.cornerRadius = amountTextField.frame.size.height / 2
-        amountTextField.clearButtonEdgeInset = 4.0
         amountTextField.attributedPlaceholder = NSAttributedString(string: "分量", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
         amountTextField.adjustClearButtonColor()
         amountTextField.setLeftPadding()

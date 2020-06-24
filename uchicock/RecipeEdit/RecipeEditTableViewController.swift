@@ -85,7 +85,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         star2Button.tintColor = UchicockStyle.primaryColor
         star3Button.tintColor = UchicockStyle.primaryColor
 
-        recipeNameTextField.clearButtonEdgeInset = 4.0
         recipeNameTextField.text = recipe.recipeName
         recipeNameTextField.layer.cornerRadius = recipeNameTextField.frame.size.height / 2
         recipeNameTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
