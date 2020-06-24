@@ -269,7 +269,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(action)
-                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }else{
@@ -297,7 +296,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
                 if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(cancelAction)
-                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
             }
@@ -329,7 +327,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
             if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(cancelAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         case let(section, _) where section == 1:

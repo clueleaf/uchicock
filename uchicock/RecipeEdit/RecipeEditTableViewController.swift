@@ -118,16 +118,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         
         ipc.delegate = self
         
-        styleSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        styleSegmentedControl.layer.borderWidth = 1.0
-        styleSegmentedControl.layer.masksToBounds = true
-        methodSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        methodSegmentedControl.layer.borderWidth = 1.0
-        methodSegmentedControl.layer.masksToBounds = true
-        strengthSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        strengthSegmentedControl.layer.borderWidth = 1.0
-        strengthSegmentedControl.layer.masksToBounds = true
-
         if recipe.recipeName == "" {
             self.navigationItem.title = "レシピ登録"
             isAddMode = true
@@ -640,7 +630,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     }
                     if #available(iOS 13.0, *){ settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(settingAction)
-                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                     alertView.modalPresentationCapturesStatusBarAppearance = true
                     self.present(alertView, animated: true, completion: nil)
                 }else{
@@ -718,7 +707,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
 
         alert.popoverPresentationController?.sourceView = self.view
         alert.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))!.frame
-        alert.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alert.modalPresentationCapturesStatusBarAppearance = true
         present(alert, animated: true, completion: nil)
     }
@@ -821,7 +809,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(noAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -836,7 +823,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
         if #available(iOS 13.0, *){ alertAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(alertAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

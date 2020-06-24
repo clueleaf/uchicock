@@ -724,7 +724,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(cancelAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         }

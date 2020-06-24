@@ -558,7 +558,6 @@ class AlbumCollectionViewController: UICollectionViewController, UICollectionVie
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(cancelAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         alertView.popoverPresentationController?.barButtonItem = sender
         present(alertView, animated: true, completion: nil)

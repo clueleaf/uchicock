@@ -392,7 +392,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             }
             if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             noRecipeAlertView.addAction(action)
-            noRecipeAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noRecipeAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noRecipeAlertView, animated: true, completion: nil)
             return
@@ -625,7 +624,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
                 activityVC.overrideUserInterfaceStyle = .dark
             }
             activityVC.excludedActivityTypes = self.excludedActivityTypes
-            activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
             activityVC.modalPresentationCapturesStatusBarAppearance = true
             activityVC.popoverPresentationController?.sourceView = self.view
             activityVC.popoverPresentationController?.sourceRect = self.photoImageView.frame
@@ -639,7 +637,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         
         alertView.popoverPresentationController?.sourceView = self.view
         alertView.popoverPresentationController?.sourceRect = self.photoImageView.frame
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -664,7 +661,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         }
         if #available(iOS 13.0, *){ settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(settingAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -1188,7 +1184,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
             activityVC.overrideUserInterfaceStyle = .dark
         }
         activityVC.excludedActivityTypes = excludedActivityTypes
-        activityVC.activityStatusBarStyle = UchicockStyle.statusBarStyle
         activityVC.modalPresentationCapturesStatusBarAppearance = true
         activityVC.popoverPresentationController?.sourceView = sender
         activityVC.popoverPresentationController?.sourceRect = sender.frame
@@ -1262,7 +1257,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(cancelAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

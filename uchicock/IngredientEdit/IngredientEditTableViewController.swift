@@ -68,9 +68,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
-        categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        categorySegmentedControl.layer.borderWidth = 1.0
-        categorySegmentedControl.layer.masksToBounds = true
         if ingredient.category >= 0 && ingredient.category < 3 {
             categorySegmentedControl.selectedSegmentIndex = ingredient.category
         }else{
@@ -234,7 +231,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         let noAction = UIAlertAction(title: "いいえ", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(noAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -249,7 +245,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
         if #available(iOS 13.0, *){ alertAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(alertAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }

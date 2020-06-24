@@ -60,11 +60,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchTextField.clearButtonEdgeInset = 4.0
         searchTextField.layer.cornerRadius = searchTextField.frame.size.height / 2
 
-        categorySegmentedControl.layer.borderWidth = 1.0
-        categorySegmentedControl.layer.masksToBounds = true
-        stockSegmentedControl.layer.borderWidth = 1.0
-        stockSegmentedControl.layer.masksToBounds = true
-        
         ingredientRecommendButton.layer.borderWidth = 1.5
         ingredientRecommendButton.layer.cornerRadius = ingredientRecommendButton.frame.size.height / 2
 
@@ -84,9 +79,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         searchTextField.setSearchIcon()
         segmentedControlContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
 
-        categorySegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
         categorySegmentedControl.layoutSubviews()
-        stockSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
         stockSegmentedControl.layoutSubviews()
 
         ingredientRecommendButton.layer.borderColor = UchicockStyle.primaryColor.cgColor
@@ -340,7 +333,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             }
             if #available(iOS 13.0, *){ yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(yesAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         }
@@ -465,7 +457,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 if #available(iOS 13.0, *){ okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(okAction)
-                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 alertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(alertView, animated: true, completion: nil)
                 completionHandler(false)
@@ -492,7 +483,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 }
                 if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 deleteAlertView.addAction(cancelAction)
-                deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
                 deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
                 self.present(deleteAlertView, animated: true, completion: nil)
             }

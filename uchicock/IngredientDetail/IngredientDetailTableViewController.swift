@@ -220,7 +220,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             }
             if #available(iOS 13.0, *){ okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             noIngredientAlertView.addAction(okAction)
-            noIngredientAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             noIngredientAlertView.modalPresentationCapturesStatusBarAppearance = true
             present(noIngredientAlertView, animated: true, completion: nil)
             return
@@ -477,7 +476,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         alertView.addAction(cancelAction)
         alertView.popoverPresentationController?.sourceView = self.view
         alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -594,7 +592,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             }
             if #available(iOS 13.0, *){ yesAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(yesAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
         }
@@ -655,7 +652,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             if #available(iOS 13.0, *){ okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(okAction)
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             self.present(alertView, animated: true, completion: nil)
             return
@@ -676,7 +672,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         deleteAlertView.addAction(cancelAction)
-        deleteAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         deleteAlertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(deleteAlertView, animated: true, completion: nil)
     }

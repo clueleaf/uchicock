@@ -57,9 +57,6 @@ class ReminderTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        reminderTypeSegmentedControl.layer.borderColor = UchicockStyle.primaryColor.cgColor
-        reminderTypeSegmentedControl.layer.borderWidth = 1.0
-        reminderTypeSegmentedControl.layer.masksToBounds = true
         if ingredient.reminderSetDate == nil{
             reminderTypeDescriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
             reminderTypeDescriptionLabel.text = "このアプリ内の購入リマインダーに登録します"
@@ -94,7 +91,6 @@ class ReminderTableViewController: UITableViewController {
         }
         if #available(iOS 13.0, *){ settingAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(settingAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         self.present(alertView, animated: true, completion: nil)
     }

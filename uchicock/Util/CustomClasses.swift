@@ -9,18 +9,14 @@
 import UIKit
 
 class CustomAlertController: UIAlertController {
-    var alertStatusBarStyle: UIStatusBarStyle = .default
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return alertStatusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 }
 
 class CustomActivityController: UIActivityViewController{
-    var activityStatusBarStyle: UIStatusBarStyle = .default
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return activityStatusBarStyle
+        return UchicockStyle.statusBarStyle
     }
 }
 
@@ -33,14 +29,9 @@ class BasicNavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UchicockStyle.statusBarStyle
     }
-    
-    override var childForStatusBarStyle: UIViewController? {
-        return self.visibleViewController
-    }
 }
 
 class BasicTabBarController: UITabBarController, UITabBarControllerDelegate {
-
     var shouldScroll = false
     var lastSelectedIndex = 0
     
@@ -221,13 +212,12 @@ class CustomSegmentedControl: UISegmentedControl{
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = self.bounds.size.height / 2.0
+        layer.borderColor = UchicockStyle.primaryColor.cgColor
+        layer.borderWidth = 1.0
+        layer.masksToBounds = true
+        clipsToBounds = true
 
         if #available(iOS 13.0, *) {
-            layer.borderColor = UchicockStyle.primaryColor.cgColor
-            layer.borderWidth = 1.0
-            layer.masksToBounds = true
-            clipsToBounds = true
-
             for i in 0...subviews.count - 1{
                 if let subview = subviews[i] as? UIImageView{
                     if i == self.selectedSegmentIndex {
@@ -252,7 +242,6 @@ class CustomScrollView: UIScrollView{
         if view.isKind(of: UIButton.self) {
           return true
         }
-
         return super.touchesShouldCancel(in: view)
     }    
 }

@@ -271,7 +271,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
             
             alertView.popoverPresentationController?.sourceView = self.view
             alertView.popoverPresentationController?.sourceRect = self.tableView.cellForRow(at: indexPath)!.frame
-            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
             alertView.modalPresentationCapturesStatusBarAppearance = true
             present(alertView, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -378,7 +377,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         })
         if #available(iOS 13.0, *){ alertAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(alertAction)
-        alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         alertView.modalPresentationCapturesStatusBarAppearance = true
         present(alertView, animated: true, completion: nil)
     }
@@ -461,7 +459,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         registAlertView.addAction(cancelAction)
-        registAlertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
         registAlertView.modalPresentationCapturesStatusBarAppearance = true
         present(registAlertView, animated: true, completion: nil)
     }
