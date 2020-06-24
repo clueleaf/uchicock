@@ -260,86 +260,85 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         return 0
     }
-    //todo
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard isRecovering == false else { return }
-
-        if indexPath.section == 0{
+        
+        switch (indexPath.section, indexPath.row){
+        case let(section, row) where section == 0 && row == 1:
             tableView.deselectRow(at: indexPath, animated: true)
-            if indexPath.row == 1{
-                if recoverableSampleRecipeList.count == 0{
-                    let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
-                    if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                        alertView.overrideUserInterfaceStyle = .dark
-                    }
-                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
-                    alertView.addAction(action)
-                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                    alertView.modalPresentationCapturesStatusBarAppearance = true
-                    self.present(alertView, animated: true, completion: nil)
-                }else{
-                    let recipeNum = recoverableSampleRecipeList.count
-                    let alertView = CustomAlertController(title: nil, message: "復元できる" + String(recipeNum) + "レシピを全て復元します", preferredStyle: .alert)
-                    if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                        alertView.overrideUserInterfaceStyle = .dark
-                    }
-                    let recoverAction = UIAlertAction(title: "復元", style: .default){action in
-                        self.isRecovering = true
-                        MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            for i in 0..<self.recoverableSampleRecipeList.count {
-                                self.recoverableSampleRecipeList[i].recoverTarget = true
-                            }
-                            self.recover()
-                            DispatchQueue.main.async{
-                                MessageHUD.show(String(recipeNum) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
-                                self.dismiss(animated: true, completion: nil)
-                            }
+            if recoverableSampleRecipeList.count == 0{
+                let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+                    alertView.overrideUserInterfaceStyle = .dark
+                }
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+                alertView.addAction(action)
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                alertView.modalPresentationCapturesStatusBarAppearance = true
+                self.present(alertView, animated: true, completion: nil)
+            }else{
+                let recipeNum = recoverableSampleRecipeList.count
+                let alertView = CustomAlertController(title: nil, message: "復元できる" + String(recipeNum) + "レシピを全て復元します", preferredStyle: .alert)
+                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+                    alertView.overrideUserInterfaceStyle = .dark
+                }
+                let recoverAction = UIAlertAction(title: "復元", style: .default){action in
+                    self.isRecovering = true
+                    MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        for i in 0..<self.recoverableSampleRecipeList.count {
+                            self.recoverableSampleRecipeList[i].recoverTarget = true
+                        }
+                        self.recover()
+                        DispatchQueue.main.async{
+                            MessageHUD.show(String(recipeNum) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
+                            self.dismiss(animated: true, completion: nil)
                         }
                     }
-                    if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
-                    alertView.addAction(recoverAction)
-                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-                    if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
-                    alertView.addAction(cancelAction)
-                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                    alertView.modalPresentationCapturesStatusBarAppearance = true
-                    self.present(alertView, animated: true, completion: nil)
                 }
-            }else if indexPath.row == 2{
-                var recoverCount = 0
-                for rr in recoverableSampleRecipeList where rr.recoverTarget{
-                    recoverCount += 1
-                }
-                    
-                if recoverCount > 0{
-                    let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "レシピを復元します", preferredStyle: .alert)
-                    if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                        alertView.overrideUserInterfaceStyle = .dark
+                if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+                alertView.addAction(recoverAction)
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+                if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+                alertView.addAction(cancelAction)
+                alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+                alertView.modalPresentationCapturesStatusBarAppearance = true
+                self.present(alertView, animated: true, completion: nil)
+            }
+        case let(section, row) where section == 0 && row == 2:
+            tableView.deselectRow(at: indexPath, animated: true)
+            var recoverCount = 0
+            for rr in recoverableSampleRecipeList where rr.recoverTarget{
+                recoverCount += 1
+            }
+            
+            if recoverCount == 0{ break }
+            let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "レシピを復元します", preferredStyle: .alert)
+            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
+                alertView.overrideUserInterfaceStyle = .dark
+            }
+            let recoverAction = UIAlertAction(title: "復元", style: .default){action in
+                self.isRecovering = true
+                MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.recover()
+                    DispatchQueue.main.async{
+                        MessageHUD.show(String(recoverCount) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
+                        self.dismiss(animated: true, completion: nil)
                     }
-                    let recoverAction = UIAlertAction(title: "復元", style: .default){action in
-                        self.isRecovering = true
-                        MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            self.recover()
-                            DispatchQueue.main.async{
-                                MessageHUD.show(String(recoverCount) + "レシピを復元しました", for: 2.0, withCheckmark: true, isCenter: true)
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                        }
-                    }
-                    if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
-                    alertView.addAction(recoverAction)
-                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-                    if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
-                    alertView.addAction(cancelAction)
-                    alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
-                    alertView.modalPresentationCapturesStatusBarAppearance = true
-                    self.present(alertView, animated: true, completion: nil)
                 }
             }
-        }else if indexPath.section == 1{
+            if #available(iOS 13.0, *){ recoverAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+            alertView.addAction(recoverAction)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
+            alertView.addAction(cancelAction)
+            alertView.alertStatusBarStyle = UchicockStyle.statusBarStyle
+            alertView.modalPresentationCapturesStatusBarAppearance = true
+            self.present(alertView, animated: true, completion: nil)
+        case let(section, _) where section == 1:
             let storyboard = UIStoryboard(name: "Recover", bundle: nil)
             let nvc = storyboard.instantiateViewController(withIdentifier: "RecoverPreviewNavigationController") as! BasicNavigationController
             let vc = nvc.visibleViewController as! RecoverPreviewTableViewController
@@ -364,8 +363,8 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 nvc.transitioningDelegate = self
                 vc.interactor = interactor
             }
-
             present(nvc, animated: true)
+        default: break
         }
     }
     
@@ -407,36 +406,36 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             accesoryImageView.tintColor = UchicockStyle.labelTextColorLight
             accesoryImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
             cell.accessoryView = accesoryImageView
-
             
             cell.shouldAdd73Badge = self.shouldAdd73Badge
             cell.shouldAdd80Badge = self.shouldAdd80Badge
-            cell.isTarget.stateChangeAnimation = .fade
-            cell.isTarget.animationDuration = 0.0
-            cell.isTarget.backgroundColor = UIColor.clear
-            cell.isTarget.boxLineWidth = 1.0
-            cell.isTarget.secondaryTintColor = UchicockStyle.primaryColor
-            cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+            cell.targetCheckbox.stateChangeAnimation = .fade
+            cell.targetCheckbox.animationDuration = 0.0
+            cell.targetCheckbox.backgroundColor = UIColor.clear
+            cell.targetCheckbox.boxLineWidth = 1.0
+            cell.targetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+            cell.targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
             if indexPath.row < recoverableSampleRecipeList.count{
                 cell.recipeName = recoverableSampleRecipeList[indexPath.row].name
-                cell.isTarget.isEnabled = true
-                cell.isTarget.tintColor = UchicockStyle.primaryColor
+                cell.targetCheckbox.isEnabled = true
+                cell.targetCheckbox.tintColor = UchicockStyle.primaryColor
                 if recoverableSampleRecipeList[indexPath.row].recoverTarget{
-                    cell.isTarget.setCheckState(.checked, animated: true)
+                    cell.targetCheckbox.setCheckState(.checked, animated: true)
                 }else{
-                    cell.isTarget.setCheckState(.unchecked, animated: true)
+                    cell.targetCheckbox.setCheckState(.unchecked, animated: true)
                 }
-                cell.isRecoverable = true
-                cell.isTarget.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
+                cell.targetCheckbox.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
             }else{
                 cell.recipeName = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name
-                cell.isTarget.isEnabled = false
-                cell.isTarget.tintColor = UchicockStyle.labelTextColorLight
-                cell.isTarget.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-                cell.isTarget.setCheckState(.mixed, animated: true)
-                cell.isRecoverable = false
+                cell.targetCheckbox.isEnabled = false
+                cell.targetCheckbox.tintColor = UchicockStyle.labelTextColorLight
+                cell.targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+                cell.targetCheckbox.setCheckState(.mixed, animated: true)
             }
+            cell.targetCheckbox.stateChangeAnimation = .expand
+            cell.targetCheckbox.animationDuration = 0.3
+            cell.previewLabel.textColor = UchicockStyle.labelTextColorLight
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)

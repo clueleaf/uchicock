@@ -10,7 +10,7 @@ import UIKit
 
 class RecoverTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var isTarget: CircularCheckbox!
+    @IBOutlet weak var targetCheckbox: CircularCheckbox!
     @IBOutlet weak var recipeNameLabel: CustomLabel!
 
     @IBOutlet weak var previewLabel: UILabel!
@@ -20,14 +20,6 @@ class RecoverTableViewCell: UITableViewCell {
     var shouldAdd73Badge = false
     var shouldAdd80Badge = false
 
-    var isRecoverable: Bool = Bool(){
-        didSet{
-            isTarget.stateChangeAnimation = .expand
-            isTarget.animationDuration = 0.3
-            previewLabel.textColor = UchicockStyle.labelTextColorLight
-        }
-    }
-    
     var recipeName = String(){
         didSet{
             recipeNameLabel.text = recipeName

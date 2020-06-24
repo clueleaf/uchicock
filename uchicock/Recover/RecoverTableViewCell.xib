@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -69,11 +69,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="isTarget" destination="WNk-ev-Jk5" id="NXB-wO-1MR"/>
                 <outlet property="newRecipeLabel" destination="xkZ-VO-Ads" id="k2U-Ie-0Di"/>
                 <outlet property="newRecipeLabelWidthConstraint" destination="2OJ-dE-Smc" id="Y1n-tL-AI8"/>
                 <outlet property="previewLabel" destination="cby-NE-ZOs" id="0AY-k1-S5V"/>
                 <outlet property="recipeNameLabel" destination="qcV-y1-cun" id="Tzf-ka-S0r"/>
+                <outlet property="targetCheckbox" destination="WNk-ev-Jk5" id="ptV-48-Npy"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
         </tableViewCell>

@@ -10,14 +10,14 @@ import UIKit
 
 class RecoverPreviewTableViewController: UITableViewController {
 
-    @IBOutlet weak var recipeName: CustomTextView!
+    @IBOutlet weak var recipeNameTextView: CustomTextView!
     @IBOutlet weak var recipeNameYomiLabel: UILabel!
-    @IBOutlet weak var style: CustomLabel!
-    @IBOutlet weak var method: CustomLabel!
-    @IBOutlet weak var strength: CustomLabel!
+    @IBOutlet weak var styleLabel: CustomLabel!
+    @IBOutlet weak var methodLabel: CustomLabel!
+    @IBOutlet weak var strengthLabel: CustomLabel!
     
     var recipe = Recipe()
-    var recipeIngredientList = Array<RecipeIngredientBasic>()
+    var ingredientList = Array<RecipeIngredientBasic>()
 
     var interactor: Interactor?
 
@@ -35,33 +35,11 @@ class RecoverPreviewTableViewController: UITableViewController {
             tableView.panGestureRecognizer.addTarget(self, action: #selector(self.handleGesture(_:)))
         }
         
-        for ri in recipe.recipeIngredients {
-            recipeIngredientList.append(RecipeIngredientBasic(
-                ingredientId: ri.ingredient.id,
-                ingredientName: ri.ingredient.ingredientName,
-                ingredientNameYomi: "",
-                katakanaLowercasedNameForSearch: "",
-                amount: ri.amount,
-                mustFlag: ri.mustFlag,
-                category: ri.ingredient.category,
-                displayOrder: ri.displayOrder,
-                stockFlag: false
-            ))
-        }
-        recipeIngredientList.sort { $0.displayOrder < $1.displayOrder }
-
-        recipeName.isScrollEnabled = false
-        recipeName.textContainerInset = .zero
-        recipeName.textContainer.lineFragmentPadding = 0
-        recipeName.font = UIFont.systemFont(ofSize: 25.0)
-
-        tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
-        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
-        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.navigationItem.title = "プレビュー"
-
-        recipeName.text = recipe.recipeName
+        recipeNameTextView.isScrollEnabled = false
+        recipeNameTextView.textContainerInset = .zero
+        recipeNameTextView.textContainer.lineFragmentPadding = 0
+        recipeNameTextView.font = UIFont.systemFont(ofSize: 25.0)
+        recipeNameTextView.text = recipe.recipeName
         
         recipeNameYomiLabel.textColor = UchicockStyle.labelTextColorLight
         if recipe.recipeName.katakanaLowercasedForSearch() == recipe.recipeNameYomi.katakanaLowercasedForSearch(){
@@ -73,53 +51,49 @@ class RecoverPreviewTableViewController: UITableViewController {
         }
 
         switch recipe.style{
-        case 0:
-            style.text = "ロング"
-        case 1:
-            style.text = "ショート"
-        case 2:
-            style.text = "ホット"
-        case 3:
-            style.text = "未指定"
-        default:
-            style.text = "未指定"
+        case 0: styleLabel.text = "ロング"
+        case 1: styleLabel.text = "ショート"
+        case 2: styleLabel.text = "ホット"
+        case 3: styleLabel.text = "未指定"
+        default: styleLabel.text = "未指定"
         }
         switch recipe.method{
-        case 0:
-            method.text = "ビルド"
-        case 1:
-            method.text = "ステア"
-        case 2:
-            method.text = "シェイク"
-        case 3:
-            method.text = "ブレンド"
-        case 4:
-            method.text = "その他"
-        default:
-            method.text = "その他"
+        case 0: methodLabel.text = "ビルド"
+        case 1: methodLabel.text = "ステア"
+        case 2: methodLabel.text = "シェイク"
+        case 3: methodLabel.text = "ブレンド"
+        case 4: methodLabel.text = "その他"
+        default: methodLabel.text = "その他"
         }
         switch recipe.strength{
-        case 0:
-            strength.text = "ノンアルコール"
-        case 1:
-            strength.text = "弱い"
-        case 2:
-            strength.text = "やや強い"
-        case 3:
-            strength.text = "強い"
-        case 4:
-            strength.text = "未指定"
-        default:
-            strength.text = "未指定"
+        case 0: strengthLabel.text = "ノンアルコール"
+        case 1: strengthLabel.text = "弱い"
+        case 2: strengthLabel.text = "やや強い"
+        case 3: strengthLabel.text = "強い"
+        case 4: strengthLabel.text = "未指定"
+        default: strengthLabel.text = "未指定"
         }
+
+        for ri in recipe.recipeIngredients {
+            ingredientList.append(RecipeIngredientBasic(
+                ingredientId: "",
+                ingredientName: ri.ingredient.ingredientName,
+                ingredientNameYomi: "",
+                katakanaLowercasedNameForSearch: "",
+                amount: ri.amount,
+                mustFlag: ri.mustFlag,
+                category: ri.ingredient.category,
+                displayOrder: ri.displayOrder,
+                stockFlag: false
+            ))
+        }
+        ingredientList.sort { $0.displayOrder < $1.displayOrder }
 
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-
-        if UchicockStyle.isBackgroundDark{
-            tableView.indicatorStyle = .white
-        }else{
-            tableView.indicatorStyle = .black
-        }
+        tableView.register(UINib(nibName: "RecipeIngredientTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipeIngredientCell")
+        self.tableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        self.tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        self.tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
     }
     
     // 下に引っ張ると戻してもviewWillDisappear, viewwWillAppear, viewDidAppearが呼ばれることに注意
@@ -147,7 +121,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.textColor = UchicockStyle.labelTextColor
         header?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
-        header?.textLabel?.text = section == 1 ? "材料(\(String(recipeIngredientList.count)))" : ""
+        header?.textLabel?.text = section == 1 ? "材料(\(String(ingredientList.count)))" : ""
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -167,7 +141,7 @@ class RecoverPreviewTableViewController: UITableViewController {
         if section == 0{
             return 4
         }else if section == 1{
-            return recipeIngredientList.count
+            return ingredientList.count
         }
         return 0
     }
@@ -193,12 +167,12 @@ class RecoverPreviewTableViewController: UITableViewController {
             cell.isNameTextViewSelectable = true
             cell.recipeIngredient = RecipeIngredientBasic(
                 ingredientId: "",
-                ingredientName: recipeIngredientList[indexPath.row].ingredientName,
+                ingredientName: ingredientList[indexPath.row].ingredientName,
                 ingredientNameYomi: "",
                 katakanaLowercasedNameForSearch: "",
-                amount: recipeIngredientList[indexPath.row].amount,
-                mustFlag: recipeIngredientList[indexPath.row].mustFlag,
-                category: recipeIngredientList[indexPath.row].category,
+                amount: ingredientList[indexPath.row].amount,
+                mustFlag: ingredientList[indexPath.row].mustFlag,
+                category: ingredientList[indexPath.row].category,
                 displayOrder: -1,
                 stockFlag: false
             )

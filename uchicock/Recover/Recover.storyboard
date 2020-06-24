@@ -187,7 +187,7 @@
             </objects>
             <point key="canvasLocation" x="-1477" y="2418"/>
         </scene>
-        <!--Recover Preview Table View Controller-->
+        <!--プレビュー-->
         <scene sceneID="YtZ-Zw-HwF">
             <objects>
                 <tableViewController id="lbP-ID-z1L" customClass="RecoverPreviewTableViewController" customModule="uchicock" customModuleProvider="target" sceneMemberID="viewController">
@@ -362,7 +362,7 @@
                             <outlet property="delegate" destination="lbP-ID-z1L" id="NaS-N5-fSY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="sk3-oA-zF0">
+                    <navigationItem key="navigationItem" title="プレビュー" id="sk3-oA-zF0">
                         <barButtonItem key="rightBarButtonItem" id="VJG-1l-IE7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z8b-AK-A3b">
                                 <rect key="frame" x="221" y="7" width="83" height="30"/>
@@ -375,11 +375,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="method" destination="OS4-y0-mXq" id="fAW-QH-p0B"/>
-                        <outlet property="recipeName" destination="my3-m3-HcH" id="WBZ-St-9RI"/>
+                        <outlet property="methodLabel" destination="OS4-y0-mXq" id="lef-M7-qDQ"/>
+                        <outlet property="recipeNameTextView" destination="my3-m3-HcH" id="Va5-Kh-Kiq"/>
                         <outlet property="recipeNameYomiLabel" destination="FR2-Yn-hlq" id="OWF-HD-jBA"/>
-                        <outlet property="strength" destination="jSw-zp-kx2" id="h7V-JV-j8E"/>
-                        <outlet property="style" destination="DXP-JM-xoE" id="EVl-RW-U6d"/>
+                        <outlet property="strengthLabel" destination="jSw-zp-kx2" id="Xtu-Sd-8jv"/>
+                        <outlet property="styleLabel" destination="DXP-JM-xoE" id="ymZ-JE-0So"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRk-7I-rLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
