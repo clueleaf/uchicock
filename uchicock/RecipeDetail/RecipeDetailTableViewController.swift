@@ -719,7 +719,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && indexPath.row < recipeIngredientList.count{
             performSegue(withIdentifier: "PushIngredientDetail", sender: recipeIngredientList[indexPath.row].ingredientId)
         }
     }

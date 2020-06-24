@@ -420,7 +420,9 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTextField.resignFirstResponder()
-        performSegue(withIdentifier: "PushIngredientDetail", sender: ingredientBasicList[indexPath.row].id)
+        if indexPath.row < ingredientBasicList.count{
+            performSegue(withIdentifier: "PushIngredientDetail", sender: ingredientBasicList[indexPath.row].id)
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

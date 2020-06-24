@@ -677,7 +677,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchTextField.resignFirstResponder()
-        performSegue(withIdentifier: "PushRecipeDetail", sender: recipeBasicList[indexPath.row].id)
+        if indexPath.row < recipeBasicList.count{
+            performSegue(withIdentifier: "PushRecipeDetail", sender: recipeBasicList[indexPath.row].id)
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -748,7 +750,9 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let indexPath = configuration.identifier as? IndexPath else { return }
         
         animator.addCompletion {
-            self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.recipeBasicList[indexPath.row].id)
+            if indexPath.row < self.recipeBasicList.count{
+                self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.recipeBasicList[indexPath.row].id)
+            }
         }
     }
     

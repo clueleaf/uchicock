@@ -821,7 +821,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 1{
-            performSegue(withIdentifier: "PushRecipeDetail", sender: recipeBasicList[indexPath.row].id)
+            if indexPath.row < recipeBasicList.count{
+                performSegue(withIdentifier: "PushRecipeDetail", sender: recipeBasicList[indexPath.row].id)
+            }
         }else if tableView.tag == 2{
             tableView.deselectRow(at: indexPath, animated: true)
             switch editingTextField{
@@ -853,7 +855,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         guard let indexPath = configuration.identifier as? IndexPath else { return }
 
         animator.addCompletion {
-            self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.recipeBasicList[indexPath.row].id)
+            if indexPath.row < self.recipeBasicList.count{
+                self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.recipeBasicList[indexPath.row].id)
+            }
         }
     }
     

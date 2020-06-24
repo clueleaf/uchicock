@@ -408,7 +408,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         guard indexPath.section == 1 && ingredient.recipeIngredients.count > 0 else { return }
         
         guard indexPath.row == 0 else{
-            performSegue(withIdentifier: "PushRecipeDetail", sender: ingredientRecipeBasicList[indexPath.row - 1].id)
+            if indexPath.row - 1 < ingredientRecipeBasicList.count{
+                performSegue(withIdentifier: "PushRecipeDetail", sender: ingredientRecipeBasicList[indexPath.row - 1].id)
+            }
             return
         }
         
@@ -501,7 +503,9 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         guard let indexPath = configuration.identifier as? IndexPath else { return }
 
         animator.addCompletion {
-            self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.ingredientRecipeBasicList[indexPath.row - 1].id)
+            if indexPath.row - 1 < self.ingredientRecipeBasicList.count{
+                self.performSegue(withIdentifier: "PushRecipeDetail", sender: self.ingredientRecipeBasicList[indexPath.row - 1].id)
+            }
         }
     }
     
