@@ -6,8 +6,6 @@
 //  Copyright © 2019 Kou. All rights reserved.
 //
 
-import UIKit
-
 struct IngredientSuggestBasic{
     var name : String
     var nameYomi : String

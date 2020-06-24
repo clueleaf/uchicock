@@ -60,21 +60,34 @@ class AlcoholAmountTipViewController: TipViewController {
         scrollView.flashScrollIndicators()
     }
 
+    // MARK: - Logic Functions
     private func readUserDefaults(){
         let defaults = UserDefaults.standard
         defaults.register(defaults: [GlobalConstants.AlcoholDecompositionWeightKey : 50])
 
         weight = defaults.integer(forKey: GlobalConstants.AlcoholDecompositionWeightKey)
         weight = weight / 5
-        if weight < 6{
-            weight = 6
-        }
-        if weight > 24{
-            weight = 24
-        }
+        if weight < 6 { weight = 6 }
+        if weight > 24 { weight = 24 }
         weight = weight * 5
     }
     
+    private func updateResultLabel(){
+        let speed = Int(floor(Double(weight) * 0.125))
+        decompositionSpeedLabel.text = "1時間あたり約" + String(speed) +  "ml"
+        
+        let totalHours = Double(alcoholAmount) / (Double(weight) * 0.125)
+        var hour = Int(totalHours)
+        var minute = Int(totalHours.truncatingRemainder(dividingBy: 1) * 60.0)
+        let m : Double = ceil(Double(minute) / 10.0)
+        minute = Int(m) * 10
+        if minute == 60{
+            hour += 1
+            minute = 0
+        }
+        decompositionTimeLabel.text = "約" + String(hour) + "時間" + String(minute) + "分"
+    }
+
     private func setWeightButtons(){
         if weight <= 30 {
             weightMinusButton.isEnabled = false
@@ -96,23 +109,7 @@ class AlcoholAmountTipViewController: TipViewController {
         }
     }
 
-    private func updateResultLabel(){
-        let speed = Int(floor(Double(weight) * 0.125))
-        decompositionSpeedLabel.text = "1時間あたり約" + String(speed) +  "ml"
-        
-        let totalHours = Double(alcoholAmount) / (Double(weight) * 0.125)
-        var hour = Int(totalHours)
-        var minute = Int(totalHours.truncatingRemainder(dividingBy: 1) * 60.0)
-        let m : Double = ceil(Double(minute) / 10.0)
-        minute = Int(m) * 10
-        if minute == 60{
-            hour += 1
-            minute = 0
-        }
-        decompositionTimeLabel.text = "約" + String(hour) + "時間" + String(minute) + "分"
-    }
-
-    // MARK: - UIScrollViewDelegate    
+    // MARK: - UIScrollViewDelegate
     @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
         guard let interactor = interactor else { return }
         let percentThreshold: CGFloat = 0.3

@@ -24,7 +24,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     
     let selectedCellBackgroundView = UIView()
     var hiddenLabel = UILabel()
-    var calcIngredientList: Results<CalculatorIngredient>?
+    var calcBasicList = Array<CalcBasic>()
     var alcoholAmountBackup = 0
     
     let interactor = Interactor()
@@ -43,13 +43,13 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         alcoholAmountTipButton.minimumHitHeight = 44
 
         self.navigationItem.title = "度数計算機"
-        ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
         
         hiddenLabel.font = UIFont.systemFont(ofSize: 14.0)
         hiddenLabel.numberOfLines = 1
         hiddenLabel.text = "お酒は楽しくほどほどに！"
         hiddenLabel.frame = CGRect(x: 0, y: -90, width: 0, height: 20)
         hiddenLabel.textAlignment = .center
+        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
         ingredientTableView.addSubview(hiddenLabel)
         hiddenLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -59,15 +59,17 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
         
         let realm = try! Realm()
-        calcIngredientList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
-        if calcIngredientList == nil || calcIngredientList!.count == 0{
+        let calcCount = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id").count
+        if calcCount == 0{
             addSampleCalcIngredient()
+        }
+        let calcList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
+        for calc in calcList{
+            calcBasicList.append(CalcBasic(id: calc.id, degree: calc.degree, amount: calc.amount, valid: calc.valid))
         }
 
         backgroundView.backgroundColor = UchicockStyle.basicBackgroundColor
-        
         alcoholAmountTipButton.tintColor = UchicockStyle.primaryColor
-
         fakeTableHeaderView.backgroundColor = UchicockStyle.basicBackgroundColorLight
         validNumLabel.textColor = UchicockStyle.labelTextColor
         updateValidNumLabel()
@@ -77,18 +79,17 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         clearAllButton.layer.cornerRadius = clearAllButton.frame.size.height / 2
         clearAllButton.backgroundColor = UchicockStyle.basicBackgroundColor
 
-        hiddenLabel.textColor = UchicockStyle.labelTextColorLight
-        
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
 
-        self.ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
-        self.ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
-        self.ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
+        ingredientTableView.tableFooterView = UIView(frame: CGRect.zero)
+        ingredientTableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
+        ingredientTableView.backgroundColor = UchicockStyle.basicBackgroundColor
+        ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         
         calcAlcoholStrength()
     }
     
-    // MARK: - Calc
+    // MARK: - Logic functions
     private func addSampleCalcIngredient(){
         addCalcIngredient(id: "0", degree: 40, amount: 45, valid: true)
         addCalcIngredient(id: "1", degree: 0, amount: 90, valid: true)
@@ -119,7 +120,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     
     private func updateValidNumLabel(){
         var validNum = 0
-        for ing in calcIngredientList! where ing.valid{
+        for ing in calcBasicList where ing.valid{
             validNum += 1
         }
         validNumLabel.text = "有効な材料" + String(validNum) + "個"
@@ -130,23 +131,14 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         var hundredTimesAlcoholAmount: Int = 0
         var alcoholPercentage: Double = 0.0
         
-        guard calcIngredientList != nil else{
-            return
-        }
-        
-        for ing in calcIngredientList! where ing.valid{
+        for ing in calcBasicList where ing.valid{
             totalAmount += ing.amount
             hundredTimesAlcoholAmount += ing.amount * ing.degree
         }
 
-        if totalAmount == 0{
-            alcoholPercentage = 0.0
-        }else{
-            alcoholPercentage = Double(hundredTimesAlcoholAmount) / Double(totalAmount)
-        }
-
         totalAmountLabel.text = String(totalAmount)
-        
+        alcoholPercentage = totalAmount == 0 ? 0.0 : Double(hundredTimesAlcoholAmount) / Double(totalAmount)
+
         if hundredTimesAlcoholAmount > 0 && hundredTimesAlcoholAmount < 100{
             alcoholAmountLabel.text = "<1"
             alcoholAmountBackup = 0
@@ -202,23 +194,21 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = view as! AlcoholCalcIngredientTableViewCell
         let touchIndex = self.ingredientTableView.indexPath(for: cell)
         
-        guard calcIngredientList != nil else{ return }
+        guard let index = touchIndex else { return }
 
-        if let index = touchIndex {
-            let realm = try! Realm()
-            if calcIngredientList![index.row].valid {
-                try! realm.write {
-                    calcIngredientList![index.row].valid = false
-                }
-                setCellInvalid(cell: cell)
-            }else{
-                try! realm.write {
-                    calcIngredientList![index.row].valid = true
-                }
-                setCellValid(cell: cell)
-            }
-            calcAlcoholStrength()
-            updateValidNumLabel()
+        calcBasicList[index.row].valid = !calcBasicList[index.row].valid
+        if calcBasicList[index.row].valid {
+            setCellValid(cell: cell)
+        }else{
+            setCellInvalid(cell: cell)
+        }
+        calcAlcoholStrength()
+        updateValidNumLabel()
+
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[index.row].id)!
+        try! realm.write {
+            ing.valid = calcBasicList[index.row].valid
         }
     }
     
@@ -230,19 +220,20 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = view as! AlcoholCalcIngredientTableViewCell
         let touchIndex = self.ingredientTableView.indexPath(for: cell)
         
-        if let index = touchIndex {
-            cell.strengthLabel.text = "度数 " + String(Int(floor(sender.value))) + "%"
-            
-            if let touchEvent = event.allTouches?.first {
-                if touchEvent.phase == .ended{
-                    let realm = try! Realm()
-                    let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
-                    try! realm.write {
-                        calcIngredient.degree = Int(floor(sender.value))
-                    }
-                    calcAlcoholStrength()
-                }
-            }
+        guard let index = touchIndex else { return }
+        guard let touchEvent = event.allTouches?.first else { return }
+        guard touchEvent.phase == .moved || touchEvent.phase == .ended else { return }
+
+        calcBasicList[index.row].degree = Int(floor(sender.value))
+        cell.strengthLabel.text = "度数 " + String(Int(floor(sender.value))) + "%"
+        calcAlcoholStrength()
+        
+        guard touchEvent.phase == .ended else { return }
+
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[index.row].id)!
+        try! realm.write {
+            ing.degree = calcBasicList[index.row].degree
         }
     }
 
@@ -254,19 +245,20 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = view as! AlcoholCalcIngredientTableViewCell
         let touchIndex = self.ingredientTableView.indexPath(for: cell)
             
-        if let index = touchIndex {
-            cell.amountLabel.text = "分量 " + String(Int(floor(sender.value) * 5)) + "ml"
+        guard let index = touchIndex else { return }
+        guard let touchEvent = event.allTouches?.first else { return }
+        guard touchEvent.phase == .moved || touchEvent.phase == .ended else { return }
 
-            if let touchEvent = event.allTouches?.first {
-                if touchEvent.phase == .ended{
-                    let realm = try! Realm()
-                    let calcIngredient = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcIngredientList![index.row].id)!
-                    try! realm.write {
-                        calcIngredient.amount = Int(floor(sender.value) * 5)
-                    }
-                    calcAlcoholStrength()
-                }
-            }
+        calcBasicList[index.row].amount = Int(floor(sender.value) * 5)
+        cell.amountLabel.text = "分量 " + String(Int(floor(sender.value) * 5)) + "ml"
+        calcAlcoholStrength()
+
+        guard touchEvent.phase == .ended else { return }
+
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[index.row].id)!
+        try! realm.write {
+            ing.amount = calcBasicList[index.row].amount
         }
     }
 
@@ -280,7 +272,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calcIngredientList == nil ? 0 : calcIngredientList!.count
+        return calcBasicList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -294,32 +286,30 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        guard calcIngredientList != nil else{ return }
-
-        let realm = try! Realm()
         let cell = tableView.cellForRow(at: indexPath) as! AlcoholCalcIngredientTableViewCell
 
-        if calcIngredientList![indexPath.row].valid {
-            cell.validCheckbox.setCheckState(.unchecked, animated: true)
-            try! realm.write {
-                calcIngredientList![indexPath.row].valid = false
-            }
-            setCellInvalid(cell: cell)
-        }else{
+        calcBasicList[indexPath.row].valid = !calcBasicList[indexPath.row].valid
+        if calcBasicList[indexPath.row].valid {
             cell.validCheckbox.setCheckState(.checked, animated: true)
-            try! realm.write {
-                calcIngredientList![indexPath.row].valid = true
-            }
             setCellValid(cell: cell)
+        }else{
+            cell.validCheckbox.setCheckState(.unchecked, animated: true)
+            setCellInvalid(cell: cell)
         }
         calcAlcoholStrength()
         updateValidNumLabel()
+        
+        let realm = try! Realm()
+        let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[indexPath.row].id)!
+        try! realm.write {
+            ing.valid = calcBasicList[indexPath.row].valid
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientCell") as! AlcoholCalcIngredientTableViewCell
         cell.ingredientNumberLabel.text = "材料" + String(indexPath.row + 1)
-        let calcIngredient = calcIngredientList![indexPath.row]
+        let calcIngredient = calcBasicList[indexPath.row]
         
         cell.validCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         cell.validCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
@@ -367,16 +357,19 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func clearAllButtonTapped(_ sender: UIButton) {
-        guard calcIngredientList != nil else{ return }
-        
+        for i in 0..<calcBasicList.count {
+            calcBasicList[i].valid = false
+        }
+
         let realm = try! Realm()
+        let calcList = realm.objects(CalculatorIngredient.self).sorted(byKeyPath: "id")
         try! realm.write {
-            for ing in calcIngredientList!{
+            for ing in calcList {
                 ing.valid = false
             }
         }
         
-        for (index, _) in calcIngredientList!.enumerated() {
+        for (index, _) in calcBasicList.enumerated() {
             let cell = ingredientTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlcoholCalcIngredientTableViewCell
             if cell != nil{
                 cell?.validCheckbox.setCheckState(.unchecked, animated: true)
