@@ -10,10 +10,10 @@ import UIKit
 
 class ModalPresentationController: UIPresentationController {
     var canDismissWithOverlayViewTouch = false
-    var topMargin : CGFloat = 15.0
-    var bottomMargin : CGFloat = 10.0
-    var leftMargin : CGFloat = 5.0
-    var rightMargin : CGFloat = 5.0
+    var topMargin : CGFloat = 20.0
+    var bottomMargin : CGFloat = 20.0
+    var leftMargin : CGFloat = 10.0
+    var rightMargin : CGFloat = 10.0
     var overlayAlpha: CGFloat = 0.4
     
     var overlayView = UIView()

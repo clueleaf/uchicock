@@ -349,8 +349,6 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         deleteButton.backgroundColor = UchicockStyle.alertColor
         deleteButton.tintColor = UchicockStyle.basicBackgroundColor
         
-        tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.reloadData()
         similarRecipeCollectionView.backgroundColor = UchicockStyle.basicBackgroundColor
         similarRecipeCollectionView.reloadData()

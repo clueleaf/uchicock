@@ -21,10 +21,11 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     var userRecipeNameList = Array<String>()
     var recoverableSampleRecipeList = Array<SampleRecipeBasic>()
     var unrecoverableSampleRecipeList = Array<SampleRecipeBasic>()
+    
     var isRecovering = false
-    let selectedCellBackgroundView = UIView()
     var shouldAdd73Badge = false
     var shouldAdd80Badge = false
+    let selectedCellBackgroundView = UIView()
 
     let interactor = Interactor()
 
@@ -44,7 +45,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         Realm.Configuration.defaultConfiguration = config
 
         loadSampleRecipe()
-        isRecovering = false
         
         tableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         tableView.backgroundColor = UchicockStyle.basicBackgroundColor
@@ -76,26 +76,17 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         let sampleRecipeNum = recoverableSampleRecipeList.count + unrecoverableSampleRecipeList.count
         let recoverableRecipeNum = recoverableSampleRecipeList.count
         recoverableNumberLabel.text = "全" + String(sampleRecipeNum) + "レシピの内、" + String(recoverableRecipeNum) + "レシピを復元できます。"
-        
         recoverAllLabel.text = "復元できる" + String(recoverableRecipeNum) + "レシピを全て復元"
         if recoverableRecipeNum == 0{
             recoverAllLabel.textColor = UchicockStyle.labelTextColorLight
         }else{
             recoverAllLabel.textColor = UchicockStyle.primaryColor
         }
-        
-        var recoverCount = 0
-        for rr in recoverableSampleRecipeList where rr.recoverTarget{
-            recoverCount += 1
-        }
-
         recoverSelectedLabel.text = "選択した0レシピのみを復元"
         recoverSelectedLabel.textColor = UchicockStyle.labelTextColorLight
         
         tableView.register(UINib(nibName: "RecoverTableViewCell", bundle: nil), forCellReuseIdentifier: "RecoverCell")
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.estimatedRowHeight = 70
-        tableView.rowHeight = UITableView.automaticDimension
 
         let defaults = UserDefaults.standard
         shouldAdd73Badge = !defaults.bool(forKey: GlobalConstants.Version73NewRecipeViewedKey)
@@ -103,19 +94,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         defaults.set(true, forKey: GlobalConstants.Version81NewRecipeViewedKey)
     }
     
-    private func cellDeselectAnimation(){
-        if let index = tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: index, animated: true)
-        }
-    }
-    
-    // MARK: - Manage Data
-    private func changeToUserDb(){
-        var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
-        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
-        Realm.Configuration.defaultConfiguration = config
-    }
-
+    // MARK: - Logic functions
     private func loadUserRecipe(){
         let realm = try! Realm()
         let recipeList = realm.objects(Recipe.self)
@@ -137,7 +116,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             let srb = SampleRecipeBasic(
                 name: sr.recipeName,
                 nameYomi: sr.recipeNameYomi,
-                katakanaLowercasedNameForSearch: sr.katakanaLowercasedNameForSearch,
                 recoverable: isRecoverable,
                 recoverTarget: false
             )
@@ -150,6 +128,12 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         recoverableSampleRecipeList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
         unrecoverableSampleRecipeList.sort { $0.nameYomi.localizedStandardCompare($1.nameYomi) == .orderedAscending }
     }
+
+    private func changeToUserDb(){
+        var config = Realm.Configuration(schemaVersion: GlobalConstants.RealmSchemaVersion)
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("default.realm")
+        Realm.Configuration.defaultConfiguration = config
+    }
     
     @objc func isTargetTapped(_ sender: CircularCheckbox){
         guard isRecovering == false else { return }
@@ -161,25 +145,18 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         let cell = view as! RecoverTableViewCell
         let touchIndex = self.tableView.indexPath(for: cell)
         
-        if let index = touchIndex{
-            if index.row < recoverableSampleRecipeList.count{
-                if sender.checkState == .checked{
-                    recoverableSampleRecipeList[index.row].recoverTarget = true
-                }else if sender.checkState == .unchecked{
-                    recoverableSampleRecipeList[index.row].recoverTarget = false
-                }
-                
-                var recoverCount = 0
-                for rr in recoverableSampleRecipeList where rr.recoverTarget{
-                    recoverCount += 1
-                }
-                recoverSelectedLabel.text = "選択した" + String(recoverCount) + "レシピのみを復元"
-                if recoverCount == 0{
-                    recoverSelectedLabel.textColor = UchicockStyle.labelTextColorLight
-                }else{
-                    recoverSelectedLabel.textColor = UchicockStyle.primaryColor
-                }
-            }
+        guard let index = touchIndex, index.row < recoverableSampleRecipeList.count else{ return }
+        recoverableSampleRecipeList[index.row].recoverTarget = sender.checkState == .checked
+        
+        var recoverCount = 0
+        for rr in recoverableSampleRecipeList where rr.recoverTarget{
+            recoverCount += 1
+        }
+        recoverSelectedLabel.text = "選択した" + String(recoverCount) + "レシピのみを復元"
+        if recoverCount == 0{
+            recoverSelectedLabel.textColor = UchicockStyle.labelTextColorLight
+        }else{
+            recoverSelectedLabel.textColor = UchicockStyle.primaryColor
         }
     }
     
@@ -218,76 +195,48 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         
         let realm2 = try! Realm()
         for recoverRecipe in recoverRecipeList{
-            let rec = realm2.objects(Recipe.self).filter("recipeName == %@",recoverRecipe.name)
-            if rec.count < 1 {
-                try! realm2.write {
-                    for recoverIngredient in recoverRecipe.ingredientList{
-                        addIngredient(ingredientName: recoverIngredient.ingredientName, ingredientNameYomi: recoverIngredient.ingredientNameYomi, katakanaLowercasedForSearch: recoverIngredient.katakanaLowercasedNameForSearch, stockFlag: false, memo: "", category: recoverIngredient.category)
-                    }
-                    addRecipe(recipeName: recoverRecipe.name, recipeNameYomi: recoverRecipe.nameYomi, katakanaLowercasedForSearch: recoverRecipe.katakanaLowercasedNameForSearch, favorites: 0, memo: "", style: recoverRecipe.style, method: recoverRecipe.method, strength: recoverRecipe.strength)
-                    
-                    for recoverIngredient in recoverRecipe.ingredientList{
-                        addRecipeToIngredientLink(recipeName: recoverRecipe.name, ingredientName: recoverIngredient.ingredientName, amount: recoverIngredient.amount, mustFlag: recoverIngredient.mustFlag, displayOrder: recoverIngredient.displayOrder)
-                    }
-                    updateRecipeShortageNum(recipeName: recoverRecipe.name)
+            let rec = realm2.objects(Recipe.self).filter("recipeName == %@", recoverRecipe.name)
+            if rec.count > 0 { continue }
+            try! realm2.write {
+                let r = realm2.objects(Recipe.self).filter("recipeName == %@", recoverRecipe.name)
+                if r.count < 1 {
+                    let recipe = Recipe()
+                    recipe.recipeName = recoverRecipe.name
+                    recipe.recipeNameYomi = recoverRecipe.nameYomi
+                    recipe.katakanaLowercasedNameForSearch = recoverRecipe.katakanaLowercasedNameForSearch
+                    recipe.style = recoverRecipe.style
+                    recipe.method = recoverRecipe.method
+                    recipe.strength = recoverRecipe.strength
+                    realm2.add(recipe)
                 }
+
+                for recoverIngredient in recoverRecipe.ingredientList{
+                    let ing = realm2.objects(Ingredient.self).filter("ingredientName == %@", recoverIngredient.ingredientName)
+                    if ing.count < 1 {
+                        let ingredient = Ingredient()
+                        ingredient.ingredientName = recoverIngredient.ingredientName
+                        ingredient.ingredientNameYomi = recoverIngredient.ingredientNameYomi
+                        ingredient.katakanaLowercasedNameForSearch = recoverIngredient.katakanaLowercasedNameForSearch
+                        ingredient.category = recoverIngredient.category
+                        realm2.add(ingredient)
+                    }
+
+                    let recipeIngredientLink = RecipeIngredientLink()
+                    recipeIngredientLink.amount = recoverIngredient.amount
+                    recipeIngredientLink.mustFlag = recoverIngredient.mustFlag
+                    recipeIngredientLink.displayOrder = recoverIngredient.displayOrder
+                    realm2.add(recipeIngredientLink)
+                    
+                    let ingredient = realm2.objects(Ingredient.self).filter("ingredientName == %@", recoverIngredient.ingredientName).first!
+                    ingredient.recipeIngredients.append(recipeIngredientLink)
+                    
+                    let recipe = realm2.objects(Recipe.self).filter("recipeName == %@", recoverRecipe.name).first!
+                    recipe.recipeIngredients.append(recipeIngredientLink)
+                }
+                
+                let rec = realm2.objects(Recipe.self).filter("recipeName == %@", recoverRecipe.name)
+                if rec.count > 0 { rec.first!.updateShortageNum() }
             }
-        }
-    }
-    
-    private func addRecipe(recipeName:String, recipeNameYomi: String, katakanaLowercasedForSearch: String, favorites:Int, memo:String, style:Int, method:Int, strength:Int){
-        let realm = try! Realm()
-        let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
-        if rec.count < 1 {
-            let recipe = Recipe()
-            recipe.recipeName = recipeName
-            recipe.recipeNameYomi = recipeNameYomi
-            recipe.katakanaLowercasedNameForSearch = katakanaLowercasedForSearch
-            recipe.favorites = favorites
-            recipe.memo = memo
-            recipe.style = style
-            recipe.method = method
-            recipe.strength = strength
-            realm.add(recipe)
-        }
-    }
-    
-    private func addIngredient(ingredientName: String, ingredientNameYomi: String, katakanaLowercasedForSearch: String, stockFlag: Bool, memo: String, category: Int){
-        let realm = try! Realm()
-        let ing = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName)
-        if ing.count < 1 {
-            let ingredient = Ingredient()
-            ingredient.ingredientName = ingredientName
-            ingredient.ingredientNameYomi = ingredientNameYomi
-            ingredient.katakanaLowercasedNameForSearch = katakanaLowercasedForSearch
-            ingredient.stockFlag = stockFlag
-            ingredient.memo = memo
-            ingredient.category = category
-            realm.add(ingredient)
-        }
-    }
-    
-    private func addRecipeToIngredientLink(recipeName:String, ingredientName:String, amount:String, mustFlag:Bool, displayOrder:Int){
-        let realm = try! Realm()
-        let recipeIngredientLink = RecipeIngredientLink()
-        recipeIngredientLink.amount = amount
-        recipeIngredientLink.mustFlag = mustFlag
-        recipeIngredientLink.displayOrder = displayOrder
-        realm.add(recipeIngredientLink)
-        
-        let ingredient = realm.objects(Ingredient.self).filter("ingredientName == %@",ingredientName).first!
-        ingredient.recipeIngredients.append(recipeIngredientLink)
-        
-        let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
-        recipe.recipeIngredients.append(recipeIngredientLink)
-    }
-    
-    private func updateRecipeShortageNum(recipeName: String){
-        let realm = try! Realm()
-        let rec = realm.objects(Recipe.self).filter("recipeName == %@",recipeName)
-        if rec.count > 0 {
-            let recipe = realm.objects(Recipe.self).filter("recipeName == %@",recipeName).first!
-            recipe.updateShortageNum()
         }
     }
     
@@ -311,7 +260,7 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         return 0
     }
-    
+    //todo
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard isRecovering == false else { return }
 
@@ -403,7 +352,9 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
                 vc.recipe = recipe
             }
             vc.onDoneBlock = {
-                self.cellDeselectAnimation()
+                if let index = self.tableView.indexPathForSelectedRow {
+                    self.tableView.deselectRow(at: index, animated: true)
+                }
             }
             
             if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad{
@@ -497,30 +448,18 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
 
     // MARK: - IBAction
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        if isRecovering == false {
-            changeToUserDb()
-            self.dismiss(animated: true, completion: nil)
-        }
+        guard isRecovering == false else { return }
+        changeToUserDb()
+        self.dismiss(animated: true, completion: nil)
     }
         
     // MARK: - UIViewControllerTransitioningDelegate
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let pc = ModalPresentationController(presentedViewController: presented, presenting: presenting)
-        pc.leftMargin = 10
-        pc.rightMargin = 10
-        pc.topMargin = 20
-        pc.bottomMargin = 20
-        pc.canDismissWithOverlayViewTouch = false
-        return pc
+        return ModalPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator = DismissModalAnimator()
-        animator.leftMargin = 10
-        animator.rightMargin = 10
-        animator.topMargin = 20
-        animator.bottomMargin = 20
-        return animator
+        return DismissModalAnimator()
     }
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {

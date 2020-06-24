@@ -13,10 +13,10 @@ class DismissModalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private var bottomPadding: CGFloat = 0
     private var leftPadding: CGFloat = 0
     private var rightPadding: CGFloat = 0
-    var topMargin: CGFloat = 15.0
-    var bottomMargin: CGFloat = 10.0
-    var leftMargin: CGFloat = 5.0
-    var rightMargin: CGFloat = 5.0
+    var topMargin: CGFloat = 20.0
+    var bottomMargin: CGFloat = 20.0
+    var leftMargin: CGFloat = 10.0
+    var rightMargin: CGFloat = 10.0
 
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.35
