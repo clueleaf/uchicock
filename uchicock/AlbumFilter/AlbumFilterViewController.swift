@@ -338,9 +338,7 @@ class AlbumFilterViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
-        checkbox.boxLineWidth = 1.0
-        checkbox.setCheckState(checkState, animated: true)
-        checkbox.stateChangeAnimation = .expand
+        checkbox.checkState = checkState
         checkbox.secondaryTintColor = UchicockStyle.primaryColor
         checkbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
     }

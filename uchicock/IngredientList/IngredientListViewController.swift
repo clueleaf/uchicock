@@ -518,7 +518,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         cell.accessoryView = accesoryImageView
         cell.shouldAnimate = stockSegmentedControl.selectedSegmentIndex == 0
         cell.ingredient = ingredientBasicList[indexPath.row]
-        cell.stock.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
+        cell.stockCheckbox.addTarget(self, action: #selector(IngredientListViewController.cellStockTapped(_:)), for: UIControl.Event.valueChanged)
         return cell
     }
     

@@ -63,25 +63,19 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         self.tableView.tag = 0
         suggestTableView.tag = 1
         
-        optionCheckbox.boxLineWidth = 1.0
-        optionCheckbox.stateChangeAnimation = .expand
         optionCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         optionCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         optionDescriptionLabel.textColor = UchicockStyle.labelTextColorLight
 
         if recipeIngredient.ingredientName == ""{
             self.navigationItem.title = "材料の追加"
-            optionCheckbox.setCheckState(.unchecked, animated: true)
+            optionCheckbox.checkState = .unchecked
             deleteLabel.text = "材料の追加をやめる"
         }else{
             self.navigationItem.title = "材料の変更"
             ingredientNameTextField.text = recipeIngredient.ingredientName
             amountTextField.text = recipeIngredient.amount
-            if recipeIngredient.mustFlag{
-                optionCheckbox.setCheckState(.unchecked, animated: true)
-            }else{
-                optionCheckbox.setCheckState(.checked, animated: true)
-            }
+            optionCheckbox.checkState = recipeIngredient.mustFlag ? .unchecked : .checked
             deleteLabel.text = "このレシピの材料から外す"
         }
         

@@ -51,25 +51,19 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
         selectedCellBackgroundView.backgroundColor = UchicockStyle.tableViewCellSelectedBackgroundColor
         tableView.indicatorStyle = UchicockStyle.isBackgroundDark ? .white : .black
         
-        recoverTargetCheckbox.stateChangeAnimation = .expand
         recoverTargetCheckbox.isEnabled = false
-        recoverTargetCheckbox.setCheckState(.checked, animated: true)
-        recoverTargetCheckbox.boxLineWidth = 1.0
+        recoverTargetCheckbox.checkState = .checked
         recoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         recoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
-        nonRecoverTargetCheckbox.stateChangeAnimation = .expand
         nonRecoverTargetCheckbox.isEnabled = false
-        nonRecoverTargetCheckbox.setCheckState(.unchecked, animated: true)
-        nonRecoverTargetCheckbox.boxLineWidth = 1.0
+        nonRecoverTargetCheckbox.checkState = .unchecked
         nonRecoverTargetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         nonRecoverTargetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
-        unableRecoverCheckbox.stateChangeAnimation = .expand
         unableRecoverCheckbox.isEnabled = false
-        unableRecoverCheckbox.setCheckState(.mixed, animated: true)
+        unableRecoverCheckbox.checkState = .mixed
         unableRecoverCheckbox.tintColor = UchicockStyle.labelTextColorLight
-        unableRecoverCheckbox.boxLineWidth = 1.0
         unableRecoverCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         unableRecoverCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
         
@@ -409,33 +403,15 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             
             cell.shouldAdd73Badge = self.shouldAdd73Badge
             cell.shouldAdd80Badge = self.shouldAdd80Badge
-            cell.targetCheckbox.stateChangeAnimation = .fade
-            cell.targetCheckbox.animationDuration = 0.0
-            cell.targetCheckbox.backgroundColor = UIColor.clear
-            cell.targetCheckbox.boxLineWidth = 1.0
-            cell.targetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
-            cell.targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 
             if indexPath.row < recoverableSampleRecipeList.count{
-                cell.recipeName = recoverableSampleRecipeList[indexPath.row].name
-                cell.targetCheckbox.isEnabled = true
-                cell.targetCheckbox.tintColor = UchicockStyle.primaryColor
-                if recoverableSampleRecipeList[indexPath.row].recoverTarget{
-                    cell.targetCheckbox.setCheckState(.checked, animated: true)
-                }else{
-                    cell.targetCheckbox.setCheckState(.unchecked, animated: true)
-                }
+                cell.isRecoverable = true
+                cell.recipe = recoverableSampleRecipeList[indexPath.row]
                 cell.targetCheckbox.addTarget(self, action: #selector(RecoverTableViewController.isTargetTapped(_:)), for: UIControl.Event.valueChanged)
             }else{
-                cell.recipeName = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count].name
-                cell.targetCheckbox.isEnabled = false
-                cell.targetCheckbox.tintColor = UchicockStyle.labelTextColorLight
-                cell.targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
-                cell.targetCheckbox.setCheckState(.mixed, animated: true)
+                cell.isRecoverable = false
+                cell.recipe = unrecoverableSampleRecipeList[indexPath.row - recoverableSampleRecipeList.count]
             }
-            cell.targetCheckbox.stateChangeAnimation = .expand
-            cell.targetCheckbox.animationDuration = 0.3
-            cell.previewLabel.textColor = UchicockStyle.labelTextColorLight
             cell.backgroundColor = UchicockStyle.basicBackgroundColor
             cell.selectedBackgroundView = selectedCellBackgroundView
             cell.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)

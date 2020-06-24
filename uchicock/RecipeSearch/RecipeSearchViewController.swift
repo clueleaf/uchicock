@@ -429,9 +429,7 @@ class RecipeSearchViewController: UIViewController, UIScrollViewDelegate{
     }
     
     private func initCheckbox(_ checkbox: CircularCheckbox, with checkState: CircularCheckbox.CheckState){
-        checkbox.boxLineWidth = 1.0
-        checkbox.stateChangeAnimation = .expand
-        checkbox.setCheckState(checkState, animated: true)
+        checkbox.checkState = checkState
         if checkState == .mixed{
             checkbox.isEnabled = false
             checkbox.tintColor = UchicockStyle.labelTextColorLight

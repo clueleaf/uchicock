@@ -225,7 +225,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         guard touchEvent.phase == .moved || touchEvent.phase == .ended else { return }
 
         calcBasicList[index.row].degree = Int(floor(sender.value))
-        cell.strengthLabel.text = "度数 " + String(Int(floor(sender.value))) + "%"
+        cell.strengthLabel.text = "度数 " + String(calcBasicList[index.row].degree) + "%"
         calcAlcoholStrength()
         
         guard touchEvent.phase == .ended else { return }
@@ -250,7 +250,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         guard touchEvent.phase == .moved || touchEvent.phase == .ended else { return }
 
         calcBasicList[index.row].amount = Int(floor(sender.value) * 5)
-        cell.amountLabel.text = "分量 " + String(Int(floor(sender.value) * 5)) + "ml"
+        cell.amountLabel.text = "分量 " + String(calcBasicList[index.row].amount) + "ml"
         calcAlcoholStrength()
 
         guard touchEvent.phase == .ended else { return }
@@ -314,7 +314,6 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         cell.validCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         cell.validCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
         cell.validCheckbox.boxLineWidth = 1.5
-        cell.validCheckbox.animationDuration = 0.3
 
         if calcIngredient.valid{
             cell.validCheckbox.checkState = .checked

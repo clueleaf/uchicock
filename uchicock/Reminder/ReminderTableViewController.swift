@@ -41,9 +41,7 @@ class ReminderTableViewController: UITableViewController {
         
         titleLabel.text = "対象材料"
         ingredientNameLabel.text = ingredient.ingredientName
-        designateDateCheckbox.setCheckState(.unchecked, animated: true)
-        designateDateCheckbox.boxLineWidth = 1.0
-        designateDateCheckbox.stateChangeAnimation = .expand
+        designateDateCheckbox.checkState = .unchecked
         designateDateCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         designateDateCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 

@@ -153,6 +153,7 @@ extension String {
         return output
     }
     
+    // MARK: - for migration
     func categoryNumber() -> Int {
         switch self{
         case "ウォッカ": return 0

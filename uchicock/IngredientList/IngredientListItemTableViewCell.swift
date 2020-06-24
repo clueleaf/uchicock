@@ -10,11 +10,11 @@ import UIKit
 
 class IngredientListItemTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var recipeNum: UILabel!
+    @IBOutlet weak var recipeNumLabel: UILabel!
     @IBOutlet weak var alcoholIconImage: UIImageView!
-    @IBOutlet weak var ingredientName: CustomLabel!
+    @IBOutlet weak var ingredientNameLabel: CustomLabel!
     @IBOutlet weak var stockLabel: UILabel!
-    @IBOutlet weak var stock: CircularCheckbox!
+    @IBOutlet weak var stockCheckbox: CircularCheckbox!
     @IBOutlet weak var alcoholIconImageWidthConstraint: NSLayoutConstraint!
     
     var shouldAnimate = false
@@ -23,51 +23,44 @@ class IngredientListItemTableViewCell: UITableViewCell {
         didSet{
             guard ingredient != nil else { return }
             
-            stock.stateChangeAnimation = .fade
-            stock.animationDuration = 0
-            if ingredient!.stockFlag{
-                stock.setCheckState(.checked, animated: true)
-            }else{
-                stock.setCheckState(.unchecked, animated: true)
-            }
+            stockCheckbox.stateChangeAnimation = .fade
+            stockCheckbox.animationDuration = 0
+            stockCheckbox.checkState = ingredient!.stockFlag ? .checked : .unchecked
 
-            recipeNum.backgroundColor = UIColor.clear
-            recipeNum.layer.borderWidth = 1
+            recipeNumLabel.backgroundColor = UIColor.clear
+            recipeNumLabel.layer.borderWidth = 1
             if ingredient!.usingRecipeNum == 0{
-                recipeNum.text = String(ingredient!.usingRecipeNum)
-                recipeNum.layer.backgroundColor = UIColor.clear.cgColor
-                recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                recipeNum.textColor = UchicockStyle.primaryColor
+                recipeNumLabel.text = String(ingredient!.usingRecipeNum)
+                recipeNumLabel.layer.backgroundColor = UIColor.clear.cgColor
+                recipeNumLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
+                recipeNumLabel.textColor = UchicockStyle.primaryColor
             }else if ingredient!.usingRecipeNum > 0 && ingredient!.usingRecipeNum < 1000 {
-                recipeNum.text = String(ingredient!.usingRecipeNum)
-                recipeNum.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
-                recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                recipeNum.textColor = UchicockStyle.labelTextColorOnBadge
+                recipeNumLabel.text = String(ingredient!.usingRecipeNum)
+                recipeNumLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
+                recipeNumLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
+                recipeNumLabel.textColor = UchicockStyle.labelTextColorOnBadge
             }else{
-                recipeNum.text = "999"
-                recipeNum.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
-                recipeNum.layer.borderColor = UchicockStyle.primaryColor.cgColor
-                recipeNum.textColor = UchicockStyle.labelTextColorOnBadge
+                recipeNumLabel.text = "999"
+                recipeNumLabel.layer.backgroundColor = UchicockStyle.primaryColor.cgColor
+                recipeNumLabel.layer.borderColor = UchicockStyle.primaryColor.cgColor
+                recipeNumLabel.textColor = UchicockStyle.labelTextColorOnBadge
             }
-            recipeNum.layer.cornerRadius = 10
-            recipeNum.clipsToBounds = true
+            recipeNumLabel.layer.cornerRadius = 10
+            recipeNumLabel.clipsToBounds = true
 
             alcoholIconImage.tintColor = UchicockStyle.primaryColor
             alcoholIconImage.isHidden = ingredient!.category != 0
             alcoholIconImageWidthConstraint.constant = ingredient!.category == 0 ? 15 : 0
 
-            ingredientName.text = ingredient!.name
+            ingredientNameLabel.text = ingredient!.name
             
             stockLabel.textColor = UchicockStyle.labelTextColorLight
             stockLabel.clipsToBounds = true
             
-            stock.secondaryTintColor = UchicockStyle.primaryColor
-            stock.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
-            stock.boxLineWidth = 1.0
-            stock.animationDuration = 0.3
-            if shouldAnimate{
-                stock.stateChangeAnimation = .expand
-            }
+            stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+            stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+            stockCheckbox.animationDuration = 0.3
+            if shouldAnimate { stockCheckbox.stateChangeAnimation = .expand }
         }
     }
     

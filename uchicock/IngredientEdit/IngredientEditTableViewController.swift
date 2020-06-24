@@ -64,13 +64,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         ingredientNameYomiTextField.setRightPadding()
         NotificationCenter.default.addObserver(self, selector:#selector(IngredientEditTableViewController.ingredientNameYomiTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.ingredientNameYomiTextField)
 
-        stockCheckbox.boxLineWidth = 1.0
-        stockCheckbox.stateChangeAnimation = .expand
-        if ingredient.stockFlag{
-            stockCheckbox.setCheckState(.checked, animated: true)
-        }else{
-            stockCheckbox.setCheckState(.unchecked, animated: true)
-        }
+        stockCheckbox.checkState = ingredient.stockFlag ? .checked : .unchecked
         stockCheckbox.secondaryTintColor = UchicockStyle.primaryColor
         stockCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
 

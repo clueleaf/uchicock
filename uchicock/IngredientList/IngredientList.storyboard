@@ -90,9 +90,9 @@
                                         <connections>
                                             <outlet property="alcoholIconImage" destination="t2z-So-h6R" id="BtY-rg-9BX"/>
                                             <outlet property="alcoholIconImageWidthConstraint" destination="XhX-lk-Y5o" id="Xee-Bs-oMY"/>
-                                            <outlet property="ingredientName" destination="7t0-Jr-01Z" id="3ip-lJ-9Cg"/>
-                                            <outlet property="recipeNum" destination="nlu-QK-KE1" id="VeP-N2-Tkp"/>
-                                            <outlet property="stock" destination="ems-S2-KjC" id="ThX-tz-KnO"/>
+                                            <outlet property="ingredientNameLabel" destination="7t0-Jr-01Z" id="J2O-Th-6Gb"/>
+                                            <outlet property="recipeNumLabel" destination="nlu-QK-KE1" id="LQJ-3W-YPb"/>
+                                            <outlet property="stockCheckbox" destination="ems-S2-KjC" id="c7C-b5-79Y"/>
                                             <outlet property="stockLabel" destination="1EQ-Ao-pvR" id="UoL-pA-xXX"/>
                                         </connections>
                                     </tableViewCell>

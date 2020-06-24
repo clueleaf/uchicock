@@ -19,15 +19,18 @@ class RecoverTableViewCell: UITableViewCell {
     
     var shouldAdd73Badge = false
     var shouldAdd80Badge = false
+    var isRecoverable = false
 
-    var recipeName = String(){
+    var recipe : SampleRecipeBasic? = nil{
         didSet{
-            recipeNameLabel.text = recipeName
+            guard recipe != nil else { return }
             
+            recipeNameLabel.text = recipe!.name
+
             var shouldAddNewBadge = false
-            if shouldAdd73Badge && shouldAdd80Badge && NewRecipe.v73.contains(recipeName){
+            if shouldAdd73Badge && shouldAdd80Badge && NewRecipe.v73.contains(recipe!.name){
                 shouldAddNewBadge = true
-            }else if shouldAdd80Badge && NewRecipe.v80.contains(recipeName){
+            }else if shouldAdd80Badge && NewRecipe.v80.contains(recipe!.name){
                 shouldAddNewBadge = true
             }
 
@@ -39,6 +42,22 @@ class RecoverTableViewCell: UITableViewCell {
             }else{
                 newRecipeLabel.isHidden = true
                 newRecipeLabelWidthConstraint.constant = 0
+            }
+            
+            targetCheckbox.secondaryTintColor = UchicockStyle.primaryColor
+            
+            previewLabel.textColor = UchicockStyle.labelTextColorLight
+
+            if isRecoverable{
+                targetCheckbox.isEnabled = true
+                targetCheckbox.tintColor = UchicockStyle.primaryColor
+                targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.labelTextColorOnBadge
+                targetCheckbox.checkState = recipe!.recoverTarget ? .checked : .unchecked
+            }else{
+                targetCheckbox.isEnabled = false
+                targetCheckbox.tintColor = UchicockStyle.labelTextColorLight
+                targetCheckbox.secondaryCheckmarkTintColor = UchicockStyle.basicBackgroundColor
+                targetCheckbox.checkState = .mixed
             }
         }
     }
