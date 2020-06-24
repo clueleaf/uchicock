@@ -26,6 +26,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
     var hiddenLabel = UILabel()
     var calcBasicList = Array<CalcBasic>()
     var alcoholAmountBackup = 0
+    var totalAmount = ""
+    var alcoholAmount = ""
+    var alcoholPercentage = ""
     
     let interactor = Interactor()
 
@@ -87,6 +90,9 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         ingredientTableView.separatorColor = UchicockStyle.tableViewSeparatorColor
         
         calcAlcoholStrength()
+        totalAmount = totalAmountLabel.text!
+        alcoholAmount = alcoholAmountLabel.text!
+        alcoholPercentage = alcoholPercentageLabel.text!
     }
     
     // MARK: - Logic functions
@@ -167,6 +173,39 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    private func animateLabelsIfNeeded(){
+        if totalAmount != totalAmountLabel.text! {
+            UIView.animate(withDuration: 0.15, animations: { () -> Void in
+                self.totalAmountLabel.transform = .init(scaleX: 1.2, y: 1.2)
+            }) { (finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.10, animations: { () -> Void in
+                    self.totalAmountLabel.transform = .identity
+                })
+            }
+        }
+        if alcoholAmount != alcoholAmountLabel.text! {
+            UIView.animate(withDuration: 0.15, animations: { () -> Void in
+                self.alcoholAmountLabel.transform = .init(scaleX: 1.2, y: 1.2)
+            }) { (finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.10, animations: { () -> Void in
+                    self.alcoholAmountLabel.transform = .identity
+                })
+            }
+        }
+        if alcoholPercentage != alcoholPercentageLabel.text! {
+            UIView.animate(withDuration: 0.15, animations: { () -> Void in
+                self.alcoholPercentageLabel.transform = .init(scaleX: 1.2, y: 1.2)
+            }) { (finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.10, animations: { () -> Void in
+                    self.alcoholPercentageLabel.transform = .identity
+                })
+            }
+        }
+        totalAmount = totalAmountLabel.text!
+        alcoholAmount = alcoholAmountLabel.text!
+        alcoholPercentage = alcoholPercentageLabel.text!
+    }
+    
     // MARK: - Cell Target Action
     private func setCellValid(cell: AlcoholCalcIngredientTableViewCell?){
         cell?.ingredientNumberLabel.textColor = UchicockStyle.labelTextColor
@@ -203,6 +242,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             setCellInvalid(cell: cell)
         }
         calcAlcoholStrength()
+        animateLabelsIfNeeded()
         updateValidNumLabel()
 
         let realm = try! Realm()
@@ -230,6 +270,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         
         guard touchEvent.phase == .ended else { return }
 
+        animateLabelsIfNeeded()
         let realm = try! Realm()
         let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[index.row].id)!
         try! realm.write {
@@ -255,6 +296,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
 
         guard touchEvent.phase == .ended else { return }
 
+        animateLabelsIfNeeded()
         let realm = try! Realm()
         let ing = realm.object(ofType: CalculatorIngredient.self, forPrimaryKey: calcBasicList[index.row].id)!
         try! realm.write {
@@ -297,6 +339,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
             setCellInvalid(cell: cell)
         }
         calcAlcoholStrength()
+        animateLabelsIfNeeded()
         updateValidNumLabel()
         
         let realm = try! Realm()
@@ -377,6 +420,7 @@ class AlcoholCalcViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         calcAlcoholStrength()
+        animateLabelsIfNeeded()
         updateValidNumLabel()
     }
     
