@@ -134,8 +134,8 @@ class CustomTextField: UITextField{
         var rect = super.rightViewRect(forBounds: bounds)
         rect.size.height = min(bounds.height / 2, 16)
         rect.origin.y = (bounds.height - rect.size.height) / 2
-        rect.size.width = hasRightIcon ? rect.size.height : 8
-        rect.origin.x = hasRightIcon ? bounds.width - rect.size.width - rect.origin.y : bounds.width - 14
+        rect.size.width = hasRightIcon ? rect.size.height + rect.origin.y : 8
+        rect.origin.x = hasRightIcon ? bounds.width - rect.size.width - rect.origin.y * 0.5 : bounds.width - 14
         return rect
     }
 }
