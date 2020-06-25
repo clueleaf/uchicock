@@ -108,6 +108,7 @@ class CustomTextField: UITextField{
         clearButton.minimumHitHeight = 36
         clearButton.minimumHitWidth = 36
         clearButton.setImage(UIImage(named: "button-clear"), for: .normal)
+        clearButton.imageEdgeInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 6)
         clearButton.imageView?.contentMode = .scaleAspectFit
         clearButton.tintColor = UchicockStyle.labelTextColorLight
         clearButton.addTarget(self, action: #selector(CustomTextField.clear(sender:) ), for: .touchUpInside)
@@ -132,10 +133,10 @@ class CustomTextField: UITextField{
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.rightViewRect(forBounds: bounds)
-        rect.size.height = min(bounds.height / 2, 16)
+        rect.size.height = min(bounds.height / 2, 16) + 6
         rect.origin.y = (bounds.height - rect.size.height) / 2
         rect.size.width = hasRightIcon ? rect.size.height + rect.origin.y : 8
-        rect.origin.x = hasRightIcon ? bounds.width - rect.size.width - rect.origin.y * 0.5 : bounds.width - 14
+        rect.origin.x = hasRightIcon ? bounds.width - rect.size.width : bounds.width - 14
         return rect
     }
 }
