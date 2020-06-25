@@ -95,8 +95,8 @@ class CustomTextField: UITextField{
         var rect = super.leftViewRect(forBounds: bounds)
         rect.size.height = bounds.height / 2
         rect.origin.y = (bounds.height - rect.size.height) / 2
-        rect.size.width = hasLeftIcon ? rect.size.height + 8 : 8
-        rect.origin.x = 6
+        rect.size.width = hasLeftIcon ? rect.size.height + 8 : 14
+        rect.origin.x = hasLeftIcon ? 6 : 0
         return rect
     }
 
@@ -135,7 +135,7 @@ class CustomTextField: UITextField{
         var rect = super.rightViewRect(forBounds: bounds)
         rect.size.height = min(bounds.height / 2, 16) + 6
         rect.origin.y = (bounds.height - rect.size.height) / 2
-        rect.size.width = hasRightIcon ? rect.size.height + rect.origin.y : 8
+        rect.size.width = hasRightIcon ? rect.size.height + rect.origin.y : 14
         rect.origin.x = hasRightIcon ? bounds.width - rect.size.width : bounds.width - 14
         return rect
     }
