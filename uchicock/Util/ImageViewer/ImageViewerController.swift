@@ -19,11 +19,10 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var originalImageView: UIImageView?
     var captionText: String? = nil
     var isBrowsingMode = false
-    var isStatusBarHidden = false
     let gradient = CAGradientLayer()
 
     override var prefersStatusBarHidden: Bool {
-        return isStatusBarHidden
+        return true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -34,6 +33,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         return true
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,19 +66,14 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         gradient.frame = captionBackgroundView.bounds
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        isStatusBarHidden = true
-        self.setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    func setupScrollView() {
+    // MARK : Logic functions
+    private func setupScrollView() {
         scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
         scrollView.alwaysBounceVertical = true
         scrollView.alwaysBounceHorizontal = true
     }
     
-    func setupGestureRecognizers() {
+    private func setupGestureRecognizers() {
         let singleTapGestureRecognizer = UITapGestureRecognizer()
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.addTarget(self, action: #selector(imageViewSingleTapped))
@@ -114,7 +109,7 @@ class ImageViewerController: UIViewController, UIScrollViewDelegate, UIGestureRe
         singleTapGestureRecognizer2.require(toFail: doubleTapGestureRecognizer2)
     }
     
-    func setupTransitions() {
+    private func setupTransitions() {
         guard let imageView = originalImageView else { return }
         transitionHandler = ImageViewerTransitioningHandler(fromImageView: imageView, toImageView: self.imageView)
         self.transitioningDelegate = transitionHandler

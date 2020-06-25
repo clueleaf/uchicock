@@ -16,7 +16,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
 
     var lastPendingViewControllerIndex = 0
     var isEnd = false
-    var introductions: [introductionInfo] = []
+    var introductions: [IntroductionInfo] = []
     var VCs: [IntroductionDetailViewController] = []
     var backgroundImage: UIImage? = nil
     var isTextColorBlack = false
@@ -28,6 +28,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         return currentStatusBarStyle
     }
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,14 +84,14 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         backgroundImage!.draw(in: self.view.bounds)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         self.view.backgroundColor = UIColor(patternImage: image!)
         self.dataSource = self
         self.delegate = self
         sb = UIStoryboard(name: "Introduction", bundle: nil)
         
         for (index, introduction) in introductions.enumerated(){
-            let VC = setupVC(number: index, infoTitle: introduction.title, description: introduction.description, image: introduction.image, isTextColorBlack: isTextColorBlack, isSkipButtonBlack: isPageControlBlack)
+            let VC = setupVC(tag: index, introduction: introduction, isTextColorBlack: isTextColorBlack, isSkipButtonBlack: isPageControlBlack)
             VCs.append(VC)
         }
         
@@ -103,7 +104,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
+
         UIGraphicsBeginImageContext(size)
         backgroundImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -135,12 +136,13 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    func setupVC(number: Int, infoTitle: String, description: String, image: UIImage?, isTextColorBlack: Bool, isSkipButtonBlack: Bool) -> IntroductionDetailViewController{
+    // MARK: - Logic functions
+    private func setupVC(tag: Int, introduction: IntroductionInfo, isTextColorBlack: Bool, isSkipButtonBlack: Bool) -> IntroductionDetailViewController{
         let infoVC = sb.instantiateViewController(withIdentifier: "IntroductionDetail") as! IntroductionDetailViewController
-        infoVC.number = number
-        infoVC.titleString = infoTitle
-        infoVC.descriptionString = description
-        infoVC.image = image
+        infoVC.tag = tag
+        infoVC.titleString = introduction.title
+        infoVC.descriptionString = introduction.description
+        infoVC.image = introduction.image
         infoVC.isTextColorBlack = isTextColorBlack
         infoVC.isSkipButtonBlack = isSkipButtonBlack
         infoVC.introductionVC = self
@@ -148,7 +150,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
         return infoVC
     }
     
-    func getUIImage(from: UIColor) -> UIImage? {
+    private func getUIImage(from: UIColor) -> UIImage? {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let contextRef = UIGraphicsGetCurrentContext()
@@ -161,13 +163,12 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if hasFinishedLayoutSubviews { // 画面回転でもdidScrollするため、回転して勝手にdismissされてしまうことを防ぐ
-            if isEnd && scrollView.contentOffset.x > windowWidth + 20{
-                if launchVC != nil{
-                    launchVC!.dismissIntroductionAndPrepareToShowRecipeList(self)
-                }else{
-                    self.dismiss(animated: true, completion: nil)
-                }
+        // 画面回転でもdidScrollするため、回転して勝手にdismissされてしまうことを防ぐ
+        if hasFinishedLayoutSubviews && isEnd && scrollView.contentOffset.x > windowWidth + 20{
+            if launchVC != nil{
+                launchVC!.dismissIntroductionAndPrepareToShowRecipeList(self)
+            }else{
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -175,37 +176,25 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     // MARK: - UIPageViewControllerDelegate
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
         if let vc = pendingViewControllers[0] as? IntroductionDetailViewController {
-            self.lastPendingViewControllerIndex = vc.number!
+            self.lastPendingViewControllerIndex = vc.tag!
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool){
         if completed{
-            if self.lastPendingViewControllerIndex == VCs.count - 1{
-                isEnd = true
-            }else{
-                isEnd = false
-            }
+            isEnd = self.lastPendingViewControllerIndex == VCs.count - 1
         }
     }
     
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
-        if vc.number! > 0{
-            return VCs[vc.number! - 1]
-        }else{
-            return nil
-        }
+        return vc.tag! > 0 ? VCs[vc.tag! - 1] : nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! IntroductionDetailViewController
-        if vc.number! < VCs.count - 1{
-            return VCs[vc.number! + 1]
-        }else{
-            return nil
-        }
+        return vc.tag! < VCs.count - 1 ? VCs[vc.tag! + 1] : nil
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -217,7 +206,7 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
     }
 }
 
-struct introductionInfo{
+struct IntroductionInfo{
     var title: String
     var description: String
     var image: UIImage?

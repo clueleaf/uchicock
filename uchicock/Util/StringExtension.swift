@@ -47,6 +47,39 @@ extension String {
         return String(String.UnicodeScalarView(passedUnicodeScalars)).withoutEndsSpace()
     }
     
+    func convertToYomi() -> String{
+        var output = self.withoutEndsSpaceAndMiddleDot().lowercased()
+
+        let sakePattern = "日本酒"
+        let sakeRegex = try! NSRegularExpression(pattern: sakePattern, options: [])
+        let sakeResults = sakeRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+
+        for result in sakeResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: "ニホンシュ")
+        }
+
+        let sugarPattern = "角砂糖"
+        let sugarRegex = try! NSRegularExpression(pattern: sugarPattern, options: [])
+        let sugarResults = sugarRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+
+        for result in sugarResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: "カクザトウ")
+        }
+
+        let englishPattern = "[^a-zA-Z 　]+"
+        let englishRegex = try! NSRegularExpression(pattern: englishPattern, options: [])
+        let englishResults = englishRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
+        
+        for result in englishResults.reversed() {
+            let subStr = (output as NSString).substring(with: result.range)
+            output = output.replacingOccurrences(of: subStr, with: subStr.convertJapaneseToYomi())
+        }
+
+        return output
+    }
+    
     func katakanaLowercasedForSearch() -> String{
         var convertedString = ""
 
@@ -120,39 +153,6 @@ extension String {
         return output
     }
         
-    func convertToYomi() -> String{
-        var output = self.withoutEndsSpaceAndMiddleDot().lowercased()
-
-        let sakePattern = "日本酒"
-        let sakeRegex = try! NSRegularExpression(pattern: sakePattern, options: [])
-        let sakeResults = sakeRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
-
-        for result in sakeResults.reversed() {
-            let subStr = (output as NSString).substring(with: result.range)
-            output = output.replacingOccurrences(of: subStr, with: "ニホンシュ")
-        }
-
-        let sugarPattern = "角砂糖"
-        let sugarRegex = try! NSRegularExpression(pattern: sugarPattern, options: [])
-        let sugarResults = sugarRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
-
-        for result in sugarResults.reversed() {
-            let subStr = (output as NSString).substring(with: result.range)
-            output = output.replacingOccurrences(of: subStr, with: "カクザトウ")
-        }
-
-        let englishPattern = "[^a-zA-Z 　]+"
-        let englishRegex = try! NSRegularExpression(pattern: englishPattern, options: [])
-        let englishResults = englishRegex.matches(in: output, options: [], range: NSMakeRange(0, output.utf16.count))
-        
-        for result in englishResults.reversed() {
-            let subStr = (output as NSString).substring(with: result.range)
-            output = output.replacingOccurrences(of: subStr, with: subStr.convertJapaneseToYomi())
-        }
-
-        return output
-    }
-    
     // MARK: - for migration
     func categoryNumber() -> Int {
         switch self{

@@ -81,16 +81,12 @@ public class MessageHUD : UIView {
                 self.getStatusLabel().alpha = 1.0
             }
             
-            let completionBlock : () -> Void = {
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: { _ in
                 if let convertedDuration = duration {
                     let timer = Timer.init(timeInterval: convertedDuration, target: self, selector: #selector(self.dismiss), userInfo: nil, repeats: false)
                     self.setFadeOut(timer: timer)
                     RunLoop.main.add(self.fadeOutTimer!, forMode: .common)
                 }
-            }
-            
-            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn, .beginFromCurrentState], animations: animationsBlock, completion: { _ in
-                completionBlock()
             })
             self.setNeedsDisplay()
         }else{
@@ -214,32 +210,6 @@ public class MessageHUD : UIView {
         OperationQueue.main.addOperation({ [weak self] in
             guard let strongSelf = self else { return }
             
-            let animationsBlock: () -> Void = {
-                // Fade out all effects (colors, blur, etc.)
-                strongSelf.getHudView().effect = nil
-                strongSelf.getHudView().backgroundColor = .clear
-                strongSelf.getBackGroundView().alpha = 0.0
-                strongSelf.getImageView().alpha = 0.0
-                strongSelf.getStatusLabel().alpha = 0.0
-            }
-            
-            let completionBlock: (() -> Void) = {
-                // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
-                // and the change of these values has not been cancelled in between e.g. due to a new show
-                if strongSelf.getBackGroundView().alpha == 0.0 {
-                    // Clean up view hierarchy (overlays)
-                    strongSelf.getControlView().removeFromSuperview()
-                    strongSelf.getBackGroundView().removeFromSuperview()
-                    strongSelf.getHudView().removeFromSuperview()
-                    strongSelf.removeFromSuperview()
-                    
-                    // Tell the rootViewController to update the StatusBar appearance
-                    let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
-                    rootController?.setNeedsStatusBarAppearanceUpdate()
-                    completion?()
-                }
-            }
-            
             // .beginFromCurrentState AND a delay doesn't always work as expected
             // When .beginFromCurrentState is set, withDuration: evaluates the current
             // values to check if an animation is necessary. The evaluation happens at function call time and not
@@ -247,9 +217,27 @@ public class MessageHUD : UIView {
             
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                 UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction, .curveEaseOut, .beginFromCurrentState], animations: {
-                    animationsBlock()
+                    // Fade out all effects (colors, blur, etc.)
+                    strongSelf.getHudView().effect = nil
+                    strongSelf.getHudView().backgroundColor = .clear
+                    strongSelf.getBackGroundView().alpha = 0.0
+                    strongSelf.getImageView().alpha = 0.0
+                    strongSelf.getStatusLabel().alpha = 0.0
                 }) { finished in
-                    completionBlock()
+                    // Check if we really achieved to dismiss the HUD (<=> alpha values are applied)
+                    // and the change of these values has not been cancelled in between e.g. due to a new show
+                    if strongSelf.getBackGroundView().alpha == 0.0 {
+                        // Clean up view hierarchy (overlays)
+                        strongSelf.getControlView().removeFromSuperview()
+                        strongSelf.getBackGroundView().removeFromSuperview()
+                        strongSelf.getHudView().removeFromSuperview()
+                        strongSelf.removeFromSuperview()
+                        
+                        // Tell the rootViewController to update the StatusBar appearance
+                        let rootController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+                        rootController?.setNeedsStatusBarAppearanceUpdate()
+                        completion?()
+                    }
                 }
             })
             

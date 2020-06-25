@@ -214,22 +214,22 @@ class LaunchViewController: UIViewController {
         }
     }
     
-    func introductions() -> [introductionInfo]{
-        var infos: [introductionInfo] = []
+    func introductions() -> [IntroductionInfo]{
+        var infos: [IntroductionInfo] = []
 
-        let info1 = introductionInfo(title: "Thank you for downloading!!",
+        let info1 = IntroductionInfo(title: "Thank you for downloading!!",
                                      description: GlobalConstants.IntroductionDescriptionThanks,
                                      image: nil)
-        let info2 = introductionInfo(title: "レシピ",
+        let info2 = IntroductionInfo(title: "レシピ",
                                      description: GlobalConstants.IntroductionDescriptionRecipe,
                                      image: UIImage(named:"screen-recipe"))
-        let info3 = introductionInfo(title: "材料",
+        let info3 = IntroductionInfo(title: "材料",
                                      description: GlobalConstants.IntroductionDescriptionIngredient,
                                      image: UIImage(named:"screen-ingredient"))
-        let info4 = introductionInfo(title: "逆引き",
+        let info4 = IntroductionInfo(title: "逆引き",
                                      description: GlobalConstants.IntroductionDescriptionReverseLookup,
                                      image: UIImage(named:"screen-reverse-lookup"))
-        let info5 = introductionInfo(title: "アルバム",
+        let info5 = IntroductionInfo(title: "アルバム",
                                      description: GlobalConstants.IntroductionDescriptionAlbum,
                                      image: UIImage(named:"screen-album"))
         infos.append(info1)

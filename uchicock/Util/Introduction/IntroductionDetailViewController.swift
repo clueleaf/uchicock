@@ -19,12 +19,13 @@ class IntroductionDetailViewController: UIViewController {
     var titleString: String?
     var descriptionString: String?
     var image: UIImage?
-    var number: Int?
+    var tag: Int?
     var isTextColorBlack = false
     var isSkipButtonBlack = false
     weak var launchVC : LaunchViewController?
     weak var introductionVC: IntroductionPageViewController!
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleString
@@ -53,11 +54,21 @@ class IntroductionDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         animateViews(withDuration: 0.3)
     }
     
-    func animateViews(withDuration duration: Double){
+    override func viewDidDisappear(_ animated: Bool) {
+        titleLabel.alpha = 0.0
+        separator.alpha = 0.0
+        descriptionLabel.alpha = 0.0
+        imageView.alpha = 0.0
+        skipButton.alpha = 0.0
+        
+        super.viewDidDisappear(animated)
+    }
+    
+    // MARK: - Logic functions
+    private func animateViews(withDuration duration: Double){
         if titleLabel.alpha < 1.0{
             UIView.animate(withDuration: duration, animations: {
                 self.titleLabel.alpha = 1.0
@@ -83,16 +94,6 @@ class IntroductionDetailViewController: UIViewController {
                 self.skipButton.alpha = 1.0
             })
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        titleLabel.alpha = 0.0
-        separator.alpha = 0.0
-        descriptionLabel.alpha = 0.0
-        imageView.alpha = 0.0
-        skipButton.alpha = 0.0
-        
-        super.viewDidDisappear(animated)
     }
     
     // MARK: - IBAction

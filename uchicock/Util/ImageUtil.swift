@@ -11,17 +11,16 @@ import RealmSwift
 
 struct ImageUtil{
     static func saveToCache(imageFileName: String?){
-        if let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil {
-            let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
-            let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
-            if let loadedThumbnail = loadedThumbnail{
-                ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName as NSString)
-            }else{
-                let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
-                let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
-                if let loadedImage = loadedImage{
-                    ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
-                }
+        guard let imageFileName = imageFileName, ImageCache.shared.object(forKey: imageFileName as NSString) == nil else{ return }
+        let thumbnailFilePath = GlobalConstants.ThumbnailFolderPath.appendingPathComponent(imageFileName + ".png")
+        let loadedThumbnail: UIImage? = UIImage(contentsOfFile: thumbnailFilePath.path)
+        if let loadedThumbnail = loadedThumbnail{
+            ImageCache.shared.setObject(loadedThumbnail, forKey: imageFileName as NSString)
+        }else{
+            let imageFilePath = GlobalConstants.ImageFolderPath.appendingPathComponent(imageFileName + ".png")
+            let loadedImage: UIImage? = UIImage(contentsOfFile: imageFilePath.path)
+            if let loadedImage = loadedImage{
+                ImageCache.shared.setObject(loadedImage, forKey: imageFileName as NSString)
             }
         }
     }
