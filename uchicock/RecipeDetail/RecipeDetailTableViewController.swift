@@ -145,6 +145,7 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
         photoImageView.addGestureRecognizer(longPressRecognizer)
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        similarRecipeCollectionView.delaysContentTouches = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -893,17 +894,19 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "RecipeDetail", bundle:nil).instantiateViewController(withIdentifier: "RecipeDetail") as! RecipeDetailTableViewController
-        vc.recipeId = displaySimilarRecipeList[indexPath.row].id
-        selectedRecipeId = displaySimilarRecipeList[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row < displaySimilarRecipeList.count{
+            vc.recipeId = displaySimilarRecipeList[indexPath.row].id
+            selectedRecipeId = displaySimilarRecipeList[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.35)
             }else{
-                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.35)
             }
         }
         return true
@@ -912,9 +915,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SimilarRecipeCollectionViewCell {
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.35)
             }else{
-                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.35)
             }
         }
     }
@@ -987,9 +990,9 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
 
         if selectedRecipeId != nil && displaySimilarRecipeList[indexPath.row].id == selectedRecipeId!{
             if UchicockStyle.isBackgroundDark{
-                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.35)
             }else{
-                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+                cell.highlightView.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.35)
             }
             highlightSimilarRecipeIndexPath = indexPath
         }else{

@@ -74,7 +74,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         self.view.backgroundColor = UchicockStyle.basicBackgroundColor
         searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "材料名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        searchTextField.adjustClearButtonColor()
         searchTextField.setSearchIcon()
         segmentedControlContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
 
@@ -99,7 +98,8 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         ingredientList = realm.objects(Ingredient.self)
         reloadIngredientBasicList()
         updateSearchResultFlag()
-        setTextFieldAlertStyle()
+        setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
         
@@ -375,29 +375,30 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         textField.text = textField.text!.withoutEndsSpace()
+        searchTextField.adjustClearButtonColor()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         searchTextField.resignFirstResponder()
-        searchTextField.adjustClearButtonColor()
         reloadIngredientBasicList()
         updateSearchResultFlag()
-        setTextFieldAlertStyle()
+        setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
         return true
     }
 
     @objc func searchTextFieldDidChange(_ notification: Notification){
-        searchTextField.adjustClearButtonColor()
         reloadIngredientBasicList()
         updateSearchResultFlag()
-        setTextFieldAlertStyle()
+        setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
     }
     
-    private func setTextFieldAlertStyle(){
+    private func setSearchTextFieldAlertStyle(){
         if textFieldHasSearchResult == false {
             searchTextField.layer.borderWidth = 1
             searchTextField.layer.borderColor = UchicockStyle.alertColor.cgColor
@@ -470,7 +471,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                     try! realm.write { realm.delete(ingredient) }
                     self.ingredientBasicList.remove(at: indexPath.row)
                     self.updateSearchResultFlag()
-                    self.setTextFieldAlertStyle()
+                    self.setSearchTextFieldAlertStyle()
                     tableView.deleteRows(at: [indexPath], with: .middle)
                     self.setTableBackgroundView()
                     self.navigationItem.title = "材料(" + String(self.ingredientBasicList.count) + "/" + String(self.ingredientList!.count) + ")"

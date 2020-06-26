@@ -293,6 +293,9 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField1.resignFirstResponder()
         ingredientTextField2.resignFirstResponder()
         ingredientTextField3.resignFirstResponder()
+        ingredientTextField1.text = ingredientTextField1.text!.withoutEndsSpace()
+        ingredientTextField2.text = ingredientTextField2.text!.withoutEndsSpace()
+        ingredientTextField3.text = ingredientTextField3.text!.withoutEndsSpace()
 
         reloadRecipeBasicList(recipeArray: &recipeBasicList)
         textFieldHasSearchResult = recipeBasicList.count > 0
@@ -601,7 +604,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
 
         if noIngredientForTextField {
-            noDataLabel.text = "存在しない材料が指定されています"
+            noDataLabel.text = "存在しない材料が指定されています\n（材料名は完全一致で検索されます）"
         }else{
             if textFieldHasSearchResult{
                 if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{

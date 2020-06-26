@@ -100,7 +100,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         searchContainer.backgroundColor = UchicockStyle.filterContainerBackgroundColor
         searchTextField.backgroundColor = UchicockStyle.searchTextViewBackgroundColor
         searchTextField.attributedPlaceholder = NSAttributedString(string: "レシピ名で検索", attributes: [NSAttributedString.Key.foregroundColor: UchicockStyle.labelTextColorLight])
-        searchTextField.adjustClearButtonColor()
         searchTextField.setSearchIcon()
         
         NotificationCenter.default.addObserver(self, selector: #selector(RecipeListViewController.searchTextFieldDidChange(_:)), name: CustomTextField.textDidChangeNotification, object: self.searchTextField)
@@ -124,6 +123,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeBasicList()
         updateSearchResultFlag()
         setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
 
@@ -645,6 +645,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         textField.text = textField.text!.withoutEndsSpace()
+        searchTextField.adjustClearButtonColor()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
@@ -652,16 +653,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         reloadRecipeBasicList()
         updateSearchResultFlag()
         setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
         return true
     }
 
     @objc func searchTextFieldDidChange(_ notification: Notification){
-        searchTextField.adjustClearButtonColor()
         reloadRecipeBasicList()
         updateSearchResultFlag()
         setSearchTextFieldAlertStyle()
+        searchTextField.adjustClearButtonColor()
         setTableBackgroundView()
         tableView.reloadData()
     }
