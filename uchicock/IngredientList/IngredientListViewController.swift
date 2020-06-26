@@ -45,7 +45,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     var ingredientTableOffset: CGFloat? = nil
     var reminderTableOffset: CGFloat? = nil
     var scrollBeginningYPoint: CGFloat? = nil
-    var textFieldHasSearchResult = false
+    var textFieldSearchResult = -1
 
     let interactor = Interactor()
 
@@ -237,13 +237,13 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     private func updateSearchResultFlag(){
         let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
-        if searchText != ""{
+        if searchText == ""{
+            textFieldSearchResult = -1
+        }else{
             let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
             let realm = try! Realm()
             let searchedIng = realm.objects(Ingredient.self).filter("katakanaLowercasedNameForSearch CONTAINS %@ OR ingredientName CONTAINS %@", convertedSearchText, searchText)
-            textFieldHasSearchResult = searchedIng.count > 0
-        }else{
-            textFieldHasSearchResult = true
+            textFieldSearchResult = searchedIng.count
         }
     }
     
@@ -254,7 +254,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             return
         }
         tableView.backgroundView  = UIView()
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = isReminderMode ? false : true
 
         let noDataLabel = UILabel()
         noDataLabel.numberOfLines = 0
@@ -279,14 +279,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             if ingredientList == nil || ingredientList!.count == 0{
                 noDataLabel.text = "材料はありません"
             }else{
-                if textFieldHasSearchResult{
-                    if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
-                        noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
-                    }else{
-                        noDataLabel.text = "入力した材料名の材料はありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                    }
-                }else{
+                if textFieldSearchResult < 0{
+                    noDataLabel.text = "絞り込み条件にあてはまる材料はありません"
+                }else if textFieldSearchResult == 0{
                     noDataLabel.text = "検索文字列にあてはまる材料はありません"
+                }else{
+                    noDataLabel.text = "入力した材料名の材料は\(textFieldSearchResult)個ありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
                 }
             }
         }
@@ -399,7 +397,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     private func setSearchTextFieldAlertStyle(){
-        if textFieldHasSearchResult == false {
+        if textFieldSearchResult == 0 {
             searchTextField.layer.borderWidth = 1
             searchTextField.layer.borderColor = UchicockStyle.alertColor.cgColor
             searchTextField.textColor = UchicockStyle.alertColor

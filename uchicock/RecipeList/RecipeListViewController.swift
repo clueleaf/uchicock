@@ -39,7 +39,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var recipeTableViewOffset: CGFloat? = nil
     var bookmarkTableViewOffset: CGFloat? = nil
     var scrollBeginningYPoint: CGFloat? = nil
-    var textFieldHasSearchResult = false
+    var textFieldSearchResult = -1
     
     var sortOrder = RecipeSortType.name
     var recipeFilterStar: [Int] = []
@@ -523,19 +523,19 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func updateSearchResultFlag(){
         let searchText = searchTextField.text!.withoutMiddleSpaceAndMiddleDot()
-        if searchText != ""{
+        if searchText == ""{
+            textFieldSearchResult = -1
+        }else{
             let convertedSearchText = searchTextField.text!.convertToYomi().katakanaLowercasedForSearch()
             let realm = try! Realm()
             let searchedRecipe = realm.objects(Recipe.self)
                 .filter("katakanaLowercasedNameForSearch CONTAINS %@ OR recipeName CONTAINS %@", convertedSearchText, searchText)
-            textFieldHasSearchResult = searchedRecipe.count > 0
-        }else{
-            textFieldHasSearchResult = true
+            textFieldSearchResult = searchedRecipe.count
         }
     }
     
     private func setSearchTextFieldAlertStyle(){
-        if textFieldHasSearchResult == false {
+        if textFieldSearchResult == 0 {
             searchTextField.layer.borderWidth = 1
             searchTextField.layer.borderColor = UchicockStyle.alertColor.cgColor
             searchTextField.textColor = UchicockStyle.alertColor
@@ -554,8 +554,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         tableView.backgroundView = UIView()
-        tableView.isScrollEnabled = false
-            
+        tableView.isScrollEnabled = isBookmarkMode ? false : true
+
         let noDataLabel = UILabel()
         noDataLabel.numberOfLines = 0
         noDataLabel.textColor = UchicockStyle.labelTextColorLight
@@ -577,16 +577,14 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
             NSLayoutConstraint.activate([centerXConstraint, topConstraint, heightConstraint])
             
             if recipeList == nil || recipeList!.count == 0{
-                noDataLabel.text = "レシピはありません"
+                noDataLabel.text = "レシピはありません\n\n「いろいろ」メニューよりサンプルレシピの\n復元を試してみてください"
             }else{
-                if textFieldHasSearchResult{
-                    if searchTextField.text!.withoutMiddleSpaceAndMiddleDot() == "" {
-                        noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
-                    }else{
-                        noDataLabel.text = "入力したレシピ名のレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                    }
-                }else{
+                if textFieldSearchResult < 0{
+                    noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+                }else if textFieldSearchResult == 0{
                     noDataLabel.text = "検索文字列にあてはまるレシピはありません"
+                }else{
+                    noDataLabel.text = "入力したレシピ名のレシピは\(textFieldSearchResult)個ありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
                 }
             }
         }

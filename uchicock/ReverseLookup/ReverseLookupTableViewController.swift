@@ -27,7 +27,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
 
     var hiddenLabel = UILabel()
     var editingTextField = -1
-    var textFieldHasSearchResult = false
+    var textFieldSearchResult = 0
     var noIngredientForTextField = false
 
     var sortOrder = RecipeSortType.name
@@ -298,7 +298,7 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         ingredientTextField3.text = ingredientTextField3.text!.withoutEndsSpace()
 
         reloadRecipeBasicList(recipeArray: &recipeBasicList)
-        textFieldHasSearchResult = recipeBasicList.count > 0
+        textFieldSearchResult = recipeBasicList.count
         filterAndSortRecipeBasicList()
         recipeTableView.reloadData()
 
@@ -606,14 +606,12 @@ class ReverseLookupTableViewController: UITableViewController, UITextFieldDelega
         if noIngredientForTextField {
             noDataLabel.text = "存在しない材料が指定されています\n（材料名は完全一致で検索されます）"
         }else{
-            if textFieldHasSearchResult{
-                if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
-                    noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
-                }else{
-                    noDataLabel.text = "入力した材料を使うレシピはありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
-                }
-            }else{
+            if textFieldSearchResult == 0{
                 noDataLabel.text = "入力した材料を全て使うレシピはありません"
+            }else if ingredientTextField1.text!.withoutEndsSpace() == "" && ingredientTextField2.text!.withoutEndsSpace() == "" && ingredientTextField3.text!.withoutEndsSpace() == ""{
+                noDataLabel.text = "絞り込み条件にあてはまるレシピはありません"
+            }else{
+                noDataLabel.text = "入力した材料を使うレシピは\(textFieldSearchResult)個ありますが、\n絞り込み条件には該当しません\n絞り込み条件を変更してください"
             }
         }
     }
