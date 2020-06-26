@@ -73,7 +73,7 @@ class AlcoholAmountTipViewController: TipViewController {
     }
     
     private func updateResultLabel(){
-        let speed = Int(floor(Double(weight) * 0.125))
+        let speed = floor(Double(weight) * 0.125 * 10)/10
         decompositionSpeedLabel.text = "1時間あたり約" + String(speed) +  "ml"
         
         let totalHours = Double(alcoholAmount) / (Double(weight) * 0.125)
