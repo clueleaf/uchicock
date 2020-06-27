@@ -250,9 +250,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 0 && indexPath == IndexPath(row: 0, section: 1){
             let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             var title = "外す"
             if recipeIngredient.ingredientName == "" {
                 title = "追加をやめる"
@@ -367,9 +364,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
     
     private func presentAlert(_ message: String, action: (() -> Void)?){
         let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: {_ in
             action?()
         })
@@ -436,9 +430,6 @@ class RecipeIngredientEditTableViewController: UITableViewController, UITextFiel
         
         //同じ名前の材料が存在しないので新規に登録する
         let registAlertView = CustomAlertController(title: nil, message: "この材料はまだ登録されていないので、新たに登録します", preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            registAlertView.overrideUserInterfaceStyle = .dark
-        }
         let alcoholAction = UIAlertAction(title: "「アルコール」として登録", style: .default){action in
             self.dismissSelf(withNewIngredientCategory: 0)
         }

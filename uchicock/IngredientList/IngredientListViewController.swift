@@ -308,9 +308,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
 
         if ingredient.stockFlag && ingredient.reminderSetDate != nil{
             let alertView = CustomAlertController(title: nil, message: ingredient.ingredientName + "は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             let noAction = UIAlertAction(title: "解除しない", style: .cancel, handler: nil)
             if #available(iOS 13.0, *){ noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(noAction)
@@ -451,9 +448,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         let del =  UIContextualAction(style: .destructive, title: "削除"){ action,view,completionHandler in
             if ingredient.recipeIngredients.count > 0 {
                 let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    alertView.overrideUserInterfaceStyle = .dark
-                }
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 if #available(iOS 13.0, *){ okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(okAction)
@@ -462,9 +456,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
                 completionHandler(false)
             }else{
                 let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    deleteAlertView.overrideUserInterfaceStyle = .dark
-                }
                 let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
                     try! realm.write { realm.delete(ingredient) }
                     self.ingredientBasicList.remove(at: indexPath.row)

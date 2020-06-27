@@ -212,9 +212,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         guard hasIngredientDeleted == false else{
             let noIngredientAlertView = CustomAlertController(title: "この材料は削除されました", message: "元の画面に戻ります", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                noIngredientAlertView.overrideUserInterfaceStyle = .dark
-            }
             let okAction = UIAlertAction(title: "OK", style: .default){action in
                 self.navigationController?.popViewController(animated: true)
             }
@@ -430,9 +427,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
         
         let alertView = CustomAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let action1 = UIAlertAction(title: title1, style: .default){
             action in
             self.recipeSort = .name
@@ -583,9 +577,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         
         if stockCheckbox.checkState == .checked && ingredient.reminderSetDate != nil{
             let alertView = CustomAlertController(title: nil, message: "この材料は購入リマインダーに登録されています。\n解除しますか？", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             let noAction = UIAlertAction(title: "解除しない", style: .cancel, handler: nil)
             if #available(iOS 13.0, *){ noAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(noAction)
@@ -650,9 +641,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         guard ingredient.recipeIngredients.count == 0 else{
             let alertView = CustomAlertController(title: nil, message: "この材料を使っているレシピがあるため、削除できません", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             if #available(iOS 13.0, *){ okAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
             alertView.addAction(okAction)
@@ -662,9 +650,6 @@ class IngredientDetailTableViewController: UITableViewController, UIViewControll
         }
 
         let deleteAlertView = CustomAlertController(title: nil, message: "この材料を本当に削除しますか？", preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            deleteAlertView.overrideUserInterfaceStyle = .dark
-        }
         let deleteAction = UIAlertAction(title: "削除", style: .destructive){action in
             let realm = try! Realm()
             try! realm.write { realm.delete(self.ingredient) }

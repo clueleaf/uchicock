@@ -263,9 +263,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             tableView.deselectRow(at: indexPath, animated: true)
             if recoverableSampleRecipeList.count == 0{
                 let alertView = CustomAlertController(title: nil, message: "復元できるレシピはありません", preferredStyle: .alert)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    alertView.overrideUserInterfaceStyle = .dark
-                }
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 if #available(iOS 13.0, *){ action.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                 alertView.addAction(action)
@@ -274,9 +271,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             }else{
                 let recipeNum = recoverableSampleRecipeList.count
                 let alertView = CustomAlertController(title: nil, message: "復元できる" + String(recipeNum) + "レシピを全て復元します", preferredStyle: .alert)
-                if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                    alertView.overrideUserInterfaceStyle = .dark
-                }
                 let recoverAction = UIAlertAction(title: "復元", style: .default){action in
                     self.isRecovering = true
                     MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)
@@ -308,9 +302,6 @@ class RecoverTableViewController: UITableViewController, UIViewControllerTransit
             
             if recoverCount == 0{ break }
             let alertView = CustomAlertController(title: nil, message: "選択した" + String(recoverCount) + "レシピを復元します", preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             let recoverAction = UIAlertAction(title: "復元", style: .default){action in
                 self.isRecovering = true
                 MessageHUD.show("復元中...", for: nil, withCheckmark: false, isCenter: true)

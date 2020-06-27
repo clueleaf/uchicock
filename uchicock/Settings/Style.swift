@@ -791,6 +791,10 @@ struct UchicockStyle{
     // MARK: - Set Global Theme
     static private func setGlobalTheme(){
         // 注意：TableViewは外部のUIコンポーネントに影響するので、色の設定を共通化してはいけない
+        if #available(iOS 13.0, *){
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.overrideUserInterfaceStyle = UchicockStyle.isBackgroundDark ? .dark : .light
+        }
         customizeNavigationBar()
         customizeSegmentedControl()
         customizeCircularCheckbox()

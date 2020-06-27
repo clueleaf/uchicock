@@ -219,9 +219,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
         }
 
         let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let yesAction = UIAlertAction(title: "はい",style: .default){action in
             self.dismiss(animated: true, completion: nil)
         }
@@ -236,9 +233,6 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let alertAction = UIAlertAction(title: "OK", style: .default){_ in
             action?()
         }

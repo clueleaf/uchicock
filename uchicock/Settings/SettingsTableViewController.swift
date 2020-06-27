@@ -149,9 +149,6 @@ class SettingsTableViewController: UITableViewController, ScrollableToTop {
             self.tableView.deselectRow(at: indexPath, animated: true)
             let message = "「うちカク！」開発のモチベーションはみなさんの応援です。\n「使いやすい」と感じていただけたら、これからも継続して提供していけるように、ぜひ温かい応援をお願いします！\n「星評価だけ」でも構いません！\nm(_ _)m"
             let alertView = CustomAlertController(title: nil, message: message, preferredStyle: .alert)
-            if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                alertView.overrideUserInterfaceStyle = .dark
-            }
             let writeAction = UIAlertAction(title: "レビューを書く", style: .default){action in
                 if let url = self.appStoreReviewURL {
                     if UIApplication.shared.canOpenURL(url){

@@ -78,9 +78,6 @@ class ReminderTableViewController: UITableViewController {
     // MARK: - Logic functions
     private func showError(type: String){
         let alertView = CustomAlertController(title: "\(type)への登録に失敗しました", message: "「設定」→「うちカク！」にて\(type)へのアクセス許可を確認してください", preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
         if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
         alertView.addAction(cancelAction)

@@ -607,18 +607,12 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func addPhoto() {
         let alert = CustomAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alert.overrideUserInterfaceStyle = .dark
-        }
         
         let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         if UIImagePickerController.isSourceTypeAvailable(.camera) && status != .restricted {
             let takePhotoAction = UIAlertAction(title: "写真を撮る", style: .default){action in
                 if status == .denied{
                     let alertView = CustomAlertController(title: "カメラの起動に失敗しました", message: "「設定」→「うちカク！」にてカメラへのアクセス許可を確認してください", preferredStyle: .alert)
-                    if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-                        alertView.overrideUserInterfaceStyle = .dark
-                    }
                     let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
                     if #available(iOS 13.0, *){ cancelAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
                     alertView.addAction(cancelAction)
@@ -635,9 +629,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
                     self.ipc.sourceType = .camera
                     self.ipc.allowsEditing = false
                     self.ipc.modalPresentationStyle = .fullScreen
-                    if #available(iOS 13.0, *) {
-                        self.ipc.overrideUserInterfaceStyle = UchicockStyle.isBackgroundDark ? .dark : .light
-                    }
                     self.present(self.ipc, animated: true, completion: nil)
                 }
             }
@@ -649,9 +640,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
             self.ipc.sourceType = .photoLibrary
             self.ipc.allowsEditing = false
             self.ipc.modalPresentationStyle = .fullScreen
-            if #available(iOS 13.0, *) {
-                self.ipc.overrideUserInterfaceStyle = UchicockStyle.isBackgroundDark ? .dark : .light
-            }
             self.present(self.ipc, animated: true, completion: nil)
         }
         if #available(iOS 13.0, *){ selectPhotoAction.setValue(UchicockStyle.primaryColor, forKey: "titleTextColor") }
@@ -797,9 +785,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
         }
 
         let alertView = CustomAlertController(title: nil, message: "編集をやめますか？", preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let yesAction = UIAlertAction(title: "はい",style: .default){action in
             self.dismiss(animated: true, completion: nil)
         }
@@ -814,9 +799,6 @@ class RecipeEditTableViewController: UITableViewController, UITextFieldDelegate,
     
     private func presentAlert(title: String, message: String?, action: (() -> Void)?){
         let alertView = CustomAlertController(title: title, message: message, preferredStyle: .alert)
-        if #available(iOS 13.0, *),UchicockStyle.isBackgroundDark {
-            alertView.overrideUserInterfaceStyle = .dark
-        }
         let alertAction = UIAlertAction(title: "OK", style: .default){_ in
             action?()
         }
