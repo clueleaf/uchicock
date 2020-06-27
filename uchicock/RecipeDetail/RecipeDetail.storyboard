@@ -109,7 +109,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="お気に入り" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKc-u7-kAR" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="12" width="229" height="26"/>
+                                                    <rect key="frame" x="8" y="12" width="239" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="PzJ-cr-mgb"/>
                                                     </constraints>
@@ -156,7 +156,7 @@
                                                 <constraint firstItem="7hI-6j-UuT" firstAttribute="centerY" secondItem="nKc-u7-kAR" secondAttribute="centerY" id="56i-dn-p8w"/>
                                                 <constraint firstItem="gxL-Nl-qZ9" firstAttribute="leading" secondItem="6ts-mH-DGs" secondAttribute="trailing" constant="8" id="F9P-wM-jhE"/>
                                                 <constraint firstAttribute="trailing" secondItem="7hI-6j-UuT" secondAttribute="trailing" constant="12" id="Gec-g1-pDI"/>
-                                                <constraint firstItem="6ts-mH-DGs" firstAttribute="leading" secondItem="nKc-u7-kAR" secondAttribute="trailing" constant="20" id="KHP-UN-gKu"/>
+                                                <constraint firstItem="6ts-mH-DGs" firstAttribute="leading" secondItem="nKc-u7-kAR" secondAttribute="trailing" constant="10" id="KHP-UN-gKu"/>
                                                 <constraint firstItem="nKc-u7-kAR" firstAttribute="top" secondItem="hgy-m0-Wth" secondAttribute="top" constant="12" id="g1D-SP-ndV"/>
                                                 <constraint firstAttribute="bottom" secondItem="nKc-u7-kAR" secondAttribute="bottom" constant="12" id="jpH-s9-c5Y"/>
                                                 <constraint firstItem="nKc-u7-kAR" firstAttribute="leading" secondItem="hgy-m0-Wth" secondAttribute="leading" constant="8" id="kUo-5F-AvH"/>
@@ -184,9 +184,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロング" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4d-3g-NZJ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="243" y="14.5" width="120" height="21"/>
+                                                    <rect key="frame" x="283" y="14.5" width="80" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="ASw-nH-aqE"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="ASw-nH-aqE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -210,7 +210,7 @@
                                                 <constraint firstItem="ExT-m2-7rC" firstAttribute="centerY" secondItem="IBQ-O2-pTv" secondAttribute="centerY" id="BAH-TA-ukP"/>
                                                 <constraint firstAttribute="bottom" secondItem="IBQ-O2-pTv" secondAttribute="bottom" constant="15" id="LVl-uD-UZf"/>
                                                 <constraint firstItem="IBQ-O2-pTv" firstAttribute="leading" secondItem="1Tb-95-m8i" secondAttribute="leading" constant="8" id="RaE-nc-8OB"/>
-                                                <constraint firstItem="X4d-3g-NZJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ExT-m2-7rC" secondAttribute="trailing" constant="20" id="TZM-AH-0ff"/>
+                                                <constraint firstItem="X4d-3g-NZJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ExT-m2-7rC" secondAttribute="trailing" constant="10" id="TZM-AH-0ff"/>
                                                 <constraint firstAttribute="trailing" secondItem="X4d-3g-NZJ" secondAttribute="trailing" constant="12" id="fOq-DI-2OS"/>
                                                 <constraint firstItem="IBQ-O2-pTv" firstAttribute="top" secondItem="1Tb-95-m8i" secondAttribute="top" constant="15" id="s3U-J5-wCq"/>
                                             </constraints>
@@ -233,9 +233,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ビルド" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sca-mX-RzU" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="243" y="17.5" width="120" height="21"/>
+                                                    <rect key="frame" x="283" y="17.5" width="80" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="gih-V1-m0u"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="gih-V1-m0u"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -259,7 +259,7 @@
                                                 <constraint firstItem="KSZ-h7-jZu" firstAttribute="centerY" secondItem="K0y-wg-VNC" secondAttribute="centerY" id="AFm-xJ-O0F"/>
                                                 <constraint firstAttribute="bottom" secondItem="K0y-wg-VNC" secondAttribute="bottom" constant="15" id="BOL-5I-2vk"/>
                                                 <constraint firstAttribute="trailing" secondItem="sca-mX-RzU" secondAttribute="trailing" constant="12" id="HZb-xj-PH1"/>
-                                                <constraint firstItem="sca-mX-RzU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KSZ-h7-jZu" secondAttribute="trailing" constant="20" id="J0b-mE-J7u"/>
+                                                <constraint firstItem="sca-mX-RzU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KSZ-h7-jZu" secondAttribute="trailing" constant="10" id="J0b-mE-J7u"/>
                                                 <constraint firstItem="K0y-wg-VNC" firstAttribute="leading" secondItem="pNE-O5-84v" secondAttribute="leading" constant="8" id="bcK-bO-fbn"/>
                                                 <constraint firstItem="sca-mX-RzU" firstAttribute="centerY" secondItem="K0y-wg-VNC" secondAttribute="centerY" id="jK7-zb-k9v"/>
                                             </constraints>
@@ -281,8 +281,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弱い" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqH-bU-kag" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="243" y="17.5" width="120" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ノンアルコール" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqH-bU-kag" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
+                                                    <rect key="frame" x="241.5" y="17.5" width="121.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="20S-la-Xmu"/>
                                                     </constraints>
@@ -309,7 +309,7 @@
                                                 <constraint firstItem="sqH-bU-kag" firstAttribute="centerY" secondItem="wTg-q1-o2T" secondAttribute="centerY" id="bvd-Oy-pOi"/>
                                                 <constraint firstItem="wTg-q1-o2T" firstAttribute="top" secondItem="QzN-9V-g9e" secondAttribute="top" constant="15" id="ixK-E8-25L"/>
                                                 <constraint firstAttribute="bottom" secondItem="wTg-q1-o2T" secondAttribute="bottom" constant="15" id="vBh-24-rAC"/>
-                                                <constraint firstItem="sqH-bU-kag" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ErH-eR-jC5" secondAttribute="trailing" constant="20" id="vT0-wR-Wsj"/>
+                                                <constraint firstItem="sqH-bU-kag" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ErH-eR-jC5" secondAttribute="trailing" constant="10" id="vT0-wR-Wsj"/>
                                                 <constraint firstAttribute="trailing" secondItem="sqH-bU-kag" secondAttribute="trailing" constant="12" id="wta-Wl-E08"/>
                                             </constraints>
                                         </tableViewCellContentView>

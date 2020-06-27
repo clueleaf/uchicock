@@ -1149,14 +1149,16 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     @IBAction func madeNumPlusButtonTapped(_ sender: UIButton) {
         if recipe.madeNum < 9999 {
             let realm = try! Realm()
-            try! realm.write { recipe.madeNum += 1 }
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.madeNumCountUpLabel.transform = .init(scaleX: 1.15, y: 1.15)
-            }) { (finished: Bool) -> Void in
-                self.madeNumCountUpLabel.text = String(self.recipe.madeNum) + "回"
+            try! realm.write {
+                recipe.madeNum += 1
                 UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                    self.madeNumCountUpLabel.transform = .identity
-                })
+                    self.madeNumCountUpLabel.transform = .init(scaleX: 1.15, y: 1.15)
+                }) { (finished: Bool) -> Void in
+                    self.madeNumCountUpLabel.text = String(self.recipe.madeNum) + "回"
+                    UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                        self.madeNumCountUpLabel.transform = .identity
+                    })
+                }
             }
         }
         setMadeNumButton()
@@ -1164,9 +1166,11 @@ class RecipeDetailTableViewController: UITableViewController, UIViewControllerTr
     
     @IBAction func madeNumMinusButtonTapped(_ sender: UIButton) {
         if recipe.madeNum > 0 {
-            madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
             let realm = try! Realm()
-            try! realm.write { recipe.madeNum -= 1 }
+            try! realm.write {
+                recipe.madeNum -= 1
+                madeNumCountUpLabel.text = String(recipe.madeNum) + "回"
+            }
         }
         setMadeNumButton()
     }
