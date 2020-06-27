@@ -54,7 +54,7 @@ class PhotoFilterViewController: UIViewController, UIScrollViewDelegate, UIGestu
         confirmButton.layer.cornerRadius = 17.5
         confirmButton.setTitleColor(UIColor.white, for: .normal)
 
-        smallCIImage = image.resizedCGImage(maxLongSide: 150)
+        smallCIImage = image.resizedCGImage(maxLongSide: 200)
 
         filterScrollView.indicatorStyle = .white
         imageScrollView.indicatorStyle = .white
