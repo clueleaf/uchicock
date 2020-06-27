@@ -358,7 +358,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="作った回数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-9k-VQl" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="12" width="160" height="26"/>
+                                                    <rect key="frame" x="8" y="12" width="205" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="750" constant="25" id="9OU-Lg-YfW"/>
                                                     </constraints>
@@ -367,9 +367,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0回" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiG-Md-KeZ" customClass="CustomLabel" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="248" y="12.5" width="50" height="25"/>
+                                                    <rect key="frame" x="273" y="12.5" width="40" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="YIG-9I-50O"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="YIG-9I-50O"/>
                                                         <constraint firstAttribute="height" constant="25" id="rXq-BU-nJG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -389,7 +389,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTA-1P-aFO" customClass="ExpandedButton" customModule="uchicock" customModuleProvider="target">
-                                                    <rect key="frame" x="188" y="10" width="30" height="30"/>
+                                                    <rect key="frame" x="223" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="JJh-TJ-P4J"/>
                                                         <constraint firstAttribute="width" constant="30" id="oZG-Y0-qP6"/>
@@ -404,13 +404,13 @@
                                             <constraints>
                                                 <constraint firstItem="fiG-Md-KeZ" firstAttribute="centerY" secondItem="JAV-9k-VQl" secondAttribute="centerY" id="53p-1g-yEW"/>
                                                 <constraint firstItem="JAV-9k-VQl" firstAttribute="top" secondItem="PCI-4g-lQs" secondAttribute="top" constant="12" id="79B-pL-HBI"/>
-                                                <constraint firstItem="fiG-Md-KeZ" firstAttribute="leading" secondItem="aTA-1P-aFO" secondAttribute="trailing" constant="30" id="8JU-Ka-ZhS"/>
+                                                <constraint firstItem="fiG-Md-KeZ" firstAttribute="leading" secondItem="aTA-1P-aFO" secondAttribute="trailing" constant="20" id="8JU-Ka-ZhS"/>
                                                 <constraint firstAttribute="bottom" secondItem="JAV-9k-VQl" secondAttribute="bottom" constant="12" id="JNl-iS-Rdt"/>
                                                 <constraint firstAttribute="trailing" secondItem="XZO-3V-dxg" secondAttribute="trailing" constant="12" id="Qct-i3-lFe"/>
                                                 <constraint firstItem="XZO-3V-dxg" firstAttribute="centerY" secondItem="JAV-9k-VQl" secondAttribute="centerY" id="SAP-m6-HXl"/>
                                                 <constraint firstItem="JAV-9k-VQl" firstAttribute="leading" secondItem="PCI-4g-lQs" secondAttribute="leading" constant="8" id="YR7-7S-ZrU"/>
-                                                <constraint firstItem="XZO-3V-dxg" firstAttribute="leading" secondItem="fiG-Md-KeZ" secondAttribute="trailing" constant="35" id="ezh-KO-CeG"/>
-                                                <constraint firstItem="aTA-1P-aFO" firstAttribute="leading" secondItem="JAV-9k-VQl" secondAttribute="trailing" constant="20" id="isy-Li-mYu"/>
+                                                <constraint firstItem="XZO-3V-dxg" firstAttribute="leading" secondItem="fiG-Md-KeZ" secondAttribute="trailing" constant="20" id="ezh-KO-CeG"/>
+                                                <constraint firstItem="aTA-1P-aFO" firstAttribute="leading" secondItem="JAV-9k-VQl" secondAttribute="trailing" constant="10" id="isy-Li-mYu"/>
                                                 <constraint firstItem="aTA-1P-aFO" firstAttribute="centerY" secondItem="JAV-9k-VQl" secondAttribute="centerY" id="krr-A5-DY2"/>
                                             </constraints>
                                         </tableViewCellContentView>
