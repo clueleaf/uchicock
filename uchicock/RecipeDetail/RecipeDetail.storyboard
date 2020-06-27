@@ -337,6 +337,7 @@
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
