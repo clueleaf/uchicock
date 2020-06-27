@@ -78,7 +78,11 @@ class IntroductionPageViewController: UIPageViewController, UIPageViewController
             backgroundImage = UIImage(named:"background-tequila-sunrise")
         }        
         
-        currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
+        if #available(iOS 13.0, *) {
+            currentStatusBarStyle = isTextColorBlack ? .darkContent : .lightContent
+        }else{
+            currentStatusBarStyle = isTextColorBlack ? .default : .lightContent
+        }
 
         UIGraphicsBeginImageContext(self.view.frame.size)
         backgroundImage!.draw(in: self.view.bounds)
